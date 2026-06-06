@@ -1,0 +1,27 @@
+# Willkommen {.unnumbered}
+
+Willkommen zum Grundlagenkurs für n8n. Dieser Kurs bringt uns von null auf einen ersten, vollständig funktionierenden Workflow: Wir lernen die Plattform einzuordnen, richten eine eigene Instanz ein und bauen Schritt für Schritt eine kleine Automation, die eine eingehende Kundenmail entgegennimmt, einen Tabelleneintrag schreibt und eine Bestätigungs-Mail versendet.
+
+n8n ist eine visuelle Workflow-Plattform, in der Aktionen als verbundene Knoten dargestellt werden. Sie kombiniert über fünfhundert fertige Integrationen mit klassischer Datenverarbeitung und KI-Bausteinen, und zwar alles im selben Editor. In diesem Kurs konzentrieren wir uns bewusst auf das deterministische Fundament, also Workflows ohne KI, damit die Editor-Mechanik, die Knoten-Logik und die Test- und Live-Pfade sicher sitzen.
+
+## Worum es in diesem Kurs geht
+
+Der Kurs ist bewusst kompakt und praktisch angelegt. Das Vorgehen ist:
+
+1. **Plattform verstehen.** Was n8n im Kern leistet und wofür es nicht gebaut wurde, wie das Pricing gegen Zapier, Make und Power Automate abschneidet, und welche Hosting-Variante zu Team, Datenanforderung und Budget passt.
+2. **Instanz einrichten.** Eine eigene n8n-Umgebung als Cloud-Variante oder selbst gehostet, plus die saubere Trennung von Zugangsdaten (Credentials).
+3. **Ersten Workflow bauen.** Den Editor öffnen, Knoten verbinden, mit Mock-Daten testen und in den Live-Modus überführen, am durchgehenden Demo-Szenario einer Support-Inbox.
+
+## Demo-Szenario
+
+Ein einziger Use Case begleitet den Kurs: Eine eingehende Kundenmail wird entgegengenommen, in einer Tabelle festgehalten und mit einer Bestätigungs-Mail beantwortet. Der Workflow lässt sich alleine bauen und testen, denn eine beliebige Mail-Adresse reicht aus. Gmail, Slack, Microsoft Teams und HubSpot werden als optionale Erweiterungen gezeigt.
+
+::: {.callout-tip title="Lernempfehlung"}
+Die Kapitel bauen aufeinander auf. Wer den größten Nutzen mitnehmen möchte, arbeitet die Module in der Reihenfolge durch und baut den Demo-Workflow Schritt für Schritt mit. Eine eigene n8n-Instanz ist die wichtigste Voraussetzung. Sowohl die Cloud-Variante als auch eine Self-Hosted-Installation funktioniert.
+:::
+
+## Wie es weitergeht
+
+Dieser Kurs legt das handwerkliche Fundament. Wer darauf aufbauend lernen möchte, wie aus deterministischen Workflows produktive **KI-Agenten** werden (mit Routing, Tool-Nutzung, RAG, Multi-Agent-Pipelines, Approval-Pfaden und Monitoring), findet die Fortsetzung im Aufbaukurs *KI-Agenten in n8n*. Dort wird genau das hier gebaute Demo-Szenario schrittweise um Agent-Funktionen erweitert.
+
+Mit diesem Kurs entsteht die belastbare Grundlage, auf der jede weitere Automatisierung in n8n aufsetzt.

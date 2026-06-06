@@ -1,0 +1,54 @@
+direction: right
+
+trigger: {
+  label: "Auslöser\n(Mail, Webhook,\nSchedule)"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+n8n: {
+  label: "n8n\nOrchestrierung"
+  shape: rectangle
+  style: {
+    fill: "#18181b"
+    stroke: "#18181b"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#fafafa"
+    bold: true
+  }
+}
+
+tools: {
+  label: "Tools & Daten\n(CRM, Slack,\nDatenbanken)"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+ki: {
+  label: "KI-Modelle\n(OpenAI, Anthropic,\nOllama)"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+trigger -> n8n: {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+n8n -> tools: {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+n8n -> ki: {style: {stroke: "#a1a1aa"; stroke-width: 2}}

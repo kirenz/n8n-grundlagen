@@ -1,0 +1,9 @@
+{
+  "name": "agentic_ai_diagrams",
+  "display_name": "Agentic AI Diagrams",
+  "description": "Minimalistische IT-Architecture-Charts im D2-ähnlichen Stil für Agentic-AI- und Systemübersichten",
+  "style_instructions": "Style: Minimalist 2D architecture diagram in a D2-like technical style. Use flat vector shapes, thin monoline connectors, and rounded rectangles. Layout: clear left-center-right system topology with consistent grid alignment and generous spacing. Emphasize a central orchestration/protocol block and surrounding components grouped by role. Arrows: orthogonal or gently curved connectors, explicit direction, bidirectional where needed. Color palette: light neutral background (#F2F3F5), charcoal lines/text (#1F2937), subtle gray containers (#E5E7EB), one muted blue accent for key hub (#C7D7E8), no gradients. Typography: clean sans-serif labels, short component names, high legibility. Visual rules: no photorealism, no people, no 3D, no shadows, no decorative icons, no dense textures. Output should look like a clean system architecture chart suitable for executive slides. Language: follow the user prompt for label language.",
+  "aspect_ratio": "16:9",
+  "resolution": "2K",
+  "mood": "minimal, technical, structured"
+}

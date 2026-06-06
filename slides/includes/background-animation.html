@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #ffffff;
+            /* Base color */
+            pointer-events: none;
+            /* Allow clicks to pass through to presentation controls */
+        }
+
+        /* Gradient Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            /* Reduced blur slightly for better definition */
+            opacity: 0.9;
+            /* Significantly increased base opacity */
+            mix-blend-mode: multiply;
+            /* Helps colors blend richer against white */
+        }
+
+        /* Orb 1: OpenAI/ChatGPT Green-ish */
+        .orb-1 {
+            top: -5%;
+            left: -5%;
+            width: 65vw;
+            height: 65vw;
+            /* Increased color opacity from 0.25 to 0.5 */
+            background: radial-gradient(circle, rgba(16, 163, 127, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        /* Orb 2: Soft Blue */
+        .orb-2 {
+            bottom: -5%;
+            right: -5%;
+            width: 75vw;
+            height: 75vw;
+            /* Increased color opacity from 0.25 to 0.5 */
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        /* Orb 3: Subtle Violet/Purple */
+        .orb-3 {
+            top: 35%;
+            left: 35%;
+            width: 55vw;
+            height: 55vw;
+            /* Increased color opacity from 0.2 to 0.45 */
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</body>
+
+</html>

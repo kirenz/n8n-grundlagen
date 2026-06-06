@@ -1,0 +1,243 @@
+{
+  "name": "n8n Fundamentals Course · Module 02 · First Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Module 02: First Workflow\n\nThree steps: trigger, respond, record. The workflow simulates an incoming email, sends a confirmation, and logs the entry in a table.",
+        "height": 110,
+        "width": 1380
+      },
+      "name": "Modul-Übersicht",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -200
+      ],
+      "id": "note-overview"
+    },
+    {
+      "parameters": {
+        "content": "### 1. Start workflow manually\n\nStarts the workflow with a click on **Execute Workflow**. For initial testing in the editor.",
+        "height": 200,
+        "width": 200
+      },
+      "name": "Note Auslöser",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        220,
+        60
+      ],
+      "id": "note-trigger"
+    },
+    {
+      "parameters": {},
+      "name": "Start workflow manually",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        260,
+        500
+      ],
+      "id": "trigger-manual"
+    },
+    {
+      "parameters": {
+        "content": "### 2. Receive email\n\nThe **Set node** defines four fields:\n\n- **sender**: email sender\n- **subject**: subject line\n- **text**: message body\n- **received_at**: timestamp via **{{ $now.toISO() }}**\n\nDownstream nodes access fields via **{{ $json.fieldname }}**.",
+        "height": 320,
+        "width": 200
+      },
+      "name": "Note Mail-Simulation",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        440,
+        60
+      ],
+      "id": "note-set-mail"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "field-sender",
+              "name": "sender",
+              "value": "max@example.com",
+              "type": "string"
+            },
+            {
+              "id": "field-subject",
+              "name": "subject",
+              "value": "Question about delivery time",
+              "type": "string"
+            },
+            {
+              "id": "field-text",
+              "name": "text",
+              "value": "Hello, I ordered yesterday and was wondering when delivery will arrive. Best regards, Max",
+              "type": "string"
+            },
+            {
+              "id": "field-received_at",
+              "name": "received_at",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Receive email",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        500
+      ],
+      "id": "set-mail-data"
+    },
+    {
+      "parameters": {
+        "content": "### 3. Send confirmation\n\nThe **SMTP node** sends a reply to the sender.\n\n- Recipient: **{{ $json.sender }}**\n- Subject quoted via **{{ $json.subject }}**\n\nBefore the first run, configure SMTP credentials and set **fromEmail** to your own address.",
+        "height": 320,
+        "width": 200
+      },
+      "name": "Note Bestätigung",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        660,
+        60
+      ],
+      "id": "note-smtp"
+    },
+    {
+      "parameters": {
+        "fromEmail": "info@company.com",
+        "toEmail": "={{ $json.sender }}",
+        "subject": "Thank you for your message",
+        "text": "=Hello,\n\nthank you for your message. We have received it and will get back to you within one business day.\n\nSubject of your inquiry: {{ $json.subject }}\n\nBest regards\nThe customer service team",
+        "options": {}
+      },
+      "name": "Send confirmation",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        700,
+        500
+      ],
+      "id": "smtp-send"
+    },
+    {
+      "parameters": {
+        "content": "### 4. Prepare table entry\n\nPrepares the record for the Data Table. Four columns:\n\n- **sender**\n- **subject**\n- **received_at**\n- **status**\n\nValues via **{{ $('Receive email').item.json.field }}**.",
+        "height": 320,
+        "width": 200
+      },
+      "name": "Note Eintrag-Mapping",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        880,
+        60
+      ],
+      "id": "note-set-table"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "log-sender",
+              "name": "sender",
+              "value": "={{ $('Receive email').item.json.sender }}",
+              "type": "string"
+            },
+            {
+              "id": "log-subject",
+              "name": "subject",
+              "value": "={{ $('Receive email').item.json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "log-time",
+              "name": "received_at",
+              "value": "={{ $('Receive email').item.json.received_at }}",
+              "type": "string"
+            },
+            {
+              "id": "log-status",
+              "name": "status",
+              "value": "new",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Prepare table entry",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        920,
+        500
+      ],
+      "id": "set-table-row"
+    },
+    {
+      "parameters": {
+        "content": "### 5. Data Table\n\nAdd the **Data Table** node locally in the editor.\n\n- Create the table beforehand: **customer_emails** with columns *sender*, *subject*, *received_at*, *status*\n- Operation: **Insert Row**\n- Use the mapping from the previous node",
+        "height": 320,
+        "width": 280
+      },
+      "name": "Note Data Table",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        60
+      ],
+      "id": "note-datatable"
+    }
+  ],
+  "connections": {
+    "Start workflow manually": {
+      "main": [
+        [
+          {
+            "node": "Receive email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Receive email": {
+      "main": [
+        [
+          {
+            "node": "Send confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send confirmation": {
+      "main": [
+        [
+          {
+            "node": "Prepare table entry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

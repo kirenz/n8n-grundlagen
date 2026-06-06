@@ -1,0 +1,853 @@
+/*-- scss:rules --*/
+// =========================================
+// Variant A — Pure Platform-Mirror
+//
+// 1:1-Port der Plattform-DNA. Keine Akzentfarben außer Ochre/Terracotta,
+// keine Schatten, keine Hintergrund-Animation. Karten sind Outline-only
+// mit ring-1-artigem Border in --rule. Maximal ruhig.
+// =========================================
+
+// ---------- Title-Slide ----------
+// Quarto rendert die Title-Slide als <section id="title-slide" class="center">.
+// Die .title-slide-Klasse ist NICHT auf der Title-Slide selbst, sondern auf
+// Level-1-Sections, die eine Auto-Title bekommen — daher beide Selektoren.
+.reveal section#title-slide,
+.reveal .title-slide {
+  background: var(--paper) !important;
+  background-color: var(--paper) !important;
+  background-image: none !important;
+
+  h1.title,
+  .title {
+    color: var(--ink) !important;
+    font-weight: 500;
+    letter-spacing: var(--tracking-display);
+    text-shadow: none !important;
+    background: transparent !important;
+    background-image: none !important;
+    // custom-new.scss nutzt -webkit-text-fill-color: transparent + background-clip: text
+    // für einen Gradient-Text-Trick. Wir setzen das zurück, sonst ist der Title unsichtbar.
+    -webkit-text-fill-color: var(--ink) !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+  }
+  .subtitle,
+  p.subtitle {
+    color: var(--ink-soft) !important;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    text-shadow: none !important;
+  }
+  .author,
+  .date,
+  .quarto-title-author-name {
+    color: var(--ink-soft) !important;
+    font-size: 0.78em;
+    letter-spacing: var(--tracking-kicker);
+    text-transform: uppercase;
+    text-shadow: none !important;
+  }
+}
+
+// ---------- Section Header (non-stage) ----------
+// `.center` ist KEINE Stage-Folie (z. B. „## Pattern-Bibliothek" als
+// zentrierter Abschnittstitel) — bleibt im hellen A-Look.
+.reveal section.center {
+  background: var(--paper) !important;
+  background-color: var(--paper) !important;
+  background-image: none !important;
+  color: var(--ink) !important;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--ink) !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    background-image: none !important;
+    font-weight: 500;
+    letter-spacing: var(--tracking-display);
+  }
+
+  p, li, span, blockquote {
+    color: var(--ink) !important;
+    text-shadow: none !important;
+  }
+
+  .text-muted, .label, .stat-context, .kicker {
+    color: var(--ink-soft) !important;
+  }
+}
+
+// ---------- Stage-Folien: dunkles Insel-Layout, helle Schrift ----------
+// AGENTS.md fordert dunkle Stages auch unter A (Opener, Anschauung, Breath,
+// Chapter, Closing-Beat). custom-new.scss setzt zwar `color: $color-stage-
+// text` mit `!important`, aber tokens-platform.scss überschreibt es global
+// mit `--ink`. Hier die Hierarchie wieder geraderücken: dunkle Bühne,
+// warm-weißer Text, gedämpfte Sekundär-Farbe.
+$color-stage-text-a:  #f5f5f5 !default;   // warm-weiß
+$color-stage-muted-a: #a8a4a0 !default;   // warm-grau für Kicker/Muted
+
+.reveal section.slide.stage,
+.reveal section.slide.stage.present,
+.reveal section.slide.stage.future,
+.reveal section.slide.stage.past {
+  background-image: none !important;
+  color: $color-stage-text-a !important;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $color-stage-text-a !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    background-image: none !important;
+    -webkit-text-fill-color: $color-stage-text-a !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    font-weight: 500;
+    letter-spacing: var(--tracking-display);
+  }
+
+  p, li, span, blockquote {
+    color: $color-stage-text-a !important;
+    text-shadow: none !important;
+  }
+
+  .text-muted, .label, .stat-context, .kicker,
+  .chapter-number {
+    color: $color-stage-muted-a !important;
+  }
+}
+
+// Closing-Beat (`.stage.closing`): Layout aus custom-new.scss bleibt
+// (h1 als Kicker, p als großer Schluss-Satz). Farben auf dunkle Bühne
+// abgestimmt: h1 gedämpft (Kicker-Charakter), p hell (Schluss-Satz).
+.reveal section.slide.stage.closing {
+  h1, h2 {
+    color: $color-stage-muted-a !important;
+    text-shadow: none !important;
+  }
+  p, blockquote, h3 {
+    color: $color-stage-text-a !important;
+    text-shadow: none !important;
+  }
+}
+
+// ---------- Formula ----------
+// Geist Sans (display) statt Mono — moderner, ruhiger; passt zum Editorial-
+// Ton der Plattform. Dezenter Cream-Tint statt nur Hairlines, damit die
+// Formel als visueller Anker wirkt, ohne in Code-Block-Optik zu kippen.
+.reveal .formula {
+  background: var(--paper-deep);
+  border: none;
+  border-left: 3px solid var(--ochre);
+  border-radius: var(--radius);
+  box-shadow: none;
+  padding: 1.4em 1.6em;
+  margin: 1.5em auto;
+  max-width: 80%;
+  font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif;
+  font-size: 1.45em;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: var(--tracking-display);
+  text-align: center;
+}
+
+.reveal .formula.editorial {
+  font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif;
+  font-size: 1.6em;
+  letter-spacing: var(--tracking-display);
+}
+
+// ---------- Features Grid ----------
+// Drei eigenständige, rechteckige Karten mit durchgehender Outline. Die
+// alte Implementierung kombinierte einen äußeren Top-/Left-Strich am Grid
+// mit abgerundeten Karten-Ecken — sichtbares Strich-Stub am oberen linken
+// Rand. Hier: kein Grid-Border, jede Karte trägt ihre eigene 1px-Outline,
+// rechteckig, kleiner Gap dazwischen.
+.reveal .features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5em 0;
+  padding: 0;
+  border: none;
+}
+
+.reveal .features .feature {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 1.6em 1.5em;
+  margin: 0;
+  width: auto;
+  transition: background-color 0.3s ease;
+
+  // Plattform-Default: keine farbigen Hintergründe, kein nth-child cycling.
+  // Wir resetten die in custom-new.scss definierten nth-child-Regeln.
+  &:nth-child(3n+1),
+  &:nth-child(3n+2),
+  &:nth-child(3n+3) {
+    background: var(--paper);
+    border-color: var(--rule);
+
+    h3 {
+      background: transparent;
+      border-bottom-color: var(--rule);
+    }
+  }
+
+  &:hover {
+    background-color: var(--paper-deep);
+    transform: none;
+    box-shadow: none;
+    border-color: var(--rule);
+  }
+
+  h3 {
+    background: transparent;
+    border-bottom: none;
+    color: var(--ink);
+    font-size: 1em;
+    font-weight: 500;
+    padding: 0 0 0.4em 0;
+    margin: 0 0 0.6em 0;
+    letter-spacing: var(--tracking-display);
+  }
+
+  p,
+  strong {
+    color: var(--ink-soft);
+    font-size: 0.85em;
+    line-height: 1.5;
+  }
+
+  strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+}
+
+// Feature Number — Mono, unaufdringlich
+.reveal .feature-number,
+.reveal .feature .feature-number {
+  font-family: var(--font-geist-mono, "Geist Mono"), ui-monospace, monospace;
+  font-size: 0.7em;
+  color: var(--ink-soft);
+  font-weight: 400;
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.6em;
+}
+
+// Accent-Klassen werden auf Ink-Soft gemappt (keine bunten Inline-Icons)
+.reveal .accent-blue,
+.reveal .accent-green,
+.reveal .accent-violet,
+.reveal .accent-orange {
+  color: var(--ochre);
+}
+
+// ---------- Metrics Grid + Big Stat ----------
+.reveal .metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  margin: 1.5em 0;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+.reveal .metric {
+  background: var(--paper);
+  border: none;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  padding: 1.4em 1em;
+  text-align: left;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--paper-deep);
+    border-color: var(--rule);
+  }
+
+  .number {
+    font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif;
+    font-feature-settings: "tnum", "ss01";
+    font-size: 2.6em;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.1;
+    margin-bottom: 0.3em;
+    display: block;
+  }
+
+  .label {
+    font-size: 0.78em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-kicker);
+    line-height: 1.4;
+  }
+}
+
+// Big Stat (Single Hero Number)
+.reveal .big-stat {
+  text-align: left;
+  padding: 2em 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+
+  .stat-number {
+    font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif;
+    font-feature-settings: "tnum", "ss01";
+    font-size: 5.5em;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: var(--tracking-display);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 1.1em;
+    color: var(--ink);
+    margin-top: 0.4em;
+    display: block;
+  }
+
+  .stat-context {
+    font-size: 0.78em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-kicker);
+    margin-top: 0.6em;
+    display: block;
+  }
+}
+
+// ---------- Comparison ----------
+.reveal .comparison {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0;
+  margin: 1.5em 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+
+  .separator {
+    background: var(--rule);
+    width: 1px;
+  }
+
+  .comparison-side {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1.5em 1.5em;
+
+    &:hover {
+      background: var(--paper-deep);
+      box-shadow: none;
+    }
+
+    h3,
+    p:first-child strong {
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-kicker);
+      font-size: 0.78em;
+      font-weight: 500;
+      margin-bottom: 0.8em;
+    }
+
+    &.highlighted {
+      background: var(--ochre-soft);
+      border: none;
+
+      &:hover {
+        background: var(--ochre-soft);
+        border: none;
+      }
+
+      h3,
+      p:first-child strong {
+        color: var(--ink);
+      }
+
+      ul li:before {
+        color: var(--ochre);
+      }
+    }
+
+    ul li:before {
+      color: var(--ink-soft);
+      content: "—";
+    }
+  }
+}
+
+// ---------- Quote Box ----------
+.reveal .quote-box {
+  background: transparent;
+  border: none;
+  border-left: 2px solid var(--ochre);
+  border-radius: 0;
+  padding: 0.5em 1.5em;
+  box-shadow: none;
+  margin: 1.5em 0;
+
+  p {
+    font-style: normal;
+    color: var(--ink);
+    font-size: 1.15em;
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+  }
+}
+
+// ---------- Key Takeaways ----------
+.reveal .key-takeaways {
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 1.5em 0;
+  margin: 1.5em 0;
+
+  &:hover {
+    background: transparent;
+    border-color: var(--rule);
+    box-shadow: none;
+  }
+
+  ol li {
+    color: var(--ink);
+    margin-bottom: 0.9em;
+    padding-left: 3em;
+
+    &:before {
+      content: "0" counter(takeaway-counter);
+      font-family: var(--font-geist-mono, "Geist Mono"), ui-monospace, monospace;
+      color: var(--ink-soft);
+      font-weight: 400;
+      font-size: 0.85em;
+      letter-spacing: var(--tracking-kicker);
+    }
+  }
+}
+
+// ---------- Kicker / Section Number Utility (aus Plattform) ----------
+.reveal .kicker {
+  font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-kicker);
+  color: var(--ink-soft);
+}
+
+// ---------- Bullet-Listen ruhiger machen ----------
+.reveal ul li,
+.reveal ol li {
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+// ---------- Hintergrund-Animationen abschalten ----------
+.reveal .background-animation,
+.reveal .gradient-waves,
+.reveal .neural-background,
+.reveal .grid-background,
+.reveal .reveal-viewport iframe[data-background-iframe] {
+  display: none !important;
+}
+
+// ---------- Dekorative Pop-/Bounce-Klassen abschalten ----------
+.reveal .emoji-bounce,
+.reveal .emoji-shake,
+.reveal .emoji-pulse {
+  animation: none !important;
+}
+
+// =========================================
+// Pattern-Overrides für A-Look
+//
+// custom-new.scss ist im Theme-Stack vor A geladen, damit Pattern-Klassen
+// definiert bleiben. Hier rezeichnen wir die Klassen, die mit Premium-
+// Blueprint-Farben (Blau/Grün-Lila-Gradients, Schatten) kommen, im A-System
+// neu: ein Akzent pro Element, Outline statt Fill, Ochre/Terracotta/Plattform-
+// Blau aus den Tokens, keine Schatten, Geist-Font durchgehend.
+// =========================================
+
+// ---------- Timeline: Cream-Outlines statt Blau ----------
+// Item-Borders auf --rule, Items transparent (keine farbige Wash mehr).
+// Nummern in Ochre, Geist-Font (kein Mono mehr). Die ursprüngliche linke
+// Hauptlinie (`::before`) wird entfernt — der visuelle Anker liegt in den
+// Nummern und der pro Item gesetzten Linken-Border, eine zusätzliche
+// Vertikale wirkt redundant und stört am linken Rand.
+.reveal .timeline {
+  &::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .timeline-item {
+    background: transparent !important;
+    border-left: 2px solid var(--rule) !important;
+    border-radius: 0 !important;
+    transition: border-left-color 0.2s ease !important;
+
+    &:hover {
+      background: transparent !important;
+      border-left-color: var(--ink-soft) !important;
+    }
+
+    .timeline-number {
+      font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif !important;
+      color: var(--ochre) !important;
+      font-weight: 600 !important;
+      letter-spacing: var(--tracking-kicker) !important;
+    }
+
+    .timeline-title {
+      color: var(--ink) !important;
+      font-weight: 500 !important;
+    }
+
+    .timeline-detail {
+      color: var(--ink-soft) !important;
+    }
+  }
+}
+
+// ---------- Tip-Box / Think-Box: ein Akzent pro Box ----------
+// Original setzt einen Top-Streifen (::before) und einen Linken-Border in
+// gemischten Farben. Wir kappen den Streifen und vereinheitlichen: Tip =
+// Ochre (handlungsleitend), Think = Terracotta (reflektiv). Hintergrund
+// nur als hauchdünner Tint, kein Glow.
+.reveal .tip-box,
+.reveal .think-box {
+  background: var(--paper-deep) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 1px solid var(--rule) !important;
+  border-left-width: 3px !important;
+  border-radius: var(--radius) !important;
+
+  &::before {
+    background: transparent !important;
+    background-image: none !important;
+    display: none !important;
+  }
+}
+
+.reveal .tip-box {
+  border-left-color: var(--ochre) !important;
+
+  svg,
+  .tip-icon,
+  &::after {
+    color: var(--ochre) !important;
+    fill: var(--ochre) !important;
+  }
+}
+
+.reveal .think-box {
+  border-left-color: var(--terracotta) !important;
+
+  svg,
+  .think-icon,
+  &::after {
+    color: var(--terracotta) !important;
+    fill: var(--terracotta) !important;
+  }
+}
+
+// ---------- Feature-Cards: Outline-only, keine nth-child-Wash ----------
+// Original rotiert nth-child(3n+1/2/3) durch Green/Blue/Violet als Subtle-
+// Backgrounds + Borders + box-shadow. A will einen einzigen Card-Look:
+// transparent, --rule-Border, kein Schatten, kein farb-zyklischer Hint.
+.reveal .features .feature {
+  background: transparent !important;
+  background-image: none !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--ink) !important;
+
+  &:nth-child(3n+1),
+  &:nth-child(3n+2),
+  &:nth-child(3n+3),
+  &:nth-child(3n) {
+    background: transparent !important;
+    border-color: var(--rule) !important;
+  }
+
+  &:nth-child(3n+1) h3,
+  &:nth-child(3n+2) h3,
+  &:nth-child(3n+3) h3,
+  &:nth-child(3n) h3 {
+    background: transparent !important;
+    border-bottom: 1px solid var(--rule) !important;
+    color: var(--ink) !important;
+  }
+
+  &:hover {
+    box-shadow: none !important;
+    border-color: var(--ink-soft) !important;
+    transform: none !important;
+  }
+}
+
+// Feature-Number — A nutzt Geist (kein Mono), Akzent in Ochre.
+.reveal .feature-number {
+  font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif !important;
+  color: var(--ochre) !important;
+  font-weight: 600 !important;
+  letter-spacing: var(--tracking-kicker) !important;
+}
+
+// Feature-Beispiel-Block (Trennlinie)
+.reveal .feature .example {
+  border-top: 1px solid var(--rule) !important;
+  color: var(--ink-soft) !important;
+
+  strong {
+    color: var(--ink) !important;
+  }
+}
+
+// Inline-Akzent-Klassen aus dem Premium-Blueprint (FontAwesome-Icons in
+// Features etc.) auf A-Tokens umlenken — damit Icons nicht in Premium-Blau
+// neben Ochre-Numbern kollidieren.
+.reveal .accent-blue   { color: var(--primary) !important; }
+.reveal .accent-green  { color: var(--ochre) !important; }
+.reveal .accent-orange { color: var(--terracotta) !important; }
+.reveal .accent-violet { color: var(--ink-soft) !important; }
+
+// ---------- Neon-Pill: Outline-only statt Lavendel-Wash ----------
+// custom-new.scss rendert .neon-pill mit hellblauem rgba($accent-blue, 0.1)
+// Hintergrund + saturiertem Blau-Text + Lavendel-Border. Auf Cream wirkt
+// das wie ein SaaS-Status-Tag, kühl und temperaturmäßig fremd. A-Variante:
+// transparent, --rule-Outline, Ink-Text — passt zum gleichen Editorial-
+// Caps-Stil wie die anderen Pattern-Overrides.
+.reveal .neon-pill {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--rule) !important;
+  box-shadow: none !important;
+}
+
+// Auf Stage-Folien hellere Border + warm-weißer Text.
+.reveal section.slide.stage .neon-pill {
+  color: $color-stage-text-a !important;
+  border-color: rgba(245, 245, 245, 0.25) !important;
+}
+
+// ---------- Big-Stat: Ochre-Zahl statt Blau-Violett-Gradient ----------
+// custom-new.scss rendert .stat-number als linear-gradient(135deg, blue,
+// violet) mit -webkit-background-clip: text + -webkit-text-fill-color:
+// transparent (Gradient-Text-Trick). Das ist Premium-Blueprint, nicht A.
+// Editorial-Konvention bei Big-Stats: dominante Textfarbe oder ein
+// einziger warmer Akzent. Hier: Ochre. Plus Geist statt JetBrains Mono.
+// Auf Stage-Folien (.stage.big-stat) wird die Zahl warm-weiß, weil dunkler
+// Hintergrund Ochre bricht.
+.reveal .big-stat,
+.reveal .big-stat-green,
+.reveal .big-stat-orange,
+.reveal .fragment .big-stat,
+.reveal .fragment.big-stat,
+.reveal .fragment .big-stat-green,
+.reveal .fragment.big-stat-green,
+.reveal .fragment .big-stat-orange,
+.reveal .fragment.big-stat-orange {
+  .stat-number {
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: var(--ochre) !important;
+    color: var(--ochre) !important;
+    font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.025em !important;
+  }
+
+  .stat-label {
+    color: var(--ink) !important;
+    font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif !important;
+    font-weight: 400 !important;
+  }
+
+  .stat-context {
+    color: var(--ink-soft) !important;
+    border-top-color: var(--rule) !important;
+    font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, sans-serif !important;
+    letter-spacing: var(--tracking-kicker);
+    text-transform: uppercase;
+  }
+}
+
+// Semantische Varianten in A-Tönen:
+//   default  → Ochre (neutral-positiv)
+//   .green   → Ochre (gleicher Ton — A hat keinen separaten Erfolgs-Grünton;
+//             wenn dramatisch nötig, .orange nehmen)
+//   .orange  → Terracotta (Warnung, dramatischer Befund)
+.reveal .big-stat-orange,
+.reveal .fragment .big-stat-orange,
+.reveal .fragment.big-stat-orange {
+  .stat-number {
+    -webkit-text-fill-color: var(--terracotta) !important;
+    color: var(--terracotta) !important;
+  }
+}
+
+// Auf Stage-Folien (.stage.big-stat) muss die Zahl hell sein, weil Ochre
+// auf #0a0a0f zu dunkel und kontrastarm wäre. Warm-weiß übernimmt die
+// Dominanz, ein dünner Ochre-Akzent z. B. via .stat-label-Underline wäre
+// hier denkbar — aktuell halten wir es einfach.
+.reveal section.slide.stage .big-stat,
+.reveal section.slide.stage .big-stat-green,
+.reveal section.slide.stage .big-stat-orange {
+  .stat-number {
+    -webkit-text-fill-color: $color-stage-text-a !important;
+    color: $color-stage-text-a !important;
+  }
+  .stat-label,
+  .stat-context {
+    color: $color-stage-muted-a !important;
+    border-top-color: rgba(245, 245, 245, 0.18) !important;
+  }
+}
+
+// ---------- Inline-Highlights: Marker-Hintergründe in A-Palette ----------
+// Original: gelbe / grüne / blaue / pinke Hintergründe als Sweep-Marker.
+// In A-Welt jeweils auf einen warmen Token-Tint flippen, damit die
+// Highlights nicht aus dem Cream/Ochre/Terracotta-Bild ausbrechen. Der
+// Sweep-Animation-Effekt (background-size 0% → 100%) bleibt unangetastet,
+// nur die Tint-Farbe wird ersetzt — das Pattern-Verhalten ändert sich
+// also nicht, nur die Optik.
+.reveal .highlight-yellow:not(.fragment):not(.fragment *),
+.reveal .fragment .highlight-yellow,
+.reveal .fragment.highlight-yellow {
+  background-image: linear-gradient(
+    to right,
+    oklch(0.92 0.055 80 / 0.6) 100%,
+    transparent 100%
+  ) !important;
+}
+
+.reveal .highlight-green:not(.fragment):not(.fragment *),
+.reveal .fragment .highlight-green,
+.reveal .fragment.highlight-green {
+  background-image: linear-gradient(
+    to right,
+    oklch(0.72 0.13 70 / 0.28) 100%,
+    transparent 100%
+  ) !important;
+}
+
+.reveal .highlight-blue:not(.fragment):not(.fragment *),
+.reveal .fragment .highlight-blue,
+.reveal .fragment.highlight-blue {
+  background-image: linear-gradient(
+    to right,
+    oklch(0.32 0.12 258 / 0.18) 100%,
+    transparent 100%
+  ) !important;
+}
+
+.reveal .highlight-pink:not(.fragment):not(.fragment *),
+.reveal .fragment .highlight-pink,
+.reveal .fragment.highlight-pink {
+  background-image: linear-gradient(
+    to right,
+    oklch(0.6 0.15 35 / 0.22) 100%,
+    transparent 100%
+  ) !important;
+}
+
+// =========================================
+// Stage-Folien: dunkle Insel im Cream-Viewport
+//
+// AGENTS.md erklärt Stage-Folien zur Pflicht-Unterbrechung des hellen
+// Schreibtisch-Stroms (Opener, Anschauung, Breath, Chapter, Closing-Beat
+// — alle mit background-color="#0a0a0f"). custom-new.scss füllt dafür
+// `.reveal-viewport:has(.stage)` mit dem Stage-Hintergrund. tokens-
+// platform.scss überschreibt das aber mit `var(--paper)` (Cream) und das
+// Cream gewinnt, weil es im Theme-Stack später kommt. Resultat: Stage-
+// Folien rendern als helle Insel mit halb-durchsichtigem Dim-Layer
+// auf Cream — Titel verschwindet im Hellgrau.
+//
+// Hier: Viewport, Body und Reveal-Background-Layer dunkel halten, sobald
+// eine Stage-Folie aktiv ist. So bleibt die Stage-Choreographie intakt.
+// =========================================
+
+$color-stage-bg-a: #0a0a0f !default;
+
+.reveal-viewport:has(.slides section.present.stage),
+body:has(.slides section.present.stage) {
+  background-color: $color-stage-bg-a !important;
+}
+
+// Reveal rendert background-color="#0a0a0f" als data-background-color auf
+// einer eigenen Layer (`.reveal .backgrounds .slide-background`). Diese
+// Layer wird in modernen Reveal-Builds gefärbt; falls A's :root-Tokens das
+// inheriten, hier explizit zurücksetzen.
+.reveal .backgrounds .slide-background[data-background-color="#0a0a0f"] {
+  background-color: $color-stage-bg-a !important;
+}
+
+// Sicherheits-Override: Stage-Sections selbst dunkel, falls Reveal die
+// data-background-Layer nicht greift (z. B. Anschauung ohne Bild im
+// Pattern-Demo). Damit ist die Stage auch ohne Reveal-Background-Layer
+// definitiv dunkel.
+.reveal section.slide.stage:not([data-background-image]) {
+  background-color: $color-stage-bg-a !important;
+}
+
+// Auch html und .reveal selbst dunkel, damit weder Top-Padding noch
+// Side-Controls (Hamburger-Menu, Footer-Strip) als helle Cream-Stubs
+// neben der dunklen Bühne stehen bleiben.
+html:has(.slides section.present.stage),
+html:has(.slides section.present.stage) .reveal {
+  background-color: $color-stage-bg-a !important;
+}
+
+// Footer (auf Cream-Folien Ink-Soft) auf Stage warm-grau, damit der
+// horizontale Footer-Strip nicht in Cream gegen die dunkle Bühne knallt.
+.reveal-viewport:has(.slides section.present.stage) .reveal .footer,
+.reveal-viewport:has(.slides section.present.stage) .reveal .footer * {
+  color: $color-stage-muted-a !important;
+  background-color: transparent !important;
+}
+
+// =========================================
+// D2-Figuren: keine Schatten, keine Default-Border
+//
+// Reveal-Defaults und einige Quarto-Layouts setzen einen leichten Drop-
+// Shadow oder eine Border auf eingebettete Bilder. Die D2-Diagramme der
+// Plattform sollen ungerahmt auf dem Cream-Papier liegen — der Diagramm-
+// Stroke selbst liefert Struktur genug. Außerdem: Margin reduzieren, weil
+// das Diagramm in einer Folie selbst der Hauptfokus ist.
+// =========================================
+.reveal img,
+.reveal .slide img,
+.reveal figure img,
+.reveal .quarto-figure img {
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+}

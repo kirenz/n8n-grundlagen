@@ -1,0 +1,364 @@
+---
+title: "Video-Titel"
+subtitle: "Kurze Unterzeile für das Deck"
+author: "Jan Kirenz"
+book:
+  chapter_slug: "erste-workflows/erster-workflow"
+---
+
+# Einstieg ins Thema {.stage background-image="../images/hero-einstieg.png" background-color="#0a0a0f" background-opacity="0.75"}
+
+<!-- image: profile="stage-hero" file="hero-einstieg.png"
+A quiet professional workspace at dawn — polished oak workbench with open notebook and a single brass gear, soft natural light from a tall window. No people, no text.
+-->
+
+::: {.notes}
+Willkommen. Dieses Video zeigt, wie aus einer Agenda in wenigen Minuten ein fertiges Lernvideo entsteht.
+:::
+
+## Die Kernidee in einem Satz
+
+::: {.formula}
+Agenda + Pattern + Notes = renderbares Lernplattform-Deck
+:::
+
+::: {.notes}
+Die Kernidee lässt sich in einem einzigen Satz zusammenfassen: Aus einer klaren Agenda, einer disziplinierten Pattern-Auswahl und vollständigen Speaker Notes entsteht automatisch ein fertiges Lernvideo.
+:::
+
+## Konzept im Überblick
+
+:::: {.columns}
+
+::: {.column width="42%"}
+
+Ein Template ist kein Schreibroboter, sondern ein Setzkasten.
+
+:::
+
+::: {.column width="58%"}
+
+- **Klare Pattern** — keine freien Layouts.
+- **Notes ab Werk** — direkt vertonbar.
+
+:::
+
+::::
+
+::: {.notes}
+Die Zwei-Spalten-Folie ist das Grundmuster für konzeptionelle Erklärungen. Die linke Spalte trägt die These, die rechte verdichtet — beide Spalten bleiben luftig, damit das Auge an den Schlagworten haften kann.
+
+[KLICK] Zuerst die Kernaussage links. [KLICK] Dann erscheint die rechte Seite als pointierte Ergänzung.
+:::
+
+## Drei Phasen einer Lesson
+
+:::: {.numbered-sections-container}
+
+::: {.numbered-section}
+[01]{.section-number}
+[Planen]{.section-title}
+[Vor dem Schreiben]{.section-subtitle}
+
+- Ziel und Zielgruppe klären
+- Pattern-Rhythmus skizzieren
+:::
+
+::: {.numbered-section}
+[02]{.section-number}
+[Bauen]{.section-title}
+[Mit Template arbeiten]{.section-subtitle}
+
+- Buch-Kapitel als Quelle
+- Folien feinjustieren
+:::
+
+::: {.numbered-section}
+[03]{.section-number}
+[Prüfen]{.section-title}
+[Vor der Ausgabe]{.section-subtitle}
+
+- Validieren
+- Rendern und exportieren
+:::
+
+::::
+
+::: {.notes}
+Die Numbered-Sections-Folie zerlegt einen Prozess in drei klar nummerierte Phasen. Jede Spalte trägt einen Titel, einen Subtitel und maximal zwei Unterpunkte. Mehr Inhalt würde die Lesbarkeit kippen.
+
+[KLICK] Die Phasen erscheinen nicht einzeln — die Folie zeigt das gesamte Modell auf einmal als visuelle Karte des Workflows.
+:::
+
+## Was das Template leistet
+
+:::: {.features}
+
+::: {.feature .fragment .fade-up}
+[{{< fa cubes >}}]{.accent-blue}
+**Struktur**
+
+Konsistent über alle Decks.
+:::
+
+::: {.feature .fragment .fade-up}
+[{{< fa robot >}}]{.accent-green}
+**KI-fähig**
+
+Von der Agenda zum Deck.
+:::
+
+::: {.feature .fragment .fade-up}
+[{{< fa microphone >}}]{.accent-violet}
+**TTS-ready**
+
+Notes direkt vertonbar.
+:::
+
+::::
+
+::: {.notes}
+Drei Karten verdichten das Versprechen des Templates: konsistente Struktur, KI-Fähigkeit von der Agenda zum Deck, und Vertonbarkeit, weil die Speaker Notes sofort in der Text-to-Speech-Pipeline landen.
+:::
+
+## Mit oder ohne Template
+
+:::: {.comparison}
+
+::: {.comparison-side}
+**Ohne Template**
+
+- inkonsistente Struktur
+- fehlende Notes
+- jedes Deck neu erfinden
+:::
+
+::: {.separator}
+:::
+
+::: {.comparison-side .highlighted}
+**Mit Template**
+
+- feste Pattern
+- Notes ab Werk
+- KI-Generator als Beschleuniger
+:::
+
+::::
+
+::: {.notes}
+Die Comparison-Folie stellt zwei Zustände gegeneinander. Die linke Seite trägt die Ausgangslage, die rechte ist farblich hervorgehoben und benennt die Zielsituation.
+
+[KLICK] Zuerst die linke Seite als nüchterner Befund. [KLICK] Dann die hervorgehobene Zielseite rechts.
+:::
+
+# Kapitel 01 · Pipeline {.stage .chapter background-color="#0a0a0f"}
+
+<!-- image: profile="stage-hero" file="hero-pipeline.png"
+A clean industrial pipeline running across a stylised workshop wall, brushed steel segments connected by visible joins, warm overhead light. No people, no text.
+-->
+
+::: {.chapter-number}
+Kapitel 01
+:::
+
+::: {.chapter-title}
+Pipeline
+:::
+
+::: {.notes}
+Die erste Hälfte hat das Template als Idee gezeigt. Jetzt folgt der konkrete Bauplan: wie aus einer Buch-Quelle in vier Schritten ein renderbares Deck wird.
+:::
+
+## Eine Zahl, die alles trägt
+
+:::: {.big-stat .fragment .zoom-in-bounce}
+[280.000]{.stat-number}
+[eingesparte Stunden]{.stat-label}
+[Enterprise-Case, 12 Monate]{.stat-context}
+::::
+
+::: {.sources}
+Quelle: @kirenzQuartoTemplate2026
+:::
+
+::: {.notes}
+Die `.big-stat`-Folie zeigt eine einzelne, dominante Zahl mit Label und Kontext. Stark, wenn eine einzige Aussage zählt.
+
+[KLICK] Zahl, Label und Kontext fadet nacheinander ein.
+:::
+
+## Stimme aus der Praxis
+
+::: {.quote-box}
+
+„Eine gute Template-Struktur reduziert nicht nur Produktionszeit, sondern auch die Varianz im Ergebnis."
+
+:::
+
+::: {.sources}
+Quelle: @kirenzQuartoTemplate2026
+:::
+
+::: {.notes}
+Die Quote-Box ist für ein einzelnes, starkes Statement gedacht. Der Satz wird bewusst langsam vorgetragen und im Anschluss kurz eingeordnet.
+:::
+
+## Die Pipeline im Überblick
+
+```{.d2 file="../d2/content-pipeline.d2"}
+```
+
+::: {.notes}
+Das Diagramm zeigt den kompletten Fluss von der Agenda bis zum fertigen Video. Klare editoriale Optik, ein Akzent in Ochre auf dem zentralen KI-Schritt — alles andere bleibt ruhig in Tinte.
+:::
+
+## Vier Schritte vom Buch zum Video
+
+:::: {.timeline}
+
+::: {.timeline-item}
+[01]{.timeline-number}
+[Buch-Kapitel]{.timeline-title}
+[Quelle der Wahrheit für Inhalt und Reihenfolge.]{.timeline-detail}
+:::
+
+::: {.timeline-item}
+[02]{.timeline-number}
+[Generator]{.timeline-title}
+[Roh-Deck unter slides/<modul>/<lesson>.qmd entsteht.]{.timeline-detail}
+:::
+
+::: {.timeline-item}
+[03]{.timeline-number}
+[Feinjustierung]{.timeline-title}
+[Pattern, Stage-Folien und Speaker-Notes ergänzen.]{.timeline-detail}
+:::
+
+::: {.timeline-item}
+[04]{.timeline-number}
+[Render und Export]{.timeline-title}
+[Quarto rendert HTML, TTS bekommt die Notes.]{.timeline-detail}
+:::
+
+::::
+
+::: {.notes}
+Die Timeline ordnet den Workflow in vier klar benannte Schritte. Die Reihenfolge folgt der Logik des Buch-First-Workflows. Pro Punkt eine Zeile Detail — mehr würde die Folie überladen.
+:::
+
+## So entsteht ein Bild-Prompt
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+::: {.codewindow .python width="420px"}
+
+```python
+def assemble_prompt(user_prompt: str, profile: dict) -> str:
+    parts = [f"Subject: {user_prompt.strip()}"]
+    for key in ("style_instructions", "composition", "mood", "negative"):
+        value = (profile.get(key) or "").strip()
+        if value:
+            parts.append(f"{key.replace('_', ' ').title()}: {value}")
+    return "\n\n".join(parts)
+```
+
+:::
+
+:::
+
+::: {.column width="55%"}
+
+- <span class="neon-pill">2.</span> `Subject` aus dem Folien-Prompt
+- <span class="neon-pill">3.</span> Vier Profil-Felder werden geprüft
+- <span class="neon-pill">4-6.</span> Nur ausgefüllte Felder kommen in den Prompt
+- <span class="neon-pill">7.</span> Doppelte Newlines trennen die Abschnitte
+
+:::
+
+::::
+
+::: {.notes}
+Die Prompt-Assembly bildet den Kern beider Bild-Pfade — Gemini und Codex-Export rufen dieselbe Funktion auf. Die Logik bleibt bewusst klein: nimm den Folien-Prompt als Subject, hänge die nicht-leeren Profil-Felder als Zeilen an, trenne mit doppeltem Newline.
+:::
+
+## Inline-Reflexion
+
+::: {.tip-box}
+Eine Tip-Box trägt **einen** umsetzbaren Gedanken. Wenn mehr als zwei Sätze nötig sind, gehört das in den Fließtext — nicht in die Box.
+:::
+
+::: {.notes}
+Die Tip-Box ist ein Inline-Pattern für Content-Folien — visuell durch einen Linken-Rand und ein Pfeil-Icon markiert. Regel: eine Box pro Folie, maximal zwei Sätze, klarer Handlungsimpuls.
+:::
+
+# Der Handwerker am Morgen {.stage .anschauung background-color="#0a0a0f"}
+
+<!-- image: profile="anschauung" file="anschauung-handwerker.png"
+A craftsman at dawn laying out hand tools in precise order on a polished wooden workbench, side light from a workshop window, no faces visible, no text.
+-->
+
+::: {.notes}
+Ein Handwerker legt am Morgen seine Werkzeuge aus der Kiste auf den Tisch — in genau der Reihenfolge, in der sie später gebraucht werden. Ein Deck-Template ist genau das: eine vorbereitete Werkstatt, in der jedes Werkzeug an seinem Platz liegt.
+
+Die Anschauung-Folie ist kein rekurrentes Motiv, sondern ein punktuelles Werkzeug. Maximal ein bis drei pro Deck. Siehe `prompts/anschauung-playbook.md`.
+:::
+
+## Key Takeaways
+
+::: {.key-takeaways}
+
+1. Nutze nur bestehende Pattern aus `elements.qmd`.
+2. Schreibe pro Folie genau einen Notes-Block.
+3. Validiere das Deck vor Render und TTS-Export.
+
+:::
+
+::: {.notes}
+Die Key-Takeaways-Folie sammelt die wichtigsten Punkte am Ende eines Abschnitts oder eines ganzen Decks.
+
+[KLICK] Die drei Punkte werden nacheinander durchgegangen.
+:::
+
+## Was bleibt {.stage .closing background-color="#0a0a0f"}
+
+Ein gutes Template ersetzt kein Denken — aber es räumt den Tisch ab, damit das Denken sichtbar wird.
+
+::: {.notes}
+Die Closing-Beat-Folie ist die letzte inhaltliche Folie vor der Buch-Brücke. Konvention: die `##`-Überschrift ist das Kicker-Label (klein, gedämpft), der nachfolgende Absatz ist der eigentliche Schluss-Satz (groß, ruhig).
+:::
+
+## Weiter im Buch {.book-bridge}
+
+:::: {.columns}
+
+::: {.column width="30%"}
+![](../images/section-background.svg)
+:::
+
+::: {.column width="70%"}
+::: {.chapter-title}
+Kapitel: Erster Workflow
+:::
+
+Im Online-Buch liegen ausformulierte Definitionen, weiterführende Beispiele und Übungsaufgaben bereit.
+
+[→ Zum Kapitel](../erste-workflows/erster-workflow.html){.fragment .fade-up}
+:::
+
+::::
+
+::: {.notes}
+Die Buch-Brücke ist das vorletzte Pattern jedes Decks, direkt vor dem Literaturverzeichnis. Sie markiert den Übergang vom Video zum Online-Buch und nutzt eine warme Papier-Fläche mit editorialem Akzent.
+:::
+
+## Literatur
+
+::: {#refs}
+:::
+
+::: {.notes}
+Das Literaturverzeichnis wird automatisch aus den Zitationen im Deck gefüllt.
+:::

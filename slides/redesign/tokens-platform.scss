@@ -1,0 +1,93 @@
+/*-- scss:defaults --*/
+// =========================================
+// Platform-DNA Tokens (geportet aus
+// /Users/jankirenz/code/hdm/lernplattform/apps/web/src/app/globals.css)
+//
+// Quarto's Default-Theme ruft lighten()/darken()/rgba() auf den
+// Sass-Variablen $body-bg, $body-color, $primary, $text-muted, $link-color
+// auf. Diese Funktionen existieren nicht für OKLch (modernes Sass).
+// Daher: Sass-Variablen sind Hex-Annäherungen, das eigentliche Rendering
+// passiert über CSS Custom Properties (--paper, --ink etc.) in OKLch.
+// =========================================
+
+// Geist-Font via Google Fonts (Plattform-DNA-Stack).
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap");
+
+// Hex-Annäherungen für das Default-Theme (NICHT für Komponenten-Skins)
+$body-bg:     #faf9f4 !default;   // ≈ oklch(0.985 0.004 85) Papier
+$body-color:  #16182c !default;   // ≈ oklch(0.18 0.02 255) Tinte
+$primary:     #1f2c5b !default;   // ≈ oklch(0.32 0.12 258)
+$link-color:  #1f2c5b !default;
+$text-muted:  #6b7280 !default;
+
+// Reveal Theme-Tokens
+$presentation-font-size-root: 32px !default;
+$presentation-line-height:    1.5  !default;
+
+// Editorial Tracking (aus .font-display und .kicker der Plattform)
+$tracking-display: -0.035em !default;
+$tracking-kicker:  0.14em   !default;
+
+/*-- scss:rules --*/
+
+// CSS Custom Properties — die echten Plattform-Tokens in OKLch.
+// Variant-SCSS-Files konsumieren ausschließlich diese Variablen.
+:root {
+  --paper:        oklch(0.985 0.004 85);
+  --paper-deep:   oklch(0.965 0.007 85);
+  --ink:          oklch(0.18 0.02 255);
+  --ink-soft:     oklch(0.42 0.018 255);
+  --rule:         oklch(0.88 0.008 85);
+  --ochre:        oklch(0.72 0.13 70);
+  --ochre-soft:   oklch(0.92 0.055 80);
+  --terracotta:   oklch(0.6 0.15 35);
+  --primary:      oklch(0.32 0.12 258);
+  --tracking-display: -0.035em;
+  --tracking-kicker:  0.14em;
+  --radius:       0.5rem;
+}
+
+// Geist als Default-Stack (Font wird per <link> via fonts-geist.html geladen).
+.reveal {
+  font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  color: var(--ink);
+  background-color: var(--paper);
+}
+
+.reveal-viewport,
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+// Editorial Headings (aus @layer base h1-h3 der Plattform)
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6,
+.reveal .title {
+  color: var(--ink);
+  font-family: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  text-transform: none;
+}
+
+// Code/Mono-Stack
+.reveal code,
+.reveal pre,
+.reveal .formula {
+  font-family: var(--font-geist-mono, "Geist Mono"), ui-monospace, "JetBrains Mono", monospace;
+}
+
+// Subtile Trennlinie (Plattform-Stil)
+hr,
+.reveal hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 1.5em auto;
+  width: 60%;
+}

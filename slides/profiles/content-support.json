@@ -1,0 +1,11 @@
+{
+  "name": "content-support",
+  "display_name": "Content Support",
+  "description": "Inline-Bild im Fließtext (Buch) oder in Content-Folien — hell, dezent, nicht dominant",
+  "style_instructions": "Style: Clean editorial illustration or soft photography, muted tones, understated. Color palette: warm off-white background with muted earth accents. Mood: supportive, unobtrusive, professional.",
+  "composition": "Balanced composition without dominant focal point. Works well at smaller sizes. Subject sits comfortably within a media-split column (45% width). Light-mode friendly (no dark dominant areas).",
+  "negative": "no text, no logos, no visible faces, no cartoon, no 3D, no saturated colors, no attention-grabbing contrast",
+  "aspect_ratio": "16:9",
+  "resolution": "2K",
+  "mood": "quiet, supportive, professional"
+}

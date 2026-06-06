@@ -1,0 +1,82 @@
+direction: right
+
+mail: {
+  label: "Eingehende\nMail"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+switch: {
+  label: "Switch\nnach Betreff"
+  shape: diamond
+  style: {
+    fill: "#18181b"
+    stroke: "#18181b"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#fafafa"
+    bold: true
+  }
+}
+
+frage: {
+  label: "Frage\nFAQ-Hinweis"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+beschwerde: {
+  label: "Beschwerde\nRückruf-Zusage"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+sonstiges: {
+  label: "Sonstiges\nStandard-Antwort"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+send: {
+  label: "SMTP-Send"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+mail -> switch: {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+switch -> frage: "enthält 'Frage'" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+switch -> beschwerde: "enthält 'Beschwerde'" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+switch -> sonstiges: "Fallback" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+frage -> send: {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+beschwerde -> send: {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+sonstiges -> send: {style: {stroke: "#a1a1aa"; stroke-width: 2}}

@@ -1,0 +1,54 @@
+direction: down
+
+draft: {
+  label: "KI-Draft\nerzeugt"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+risk: {
+  label: "Risiko\nniedrig?"
+  shape: diamond
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+auto: {
+  label: "Autonom\nsenden"
+  shape: rectangle
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+
+inbox: {
+  label: "Draft in Inbox\nMensch entscheidet"
+  shape: rectangle
+  style: {
+    fill: "#18181b"
+    stroke: "#18181b"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#fafafa"
+    bold: true
+  }
+}
+
+draft -> risk: {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+risk -> auto: "ja" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+risk -> inbox: "nein" {style: {stroke: "#a1a1aa"; stroke-width: 2}}

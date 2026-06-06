@@ -1,0 +1,3678 @@
+/*-- scss:defaults --*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+// =========================================
+// VARIABLES & THEME SETUP
+// =========================================
+
+// Typography - Inter for that clean, modern AI-lab look
+$font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 600;
+$font-weight-extra-bold: 700;
+$line-height-base: 1.6;
+$letter-spacing: -0.015em; // Tighter tracking for modern feel
+
+// Color Palette - Light, Airy, Sophisticated
+$color-background: #ffffff;
+$color-background-secondary: #f7f7f8; // Very subtle grey for contrast
+$color-surface: #ffffff;
+$color-text: #1a1a1a; // Almost black, softer than #000
+$color-text-muted: #6e6e80; // Sophisticated grey
+$color-border: #e5e5e5;
+
+// Accents - Refined, not neon
+$accent-primary: #10a37f; // OpenAI-ish Green
+$accent-secondary: #d292ff; // Anthropic-ish Purple/Violet
+$accent-blue: #3b82f6; // Clean Blue
+$accent-orange: #f97316; // Warm Orange
+$accent-red: #ef4444;
+
+// Shadows - Soft, diffused
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// --- Blueprint 2026-04-22: Stage (dark) tokens ---
+$color-stage-bg: #0a0a0f;
+$color-stage-surface: #14141a;
+$color-stage-text: #f5f5f5;
+$color-stage-muted: #9898a0;
+$color-stage-hairline: rgba(255, 255, 255, 0.08);
+
+// --- Blueprint 2026-04-22: Editorial (warm) tokens ---
+$color-paper: #f8f5ef;
+$accent-editorial: #b88a3e;
+
+// --- Blueprint 2026-04-22: Serif companion font ---
+$font-family-serif: "Source Serif Pro", "Iowan Old Style", Georgia, serif;
+
+/*-- scss:rules --*/
+
+// =========================================
+// BASE STYLES
+// =========================================
+
+body,
+.reveal-viewport {
+    background-color: $color-background;
+    color: $color-text;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.reveal {
+    font-family: $font-family-sans-serif;
+    color: $color-text;
+    font-size: 20px; // Base size
+    font-feature-settings: "cv11", "ss01", "ss03", "cv02", "tnum"; // Stripe-like Inter tuning
+
+    // Headings
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .title {
+        color: #000000;
+        font-weight: $font-weight-bold;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.6em;
+    }
+
+    h1 {
+        // !important needed to beat reveal.js base theme (28pt!important).
+        // Blueprint 2026-04-22: larger scale for video-first readability.
+        font-size: 3.6em !important;
+        line-height: 1.15;
+    }
+
+    h2 {
+        font-size: 2.0em !important;
+        line-height: 1.25;
+        color: #333;
+    }
+
+    h3 {
+        font-size: 1.5em !important;
+        font-weight: $font-weight-medium;
+    }
+
+    // Paragraphs & Lists — slightly larger body for mobile + business audience.
+    p {
+        font-size: 1.15em;
+        margin-bottom: 1.2em;
+        line-height: 1.6;
+        color: #374151; // Dark grey for better readability
+    }
+
+    ul,
+    ol {
+        font-size: 1.15em;
+        margin-bottom: 1em;
+
+        li {
+            margin-bottom: 0.5em;
+            padding-left: 0.2em;
+
+            &::marker {
+                color: $color-text-muted;
+                font-size: 0.8em;
+            }
+        }
+    }
+
+    // Links
+    a {
+        color: $accent-blue;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s ease;
+
+        &:hover {
+            color: darken($accent-blue, 10%);
+            border-bottom-color: darken($accent-blue, 10%);
+        }
+    }
+
+    // Strong/Bold
+    strong,
+    b {
+        font-weight: $font-weight-bold;
+        color: #000;
+    }
+
+    // Code
+    code {
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        background-color: $color-background-secondary;
+        color: #eb5757;
+        padding: 0.1em 0.3em;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+
+    pre {
+        background-color: #f3f4f6; // Very light grey
+        border: 1px solid $color-border;
+        border-radius: 8px;
+        box-shadow: $shadow-sm;
+
+        code {
+            background-color: transparent;
+            color: inherit;
+            padding: 1em;
+        }
+
+        // Force dark text for markdown/md code blocks
+        &.markdown code,
+        &.md code {
+            color: #1a1a1a !important;
+        }
+    }
+
+    // Images
+    img {
+        border-radius: 15px;
+    }
+}
+
+// =========================================
+// COMPONENTS
+// =========================================
+
+// 1. Blockquotes - Modern & Clean
+.reveal blockquote {
+    background: $color-background-secondary;
+    border-left: 4px solid $accent-primary;
+    border-radius: 0 8px 8px 0;
+    padding: 1em 1.5em;
+    font-style: italic;
+    color: #4b5563;
+    box-shadow: none;
+    width: 90%;
+    margin: 1.5em auto;
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// 2. Callouts - Light & Airy
+.reveal {
+
+    .callout-note,
+    .callout-tip,
+    .callout-important,
+    .callout-warning,
+    .callout-caution {
+        background: #ffffff;
+        border: 1px solid $color-border;
+        border-radius: 8px;
+        box-shadow: $shadow-md;
+        margin-bottom: 1.5em;
+
+        .callout-title {
+            background-color: $color-background-secondary;
+            border-bottom: 1px solid $color-border;
+            padding: 0.5em 1em;
+            font-weight: $font-weight-bold;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .callout-content {
+            padding: 1em;
+        }
+    }
+
+    // Specific accents for callouts
+    .callout-note {
+        border-left: 4px solid $accent-blue;
+
+        .callout-title {
+            color: $accent-blue;
+        }
+    }
+
+    .callout-tip {
+        border-left: 4px solid $accent-primary;
+
+        .callout-title {
+            color: $accent-primary;
+        }
+    }
+
+    .callout-important {
+        border-left: 4px solid $accent-red;
+
+        .callout-title {
+            color: $accent-red;
+        }
+    }
+
+    .callout-warning {
+        border-left: 4px solid $accent-orange;
+
+        .callout-title {
+            color: $accent-orange;
+        }
+    }
+}
+
+// 3. Feature Cards (Adapted from custom-dark.scss)
+.features {
+    padding-bottom: 2em;
+
+    @media (min-width: 800px) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 0 0 -30px;
+        width: calc(100% + 30px);
+    }
+}
+
+.features .feature {
+    // background: #ffffff; // Removed static background
+    border: 1px solid $color-border;
+    border-radius: 12px;
+    box-shadow: $shadow-md;
+    color: $color-text;
+    font-size: 24px;
+
+    // Subtle colored backgrounds cycling through Green, Blue, Violet
+    &:nth-child(3n+1) {
+        background: rgba($accent-primary, 0.03);
+        border-color: rgba($accent-primary, 0.2);
+
+        h3 {
+            background: rgba($accent-primary, 0.05);
+            border-bottom-color: rgba($accent-primary, 0.2);
+        }
+    }
+
+    &:nth-child(3n+2) {
+        background: rgba($accent-blue, 0.03);
+        border-color: rgba($accent-blue, 0.2);
+
+        h3 {
+            background: rgba($accent-blue, 0.05);
+            border-bottom-color: rgba($accent-blue, 0.2);
+        }
+    }
+
+    &:nth-child(3n+3) {
+        background: rgba($accent-secondary, 0.03);
+        border-color: rgba($accent-secondary, 0.2);
+
+        h3 {
+            background: rgba($accent-secondary, 0.05);
+            border-bottom-color: rgba($accent-secondary, 0.2);
+        }
+    }
+
+    margin: 20px 0 0 30px;
+    width: calc(33% - 30px);
+    transition: all 0.3s ease;
+    overflow: hidden; // Keep image inside rounded corners
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: $shadow-xl;
+        border-color: rgba($accent-primary, 0.3);
+    }
+
+    h3 {
+        margin: 0;
+        padding: 20px 22px;
+        font-size: 1.3em;
+        background: $color-background-secondary;
+        border-bottom: 1px solid $color-border;
+        color: #111;
+    }
+
+    p {
+        padding: 24px 22px;
+        margin: 0;
+        font-size: 1.05em;
+        color: #555;
+        line-height: 1.55;
+    }
+
+    img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-bottom: 1px solid $color-border;
+    }
+
+    ul {
+        padding: 0 20px 20px 40px;
+        margin: 0;
+
+        li {
+            margin-bottom: 0.2em;
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.4;
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
+
+// 3b. Citation Block (Disabled - citations appear as normal text)
+// .citation {
+//     padding: 2em;
+//     margin: 1.5em auto;
+//     width: 90%;
+//     border: 1px solid $color-border;
+//     border-radius: 12px;
+//     box-shadow: $shadow-md;
+//     color: $color-text;
+//     font-size: 1.6em; // Larger text for citations
+//     font-weight: $font-weight-medium;
+//     text-align: center;
+//     font-style: italic;
+//     line-height: 1.4;
+//     transition: all 0.3s ease;
+
+//     // Subtle colored backgrounds cycling through Green, Blue, Violet
+//     // Default (if only one) or 1st
+//     &:nth-child(3n+1) {
+//         background: rgba($accent-primary, 0.03);
+//         border-color: rgba($accent-primary, 0.2);
+//         color: darken($accent-primary, 25%);
+//     }
+
+//     &:nth-child(3n+2) {
+//         background: rgba($accent-blue, 0.03);
+//         border-color: rgba($accent-blue, 0.2);
+//         color: darken($accent-blue, 25%);
+//     }
+
+//     &:nth-child(3n+3) {
+//         background: rgba($accent-secondary, 0.03);
+//         border-color: rgba($accent-secondary, 0.2);
+//         color: darken($accent-secondary, 25%);
+//     }
+
+//     &:hover {
+//         transform: translateY(-3px);
+//         box-shadow: $shadow-lg;
+//     }
+// }
+
+// 4. Tables
+.reveal table {
+    background: $color-surface;
+    border: 1px solid rgba($accent-blue, 0.15);
+    border-radius: 12px;
+    box-shadow: $shadow-md;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    margin: 1.5em auto;
+    width: 95%;
+    transition: all 0.3s ease;
+
+    &:hover {
+        box-shadow: $shadow-lg;
+        border-color: rgba($accent-blue, 0.25);
+    }
+
+    th,
+    td {
+        padding: 14px 18px;
+        border-bottom: 1px solid rgba($color-border, 0.6);
+        color: $color-text;
+        text-align: left;
+    }
+
+    thead {
+        background: linear-gradient(135deg, rgba($accent-blue, 0.08) 0%, rgba($accent-secondary, 0.05) 100%);
+        border-bottom: 2px solid rgba($accent-blue, 0.15);
+    }
+
+    th {
+        background: transparent;
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        letter-spacing: 0.08em;
+        color: darken($accent-blue, 15%);
+    }
+
+    tbody tr {
+        transition: background-color 0.2s ease;
+
+        &:nth-child(even) {
+            background: rgba($color-background-secondary, 0.5);
+        }
+
+        &:hover {
+            background: rgba($accent-blue, 0.04);
+        }
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    // Accent variants for different table styles
+    &.table--green {
+        border-color: rgba($accent-primary, 0.2);
+
+        thead {
+            background: linear-gradient(135deg, rgba($accent-primary, 0.08) 0%, rgba($accent-primary, 0.03) 100%);
+            border-bottom-color: rgba($accent-primary, 0.2);
+        }
+
+        th {
+            color: darken($accent-primary, 10%);
+        }
+
+        tbody tr:hover {
+            background: rgba($accent-primary, 0.04);
+        }
+    }
+
+    &.table--violet {
+        border-color: rgba($accent-secondary, 0.2);
+
+        thead {
+            background: linear-gradient(135deg, rgba($accent-secondary, 0.08) 0%, rgba($accent-secondary, 0.03) 100%);
+            border-bottom-color: rgba($accent-secondary, 0.2);
+        }
+
+        th {
+            color: darken($accent-secondary, 15%);
+        }
+
+        tbody tr:hover {
+            background: rgba($accent-secondary, 0.04);
+        }
+    }
+}
+
+// 5. Glow Circles (Reimagined for Light Mode as "Soft Orbs")
+.glow-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: relative;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+// Sizes
+.glow-circle--xl {
+    width: 500px;
+    height: 500px;
+}
+
+.glow-circle--lg {
+    width: 350px;
+    height: 350px;
+}
+
+.glow-circle--md {
+    width: 200px;
+    height: 200px;
+}
+
+.glow-circle--xs {
+    width: 80px;
+    height: 80px;
+}
+
+// Colors - Using soft gradients and subtle borders
+.glow-circle--blue {
+    background: radial-gradient(circle at 30% 30%, rgba($accent-blue, 0.15), rgba($accent-blue, 0.05));
+    border: 1px solid rgba($accent-blue, 0.2);
+    color: darken($accent-blue, 20%);
+}
+
+.glow-circle--violet {
+    background: radial-gradient(circle at 30% 30%, rgba($accent-secondary, 0.15), rgba($accent-secondary, 0.05));
+    border: 1px solid rgba($accent-secondary, 0.2);
+    color: darken($accent-secondary, 20%);
+}
+
+.glow-circle--teal {
+    background: radial-gradient(circle at 30% 30%, rgba(#14b8a6, 0.15), rgba(#14b8a6, 0.05));
+    border: 1px solid rgba(#14b8a6, 0.2);
+    color: darken(#14b8a6, 20%);
+}
+
+.glow-circle--lime {
+    background: radial-gradient(circle at 30% 30%, rgba($accent-primary, 0.15), rgba($accent-primary, 0.05));
+    border: 1px solid rgba($accent-primary, 0.2);
+    color: darken($accent-primary, 20%);
+}
+
+.glow-circle__label {
+    font-weight: $font-weight-bold;
+    font-size: 1.2em;
+}
+
+// =========================================
+// UTILITIES
+// =========================================
+
+// Text Sizes
+.tiny-text {
+    font-size: 0.6em;
+    color: $color-text-muted;
+}
+
+.small-text {
+    font-size: 0.8em;
+}
+
+.custom-small {
+    font-size: 0.75em;
+}
+
+// Sources for citations
+.sources {
+    font-size: 0.7em;
+    color: $color-text-muted;
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+}
+
+// Print styles - ensure sources are visible when printing to PDF
+@media print {
+    .sources {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        margin-top: 1em;
+        display: block !important;
+        visibility: visible !important;
+    }
+}
+
+// Text Colors
+.text-muted {
+    color: $color-text-muted !important;
+}
+
+.accent-blue {
+    color: $accent-blue !important;
+}
+
+.accent-green {
+    color: $accent-primary !important;
+}
+
+.accent-orange {
+    color: $accent-orange !important;
+}
+
+.accent-violet {
+    color: $accent-secondary !important;
+}
+
+// Pills/Badges
+.neon-pill {
+    display: inline-block;
+    padding: 0.25em 0.8em;
+    font-size: 0.6em;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 999px;
+    background: rgba($accent-blue, 0.1);
+    color: darken($accent-blue, 10%);
+    border: 1px solid rgba($accent-blue, 0.2);
+}
+
+// Screenshot Container
+.screenshot-container {
+    position: relative;
+    display: inline-block;
+
+    img {
+        border-radius: 8px;
+        box-shadow: $shadow-lg;
+        border: 1px solid $color-border;
+    }
+
+    .highlight-box {
+        position: absolute;
+        border: 3px solid $accent-orange;
+        background-color: rgba($accent-orange, 0.1);
+        border-radius: 4px;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5); // Double border effect
+    }
+}
+
+// =========================================
+// TITLE SLIDE
+// =========================================
+
+section[id$="title-slide"] {
+    text-align: center;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .title {
+        font-size: 4.5em;
+        margin-bottom: 0.3em;
+        background: -webkit-linear-gradient(45deg, #111, #555);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+        font-size: 1.5em;
+        line-height: 1.3;
+        color: $color-text-muted;
+        font-weight: $font-weight-normal;
+        margin-bottom: 1.5em;
+        max-width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .quarto-title-author-name {
+        font-weight: $font-weight-bold;
+        color: #333;
+    }
+
+    .quarto-title-affiliation {
+        color: $color-text-muted;
+        font-size: 0.9em;
+    }
+}
+
+// =========================================
+// FOOTER
+// =========================================
+.reveal .footer {
+    color: $color-text-muted;
+    border-top: 1px solid $color-border;
+    padding-top: 10px;
+    font-size: 10px !important; 
+}
+
+// =========================================
+// BIBLIOGRAPHY / REFERENCES
+// =========================================
+
+#refs {
+    font-size: 1.1em; // Increase font size for better readability
+    line-height: 1.7;
+
+    .csl-entry {
+        margin-bottom: 1.0em;
+        word-spacing: 0.1em; // Increase spacing between words (affects author names)
+    }
+
+    // Specifically target author sections for additional spacing
+    .csl-left-margin,
+    .csl-right-inline {
+        word-spacing: 0.1em;
+    }
+}
+
+
+// =========================================
+// DIAGRAM CONTAINER
+// =========================================
+
+/* Begrenzt das Diagramm auf die Breite des Containers und die Höhe des Bildschirms */
+.diagram-container svg,
+.diagram-container img {
+  max-width: 80% !important;
+  max-height: 80vh !important; /* Nutzt maximal 80% der Bildschirmhöhe */
+  width: auto !important;
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
+}
+
+// =========================================
+// FEATURE HEADER (from custom-black.scss)
+// =========================================
+
+.feature-header {
+  background: rgba($accent-blue, 0.05);
+  border-radius: 12px 12px 0 0;
+  color: darken($accent-blue, 20%);
+  font-weight: $font-weight-bold;
+  padding: 12px 18px;
+  text-align: center;
+  border-bottom: 1px solid rgba($accent-blue, 0.15);
+}
+
+// =========================================
+// SLIDE-SCALE UTILITIES (from custom-black.scss)
+// =========================================
+
+.reveal section.smaller .columns .column ul,
+.reveal section.smaller .columns .column ol,
+.reveal section.smaller .columns .column li,
+.reveal section.smaller .columns .column li p,
+.reveal section.larger .columns .column ul,
+.reveal section.larger .columns .column ol,
+.reveal section.larger .columns .column li,
+.reveal section.larger .columns .column li p {
+  font-size: 1em !important;
+  line-height: 1.35;
+}
+
+// =========================================
+// TYPOGRAPHY HELPERS (from custom-black.scss)
+// =========================================
+
+// Table of contents - only this should be smaller
+.reveal .table-of-contents,
+.reveal #toc,
+.reveal .toc,
+.reveal .table-of-contents ul,
+.reveal #toc ul,
+.reveal .toc ul,
+.reveal .table-of-contents li,
+.reveal #toc li,
+.reveal .toc li,
+.reveal .table-of-contents a,
+.reveal #toc a,
+.reveal .toc a {
+  font-size: 0.6em !important;
+}
+
+// Custom small class - only when explicitly used
+.reveal .columns .column.custom-small ul,
+.reveal .columns .column.custom-small ol,
+.reveal .columns .column.custom-small li,
+.reveal .columns .column.custom-small p {
+  font-size: 0.7em !important;
+  margin-bottom: 0.4em;
+}
+
+.custom-small,
+.custom-small ul,
+.custom-small ol,
+.custom-small li {
+  font-size: 0.7em;
+}
+
+.custom-small p {
+  font-size: 0.7em;
+}
+
+// =========================================
+// ANIMATIONS (from custom-black.scss)
+// =========================================
+
+@keyframes float-particle {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  33% {
+    transform: translate(30px, -30px);
+    opacity: 0.7;
+  }
+  66% {
+    transform: translate(-20px, 20px);
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+@keyframes grid-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes connect-pulse {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes node-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes wave-shift {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+}
+
+@keyframes wave-pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// =========================================
+// ANIMATED BACKGROUNDS (from custom-black.scss, adapted for light mode)
+// =========================================
+
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1px);
+
+    &.particle-1 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba($accent-blue, 0.2), rgba($accent-blue, 0.1) 50%, transparent 70%);
+      top: 10%;
+      left: 15%;
+      animation: float-particle 20s ease-in-out infinite;
+    }
+
+    &.particle-2 {
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba($accent-secondary, 0.18), rgba($accent-secondary, 0.08) 50%, transparent 70%);
+      top: 30%;
+      left: 45%;
+      animation: float-particle 25s ease-in-out infinite reverse;
+      animation-delay: -5s;
+    }
+
+    &.particle-3 {
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba($accent-primary, 0.16), rgba($accent-primary, 0.06) 50%, transparent 70%);
+      top: 60%;
+      left: 25%;
+      animation: float-particle 30s ease-in-out infinite;
+      animation-delay: -10s;
+    }
+
+    &.particle-4 {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba($accent-orange, 0.19), rgba($accent-orange, 0.08) 50%, transparent 70%);
+      top: 55%;
+      right: 40%;
+      animation: float-particle 22s ease-in-out infinite;
+      animation-delay: -15s;
+    }
+
+    &.particle-5 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba($accent-blue, 0.18), rgba($accent-blue, 0.08) 50%, transparent 70%);
+      top: 20%;
+      right: 15%;
+      animation: float-particle 28s ease-in-out infinite;
+      animation-delay: -8s;
+    }
+
+    &.particle-6 {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba($accent-secondary, 0.16), rgba($accent-secondary, 0.06) 50%, transparent 70%);
+      top: 40%;
+      right: 10%;
+      animation: float-particle 24s ease-in-out infinite reverse;
+      animation-delay: -12s;
+    }
+
+    &.particle-7 {
+      width: 190px;
+      height: 190px;
+      background: radial-gradient(circle, rgba($accent-primary, 0.15), rgba($accent-primary, 0.06) 50%, transparent 70%);
+      top: 70%;
+      left: 35%;
+      animation: float-particle 26s ease-in-out infinite;
+      animation-delay: -18s;
+    }
+
+    &.particle-8 {
+      width: 210px;
+      height: 210px;
+      background: radial-gradient(circle, rgba($accent-orange, 0.18), rgba($accent-orange, 0.08) 50%, transparent 70%);
+      top: 65%;
+      right: 25%;
+      animation: float-particle 23s ease-in-out infinite reverse;
+      animation-delay: -7s;
+    }
+  }
+
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+
+    &.orb-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba($accent-blue, 0.12), rgba($accent-blue, 0.05) 60%, transparent);
+      top: -150px;
+      right: -150px;
+      animation: pulse-glow 8s ease-in-out infinite;
+    }
+
+    &.orb-2 {
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba($accent-secondary, 0.1), rgba($accent-secondary, 0.04) 60%, transparent);
+      bottom: -150px;
+      left: -150px;
+      animation: pulse-glow 10s ease-in-out infinite;
+      animation-delay: -3s;
+    }
+
+    &.orb-3 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba($accent-primary, 0.11), rgba($accent-primary, 0.04) 60%, transparent);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-glow 12s ease-in-out infinite;
+      animation-delay: -6s;
+    }
+  }
+}
+
+// =========================================
+// GRID BACKGROUND ANIMATION
+// =========================================
+
+.grid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba($accent-blue, 0.35) 2px, transparent 2px),
+    linear-gradient(90deg, rgba($accent-blue, 0.35) 2px, transparent 2px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
+  animation: grid-pulse 4s ease-in-out infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba($accent-blue, 0.25), rgba($accent-secondary, 0.15) 50%, transparent 80%);
+    animation: pulse-glow 6s ease-in-out infinite;
+  }
+}
+
+// =========================================
+// NEURAL NETWORK BACKGROUND
+// =========================================
+
+.neural-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+
+  .node {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: $accent-blue;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba($accent-blue, 0.4);
+    animation: node-float 6s ease-in-out infinite;
+
+    &.node-1 { top: 20%; left: 15%; animation-delay: 0s; }
+    &.node-2 { top: 30%; left: 45%; animation-delay: -1s; background: $accent-secondary; box-shadow: 0 0 20px rgba($accent-secondary, 0.4); }
+    &.node-3 { top: 50%; left: 25%; animation-delay: -2s; background: $accent-primary; box-shadow: 0 0 20px rgba($accent-primary, 0.4); }
+    &.node-4 { top: 60%; left: 60%; animation-delay: -3s; background: $accent-orange; box-shadow: 0 0 20px rgba($accent-orange, 0.4); }
+    &.node-5 { top: 70%; left: 35%; animation-delay: -4s; }
+    &.node-6 { top: 40%; right: 20%; animation-delay: -1.5s; background: $accent-secondary; box-shadow: 0 0 20px rgba($accent-secondary, 0.4); }
+    &.node-7 { top: 80%; right: 25%; animation-delay: -2.5s; background: $accent-primary; box-shadow: 0 0 20px rgba($accent-primary, 0.4); }
+    &.node-8 { top: 25%; right: 40%; animation-delay: -3.5s; }
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    line {
+      stroke-width: 1;
+      opacity: 0.2;
+      animation: connect-pulse 4s ease-in-out infinite;
+
+      &:nth-child(2) { animation-delay: -0.5s; }
+      &:nth-child(3) { animation-delay: -1s; }
+      &:nth-child(4) { animation-delay: -1.5s; }
+      &:nth-child(5) { animation-delay: -2s; }
+      &:nth-child(6) { animation-delay: -2.5s; }
+    }
+  }
+}
+
+// =========================================
+// GRADIENT WAVES BACKGROUND
+// =========================================
+
+.gradient-waves {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+
+  .wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 900px;
+    border-radius: 40%;
+    filter: blur(60px);
+
+    &.wave-1 {
+      background: radial-gradient(circle, rgba($accent-blue, 0.4), rgba($accent-blue, 0.25) 50%, transparent 70%);
+      animation: wave-shift 30s linear infinite, wave-pulse 8s ease-in-out infinite;
+    }
+
+    &.wave-2 {
+      background: radial-gradient(circle, rgba($accent-secondary, 0.38), rgba($accent-secondary, 0.22) 50%, transparent 70%);
+      animation: wave-shift 40s linear infinite reverse, wave-pulse 10s ease-in-out infinite;
+      animation-delay: -5s;
+    }
+
+    &.wave-3 {
+      background: radial-gradient(circle, rgba($accent-primary, 0.35), rgba($accent-primary, 0.2) 50%, transparent 70%);
+      animation: wave-shift 35s linear infinite, wave-pulse 12s ease-in-out infinite;
+      animation-delay: -10s;
+    }
+
+    &.wave-4 {
+      background: radial-gradient(circle, rgba($accent-orange, 0.38), rgba($accent-orange, 0.22) 50%, transparent 70%);
+      animation: wave-shift 32s linear infinite reverse, wave-pulse 9s ease-in-out infinite;
+      animation-delay: -3s;
+    }
+
+    &.wave-5 {
+      background: radial-gradient(circle, rgba($accent-blue, 0.35), rgba($accent-blue, 0.2) 50%, transparent 70%);
+      animation: wave-shift 38s linear infinite, wave-pulse 11s ease-in-out infinite;
+      animation-delay: -7s;
+    }
+
+    &.wave-6 {
+      background: radial-gradient(circle, rgba(#ff6b9d, 0.32), rgba(#ff6b9d, 0.18) 50%, transparent 70%);
+      animation: wave-shift 42s linear infinite reverse, wave-pulse 13s ease-in-out infinite;
+      animation-delay: -12s;
+    }
+  }
+}
+
+// =========================================
+// SECTION PARTICLES
+// =========================================
+
+.section-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1px);
+
+    &.particle-1 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba($accent-blue, 0.3), rgba($accent-blue, 0.15) 50%, transparent 70%);
+      top: 15%;
+      right: 10%;
+      animation: float-particle 25s ease-in-out infinite;
+    }
+
+    &.particle-2 {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba($accent-secondary, 0.28), rgba($accent-secondary, 0.12) 50%, transparent 70%);
+      bottom: 10%;
+      left: 15%;
+      animation: float-particle 30s ease-in-out infinite reverse;
+      animation-delay: -10s;
+    }
+  }
+
+  .glow-accent {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($accent-primary, 0.22), rgba($accent-primary, 0.1) 50%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: pulse-glow 10s ease-in-out infinite;
+  }
+}
+
+// =========================================
+// SECTION SLIDES WITH CENTERED TITLES (data-state activation)
+// =========================================
+
+html.bg-neural .reveal .slides section,
+html.bg-grid .reveal .slides section,
+html.bg-waves .reveal .slides section,
+html.bg-section .reveal .slides section,
+html.bg-animated .reveal .slides section {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  height: 100% !important;
+  width: 100% !important;
+  position: relative !important;
+  padding: 0 !important;
+
+  h1, h2 {
+    font-size: 3.5em !important;
+    font-weight: $font-weight-bold;
+    color: #000;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 10;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    width: 100%;
+  }
+
+  p, div:not([class*="background"]):not([class*="neural"]):not([class*="grid"]):not([class*="wave"]):not([class*="particle"]) {
+    display: none;
+  }
+}
+
+// =========================================
+// ANIMATED BACKGROUNDS ACTIVATION VIA DATA-STATE
+// =========================================
+
+/* Neural Network Background - activated when slide has data-state="bg-neural" */
+html.bg-neural .reveal .slides section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle 4px at 20% 20%, rgba($accent-blue, 1) 50%, transparent 50%),
+    radial-gradient(circle 4px at 30% 45%, rgba($accent-secondary, 1) 50%, transparent 50%),
+    radial-gradient(circle 4px at 50% 25%, rgba($accent-primary, 1) 50%, transparent 50%),
+    radial-gradient(circle 4px at 60% 60%, rgba($accent-orange, 1) 50%, transparent 50%),
+    radial-gradient(circle 4px at 70% 35%, rgba($accent-blue, 1) 50%, transparent 50%),
+    radial-gradient(circle 4px at 40% 80%, rgba($accent-secondary, 1) 50%, transparent 50%),
+    radial-gradient(circle 4px at 80% 25%, rgba($accent-primary, 1) 50%, transparent 50%),
+    radial-gradient(circle 4px at 25% 60%, rgba($accent-blue, 1) 50%, transparent 50%);
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 20px rgba($accent-blue, 0.4));
+  z-index: 0;
+  pointer-events: none;
+  animation: node-float 6s ease-in-out infinite;
+}
+
+/* Grid Background - activated when slide has data-state="bg-grid" */
+html.bg-grid .reveal .slides section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    /* Main grid */
+    linear-gradient(rgba($accent-blue, 0.35) 2px, transparent 2px),
+    linear-gradient(90deg, rgba($accent-blue, 0.35) 2px, transparent 2px),
+    /* Secondary grid (smaller) */
+    linear-gradient(rgba($accent-secondary, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba($accent-secondary, 0.2) 1px, transparent 1px),
+    /* Accent grid (larger) */
+    linear-gradient(rgba($accent-primary, 0.15) 3px, transparent 3px),
+    linear-gradient(90deg, rgba($accent-primary, 0.15) 3px, transparent 3px),
+    /* Center glow */
+    radial-gradient(circle at 50% 50%, rgba($accent-blue, 0.25), rgba($accent-secondary, 0.15) 50%, transparent 80%),
+    /* Corner glows */
+    radial-gradient(circle at 0% 0%, rgba($accent-blue, 0.2), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba($accent-secondary, 0.18), transparent 40%);
+  background-size:
+    60px 60px, 60px 60px,      /* Main grid */
+    30px 30px, 30px 30px,      /* Secondary grid */
+    120px 120px, 120px 120px,  /* Accent grid */
+    100% 100%,                 /* Center glow */
+    50% 50%, 50% 50%;          /* Corner glows */
+  background-position:
+    0 0, 0 0,
+    0 0, 0 0,
+    0 0, 0 0,
+    center,
+    top left, bottom right;
+  z-index: 0;
+  pointer-events: none;
+  animation: grid-pulse 4s ease-in-out infinite;
+}
+
+/* Gradient Waves Background - activated when slide has data-state="bg-waves" */
+html.bg-waves .reveal .slides section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    /* Large waves */
+    radial-gradient(ellipse 900px 900px at 30% 50%, rgba($accent-blue, 0.28), transparent 60%),
+    radial-gradient(ellipse 800px 800px at 70% 50%, rgba($accent-secondary, 0.25), transparent 60%),
+    radial-gradient(ellipse 850px 850px at 50% 30%, rgba($accent-primary, 0.22), transparent 60%),
+    /* Medium waves */
+    radial-gradient(ellipse 600px 600px at 20% 80%, rgba($accent-orange, 0.2), transparent 55%),
+    radial-gradient(ellipse 650px 650px at 80% 20%, rgba($accent-blue, 0.18), transparent 55%),
+    /* Small accent waves */
+    radial-gradient(ellipse 400px 400px at 60% 60%, rgba($accent-secondary, 0.15), transparent 50%),
+    radial-gradient(ellipse 450px 450px at 40% 40%, rgba($accent-primary, 0.15), transparent 50%),
+    /* Tiny highlights */
+    radial-gradient(circle 200px at 15% 15%, rgba($accent-blue, 0.25), transparent 40%),
+    radial-gradient(circle 180px at 85% 85%, rgba($accent-secondary, 0.22), transparent 40%);
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(50px);
+  animation: wave-pulse 8s ease-in-out infinite;
+}
+
+/* Section Particles - activated when slide has data-state="bg-section" */
+html.bg-section .reveal .slides section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    /* Large particles */
+    radial-gradient(circle 140px at 85% 15%, rgba($accent-blue, 0.32), rgba($accent-blue, 0.16) 50%, transparent 70%),
+    radial-gradient(circle 160px at 15% 85%, rgba($accent-secondary, 0.3), rgba($accent-secondary, 0.14) 50%, transparent 70%),
+    radial-gradient(circle 250px at 50% 50%, rgba($accent-primary, 0.25), rgba($accent-primary, 0.12) 50%, transparent 70%),
+    /* Medium particles */
+    radial-gradient(circle 100px at 70% 70%, rgba($accent-orange, 0.28), rgba($accent-orange, 0.12) 50%, transparent 65%),
+    radial-gradient(circle 110px at 30% 30%, rgba($accent-blue, 0.26), rgba($accent-blue, 0.11) 50%, transparent 65%),
+    radial-gradient(circle 95px at 50% 85%, rgba($accent-secondary, 0.24), rgba($accent-secondary, 0.1) 50%, transparent 65%),
+    /* Small accent particles */
+    radial-gradient(circle 60px at 20% 50%, rgba($accent-primary, 0.3), transparent 55%),
+    radial-gradient(circle 65px at 80% 50%, rgba($accent-blue, 0.28), transparent 55%),
+    radial-gradient(circle 55px at 50% 20%, rgba($accent-secondary, 0.26), transparent 55%),
+    /* Tiny highlights */
+    radial-gradient(circle 40px at 10% 10%, rgba($accent-orange, 0.35), transparent 50%),
+    radial-gradient(circle 40px at 90% 90%, rgba($accent-primary, 0.32), transparent 50%);
+  filter: blur(60px);
+  z-index: 0;
+  pointer-events: none;
+  animation: pulse-glow 10s ease-in-out infinite;
+}
+
+/* Animated Background (Full) - activated when slide has data-state="bg-animated" */
+html.bg-animated .reveal .slides section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle 175px at 15% 10%, rgba($accent-blue, 0.3), rgba($accent-blue, 0.15) 50%, transparent 70%),
+    radial-gradient(circle 140px at 80% 60%, rgba($accent-secondary, 0.28), rgba($accent-secondary, 0.12) 50%, transparent 70%),
+    radial-gradient(circle 160px at 25% 85%, rgba($accent-primary, 0.25), rgba($accent-primary, 0.1) 50%, transparent 70%),
+    radial-gradient(circle 125px at 90% 40%, rgba($accent-orange, 0.3), rgba($accent-orange, 0.15) 50%, transparent 70%),
+    radial-gradient(circle 250px at 95% -5%, rgba($accent-blue, 0.18), rgba($accent-blue, 0.08) 60%, transparent),
+    radial-gradient(circle 225px at -5% 95%, rgba($accent-secondary, 0.15), rgba($accent-secondary, 0.05) 60%, transparent);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+  animation: float-particle 20s ease-in-out infinite;
+}
+
+// =========================================
+// ENHANCED TITLE SLIDE (from custom-black.scss)
+// =========================================
+
+section[id$="title-slide"] {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  padding-top: 2em !important; // Verschiebt alles etwas nach unten
+
+  .animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
+
+  .title {
+    font-size: 2.4em;
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+    position: relative;
+    z-index: 1;
+    background: -webkit-linear-gradient(45deg, #111, #555);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle-container {
+    margin-top: 1.2em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .subtitle-button {
+    background: linear-gradient(120deg, rgba($accent-secondary, 0.08), rgba($accent-blue, 0.05));
+    border: 1px solid rgba($accent-secondary, 0.2);
+    border-radius: 40px;
+    color: $color-text;
+    display: inline-block;
+    font-size: 0.85em;
+    font-weight: $font-weight-normal;
+    letter-spacing: -0.01em;
+    padding: 0.7em 1.6em;
+  }
+
+  .image-container {
+    margin-top: 2.6em;
+    position: relative;
+    z-index: 1;
+
+    img {
+      filter: drop-shadow(0 0 18px rgba($accent-blue, 0.2));
+    }
+  }
+
+  .quarto-title-author-name {
+    font-weight: $font-weight-bold;
+    color: #333;
+  }
+
+  .quarto-title-affiliation {
+    color: $color-text-muted;
+    font-size: 0.9em;
+  }
+}
+
+// Media tweaks
+.reveal img {
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.15);
+}
+
+.reveal .fade-up {
+  animation-duration: 600ms !important;
+}
+
+
+// =========================================
+// NEUE KOMPONENTEN FÜR VIDEO2
+// =========================================
+
+// Metrics Grid - für Zahlen-Darstellung
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5em;
+  margin: 1.5em 0;
+}
+
+.metric {
+  text-align: center;
+  padding: 1em;
+  background: rgba($accent-blue, 0.03);
+  border: 1px solid rgba($accent-blue, 0.15);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-md;
+    border-color: rgba($accent-blue, 0.3);
+  }
+
+  .number {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 2.5em;
+    font-weight: $font-weight-extra-bold;
+    color: $accent-blue;
+    display: block;
+    margin-bottom: 0.3em;
+    line-height: 1.2;
+  }
+
+  .label {
+    font-size: 0.85em;
+    color: $color-text-muted;
+    line-height: 1.4;
+  }
+}
+
+// Comparison Layout - für Chatbot vs. Agent
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 2px 1fr;
+  gap: 2em;
+  margin: 1.5em 0;
+
+  .separator {
+    background: $color-border;
+    width: 1px;
+    justify-self: center;
+  }
+
+  .comparison-side {
+    padding: 1.5em;
+    background: rgba($color-text-muted, 0.03);
+    border: 1px solid rgba($color-text-muted, 0.15);
+    border-radius: 12px;
+    box-shadow: $shadow-md;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba($color-text-muted, 0.05);
+      box-shadow: $shadow-lg;
+    }
+
+    h3 {
+      font-size: 1.1em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: $color-text-muted;
+      margin-bottom: 1em;
+      font-weight: $font-weight-bold;
+    }
+
+    &.highlighted {
+      background: rgba($accent-blue, 0.03);
+      border-color: rgba($accent-blue, 0.2);
+
+      &:hover {
+        background: rgba($accent-blue, 0.05);
+        border-color: rgba($accent-blue, 0.3);
+        box-shadow: $shadow-lg;
+      }
+
+      h3 {
+        color: $accent-blue;
+      }
+
+      ul li:before {
+        color: $accent-blue;
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        margin-bottom: 0.7em;
+        padding-left: 1em;
+        position: relative;
+
+        &:before {
+          content: "−";
+          position: absolute;
+          left: 0;
+          color: $color-text-muted;
+        }
+      }
+    }
+
+    .flow {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85em;
+      color: $color-text;
+      margin-top: 1.5em;
+      padding: 1em 1.2em;
+      background: linear-gradient(135deg, rgba($color-background-secondary, 0.8), rgba($color-background-secondary, 0.4));
+      border: 1px solid $color-border;
+      border-radius: 8px;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      font-weight: $font-weight-medium;
+      letter-spacing: 0.02em;
+      text-align: center;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: linear-gradient(135deg, rgba($color-background-secondary, 1), rgba($color-background-secondary, 0.6));
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+}
+
+// Timeline - für Klarna-Beispiel
+.timeline {
+  position: relative;
+  padding-left: 2.5em;
+  margin: 1.5em 0;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, $accent-blue, rgba($accent-blue, 0.3));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 0.3em;
+    padding: 0.5em 1em;
+    background: rgba($accent-blue, 0.02);
+    border-left: 3px solid rgba($accent-blue, 0.3);
+    border-radius: 0 8px 8px 0;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba($accent-blue, 0.05);
+      border-left-color: $accent-blue;
+    }
+
+    .timeline-number {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.8em;
+      color: $accent-blue;
+      font-weight: $font-weight-bold;
+      margin-bottom: 0.3em;
+    }
+
+    .timeline-title {
+      font-weight: $font-weight-bold;
+      color: $color-text;
+      margin-bottom: 0.3em;
+      font-size: 1.05em;
+    }
+
+    .timeline-detail {
+      font-size: 0.9em;
+      color: $color-text-muted;
+    }
+  }
+}
+
+// Numbered Sections Container - Grid Layout für nebeneinander
+.numbered-sections-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5em;
+  margin: 1.5em 0;
+}
+
+// Numbered Sections - für nächste Schritte (kompakt wie Features)
+.numbered-section {
+  padding: 1.2em;
+  background: rgba($accent-primary, 0.02);
+  border: 1px solid rgba($accent-primary, 0.15);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-size: 0.85em;
+
+  &:hover {
+    background: rgba($accent-primary, 0.04);
+    border-color: rgba($accent-primary, 0.3);
+    box-shadow: $shadow-md;
+    transform: translateY(-3px);
+  }
+
+  .section-number {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 1.5em;
+    color: $accent-primary;
+    font-weight: $font-weight-extra-bold;
+    margin-bottom: 0.3em;
+  }
+
+  .section-title {
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: $font-weight-bold;
+    color: $color-text;
+    margin-bottom: 0.4em;
+  }
+
+  .section-subtitle {
+    font-size: 0.9em;
+    color: $color-text-muted;
+    margin-bottom: 0.8em;
+    font-weight: $font-weight-medium;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      margin-bottom: 0.4em;
+      color: $color-text;
+      padding-left: 1em;
+      position: relative;
+      font-size: 0.9em;
+
+      &:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: $accent-primary;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+}
+
+// Quote Box - für Kundenanfragen
+.quote-box {
+  background: $color-background-secondary;
+  border-left: 4px solid $accent-blue;
+  border-radius: 0 8px 8px 0;
+  padding: 1.5em 2em;
+  margin: 1.5em 0;
+  box-shadow: $shadow-sm;
+
+  p {
+    font-style: italic;
+    color: $color-text;
+    margin: 0;
+    font-size: 1.1em;
+  }
+}
+
+// Formula Display - für ROI-Formel oder Code-artige Gleichungen
+.formula {
+  text-align: center;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 1.4em;
+  color: $color-text;
+  padding: 1.5em;
+  margin: 1.5em 0;
+  background: $color-background-secondary;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  box-shadow: $shadow-sm;
+  font-weight: $font-weight-medium;
+}
+
+// Editorial-Variante: für Prosa-Merksätze und Thesen.
+// Nutzt Inter statt Monospace, etwas größer, ruhigeres Tracking.
+.formula.editorial {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 1.6em;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.005em;
+  line-height: 1.4;
+  padding: 1.8em 2em;
+}
+
+// Key Takeaways - für Zusammenfassung
+.key-takeaways {
+  background: rgba($accent-primary, 0.03);
+  border: 1px solid rgba($accent-primary, 0.2);
+  border-radius: 12px;
+  padding: 1.5em 2em;
+  margin: 1.5em 0;
+  box-shadow: $shadow-md;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba($accent-primary, 0.05);
+    border-color: rgba($accent-primary, 0.3);
+    box-shadow: $shadow-lg;
+  }
+
+  ol {
+    list-style: none;
+    counter-reset: takeaway-counter;
+    padding-left: 0;
+    margin-bottom: 0;
+
+    li {
+      counter-increment: takeaway-counter;
+      margin-bottom: 1.2em;
+      padding-left: 3em;
+      position: relative;
+      font-size: 1em;
+      color: $color-text;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::marker {
+        content: none;
+      }
+
+      &:before {
+        content: "0" counter(takeaway-counter);
+        position: absolute;
+        left: 0;
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        color: $accent-primary;
+        font-weight: $font-weight-extra-bold;
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+// Resource Links - für Links am Ende
+.resource-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5em;
+  margin-top: 2em;
+  text-align: center;
+
+  a {
+    color: $color-text;
+    text-decoration: none;
+    padding: 1em;
+    background: $color-background-secondary;
+    border: 1px solid $color-border;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: $font-weight-medium;
+
+    &:hover {
+      color: $accent-blue;
+      border-color: $accent-blue;
+      background: rgba($accent-blue, 0.05);
+      transform: translateY(-3px);
+      box-shadow: $shadow-md;
+    }
+  }
+}
+
+// Feature Number - für nummerierte Feature-Boxen
+.feature-number {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.8em;
+  color: $color-text-muted;
+  font-weight: $font-weight-bold;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+// Example Text in Features - kleinerer Text für Beispiele
+.feature .example {
+  font-size: 0.85em;
+  color: $color-text-muted;
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid $color-border;
+
+  strong {
+    color: $color-text;
+  }
+}
+
+// =========================================
+// YOUTUBE-STYLE ANIMATIONS (Jeff Su / Andrew Ng inspired)
+// =========================================
+
+// -----------------------------------------
+// FRAGMENT SYNC - Animationen werden durch .fragment.visible gesteuert
+// -----------------------------------------
+// Die Animationen sind jetzt so aufgebaut:
+// 1. .animation-class:not(.fragment):not(.fragment *) - für Nicht-Fragment-Elemente
+// 2. .fragment .animation-class - Startzustand (opacity: 0, transform, etc.)
+// 3. .fragment.visible .animation-class - Animation startet
+//
+// Dadurch werden Animationen korrekt synchronisiert, ohne visibility: hidden
+
+// -----------------------------------------
+// 1. TYPEWRITER EFFECT - für Key Messages
+// -----------------------------------------
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: $accent-blue; }
+}
+
+// Typewriter außerhalb von Fragments: Startet sofort
+.typewriter:not(.fragment):not(.fragment *) {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid $accent-blue;
+  width: 0;
+  display: inline-block;
+  animation:
+    typewriter 2.5s steps(40, end) forwards,
+    blink-caret 0.75s step-end infinite;
+}
+
+.typewriter-slow:not(.fragment):not(.fragment *) {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid $accent-blue;
+  width: 0;
+  display: inline-block;
+  animation:
+    typewriter 4s steps(60, end) forwards,
+    blink-caret 0.75s step-end infinite;
+}
+
+.typewriter-no-cursor:not(.fragment):not(.fragment *) {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  display: inline-block;
+  animation: typewriter 2s steps(40, end) forwards;
+}
+
+// Typewriter in Fragments: Startzustand ohne Animation
+.fragment .typewriter,
+.fragment.typewriter,
+.fragment .typewriter-slow,
+.fragment.typewriter-slow,
+.fragment .typewriter-no-cursor,
+.fragment.typewriter-no-cursor {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  display: inline-block;
+}
+
+.fragment .typewriter,
+.fragment.typewriter,
+.fragment .typewriter-slow,
+.fragment.typewriter-slow {
+  border-right: 3px solid $accent-blue;
+}
+
+// Typewriter in sichtbaren Fragments: Animation startet
+.fragment.visible .typewriter,
+.fragment.visible.typewriter {
+  animation:
+    typewriter 2.5s steps(40, end) forwards,
+    blink-caret 0.75s step-end infinite;
+}
+
+.fragment.visible .typewriter-slow,
+.fragment.visible.typewriter-slow {
+  animation:
+    typewriter 4s steps(60, end) forwards,
+    blink-caret 0.75s step-end infinite;
+}
+
+.fragment.visible .typewriter-no-cursor,
+.fragment.visible.typewriter-no-cursor {
+  animation: typewriter 2s steps(40, end) forwards;
+}
+
+// -----------------------------------------
+// 2. POP-IN ANIMATIONS - für Zahlen & Stats
+// -----------------------------------------
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pop-in-rotate {
+  0% {
+    transform: scale(0) rotate(-10deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+// Pop-in außerhalb von Fragments: Startet sofort
+.pop-in:not(.fragment):not(.fragment *) {
+  animation: pop-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  opacity: 0;
+}
+
+// Pop-in in Fragments: Startzustand ohne Animation
+.fragment .pop-in,
+.fragment.pop-in {
+  opacity: 0;
+  transform: scale(0);
+}
+
+// Pop-in in sichtbaren Fragments: Animation startet
+.fragment.visible .pop-in,
+.fragment.visible.pop-in {
+  animation: pop-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+// Delays für pop-in mit delays (müssen auch Fragment-aware sein)
+.pop-in-delay-1:not(.fragment):not(.fragment *) { animation-delay: 0.2s; }
+.pop-in-delay-2:not(.fragment):not(.fragment *) { animation-delay: 0.4s; }
+.pop-in-delay-3:not(.fragment):not(.fragment *) { animation-delay: 0.6s; }
+.pop-in-delay-4:not(.fragment):not(.fragment *) { animation-delay: 0.8s; }
+
+// Delays nur für sichtbare Fragments
+.fragment.visible .pop-in-delay-1,
+.fragment.visible.pop-in-delay-1 { animation-delay: 0.2s; }
+.fragment.visible .pop-in-delay-2,
+.fragment.visible.pop-in-delay-2 { animation-delay: 0.4s; }
+.fragment.visible .pop-in-delay-3,
+.fragment.visible.pop-in-delay-3 { animation-delay: 0.6s; }
+.fragment.visible .pop-in-delay-4,
+.fragment.visible.pop-in-delay-4 { animation-delay: 0.8s; }
+
+// Big Number Pop - speziell für große Statistiken
+// Außerhalb von Fragments: Startet sofort
+.pop-number:not(.fragment):not(.fragment *) {
+  display: inline-block;
+  animation: pop-in-rotate 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  opacity: 0;
+
+  .number {
+    font-size: 3em !important;
+    background: linear-gradient(135deg, $accent-blue, $accent-secondary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Pop-number in Fragments: Startzustand ohne Animation
+.fragment .pop-number,
+.fragment.pop-number {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0) rotate(-10deg);
+
+  .number {
+    font-size: 3em !important;
+    background: linear-gradient(135deg, $accent-blue, $accent-secondary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Pop-number in sichtbaren Fragments: Animation startet
+.fragment.visible .pop-number,
+.fragment.visible.pop-number {
+  animation: pop-in-rotate 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+// -----------------------------------------
+// 3. HIGHLIGHT / TEXTMARKER EFFEKT
+// -----------------------------------------
+
+@keyframes highlight-sweep {
+  0% {
+    background-size: 0% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+// Highlights ohne Fragment: Sofortiger Start
+.highlight-yellow:not(.fragment):not(.fragment *) {
+  background: linear-gradient(to right, rgba(#fef08a, 0.7) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.highlight-green:not(.fragment):not(.fragment *) {
+  background: linear-gradient(to right, rgba($accent-primary, 0.25) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.highlight-blue:not(.fragment):not(.fragment *) {
+  background: linear-gradient(to right, rgba($accent-blue, 0.2) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.highlight-pink:not(.fragment):not(.fragment *) {
+  background: linear-gradient(to right, rgba(#f472b6, 0.3) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.highlight-white:not(.fragment):not(.fragment *) {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.25) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.highlight-green-new:not(.fragment):not(.fragment *) {
+  background: linear-gradient(to right, rgba(#a9ded1, 0.4) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.highlight-lila-new:not(.fragment):not(.fragment *) {
+  background: linear-gradient(to right, rgba(#a5a6f8, 0.4) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.highlight-grey:not(.fragment):not(.fragment *) {
+  background: linear-gradient(to right, rgba(#b3b3b3, 0.4) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+// Highlights in Fragments: Kein Highlight bis Fragment sichtbar
+.fragment .highlight-yellow,
+.fragment.highlight-yellow {
+  background: transparent;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.fragment .highlight-green,
+.fragment.highlight-green {
+  background: transparent;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.fragment .highlight-blue,
+.fragment.highlight-blue {
+  background: transparent;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.fragment .highlight-pink,
+.fragment.highlight-pink {
+  background: transparent;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.fragment .highlight-white,
+.fragment.highlight-white {
+  background: transparent;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.fragment .highlight-green-new,
+.fragment.highlight-green-new {
+  background: transparent;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.fragment .highlight-lila-new,
+.fragment.highlight-lila-new {
+  background: transparent;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.fragment .highlight-grey,
+.fragment.highlight-grey {
+  background: transparent;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+// Highlights in sichtbaren Fragments: Animation startet
+.fragment.visible .highlight-yellow,
+.fragment.visible.highlight-yellow {
+  background: linear-gradient(to right, rgba(#fef08a, 0.7) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.fragment.visible .highlight-green,
+.fragment.visible.highlight-green {
+  background: linear-gradient(to right, rgba($accent-primary, 0.25) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.fragment.visible .highlight-blue,
+.fragment.visible.highlight-blue {
+  background: linear-gradient(to right, rgba($accent-blue, 0.2) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.fragment.visible .highlight-pink,
+.fragment.visible.highlight-pink {
+  background: linear-gradient(to right, rgba(#f472b6, 0.3) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.fragment.visible .highlight-white,
+.fragment.visible.highlight-white {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.25) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.fragment.visible .highlight-green-new,
+.fragment.visible.highlight-green-new {
+  background: linear-gradient(to right, rgba(#a9ded1, 0.4) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.fragment.visible .highlight-lila-new,
+.fragment.visible.highlight-lila-new {
+  background: linear-gradient(to right, rgba(#a5a6f8, 0.4) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.fragment.visible .highlight-grey,
+.fragment.visible.highlight-grey {
+  background: linear-gradient(to right, rgba(#b3b3b3, 0.4) 100%, transparent 100%);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: highlight-sweep 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+// -----------------------------------------
+// 4. ANIMATED UNDERLINE
+// -----------------------------------------
+
+@keyframes underline-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+// Underline außerhalb von Fragments: Startet sofort
+.underline-animate:not(.fragment *) {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, $accent-blue, $accent-secondary);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: underline-grow 0.6s ease-out forwards;
+    animation-delay: 0.5s;
+    border-radius: 2px;
+  }
+}
+
+// Underline in Fragments: Startzustand ohne Animation
+.fragment .underline-animate,
+.fragment.underline-animate {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, $accent-blue, $accent-secondary);
+    transform: scaleX(0);
+    transform-origin: left;
+    border-radius: 2px;
+  }
+}
+
+// Underline in sichtbaren Fragments: Animation startet
+.fragment.visible .underline-animate,
+.fragment.visible.underline-animate {
+  &::after {
+    animation: underline-grow 0.6s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+}
+
+// Farbvarianten
+.underline-animate-green::after {
+  background: $accent-primary !important;
+}
+
+.underline-animate-orange::after {
+  background: $accent-orange !important;
+}
+
+// Grüne Variante für Fragments
+.fragment.visible .underline-animate-green::after,
+.fragment.visible.underline-animate-green::after {
+  animation: underline-grow 0.6s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+// -----------------------------------------
+// 5. SLIDE-IN ANIMATIONS (mehr Optionen)
+// -----------------------------------------
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-down {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Slide-Animationen außerhalb von Fragments: Starten sofort
+.slide-left:not(.fragment):not(.fragment *) {
+  animation: slide-in-left 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.slide-right:not(.fragment):not(.fragment *) {
+  animation: slide-in-right 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.slide-up:not(.fragment):not(.fragment *) {
+  animation: slide-in-up 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.slide-down:not(.fragment):not(.fragment *) {
+  animation: slide-in-down 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+// Slide-Animationen in Fragments: Startzustand ohne Animation
+.fragment .slide-left,
+.fragment.slide-left {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.fragment .slide-right,
+.fragment.slide-right {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.fragment .slide-up,
+.fragment.slide-up {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.fragment .slide-down,
+.fragment.slide-down {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+// Slide-Animationen in sichtbaren Fragments: Animation startet
+.fragment.visible .slide-left,
+.fragment.visible.slide-left {
+  animation: slide-in-left 0.6s ease-out forwards;
+}
+
+.fragment.visible .slide-right,
+.fragment.visible.slide-right {
+  animation: slide-in-right 0.6s ease-out forwards;
+}
+
+.fragment.visible .slide-up,
+.fragment.visible.slide-up {
+  animation: slide-in-up 0.5s ease-out forwards;
+}
+
+.fragment.visible .slide-down,
+.fragment.visible.slide-down {
+  animation: slide-in-down 0.5s ease-out forwards;
+}
+
+// Staggered delays für Listen
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+// -----------------------------------------
+// 6. ZOOM / FOCUS EFFEKTE
+// -----------------------------------------
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in-bounce {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Zoom-Animationen außerhalb von Fragments: Starten sofort
+.zoom-in:not(.fragment):not(.fragment *) {
+  animation: zoom-in 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.zoom-in-bounce:not(.fragment):not(.fragment *) {
+  animation: zoom-in-bounce 0.7s ease-out forwards;
+  opacity: 0;
+}
+
+// Zoom-Animationen in Fragments: Startzustand ohne Animation
+.fragment .zoom-in,
+.fragment.zoom-in {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.fragment .zoom-in-bounce,
+.fragment.zoom-in-bounce {
+  opacity: 0;
+  transform: scale(0.3);
+}
+
+// Zoom-Animationen in sichtbaren Fragments: Animation startet
+.fragment.visible .zoom-in,
+.fragment.visible.zoom-in {
+  animation: zoom-in 0.5s ease-out forwards;
+}
+
+.fragment.visible .zoom-in-bounce,
+.fragment.visible.zoom-in-bounce {
+  animation: zoom-in-bounce 0.7s ease-out forwards;
+}
+
+// Blur to Focus
+@keyframes blur-to-focus {
+  from {
+    filter: blur(10px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+// Blur-Focus außerhalb von Fragments: Startet sofort
+.blur-focus:not(.fragment):not(.fragment *) {
+  animation: blur-to-focus 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+// Blur-Focus in Fragments: Startzustand ohne Animation
+.fragment .blur-focus,
+.fragment.blur-focus {
+  opacity: 0;
+  filter: blur(10px);
+}
+
+// Blur-Focus in sichtbaren Fragments: Animation startet
+.fragment.visible .blur-focus,
+.fragment.visible.blur-focus {
+  animation: blur-to-focus 0.8s ease-out forwards;
+}
+
+// -----------------------------------------
+// 7. GLOW / PULSE EFFEKTE für CTAs
+// -----------------------------------------
+
+@keyframes glow-pulse-blue {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba($accent-blue, 0.4), 0 0 10px rgba($accent-blue, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba($accent-blue, 0.6), 0 0 40px rgba($accent-blue, 0.3);
+  }
+}
+
+@keyframes glow-pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba($accent-primary, 0.4), 0 0 10px rgba($accent-primary, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba($accent-primary, 0.6), 0 0 40px rgba($accent-primary, 0.3);
+  }
+}
+
+.glow-blue {
+  animation: glow-pulse-blue 2s ease-in-out infinite;
+}
+
+.glow-green {
+  animation: glow-pulse-green 2s ease-in-out infinite;
+}
+
+// Text Glow
+.text-glow {
+  text-shadow: 0 0 10px rgba($accent-blue, 0.5), 0 0 20px rgba($accent-blue, 0.3);
+}
+
+// -----------------------------------------
+// 8. COUNTER / COUNTING ANIMATION (CSS only)
+// -----------------------------------------
+
+@property --num {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+
+.count-up {
+  --num: 0;
+  animation: count-up 2s ease-out forwards;
+  counter-reset: num var(--num);
+
+  &::after {
+    content: counter(num);
+  }
+}
+
+@keyframes count-up {
+  to {
+    --num: 100;
+  }
+}
+
+// -----------------------------------------
+// 9. PROGRESS INDICATOR
+// -----------------------------------------
+
+.progress-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: $shadow-md;
+  border: 1px solid $color-border;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $color-border;
+  transition: all 0.3s ease;
+
+  &.active {
+    background: $accent-blue;
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba($accent-blue, 0.5);
+  }
+
+  &.completed {
+    background: $accent-primary;
+  }
+}
+
+// Chapter indicator
+.chapter-indicator {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.7em;
+  font-weight: $font-weight-bold;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: $shadow-md;
+  border: 1px solid $color-border;
+  z-index: 100;
+  animation: slide-in-down 0.4s ease-out;
+
+  .chapter-number {
+    color: $accent-blue;
+    margin-right: 0.5em;
+  }
+}
+
+// -----------------------------------------
+// 11. MODERNE INFO-BOXEN (Feature-Style)
+// -----------------------------------------
+
+// Basis-Stil für alle Info-Boxen
+%modern-info-box {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.9) 100%
+  );
+  border-radius: 16px;
+  padding: 1.2em 1.5em;
+  margin: 1em 0;
+  position: relative;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(10px);
+
+  // Subtiler farbiger Akzent oben
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+.attention-box {
+  @extend %modern-info-box;
+
+  &::before {
+    background: linear-gradient(90deg, $accent-orange, lighten($accent-orange, 15%));
+  }
+}
+
+.think-box {
+  @extend %modern-info-box;
+
+  &::before {
+    background: linear-gradient(90deg, $accent-blue, $accent-secondary);
+  }
+}
+
+.tip-box {
+  @extend %modern-info-box;
+
+  &::before {
+    background: linear-gradient(90deg, $accent-primary, lighten($accent-primary, 10%));
+  }
+}
+
+// -----------------------------------------
+// 12. ANIMATED LIST ITEMS
+// -----------------------------------------
+
+// Animated list - saubere Version ohne Pfeile
+.animated-list {
+  list-style: disc;
+  padding-left: 1.5em;
+
+  li {
+    padding: 0.4em 0;
+
+    // Kind-Elemente mit eigenen Animationen nicht überschreiben
+    span, .emoji-bounce, .emoji-shake, .emoji-continuous,
+    .highlight-yellow, .highlight-green, .highlight-blue, .highlight-pink, .highlight-white,
+    .underline-animate, .underline-animate-green, .underline-animate-orange {
+      opacity: 1 !important;
+    }
+  }
+}
+
+// Alternative: Liste ohne Bullet Points (für Emoji-Listen)
+.simple-animated-list {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    padding: 0.4em 0;
+
+    span, .emoji-continuous, .emoji-bounce, .emoji-shake {
+      opacity: 1 !important;
+    }
+  }
+}
+
+// -----------------------------------------
+// 13. BIG STAT DISPLAY (Jeff Su Style)
+// -----------------------------------------
+
+// Big-stat Basisstile (ohne Animation)
+%big-stat-base {
+  text-align: center;
+  padding: 2em;
+
+  .stat-number {
+    display: block;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 5em;
+    font-weight: $font-weight-extra-bold;
+    background-image: linear-gradient(135deg, $accent-blue, $accent-secondary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 1.2em;
+    color: $color-text-muted;
+    margin-top: 0.5em;
+  }
+
+  .stat-context {
+    display: block;
+    font-size: 0.9em;
+    color: $color-text-muted;
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid $color-border;
+    max-width: 36ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Big-stat außerhalb von Fragments: Startet sofort
+.big-stat:not(.fragment):not(.fragment *),
+.big-stat-green:not(.fragment):not(.fragment *),
+.big-stat-orange:not(.fragment):not(.fragment *) {
+  @extend %big-stat-base;
+
+  .stat-number {
+    animation: pop-in-rotate 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    opacity: 0;
+  }
+
+  .stat-label {
+    animation: slide-in-up 0.5s ease-out forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
+
+  .stat-context {
+    animation: blur-to-focus 0.6s ease-out forwards;
+    animation-delay: 0.8s;
+    opacity: 0;
+  }
+}
+
+// Big-stat in Fragments: Startzustand ohne Animation
+.fragment .big-stat,
+.fragment.big-stat,
+.fragment .big-stat-green,
+.fragment.big-stat-green,
+.fragment .big-stat-orange,
+.fragment.big-stat-orange {
+  @extend %big-stat-base;
+
+  .stat-number {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+  }
+
+  .stat-label {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  .stat-context {
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+// Big-stat in sichtbaren Fragments: Animation startet
+.fragment.visible .big-stat,
+.fragment.visible.big-stat,
+.fragment.visible .big-stat-green,
+.fragment.visible.big-stat-green,
+.fragment.visible .big-stat-orange,
+.fragment.visible.big-stat-orange {
+  .stat-number {
+    animation: pop-in-rotate 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .stat-label {
+    animation: slide-in-up 0.5s ease-out forwards;
+    animation-delay: 0.4s;
+  }
+
+  .stat-context {
+    animation: blur-to-focus 0.6s ease-out forwards;
+    animation-delay: 0.8s;
+  }
+}
+
+// Variation mit verschiedenen Farben
+.big-stat-green .stat-number {
+  background-image: linear-gradient(135deg, $accent-primary, darken($accent-primary, 15%));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.big-stat-orange .stat-number {
+  background-image: linear-gradient(135deg, $accent-orange, darken($accent-orange, 15%));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+// -----------------------------------------
+// 13b. CONTENT SLIDES: balance vertical space
+// -----------------------------------------
+// Compact content patterns (features, big-stat, formula) should fill the
+// area below the h2 instead of leaving large whitespace at the bottom.
+.reveal .slides > section.slide.level2:not(.center):not(.stack) {
+  display: flex;
+  flex-direction: column;
+
+  > h2 {
+    flex: 0 0 auto;
+  }
+
+  > .features,
+  > .big-stat,
+  > .big-stat-green,
+  > .big-stat-orange,
+  > .formula,
+  > .columns {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  > .columns {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  > .sources {
+    flex: 0 0 auto;
+  }
+}
+
+// -----------------------------------------
+// 14. COMPARISON ARROWS
+// -----------------------------------------
+
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+.compare-arrow {
+  display: inline-block;
+  font-size: 2em;
+  color: $accent-blue;
+  animation: arrow-bounce 1s ease-in-out infinite;
+  margin: 0 1em;
+}
+
+// -----------------------------------------
+// 15. REVEAL ON SCROLL (für längere Slides)
+// -----------------------------------------
+
+.reveal-on-visible {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// -----------------------------------------
+// 16. EMOJI ANIMATIONS
+// -----------------------------------------
+
+@keyframes emoji-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+@keyframes emoji-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+@keyframes emoji-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.emoji-bounce,
+.reveal .emoji-bounce,
+.animated-list .emoji-bounce {
+  display: inline-block !important;
+  animation: emoji-bounce 0.6s ease-out !important;
+  opacity: 1 !important;
+  transform: none;
+}
+
+.emoji-shake,
+.reveal .emoji-shake,
+.animated-list .emoji-shake {
+  display: inline-block !important;
+  animation: emoji-shake 0.5s ease-out !important;
+  opacity: 1 !important;
+  transform: none;
+}
+
+// Emoji-continuous: Kein Pulsieren, nur inline-block für korrekte Darstellung
+.emoji-continuous,
+.reveal .emoji-continuous,
+.animated-list .emoji-continuous {
+  display: inline-block !important;
+  opacity: 1 !important;
+  transform: none;
+}
+
+// Spezifische Regel für Emojis in Listen
+.animated-list li .emoji-bounce,
+.animated-list li .emoji-shake,
+.animated-list li .emoji-continuous {
+  position: relative;
+  z-index: 1;
+}
+
+// -----------------------------------------
+// 17. SPLIT REVEAL (zwei Hälften die zusammenkommen)
+// -----------------------------------------
+
+@keyframes split-left {
+  from { transform: translateX(-50%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes split-right {
+  from { transform: translateX(50%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.split-reveal {
+  display: flex;
+
+  .split-left {
+    animation: split-left 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .split-right {
+    animation: split-right 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+  }
+}
+
+// -----------------------------------------
+// 18. FLOATING ELEMENTS
+// -----------------------------------------
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.float-slow {
+  animation: float 5s ease-in-out infinite;
+}
+
+// -----------------------------------------
+// 19. BORDER ANIMATION (für Boxen)
+// -----------------------------------------
+
+@keyframes border-dance {
+  0% { border-color: $accent-blue; }
+  33% { border-color: $accent-secondary; }
+  66% { border-color: $accent-primary; }
+  100% { border-color: $accent-blue; }
+}
+
+.border-animate {
+  animation: border-dance 3s ease-in-out infinite;
+  border-width: 2px;
+  border-style: solid;
+}
+
+// -----------------------------------------
+// 20. VIDEO CTA BUTTON
+// -----------------------------------------
+
+.video-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background: $color-text;
+  color: white;
+  padding: 0.8em 1.5em;
+  border-radius: 30px;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    background: darken($color-text, 5%);
+  }
+
+  .cta-icon {
+    font-size: 1.2em;
+  }
+}
+
+
+// -----------------------------------------
+// 21. CUSTOM CODE WINDOW (für auto-animate)
+// -----------------------------------------
+
+.code-box {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 30px -10px rgba(38, 57, 77, 0.4);
+  overflow: hidden;
+  font-size: 0.45em;
+  width: 420px;
+  
+  .code-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #e2e8f0;
+    padding: 8px 16px;
+    height: 36px;
+    
+    .window-buttons {
+      display: flex;
+      gap: 8px;
+      
+      span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        
+        &.red { background: #ff5f57; }
+        &.yellow { background: #febc2e; }
+        &.green { background: #28c840; }
+      }
+    }
+    
+    .file-tab {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      padding: 4px 16px;
+      border-radius: 8px 8px 0 0;
+      margin-top: 4px;
+      height: 28px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      color: #333;
+      
+      .python-icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  
+  .code-content {
+    padding: 20px;
+    background: white;
+
+    pre {
+      margin: 0;
+      font-size: 1em;
+      background: transparent !important;
+      border: none !important;
+
+      code {
+        background: transparent !important;
+        font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+// ==========================================================================
+// Blueprint 2026-04-22 — Stage (dark) patterns
+// ==========================================================================
+
+// Generic .stage switch — flips any slide to dark.
+// Applies to reveal.js slide containers (section.slide) tagged with .stage.
+//
+// We do NOT set `background` on the section itself, because that would hide
+// Reveal.js's own `data-background-image` layer. Dark backdrop is set via
+// Quarto's native `background-color="#0a0a0f"` attribute in the deck — or
+// inherited from the `.reveal-viewport` default. See ## notes in AGENTS.md.
+.reveal {
+  section.slide.stage,
+  section.slide.stage.present,
+  section.slide.stage.future,
+  section.slide.stage.past {
+    color: $color-stage-text !important;
+
+    // Reveal.js sets h1/h2 to black with !important — we need !important too.
+    // Stage headlines are larger than content-slide headlines: they carry the
+    // weight of the moment without supporting text.
+    h1, h2, h3, h4, h5, h6,
+    &.title-slide h1,
+    &.title-slide .title {
+      color: $color-stage-text !important;
+      background: transparent !important;
+      background-image: none !important;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+    }
+    h1, &.title-slide h1, &.title-slide .title {
+      font-size: clamp(3.5rem, 6.5vw, 6rem) !important;
+      line-height: 1.05;
+    }
+    p, li, span, blockquote {
+      color: $color-stage-text;
+    }
+    .text-muted,
+    .label,
+    .stat-context,
+    .kicker {
+      color: $color-stage-muted;
+    }
+    a { color: $accent-editorial; }
+    hr, .separator { border-color: $color-stage-hairline; }
+    ::selection { background: rgba(255, 255, 255, 0.15); }
+  }
+
+  // Stage slides WITHOUT a background-image still need a dark fill.
+  // Sections that DO have data-background-image let Reveal.js handle the
+  // image layer underneath; the section itself stays transparent.
+  section.slide.stage:not([data-background-image]):not([data-background-color]) {
+    background: $color-stage-bg;
+  }
+}
+
+// When the currently shown slide is a stage slide, also paint the viewport
+// dark so the user doesn't see a white border around the slide area.
+.reveal-viewport:has(.slides section.present.stage),
+body:has(.slides section.present.stage) {
+  background: $color-stage-bg;
+}
+
+// Anschauung: full-bleed illustration with a small anchored title.
+.reveal section.slide.stage.anschauung {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // Dim the background image with a dark gradient so title is readable.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 15, 0.25) 0%,
+      rgba(10, 10, 15, 0.65) 75%,
+      rgba(10, 10, 15, 0.85) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  h1, h2, h3, h4 {
+    position: relative;
+    z-index: 1;
+    // Modern sans-serif headline, not serif italic — heavier impact on
+    // full-bleed photography, matches the editorial-magazine reference.
+    font-family: $font-family-sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: clamp(2.75rem, 5.5vw, 5rem) !important;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    max-width: 80%;
+    margin-top: auto;
+    padding: 2rem 0;
+  }
+
+  // content after heading is optional; push heading to lower third
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 4rem 5rem;
+}
+
+// Breath: one big word, centered, massive whitespace.
+.reveal section.slide.stage.breath {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .big-word {
+    // Modern sans-serif — consistent with anschauung/closing.
+    font-family: $font-family-sans-serif;
+    font-weight: 700;
+    font-size: clamp(6rem, 14vw, 14rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: $color-stage-text;
+    text-align: center;
+  }
+}
+
+// Chapter-Opener: large chapter number + sans-serif title, on dark stage.
+.reveal section.slide.stage.chapter {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom right,
+      rgba(10, 10, 15, 0.55) 0%,
+      rgba(10, 10, 15, 0.85) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 5rem;
+
+  .chapter-number,
+  .chapter-title {
+    position: relative;
+    z-index: 1;
+  }
+
+  .chapter-number {
+    font-family: $font-family-sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: $accent-editorial;
+    margin-bottom: 1.25rem;
+  }
+
+  .chapter-title,
+  h1, h2 {
+    // Modern sans-serif — weight 700 Bold for the chapter moment.
+    font-family: $font-family-sans-serif;
+    font-weight: 700;
+    font-size: clamp(3.5rem, 8vw, 7rem) !important;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: $color-stage-text;
+    margin: 0;
+    max-width: 85%;
+  }
+}
+
+// Closing-Beat: a small kicker label (h1/h2 = the slide title is the label)
+// followed by one calm final sentence (p / blockquote = the body content).
+.reveal section.slide.stage.closing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem 6rem;
+
+  // H1/H2 acts as the kicker label — small uppercase text above the body.
+  h1, h2 {
+    font-family: $font-family-sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.22em !important;
+    text-transform: uppercase;
+    color: $color-stage-muted !important;
+    margin: 0 0 1.75rem 0 !important;
+    line-height: 1.4;
+    max-width: none;
+  }
+
+  // The body sentence — the actual closing thought.
+  p, blockquote, h3 {
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.5rem, 5vw, 4rem) !important;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 80%;
+    color: $color-stage-text;
+    margin: 0 0 1rem 0;
+  }
+
+  // Legacy support: if a deck still uses an explicit .kicker block,
+  // style it as kicker (and override Pandoc's wrapping <p> inside it).
+  .kicker, .label {
+    font-family: $font-family-sans-serif;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: $color-stage-muted !important;
+    margin-bottom: 1.5rem;
+
+    p {
+      font-size: inherit !important;
+      font-weight: inherit !important;
+      color: inherit !important;
+      letter-spacing: inherit !important;
+      text-transform: inherit;
+      line-height: 1.4 !important;
+      max-width: none !important;
+      margin: 0 !important;
+    }
+  }
+}
+
+// Book-Bridge: warm editorial card at end of deck linking to online book.
+// Lives on light slides (NOT .stage) to mark the medium-shift.
+.reveal section.slide.book-bridge {
+  background: $color-paper;
+  padding: 4rem 5rem;
+
+  .columns {
+    align-items: center;
+  }
+
+  img {
+    border-radius: 6px;
+    box-shadow: $shadow-md;
+  }
+
+  h1, h2, h3, .chapter-title {
+    // Modern sans-serif throughout.
+    font-family: $font-family-sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: #2b2b2b;
+    font-size: 1.1rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: $accent-editorial;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1.5px solid $accent-editorial;
+    padding-bottom: 2px;
+
+    &:hover {
+      color: darken($accent-editorial, 10%);
+      border-bottom-color: darken($accent-editorial, 10%);
+    }
+  }
+}
+
+// Big-Stat on stage: lighten numbers, mute context.
+.reveal section.slide.stage {
+  .big-stat, .big-stat-green, .big-stat-orange {
+    .stat-number { color: $color-stage-text; }
+    .stat-label { color: $color-stage-text; }
+    .stat-context { color: $color-stage-muted; }
+  }
+
+  // Quote on stage: modern sans-serif, medium weight. The left-border
+  // accent + ocker colour remain the "this is a quote" signal.
+  .quote-box {
+    background: transparent;
+    border: none;
+    border-left: 3px solid $accent-editorial;
+    padding: 1rem 2rem;
+
+    p, blockquote {
+      font-family: $font-family-sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+      color: $color-stage-text;
+    }
+  }
+}
+
+// ==========================================================================
+// Blueprint 2026-04-22 (Iteration 2) — Inline reflection boxes
+// ==========================================================================
+
+// .tip-box — short actionable insight embedded within a content slide.
+// Use sparingly: one per slide at most. Works on light and stage slides.
+.reveal .tip-box {
+  position: relative;
+  padding: 1rem 1.25rem 1rem 3rem;
+  border-radius: 8px;
+  background: rgba($accent-blue, 0.06);
+  border-left: 3px solid $accent-blue;
+  color: #1a1a1a;
+  font-size: 1.05em;
+  line-height: 1.5;
+  margin: 1rem 0;
+
+  &::before {
+    content: "→";
+    position: absolute;
+    left: 1rem;
+    top: 0.9rem;
+    color: $accent-blue;
+    font-weight: 700;
+    font-size: 1.35em;
+    line-height: 1;
+  }
+
+  p, li {
+    margin-bottom: 0.3em;
+    color: inherit;
+  }
+}
+
+// .think-box — reflective pause, sits within a content slide.
+// Modern sans-serif; the cream paper background + ocker border signal
+// the reflective character without italic styling.
+.reveal .think-box {
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  background: $color-paper;
+  border: 1px solid rgba($accent-editorial, 0.3);
+  color: #2b2b2b;
+  font-family: $font-family-sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin: 1rem 0;
+
+  p, li {
+    color: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    margin-bottom: 0.3em;
+  }
+}
+
+// Stage overrides for both boxes (dark mode).
+.reveal section.slide.stage {
+  .tip-box {
+    background: rgba($accent-blue, 0.18);
+    color: $color-stage-text;
+
+    p, li { color: $color-stage-text; }
+  }
+
+  .think-box {
+    background: rgba($accent-editorial, 0.12);
+    border-color: rgba($accent-editorial, 0.45);
+    color: $color-stage-text;
+
+    p, li { color: $color-stage-text; }
+  }
+}

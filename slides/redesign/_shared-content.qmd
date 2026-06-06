@@ -1,0 +1,151 @@
+# Pattern-Bibliothek {.center}
+
+::: {.notes}
+Diese Mockup-Folie testet den Stage-Look (zentrierte Abschnittsfolie).
+:::
+
+## Die Kernidee in einem Satz
+
+::: {.formula}
+Agenda + Pattern + Notes = renderbares Lernplattform-Deck
+:::
+
+::: {.notes}
+Formula-Pattern: verdichtet eine Logik auf eine Zeile.
+:::
+
+## Was das Template leistet
+
+:::: {.features}
+
+::: {.feature .fragment .fade-up}
+[01]{.feature-number}
+**Struktur**
+
+Konsistente Pattern statt freier Layout-Experimente. Das Deck wirkt ruhig.
+:::
+
+::: {.feature .fragment .fade-up}
+[02]{.feature-number}
+**Tempo**
+
+Pattern werden geklont, Inhalt wird ausgetauscht. Keine SCSS-Eingriffe nötig.
+:::
+
+::: {.feature .fragment .fade-up}
+[03]{.feature-number}
+**Wiedererkennung**
+
+Decks aus diesem Repo wirken visuell wie eine Familie, also wie die Lernplattform selbst.
+:::
+
+::::
+
+::: {.notes}
+Feature-Cards: drei gleichwertige Aussagen.
+:::
+
+## Metrics Grid
+
+:::: {.metrics-grid}
+
+::: {.metric .fragment .fade-up}
+[90%]{.number}
+[Fokus auf die Hauptbotschaft]{.label}
+:::
+
+::: {.metric .fragment .fade-up}
+[2]{.number}
+[Spalten im Standard-Layout]{.label}
+:::
+
+::: {.metric .fragment .fade-up}
+[1]{.number}
+[Notes-Block je Folie]{.label}
+:::
+
+::: {.metric .fragment .fade-up}
+[0]{.number}
+[freie Layout-Experimente]{.label}
+:::
+
+::::
+
+::: {.notes}
+Metrics-Grid: vier Zahlen als Raster.
+:::
+
+## Big Stat
+
+:::: {.big-stat .fragment .fade-up}
+[280.000]{.stat-number}
+[eingesparte Stunden]{.stat-label}
+[Enterprise-Case, 12 Monate]{.stat-context}
+::::
+
+::: {.notes}
+Big-Stat: eine dominante Zahl, ein Label, ein Kontext.
+:::
+
+## Comparison
+
+:::: {.comparison}
+
+::: {.comparison-side}
+**Ohne Template**
+
+- inkonsistente Struktur
+- fehlende Notes
+- wechselnde Layouts
+:::
+
+::: {.separator}
+:::
+
+::: {.comparison-side .highlighted}
+**Mit Template**
+
+- feste Pattern
+- Notes ab Werk
+- klare Validierung
+:::
+
+::::
+
+::: {.notes}
+Comparison: zwei Zustände gegeneinander, rechts hervorgehoben.
+:::
+
+## Quote Box
+
+::: {.quote-box}
+
+„Eine gute Template-Struktur reduziert nicht nur Produktionszeit, sondern auch die Varianz im Ergebnis."
+
+:::
+
+::: {.notes}
+Quote-Box: ein einziges starkes Statement.
+:::
+
+## Key Takeaways
+
+::: {.key-takeaways}
+
+1. Nutze nur bestehende Pattern.
+2. Schreibe pro Folie genau einen Notes-Block.
+3. Validiere das Deck vor Render und TTS-Export.
+
+:::
+
+::: {.notes}
+Key-Takeaways: Zusammenfassung am Ende.
+:::
+
+# Closing-Beat {.stage .closing}
+
+Ein Deck endet nicht mit einer Liste, sondern mit einem ruhigen Satz, der den Kern noch einmal ausspricht.
+
+::: {.notes}
+Closing-Beat: letzter ruhiger Schlusssatz.
+:::

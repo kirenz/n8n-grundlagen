@@ -1,0 +1,11 @@
+{
+  "name": "book-hero",
+  "display_name": "Book Hero (Light)",
+  "description": "Editoriales Kapitel-Opener-Bild für das Online-Buch — heller Hintergrund, mehr Bildtiefe",
+  "style_instructions": "Style: Editorial magazine photography aesthetic, bright natural daylight, painterly textures but realistic, journal-like composition. Color palette: warm cream and paper tones, muted earth accents, single saturated highlight. Mood: dignified, inviting, professional.",
+  "composition": "Subject composed like a magazine feature opener — leading visual element, breathing room around it, clear foreground/midground/background separation. Room for chapter number and title overlay if needed.",
+  "negative": "no text, no logos, no people's faces visible, no cartoon style, no 3D rendering, no harsh shadows, no AI-glow, no sterile stock-photo look",
+  "aspect_ratio": "16:9",
+  "resolution": "2K",
+  "mood": "editorial, inviting, bright"
+}

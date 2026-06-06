@@ -1,0 +1,620 @@
+---
+title: "Elements Library"
+subtitle: "Verbindliche Pattern für neue Decks"
+author: "Jan Kirenz"
+---
+
+# Pattern-Bibliothek {background-image="../images/section-background.svg" background-opacity="0.5"}
+
+::: {.notes}
+Diese Datei ist die verbindliche Referenz für zulässige Folienmuster.
+
+Wenn ich neue Decks schreibe oder von einer KI erzeugen lasse, kopiere ich nur aus diesen Bausteinen.
+
+Diese Abschnittsfolie demonstriert das Muster einer Abschnittsfolie mit Hintergrundbild.
+:::
+
+# Zentrierte Abschnittsfolie {.center}
+
+::: {.notes}
+Mit `{.center}` zentriert RevealJS das Heading vertikal und horizontal.
+
+Dieses Muster eignet sich für Trennfolien, Kapitelwechsel oder Fragen an das Publikum.
+:::
+
+## Zwei-Spalten-Explainer
+
+:::: {.columns}
+
+::: {.column width="42%"}
+
+Standard für konzeptionelle Erklärungen.
+
+:::
+
+::: {.column width="58%"}
+
+- **These links** — eine Aussage, kein Absatz.
+- **Vertiefung rechts** — zwei bis drei kurze Punkte.
+
+:::
+
+::::
+
+::: {.notes}
+Das ist das Grundmuster für viele inhaltliche Slides. Eine kurze These steht links, die Vertiefung rechts. Beide Spalten bleiben bewusst luftig, damit das Auge an den Schlagworten haften kann und nicht auf einen Block aus Stichpunkten trifft.
+
+[KLICK] Zuerst erscheint der linke Satz als Anker. [KLICK] Danach erscheint die rechte Spalte als pointierte Ergänzung.
+:::
+
+## Media-Split (Bild + Text)
+
+:::: {.columns}
+
+::: {.column width="45%"}
+![](../images/section-background.svg)
+:::
+
+::: {.column width="55%"}
+Dieses Muster trägt **Headline + Kurztext + Bild** auf einer Content-Folie.
+
+- Bild links oder rechts, ca. 45 % Breite.
+- Rechts: 2 – 4 kurze Zeilen, **Bold** für Schlüsselbegriffe.
+- Optional ein `.sources`-Block am Fuß der Textspalte.
+:::
+
+::::
+
+::: {.notes}
+Die Media-Split-Folie ist der Standard, wenn eine Content-Folie sonst zu leer wirkt.
+
+Das Bild liefert den visuellen Anker, der Text setzt die Kernaussage in zwei bis vier pointierten Zeilen.
+
+Für generierte Bilder gilt: `<!-- image: profile="..." file="..." -->` direkt über der Folie, Dateiname `diagram-<slug>.png` oder `photo-<slug>.png`.
+:::
+
+## Metrics Grid
+
+:::: {.metrics-grid}
+
+::: {.metric .fragment .fade-up}
+[90%]{.number}
+[Fokus auf die Hauptbotschaft]{.label}
+:::
+
+::: {.metric .fragment .fade-up}
+[2]{.number}
+[Spalten im Standard-Layout]{.label}
+:::
+
+::: {.metric .fragment .fade-up}
+[1]{.number}
+[Notes-Block je Folie]{.label}
+:::
+
+::: {.metric .fragment .fade-up}
+[0]{.number}
+[freie Layout-Experimente]{.label}
+:::
+
+::::
+
+:::{.sources}
+Quelle: @kirenzQuartoTemplate2026
+:::
+
+::: {.notes}
+Das Metrics Grid eignet sich für Zahlen, Benchmarks und KPI-Folien.
+
+[KLICK] Jede Kennzahl erscheint einzeln.
+
+Der Quellenblock unten bleibt sichtbar und belegt die Aussage.
+:::
+
+## Feature Cards
+
+:::: {.features}
+
+::: {.feature .fragment .fade-up}
+[01]{.feature-number}
+**Einstieg**
+
+Mit Feature Cards lassen sich Vorteile oder Bausteine schnell scannen.
+:::
+
+::: {.feature .fragment .fade-up}
+[02]{.feature-number}
+**Vertiefung**
+
+Die Karten tragen auch längere Texte, wenn die Aussage kompakt bleibt.
+:::
+
+::: {.feature .fragment .fade-up}
+[03]{.feature-number}
+**Beispiel**
+
+Nutze dieses Muster für Module, Rollen oder Komponenten.
+
+::: {.example .fragment .fade-up}
+**Anwendung:** ideal, wenn jede Karte zusätzlich ein konkretes Praxisbeispiel bekommen soll.
+:::
+:::
+
+::::
+
+::: {.notes}
+Feature Cards verdichten mehrere gleichwertige Aussagen auf einer Folie.
+
+[KLICK] Ich gehe Karte für Karte durch und erkläre jeweils nur einen Gedanken.
+
+Die `.example`-Box innerhalb einer Karte ist für konkrete Praxisbelege gedacht und darf später eingefadet werden.
+:::
+
+## Timeline
+
+:::: {.timeline}
+
+::: {.timeline-item}
+[01]{.timeline-number}
+[Ausgangslage]{.timeline-title}
+[Das Thema wird kontextualisiert und verortet.]{.timeline-detail}
+:::
+
+::: {.timeline-item}
+[02]{.timeline-number}
+[Einordnung]{.timeline-title}
+[Die wichtigsten Entwicklungen oder Entscheidungen werden erklärt.]{.timeline-detail}
+:::
+
+::: {.timeline-item}
+[03]{.timeline-number}
+[Nächster Schritt]{.timeline-title}
+[Die Folie endet mit einer klaren Überleitung.]{.timeline-detail}
+:::
+
+::::
+
+::: {.notes}
+Die Timeline ist das Muster für Entwicklungslinien, Roadmaps und Prozessfolgen.
+
+[KLICK] Ich arbeite die Punkte von oben nach unten ab und nutze die Linie als visuelle Führung.
+:::
+
+## Comparison
+
+:::: {.comparison}
+
+::: {.comparison-side}
+**Ohne Template**
+
+- inkonsistente Struktur
+- fehlende Notes
+- wechselnde Layouts
+- Ablauf: Agenda -> manuelle Nacharbeit -> Unsicherheit
+:::
+
+::: {.separator}
+:::
+
+::: {.comparison-side .highlighted}
+**Mit Template**
+
+- feste Muster
+- Notes ab Werk
+- klare Validierung
+- Ablauf: Agenda -> KI-Deck -> Render + Export
+:::
+
+::::
+
+::: {.notes}
+Vergleichsfolien funktionieren gut, wenn zwei Zustände oder Vorgehensweisen gegeneinander gestellt werden.
+
+[KLICK] Zuerst die linke Seite.
+
+[KLICK] Danach die hervorgehobene Zielseite rechts.
+:::
+
+## Quote Box
+
+::: {.quote-box}
+
+„Eine gute Template-Struktur reduziert nicht nur Produktionszeit, sondern auch die Varianz im Ergebnis.“
+
+:::
+
+:::{.sources}
+Quelle: @quartoRevealjs2024
+:::
+
+::: {.notes}
+Die Quote Box ist für ein einzelnes, starkes Statement gedacht.
+
+Ich lese den Satz bewusst langsam vor und ordne ihn danach kurz ein.
+:::
+
+## Formula
+
+::: {.formula}
+Agenda + Pattern + Notes = renderbares Lernplattform-Deck
+:::
+
+::: {.notes}
+Mit der Formula-Folie verdichte ich eine Logik auf eine Zeile.
+
+Sie eignet sich besonders für Merksätze oder Entscheidungsregeln.
+:::
+
+## Key Takeaways
+
+::: {.key-takeaways}
+
+1. Nutze nur bestehende Pattern.
+2. Schreibe pro Folie genau einen Notes-Block.
+3. Validiere das Deck vor Render und TTS-Export.
+
+:::
+
+::: {.notes}
+Die Key-Takeaways-Folie sammelt die wichtigsten Punkte am Ende eines Abschnitts oder eines ganzen Decks.
+
+[KLICK] Ich gehe die drei Punkte nacheinander durch.
+:::
+
+## D2-Architektur (horizontaler Flow)
+
+```{.d2 file="../d2/agent-blueprint.d2"}
+```
+
+::: {.notes}
+Horizontaler D2-Flow für Architekturen, Pipelines und lineare Abläufe. `direction: right`, Rechteck-Knoten mit `border-radius: 8`, Stroke-Farben aus der Accent-Palette.
+
+[KLICK] Ich bewege mich entlang der Pfeile und erkläre den Ablauf in derselben Reihenfolge, in der das Diagramm gelesen wird.
+:::
+
+## D2-Entscheidung (vertikaler Flow)
+
+```{.d2 file="../d2/decision-flow.d2"}
+```
+
+::: {.notes}
+Vertikaler D2-Flow für Entscheidungsbäume, Prüfroutinen und mehrstufige Prozesse. `direction: down`, Rauten-Knoten für Verzweigungen, sonst dieselbe Farb- und Radius-Konvention wie beim horizontalen Flow.
+
+[KLICK] Ich erkläre zuerst den Hauptpfad, dann die Verzweigung.
+:::
+
+## Numbered Sections
+
+:::: {.numbered-sections-container}
+
+::: {.numbered-section}
+[01]{.section-number}
+[Planen]{.section-title}
+[Vor dem Schreiben]{.section-subtitle}
+
+- Ziel festlegen
+- Zielgruppe klären
+:::
+
+::: {.numbered-section}
+[02]{.section-number}
+[Bauen]{.section-title}
+[Mit Template arbeiten]{.section-subtitle}
+
+- Folien strukturieren
+- Notes formulieren
+:::
+
+::: {.numbered-section}
+[03]{.section-number}
+[Prüfen]{.section-title}
+[Vor der Ausgabe]{.section-subtitle}
+
+- Validieren
+- Rendern
+- Exportieren
+:::
+
+::::
+
+::: {.notes}
+Das Muster eignet sich für Schritte, Module oder Kapitelübersichten.
+
+[KLICK] Ich gehe von links nach rechts durch die Spalten.
+:::
+
+## FontAwesome-Icons
+
+:::: {.features}
+
+::: {.feature .fragment .fade-up}
+[ {{< fa brain >}} ]{.accent-blue}
+**Modell**
+
+Der Gehirn-Icon steht für die Entscheidungslogik.
+:::
+
+::: {.feature .fragment .fade-up}
+[ {{< fa toolbox >}} ]{.accent-green}
+**Tools**
+
+Der Werkzeugkoffer-Icon visualisiert externe Aktionen.
+:::
+
+::: {.feature .fragment .fade-up}
+[ {{< fa database >}} ]{.accent-violet}
+**Daten**
+
+Der Datenbank-Icon steht für Wissens- und Kontextquellen.
+:::
+
+::::
+
+::: {.notes}
+Icons werden über den Shortcode `{{< fa <name> >}}` eingefügt und können mit den Accent-Klassen (`.accent-blue`, `.accent-green`, `.accent-orange`, `.accent-violet`) eingefärbt werden.
+
+Absolute Positionierung wie `style="position: absolute; top: ...; left: ...;"` ist zulässig, wenn ein Icon über einem D2-Diagramm schweben soll. Das Pattern kommt aus `video3.qmd` und darf nur für diesen Zweck genutzt werden.
+
+[KLICK] Ich gehe Icon für Icon durch und erkläre jeweils die Rolle.
+:::
+
+## Animated List
+
+::: {.animated-list}
+- **Define Success:** Was bedeutet [Erfolg]{.highlight-yellow} für das Deck?
+- **Identify Tasks:** Welche [Kernaufgaben]{.highlight-green} muss die KI erfüllen?
+- **Choose Metrics:** Welche [Messgrößen]{.highlight-blue} prüfen das Ergebnis?
+:::
+
+::: {.notes}
+Die `.animated-list` ist eine Bullet-Liste, die Eintrag für Eintrag einfadet.
+
+[KLICK] Ich gehe Punkt für Punkt durch. Inline-Highlights wie `.highlight-yellow` setzen Akzente im Text.
+
+Für Emoji-Listen ohne Bullets stattdessen `.simple-animated-list` verwenden.
+:::
+
+## Blur Focus
+
+::: {.fragment .blur-focus}
+Inhalt, der aus der Unschärfe heraus scharf gestellt wird. Ideal für eine einzelne Kernaussage, ein Zitat oder einen Code-Block.
+:::
+
+::: {.notes}
+`.blur-focus` ist ein Fragment-Effekt: Text startet unscharf und fokussiert sich beim Einblenden.
+
+Nutze es nur punktuell, damit der Effekt Wirkung behält.
+:::
+
+## Neon Pill
+
+[Neu]{.neon-pill} [Beta]{.neon-pill} [v2.0]{.neon-pill}
+
+Kleine Inline-Labels für Statushinweise, Versionen oder kurze Tags neben einem Titel.
+
+::: {.notes}
+`.neon-pill` ist die kompakte Variante eines Status-Labels: klein, ruhig, im Fließtext.
+
+Pills sitzen im Fließtext oder neben Titeln, ohne Eingangsanimation.
+:::
+
+## Big Stat
+
+:::: {.big-stat .fragment .zoom-in-bounce}
+[280.000]{.stat-number}
+[eingesparte Stunden]{.stat-label}
+[Enterprise-Case, 12 Monate]{.stat-context}
+::::
+
+::: {.notes}
+Die `.big-stat`-Folie zeigt eine einzelne, dominante Zahl mit Label und optionalem Kontext.
+
+Starker Gegensatz zum `.metrics-grid` mit vier Zahlen: hier zählt eine einzige Aussage.
+
+[KLICK] Zahl, Label, dann Kontext fadet nacheinander ein. Varianten: `.big-stat-green`, `.big-stat-orange`.
+:::
+
+## Zitation im Sources-Block
+
+Fakten und Zahlen bekommen einen `.sources`-Block direkt auf der Folie. Zitiert wird über den Pandoc-Key `@citationKey`.
+
+::: {.sources}
+Quelle: @kirenzQuartoTemplate2026
+:::
+
+::: {.notes}
+Die Zitation wird von Quarto automatisch aus `references.bib` aufgelöst und ans Literaturverzeichnis am Deck-Ende gehängt.
+
+[KLICK] Ich nenne die Quelle nur kurz im Sprechtext und verweise auf das Literaturverzeichnis am Ende.
+:::
+
+## Anschauung (punktuelles didaktisches Werkzeug)
+
+::: {.notes}
+Die Anschauung-Folie ist kein rekurrentes Motiv, sondern ein punktuelles Werkzeug. Sie erscheint nur, wenn ein abstraktes Konzept ohne Bild nicht zündet. Maximal ein bis drei Anschauung-Folien pro Deck. Siehe `prompts/anschauung-playbook.md` für Ton- und Motivregeln. Die nachfolgende Folie zeigt die visuelle Umsetzung.
+:::
+
+# Die Bibliothekarin ohne Zutritt {.stage .anschauung background-color="#0a0a0f"}
+
+::: {.notes}
+Eine Bibliothekarin, die ihre eigene Bibliothek nicht betreten darf, kann nur aus Erinnerung zitieren. Das ist ein Sprachmodell ohne Retrieval-Augmented Generation. Die Anschauung-Folie nutzt ein Full-Bleed-Bild aus `profile="anschauung"` und trägt den Titel als moderne Sans-Serif-Überschrift im unteren Drittel. In echten Decks ersetzt `background-image="../images/anschauung-<slug>.png"` die hier fehlende Hintergrund-Referenz.
+:::
+
+## Breath-Folie
+
+::: {.notes}
+Die Breath-Folie ist ein einzelnes Wort oder eine einzelne Frage auf ruhigem, dunklem Grund. Sie kommt vor einem Aha-Moment oder zwischen zwei Gedankenblöcken und gibt dem Video Luft. Nie mehr als eine Breath-Folie hintereinander.
+:::
+
+# {.stage .breath background-color="#0a0a0f"}
+
+::: {.big-word}
+Warum?
+:::
+
+::: {.notes}
+Dieses Wort steht allein im Bild. Kein Untertitel, keine Erklärung. Der Sprechtext in den Speaker Notes setzt den Kontext, das Visuelle atmet.
+:::
+
+# Kapitel 02 · Werkzeuge {.stage .chapter background-color="#0a0a0f"}
+
+::: {.chapter-number}
+Kapitel 02
+:::
+
+::: {.chapter-title}
+Werkzeuge
+:::
+
+::: {.notes}
+Die Chapter-Opener-Folie markiert einen Kapitelwechsel innerhalb eines Decks. Sie ist stilistisch eine Variante des Haupt-Openers, trägt aber zusätzlich eine Kapitelnummer und einen Serif-Titel. In echten Decks steht hier ein `background-image="../images/hero-kapitel-02.png"` aus dem Profil `stage-hero`, das die Atmosphäre liefert.
+:::
+
+## Was bleibt {.stage .closing background-color="#0a0a0f"}
+
+Ein Deck endet nicht mit einer Liste, sondern mit einem ruhigen Satz, der den Kern noch einmal ausspricht.
+
+::: {.notes}
+Die Closing-Beat-Folie ist die letzte inhaltliche Folie vor der Buch-Brücke oder dem Literaturverzeichnis. Konvention: Die `##`-Überschrift ist das Kicker-Label (klein, uppercase, gedämpft), der nachfolgende Absatz ist der eigentliche Schluss-Satz (groß, sans-bold, ruhig). Kein separater `.kicker`-Block mehr nötig — die Pattern-Vereinfachung erfolgte im Iteration-3-Schritt des Blueprints.
+:::
+
+## Inline-Reflexion: Tip-Box
+
+Die Tip-Box fasst eine konkrete, handlungsleitende Einsicht zusammen — sparsam einsetzen, maximal eine pro Folie.
+
+::: {.tip-box}
+Eine Tip-Box trägt **einen** umsetzbaren Gedanken. Wenn du mehr als zwei Sätze schreiben willst, gehört das in den Fließtext — nicht in die Box.
+:::
+
+::: {.notes}
+Die Tip-Box ist ein Inline-Pattern für Content-Folien. Sie wird visuell durch einen blauen Linken-Rand und ein Pfeil-Icon markiert. Nutzungs-Regel: eine Box pro Folie, maximal zwei Sätze. Der Zweck ist ein klarer Handlungsimpuls, keine ausführliche Erläuterung.
+:::
+
+## Inline-Reflexion: Think-Box
+
+Die Think-Box unterbricht den Informationsfluss für eine Denk-Pause — warm eingefärbt, mit Terracotta-Akzent. Sie steht zwischen Vermittlung und Umsetzung.
+
+::: {.think-box}
+Ein Gedankenexperiment vor der nächsten Pipeline: Was würde eigentlich passieren, wenn sie nicht funktioniert? Wer merkt es zuerst? Wie lang hätte das Nicht-Funktionieren Zeit?
+:::
+
+::: {.notes}
+Die Think-Box ist die reflektive Schwester der Tip-Box. Während Tip-Box eine handlungsleitende Aussage trägt, stellt die Think-Box eine Frage oder ein Gedankenexperiment. Visuell deutlich abgesetzt durch Serif-Typografie, kursiv, warme Papier-Tönung. Gut geeignet, um in einem Video kurz innezuhalten, bevor es weitergeht.
+:::
+
+## Progressive D2-Reveal (Muster-Beschreibung)
+
+Komplexe Diagramme werden im Video über mehrere Folien **aufgebaut**, nicht auf einer fertig gezeigt.
+
+- Konvention: `includes/<slug>_1.d2` bis `<slug>_n.d2` (z.B. `react_1.d2`, `react_2.d2`, ...)
+- Pro Folie wächst das Diagramm um einen Knoten oder eine Kante
+- Parallel dazu wächst die Erklär-Liste in der rechten Spalte um einen Punkt
+- Empfohlene Tiefe: **3–6 Schritte**, nicht mehr
+
+::: {.tip-box}
+Progressive Reveal funktioniert nur, wenn jedes Zwischenbild für sich schon lesbar ist. Wenn ein Zwischenschritt wie ein unfertiges Diagramm aussieht, fehlt ein Erzähl-Baustein.
+:::
+
+::: {.notes}
+Dieses Muster eignet sich besonders für Architektur-Diagramme, Agent-Loops, Entscheidungsbäume und andere Flows, die komplex sind. Im Live-Vortrag kann man die Klicks steuern; im Video schneidet die Progression automatisch zwischen den Folien. Wichtig: jedes Zwischenbild bekommt einen eigenen Speaker-Notes-Block und eine eigene Listen-Zeile, die genau den neu hinzugekommenen Gedanken vorträgt.
+:::
+
+## Code mit Zeilen-Erklärung
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+::: {.codewindow .python width="420px"}
+
+```python
+from google.adk.agents.llm_agent import Agent
+from google.adk.tools.web_search import web_search
+
+root_agent = Agent(
+    name="coding_agent",
+    model="gemini-2.0-flash",
+    description="Answers questions about code",
+    instruction="You are an expert on coding.",
+    tools=[web_search]
+)
+```
+
+:::
+
+:::
+
+::: {.column width="55%"}
+
+- <span class="neon-pill">1.</span> Import der `Agent`-Klasse
+- <span class="neon-pill">2.</span> Import des `web_search`-Tools
+- <span class="neon-pill">4.</span> Agent-Instanz erzeugen und `root_agent` benennen
+- <span class="neon-pill">5.</span> `name`: eindeutiger Bezeichner
+- <span class="neon-pill">6.</span> `model`: LLM-Auswahl
+- <span class="neon-pill">8.</span> `instruction`: Verhaltensanweisung
+- <span class="neon-pill">9.</span> `tools`: Liste aufrufbarer Werkzeuge
+
+:::
+
+::::
+
+::: {.notes}
+Das Code-Display-Pattern koppelt Code und Erklärung über Zeilennummern. Links das `codewindow`-div mit Python-Code und aktivierten Zeilennummern, rechts eine Erklär-Liste, in der jedes `neon-pill`-Badge auf eine Zeilennummer verweist. Der Effekt: Die Zuschauerin kann den Blick ohne Umweg zwischen Zeile und Erklärung pendeln, ohne dass Pfeile oder Callouts nötig wären. Regel: Code-Breite auf die Spalten-Breite begrenzen (`width="420px"` bei 45%-Spalte), damit horizontales Scrollen vermieden wird. Erklär-Zeilen kurz halten — ein Satz pro Zeile.
+:::
+
+## Code ohne Zeilen-Erklärung (Full-Width)
+
+Wenn der Code selbsterklärend ist oder die Erklärung im Vortrag mündlich stattfindet:
+
+::: {.codewindow .python width="800px"}
+
+```python
+def assemble_prompt(user_prompt: str, profile: dict) -> str:
+    parts = [f"Subject: {user_prompt.strip()}"]
+    for key in ("style_instructions", "composition", "mood", "negative"):
+        value = (profile.get(key) or "").strip()
+        if value:
+            parts.append(f"{key.replace('_', ' ').title()}: {value}")
+    return "\n\n".join(parts)
+```
+
+:::
+
+::: {.notes}
+Diese Variante nutzt die volle Slide-Breite für den Code, ohne Zweispalten-Aufbau. Geeignet, wenn Code-Länge oder Zeilenlänge die zweispaltige Darstellung sprengen würde. Erklärung erfolgt dann mündlich oder in den Speaker-Notes. Der `width`-Parameter begrenzt nur die maximale Breite des Fenster-Chrome; der Code selbst umbricht nicht.
+:::
+
+## Weiter im Buch {.book-bridge}
+
+:::: {.columns}
+
+::: {.column width="30%"}
+![](../images/section-background.svg)
+:::
+
+::: {.column width="70%"}
+::: {.chapter-title}
+Kapitel: Demo
+:::
+
+Im Online-Buch liegen die ausformulierten Definitionen, weiterführende Beispiele und Übungsaufgaben zu den hier gezeigten Pattern bereit.
+
+[→ Zum Kapitel](https://book.kirenz.com/demo){.fragment .fade-up}
+:::
+
+::::
+
+::: {.notes}
+Die Buch-Brücke ist das vorletzte Pattern jedes Decks, direkt vor dem Literaturverzeichnis. Sie markiert den Übergang vom Video zum Online-Buch, nutzt eine warme Papier-Fläche und einen editorialen Akzent und trägt ein kleines Hero-Bild aus dem Profil `book-hero`. Der Link wird in realen Decks aus `book.chapter_slug` (Frontmatter) plus `book-base-url` in `_quarto.yml` zusammengesetzt.
+:::
+
+## Literatur
+
+::: {#refs}
+:::
+
+::: {.notes}
+Das Literaturverzeichnis wird automatisch aus allen `@citationKey`-Zitationen im Deck aufgebaut.
+
+CSL und Bibliografie stehen zentral in `_quarto.yml`; für neue Decks muss nichts zusätzliches konfiguriert werden.
+:::

@@ -1,0 +1,13 @@
+# Plattform und Auswahl {.unnumbered}
+
+Bevor wir den ersten Workflow bauen, ordnen wir die Plattform ein. Drei Fragen stehen am Anfang: Was kann n8n im Kern und wofür wurde es nicht entwickelt? Wie schneidet das Pricing gegen Zapier, Make und Power Automate ab? Welche Hosting-Variante passt zu Team, Datenanforderung und Budget? Die Antworten sind die Grundlage für eine bewusste Werkzeugwahl, nicht für eine schnelle Beschaffungs-Entscheidung.
+
+Dieser Teil ist bewusst kompakt gehalten. Er liefert die Argumente, die später im Gespräch mit IT, Datenschutz oder Einkauf hilfreich sind, ohne in eine reine Feature-Aufzählung zu verfallen. Eingebauter Faden: Wir vergleichen mit klassischen iPaaS-Lösungen, schauen auf die KI-Eignung und beschreiben die drei Hosting-Pfade mit ihren typischen Folgekosten.
+
+Wir werden:
+
+- Verstehen, was n8n im Kern leistet, und wofür es nicht gebaut wurde
+- Das Pricing-Modell einordnen und mit klassischen iPaaS-Anbietern wie Zapier oder Make vergleichen
+- Die drei Hosting-Optionen kennenlernen (Cloud, Self-Hosted, Managed Hosting) und entscheiden, welche zu welchem Team passt
+
+Wer mit n8n bereits gearbeitet hat, kann diesen Teil überfliegen und direkt mit dem ersten Workflow im nächsten Modul beginnen. Wer die Plattform zum ersten Mal sieht, baut hier das Vokabular auf, mit dem alle folgenden Module arbeiten.

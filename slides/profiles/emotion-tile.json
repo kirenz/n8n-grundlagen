@@ -1,0 +1,11 @@
+{
+  "name": "emotion-tile",
+  "display_name": "Emotion Tile",
+  "description": "Ein einzelnes Objekt in großem Negativraum für Breath-Folien und Closing-Beats",
+  "style_instructions": "Style: Minimalist editorial photograph or still life, single subject, expansive negative space. Color palette: muted monochromatic with one subtle color note. Lighting: soft, natural, slightly directional. Mood: contemplative, quiet.",
+  "composition": "ONE object or motif, positioned off-center (upper-right or lower-left third). 70% of the frame is negative space. Background is a single calm color or very subtle texture. Object is intimate in scale, not monumental.",
+  "negative": "no text, no logos, no people, no cluttered backgrounds, no multiple subjects, no saturated colors, no cartoon, no 3D, no AI-glow",
+  "aspect_ratio": "16:9",
+  "resolution": "2K",
+  "mood": "quiet, contemplative, spacious"
+}

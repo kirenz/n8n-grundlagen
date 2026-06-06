@@ -1,0 +1,11 @@
+{
+  "name": "anschauung",
+  "display_name": "Anschauung",
+  "description": "Full-bleed Szene, die ein abstraktes Konzept bildlich einrasten lässt — für Business-Zielgruppe aus beruflichem Alltag",
+  "style_instructions": "Style: Editorial magazine photography, muted earth tones, professional dignified setting, natural daylight. Aesthetic reference: Brand Eins / The Atlantic long-form features. Color palette: warm muted neutrals with one subtle accent, never saturated or cheerful. Mood: contemplative, adult, grounded — never playful.",
+  "composition": "Subject is a single professional human role or professional setting performing one clear action that maps to the concept. Mid-shot or environmental portrait. Faces are obscured, out of frame, or shown from behind. Mid-tones dominate; no extreme contrast.",
+  "negative": "no text, no logos, no visible faces, no cartoon style, no 3D render, no children's book illustration, no fantasy elements, no cute animals, no superheroes, no video-game aesthetics, no clipart, no Duolingo or Headspace style, no stock-photo cheerfulness",
+  "aspect_ratio": "16:9",
+  "resolution": "2K",
+  "mood": "editorial, contemplative, professional"
+}

@@ -1,0 +1,102 @@
+/*-- scss:rules --*/
+// =========================================
+// Editorial Motion (geportet aus globals.css :: editorial-rise)
+//
+// Eine einzige, ruhige Eingangs-Animation.
+// Ersetzt für die Mockup-Decks alle bouncy Patterns
+// (pop-in, pop-in-rotate, zoom-in-bounce, typewriter,
+// emoji-bounce, emoji-shake) durch einen einzelnen,
+// editorialen Fade+Lift.
+//
+// Reveal.js triggert via .fragment + .visible:
+//   <div class="fragment fade-up"> wird erst beim
+//   ersten Klick durch .visible sichtbar.
+// =========================================
+
+@keyframes editorial-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Standard Reveal-Fragment nutzt opacity 0 -> 1.
+// Wir hängen eine sanfte translateY-Bewegung dran.
+.reveal .slides section .fragment {
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(8px);
+
+  &.visible {
+    transform: translateY(0);
+  }
+}
+
+// Big-Stat-Container ist Hero-Content — der riesige Zahlenkörper
+// vertraegt keinen Translate-Lift. Wir überschreiben für .big-stat
+// den Lift und verlängern die Fade-Dauer.
+.reveal .slides section .big-stat.fragment,
+.reveal .slides section .fragment.big-stat {
+  transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: none;
+
+  &.visible {
+    transform: none;
+  }
+}
+
+// Custom-new.scss legt eine dreistufige Choreographie auf den Big-Stat-Kindern
+// an: .stat-number bekommt pop-in-rotate (Overshoot-Bezier), .stat-label
+// einen 50px slide-in-up, .stat-context blur-to-focus. Das macht das
+// Einblenden unruhig. Wir setzen alle drei Kinder auf "kein Effekt" zurück —
+// das Eltern-Fragment fadet ruhig genug ein.
+.reveal .fragment .big-stat .stat-number,
+.reveal .fragment.big-stat .stat-number,
+.reveal .fragment.visible .big-stat .stat-number,
+.reveal .fragment.visible.big-stat .stat-number,
+.reveal .fragment .big-stat .stat-label,
+.reveal .fragment.big-stat .stat-label,
+.reveal .fragment.visible .big-stat .stat-label,
+.reveal .fragment.visible.big-stat .stat-label,
+.reveal .fragment .big-stat .stat-context,
+.reveal .fragment.big-stat .stat-context,
+.reveal .fragment.visible .big-stat .stat-context,
+.reveal .fragment.visible.big-stat .stat-context {
+  animation: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+// Reveal-Klassen `.fade-up` und `.fade-in-then-out` etc. lassen
+// wir wirken — sie ergeben mit dem editorial-rise denselben Effekt.
+// Bouncy Klassen werden hier flach geschaltet:
+.reveal .slides section .fragment.pop-in,
+.reveal .slides section .fragment.pop-in-rotate,
+.reveal .slides section .fragment.zoom-in-bounce,
+.reveal .slides section .fragment.blur-focus {
+  animation: none !important;
+  filter: none !important;
+}
+
+.reveal .slides section .fragment.pop-in.visible,
+.reveal .slides section .fragment.pop-in-rotate.visible,
+.reveal .slides section .fragment.zoom-in-bounce.visible,
+.reveal .slides section .fragment.blur-focus.visible {
+  animation: editorial-rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+// Generelle Slide-Übergänge: sanft, kein "slide-Right" mit Schub.
+.reveal .slides {
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+// Editorial Rise Utility (entspricht der Plattform-Klasse)
+.animate-editorial-rise {
+  animation: editorial-rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}

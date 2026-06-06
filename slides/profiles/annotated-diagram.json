@@ -1,0 +1,11 @@
+{
+  "name": "annotated-diagram",
+  "display_name": "Annotated Diagram",
+  "description": "Schaubilder im Media-Split mit klaren Callout-Anker-Punkten — monochrom plus einem Akzent",
+  "style_instructions": "Style: Clean technical illustration, flat vector aesthetic, monoline strokes, generous whitespace. Color palette: near-black lines on warm off-white background, single muted accent color (blue #3b82f6 or green #10a37f). Typography area: clear margins around diagram for annotation overlay.",
+  "composition": "Diagram centered with clear labeled callout anchor points. Grid-aligned. Balanced negative space around each element. Max 4–6 labeled components to preserve legibility.",
+  "negative": "no photorealism, no 3D, no shadows, no gradients, no decorative icons, no dense textures, no people, no stock vector generic look",
+  "aspect_ratio": "4:3",
+  "resolution": "2K",
+  "mood": "minimal, technical, structured"
+}

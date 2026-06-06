@@ -1,0 +1,45 @@
+# Quarto-Build-Output
+.quarto/
+_book/
+_freeze/
+**/*_files/
+**/*_cache/
+**/*.quarto_ipynb
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+
+# Superpowers-Skill-Cache (lokal, nicht ins Repo)
+.superpowers/
+
+# Editor
+.vscode/
+.idea/
+
+# Gerenderte Slide-HTMLs (werden bei Bedarf gebaut)
+slides/**/*.html
+!slides/_extensions/**
+
+# Quell-HTMLs unterhalb slides/ — Template-Partials und Includes —
+# sind KEINE Build-Artefakte, sondern Quellcode und müssen ins Repo.
+!slides/title-slide.html
+!slides/includes/*.html
+
+# Env-Files mit Secrets
+.env
+slides/.env
+
+# Slide-Exporte (lokale Artefakte)
+slides/exports/
+
+/.quarto/

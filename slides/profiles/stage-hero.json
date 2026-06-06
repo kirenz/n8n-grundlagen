@@ -1,0 +1,11 @@
+{
+  "name": "stage-hero",
+  "display_name": "Stage Hero (Dark)",
+  "description": "Atmosphärisches Hero-Bild für Opener und Chapter-Opener auf der Bühne (dunkler Hintergrund)",
+  "style_instructions": "Style: Cinematic atmospheric composition, soft volumetric lighting, editorial magazine aesthetic, painterly textures. Color palette: muted earth tones, deep shadows, single warm accent. Mood: dignified, calm, professional.",
+  "composition": "Strong negative space in upper-left 40% for title overlay. Subject anchored lower-right or centered-low. Mid-tone to darker values dominate. Horizon line (if present) at lower 1/3.",
+  "negative": "no text, no logos, no people's faces visible, no cartoon style, no 3D rendering, no stock-photo look, no AI-glow artifacts, no children's book illustration",
+  "aspect_ratio": "16:9",
+  "resolution": "2K",
+  "mood": "cinematic, calm, editorial"
+}

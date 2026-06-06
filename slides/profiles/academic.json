@@ -1,0 +1,9 @@
+{
+  "name": "academic",
+  "display_name": "Akademisch",
+  "description": "Wissenschaftlicher Präsentationsstil für Forschung und Lehre",
+  "style_instructions": "Style: Scientific illustration, clear infographic aesthetic. Color palette: Deep blue, teal, white, muted accent colors. Composition: Informative layout with clear visual hierarchy, labeled elements. Lighting: Even, neutral lighting for clarity. Rendering: Clean vector-style or precise technical illustration, accurate details. Typography area: Generous margins for annotations and labels. Mood: Scholarly, precise, educational.",
+  "aspect_ratio": "16:9",
+  "resolution": "2K",
+  "mood": "educational"
+}

@@ -1,0 +1,60 @@
+project:
+  type: book
+  output-dir: _book
+  # Mono-Repo: Slides liegen unter slides/ als eigenständige Reveal.js-Decks
+  # mit eigenem Frontmatter und werden NICHT vom Buch-Build erfasst.
+  # Auch infra/, workflows/ und scripts/ sind kursbegleitend, kein Buch-Inhalt.
+  render:
+    - "*.qmd"
+    - "overview/*.qmd"
+    - "first-workflows/*.qmd"
+
+lang: de
+
+bibliography: references.bib
+
+execute:
+  freeze: auto
+
+book:
+  title: "n8n-Grundlagen"
+  description: "Von der Plattform zum ersten Workflow"
+  author: "Jan Kirenz"
+
+  search:
+    type: overlay
+  page-footer:
+    left: |
+      © [Jan Kirenz](https://www.kirenz.com/), 2026
+
+  chapters:
+    - index.qmd
+    - introduction.qmd
+
+    - part: overview/index.qmd
+      chapters:
+        - overview/what-is-n8n.qmd
+        - overview/pricing.qmd
+        - overview/hosting.qmd
+
+    - part: first-workflows/index.qmd
+      chapters:
+        - first-workflows/credentials.qmd
+        - first-workflows/first-workflow.qmd
+
+format:
+  html:
+    toc: true
+    # Theme-Stack: cosmo als Bootstrap-Basis, book-theme.scss zieht den
+    # Plattform-Mirror-Look (Geist, Cream-Paper, Ink, Ochre, Terracotta) durch.
+    # Schwester-Datei zu slides/redesign/variant-a-pure.scss — gleiche DNA für
+    # Buch und Slides.
+    theme:
+      - cosmo
+      - book-theme.scss
+    code-copy: true
+    # github (light) statt github-dark — passt zum Cream-Paper-Hintergrund.
+    highlight-style: github
+    code-overflow: wrap
+    author-meta: "Jan Kirenz"
+    callout-appearance: simple
