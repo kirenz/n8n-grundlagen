@@ -4,37 +4,7 @@
     "href": "index.html",
     "title": "n8n-Grundlagen",
     "section": "",
-    "text": "Willkommen\nWillkommen zum Grundlagenkurs für n8n. Dieser Kurs bringt uns von null auf einen ersten, vollständig funktionierenden Workflow: Wir lernen die Plattform einzuordnen, richten eine eigene Instanz ein und bauen Schritt für Schritt eine kleine Automation, die eine eingehende Kundenmail entgegennimmt, einen Tabelleneintrag schreibt und eine Bestätigungs-Mail versendet.\nn8n ist eine visuelle Workflow-Plattform, in der Aktionen als verbundene Knoten dargestellt werden. Sie kombiniert über fünfhundert fertige Integrationen mit klassischer Datenverarbeitung und KI-Bausteinen, und zwar alles im selben Editor. In diesem Kurs konzentrieren wir uns bewusst auf das deterministische Fundament, also Workflows ohne KI, damit die Editor-Mechanik, die Knoten-Logik und die Test- und Live-Pfade sicher sitzen.",
-    "crumbs": [
-      "Willkommen"
-    ]
-  },
-  {
-    "objectID": "index.html#worum-es-in-diesem-kurs-geht",
-    "href": "index.html#worum-es-in-diesem-kurs-geht",
-    "title": "n8n-Grundlagen",
-    "section": "Worum es in diesem Kurs geht",
-    "text": "Worum es in diesem Kurs geht\nDer Kurs ist bewusst kompakt und praktisch angelegt. Das Vorgehen ist:\n\nPlattform verstehen. Was n8n im Kern leistet und wofür es nicht gebaut wurde, wie das Pricing gegen Zapier, Make und Power Automate abschneidet, und welche Hosting-Variante zu Team, Datenanforderung und Budget passt.\nInstanz einrichten. Eine eigene n8n-Umgebung als Cloud-Variante oder selbst gehostet, plus die saubere Trennung von Zugangsdaten (Credentials).\nErsten Workflow bauen. Den Editor öffnen, Knoten verbinden, mit Mock-Daten testen und in den Live-Modus überführen, am durchgehenden Demo-Szenario einer Support-Inbox.",
-    "crumbs": [
-      "Willkommen"
-    ]
-  },
-  {
-    "objectID": "index.html#demo-szenario",
-    "href": "index.html#demo-szenario",
-    "title": "n8n-Grundlagen",
-    "section": "Demo-Szenario",
-    "text": "Demo-Szenario\nEin einziger Use Case begleitet den Kurs: Eine eingehende Kundenmail wird entgegengenommen, in einer Tabelle festgehalten und mit einer Bestätigungs-Mail beantwortet. Der Workflow lässt sich alleine bauen und testen, denn eine beliebige Mail-Adresse reicht aus. Gmail, Slack, Microsoft Teams und HubSpot werden als optionale Erweiterungen gezeigt.\n\n\n\n\n\n\nTippLernempfehlung\n\n\n\nDie Kapitel bauen aufeinander auf. Wer den größten Nutzen mitnehmen möchte, arbeitet die Module in der Reihenfolge durch und baut den Demo-Workflow Schritt für Schritt mit. Eine eigene n8n-Instanz ist die wichtigste Voraussetzung. Sowohl die Cloud-Variante als auch eine Self-Hosted-Installation funktioniert.",
-    "crumbs": [
-      "Willkommen"
-    ]
-  },
-  {
-    "objectID": "index.html#wie-es-weitergeht",
-    "href": "index.html#wie-es-weitergeht",
-    "title": "n8n-Grundlagen",
-    "section": "Wie es weitergeht",
-    "text": "Wie es weitergeht\nDieser Kurs legt das handwerkliche Fundament. Wer darauf aufbauend lernen möchte, wie aus deterministischen Workflows produktive KI-Agenten werden (mit Routing, Tool-Nutzung, RAG, Multi-Agent-Pipelines, Approval-Pfaden und Monitoring), findet die Fortsetzung im Aufbaukurs KI-Agenten in n8n. Dort wird genau das hier gebaute Demo-Szenario schrittweise um Agent-Funktionen erweitert.\nMit diesem Kurs entsteht die belastbare Grundlage, auf der jede weitere Automatisierung in n8n aufsetzt.",
+    "text": "Willkommen\nWillkommen zum Grundlagenkurs für n8n. Am Ende hast du einen ersten, vollständig funktionierenden Workflow gebaut: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs, eine beliebige Mail-Adresse genügt zum Mitmachen.\nDer Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen.\n\n\n\n\n\n\nTippLernempfehlung\n\n\n\nDie Kapitel bauen aufeinander auf. Am meisten nimmst du mit, wenn du sie der Reihe nach durchgehst und den Demo-Workflow Schritt für Schritt mitbaust. Die wichtigste Voraussetzung ist eine eigene n8n-Instanz, Cloud-Variante oder Self-Hosted.",
     "crumbs": [
       "Willkommen"
     ]
@@ -44,117 +14,37 @@
     "href": "introduction.html",
     "title": "Einführung",
     "section": "",
-    "text": "n8n als Plattform\nBevor wir mit dem ersten Workflow beginnen, lohnt sich ein kurzer Überblick über die Bausteine, mit denen wir in diesem Kurs arbeiten. Jeder Baustein hat eine bestimmte Rolle, vom Auslöser eines Workflows bis zum einzelnen Verarbeitungsschritt. Diese Einführung erklärt jeden Baustein in zwei Sätzen, damit klar ist, worauf wir aufbauen.\nn8n ist eine visuelle Workflow-Plattform, in der Aktionen als verbundene Knoten dargestellt werden. Sie kombiniert über fünfhundert fertige Integrationen mit klassischer Datenverarbeitung und KI-Bausteinen, und zwar alles im selben Editor.",
+    "text": "Ein Workflow in einem Bild\nBevor wir in einzelne Funktionen einsteigen, hilft ein gemeinsames Bild davon, wie ein n8n-Workflow aufgebaut ist. Wir nehmen dafür ein konkretes Beispiel und benennen daran die vier Bausteine, die im ganzen Kurs wiederkehren. Alle weiteren Begriffe führen wir später ein, jeweils dort, wo sie zum ersten Mal gebraucht werden.\nStellen wir uns einen kleinen, automatischen Ablauf vor: Über das Kontaktformular einer Website trifft eine Nachricht ein. Daraufhin geht eine Bestätigung an den Absender zurück, und die Nachricht wird in einer Tabelle festgehalten. Niemand stößt diese Schritte von Hand an, sie laufen als zusammenhängende Kette.\nAn diesem Bild lassen sich vier Begriffe ablesen, die den Rest des Kurses tragen:\nMit diesen vier Begriffen lässt sich jeder Workflow im Kurs lesen.",
     "crumbs": [
       "Einführung"
     ]
   },
   {
-    "objectID": "introduction.html#workflow",
-    "href": "introduction.html#workflow",
+    "objectID": "introduction.html#ein-workflow-in-einem-bild",
+    "href": "introduction.html#ein-workflow-in-einem-bild",
     "title": "Einführung",
-    "section": "Workflow",
-    "text": "Workflow\nEin Workflow ist eine Kette von Schritten, die durch ein definiertes Ereignis ausgelöst wird und einen bestimmten Zweck verfolgt. Beispielsweise: Eine eingehende Mail einer Kategorie zuordnen (etwa Vertriebs-Anfrage, Support-Anfrage oder Beschwerde), eine Bestätigung verschicken und einen Eintrag in einer Tabelle anlegen.\n\n\n\n\n\n\nAbbildung 1: Ein Workflow im n8n-Editor: Vier Knoten in Reihe, vom Auslöser links bis zum letzten Verarbeitungsschritt rechts.",
+    "section": "",
+    "text": "Abbildung 1: Ein Workflow im n8n-Editor: vier Knoten in Reihe, vom Auslöser links bis zum letzten Verarbeitungsschritt rechts.\n\n\n\n\n\nDie gesamte Kette von der eingehenden Mail bis zum Tabelleneintrag ist ein Workflow.\nDer Auslöser ganz links, hier die eingehende Mail, ist der Trigger. Er startet die Kette, zeitgesteuert, app-spezifisch oder manuell zum Testen.\nJeder einzelne Schritt dazwischen ist eine Node. Sie nimmt Daten vom vorigen Schritt entgegen, führt eine Aktion aus und reicht das Ergebnis weiter.\nEin vollständiger Durchlauf der Kette von Anfang bis Ende ist eine Execution. n8n protokolliert pro Execution die Eingangsdaten, die Ergebnisse jeder Node und etwaige Fehler.",
     "crumbs": [
       "Einführung"
     ]
   },
   {
-    "objectID": "introduction.html#trigger",
-    "href": "introduction.html#trigger",
+    "objectID": "introduction.html#was-später-dazukommt-wenn-wir-es-brauchen",
+    "href": "introduction.html#was-später-dazukommt-wenn-wir-es-brauchen",
     "title": "Einführung",
-    "section": "Trigger",
-    "text": "Trigger\nDer Trigger ist der Auslöser eines Workflows. Es gibt zeitgesteuerte Trigger, App-spezifische Trigger und manuelle Trigger für den Test im Editor.",
+    "section": "Was später dazukommt, wenn wir es brauchen",
+    "text": "Was später dazukommt, wenn wir es brauchen\nDie übrigen Bausteine führen wir nicht hier auf Vorrat ein, sondern dort, wo sie zum ersten Mal konkret auftauchen:\n\nCredentials (Zugangsdaten zu externen Systemen) bereiten wir im Kapitel Credentials vorbereiten vor.\nExpressions (kurze Ausdrücke wie { $json.sender }, die Daten aus dem vorigen Schritt referenzieren) und die Data Table (n8ns eingebaute Tabelle) lernen wir hands-on in Der erste Workflow.\nIntegrationen zu externen Anwendungen und die KI-Knoten mit ihren Sprach-Modellen begegnen uns in den folgenden Modulen. Die tiefen Agenten-Konzepte behandelt der Aufbaukurs KI-Agenten in n8n.\n\nSo bleibt der Einstieg schlank, und jeder Begriff bekommt seinen Kontext.",
     "crumbs": [
       "Einführung"
     ]
   },
   {
-    "objectID": "introduction.html#node",
-    "href": "introduction.html#node",
+    "objectID": "introduction.html#glossar-zum-nachschlagen",
+    "href": "introduction.html#glossar-zum-nachschlagen",
     "title": "Einführung",
-    "section": "Node",
-    "text": "Node\nEin Node ist ein einzelner Schritt im Workflow. Jede Node nimmt Daten vom vorhergehenden Schritt entgegen, führt eine Aktion aus und reicht das Ergebnis an die nächste Node weiter.",
-    "crumbs": [
-      "Einführung"
-    ]
-  },
-  {
-    "objectID": "introduction.html#sticky-note",
-    "href": "introduction.html#sticky-note",
-    "title": "Einführung",
-    "section": "Sticky Note",
-    "text": "Sticky Note\nEine Sticky Note ist eine erklärende Notiz direkt auf der Arbeitsfläche, ohne aktive Funktion im Datenfluss. Sie dient dazu, Workflows lesbar zu halten und Abschnitte zu beschriften.",
-    "crumbs": [
-      "Einführung"
-    ]
-  },
-  {
-    "objectID": "introduction.html#execution",
-    "href": "introduction.html#execution",
-    "title": "Einführung",
-    "section": "Execution",
-    "text": "Execution\nEine Execution ist ein einzelner Lauf eines Workflows von Anfang bis Ende. n8n hält pro Execution ein Log mit Eingangsdaten, Knoten-Ergebnissen und Fehlern bereit.",
-    "crumbs": [
-      "Einführung"
-    ]
-  },
-  {
-    "objectID": "introduction.html#expression",
-    "href": "introduction.html#expression",
-    "title": "Einführung",
-    "section": "Expression",
-    "text": "Expression\nEine Expression ist ein kurzer Ausdruck, mit dem Daten aus dem vorhergehenden Schritt referenziert werden, beispielsweise { $json.sender } für den Absender einer eingehenden Mail. Expressions werden in n8n meist per Drag-and-Drop aus dem Output-Panel des Vor-Knotens erzeugt.",
-    "crumbs": [
-      "Einführung"
-    ]
-  },
-  {
-    "objectID": "introduction.html#credentials",
-    "href": "introduction.html#credentials",
-    "title": "Einführung",
-    "section": "Credentials",
-    "text": "Credentials\nCredentials sind Zugangsdaten zu externen Systemen wie Mail-Servern, Cloud-APIs oder Datenbanken. n8n verwaltet sie als eigenständige Objekte, die getrennt vom Workflow gespeichert und referenziert werden.",
-    "crumbs": [
-      "Einführung"
-    ]
-  },
-  {
-    "objectID": "introduction.html#integration-und-api",
-    "href": "introduction.html#integration-und-api",
-    "title": "Einführung",
-    "section": "Integration und API",
-    "text": "Integration und API\nEine Integration ist eine vorbereitete Verbindung zwischen n8n und einer externen Anwendung wie Salesforce, Slack oder Notion, die alle technischen Details der Anbindung kapselt. Sie nutzt im Hintergrund die API der externen Anwendung, also die dokumentierte Schnittstelle, über die andere Systeme automatisiert auf deren Funktionen und Daten zugreifen können.",
-    "crumbs": [
-      "Einführung"
-    ]
-  },
-  {
-    "objectID": "introduction.html#data-table",
-    "href": "introduction.html#data-table",
-    "title": "Einführung",
-    "section": "Data Table",
-    "text": "Data Table\nEine Data Table ist die in n8n eingebaute Tabellen-Datenbank. Sie funktioniert wie eine kleine, mitgelieferte Datenbank für Workflow-Ergebnisse, ohne dass ein externes Tool angebunden werden muss.",
-    "crumbs": [
-      "Einführung"
-    ]
-  },
-  {
-    "objectID": "introduction.html#ki-knoten-und-sprach-modell",
-    "href": "introduction.html#ki-knoten-und-sprach-modell",
-    "title": "Einführung",
-    "section": "KI-Knoten und Sprach-Modell",
-    "text": "KI-Knoten und Sprach-Modell\nn8n bietet mehrere KI-Knoten, vom einfachen Modellaufruf bis zum AI Agent. Das Sprach-Modell (LLM, Large Language Model) ist die Komponente, die in natürlicher Sprache antwortet, wahlweise von OpenAI, Anthropic, Google oder als lokales Modell über Ollama.",
-    "crumbs": [
-      "Einführung"
-    ]
-  },
-  {
-    "objectID": "introduction.html#ausblick-agenten-konzepte",
-    "href": "introduction.html#ausblick-agenten-konzepte",
-    "title": "Einführung",
-    "section": "Ausblick: Agenten-Konzepte",
-    "text": "Ausblick: Agenten-Konzepte\nSobald das deterministische Fundament steht, kommen die eigentlichen Agent-Bausteine dazu: der AI Agent mit seiner ReACT-Schleife, Tools und System-Prompts, RAG mit Embeddings und Vector Store, Approval-Schritte (Human-in-the-Loop), Multi-Agent-Systeme sowie Eval und Monitoring zur Qualitätssicherung. Diese Konzepte sind nicht Teil dieses Grundlagenkurses, sondern werden ausführlich im Aufbaukurs KI-Agenten in n8n behandelt.",
+    "section": "Glossar zum Nachschlagen",
+    "text": "Glossar zum Nachschlagen\nWer einen Begriff später nachschlagen möchte, findet hier alle Bausteine kompakt:\n\n\n\n\n\n\n\nBaustein\nKurz erklärt\n\n\n\n\nWorkflow\nEine Kette von Schritten, durch ein Ereignis ausgelöst, mit einem bestimmten Zweck.\n\n\nTrigger\nDer Auslöser, der den Workflow startet (zeitgesteuert, app-spezifisch oder manuell).\n\n\nNode\nEin einzelner Schritt: nimmt Daten entgegen, führt eine Aktion aus, reicht sie weiter.\n\n\nSticky Note\nEine erklärende Notiz auf der Arbeitsfläche, ohne Funktion im Datenfluss.\n\n\nExecution\nEin einzelner Lauf des Workflows von Anfang bis Ende, mit Log.\n\n\nExpression\nEin kurzer Ausdruck, der Daten aus einem vorigen Schritt referenziert, z. B. { $json.sender }.\n\n\nCredentials\nZugangsdaten zu externen Systemen, getrennt vom Workflow gespeichert.\n\n\nIntegration / API\nEine vorbereitete Verbindung zu einer externen App, die im Hintergrund deren API nutzt.\n\n\nData Table\nDie in n8n eingebaute Tabellen-Datenbank für Workflow-Ergebnisse.\n\n\nKI-Knoten / Sprach-Modell\nBausteine für KI im Workflow; das Sprach-Modell (LLM) antwortet in natürlicher Sprache (OpenAI, Anthropic, Google oder lokal über Ollama).",
     "crumbs": [
       "Einführung"
     ]
@@ -492,7 +382,18 @@
     "href": "first-workflows/first-workflow.html#kontrollpunkt-für-modul-02",
     "title": "5  Der erste Workflow: Mail an sich selbst",
     "section": "5.6 Kontrollpunkt für Modul 02",
-    "text": "5.6 Kontrollpunkt für Modul 02\nAm Ende dieses Moduls sollten folgende Punkte bekannt sein:\n\nEinen Workflow neu anlegen, umbenennen und mit Tags versehen.\nKnoten einfügen, umbenennen und über das Plus-Symbol verketten.\nMit dem Set-Knoten (Edit Fields) Felder erzeugen, die nachfolgende Knoten weiterverwenden.\nEinfache Expressions schreiben und lesen: { $json.feld }, { $now.toISO() } sowie Cross-Node-Expressions { $('Knotenname').item.json.feld }.\nEine Data Table auf Projekt-Ebene anlegen und mit dem Data-Table-Knoten per Map Automatically Zeilen einfügen.\nEinen Knoten temporär deaktivieren, um den Workflow trotz fehlender Credentials bis zum Ende durchlaufen zu lassen.\nDen Workflow vom Manual-Trigger auf einen Mail-Trigger umstellen und aktivieren.\n\n\n\n\n\nn8n. 2026. „Create and Run Workflows“. https://docs.n8n.io/workflows/create/.",
+    "text": "5.6 Kontrollpunkt für Modul 02\nAm Ende dieses Moduls sollten folgende Punkte bekannt sein:\n\nEinen Workflow neu anlegen, umbenennen und mit Tags versehen.\nKnoten einfügen, umbenennen und über das Plus-Symbol verketten.\nMit dem Set-Knoten (Edit Fields) Felder erzeugen, die nachfolgende Knoten weiterverwenden.\nEinfache Expressions schreiben und lesen: { $json.feld }, { $now.toISO() } sowie Cross-Node-Expressions { $('Knotenname').item.json.feld }.\nEine Data Table auf Projekt-Ebene anlegen und mit dem Data-Table-Knoten per Map Automatically Zeilen einfügen.\nEinen Knoten temporär deaktivieren, um den Workflow trotz fehlender Credentials bis zum Ende durchlaufen zu lassen.\nDen Workflow vom Manual-Trigger auf einen Mail-Trigger umstellen und aktivieren.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/first-workflow.html#wie-es-weitergeht",
+    "href": "first-workflows/first-workflow.html#wie-es-weitergeht",
+    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "section": "5.7 Wie es weitergeht",
+    "text": "5.7 Wie es weitergeht\nDamit steht das handwerkliche Fundament: Du kannst einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs KI-Agenten in n8n die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.\n\n\n\n\nn8n. 2026. Create and Run Workflows. Https://docs.n8n.io/workflows/create/.",
     "crumbs": [
       "Erste Workflows",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,9 @@
 
 <title>Einführung – n8n-Grundlagen</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -36,15 +39,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7844a46a9663d9eb3b08f9a74813e6a7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-acefae45180d251af7289144a764ffe6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f439c165ad807c834f979b9553e230cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-16e424000970df59d431bd55c5508176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -181,18 +183,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#n8n-als-plattform" id="toc-n8n-als-plattform" class="nav-link active" data-scroll-target="#n8n-als-plattform">n8n als Plattform</a></li>
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
-  <li><a href="#trigger" id="toc-trigger" class="nav-link" data-scroll-target="#trigger">Trigger</a></li>
-  <li><a href="#node" id="toc-node" class="nav-link" data-scroll-target="#node">Node</a></li>
-  <li><a href="#sticky-note" id="toc-sticky-note" class="nav-link" data-scroll-target="#sticky-note">Sticky Note</a></li>
-  <li><a href="#execution" id="toc-execution" class="nav-link" data-scroll-target="#execution">Execution</a></li>
-  <li><a href="#expression" id="toc-expression" class="nav-link" data-scroll-target="#expression">Expression</a></li>
-  <li><a href="#credentials" id="toc-credentials" class="nav-link" data-scroll-target="#credentials">Credentials</a></li>
-  <li><a href="#integration-und-api" id="toc-integration-und-api" class="nav-link" data-scroll-target="#integration-und-api">Integration und API</a></li>
-  <li><a href="#data-table" id="toc-data-table" class="nav-link" data-scroll-target="#data-table">Data Table</a></li>
-  <li><a href="#ki-knoten-und-sprach-modell" id="toc-ki-knoten-und-sprach-modell" class="nav-link" data-scroll-target="#ki-knoten-und-sprach-modell">KI-Knoten und Sprach-Modell</a></li>
-  <li><a href="#ausblick-agenten-konzepte" id="toc-ausblick-agenten-konzepte" class="nav-link" data-scroll-target="#ausblick-agenten-konzepte">Ausblick: Agenten-Konzepte</a></li>
+  <li><a href="#ein-workflow-in-einem-bild" id="toc-ein-workflow-in-einem-bild" class="nav-link active" data-scroll-target="#ein-workflow-in-einem-bild">Ein Workflow in einem Bild</a></li>
+  <li><a href="#was-später-dazukommt-wenn-wir-es-brauchen" id="toc-was-später-dazukommt-wenn-wir-es-brauchen" class="nav-link" data-scroll-target="#was-später-dazukommt-wenn-wir-es-brauchen">Was später dazukommt, wenn wir es brauchen</a></li>
+  <li><a href="#glossar-zum-nachschlagen" id="toc-glossar-zum-nachschlagen" class="nav-link" data-scroll-target="#glossar-zum-nachschlagen">Glossar zum Nachschlagen</a></li>
   </ul>
 </nav>
     </div>
@@ -218,64 +211,96 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Bevor wir mit dem ersten Workflow beginnen, lohnt sich ein kurzer Überblick über die Bausteine, mit denen wir in diesem Kurs arbeiten. Jeder Baustein hat eine bestimmte Rolle, vom Auslöser eines Workflows bis zum einzelnen Verarbeitungsschritt. Diese Einführung erklärt jeden Baustein in zwei Sätzen, damit klar ist, worauf wir aufbauen.</p>
-<section id="n8n-als-plattform" class="level2">
-<h2 class="anchored" data-anchor-id="n8n-als-plattform">n8n als Plattform</h2>
-<p>n8n ist eine visuelle Workflow-Plattform, in der Aktionen als verbundene Knoten dargestellt werden. Sie kombiniert über fünfhundert fertige Integrationen mit klassischer Datenverarbeitung und KI-Bausteinen, und zwar alles im selben Editor.</p>
-</section>
-<section id="workflow" class="level2">
-<h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
-<p>Ein Workflow ist eine Kette von Schritten, die durch ein definiertes Ereignis ausgelöst wird und einen bestimmten Zweck verfolgt. Beispielsweise: Eine eingehende Mail einer Kategorie zuordnen (etwa Vertriebs-Anfrage, Support-Anfrage oder Beschwerde), eine Bestätigung verschicken und einen Eintrag in einer Tabelle anlegen.</p>
+<p>Bevor wir in einzelne Funktionen einsteigen, hilft ein gemeinsames Bild davon, wie ein n8n-Workflow aufgebaut ist. Wir nehmen dafür ein konkretes Beispiel und benennen daran die vier Bausteine, die im ganzen Kurs wiederkehren. Alle weiteren Begriffe führen wir später ein, jeweils dort, wo sie zum ersten Mal gebraucht werden.</p>
+<section id="ein-workflow-in-einem-bild" class="level2">
+<h2 class="anchored" data-anchor-id="ein-workflow-in-einem-bild">Ein Workflow in einem Bild</h2>
+<p>Stellen wir uns einen kleinen, automatischen Ablauf vor: Über das Kontaktformular einer Website trifft eine Nachricht ein. Daraufhin geht eine Bestätigung an den Absender zurück, und die Nachricht wird in einer Tabelle festgehalten. Niemand stößt diese Schritte von Hand an, sie laufen als zusammenhängende Kette.</p>
 <div id="fig-intro-bausteine" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-intro-bausteine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/intro-bausteine.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intro-bausteine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;1: Ein Workflow im n8n-Editor: Vier Knoten in Reihe, vom Auslöser links bis zum letzten Verarbeitungsschritt rechts.
+Abbildung&nbsp;1: Ein Workflow im n8n-Editor: vier Knoten in Reihe, vom Auslöser links bis zum letzten Verarbeitungsschritt rechts.
 </figcaption>
 </figure>
 </div>
+<p>An diesem Bild lassen sich vier Begriffe ablesen, die den Rest des Kurses tragen:</p>
+<ul>
+<li>Die gesamte Kette von der eingehenden Mail bis zum Tabelleneintrag ist ein <strong>Workflow</strong>.</li>
+<li>Der Auslöser ganz links, hier die eingehende Mail, ist der <strong>Trigger</strong>. Er startet die Kette, zeitgesteuert, app-spezifisch oder manuell zum Testen.</li>
+<li>Jeder einzelne Schritt dazwischen ist eine <strong>Node</strong>. Sie nimmt Daten vom vorigen Schritt entgegen, führt eine Aktion aus und reicht das Ergebnis weiter.</li>
+<li>Ein vollständiger Durchlauf der Kette von Anfang bis Ende ist eine <strong>Execution</strong>. n8n protokolliert pro Execution die Eingangsdaten, die Ergebnisse jeder Node und etwaige Fehler.</li>
+</ul>
+<p>Mit diesen vier Begriffen lässt sich jeder Workflow im Kurs lesen.</p>
 </section>
-<section id="trigger" class="level2">
-<h2 class="anchored" data-anchor-id="trigger">Trigger</h2>
-<p>Der Trigger ist der Auslöser eines Workflows. Es gibt zeitgesteuerte Trigger, App-spezifische Trigger und manuelle Trigger für den Test im Editor.</p>
+<section id="was-später-dazukommt-wenn-wir-es-brauchen" class="level2">
+<h2 class="anchored" data-anchor-id="was-später-dazukommt-wenn-wir-es-brauchen">Was später dazukommt, wenn wir es brauchen</h2>
+<p>Die übrigen Bausteine führen wir nicht hier auf Vorrat ein, sondern dort, wo sie zum ersten Mal konkret auftauchen:</p>
+<ul>
+<li><strong>Credentials</strong> (Zugangsdaten zu externen Systemen) bereiten wir im Kapitel <a href="./first-workflows/credentials.html">Credentials vorbereiten</a> vor.</li>
+<li><strong>Expressions</strong> (kurze Ausdrücke wie <code>{ $json.sender }</code>, die Daten aus dem vorigen Schritt referenzieren) und die <strong>Data Table</strong> (n8ns eingebaute Tabelle) lernen wir hands-on in <a href="./first-workflows/first-workflow.html">Der erste Workflow</a>.</li>
+<li><strong>Integrationen</strong> zu externen Anwendungen und die <strong>KI-Knoten</strong> mit ihren Sprach-Modellen begegnen uns in den folgenden Modulen. Die tiefen Agenten-Konzepte behandelt der Aufbaukurs <em>KI-Agenten in n8n</em>.</li>
+</ul>
+<p>So bleibt der Einstieg schlank, und jeder Begriff bekommt seinen Kontext.</p>
 </section>
-<section id="node" class="level2">
-<h2 class="anchored" data-anchor-id="node">Node</h2>
-<p>Ein Node ist ein einzelner Schritt im Workflow. Jede Node nimmt Daten vom vorhergehenden Schritt entgegen, führt eine Aktion aus und reicht das Ergebnis an die nächste Node weiter.</p>
-</section>
-<section id="sticky-note" class="level2">
-<h2 class="anchored" data-anchor-id="sticky-note">Sticky Note</h2>
-<p>Eine Sticky Note ist eine erklärende Notiz direkt auf der Arbeitsfläche, ohne aktive Funktion im Datenfluss. Sie dient dazu, Workflows lesbar zu halten und Abschnitte zu beschriften.</p>
-</section>
-<section id="execution" class="level2">
-<h2 class="anchored" data-anchor-id="execution">Execution</h2>
-<p>Eine Execution ist ein einzelner Lauf eines Workflows von Anfang bis Ende. n8n hält pro Execution ein Log mit Eingangsdaten, Knoten-Ergebnissen und Fehlern bereit.</p>
-</section>
-<section id="expression" class="level2">
-<h2 class="anchored" data-anchor-id="expression">Expression</h2>
-<p>Eine Expression ist ein kurzer Ausdruck, mit dem Daten aus dem vorhergehenden Schritt referenziert werden, beispielsweise <code>{ $json.sender }</code> für den Absender einer eingehenden Mail. Expressions werden in n8n meist per Drag-and-Drop aus dem Output-Panel des Vor-Knotens erzeugt.</p>
-</section>
-<section id="credentials" class="level2">
-<h2 class="anchored" data-anchor-id="credentials">Credentials</h2>
-<p>Credentials sind Zugangsdaten zu externen Systemen wie Mail-Servern, Cloud-APIs oder Datenbanken. n8n verwaltet sie als eigenständige Objekte, die getrennt vom Workflow gespeichert und referenziert werden.</p>
-</section>
-<section id="integration-und-api" class="level2">
-<h2 class="anchored" data-anchor-id="integration-und-api">Integration und API</h2>
-<p>Eine Integration ist eine vorbereitete Verbindung zwischen n8n und einer externen Anwendung wie Salesforce, Slack oder Notion, die alle technischen Details der Anbindung kapselt. Sie nutzt im Hintergrund die API der externen Anwendung, also die dokumentierte Schnittstelle, über die andere Systeme automatisiert auf deren Funktionen und Daten zugreifen können.</p>
-</section>
-<section id="data-table" class="level2">
-<h2 class="anchored" data-anchor-id="data-table">Data Table</h2>
-<p>Eine Data Table ist die in n8n eingebaute Tabellen-Datenbank. Sie funktioniert wie eine kleine, mitgelieferte Datenbank für Workflow-Ergebnisse, ohne dass ein externes Tool angebunden werden muss.</p>
-</section>
-<section id="ki-knoten-und-sprach-modell" class="level2">
-<h2 class="anchored" data-anchor-id="ki-knoten-und-sprach-modell">KI-Knoten und Sprach-Modell</h2>
-<p>n8n bietet mehrere KI-Knoten, vom einfachen Modellaufruf bis zum AI Agent. Das Sprach-Modell (LLM, Large Language Model) ist die Komponente, die in natürlicher Sprache antwortet, wahlweise von OpenAI, Anthropic, Google oder als lokales Modell über Ollama.</p>
-</section>
-<section id="ausblick-agenten-konzepte" class="level2">
-<h2 class="anchored" data-anchor-id="ausblick-agenten-konzepte">Ausblick: Agenten-Konzepte</h2>
-<p>Sobald das deterministische Fundament steht, kommen die eigentlichen Agent-Bausteine dazu: der <strong>AI Agent</strong> mit seiner ReACT-Schleife, <strong>Tools</strong> und <strong>System-Prompts</strong>, <strong>RAG</strong> mit <strong>Embeddings</strong> und <strong>Vector Store</strong>, <strong>Approval</strong>-Schritte (Human-in-the-Loop), <strong>Multi-Agent-Systeme</strong> sowie <strong>Eval</strong> und <strong>Monitoring</strong> zur Qualitätssicherung. Diese Konzepte sind nicht Teil dieses Grundlagenkurses, sondern werden ausführlich im Aufbaukurs <em>KI-Agenten in n8n</em> behandelt.</p>
+<section id="glossar-zum-nachschlagen" class="level2">
+<h2 class="anchored" data-anchor-id="glossar-zum-nachschlagen">Glossar zum Nachschlagen</h2>
+<p>Wer einen Begriff später nachschlagen möchte, findet hier alle Bausteine kompakt:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Baustein</th>
+<th>Kurz erklärt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Workflow</td>
+<td>Eine Kette von Schritten, durch ein Ereignis ausgelöst, mit einem bestimmten Zweck.</td>
+</tr>
+<tr class="even">
+<td>Trigger</td>
+<td>Der Auslöser, der den Workflow startet (zeitgesteuert, app-spezifisch oder manuell).</td>
+</tr>
+<tr class="odd">
+<td>Node</td>
+<td>Ein einzelner Schritt: nimmt Daten entgegen, führt eine Aktion aus, reicht sie weiter.</td>
+</tr>
+<tr class="even">
+<td>Sticky Note</td>
+<td>Eine erklärende Notiz auf der Arbeitsfläche, ohne Funktion im Datenfluss.</td>
+</tr>
+<tr class="odd">
+<td>Execution</td>
+<td>Ein einzelner Lauf des Workflows von Anfang bis Ende, mit Log.</td>
+</tr>
+<tr class="even">
+<td>Expression</td>
+<td>Ein kurzer Ausdruck, der Daten aus einem vorigen Schritt referenziert, z. B. <code>{ $json.sender }</code>.</td>
+</tr>
+<tr class="odd">
+<td>Credentials</td>
+<td>Zugangsdaten zu externen Systemen, getrennt vom Workflow gespeichert.</td>
+</tr>
+<tr class="even">
+<td>Integration / API</td>
+<td>Eine vorbereitete Verbindung zu einer externen App, die im Hintergrund deren API nutzt.</td>
+</tr>
+<tr class="odd">
+<td>Data Table</td>
+<td>Die in n8n eingebaute Tabellen-Datenbank für Workflow-Ergebnisse.</td>
+</tr>
+<tr class="even">
+<td>KI-Knoten / Sprach-Modell</td>
+<td>Bausteine für KI im Workflow; das Sprach-Modell (LLM) antwortet in natürlicher Sprache (OpenAI, Anthropic, Google oder lokal über Ollama).</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>

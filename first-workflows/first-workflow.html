@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,9 @@
 
 <title>5&nbsp; Der erste Workflow: Mail an sich selbst – n8n-Grundlagen</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -26,7 +29,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -55,15 +57,14 @@ div.csl-indent {
 <link href="../first-workflows/credentials.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7844a46a9663d9eb3b08f9a74813e6a7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-acefae45180d251af7289144a764ffe6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f439c165ad807c834f979b9553e230cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-16e424000970df59d431bd55c5508176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -215,6 +216,7 @@ div.csl-indent {
   <li><a href="#fehler-diagnostizieren" id="toc-fehler-diagnostizieren" class="nav-link" data-scroll-target="#fehler-diagnostizieren"><span class="header-section-number">5.4</span> Fehler diagnostizieren</a></li>
   <li><a href="#vom-test-zum-live-betrieb" id="toc-vom-test-zum-live-betrieb" class="nav-link" data-scroll-target="#vom-test-zum-live-betrieb"><span class="header-section-number">5.5</span> Vom Test zum Live-Betrieb</a></li>
   <li><a href="#kontrollpunkt-für-modul-02" id="toc-kontrollpunkt-für-modul-02" class="nav-link" data-scroll-target="#kontrollpunkt-für-modul-02"><span class="header-section-number">5.6</span> Kontrollpunkt für Modul 02</a></li>
+  <li><a href="#wie-es-weitergeht" id="toc-wie-es-weitergeht" class="nav-link" data-scroll-target="#wie-es-weitergeht"><span class="header-section-number">5.7</span> Wie es weitergeht</a></li>
   </ul>
 </nav>
     </div>
@@ -450,7 +452,7 @@ Abbildung&nbsp;5.4: Set-Knoten mit den vier Feldzuweisungen und aktiviertem Expr
 </tr>
 </tbody>
 </table>
-<p>Die JSON-Ansicht zeigt die exakten Feldnamen, mit denen Expressions in nachfolgenden Knoten arbeiten. Wenn ein Feld <code>sender</code> heißt, funktioniert <code>{ $json.sender }</code>. Liefert ein Trigger stattdessen <code>fromEmail</code>, muss die Expression angepasst werden <span class="citation" data-cites="n8nDocsCreateRun">(<a href="#ref-n8nDocsCreateRun" role="doc-biblioref">n8n 2026</a>)</span>.</p>
+<p>Die JSON-Ansicht zeigt die exakten Feldnamen, mit denen Expressions in nachfolgenden Knoten arbeiten. Wenn ein Feld <code>sender</code> heißt, funktioniert <code>{ $json.sender }</code>. Liefert ein Trigger stattdessen <code>fromEmail</code>, muss die Expression angepasst werden <span class="citation" data-cites="n8nDocsCreateRun">(<a href="#ref-n8nDocsCreateRun" role="doc-biblioref"><span class="nocase">n8n</span> 2026</a>)</span>.</p>
 <div id="fig-output-panel-ansichten" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-output-panel-ansichten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -821,11 +823,15 @@ Abbildung&nbsp;5.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint 
 <li>Einen Knoten temporär deaktivieren, um den Workflow trotz fehlender Credentials bis zum Ende durchlaufen zu lassen.</li>
 <li>Den Workflow vom Manual-Trigger auf einen Mail-Trigger umstellen und aktivieren.</li>
 </ul>
+</section>
+<section id="wie-es-weitergeht" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="wie-es-weitergeht"><span class="header-section-number">5.7</span> Wie es weitergeht</h2>
+<p>Damit steht das handwerkliche Fundament: Du kannst einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs <em>KI-Agenten in n8n</em> die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-n8nDocsCreateRun" class="csl-entry" role="listitem">
-n8n. 2026. <span>„Create and Run Workflows“</span>. <a href="https://docs.n8n.io/workflows/create/" class="uri">https://docs.n8n.io/workflows/create/</a>.
+<span class="nocase">n8n</span>. 2026. <em>Create and Run Workflows</em>. <a href="https://docs.n8n.io/workflows/create/" class="uri">Https://docs.n8n.io/workflows/create/</a>.
 </div>
 </div>
 </section>
