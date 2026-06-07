@@ -21,6 +21,10 @@ book:
   description: "Von der Plattform zum ersten Workflow"
   author: "Jan Kirenz"
 
+  # Keine Vor/Zurück-Kapitelnavigation am Seitenende: im Plattform-Embed soll
+  # über die Plattform navigiert werden, nicht im eingebetteten Buch.
+  page-navigation: false
+
   search:
     type: overlay
   page-footer:
