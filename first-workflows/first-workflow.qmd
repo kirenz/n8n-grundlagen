@@ -307,3 +307,8 @@ Am Ende dieses Moduls sollten folgende Punkte bekannt sein:
 - Den Workflow vom Manual-Trigger auf einen Mail-Trigger umstellen und aktivieren.
 
 
+## Wie es weitergeht
+
+Damit steht das handwerkliche Fundament: Du kannst einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs *KI-Agenten in n8n* die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.
+
+

@@ -2,10 +2,8 @@
 
 Willkommen zum Grundlagenkurs für n8n. Am Ende hast du einen ersten, vollständig funktionierenden Workflow gebaut: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs, eine beliebige Mail-Adresse genügt zum Mitmachen.
 
-Der Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen. Wir bleiben bewusst beim deterministischen Fundament, also Workflows ohne KI, damit Editor, Knoten-Logik sowie Test- und Live-Pfade sicher sitzen.
+Der Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen.
 
 ::: {.callout-tip title="Lernempfehlung"}
 Die Kapitel bauen aufeinander auf. Am meisten nimmst du mit, wenn du sie der Reihe nach durchgehst und den Demo-Workflow Schritt für Schritt mitbaust. Die wichtigste Voraussetzung ist eine eigene n8n-Instanz, Cloud-Variante oder Self-Hosted.
 :::
-
-Wie aus diesen Workflows produktive KI-Agenten werden (Routing, Tool-Nutzung, RAG, Multi-Agent, Approval, Monitoring), zeigt der Aufbaukurs *KI-Agenten in n8n*, der genau dieses Demo-Szenario erweitert.
