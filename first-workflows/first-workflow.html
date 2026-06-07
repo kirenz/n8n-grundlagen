@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jan Kirenz">
+<meta name="description" content="Von der Plattform zum ersten Workflow">
+
+<title>5&nbsp; Der erste Workflow: Mail an sich selbst – n8n-Grundlagen</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../first-workflows/credentials.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7844a46a9663d9eb3b08f9a74813e6a7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f439c165ad807c834f979b9553e230cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../first-workflows/index.html">Erste Workflows</a></li><li class="breadcrumb-item"><a href="../first-workflows/first-workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">n8n-Grundlagen</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="Suchen"></div>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Willkommen</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einführung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plattform und Auswahl</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/what-is-n8n.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/pricing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/hosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../first-workflows/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Erste Workflows</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../first-workflows/credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../first-workflows/first-workflow.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#zielbild" id="toc-zielbild" class="nav-link active" data-scroll-target="#zielbild"><span class="header-section-number">5.1</span> Zielbild</a></li>
+  <li><a href="#schnellstart-per-import" id="toc-schnellstart-per-import" class="nav-link" data-scroll-target="#schnellstart-per-import"><span class="header-section-number">5.2</span> Schnellstart per Import</a></li>
+  <li><a href="#schritt-für-schritt-selbst-bauen" id="toc-schritt-für-schritt-selbst-bauen" class="nav-link" data-scroll-target="#schritt-für-schritt-selbst-bauen"><span class="header-section-number">5.3</span> Schritt für Schritt selbst bauen</a>
+  <ul class="collapse">
+  <li><a href="#vorbereitung-neuen-workflow-anlegen" id="toc-vorbereitung-neuen-workflow-anlegen" class="nav-link" data-scroll-target="#vorbereitung-neuen-workflow-anlegen"><span class="header-section-number">5.3.1</span> Vorbereitung: Neuen Workflow anlegen</a></li>
+  <li><a href="#schritt-1-manuellen-auslöser-einfügen" id="toc-schritt-1-manuellen-auslöser-einfügen" class="nav-link" data-scroll-target="#schritt-1-manuellen-auslöser-einfügen"><span class="header-section-number">5.3.2</span> Schritt 1: Manuellen Auslöser einfügen</a></li>
+  <li><a href="#schritt-2-receive-email" id="toc-schritt-2-receive-email" class="nav-link" data-scroll-target="#schritt-2-receive-email"><span class="header-section-number">5.3.3</span> Schritt 2: Receive email</a></li>
+  <li><a href="#schritt-3-send-confirmation" id="toc-schritt-3-send-confirmation" class="nav-link" data-scroll-target="#schritt-3-send-confirmation"><span class="header-section-number">5.3.4</span> Schritt 3: Send confirmation</a></li>
+  <li><a href="#schritt-4-prepare-table-entry" id="toc-schritt-4-prepare-table-entry" class="nav-link" data-scroll-target="#schritt-4-prepare-table-entry"><span class="header-section-number">5.3.5</span> Schritt 4: Prepare table entry</a></li>
+  <li><a href="#schritt-5-data-table-anlegen-und-eintrag-schreiben" id="toc-schritt-5-data-table-anlegen-und-eintrag-schreiben" class="nav-link" data-scroll-target="#schritt-5-data-table-anlegen-und-eintrag-schreiben"><span class="header-section-number">5.3.6</span> Schritt 5: Data Table anlegen und Eintrag schreiben</a></li>
+  <li><a href="#workflow-speichern-und-vollständig-ausführen" id="toc-workflow-speichern-und-vollständig-ausführen" class="nav-link" data-scroll-target="#workflow-speichern-und-vollständig-ausführen"><span class="header-section-number">5.3.7</span> Workflow speichern und vollständig ausführen</a></li>
+  </ul></li>
+  <li><a href="#fehler-diagnostizieren" id="toc-fehler-diagnostizieren" class="nav-link" data-scroll-target="#fehler-diagnostizieren"><span class="header-section-number">5.4</span> Fehler diagnostizieren</a></li>
+  <li><a href="#vom-test-zum-live-betrieb" id="toc-vom-test-zum-live-betrieb" class="nav-link" data-scroll-target="#vom-test-zum-live-betrieb"><span class="header-section-number">5.5</span> Vom Test zum Live-Betrieb</a></li>
+  <li><a href="#kontrollpunkt-für-modul-02" id="toc-kontrollpunkt-für-modul-02" class="nav-link" data-scroll-target="#kontrollpunkt-für-modul-02"><span class="header-section-number">5.6</span> Kontrollpunkt für Modul 02</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../first-workflows/index.html">Erste Workflows</a></li><li class="breadcrumb-item"><a href="../first-workflows/first-workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In diesem Kapitel bauen wir den ersten vollständigen Workflow. Er simuliert eine eingehende Mail, verschickt eine Bestätigung und schreibt einen Eintrag in eine Tabelle.</p>
+<section id="zielbild" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="zielbild"><span class="header-section-number">5.1</span> Zielbild</h2>
+<p>Der fertige Workflow hat fünf Stationen:</p>
+<ol type="1">
+<li><strong>Start workflow manually:</strong> Ein Manual-Trigger-Knoten startet den Workflow per Klick.</li>
+<li><strong>Receive email:</strong> Ein Set-Knoten erzeugt die Felder <code>sender</code>, <code>subject</code>, <code>text</code> und <code>received_at</code>.</li>
+<li><strong>Send confirmation:</strong> Ein Send-Email-Knoten antwortet an den Absender.</li>
+<li><strong>Prepare table entry:</strong> Ein zweiter Set-Knoten bringt die Daten in Tabellenform.</li>
+<li><strong>Save table entry:</strong> Ein Data-Table-Knoten schreibt eine Zeile in die Tabelle <code>customer_emails</code>.</li>
+</ol>
+<div id="fig-m02-workflow-zielbild" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-m02-workflow-zielbild-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/m02-workflow-zielbild.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-workflow-zielbild-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge Manual Trigger, Set, Send Email, Set, Data Table.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="schnellstart-per-import" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="schnellstart-per-import"><span class="header-section-number">5.2</span> Schnellstart per Import</h2>
+<p>Wer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen, kann ihn direkt per URL in die eigene n8n-Instanz importieren:</p>
+<ol type="1">
+<li><p>Im Editor einen neuen, leeren Workflow anlegen.</p></li>
+<li><p>Oben rechts auf das Drei-Punkte-Menü klicken.</p></li>
+<li><p><strong>Import from URL</strong> wählen und folgende Adresse einfügen:</p>
+<pre><code>https://raw.githubusercontent.com/kirenz/n8n-workflows/main/n8n-basics/modul-02-first-workflow.json</code></pre></li>
+<li><p>Bestätigen. Der Workflow erscheint im Editor mit allen Knoten und Verbindungen.</p></li>
+</ol>
+<p>Nach dem Import sind Manual Trigger, Set, Send Email und Set vorhanden. Der Data-Table-Knoten fehlt bewusst, weil Tabellen-IDs in jeder n8n-Instanz lokal entstehen. Die Tabelle anlegen und im Data-Table-Knoten neu auswählen, dann ist der Workflow vollständig.</p>
+</section>
+<section id="schritt-für-schritt-selbst-bauen" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="schritt-für-schritt-selbst-bauen"><span class="header-section-number">5.3</span> Schritt für Schritt selbst bauen</h2>
+<p>Wir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat dabei einen Namen, der im Canvas angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen wie <em>Edit Fields</em> oder <em>Send an Email</em>. Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.</p>
+<p>Im Kurs folgen wir einer einheitlichen Konvention:</p>
+<ul>
+<li>Englische Namen in Verb-Form, die beschreiben, was der Knoten tut. Beispiel: <code>Receive email</code>.</li>
+<li>Zu vermeiden sind Apostrophe (<code>'</code>), Anführungszeichen (<code>"</code>), geschweifte Klammern (<code>{ }</code>) und Backslashes (<code>\</code>), weil sie mit der Expression- oder JSON-Syntax kollidieren können.</li>
+</ul>
+<section id="vorbereitung-neuen-workflow-anlegen" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="vorbereitung-neuen-workflow-anlegen"><span class="header-section-number">5.3.1</span> Vorbereitung: Neuen Workflow anlegen</h3>
+<ol type="1">
+<li>In n8n anmelden.</li>
+<li><strong>Overview</strong>-Ansicht (Haus-Symbol links oben im Menü) auswählen.</li>
+<li>Oben rechts den Button <strong>Create workflow</strong> (oder das Plus-Symbol links oben) wählen.</li>
+<li>Im leeren Canvas oben links auf den Workflow-Namen (My workflow) klicken und ihn umbenennen in <strong>n8n-02</strong>.</li>
+<li>Neben dem Workflow-Namen auf <strong>+ Add tag</strong> klicken und die beide tags <code>n8n-basics</code> und <code>modul-02</code> erstellen und hinzufügen. Tags helfen später bei der Übersicht, Filterung und Dokumentation der Workflows.</li>
+</ol>
+<div id="fig-m02-canvas-leer" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-m02-canvas-leer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/m02-canvas-leer.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-canvas-leer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.2: Leerer Canvas direkt nach dem Anlegen eines neuen Workflows. In der Mitte das Plus-Symbol zum Einfügen des ersten Knotens.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="schritt-1-manuellen-auslöser-einfügen" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="schritt-1-manuellen-auslöser-einfügen"><span class="header-section-number">5.3.2</span> Schritt 1: Manuellen Auslöser einfügen</h3>
+<ol type="1">
+<li>Auf das große Plus-Symbol in der Canvas-Mitte klicken.</li>
+<li>Im rechts erscheinenden Knoten-Picker oben <strong>Trigger manually</strong> wählen.</li>
+<li>Oberhalb des Knotens auf die 3 Punkte klicken und <strong>Rename</strong> wählen.</li>
+<li>Den Knoten umbenennen in <em>Start workflow manually</em>.</li>
+</ol>
+<p>Eine weitere Konfiguration ist nicht nötig.</p>
+<div id="fig-m02-picker-trigger" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-m02-picker-trigger-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/m02-picker-trigger.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-picker-trigger-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.3: Knoten-Picker mit der Auswahl “Trigger manually” als manuellen Auslöser.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="schritt-2-receive-email" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="schritt-2-receive-email"><span class="header-section-number">5.3.3</span> Schritt 2: Receive email</h3>
+<ol type="1">
+<li>Rechts neben dem Knoten <em>Start workflow manually</em> erscheint ein Plus. Darauf klicken.</li>
+<li>Im Suchfeld des Knoten-Pickers <em>Edit Fields</em> eingeben.</li>
+<li><strong>Edit Fields (Set)</strong> auswählen.</li>
+<li>Den Knoten oben links umbenennen in <em>Receive email</em> (Default-Name: <em>Edit Fields</em>).</li>
+<li><code>Mode</code> bei <em>Manual Mapping</em> belassen.</li>
+<li>Bei <code>Fields to Set</code> auf <em>Add Field</em> klicken und nacheinander vier Felder eintragen:</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Typ</th>
+<th>Value</th>
+<th>Modus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sender</code></td>
+<td>String</td>
+<td><code>max@example.com</code></td>
+<td>Fixed</td>
+</tr>
+<tr class="even">
+<td><code>subject</code></td>
+<td>String</td>
+<td><code>Question about delivery time</code></td>
+<td>Fixed</td>
+</tr>
+<tr class="odd">
+<td><code>text</code></td>
+<td>String</td>
+<td><code>Hello, I ordered yesterday and was wondering when delivery will arrive. Best regards, Max</code></td>
+<td>Fixed</td>
+</tr>
+<tr class="even">
+<td><code>received_at</code></td>
+<td>String</td>
+<td><code>{ $now.toISO() }</code></td>
+<td>Expression</td>
+</tr>
+</tbody>
+</table>
+<p>Die ersten drei Felder sind feste Werte, die bei jeder Ausführung gleich bleiben. Das vierte Feld <code>received_at</code> soll den tatsächlichen Ausführungszeitpunkt liefern, deshalb verwenden wir hier eine Expression.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Was bedeutet der Ausdruck `$now.toISO()`?">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Was bedeutet der Ausdruck <code>$now.toISO()</code>?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Der Ausdruck setzt sich aus drei Bestandteilen zusammen:</p>
+<ul>
+<li><code>{ ... }</code> kennzeichnet in n8n einen Ausdruck. Der Inhalt wird als JavaScript ausgewertet, nicht wörtlich übernommen.</li>
+<li><code>$now</code> ist eine eingebaute n8n-Variable. Sie liefert den aktuellen Zeitpunkt.</li>
+<li><code>.toISO()</code> wandelt diesen Zeitpunkt in eine Zeichenkette nach dem <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601-Standard</a> um.</li>
+</ul>
+<p>Eine typische Ausgabe lautet <code>2026-05-14T10:23:45.123+02:00</code> und enthält Datum, Uhrzeit mit Millisekunden sowie den Zeitzonen-Offset. Der Wert wird bei jeder Workflow-Ausführung neu berechnet und entspricht damit dem tatsächlichen Ausführungszeitpunkt.</p>
+<p><strong>Verwandte Varianten:</strong></p>
+<ul>
+<li><code>{ $now.toFormat('dd.MM.yyyy') }</code> liefert das Datum im deutschen Format, etwa <code>14.05.2026</code>.</li>
+<li><code>{ $today.toISO() }</code> liefert den aktuellen Tag.</li>
+<li><code>{{ $now.plus({days: 7}).toISO() }}</code> liefert den Zeitpunkt sieben Tage nach der Ausführung.</li>
+</ul>
+<p>Solche Zeit-Ausdrücke lassen sich in jedem Feld eines beliebigen Knotens verwenden, sobald der Expression-Modus aktiv ist. Typische Anwendungsfälle sind Dateinamen mit Zeitstempel, Filterbedingungen auf Basis des aktuellen Datums oder das Setzen eines <code>createdAt</code>-Feldes vor dem Schreiben in eine Datenbank.</p>
+</div>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Auf <em>Execute step</em> klicken. Im Output-Panel rechts erscheinen die vier Felder.</li>
+</ol>
+<div id="fig-simulierte-mail-set" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simulierte-mail-set-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/m02-simulierte-mail-set.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simulierte-mail-set-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.4: Set-Knoten mit den vier Feldzuweisungen und aktiviertem Expression-Modus bei received_at.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled" title="Drei Ansichten im Output-Panel">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Drei Ansichten im Output-Panel
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Das Output-Panel bietet drei Ansichten für die Daten, die ein Knoten weitergibt:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ansicht</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Table</td>
+<td>tabellarische Darstellung der Felder</td>
+</tr>
+<tr class="even">
+<td>JSON</td>
+<td>vollständige Datenstruktur mit Feldnamen</td>
+</tr>
+<tr class="odd">
+<td>Schema</td>
+<td>Liste der vorhandenen Felder ohne Werte</td>
+</tr>
+</tbody>
+</table>
+<p>Die JSON-Ansicht zeigt die exakten Feldnamen, mit denen Expressions in nachfolgenden Knoten arbeiten. Wenn ein Feld <code>sender</code> heißt, funktioniert <code>{ $json.sender }</code>. Liefert ein Trigger stattdessen <code>fromEmail</code>, muss die Expression angepasst werden <span class="citation" data-cites="n8nDocsCreateRun">(<a href="#ref-n8nDocsCreateRun" role="doc-biblioref">n8n 2026</a>)</span>.</p>
+<div id="fig-output-panel-ansichten" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-output-panel-ansichten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/output-panel-ansichten.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-output-panel-ansichten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.5: Output-Panel mit den drei Ansichten Schema, Table und JSON. Die JSON-Ansicht zeigt die exakten Feldnamen und Werte, die der Knoten weitergibt.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol start="8" type="1">
+<li>Oben rechts im Menü auf <code>x</code> klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.</li>
+</ol>
+</section>
+<section id="schritt-3-send-confirmation" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="schritt-3-send-confirmation"><span class="header-section-number">5.3.4</span> Schritt 3: Send confirmation</h3>
+<ol type="1">
+<li>Rechts am Knoten <em>Receive email</em> auf <code>+</code> klicken.</li>
+<li>Im Knoten-Picker <strong>Send Email</strong> suchen und auswählen.</li>
+<li>Den Knoten oben links umbenennen in <em>Send confirmation</em> (Default-Name: <em>Send an Email</em>).</li>
+</ol>
+<p>Mit dem Öffnen des Knotens erscheint die Drei-Spalten-Ansicht des Knoten-Editors: links der Input, in der Mitte die Parameter dieses Knotens, rechts erscheint nach <em>Execute step</em> der Output.</p>
+<ol start="4" type="1">
+<li>Felder konfigurieren (Operation auf <code>Send</code> belassen):</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Feld</th>
+<th>Wert</th>
+<th>Modus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>From Email</td>
+<td><code>info@company.com</code></td>
+<td>Fixed</td>
+</tr>
+<tr class="even">
+<td>To Email</td>
+<td><code>{ $json.sender }</code></td>
+<td>Expression</td>
+</tr>
+<tr class="odd">
+<td>Subject</td>
+<td><code>Thank you for your message</code></td>
+<td>Fixed</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-note callout-titled" title="Was bedeutet `{{ $json.sender }}`?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Was bedeutet <code>{ $json.sender }</code>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>$json</code> bezeichnet die Daten, die der vorherige Knoten weitergegeben hat. In der Input-Spalte links sind diese Felder sichtbar: <code>sender</code>, <code>subject</code>, <code>text</code> und <code>received_at</code>. <code>.sender</code> greift auf das Feld <code>sender</code> zu, in unserem Fall <code>max@example.com</code>.</p>
+<p>Statt die Expression von Hand zu tippen, kann das Feld <code>sender</code> auch aus der Input-Spalte per Drag-and-drop in das Parameter-Feld gezogen werden. n8n erzeugt die Expression dann automatisch.</p>
+</div>
+</div>
+<p>Das Feld <code>Email Format</code> steht standardmäßig auf <code>HTML</code>. Wir stellen es auf <code>Text</code> um, damit Absätze und Zeilenumbrüche im Beispieltext erhalten bleiben.</p>
+<p>Beispiel-Text für das Feld <code>Text</code>:</p>
+<pre class="text"><code>Hello,
+
+thank you for your message. We have received it and will get back to you within one business day.
+
+Subject of your inquiry: {{ $json.subject }}
+
+Best regards
+The customer service team</code></pre>
+<ol start="5" type="1">
+<li>Auf <strong>Execute step</strong> klicken.</li>
+</ol>
+<p>An dieser Stelle erscheint die Fehlermeldung <em>Node does not have any credentials set</em>, weil die Credentials für den Mail-Versand fehlen. Den Knoten deaktivieren wir gleich, damit der Workflow trotzdem bis zum Ende durchläuft.</p>
+<div id="fig-send-email-knoten" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-send-email-knoten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/m02-send-email-knoten.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-send-email-knoten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.6: Send-Email-Knoten mit Expressions für Empfänger und Betreff: feste Formulierungen kombiniert mit dynamischen Feldern aus dem vorherigen Knoten.
+</figcaption>
+</figure>
+</div>
+<ol start="6" type="1">
+<li><p>Oben rechts im Menü auf <code>x</code> klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.</p></li>
+<li><p>Damit der Workflow trotzdem bis zum Ende durchläuft, stellen wir den Knoten <em>Send confirmation</em> über das Drei-Punkte-Menü oberhalb des Knotens auf <em>Deactivate</em>.</p></li>
+</ol>
+<p>Die folgenden Schritte 4 und 5 können wir nun testen, ohne dass der deaktivierte Knoten einen Fehler ausgibt. Nach dem Anlegen des Credentials aktivieren wir den Knoten wieder.</p>
+</section>
+<section id="schritt-4-prepare-table-entry" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="schritt-4-prepare-table-entry"><span class="header-section-number">5.3.5</span> Schritt 4: Prepare table entry</h3>
+<ol type="1">
+<li>Rechts am Knoten <em>Send confirmation</em> auf <code>+</code> klicken.</li>
+<li>Im Knoten-Picker <strong>Edit Fields (Set)</strong> suchen und auswählen.</li>
+<li>Den Knoten umbenennen in <em>Prepare table entry</em> (Default-Name: <em>Edit Fields</em>).</li>
+<li><code>Mode</code> bleibt auf <em>Manual Mapping</em>.</li>
+<li>Im Input-Panel links auf <em>Receive email</em> klicken. Anschließend die drei Felder <code>sender</code>, <code>subject</code> und <code>received_at</code> nacheinander per Drag-and-drop in den Bereich <code>Fields to Set</code> ziehen.</li>
+<li>Ein viertes Feld manuell über <em>Add Field</em> anlegen: Name <code>status</code>, Wert <code>new</code>, Modus <em>Fixed</em>.</li>
+</ol>
+<p>Das Ergebnis im Knoten:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Wert</th>
+<th>Modus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sender</code></td>
+<td><code>{ $('Receive email').item.json.sender }</code></td>
+<td>Expression</td>
+</tr>
+<tr class="even">
+<td><code>subject</code></td>
+<td><code>{ $('Receive email').item.json.subject }</code></td>
+<td>Expression</td>
+</tr>
+<tr class="odd">
+<td><code>received_at</code></td>
+<td><code>{ $('Receive email').item.json.received_at }</code></td>
+<td>Expression</td>
+</tr>
+<tr class="even">
+<td><code>status</code></td>
+<td><code>new</code></td>
+<td>Fixed</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-note callout-titled" title="Warum eine Cross-Node-Expression?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Warum eine Cross-Node-Expression?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Eine sogenannte Cross-Node-Expression <code>$('Knotenname').item.json.feld</code> greift gezielt auf einen früheren Knoten zu. Sie ist hier nötig, weil zwischen <em>Receive email</em> und diesem Knoten der <em>Send-Email-Knoten</em> liegt. Ein einfaches <code>$json.sender</code> würde dessen Output referenzieren, nicht die ursprünglichen Mail-Felder. Durch das Umschalten der Quelle im Input-Panel auf <em>Receive email</em> erzeugt n8n die robuste Form automatisch.</p>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Auf <strong>Execute step</strong> klicken. Im Output stehen die vier Spalten des späteren Tabelleneintrags.</li>
+</ol>
+<div id="fig-m02-set-eintrag" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-m02-set-eintrag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/m02-set-eintrag.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-set-eintrag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.7: Set-Knoten mit den vier Cross-Node-Expressions, die Werte aus dem Knoten Receive email beziehen.
+</figcaption>
+</figure>
+</div>
+<ol start="8" type="1">
+<li>Oben rechts im Menü auf <code>x</code> klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.</li>
+</ol>
+</section>
+<section id="schritt-5-data-table-anlegen-und-eintrag-schreiben" class="level3" data-number="5.3.6">
+<h3 data-number="5.3.6" class="anchored" data-anchor-id="schritt-5-data-table-anlegen-und-eintrag-schreiben"><span class="header-section-number">5.3.6</span> Schritt 5: Data Table anlegen und Eintrag schreiben</h3>
+<p>Ein “Data Table” speichert strukturierte Daten direkt in n8n. Die Tabelle ist nicht Teil des Workflows, sondern liegt auf der Projekt-Ebene und wird aus dem Workflow heraus über einen Data-Table-Knoten beschrieben oder gelesen.</p>
+<p><strong>Tabelle anlegen:</strong></p>
+<p>Die Verwaltung der Data Tables liegt außerhalb des Workflow-Editors. Wir verlassen den Editor kurz, legen die Tabelle an und kehren danach in den Workflow zurück.</p>
+<ol type="1">
+<li>Oben links auf <strong>Overview</strong> klicken, um zur Projekt-Übersicht zurückzukehren.</li>
+<li>In der oberen Menüleiste auf <strong>Data tables</strong> klicken (gleiche Ebene wie <em>Workflows</em>, <em>Credentials</em> und <em>Executions</em>).</li>
+<li>Auf <strong>Create Data Table</strong> klicken.</li>
+<li>Nam vergeben: <code>customer_emails</code> (<code>From scratch</code> auswählen).</li>
+<li>Oben rechts <strong>Add Column</strong> klicken und nacheinander vier Spalten hinzufügen:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sender</code></td>
+<td>string</td>
+</tr>
+<tr class="even">
+<td><code>subject</code></td>
+<td>string</td>
+</tr>
+<tr class="odd">
+<td><code>received_at</code></td>
+<td>string</td>
+</tr>
+<tr class="even">
+<td><code>status</code></td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p>n8n ergänzt automatisch eine <code>id</code>-Spalte, die jede Zeile eindeutig identifiziert. In der Übersicht erscheint die neue Tabelle daher mit insgesamt fünf Spalten.</p>
+<p><strong>Data-Table-Knoten in den Workflow einfügen:</strong></p>
+<ol type="1">
+<li>In der Projektübersicht wieder zu <strong>Workflows</strong> wechseln und n8n-02 auswählen.</li>
+<li>Rechts am Knoten <em>Prepare table entry</em> auf das Plus-Symbol klicken.</li>
+<li>Im Knoten-Picker <strong>Data table</strong> suchen und auswählen.</li>
+<li>Im erscheinenden Action-Menü unter <em>Row Actions</em> die Action <strong>Insert row</strong> auswählen.</li>
+<li>Den Knoten links oben umbenennen in <em>Save table entry</em> (Default-Name: <em>Insert row</em>).</li>
+<li>Im Parameters-Panel:
+<ul>
+<li><code>Resource</code>: <code>Row</code> belassen (Default).</li>
+<li><code>Operation</code>: <code>Insert</code> belassen (Default).</li>
+<li><code>Data table</code>: Modus <code>From list</code> belassen und im rechten Dropdown <code>customer_emails</code> auswählen.</li>
+<li><code>Mapping Column Mode</code>: auf <code>Map Automatically</code> umstellen.</li>
+</ul></li>
+<li>Auf <strong>Execute step</strong> klicken.</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Warum `Map Automatically` hier funktioniert">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Warum <code>Map Automatically</code> hier funktioniert
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>Map Automatically</code> sucht im eingehenden Datenobjekt nach Feldern, die genauso heißen wie die Spalten der Tabelle, und übernimmt sie eins zu eins. Weil der Knoten <em>Prepare table entry</em> die Felder bewusst mit identischen Namen liefert (<code>sender</code>, <code>subject</code>, <code>received_at</code>, <code>status</code>), greift das automatische Mapping ohne weitere Konfiguration.</p>
+<p>Der manuelle Modus <code>Map Each Column Manually</code> wäre nötig, wenn die Feldnamen abweichen, ein Wert umgerechnet werden muss oder eine Spalte fest gesetzt werden soll, ohne aus dem Input zu stammen.</p>
+</div>
+</div>
+<div id="fig-m02-datatable-knoten" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-m02-datatable-knoten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/m02-datatable-knoten.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-datatable-knoten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.8: Data-Table-Knoten mit Operation Insert Row, Auswahl der Tabelle customer_emails und Mapping der vier Spalten.
+</figcaption>
+</figure>
+</div>
+<ol start="8" type="1">
+<li>Oben rechts im Menü auf <code>x</code> klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.</li>
+</ol>
+</section>
+<section id="workflow-speichern-und-vollständig-ausführen" class="level3" data-number="5.3.7">
+<h3 data-number="5.3.7" class="anchored" data-anchor-id="workflow-speichern-und-vollständig-ausführen"><span class="header-section-number">5.3.7</span> Workflow speichern und vollständig ausführen</h3>
+<ol type="1">
+<li>In der Workflow-Übersicht auf <strong>Execute Workflow</strong> klicken.</li>
+<li>Alle fünf Knoten bekommen einen grünen Haken (mit Ausnahme des deaktivierten Knotens <em>Send confirmation</em>, der übersprungen wird). Es erscheint die Bestätigung <em>Workflow executed successfully</em>.</li>
+<li>Zur Kontrolle die Tabelle <code>customer_emails</code> öffnen: oben links auf <strong>Overview</strong> klicken, zur Projekt-Übersicht wechseln und im Tab <strong>Data tables</strong> auf <code>customer_emails</code> klicken.</li>
+<li>In der Tabelle erscheint eine neue Zeile mit Werten für <code>sender</code>, <code>subject</code>, <code>received_at</code> und <code>status</code> (Wert <code>new</code>) sowie eine automatisch vergebene <code>id</code>.</li>
+</ol>
+<div id="fig-m02-workflow-erfolgreich" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-m02-workflow-erfolgreich-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/m02-workflow-erfolgreich.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-workflow-erfolgreich-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.9: Workflow nach erfolgreichem Lauf mit grünen Häkchen an allen Knoten.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="fehler-diagnostizieren" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="fehler-diagnostizieren"><span class="header-section-number">5.4</span> Fehler diagnostizieren</h2>
+<p>Ein roter Knoten erfordert keinen Neuaufbau des Workflows. Wir lesen die Fehlermeldung, prüfen den Input des Knotens und vergleichen ihn mit der Knoten-Einstellung. Häufige Ursachen sind ein fehlendes Credential, ein abweichender Feldname oder ein Testdatensatz ohne Wert. Den frühesten Fehler im Workflow beheben wir zuerst, denn falsche Daten in Knoten 2 machen einen Blick auf Knoten 4 überflüssig.</p>
+<p>Eine erste Orientierung bei wiederkehrenden Symptomen:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symptom</th>
+<th>Wahrscheinliche Ursache</th>
+<th>Nächster Prüfschritt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Send Email schlägt fehl</td>
+<td>SMTP-Credential fehlt oder Absenderadresse passt nicht</td>
+<td>Credential öffnen, Testadresse prüfen</td>
+</tr>
+<tr class="even">
+<td>Empfänger ist leer</td>
+<td><code>sender</code> existiert im Input nicht</td>
+<td>Output des vorherigen Knotens in JSON prüfen</td>
+</tr>
+<tr class="odd">
+<td>Data Table schreibt nicht</td>
+<td>Tabelle oder Spalte fehlt</td>
+<td>Tabelle <code>customer_emails</code> und Spaltennamen prüfen</td>
+</tr>
+<tr class="even">
+<td>Zeitstempel fehlt</td>
+<td>Expression im Set-Knoten falsch</td>
+<td><code>{ $now.toISO() }</code> testen</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vom-test-zum-live-betrieb" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="vom-test-zum-live-betrieb"><span class="header-section-number">5.5</span> Vom Test zum Live-Betrieb</h2>
+<p>Bisher lief der Workflow nur per Klick auf <em>Execute Workflow</em>. Damit er automatisch auf eingehende Mails reagiert, sind drei Anpassungen nötig: ein echter Trigger, gültige Credentials und der Active-Modus.</p>
+<ol type="1">
+<li><strong>Trigger austauschen.</strong> Den Knoten <em>Start workflow manually</em> entfernen und stattdessen einen Mail-Trigger einfügen, etwa <em>Email Trigger (IMAP)</em> oder <em>Gmail Trigger</em>.</li>
+<li><strong>Credentials hinterlegen.</strong> Für den Trigger ein IMAP- oder OAuth-Credential anlegen, für <em>Send confirmation</em> ein SMTP-Credential. Die Credential-Arten sind im Kapitel <a href="../first-workflows/credentials.html">Credentials vorbereiten</a> beschrieben.</li>
+<li><strong>Send-Email-Knoten reaktivieren.</strong> Den in Schritt 3 deaktivierten Knoten <em>Send confirmation</em> über das Drei-Punkte-Menü wieder auf <em>Activate</em> setzen.</li>
+<li><strong>Workflow aktivieren.</strong> Oben rechts den Schalter <em>Active</em> einschalten.</li>
+<li><strong>Testlauf prüfen.</strong> Eine Testmail aus einer eigenen Adresse an das Trigger-Postfach senden. Im linken Menü auf <strong>Executions</strong> klicken und den Lauf öffnen. Bestätigungsmail und neue Zeile in der Tabelle <code>customer_emails</code> kontrollieren.</li>
+</ol>
+<div id="fig-executions-log" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-executions-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/executions-log.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-executions-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint mit Status, Datum und Dauer und lässt sich für die Nachverfolgung öffnen.
+</figcaption>
+</figure>
+</div>
+<p>Sobald der Workflow aktiv ist, behandelt n8n jede eingehende Mail im Trigger-Postfach als produktives Ereignis. Eine produktive Support- oder Sales-Adresse eignet sich daher nicht als erste Trigger-Quelle. Für den ersten Live-Test empfiehlt sich eine separate Testadresse.</p>
+<div class="callout callout-style-simple callout-important callout-titled" title="Fallstricke im Live-Betrieb">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Wichtig</span>Fallstricke im Live-Betrieb
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Drei Stolpersteine zeigen sich erfahrungsgemäß beim ersten produktiven Lauf:</p>
+<ul>
+<li><strong>Trigger feuert nicht.</strong> Der häufigste Grund ist ein abgelaufener OAuth-Token oder ein IMAP-Server, der nach einer Stunde Inaktivität die Verbindung schließt. Unter <strong>Executions</strong> prüfen, ob überhaupt ein Lauf stattfindet; in den Trigger-Einstellungen ggf. das Polling-Intervall auf 1 Minute setzen und das Credential neu autorisieren.</li>
+<li><strong>Doppelverarbeitung nach n8n-Restart.</strong> Ohne eine Idempotency-Spalte verarbeitet n8n bei einem Neustart die letzten Mails erneut. Für produktive Workflows gehört eine <code>external_message_id</code>-Spalte in die Tabelle, die vor jedem Insert geprüft wird (dieses Pattern vertieft der Aufbaukurs <em>KI-Agenten in n8n</em>).</li>
+<li><strong>Bestätigungs-Mail landet im Spam.</strong> SMTP-Mails von neuen Absenderdomains haben anfangs keinen Reputations-Score. Vor dem Live-Schalten einen SPF- und DKIM-Eintrag setzen oder einen Mail-Versand-Dienst wie Postmark oder SendGrid nutzen.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="kontrollpunkt-für-modul-02" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="kontrollpunkt-für-modul-02"><span class="header-section-number">5.6</span> Kontrollpunkt für Modul 02</h2>
+<p>Am Ende dieses Moduls sollten folgende Punkte bekannt sein:</p>
+<ul>
+<li>Einen Workflow neu anlegen, umbenennen und mit Tags versehen.</li>
+<li>Knoten einfügen, umbenennen und über das Plus-Symbol verketten.</li>
+<li>Mit dem Set-Knoten (<code>Edit Fields</code>) Felder erzeugen, die nachfolgende Knoten weiterverwenden.</li>
+<li>Einfache Expressions schreiben und lesen: <code>{ $json.feld }</code>, <code>{ $now.toISO() }</code> sowie Cross-Node-Expressions <code>{ $('Knotenname').item.json.feld }</code>.</li>
+<li>Eine Data Table auf Projekt-Ebene anlegen und mit dem Data-Table-Knoten per <code>Map Automatically</code> Zeilen einfügen.</li>
+<li>Einen Knoten temporär deaktivieren, um den Workflow trotz fehlender Credentials bis zum Ende durchlaufen zu lassen.</li>
+<li>Den Workflow vom Manual-Trigger auf einen Mail-Trigger umstellen und aktivieren.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-n8nDocsCreateRun" class="csl-entry" role="listitem">
+n8n. 2026. <span>„Create and Run Workflows“</span>. <a href="https://docs.n8n.io/workflows/create/" class="uri">https://docs.n8n.io/workflows/create/</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../first-workflows/credentials.html" class="pagination-link" aria-label="Credentials vorbereiten">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© <a href="https://www.kirenz.com/">Jan Kirenz</a>, 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

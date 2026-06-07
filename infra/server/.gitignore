@@ -1,4 +1,0 @@
-# Niemals echte Credentials ins Repo committed
-.env
-*.local
-*.secret

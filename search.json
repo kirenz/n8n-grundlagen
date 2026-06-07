@@ -1,0 +1,501 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "n8n-Grundlagen",
+    "section": "",
+    "text": "Willkommen\nWillkommen zum Grundlagenkurs für n8n. Dieser Kurs bringt uns von null auf einen ersten, vollständig funktionierenden Workflow: Wir lernen die Plattform einzuordnen, richten eine eigene Instanz ein und bauen Schritt für Schritt eine kleine Automation, die eine eingehende Kundenmail entgegennimmt, einen Tabelleneintrag schreibt und eine Bestätigungs-Mail versendet.\nn8n ist eine visuelle Workflow-Plattform, in der Aktionen als verbundene Knoten dargestellt werden. Sie kombiniert über fünfhundert fertige Integrationen mit klassischer Datenverarbeitung und KI-Bausteinen, und zwar alles im selben Editor. In diesem Kurs konzentrieren wir uns bewusst auf das deterministische Fundament, also Workflows ohne KI, damit die Editor-Mechanik, die Knoten-Logik und die Test- und Live-Pfade sicher sitzen.",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#worum-es-in-diesem-kurs-geht",
+    "href": "index.html#worum-es-in-diesem-kurs-geht",
+    "title": "n8n-Grundlagen",
+    "section": "Worum es in diesem Kurs geht",
+    "text": "Worum es in diesem Kurs geht\nDer Kurs ist bewusst kompakt und praktisch angelegt. Das Vorgehen ist:\n\nPlattform verstehen. Was n8n im Kern leistet und wofür es nicht gebaut wurde, wie das Pricing gegen Zapier, Make und Power Automate abschneidet, und welche Hosting-Variante zu Team, Datenanforderung und Budget passt.\nInstanz einrichten. Eine eigene n8n-Umgebung als Cloud-Variante oder selbst gehostet, plus die saubere Trennung von Zugangsdaten (Credentials).\nErsten Workflow bauen. Den Editor öffnen, Knoten verbinden, mit Mock-Daten testen und in den Live-Modus überführen, am durchgehenden Demo-Szenario einer Support-Inbox.",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#demo-szenario",
+    "href": "index.html#demo-szenario",
+    "title": "n8n-Grundlagen",
+    "section": "Demo-Szenario",
+    "text": "Demo-Szenario\nEin einziger Use Case begleitet den Kurs: Eine eingehende Kundenmail wird entgegengenommen, in einer Tabelle festgehalten und mit einer Bestätigungs-Mail beantwortet. Der Workflow lässt sich alleine bauen und testen, denn eine beliebige Mail-Adresse reicht aus. Gmail, Slack, Microsoft Teams und HubSpot werden als optionale Erweiterungen gezeigt.\n\n\n\n\n\n\nTippLernempfehlung\n\n\n\nDie Kapitel bauen aufeinander auf. Wer den größten Nutzen mitnehmen möchte, arbeitet die Module in der Reihenfolge durch und baut den Demo-Workflow Schritt für Schritt mit. Eine eigene n8n-Instanz ist die wichtigste Voraussetzung. Sowohl die Cloud-Variante als auch eine Self-Hosted-Installation funktioniert.",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#wie-es-weitergeht",
+    "href": "index.html#wie-es-weitergeht",
+    "title": "n8n-Grundlagen",
+    "section": "Wie es weitergeht",
+    "text": "Wie es weitergeht\nDieser Kurs legt das handwerkliche Fundament. Wer darauf aufbauend lernen möchte, wie aus deterministischen Workflows produktive KI-Agenten werden (mit Routing, Tool-Nutzung, RAG, Multi-Agent-Pipelines, Approval-Pfaden und Monitoring), findet die Fortsetzung im Aufbaukurs KI-Agenten in n8n. Dort wird genau das hier gebaute Demo-Szenario schrittweise um Agent-Funktionen erweitert.\nMit diesem Kurs entsteht die belastbare Grundlage, auf der jede weitere Automatisierung in n8n aufsetzt.",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "introduction.html",
+    "href": "introduction.html",
+    "title": "Einführung",
+    "section": "",
+    "text": "n8n als Plattform\nBevor wir mit dem ersten Workflow beginnen, lohnt sich ein kurzer Überblick über die Bausteine, mit denen wir in diesem Kurs arbeiten. Jeder Baustein hat eine bestimmte Rolle, vom Auslöser eines Workflows bis zum einzelnen Verarbeitungsschritt. Diese Einführung erklärt jeden Baustein in zwei Sätzen, damit klar ist, worauf wir aufbauen.\nn8n ist eine visuelle Workflow-Plattform, in der Aktionen als verbundene Knoten dargestellt werden. Sie kombiniert über fünfhundert fertige Integrationen mit klassischer Datenverarbeitung und KI-Bausteinen, und zwar alles im selben Editor.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#workflow",
+    "href": "introduction.html#workflow",
+    "title": "Einführung",
+    "section": "Workflow",
+    "text": "Workflow\nEin Workflow ist eine Kette von Schritten, die durch ein definiertes Ereignis ausgelöst wird und einen bestimmten Zweck verfolgt. Beispielsweise: Eine eingehende Mail einer Kategorie zuordnen (etwa Vertriebs-Anfrage, Support-Anfrage oder Beschwerde), eine Bestätigung verschicken und einen Eintrag in einer Tabelle anlegen.\n\n\n\n\n\n\nAbbildung 1: Ein Workflow im n8n-Editor: Vier Knoten in Reihe, vom Auslöser links bis zum letzten Verarbeitungsschritt rechts.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#trigger",
+    "href": "introduction.html#trigger",
+    "title": "Einführung",
+    "section": "Trigger",
+    "text": "Trigger\nDer Trigger ist der Auslöser eines Workflows. Es gibt zeitgesteuerte Trigger, App-spezifische Trigger und manuelle Trigger für den Test im Editor.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#node",
+    "href": "introduction.html#node",
+    "title": "Einführung",
+    "section": "Node",
+    "text": "Node\nEin Node ist ein einzelner Schritt im Workflow. Jede Node nimmt Daten vom vorhergehenden Schritt entgegen, führt eine Aktion aus und reicht das Ergebnis an die nächste Node weiter.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#sticky-note",
+    "href": "introduction.html#sticky-note",
+    "title": "Einführung",
+    "section": "Sticky Note",
+    "text": "Sticky Note\nEine Sticky Note ist eine erklärende Notiz direkt auf der Arbeitsfläche, ohne aktive Funktion im Datenfluss. Sie dient dazu, Workflows lesbar zu halten und Abschnitte zu beschriften.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#execution",
+    "href": "introduction.html#execution",
+    "title": "Einführung",
+    "section": "Execution",
+    "text": "Execution\nEine Execution ist ein einzelner Lauf eines Workflows von Anfang bis Ende. n8n hält pro Execution ein Log mit Eingangsdaten, Knoten-Ergebnissen und Fehlern bereit.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#expression",
+    "href": "introduction.html#expression",
+    "title": "Einführung",
+    "section": "Expression",
+    "text": "Expression\nEine Expression ist ein kurzer Ausdruck, mit dem Daten aus dem vorhergehenden Schritt referenziert werden, beispielsweise { $json.sender } für den Absender einer eingehenden Mail. Expressions werden in n8n meist per Drag-and-Drop aus dem Output-Panel des Vor-Knotens erzeugt.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#credentials",
+    "href": "introduction.html#credentials",
+    "title": "Einführung",
+    "section": "Credentials",
+    "text": "Credentials\nCredentials sind Zugangsdaten zu externen Systemen wie Mail-Servern, Cloud-APIs oder Datenbanken. n8n verwaltet sie als eigenständige Objekte, die getrennt vom Workflow gespeichert und referenziert werden.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#integration-und-api",
+    "href": "introduction.html#integration-und-api",
+    "title": "Einführung",
+    "section": "Integration und API",
+    "text": "Integration und API\nEine Integration ist eine vorbereitete Verbindung zwischen n8n und einer externen Anwendung wie Salesforce, Slack oder Notion, die alle technischen Details der Anbindung kapselt. Sie nutzt im Hintergrund die API der externen Anwendung, also die dokumentierte Schnittstelle, über die andere Systeme automatisiert auf deren Funktionen und Daten zugreifen können.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#data-table",
+    "href": "introduction.html#data-table",
+    "title": "Einführung",
+    "section": "Data Table",
+    "text": "Data Table\nEine Data Table ist die in n8n eingebaute Tabellen-Datenbank. Sie funktioniert wie eine kleine, mitgelieferte Datenbank für Workflow-Ergebnisse, ohne dass ein externes Tool angebunden werden muss.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#ki-knoten-und-sprach-modell",
+    "href": "introduction.html#ki-knoten-und-sprach-modell",
+    "title": "Einführung",
+    "section": "KI-Knoten und Sprach-Modell",
+    "text": "KI-Knoten und Sprach-Modell\nn8n bietet mehrere KI-Knoten, vom einfachen Modellaufruf bis zum AI Agent. Das Sprach-Modell (LLM, Large Language Model) ist die Komponente, die in natürlicher Sprache antwortet, wahlweise von OpenAI, Anthropic, Google oder als lokales Modell über Ollama.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "introduction.html#ausblick-agenten-konzepte",
+    "href": "introduction.html#ausblick-agenten-konzepte",
+    "title": "Einführung",
+    "section": "Ausblick: Agenten-Konzepte",
+    "text": "Ausblick: Agenten-Konzepte\nSobald das deterministische Fundament steht, kommen die eigentlichen Agent-Bausteine dazu: der AI Agent mit seiner ReACT-Schleife, Tools und System-Prompts, RAG mit Embeddings und Vector Store, Approval-Schritte (Human-in-the-Loop), Multi-Agent-Systeme sowie Eval und Monitoring zur Qualitätssicherung. Diese Konzepte sind nicht Teil dieses Grundlagenkurses, sondern werden ausführlich im Aufbaukurs KI-Agenten in n8n behandelt.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "overview/index.html",
+    "href": "overview/index.html",
+    "title": "Plattform und Auswahl",
+    "section": "",
+    "text": "Bevor wir den ersten Workflow bauen, ordnen wir die Plattform ein. Drei Fragen stehen am Anfang: Was kann n8n im Kern und wofür wurde es nicht entwickelt? Wie schneidet das Pricing gegen Zapier, Make und Power Automate ab? Welche Hosting-Variante passt zu Team, Datenanforderung und Budget? Die Antworten sind die Grundlage für eine bewusste Werkzeugwahl, nicht für eine schnelle Beschaffungs-Entscheidung.\nDieser Teil ist bewusst kompakt gehalten. Er liefert die Argumente, die später im Gespräch mit IT, Datenschutz oder Einkauf hilfreich sind, ohne in eine reine Feature-Aufzählung zu verfallen. Eingebauter Faden: Wir vergleichen mit klassischen iPaaS-Lösungen, schauen auf die KI-Eignung und beschreiben die drei Hosting-Pfade mit ihren typischen Folgekosten.\nWir werden:\n\nVerstehen, was n8n im Kern leistet, und wofür es nicht gebaut wurde\nDas Pricing-Modell einordnen und mit klassischen iPaaS-Anbietern wie Zapier oder Make vergleichen\nDie drei Hosting-Optionen kennenlernen (Cloud, Self-Hosted, Managed Hosting) und entscheiden, welche zu welchem Team passt\n\nWer mit n8n bereits gearbeitet hat, kann diesen Teil überfliegen und direkt mit dem ersten Workflow im nächsten Modul beginnen. Wer die Plattform zum ersten Mal sieht, baut hier das Vokabular auf, mit dem alle folgenden Module arbeiten.",
+    "crumbs": [
+      "Plattform und Auswahl"
+    ]
+  },
+  {
+    "objectID": "overview/what-is-n8n.html",
+    "href": "overview/what-is-n8n.html",
+    "title": "1  Was n8n im Kern leistet",
+    "section": "",
+    "text": "1.1 Ein konkreter Anwendungsfall\nEine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehen. Wir beginnen daher mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.\nÜber das Kontaktformular einer Website geht eine Nachricht ein. Drei Schritte sollen automatisch ablaufen, ohne dass eine Person den Vorgang manuell anstößt:\nGenau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontaktformular, eingehende Rechnung oder wöchentliches Reporting. Drei Schritte, drei Werkzeuge, ein einziger Workflow, der danach von alleine läuft.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+    ]
+  },
+  {
+    "objectID": "overview/what-is-n8n.html#ein-konkreter-anwendungsfall",
+    "href": "overview/what-is-n8n.html#ein-konkreter-anwendungsfall",
+    "title": "1  Was n8n im Kern leistet",
+    "section": "",
+    "text": "Auslöser: Eine neue Nachricht trifft über das Kontaktformular ein.\nAntworten: Eine Bestätigungs-E-Mail geht zurück: „Vielen Dank, wir melden uns innerhalb eines Werktags.”\nFesthalten: Die Nachricht landet in einer Tabelle, damit das Team sie später bearbeiten kann.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+    ]
+  },
+  {
+    "objectID": "overview/what-is-n8n.html#zwei-kernaufgaben",
+    "href": "overview/what-is-n8n.html#zwei-kernaufgaben",
+    "title": "1  Was n8n im Kern leistet",
+    "section": "1.2 Zwei Kernaufgaben",
+    "text": "1.2 Zwei Kernaufgaben\nn8n erfüllt im Kern zwei Aufgaben, die im selben Editor zusammenfallen:\nDaten zwischen Werkzeugen bewegen. n8n bringt über fünfhundert fertige Integrationen mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt, eigener Code ist optional.\nKI-Bausteine als Standard mitbringen. Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen, all diese Bausteine sind keine Zusatzkomponenten, sondern Standardausstattung im Editor. Genau diese Mischung aus Daten-Bewegung und KI-Bereitschaft unterscheidet n8n von klassischen Automation-Tools.\n\n\n\n\n\n\nTippWerkstatt-Analogie für n8n\n\n\n\n\n\nn8n lässt sich gut mit einer gut sortierten Werkstatt vergleichen:\n\nDie Werkstatt ist die n8n-Instanz selbst, also der Raum, in dem alles zusammenläuft.\nWerkbänke sind die einzelnen Workflows, jeder für eine bestimmte Tätigkeit eingerichtet.\nWerkzeuge an der Wand sind die Knoten (Mail-Knoten, Tabellen-Knoten, KI-Knoten), die je nach Bedarf von der Werkbank gegriffen werden.\nStrom und Druckluft sind die Auslöser im Hintergrund, die die Werkstatt überhaupt erst aktivieren, also ein Trigger pro Werkbank.\n\nWer eine Werkstatt einrichtet, muss nicht jedes Werkzeug selbst bauen. Er muss aber wissen, welches Werkzeug zu welcher Aufgabe passt.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+    ]
+  },
+  {
+    "objectID": "overview/what-is-n8n.html#was-n8n-nicht-ist",
+    "href": "overview/what-is-n8n.html#was-n8n-nicht-ist",
+    "title": "1  Was n8n im Kern leistet",
+    "section": "1.3 Was n8n nicht ist",
+    "text": "1.3 Was n8n nicht ist\nn8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht dazwischen, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.\n\n\n\n\n\n\nAbbildung 1.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, Tools, Daten und KI-Modelle werden angesprochen.\n\n\n\n\n\n\n\n\n\nn8n ersetzt nicht die spezialisierten Werkzeuge, sondern verbindet sie. Wer Salesforce, ein eigenes Sprach-Modell, eine Postgres-Datenbank und ein Slack-Setup hat, nutzt n8n als Bindeglied und nicht als Ersatz.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+    ]
+  },
+  {
+    "objectID": "overview/what-is-n8n.html#typische-anwendungsfelder",
+    "href": "overview/what-is-n8n.html#typische-anwendungsfelder",
+    "title": "1  Was n8n im Kern leistet",
+    "section": "1.4 Typische Anwendungsfelder",
+    "text": "1.4 Typische Anwendungsfelder\nDrei Aufgabenklassen sind typische Einsatzgebiete für n8n:\n\nRoutine-Workflows mit Trigger-Aktion-Datenfluss. Eine Mail trifft ein, eine Aktion wird ausgeführt, ein Eintrag wird geschrieben. Das ist klassisches Tagesgeschäft im Marketing, im Vertrieb und im Customer-Support.\nHybride Pipelines mit deterministischen und KI-Schritten. Vor- und Nachverarbeitung laufen deterministisch ab, und mittendrin steht ein KI-Schritt für Klassifikation (also das Zuordnen einer Eingabe zu einer Kategorie), Zusammenfassung oder Antwort-Formulierung.\nWissens-Anwendungen mit eigenen Daten. RAG-Pipelines greifen mit dem Sprach-Modell auf firmeneigene Inhalte zu, statt aus dem allgemeinen Internet-Wissen zu antworten.\n\nDie folgenden Module greifen diese drei Aufgabenklassen jeweils auf und setzen sie Schritt für Schritt mit n8n um.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pricing.html",
+    "href": "overview/pricing.html",
+    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "",
+    "text": "2.1 Zwei Abrechnungsmodelle\nDie Abrechnungslogik unterscheidet sich zwischen n8n und den klassischen iPaaS-Anbietern grundlegend. Der Begriff iPaaS (Integration Platform as a Service) bezeichnet Cloud-Plattformen, die Anwendungen, Daten und Prozesse miteinander verbinden, ohne dass eine eigene Integrationssoftware betrieben werden muss. Zapier und Make sind die bekanntesten Vertreter dieser Kategorie.\nDie zentrale Achse des Vergleichs ist die Abrechnungseinheit: Klassische Anbieter rechnen pro Task ab, n8n pro Workflow-Execution. Diese Logik beeinflusst, wie Workflows zugeschnitten werden.\nKlassische Anbieter wie Zapier oder Make rechnen pro Task ab. Jeder einzelne Schritt in einem Workflow zählt. Bei hunderttausend Tasks pro Monat liegen die Lizenzkosten bei mehreren hundert Euro.\nn8n rechnet pro Workflow-Execution ab. Eine vollständige Workflow-Ausführung gilt als eine Einheit, unabhängig von der Anzahl der Schritte. Ein Workflow mit fünfzig Knoten wird gleich abgerechnet wie ein Workflow mit fünf, solange beide einmal laufen.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pricing.html#zwei-abrechnungsmodelle",
+    "href": "overview/pricing.html#zwei-abrechnungsmodelle",
+    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "",
+    "text": "WichtigWas das praktisch bedeutet\n\n\n\nDie Abrechnungslogik formt das Workflow-Design. Bei Per-Task-Abrechnung lohnt es sich, Schritte zu konsolidieren. Bei Per-Execution-Abrechnung spielt die Anzahl der Schritte für die Kosten keine Rolle. Welches Modell besser passt, hängt vom Einsatzprofil ab.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pricing.html#konkrete-größenordnungen",
+    "href": "overview/pricing.html#konkrete-größenordnungen",
+    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "2.2 Konkrete Größenordnungen",
+    "text": "2.2 Konkrete Größenordnungen\nFür ein typisches Marketing- oder Operations-Team mit hundert Use-Cases im Monat:\n\nn8n Cloud beginnt bei rund 24 € im Monat für 2.500 Executions, der Pro-Tarif liegt bei rund 50 € im Monat\nn8n Self-Host kostet keine Lizenz; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, was ab rund 5 € im Monat verfügbar ist\nn8n Managed Hosting durch Drittanbieter wie InstaPods ist ab rund 7 € im Monat verfügbar\nZapier im vergleichbaren Tarif ab rund 73 € im Monat für 750 Tasks\nMake im vergleichbaren Tarif ab rund 16 € im Monat für 10.000 Operations\n\nDie Zahlen sind volatil, denn alle genannten Anbieter passen Tarife regelmäßig an. Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab: Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben; bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pricing.html#vergleich-auf-einen-blick",
+    "href": "overview/pricing.html#vergleich-auf-einen-blick",
+    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "2.3 Vergleich auf einen Blick",
+    "text": "2.3 Vergleich auf einen Blick\n\n\n\nAspekt\nn8n\nZapier / Make\n\n\n\n\nAbrechnungs-Einheit\nPro Workflow-Execution\nPro Task / Operation\n\n\nSelf-Host möglich\nJa, kostenfrei (Fair-Code)\nNein\n\n\nKI-Knoten als Standard\nJa, eingebaut\nTeilweise, oft zugekauft\n\n\nCode-Knoten erlaubt\nJa, JavaScript und Python\nEingeschränkt\n\n\nLernkurve\nMittel\nFlach\n\n\n\n\n\n\n\n\n\nEine flache Lernkurve erleichtert den Einstieg, ein größerer Funktionsumfang erlaubt komplexere Workflows. Welches Kriterium stärker zählt, hängt vom Einsatzprofil ab.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pricing.html#wirtschaftliche-einordnung",
+    "href": "overview/pricing.html#wirtschaftliche-einordnung",
+    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "2.4 Wirtschaftliche Einordnung",
+    "text": "2.4 Wirtschaftliche Einordnung\nPraxis-Berichte aus dem Mittelstand nennen pro Use-Case Einsparungen zwischen fünf und zwanzig Stunden Wochenarbeitszeit, etwa für Lead-Qualifikation, Customer-Support-Routing, Reporting oder Invoice-Automation. Die Zahlen sind keine Versprechen, sondern Größenordnungen aus aktuellen Erfahrungsberichten.\nSie ordnen die Pricing-Frage in einen Gesamt-Kontext ein: Lizenzkosten sind nur ein Teil der Wirtschaftlichkeitsrechnung. Hinzu kommen Aufwand für Einarbeitung, Workflow-Pflege und die Integration in bestehende Prozesse.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pricing.html#auswahl-kriterien",
+    "href": "overview/pricing.html#auswahl-kriterien",
+    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "2.5 Auswahl-Kriterien",
+    "text": "2.5 Auswahl-Kriterien\nFolgende Kriterien helfen bei der Auswahl zwischen den Plattformen:\n\n\n\n\n\n\n\n\nKriterium\nEher Zapier oder Make\nEher n8n\n\n\n\n\nWorkflow-Länge\nWenige Schritte pro Workflow\nLange, mehrstufige Workflows\n\n\nHosting-Kontrolle\nCloud-only ist akzeptabel\nSelf-Hosting gewünscht oder gefordert\n\n\nKI-Integration\nPunktueller Einsatz reicht\nKI-Bausteine als Standard\n\n\nLernaufwand\nMöglichst flach\nHöherer Einarbeitungs-Aufwand vertretbar\n\n\nCode-Schritte\nSelten erforderlich\nJavaScript oder Python im Workflow\n\n\n\nWer eine bestehende Lösung mit wenigen einfachen Workflows betreibt, hat selten einen Grund zum Wechsel allein wegen des Pricings. Ein Plattform-Wechsel bedeutet immer auch Migrations- und Schulungs-Aufwand.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+    ]
+  },
+  {
+    "objectID": "overview/hosting.html",
+    "href": "overview/hosting.html",
+    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "",
+    "text": "3.1 Cloud\nDrei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von der Größe des Vorhabens ab als von drei Faktoren: dem erwarteten Volumen an Workflow-Ausführungen, der Empfindlichkeit der Daten und den verfügbaren IT-Skills im Team.\nDie n8n-Cloud ist eine SaaS-Variante, die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung.\nEigenschaften:",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+    ]
+  },
+  {
+    "objectID": "overview/hosting.html#cloud",
+    "href": "overview/hosting.html#cloud",
+    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "",
+    "text": "Geringer Setup-Aufwand, keine Server-Wartung, kein Update-Aufwand\nAb rund 24 € im Monat für 2.500 Executions, der Pro-Tarif ab rund 50 € im Monat\nGeeignet für Teams ohne dedizierte IT-Ressourcen oder für erste Schritte\n\n\n\n\n\n\n\nFür eine erste Lernphase ist die Cloud-Variante eine pragmatische Option, weil Linux, Docker oder TLS-Zertifikate dabei kein Thema sind. Wer später Self-Hosting betreiben will, kann Workflows als JSON exportieren und in eine eigene Instanz übertragen.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+    ]
+  },
+  {
+    "objectID": "overview/hosting.html#self-hosted",
+    "href": "overview/hosting.html#self-hosted",
+    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "3.2 Self-Hosted",
+    "text": "3.2 Self-Hosted\nDie Community Edition von n8n nutzt eine Fair-Code-Lizenz: Quellcode öffentlich, kostenlose Nutzung und Anpassung erlaubt, Wiederverkauf als konkurrierender Managed-Service ausgeschlossen. Damit unterscheidet sich Fair-Code von klassischen Open-Source-Lizenzen wie MIT oder Apache, die auch kommerzielle Konkurrenz-Angebote zulassen. n8n läuft auf jeder beliebigen Maschine, vom Raspberry Pi im Heimnetz bis zum Cloud-Server bei Hetzner, AWS oder Azure.\nEigenschaften:\n\nUnbegrenzte Workflows, Ausführungen und Nutzer\nKeine Lizenzkosten; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi im Heimnetz) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, ab rund 5 € im Monat\n1 bis 2 Stunden initialer Setup-Aufwand, danach ca. 1 bis 3 Stunden pro Monat Wartung\nVolle Kontrolle über Daten, Backups und Update-Zeitpunkte\n\n\n\n\n\n\n\nWichtigWas Self-Host wirklich bedeutet\n\n\n\nSelf-Host ist nicht nur eine Installation. Wer eine eigene Instanz betreibt, verantwortet auch:\n\nRegelmäßige Updates der n8n-Version\nBackup-Strategie für Workflows und Credentials\nTLS-Zertifikate und sichere Erreichbarkeit\nMonitoring und Logging im laufenden Betrieb\n\nDiese Aufgaben sind technisch beherrschbar, erfordern aber kontinuierlichen Aufwand. Vor einer Entscheidung für Self-Host sollte daher geklärt sein, wer die Pflege der Instanz im laufenden Betrieb übernimmt.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+    ]
+  },
+  {
+    "objectID": "overview/hosting.html#managed-hosting",
+    "href": "overview/hosting.html#managed-hosting",
+    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "3.3 Managed Hosting",
+    "text": "3.3 Managed Hosting\nSpezialisierte Anbieter wie InstaPods betreiben Self-Host-Instanzen für ihre Kunden. Die Kunden behalten die Datenkontrolle einer eigenen Instanz, ohne die Maschine selbst zu pflegen.\nEigenschaften:\n\nAb rund 7 € im Monat für eine Basis-Instanz\nKeine Lizenzkosten, keine eigene Server-Pflege\nDaten bleiben auf europäischen Servern, je nach Anbieter wählbar\nBegrenzte Anpassbarkeit gegenüber einer eigenen Maschine\n\nDiese Variante eignet sich für Teams, die die Kostenstruktur von Self-Host nutzen möchten, ohne den Linux-Server-Betrieb selbst zu übernehmen.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+    ]
+  },
+  {
+    "objectID": "overview/hosting.html#drei-fragen-die-die-entscheidung-leiten",
+    "href": "overview/hosting.html#drei-fragen-die-die-entscheidung-leiten",
+    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "3.4 Drei Fragen, die die Entscheidung leiten",
+    "text": "3.4 Drei Fragen, die die Entscheidung leiten\nStatt mit einem Tool-Vergleich zu starten, lohnen sich drei vorgelagerte Fragen.\n\n3.4.1 Volumen: wie viele Ausführungen pro Monat?\nBei der Cloud-Variante steigen die Kosten mit der Anzahl der Executions, bei Self-Host und Managed Hosting bleiben die Server-Kosten konstant. Reine Lizenz- und Server-Kosten von Self-Host (ab rund 5 € im Monat) liegen meist unter den Cloud-Tarifen. Der praktische Aufwand fällt aber unterschiedlich aus: Cloud benötigt keine Wartung, Self-Host schon.\n\n\n3.4.2 Souveränität: welche Daten verlassen die eigene Infrastruktur?\nIn regulierten Branchen ist Datensouveränität nicht optional, sondern Pflicht. Patientendaten, Kundenkontakte mit besonderem Schutzbedarf oder interne Prozessdokumente werfen die Frage auf, wo sie verarbeitet werden dürfen. Für viele Anwendungsfälle scheiden Cloud-Hosts in den USA aus; EU-Cloud-Hosts oder eigenes Hosting bleiben als Optionen. Hetzner etwa betreibt Rechenzentren in Deutschland und Finnland, was die DSGVO-Anforderungen vereinfacht.\n\n\n3.4.3 Skill-Bestand: wer pflegt die Instanz?\nOhne IT-Kapazität sind Cloud oder Managed Hosting realistische Optionen. Eine Self-Host-Instanz, die nicht aktualisiert und überwacht wird, wird auf Dauer zum Sicherheits-Risiko. Diese Frage gehört vor jede technische Diskussion.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+    ]
+  },
+  {
+    "objectID": "overview/hosting.html#übersicht-zur-auswahl",
+    "href": "overview/hosting.html#übersicht-zur-auswahl",
+    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "3.5 Übersicht zur Auswahl",
+    "text": "3.5 Übersicht zur Auswahl\n\n\n\nSituation\nPassende Option\n\n\n\n\nErste Schritte, kleines Team, keine IT\nCloud\n\n\nSensible Daten, IT-Team vorhanden\nSelf-Hosted\n\n\nSensible Daten, keine IT\nManaged Hosting\n\n\nHohe Volumen, niedrige Lizenzkosten gewünscht\nSelf-Hosted\n\n\nLernen und Experimentieren\nCloud oder lokale Docker-Instanz\n\n\n\n\n\n\n\n\n\nDie Übersicht zeigt typische Zuordnungen, keine starren Regeln. Wer mit der Cloud-Variante startet und später wechselt, kann Workflows als JSON-Datei exportieren und in der neuen Instanz importieren. Der Wechsel ist reversibel; die erste Wahl muss daher nicht endgültig sein.",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/index.html",
+    "href": "first-workflows/index.html",
+    "title": "Erste Workflows",
+    "section": "",
+    "text": "In diesem Teil legen wir das handwerkliche Fundament für alles Weitere. Wir öffnen den n8n-Editor, lernen die wichtigsten Bereiche kennen und bauen einen kleinen Workflow, der eine simulierte Kundenmail entgegennimmt, einen Tabelleneintrag schreibt und eine Bestätigungs-Mail versendet. Der Workflow ist deterministisch und ohne KI, damit das Editor-Verhalten, die Knoten-Mechanik und die Test- und Live-Pfade sitzen, bevor im Aufbaukurs KI-Agenten in n8n Sprach-Modelle, Tools und Agent-Schleifen dazukommen.\nZwei Themen ziehen sich durch: die saubere Trennung zwischen Simulation und Produktion (Mock-Output statt fest verdrahtetem Schritt) und die frühe Disziplin bei Credentials, denn jeder Workflow, der echte Mails liest oder externe APIs anspricht, braucht Zugangsdaten, die getrennt vom Workflow gespeichert werden.\nWir werden:\n\nDen n8n-Editor öffnen und die drei wichtigsten Bereiche (Canvas, Node-Panel, Output-Spalte) kennenlernen\nCredentials vorbereiten, also wie man sie anlegt, zuweist und vom Workflow trennt\nDen Demo-Workflow Schritt für Schritt zusammenbauen, mit Mock-Daten testen und in den Live-Modus überführen\n\nWer den Editor schon kennt, kann diesen Teil zügig durchgehen. Wer mit n8n neu startet, baut hier die Routinen auf, die im Aufbaukurs vorausgesetzt werden: Mock-Daten verwenden, Schritt für Schritt ausführen, das Logs-Panel lesen und Knoten beim Verdacht auf Fehler isoliert testen.",
+    "crumbs": [
+      "Erste Workflows"
+    ]
+  },
+  {
+    "objectID": "first-workflows/credentials.html",
+    "href": "first-workflows/credentials.html",
+    "title": "4  Credentials vorbereiten",
+    "section": "",
+    "text": "4.1 Warum Credentials benötigt werden\nBevor ein Workflow echte Mails lesen oder versenden kann, brauchen wir Zugangsdaten. n8n speichert diese Zugangsdaten als Credentials: getrennt vom Workflow, wiederverwendbar für mehrere Knoten und mit einem eigenen Zugriffsschutz.\nCredentials sind die Voraussetzung dafür, dass ein Workflow nicht nur im Editor simuliert, sondern in echten Systemen laufen kann.\nEin n8n-Knoten kann nur dann mit einem externen Dienst sprechen, wenn er sich dort ausweisen kann. Beim Demo-Workflow betrifft das zwei Richtungen:\nFür den ersten Durchlauf nutzen wir zunächst einen manuellen Trigger und eine simulierte Mail. So lernen wir den Editor ohne Konto-Hürden kennen. Sobald das Prinzip klar ist, ersetzen wir die Simulation durch echte Mail-Credentials.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/credentials.html#warum-credentials-benötigt-werden",
+    "href": "first-workflows/credentials.html#warum-credentials-benötigt-werden",
+    "title": "4  Credentials vorbereiten",
+    "section": "",
+    "text": "Zugriff\nWofür wir ihn brauchen\nTypischer Knoten\n\n\n\n\nMail lesen\nEingehende Nachricht als Trigger erkennen\nEmail Trigger (IMAP)\n\n\nMail senden\nAutomatische Bestätigung verschicken\nSend Email (SMTP)\n\n\nOptionale Tools\nSlack, HubSpot, Notion oder Google Sheets ansprechen\njeweiliger App-Knoten\n\n\n\n\n\n\n\n\n\n\nTippErst simulieren, dann verbinden\n\n\n\nMit einem kontrollierten Beispieldatensatz zu starten macht den Datenfluss sofort sichtbar. Erst danach verbinden wir echte Konten, bei denen Authentifizierung, Postfachregeln oder Spamfilter zusätzliche Fehlerquellen sein können.\n\n\n\n\n\n\n\n\nAbbildung 4.1: Credentials-Übersicht in n8n: zentrale Verwaltung getrennt von den Workflows, mit Name, Typ und Verbindungsdetails.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/credentials.html#drei-credential-arten-im-kurs",
+    "href": "first-workflows/credentials.html#drei-credential-arten-im-kurs",
+    "title": "4  Credentials vorbereiten",
+    "section": "4.2 Drei Credential-Arten im Kurs",
+    "text": "4.2 Drei Credential-Arten im Kurs\nApp-spezifisches Passwort. Einige Mail-Anbieter erlauben ein separates Passwort nur für Programme wie n8n. Dieses Passwort kann später widerrufen werden, ohne das Hauptpasswort des Mail-Kontos zu ändern. Für Internet Message Access Protocol (IMAP) und Simple Mail Transfer Protocol (SMTP) ist das eine verbreitete Einstiegsvariante.\nOAuth.\nBei Gmail, Microsoft 365 und vielen SaaS-Diensten ist OAuth die bessere Lösung. Wir melden uns beim Anbieter an, n8n erhält einen Token, und dieser Token kann begrenzt oder widerrufen werden. OAuth ist sicherer, kann aber in Self-Hosted-Instanzen etwas mehr Konfiguration verlangen.\nAPI-Token.\nSlack, HubSpot, Notion oder interne Systeme arbeiten oft mit API-Tokens. Hier achten wir besonders auf den Scope: Ein Token, der nur Nachrichten in einen Slack-Channel schreiben darf, ist sicherer als ein Token mit Vollzugriff.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/credentials.html#sichere-praxis",
+    "href": "first-workflows/credentials.html#sichere-praxis",
+    "title": "4  Credentials vorbereiten",
+    "section": "4.3 Sichere Praxis",
+    "text": "4.3 Sichere Praxis\nWir halten uns an drei Regeln:\n\nKein Hauptpasswort im Workflow. Wir verwenden App-Passwörter, OAuth oder API-Tokens.\nGeringstmögliche Berechtigungen (Least Privilege). Ein Credential bekommt nur die Berechtigungen, die der konkrete Workflow braucht.\nTrennung von Test und Produktion. Testkonten und Testtabellen verhindern, dass ein Lernworkflow versehentlich echte Kundendaten verändert.\n\n\n\n\n\n\n\nWichtigCredentials sind echte Schlüssel\n\n\n\nEine kompromittierte n8n-Instanz ist nicht nur ein Workflow-Problem. Sie kann Zugriff auf Mail-Konten, CRM-Systeme, Datenbanken und weitere API-Systeme öffnen. Deshalb behandeln wir Credentials wie echte Schlüssel: begrenzen, dokumentieren, regelmäßig prüfen und bei Verdacht widerrufen.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/credentials.html#mini-checkliste-vor-dem-weiterbauen",
+    "href": "first-workflows/credentials.html#mini-checkliste-vor-dem-weiterbauen",
+    "title": "4  Credentials vorbereiten",
+    "section": "4.4 Mini-Checkliste vor dem Weiterbauen",
+    "text": "4.4 Mini-Checkliste vor dem Weiterbauen\nFür Modul 02 reicht diese Vorbereitung:\n\nEine n8n-Instanz ist erreichbar, Cloud oder Self-Hosted.\nWir können einen Workflow im Editor öffnen und speichern.\nFür den Live-Modus legen wir später ein SMTP-Credential zum Senden und ein IMAP- oder Gmail-/Microsoft-Credential zum Lesen an.\nDie erste Testadresse sollte keine produktive Support- oder Sales-Adresse sein.\n\nDamit ist die Grundlage gelegt. Im nächsten Kapitel importieren oder bauen wir den ersten Workflow und arbeiten zunächst mit simulierten Maildaten. Danach sehen wir genau, an welcher Stelle echte Credentials eingehängt werden.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/first-workflow.html",
+    "href": "first-workflows/first-workflow.html",
+    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "section": "",
+    "text": "5.1 Zielbild\nIn diesem Kapitel bauen wir den ersten vollständigen Workflow. Er simuliert eine eingehende Mail, verschickt eine Bestätigung und schreibt einen Eintrag in eine Tabelle.\nDer fertige Workflow hat fünf Stationen:",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/first-workflow.html#zielbild",
+    "href": "first-workflows/first-workflow.html#zielbild",
+    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "section": "",
+    "text": "Start workflow manually: Ein Manual-Trigger-Knoten startet den Workflow per Klick.\nReceive email: Ein Set-Knoten erzeugt die Felder sender, subject, text und received_at.\nSend confirmation: Ein Send-Email-Knoten antwortet an den Absender.\nPrepare table entry: Ein zweiter Set-Knoten bringt die Daten in Tabellenform.\nSave table entry: Ein Data-Table-Knoten schreibt eine Zeile in die Tabelle customer_emails.\n\n\n\n\n\n\n\nAbbildung 5.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge Manual Trigger, Set, Send Email, Set, Data Table.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/first-workflow.html#schnellstart-per-import",
+    "href": "first-workflows/first-workflow.html#schnellstart-per-import",
+    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "section": "5.2 Schnellstart per Import",
+    "text": "5.2 Schnellstart per Import\nWer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen, kann ihn direkt per URL in die eigene n8n-Instanz importieren:\n\nIm Editor einen neuen, leeren Workflow anlegen.\nOben rechts auf das Drei-Punkte-Menü klicken.\nImport from URL wählen und folgende Adresse einfügen:\nhttps://raw.githubusercontent.com/kirenz/n8n-workflows/main/n8n-basics/modul-02-first-workflow.json\nBestätigen. Der Workflow erscheint im Editor mit allen Knoten und Verbindungen.\n\nNach dem Import sind Manual Trigger, Set, Send Email und Set vorhanden. Der Data-Table-Knoten fehlt bewusst, weil Tabellen-IDs in jeder n8n-Instanz lokal entstehen. Die Tabelle anlegen und im Data-Table-Knoten neu auswählen, dann ist der Workflow vollständig.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/first-workflow.html#schritt-für-schritt-selbst-bauen",
+    "href": "first-workflows/first-workflow.html#schritt-für-schritt-selbst-bauen",
+    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "section": "5.3 Schritt für Schritt selbst bauen",
+    "text": "5.3 Schritt für Schritt selbst bauen\nWir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat dabei einen Namen, der im Canvas angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen wie Edit Fields oder Send an Email. Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.\nIm Kurs folgen wir einer einheitlichen Konvention:\n\nEnglische Namen in Verb-Form, die beschreiben, was der Knoten tut. Beispiel: Receive email.\nZu vermeiden sind Apostrophe ('), Anführungszeichen (\"), geschweifte Klammern ({ }) und Backslashes (\\), weil sie mit der Expression- oder JSON-Syntax kollidieren können.\n\n\n5.3.1 Vorbereitung: Neuen Workflow anlegen\n\nIn n8n anmelden.\nOverview-Ansicht (Haus-Symbol links oben im Menü) auswählen.\nOben rechts den Button Create workflow (oder das Plus-Symbol links oben) wählen.\nIm leeren Canvas oben links auf den Workflow-Namen (My workflow) klicken und ihn umbenennen in n8n-02.\nNeben dem Workflow-Namen auf + Add tag klicken und die beide tags n8n-basics und modul-02 erstellen und hinzufügen. Tags helfen später bei der Übersicht, Filterung und Dokumentation der Workflows.\n\n\n\n\n\n\n\nAbbildung 5.2: Leerer Canvas direkt nach dem Anlegen eines neuen Workflows. In der Mitte das Plus-Symbol zum Einfügen des ersten Knotens.\n\n\n\n\n\n5.3.2 Schritt 1: Manuellen Auslöser einfügen\n\nAuf das große Plus-Symbol in der Canvas-Mitte klicken.\nIm rechts erscheinenden Knoten-Picker oben Trigger manually wählen.\nOberhalb des Knotens auf die 3 Punkte klicken und Rename wählen.\nDen Knoten umbenennen in Start workflow manually.\n\nEine weitere Konfiguration ist nicht nötig.\n\n\n\n\n\n\nAbbildung 5.3: Knoten-Picker mit der Auswahl “Trigger manually” als manuellen Auslöser.\n\n\n\n\n\n5.3.3 Schritt 2: Receive email\n\nRechts neben dem Knoten Start workflow manually erscheint ein Plus. Darauf klicken.\nIm Suchfeld des Knoten-Pickers Edit Fields eingeben.\nEdit Fields (Set) auswählen.\nDen Knoten oben links umbenennen in Receive email (Default-Name: Edit Fields).\nMode bei Manual Mapping belassen.\nBei Fields to Set auf Add Field klicken und nacheinander vier Felder eintragen:\n\n\n\n\n\n\n\n\n\n\nName\nTyp\nValue\nModus\n\n\n\n\nsender\nString\nmax@example.com\nFixed\n\n\nsubject\nString\nQuestion about delivery time\nFixed\n\n\ntext\nString\nHello, I ordered yesterday and was wondering when delivery will arrive. Best regards, Max\nFixed\n\n\nreceived_at\nString\n{ $now.toISO() }\nExpression\n\n\n\nDie ersten drei Felder sind feste Werte, die bei jeder Ausführung gleich bleiben. Das vierte Feld received_at soll den tatsächlichen Ausführungszeitpunkt liefern, deshalb verwenden wir hier eine Expression.\n\n\n\n\n\n\nHinweisWas bedeutet der Ausdruck $now.toISO()?\n\n\n\n\n\nDer Ausdruck setzt sich aus drei Bestandteilen zusammen:\n\n{ ... } kennzeichnet in n8n einen Ausdruck. Der Inhalt wird als JavaScript ausgewertet, nicht wörtlich übernommen.\n$now ist eine eingebaute n8n-Variable. Sie liefert den aktuellen Zeitpunkt.\n.toISO() wandelt diesen Zeitpunkt in eine Zeichenkette nach dem ISO-8601-Standard um.\n\nEine typische Ausgabe lautet 2026-05-14T10:23:45.123+02:00 und enthält Datum, Uhrzeit mit Millisekunden sowie den Zeitzonen-Offset. Der Wert wird bei jeder Workflow-Ausführung neu berechnet und entspricht damit dem tatsächlichen Ausführungszeitpunkt.\nVerwandte Varianten:\n\n{ $now.toFormat('dd.MM.yyyy') } liefert das Datum im deutschen Format, etwa 14.05.2026.\n{ $today.toISO() } liefert den aktuellen Tag.\n{{ $now.plus({days: 7}).toISO() }} liefert den Zeitpunkt sieben Tage nach der Ausführung.\n\nSolche Zeit-Ausdrücke lassen sich in jedem Feld eines beliebigen Knotens verwenden, sobald der Expression-Modus aktiv ist. Typische Anwendungsfälle sind Dateinamen mit Zeitstempel, Filterbedingungen auf Basis des aktuellen Datums oder das Setzen eines createdAt-Feldes vor dem Schreiben in eine Datenbank.\n\n\n\n\nAuf Execute step klicken. Im Output-Panel rechts erscheinen die vier Felder.\n\n\n\n\n\n\n\nAbbildung 5.4: Set-Knoten mit den vier Feldzuweisungen und aktiviertem Expression-Modus bei received_at.\n\n\n\n\n\n\n\n\n\nHinweisDrei Ansichten im Output-Panel\n\n\n\nDas Output-Panel bietet drei Ansichten für die Daten, die ein Knoten weitergibt:\n\n\n\nAnsicht\nInhalt\n\n\n\n\nTable\ntabellarische Darstellung der Felder\n\n\nJSON\nvollständige Datenstruktur mit Feldnamen\n\n\nSchema\nListe der vorhandenen Felder ohne Werte\n\n\n\nDie JSON-Ansicht zeigt die exakten Feldnamen, mit denen Expressions in nachfolgenden Knoten arbeiten. Wenn ein Feld sender heißt, funktioniert { $json.sender }. Liefert ein Trigger stattdessen fromEmail, muss die Expression angepasst werden (n8n 2026).\n\n\n\n\n\n\nAbbildung 5.5: Output-Panel mit den drei Ansichten Schema, Table und JSON. Die JSON-Ansicht zeigt die exakten Feldnamen und Werte, die der Knoten weitergibt.\n\n\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\n\n\n\n5.3.4 Schritt 3: Send confirmation\n\nRechts am Knoten Receive email auf + klicken.\nIm Knoten-Picker Send Email suchen und auswählen.\nDen Knoten oben links umbenennen in Send confirmation (Default-Name: Send an Email).\n\nMit dem Öffnen des Knotens erscheint die Drei-Spalten-Ansicht des Knoten-Editors: links der Input, in der Mitte die Parameter dieses Knotens, rechts erscheint nach Execute step der Output.\n\nFelder konfigurieren (Operation auf Send belassen):\n\n\n\n\nFeld\nWert\nModus\n\n\n\n\nFrom Email\ninfo@company.com\nFixed\n\n\nTo Email\n{ $json.sender }\nExpression\n\n\nSubject\nThank you for your message\nFixed\n\n\n\n\n\n\n\n\n\nHinweisWas bedeutet { $json.sender }?\n\n\n\n$json bezeichnet die Daten, die der vorherige Knoten weitergegeben hat. In der Input-Spalte links sind diese Felder sichtbar: sender, subject, text und received_at. .sender greift auf das Feld sender zu, in unserem Fall max@example.com.\nStatt die Expression von Hand zu tippen, kann das Feld sender auch aus der Input-Spalte per Drag-and-drop in das Parameter-Feld gezogen werden. n8n erzeugt die Expression dann automatisch.\n\n\nDas Feld Email Format steht standardmäßig auf HTML. Wir stellen es auf Text um, damit Absätze und Zeilenumbrüche im Beispieltext erhalten bleiben.\nBeispiel-Text für das Feld Text:\nHello,\n\nthank you for your message. We have received it and will get back to you within one business day.\n\nSubject of your inquiry: {{ $json.subject }}\n\nBest regards\nThe customer service team\n\nAuf Execute step klicken.\n\nAn dieser Stelle erscheint die Fehlermeldung Node does not have any credentials set, weil die Credentials für den Mail-Versand fehlen. Den Knoten deaktivieren wir gleich, damit der Workflow trotzdem bis zum Ende durchläuft.\n\n\n\n\n\n\nAbbildung 5.6: Send-Email-Knoten mit Expressions für Empfänger und Betreff: feste Formulierungen kombiniert mit dynamischen Feldern aus dem vorherigen Knoten.\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\nDamit der Workflow trotzdem bis zum Ende durchläuft, stellen wir den Knoten Send confirmation über das Drei-Punkte-Menü oberhalb des Knotens auf Deactivate.\n\nDie folgenden Schritte 4 und 5 können wir nun testen, ohne dass der deaktivierte Knoten einen Fehler ausgibt. Nach dem Anlegen des Credentials aktivieren wir den Knoten wieder.\n\n\n5.3.5 Schritt 4: Prepare table entry\n\nRechts am Knoten Send confirmation auf + klicken.\nIm Knoten-Picker Edit Fields (Set) suchen und auswählen.\nDen Knoten umbenennen in Prepare table entry (Default-Name: Edit Fields).\nMode bleibt auf Manual Mapping.\nIm Input-Panel links auf Receive email klicken. Anschließend die drei Felder sender, subject und received_at nacheinander per Drag-and-drop in den Bereich Fields to Set ziehen.\nEin viertes Feld manuell über Add Field anlegen: Name status, Wert new, Modus Fixed.\n\nDas Ergebnis im Knoten:\n\n\n\n\n\n\n\n\nName\nWert\nModus\n\n\n\n\nsender\n{ $('Receive email').item.json.sender }\nExpression\n\n\nsubject\n{ $('Receive email').item.json.subject }\nExpression\n\n\nreceived_at\n{ $('Receive email').item.json.received_at }\nExpression\n\n\nstatus\nnew\nFixed\n\n\n\n\n\n\n\n\n\nHinweisWarum eine Cross-Node-Expression?\n\n\n\nEine sogenannte Cross-Node-Expression $('Knotenname').item.json.feld greift gezielt auf einen früheren Knoten zu. Sie ist hier nötig, weil zwischen Receive email und diesem Knoten der Send-Email-Knoten liegt. Ein einfaches $json.sender würde dessen Output referenzieren, nicht die ursprünglichen Mail-Felder. Durch das Umschalten der Quelle im Input-Panel auf Receive email erzeugt n8n die robuste Form automatisch.\n\n\n\nAuf Execute step klicken. Im Output stehen die vier Spalten des späteren Tabelleneintrags.\n\n\n\n\n\n\n\nAbbildung 5.7: Set-Knoten mit den vier Cross-Node-Expressions, die Werte aus dem Knoten Receive email beziehen.\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\n\n\n\n5.3.6 Schritt 5: Data Table anlegen und Eintrag schreiben\nEin “Data Table” speichert strukturierte Daten direkt in n8n. Die Tabelle ist nicht Teil des Workflows, sondern liegt auf der Projekt-Ebene und wird aus dem Workflow heraus über einen Data-Table-Knoten beschrieben oder gelesen.\nTabelle anlegen:\nDie Verwaltung der Data Tables liegt außerhalb des Workflow-Editors. Wir verlassen den Editor kurz, legen die Tabelle an und kehren danach in den Workflow zurück.\n\nOben links auf Overview klicken, um zur Projekt-Übersicht zurückzukehren.\nIn der oberen Menüleiste auf Data tables klicken (gleiche Ebene wie Workflows, Credentials und Executions).\nAuf Create Data Table klicken.\nNam vergeben: customer_emails (From scratch auswählen).\nOben rechts Add Column klicken und nacheinander vier Spalten hinzufügen:\n\n\n\n\nName\nType\n\n\n\n\nsender\nstring\n\n\nsubject\nstring\n\n\nreceived_at\nstring\n\n\nstatus\nstring\n\n\n\nn8n ergänzt automatisch eine id-Spalte, die jede Zeile eindeutig identifiziert. In der Übersicht erscheint die neue Tabelle daher mit insgesamt fünf Spalten.\nData-Table-Knoten in den Workflow einfügen:\n\nIn der Projektübersicht wieder zu Workflows wechseln und n8n-02 auswählen.\nRechts am Knoten Prepare table entry auf das Plus-Symbol klicken.\nIm Knoten-Picker Data table suchen und auswählen.\nIm erscheinenden Action-Menü unter Row Actions die Action Insert row auswählen.\nDen Knoten links oben umbenennen in Save table entry (Default-Name: Insert row).\nIm Parameters-Panel:\n\nResource: Row belassen (Default).\nOperation: Insert belassen (Default).\nData table: Modus From list belassen und im rechten Dropdown customer_emails auswählen.\nMapping Column Mode: auf Map Automatically umstellen.\n\nAuf Execute step klicken.\n\n\n\n\n\n\n\nHinweisWarum Map Automatically hier funktioniert\n\n\n\nMap Automatically sucht im eingehenden Datenobjekt nach Feldern, die genauso heißen wie die Spalten der Tabelle, und übernimmt sie eins zu eins. Weil der Knoten Prepare table entry die Felder bewusst mit identischen Namen liefert (sender, subject, received_at, status), greift das automatische Mapping ohne weitere Konfiguration.\nDer manuelle Modus Map Each Column Manually wäre nötig, wenn die Feldnamen abweichen, ein Wert umgerechnet werden muss oder eine Spalte fest gesetzt werden soll, ohne aus dem Input zu stammen.\n\n\n\n\n\n\n\n\nAbbildung 5.8: Data-Table-Knoten mit Operation Insert Row, Auswahl der Tabelle customer_emails und Mapping der vier Spalten.\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\n\n\n\n5.3.7 Workflow speichern und vollständig ausführen\n\nIn der Workflow-Übersicht auf Execute Workflow klicken.\nAlle fünf Knoten bekommen einen grünen Haken (mit Ausnahme des deaktivierten Knotens Send confirmation, der übersprungen wird). Es erscheint die Bestätigung Workflow executed successfully.\nZur Kontrolle die Tabelle customer_emails öffnen: oben links auf Overview klicken, zur Projekt-Übersicht wechseln und im Tab Data tables auf customer_emails klicken.\nIn der Tabelle erscheint eine neue Zeile mit Werten für sender, subject, received_at und status (Wert new) sowie eine automatisch vergebene id.\n\n\n\n\n\n\n\nAbbildung 5.9: Workflow nach erfolgreichem Lauf mit grünen Häkchen an allen Knoten.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/first-workflow.html#fehler-diagnostizieren",
+    "href": "first-workflows/first-workflow.html#fehler-diagnostizieren",
+    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "section": "5.4 Fehler diagnostizieren",
+    "text": "5.4 Fehler diagnostizieren\nEin roter Knoten erfordert keinen Neuaufbau des Workflows. Wir lesen die Fehlermeldung, prüfen den Input des Knotens und vergleichen ihn mit der Knoten-Einstellung. Häufige Ursachen sind ein fehlendes Credential, ein abweichender Feldname oder ein Testdatensatz ohne Wert. Den frühesten Fehler im Workflow beheben wir zuerst, denn falsche Daten in Knoten 2 machen einen Blick auf Knoten 4 überflüssig.\nEine erste Orientierung bei wiederkehrenden Symptomen:\n\n\n\n\n\n\n\n\nSymptom\nWahrscheinliche Ursache\nNächster Prüfschritt\n\n\n\n\nSend Email schlägt fehl\nSMTP-Credential fehlt oder Absenderadresse passt nicht\nCredential öffnen, Testadresse prüfen\n\n\nEmpfänger ist leer\nsender existiert im Input nicht\nOutput des vorherigen Knotens in JSON prüfen\n\n\nData Table schreibt nicht\nTabelle oder Spalte fehlt\nTabelle customer_emails und Spaltennamen prüfen\n\n\nZeitstempel fehlt\nExpression im Set-Knoten falsch\n{ $now.toISO() } testen",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/first-workflow.html#vom-test-zum-live-betrieb",
+    "href": "first-workflows/first-workflow.html#vom-test-zum-live-betrieb",
+    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "section": "5.5 Vom Test zum Live-Betrieb",
+    "text": "5.5 Vom Test zum Live-Betrieb\nBisher lief der Workflow nur per Klick auf Execute Workflow. Damit er automatisch auf eingehende Mails reagiert, sind drei Anpassungen nötig: ein echter Trigger, gültige Credentials und der Active-Modus.\n\nTrigger austauschen. Den Knoten Start workflow manually entfernen und stattdessen einen Mail-Trigger einfügen, etwa Email Trigger (IMAP) oder Gmail Trigger.\nCredentials hinterlegen. Für den Trigger ein IMAP- oder OAuth-Credential anlegen, für Send confirmation ein SMTP-Credential. Die Credential-Arten sind im Kapitel Credentials vorbereiten beschrieben.\nSend-Email-Knoten reaktivieren. Den in Schritt 3 deaktivierten Knoten Send confirmation über das Drei-Punkte-Menü wieder auf Activate setzen.\nWorkflow aktivieren. Oben rechts den Schalter Active einschalten.\nTestlauf prüfen. Eine Testmail aus einer eigenen Adresse an das Trigger-Postfach senden. Im linken Menü auf Executions klicken und den Lauf öffnen. Bestätigungsmail und neue Zeile in der Tabelle customer_emails kontrollieren.\n\n\n\n\n\n\n\nAbbildung 5.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint mit Status, Datum und Dauer und lässt sich für die Nachverfolgung öffnen.\n\n\n\nSobald der Workflow aktiv ist, behandelt n8n jede eingehende Mail im Trigger-Postfach als produktives Ereignis. Eine produktive Support- oder Sales-Adresse eignet sich daher nicht als erste Trigger-Quelle. Für den ersten Live-Test empfiehlt sich eine separate Testadresse.\n\n\n\n\n\n\nWichtigFallstricke im Live-Betrieb\n\n\n\nDrei Stolpersteine zeigen sich erfahrungsgemäß beim ersten produktiven Lauf:\n\nTrigger feuert nicht. Der häufigste Grund ist ein abgelaufener OAuth-Token oder ein IMAP-Server, der nach einer Stunde Inaktivität die Verbindung schließt. Unter Executions prüfen, ob überhaupt ein Lauf stattfindet; in den Trigger-Einstellungen ggf. das Polling-Intervall auf 1 Minute setzen und das Credential neu autorisieren.\nDoppelverarbeitung nach n8n-Restart. Ohne eine Idempotency-Spalte verarbeitet n8n bei einem Neustart die letzten Mails erneut. Für produktive Workflows gehört eine external_message_id-Spalte in die Tabelle, die vor jedem Insert geprüft wird (dieses Pattern vertieft der Aufbaukurs KI-Agenten in n8n).\nBestätigungs-Mail landet im Spam. SMTP-Mails von neuen Absenderdomains haben anfangs keinen Reputations-Score. Vor dem Live-Schalten einen SPF- und DKIM-Eintrag setzen oder einen Mail-Versand-Dienst wie Postmark oder SendGrid nutzen.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/first-workflow.html#kontrollpunkt-für-modul-02",
+    "href": "first-workflows/first-workflow.html#kontrollpunkt-für-modul-02",
+    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "section": "5.6 Kontrollpunkt für Modul 02",
+    "text": "5.6 Kontrollpunkt für Modul 02\nAm Ende dieses Moduls sollten folgende Punkte bekannt sein:\n\nEinen Workflow neu anlegen, umbenennen und mit Tags versehen.\nKnoten einfügen, umbenennen und über das Plus-Symbol verketten.\nMit dem Set-Knoten (Edit Fields) Felder erzeugen, die nachfolgende Knoten weiterverwenden.\nEinfache Expressions schreiben und lesen: { $json.feld }, { $now.toISO() } sowie Cross-Node-Expressions { $('Knotenname').item.json.feld }.\nEine Data Table auf Projekt-Ebene anlegen und mit dem Data-Table-Knoten per Map Automatically Zeilen einfügen.\nEinen Knoten temporär deaktivieren, um den Workflow trotz fehlender Credentials bis zum Ende durchlaufen zu lassen.\nDen Workflow vom Manual-Trigger auf einen Mail-Trigger umstellen und aktivieren.\n\n\n\n\n\nn8n. 2026. „Create and Run Workflows“. https://docs.n8n.io/workflows/create/.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+    ]
+  }
+]
