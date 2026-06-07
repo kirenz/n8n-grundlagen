@@ -1,0 +1,101 @@
+{
+  "lesson_title": "Die Bausteine von n8n",
+  "learning_objective": "Eine Lernende kann die zentralen Bausteine eines n8n-Workflows benennen und ihrer Rolle im Datenfluss zuordnen (Workflow, Trigger, Node, Execution, Expression, Credentials, Integration, Data Table, KI-Knoten).",
+  "source": {
+    "chapter": "Einführung",
+    "url": "https://kirenz.github.io/n8n-grundlagen/introduction.html"
+  },
+  "blocks": [
+    {
+      "type": "situation",
+      "title": "Ein Workflow als gemeinsames Bild",
+      "text": "Stell dir einen Workflow vor, der eine eingehende Mail automatisch bearbeitet: Er ordnet sie einer Kategorie zu (etwa Vertriebs-Anfrage, Support-Anfrage oder Beschwerde), verschickt eine Bestätigung und legt einen Eintrag in einer Tabelle an. In diesem einen Beispiel stecken fast alle Bausteine, mit denen dieser Kurs arbeitet. Wir benennen sie der Reihe nach, damit klar ist, worauf wir aufbauen.",
+      "source_anchor": "Workflow"
+    },
+    {
+      "type": "micro_explanation",
+      "title": "Die Bausteine auf der Arbeitsfläche",
+      "points": [
+        "Workflow: eine Kette von Schritten, die durch ein definiertes Ereignis ausgelöst wird und einen bestimmten Zweck verfolgt.",
+        "Trigger: der Auslöser, der den Workflow startet, zum Beispiel zeitgesteuert, app-spezifisch oder manuell zum Testen.",
+        "Node: ein einzelner Schritt, der Daten vom vorigen Schritt entgegennimmt, eine Aktion ausführt und das Ergebnis weiterreicht.",
+        "Sticky Note: eine erklärende Notiz auf der Arbeitsfläche ohne Funktion im Datenfluss, sie hält Workflows lesbar.",
+        "Execution: ein einzelner Lauf des Workflows von Anfang bis Ende, protokolliert mit Eingangsdaten, Knoten-Ergebnissen und Fehlern."
+      ],
+      "source_anchor": "Workflow, Trigger, Node, Sticky Note, Execution"
+    },
+    {
+      "type": "quiz",
+      "title": "Kurzcheck: Bausteine und ihre Rolle",
+      "question": {
+        "question_type": "matching",
+        "prompt": "Ordne jeden Baustein seiner Rolle im Workflow zu.",
+        "left": [
+          { "id": "trigger", "text": "Trigger" },
+          { "id": "node", "text": "Node" },
+          { "id": "sticky", "text": "Sticky Note" },
+          { "id": "execution", "text": "Execution" }
+        ],
+        "right": [
+          { "id": "r_start", "text": "Auslöser, der den Workflow startet" },
+          { "id": "r_step", "text": "Einzelner Schritt, der Daten verarbeitet und weiterreicht" },
+          { "id": "r_note", "text": "Erklärende Notiz auf der Arbeitsfläche, ohne Funktion im Datenfluss" },
+          { "id": "r_run", "text": "Ein vollständiger Lauf des Workflows, mit Log" }
+        ],
+        "pairs": {
+          "trigger": "r_start",
+          "node": "r_step",
+          "sticky": "r_note",
+          "execution": "r_run"
+        },
+        "explanation": "Der Trigger startet den Workflow, jede Node verarbeitet einen Schritt und reicht das Ergebnis weiter, die Sticky Note erklärt nur (ohne Datenfluss), und die Execution ist ein einzelner Lauf von Anfang bis Ende."
+      },
+      "source_anchor": "Trigger, Node, Sticky Note, Execution"
+    },
+    {
+      "type": "micro_explanation",
+      "title": "Daten und Anbindung",
+      "points": [
+        "Expression: ein kurzer Ausdruck, der Daten aus dem vorigen Schritt referenziert, etwa `{{ $json.sender }}` für den Absender einer eingehenden Mail.",
+        "Credentials: Zugangsdaten zu externen Systemen wie Mail-Servern oder Cloud-APIs, getrennt vom Workflow gespeichert und referenziert.",
+        "Integration und API: eine vorbereitete Verbindung zu einer externen Anwendung wie Salesforce oder Slack, die im Hintergrund deren API (dokumentierte Schnittstelle) nutzt.",
+        "Data Table: die in n8n eingebaute Tabellen-Datenbank für Workflow-Ergebnisse, ohne dass ein externes Tool angebunden werden muss."
+      ],
+      "source_anchor": "Expression, Credentials, Integration und API, Data Table"
+    },
+    {
+      "type": "quiz",
+      "title": "Kurzcheck: Daten und Anbindung",
+      "question": {
+        "question_type": "multiple_choice",
+        "prompt": "Ein Workflow soll seine Ergebnisse in einer Tabelle ablegen, ohne dass ein externes Tool angebunden wird. Welcher Baustein ist dafür gedacht?",
+        "choices": [
+          { "id": "datatable", "text": "Data Table, die in n8n eingebaute Tabellen-Datenbank." },
+          { "id": "integration", "text": "Eine Integration, die n8n mit einer externen Anwendung verbindet." },
+          { "id": "credentials", "text": "Eine Credential, die Zugangsdaten zu einem externen System speichert." },
+          { "id": "expression", "text": "Eine Expression, die Daten aus dem vorigen Schritt referenziert." }
+        ],
+        "correct_ids": ["datatable"],
+        "multi_select": false,
+        "explanation": "Die Data Table ist n8ns eingebaute Tabelle für Workflow-Ergebnisse, ganz ohne externes Tool. Eine Integration verbindet dagegen ein externes System, Credentials sind Zugangsdaten, und eine Expression referenziert Daten aus dem vorigen Schritt."
+      },
+      "source_anchor": "Data Table"
+    },
+    {
+      "type": "micro_explanation",
+      "title": "KI-Bausteine und Ausblick",
+      "points": [
+        "KI-Knoten: n8n bringt mehrere mit, vom einfachen Modellaufruf bis zum AI Agent.",
+        "Sprach-Modell (LLM): die Komponente, die in natürlicher Sprache antwortet, wahlweise von OpenAI, Anthropic, Google oder lokal über Ollama.",
+        "Diese Einführung legt das deterministische Fundament. Die eigentlichen Agent-Bausteine (AI Agent, Tools, RAG, Multi-Agent, Eval) folgen im Aufbaukurs „KI-Agenten in n8n“, nicht in diesem Grundlagenkurs."
+      ],
+      "source_anchor": "KI-Knoten und Sprach-Modell"
+    },
+    {
+      "type": "reflection",
+      "title": "Transfer: zurück zum Beispiel",
+      "prompt": "Denk an den Mail-Workflow vom Anfang (kategorisieren, bestätigen, in einer Tabelle festhalten). Welche der Bausteine (Trigger, Node, Execution, Expression, Credentials, Integration, Data Table) stecken konkret in genau diesem Beispiel, und an welcher Stelle?",
+      "source_anchor": "Workflow"
+    }
+  ]
+}

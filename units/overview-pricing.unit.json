@@ -1,0 +1,75 @@
+{
+  "lesson_title": "Pro Execution statt pro Task",
+  "learning_objective": "Eine Lernende kann erklären, wie sich n8ns Abrechnung pro Workflow-Execution von der Pro-Task-Abrechnung klassischer iPaaS-Anbieter (Zapier, Make) unterscheidet und was das für das Workflow-Design bedeutet.",
+  "source": {
+    "chapter": "Pricing und der Vergleich mit Zapier oder Make",
+    "url": "https://kirenz.github.io/n8n-grundlagen/overview/pricing.html"
+  },
+  "blocks": [
+    {
+      "type": "situation",
+      "title": "Zählt jeder Schritt einzeln?",
+      "text": "Ein Team baut einen Workflow mit fünfzig Schritten und fragt sich, ob jeder einzelne Schritt ins Geld geht. Bei Zapier oder Make wäre genau das der Fall, bei n8n nicht. Woran das liegt, entscheidet die Abrechnungseinheit, und die formt am Ende sogar, wie man Workflows zuschneidet.",
+      "source_anchor": "Zwei Abrechnungsmodelle"
+    },
+    {
+      "type": "micro_explanation",
+      "title": "Zwei Abrechnungsmodelle",
+      "points": [
+        "Klassische Anbieter wie Zapier oder Make rechnen pro Task ab: jeder einzelne Schritt in einem Workflow zählt.",
+        "n8n rechnet pro Workflow-Execution ab: eine vollständige Ausführung ist eine Einheit, unabhängig von der Anzahl der Schritte.",
+        "Ein Workflow mit fünfzig Knoten wird damit gleich abgerechnet wie einer mit fünf, solange beide einmal laufen.",
+        "Die Abrechnungslogik formt das Design: pro Task lohnt es, Schritte zu konsolidieren, pro Execution spielt die Schrittzahl für die Kosten keine Rolle."
+      ],
+      "source_anchor": "Zwei Abrechnungsmodelle"
+    },
+    {
+      "type": "quiz",
+      "title": "Kurzcheck: Wie viele Executions?",
+      "question": {
+        "question_type": "numeric",
+        "prompt": "Ein n8n-Workflow mit 50 Knoten läuft genau einmal vollständig durch. Wie viele Workflow-Executions rechnet n8n dafür ab?",
+        "correct": 1,
+        "tolerance": 0,
+        "unit": null,
+        "explanation": "n8n rechnet pro Workflow-Execution ab: eine vollständige Ausführung zählt als eine Einheit, egal wie viele Knoten beteiligt sind. Bei Zapier oder Make würden dieselben 50 Schritte als 50 Tasks zählen."
+      },
+      "source_anchor": "Zwei Abrechnungsmodelle"
+    },
+    {
+      "type": "micro_explanation",
+      "title": "Worauf die Wahl noch ankommt",
+      "points": [
+        "Self-Hosting ist nur bei n8n möglich (Fair-Code, kostenfrei), Zapier und Make sind Cloud-only.",
+        "KI-Knoten sind bei n8n Standard, bei Zapier oder Make oft zugekauft; n8n erlaubt zudem Code-Knoten in JavaScript und Python.",
+        "Zapier und Make punkten mit flacher Lernkurve, n8n verlangt etwas mehr Einarbeitung.",
+        "Welches Modell günstiger ist, hängt vom Workflow-Profil ab: kurze Workflows mit wenigen Schritten laufen auch pro Task wirtschaftlich, lange mehrstufige Workflows profitieren von der Pro-Execution-Abrechnung."
+      ],
+      "source_anchor": "Vergleich auf einen Blick"
+    },
+    {
+      "type": "quiz",
+      "title": "Kurzcheck: Wann lohnt sich pro Execution?",
+      "question": {
+        "question_type": "multiple_choice",
+        "prompt": "Für welches Workflow-Profil fällt der Kostenvorteil der Pro-Execution-Abrechnung am stärksten ins Gewicht?",
+        "choices": [
+          { "id": "long", "text": "Lange, mehrstufige Workflows, die einmal pro Auslöser komplett durchlaufen." },
+          { "id": "short", "text": "Sehr kurze Workflows mit nur ein bis zwei Schritten." },
+          { "id": "never", "text": "Workflows, die ohnehin nie ausgeführt werden." },
+          { "id": "cloud", "text": "Workflows, die ausschließlich in der Cloud laufen müssen." }
+        ],
+        "correct_ids": ["long"],
+        "multi_select": false,
+        "explanation": "Je mehr Schritte ein Workflow hat, desto stärker wirkt die Pro-Execution-Abrechnung, denn die Schrittzahl beeinflusst die Kosten nicht. Kurze Workflows lassen sich auch in einem Pro-Task-Modell wirtschaftlich betreiben."
+      },
+      "source_anchor": "Konkrete Größenordnungen"
+    },
+    {
+      "type": "reflection",
+      "title": "Transfer: dein Anwendungsfall",
+      "prompt": "Denk an einen Automatisierungs-Fall in deinem Umfeld: Wäre er eher ein kurzer Workflow mit wenigen Schritten oder ein langer, mehrstufiger? Welches Abrechnungsmodell käme dir günstiger, und warum?",
+      "source_anchor": "Auswahl-Kriterien"
+    }
+  ]
+}

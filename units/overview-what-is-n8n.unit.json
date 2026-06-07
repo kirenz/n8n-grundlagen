@@ -1,0 +1,80 @@
+{
+  "lesson_title": "Was n8n im Kern leistet",
+  "learning_objective": "Eine Lernende kann in eigenen Worten erklären, was n8n im Kern leistet, nämlich Daten zwischen Werkzeugen bewegen und KI-Bausteine einbinden, und warum n8n als Orchestrierungs-Schicht bestehende Werkzeuge verbindet, statt sie zu ersetzen.",
+  "source": {
+    "chapter": "Was n8n im Kern leistet",
+    "url": "https://kirenz.github.io/n8n-grundlagen/overview/what-is-n8n.html"
+  },
+  "blocks": [
+    {
+      "type": "situation",
+      "title": "Eine Nachricht im Kontaktformular",
+      "text": "Über das Kontaktformular einer Website geht eine neue Nachricht ein. Drei Schritte sollen danach automatisch ablaufen, ohne dass jemand sie von Hand anstößt: Die eingehende Nachricht löst den Vorgang aus, eine Bestätigungs-E-Mail geht zurück („Vielen Dank, wir melden uns innerhalb eines Werktags.“), und die Nachricht landet in einer Tabelle, damit das Team sie später bearbeiten kann. Genau für solche wiederkehrenden Abläufe ist n8n gebaut.",
+      "source_anchor": "Ein konkreter Anwendungsfall"
+    },
+    {
+      "type": "micro_explanation",
+      "title": "Zwei Kernaufgaben im selben Editor",
+      "points": [
+        "Daten zwischen Werkzeugen bewegen: n8n bringt über fünfhundert fertige Integrationen mit, etwa zu Salesforce, Slack, Notion oder Airtable.",
+        "Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt, eigener Code ist optional.",
+        "KI-Bausteine sind Standardausstattung: ein KI-Assistent, eine Suche über interne Dokumente oder manuelle Freigabe-Schritte gehören zur Grundausstattung.",
+        "Genau diese Mischung aus Daten-Bewegung und KI-Bereitschaft unterscheidet n8n von klassischen Automation-Tools."
+      ],
+      "source_anchor": "Zwei Kernaufgaben"
+    },
+    {
+      "type": "quiz",
+      "title": "Kurzcheck: Was n8n ausmacht",
+      "question": {
+        "question_type": "multiple_choice",
+        "prompt": "Was unterscheidet n8n laut Kapitel von klassischen Automation-Tools?",
+        "choices": [
+          { "id": "mix", "text": "Es bringt Daten-Bewegung zwischen Werkzeugen und KI-Bausteine standardmäßig im selben Editor zusammen." },
+          { "id": "replace", "text": "Es ersetzt spezialisierte Werkzeuge wie Salesforce oder Slack vollständig." },
+          { "id": "ownmodel", "text": "Es stellt ein eigenes KI-Modell bereit, sodass kein externer Dienst nötig ist." },
+          { "id": "codeeditor", "text": "Es ist ein vollwertiger Code-Editor für komplexe Datentransformationen." }
+        ],
+        "correct_ids": ["mix"],
+        "multi_select": false,
+        "explanation": "n8n vereint im selben Editor zwei Aufgaben: Daten zwischen Werkzeugen bewegen und KI-Bausteine einbinden. Genau diese Mischung macht den Unterschied. Spezialisierte Werkzeuge ersetzt es nicht, und das KI-Modell kommt als externer Dienst dazu."
+      },
+      "source_anchor": "Zwei Kernaufgaben"
+    },
+    {
+      "type": "micro_explanation",
+      "title": "Die Schicht dazwischen",
+      "points": [
+        "n8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell.",
+        "Mehrstufige Datentransformationen mit komplexer Logik sind in Python, dbt oder Airflow oft besser aufgehoben.",
+        "Das KI-Modell selbst kommt als externer Dienst dazu, etwa von OpenAI, Anthropic oder Ollama.",
+        "n8n ist die Schicht dazwischen: die Orchestrierung, die bestehende Werkzeuge zu einem laufenden Prozess verbindet, statt sie zu ersetzen."
+      ],
+      "source_anchor": "Was n8n nicht ist"
+    },
+    {
+      "type": "quiz",
+      "title": "Kurzcheck: Wo n8n nicht das richtige Werkzeug ist",
+      "question": {
+        "question_type": "multiple_choice",
+        "prompt": "Welche Aufgabe würde man dem Kapitel zufolge eher nicht in n8n umsetzen, sondern in einem spezialisierten Werkzeug?",
+        "choices": [
+          { "id": "transform", "text": "Einen mehrstufigen Datentransformations-Job mit komplexer Logik." },
+          { "id": "contact", "text": "Eine eingehende Kontaktformular-Nachricht automatisch bestätigen und in einer Tabelle festhalten." },
+          { "id": "slack", "text": "Eine Slack-Nachricht senden, sobald eine neue Anfrage eintrifft." },
+          { "id": "classify", "text": "In einer Pipeline einen KI-Schritt zur Klassifikation einbauen." }
+        ],
+        "correct_ids": ["transform"],
+        "multi_select": false,
+        "explanation": "Mehrstufige Datentransformationen mit komplexer Logik gehören eher zu Python, dbt oder Airflow. Die anderen drei Aufgaben (Trigger-Aktion-Datenfluss, Werkzeuge verbinden, ein KI-Schritt in einer Pipeline) sind typische Einsatzgebiete von n8n."
+      },
+      "source_anchor": "Was n8n nicht ist"
+    },
+    {
+      "type": "reflection",
+      "title": "Transfer in deinen Alltag",
+      "prompt": "Denke an einen wiederkehrenden Ablauf in deinem Arbeitsalltag, der aus Auslöser, Aktion und Festhalten besteht (etwa eine eingehende Anfrage, eine Rechnung oder ein wöchentliches Reporting). Welche drei Schritte könnte n8n dabei für dich übernehmen?",
+      "source_anchor": "Typische Anwendungsfelder"
+    }
+  ]
+}
