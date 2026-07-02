@@ -47,8 +47,8 @@ Im Kurs folgen wir einer einheitlichen Konvention:
 1. In n8n anmelden.
 2. **Overview**-Ansicht (Haus-Symbol links oben im Menü) auswählen.
 3. Oben rechts den Button **Create workflow** (oder das Plus-Symbol links oben) wählen.
-3. Im leeren Canvas oben links auf den Workflow-Namen (My workflow) klicken und ihn umbenennen in **n8n-02**.
-4. Neben dem Workflow-Namen auf **+ Add tag** klicken und die beide tags `n8n-basics` und `modul-02` erstellen und hinzufügen. Tags helfen später bei der Übersicht, Filterung und Dokumentation der Workflows.
+4. Im leeren Canvas oben links auf den Workflow-Namen (My workflow) klicken und ihn umbenennen in **n8n-02**.
+5. Neben dem Workflow-Namen auf **+ Add tag** klicken und die beiden Tags `n8n-basics` und `modul-02` erstellen und hinzufügen. Tags helfen später bei der Übersicht, Filterung und Dokumentation der Workflows.
 
 ![Leerer Canvas direkt nach dem Anlegen eines neuen Workflows. In der Mitte das Plus-Symbol zum Einfügen des ersten Knotens.](../images/m02-canvas-leer.png){#fig-m02-canvas-leer}
 
@@ -211,7 +211,7 @@ Die Verwaltung der Data Tables liegt außerhalb des Workflow-Editors. Wir verlas
 1. Oben links auf **Overview** klicken, um zur Projekt-Übersicht zurückzukehren.
 2. In der oberen Menüleiste auf **Data tables** klicken (gleiche Ebene wie *Workflows*, *Credentials* und *Executions*).
 3. Auf **Create Data Table** klicken.
-4. Nam vergeben: `customer_emails` (`From scratch` auswählen).
+4. Namen vergeben: `customer_emails` (`From scratch` auswählen).
 5. Oben rechts **Add Column** klicken und nacheinander vier Spalten hinzufügen:
 
 | Name | Type |
@@ -309,6 +309,6 @@ Am Ende dieses Moduls sollten folgende Punkte bekannt sein:
 
 ## Wie es weitergeht
 
-Damit steht das handwerkliche Fundament: Du kannst einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs *KI-Agenten in n8n* die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.
+Damit steht das handwerkliche Fundament: einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs *KI-Agenten in n8n* die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.
 
 

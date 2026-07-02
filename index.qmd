@@ -1,9 +1,30 @@
 # Willkommen {.unnumbered}
 
-Willkommen zum Grundlagenkurs für n8n. Am Ende hast du einen ersten, vollständig funktionierenden Workflow gebaut: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs, eine beliebige Mail-Adresse genügt zum Mitmachen.
+Willkommen zum Grundlagenkurs für n8n. Dieses Buch richtet sich an Fachkräfte, Studierende und Teams, die wiederkehrende Abläufe automatisieren möchten, ohne dafür ein Software-Projekt zu starten. Programmierkenntnisse sind nicht nötig, ein Browser und eine beliebige Mail-Adresse genügen zum Mitmachen.
 
-Der Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen.
+Am Ende steht ein erster, vollständig funktionierender Workflow: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen.
+
+Abläufe wie im Demo-Szenario gibt es überall:
+
+1. Eine Kontaktanfrage bestätigen und im CRM festhalten
+2. Eingehende Rechnungen ablegen und die Buchhaltung benachrichtigen
+3. Ein wöchentliches Reporting zusammenstellen und an das Team verschicken
+4. Neue Newsletter-Anmeldungen in eine Tabelle schreiben und begrüßen
+
+## Woran wir Automatisierungs-Kandidaten erkennen
+
+Nicht jede Aufgabe eignet sich gleich gut für einen Workflow. Drei Merkmale zeichnen einen guten Kandidaten aus:
+
+- **Wiederkehrend:** Die Aufgabe fällt regelmäßig in gleicher Form an, nicht als Einzelfall.
+- **Regelbasiert:** Die Schritte lassen sich vorab beschreiben („wenn eine Nachricht eingeht, dann bestätigen und ablegen"), ohne Ermessensentscheidung in jedem Einzelfall.
+- **Digital erreichbar:** Die beteiligten Systeme (Mail, Tabelle, CRM) sind über Schnittstellen ansprechbar.
+
+Eine Aufgabe, die nur einmal im Jahr anfällt oder in jedem Einzelfall eine Abwägung durch Menschen verlangt, bleibt dagegen besser Handarbeit oder bekommt im Workflow einen manuellen Freigabe-Schritt.
+
+::: {.callout-note title="Branchenübergreifend einsetzbar"}
+Die Beispiele im Kurs kommen aus Marketing, Vertrieb und Customer-Support. Dieselben Muster funktionieren in der Verwaltung (Formulareingänge), im Personalwesen (Onboarding-Abläufe) oder im Finanzbereich (Rechnungseingang).
+:::
 
 ::: {.callout-tip title="Lernempfehlung"}
-Die Kapitel bauen aufeinander auf. Am meisten nimmst du mit, wenn du sie der Reihe nach durchgehst und den Demo-Workflow Schritt für Schritt mitbaust. Die wichtigste Voraussetzung ist eine eigene n8n-Instanz, Cloud-Variante oder Self-Hosted.
+Die Kapitel bauen aufeinander auf. Am meisten nehmen wir mit, wenn wir sie der Reihe nach durchgehen und den Demo-Workflow Schritt für Schritt mitbauen. Die wichtigste Voraussetzung ist eine eigene n8n-Instanz, Cloud-Variante oder Self-Hosted.
 :::
