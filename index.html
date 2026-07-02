@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-acefae45180d251af7289144a764ffe6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-16e424000970df59d431bd55c5508176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f08813803f3a6dabc91b9d88fcfad314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -181,7 +181,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#willkommen" id="toc-willkommen" class="nav-link active" data-scroll-target="#willkommen">Willkommen</a></li>
+  <li><a href="#willkommen" id="toc-willkommen" class="nav-link active" data-scroll-target="#willkommen">Willkommen</a>
+  <ul class="collapse">
+  <li><a href="#woran-wir-automatisierungs-kandidaten-erkennen" id="toc-woran-wir-automatisierungs-kandidaten-erkennen" class="nav-link" data-scroll-target="#woran-wir-automatisierungs-kandidaten-erkennen">Woran wir Automatisierungs-Kandidaten erkennen</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -220,8 +223,37 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="willkommen" class="level1 unnumbered">
 <h1 class="unnumbered">Willkommen</h1>
-<p>Willkommen zum Grundlagenkurs für n8n. Am Ende hast du einen ersten, vollständig funktionierenden Workflow gebaut: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs, eine beliebige Mail-Adresse genügt zum Mitmachen.</p>
-<p>Der Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen.</p>
+<p>Willkommen zum Grundlagenkurs für n8n. Dieses Buch richtet sich an Fachkräfte, Studierende und Teams, die wiederkehrende Abläufe automatisieren möchten, ohne dafür ein Software-Projekt zu starten. Programmierkenntnisse sind nicht nötig, ein Browser und eine beliebige Mail-Adresse genügen zum Mitmachen.</p>
+<p>Am Ende steht ein erster, vollständig funktionierender Workflow: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen.</p>
+<p>Abläufe wie im Demo-Szenario gibt es überall:</p>
+<ol type="1">
+<li>Eine Kontaktanfrage bestätigen und im CRM festhalten</li>
+<li>Eingehende Rechnungen ablegen und die Buchhaltung benachrichtigen</li>
+<li>Ein wöchentliches Reporting zusammenstellen und an das Team verschicken</li>
+<li>Neue Newsletter-Anmeldungen in eine Tabelle schreiben und begrüßen</li>
+</ol>
+<section id="woran-wir-automatisierungs-kandidaten-erkennen" class="level2">
+<h2 class="anchored" data-anchor-id="woran-wir-automatisierungs-kandidaten-erkennen">Woran wir Automatisierungs-Kandidaten erkennen</h2>
+<p>Nicht jede Aufgabe eignet sich gleich gut für einen Workflow. Drei Merkmale zeichnen einen guten Kandidaten aus:</p>
+<ul>
+<li><strong>Wiederkehrend:</strong> Die Aufgabe fällt regelmäßig in gleicher Form an, nicht als Einzelfall.</li>
+<li><strong>Regelbasiert:</strong> Die Schritte lassen sich vorab beschreiben („wenn eine Nachricht eingeht, dann bestätigen und ablegen”), ohne Ermessensentscheidung in jedem Einzelfall.</li>
+<li><strong>Digital erreichbar:</strong> Die beteiligten Systeme (Mail, Tabelle, CRM) sind über Schnittstellen ansprechbar.</li>
+</ul>
+<p>Eine Aufgabe, die nur einmal im Jahr anfällt oder in jedem Einzelfall eine Abwägung durch Menschen verlangt, bleibt dagegen besser Handarbeit oder bekommt im Workflow einen manuellen Freigabe-Schritt.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Branchenübergreifend einsetzbar">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Branchenübergreifend einsetzbar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Beispiele im Kurs kommen aus Marketing, Vertrieb und Customer-Support. Dieselben Muster funktionieren in der Verwaltung (Formulareingänge), im Personalwesen (Onboarding-Abläufe) oder im Finanzbereich (Rechnungseingang).</p>
+</div>
+</div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Lernempfehlung">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -232,11 +264,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Die Kapitel bauen aufeinander auf. Am meisten nimmst du mit, wenn du sie der Reihe nach durchgehst und den Demo-Workflow Schritt für Schritt mitbaust. Die wichtigste Voraussetzung ist eine eigene n8n-Instanz, Cloud-Variante oder Self-Hosted.</p>
+<p>Die Kapitel bauen aufeinander auf. Am meisten nehmen wir mit, wenn wir sie der Reihe nach durchgehen und den Demo-Workflow Schritt für Schritt mitbauen. Die wichtigste Voraussetzung ist eine eigene n8n-Instanz, Cloud-Variante oder Self-Hosted.</p>
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
