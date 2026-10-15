@@ -6,8 +6,11 @@ project:
   # Auch infra/, workflows/ und scripts/ sind kursbegleitend, kein Buch-Inhalt.
   render:
     - "*.qmd"
+    - "bpmn/*.qmd"
     - "overview/*.qmd"
     - "first-workflows/*.qmd"
+  resources:
+    - "bpmn/loesung/*"
 
 lang: de
 
@@ -34,6 +37,15 @@ book:
   chapters:
     - index.qmd
     - introduction.qmd
+
+    - part: bpmn/index.qmd
+      chapters:
+        - bpmn/grundelemente.qmd
+        - bpmn/gateways.qmd
+        - bpmn/ereignisse.qmd
+        - bpmn/teilnehmer-und-daten.qmd
+        - bpmn/zum-workflow.qmd
+        - bpmn/uebung-kulanzantrag.qmd
 
     - part: overview/index.qmd
       chapters:

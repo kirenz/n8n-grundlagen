@@ -1,0 +1,16 @@
+# Abläufe modellieren mit BPMN {.unnumbered}
+
+Bevor wir einen Workflow in n8n bauen, zeichnen wir ihn. Ein Ablauf, den wir täglich erledigen, ist im Kopf selten so klar, wie wir glauben: Eine Entscheidung wurde nie ausgesprochen, eine Übergabe verliert Informationen, eine Frist steht nirgends. Erst das Bild zeigt die Lücken. Dafür verwenden wir BPMN 2.0, die genormte Notation für Geschäftsprozesse. Sie ist eine gemeinsame Sprache für Fachbereich und IT, und sie zwingt zu Fragen, die ein Workflow später ohnehin beantworten muss: Was löst den Ablauf aus? Wer entscheidet? Was passiert, wenn eine Antwort ausbleibt?
+
+Dieser Teil führt die wichtigsten Elemente an Beispielen aus dem Kundenservice unseres Online-Shops und aus anderen Unternehmensbereichen ein. Am Ende steht ein vollständiges Kollaborationsdiagramm für einen Kulanzantrag und eine Zuordnung, die aus jedem Modellelement einen n8n-Baustein macht.
+
+Wir werden:
+
+- Die Grundelemente Start, Aufgabe, Sequenzfluss und Ende lesen, benennen und korrekt einsetzen
+- Mit exklusiven, parallelen und inklusiven Gateways verzweigen und wieder zusammenführen
+- Ereignisse, Fristen und Randereignisse modellieren, bei denen ein Prozess wartet oder reagiert
+- Zuständigkeiten mit Pools und Lanes, Kommunikation mit Nachrichtenflüssen und Daten mit Datenobjekten abbilden
+- Ein Modell in n8n-Knoten übersetzen und einen KI-Entwurf mit einer Prüfliste kontrollieren
+- Einen Kulanzantrag als vollständiges Kollaborationsdiagramm in demo.bpmn.io oder im Camunda Modeler modellieren
+
+Wer BPMN bereits kennt, kann direkt zur Abschlussübung springen und die Element-Checkliste dort als Selbsttest verwenden. Wer die Notation zum ersten Mal sieht, geht die Kapitel der Reihe nach durch; jedes baut auf dem vorigen auf.
