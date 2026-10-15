@@ -2,22 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jan Kirenz">
 <meta name="description" content="Von der Plattform zum ersten Workflow">
 
-<title>1&nbsp; Was n8n im Kern leistet – n8n-Grundlagen</title>
+<title>7&nbsp; Was n8n im Kern leistet – n8n-Grundlagen</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -41,10 +44,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-acefae45180d251af7289144a764ffe6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-65a8d1e2c23ab61ef86d547ba0112629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f08813803f3a6dabc91b9d88fcfad314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5a4191e779943d077ddcaf48741aef9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -84,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../overview/index.html">Plattform und Auswahl</a></li><li class="breadcrumb-item"><a href="../overview/what-is-n8n.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../overview/index.html">Plattform und Auswahl</a></li><li class="breadcrumb-item"><a href="../overview/what-is-n8n.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -121,8 +124,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Plattform und Auswahl</span></a>
+            <a href="../bpmn/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abläufe modellieren mit BPMN</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -130,20 +133,67 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../bpmn/grundelemente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Grundelemente und gute Namen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/gateways.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gateways: verzweigen und zusammenführen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/ereignisse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/teilnehmer-und-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/zum-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Vom Modell zum n8n-Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/uebung-kulanzantrag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plattform und Auswahl</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../overview/what-is-n8n.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../overview/pricing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../overview/hosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -152,21 +202,21 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../first-workflows/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Erste Workflows</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../first-workflows/credentials.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../first-workflows/first-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
   </div>
 </li>
       </ul>
@@ -181,19 +231,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#ein-konkreter-anwendungsfall" id="toc-ein-konkreter-anwendungsfall" class="nav-link active" data-scroll-target="#ein-konkreter-anwendungsfall"><span class="header-section-number">1.1</span> Ein konkreter Anwendungsfall</a></li>
-  <li><a href="#zwei-kernaufgaben" id="toc-zwei-kernaufgaben" class="nav-link" data-scroll-target="#zwei-kernaufgaben"><span class="header-section-number">1.2</span> Zwei Kernaufgaben</a></li>
-  <li><a href="#was-n8n-nicht-ist" id="toc-was-n8n-nicht-ist" class="nav-link" data-scroll-target="#was-n8n-nicht-ist"><span class="header-section-number">1.3</span> Was n8n nicht ist</a></li>
-  <li><a href="#typische-anwendungsfelder" id="toc-typische-anwendungsfelder" class="nav-link" data-scroll-target="#typische-anwendungsfelder"><span class="header-section-number">1.4</span> Typische Anwendungsfelder</a></li>
+  <li><a href="#ein-konkreter-anwendungsfall" id="toc-ein-konkreter-anwendungsfall" class="nav-link active" data-scroll-target="#ein-konkreter-anwendungsfall"><span class="header-section-number">7.1</span> Ein konkreter Anwendungsfall</a></li>
+  <li><a href="#zwei-kernaufgaben" id="toc-zwei-kernaufgaben" class="nav-link" data-scroll-target="#zwei-kernaufgaben"><span class="header-section-number">7.2</span> Zwei Kernaufgaben</a></li>
+  <li><a href="#was-n8n-nicht-ist" id="toc-was-n8n-nicht-ist" class="nav-link" data-scroll-target="#was-n8n-nicht-ist"><span class="header-section-number">7.3</span> Was n8n nicht ist</a></li>
+  <li><a href="#typische-anwendungsfelder" id="toc-typische-anwendungsfelder" class="nav-link" data-scroll-target="#typische-anwendungsfelder"><span class="header-section-number">7.4</span> Typische Anwendungsfelder</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../overview/index.html">Plattform und Auswahl</a></li><li class="breadcrumb-item"><a href="../overview/what-is-n8n.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../overview/index.html">Plattform und Auswahl</a></li><li class="breadcrumb-item"><a href="../overview/what-is-n8n.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></h1>
 </div>
 
 
@@ -211,8 +261,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Eine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehen. Wir beginnen daher mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.</p>
-<section id="ein-konkreter-anwendungsfall" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="ein-konkreter-anwendungsfall"><span class="header-section-number">1.1</span> Ein konkreter Anwendungsfall</h2>
+<section id="ein-konkreter-anwendungsfall" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="ein-konkreter-anwendungsfall"><span class="header-section-number">7.1</span> Ein konkreter Anwendungsfall</h2>
 <p>Über das Kontaktformular einer Website geht eine Nachricht ein. Drei Schritte sollen automatisch ablaufen, ohne dass eine Person den Vorgang manuell anstößt:</p>
 <ol type="1">
 <li><strong>Auslöser:</strong> Eine neue Nachricht trifft über das Kontaktformular ein.</li>
@@ -221,8 +271,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>Genau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontaktformular, eingehende Rechnung oder wöchentliches Reporting. Drei Schritte, drei Werkzeuge, ein einziger Workflow, der danach von alleine läuft.</p>
 </section>
-<section id="zwei-kernaufgaben" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="zwei-kernaufgaben"><span class="header-section-number">1.2</span> Zwei Kernaufgaben</h2>
+<section id="zwei-kernaufgaben" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="zwei-kernaufgaben"><span class="header-section-number">7.2</span> Zwei Kernaufgaben</h2>
 <p>n8n erfüllt im Kern zwei Aufgaben, die im selben Editor zusammenfallen:</p>
 <p><strong>Daten zwischen Werkzeugen bewegen.</strong> n8n bringt über fünfhundert fertige <strong>Integrationen</strong> mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt, eigener Code ist optional.</p>
 <p><strong>KI-Bausteine als Standard mitbringen.</strong> Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen, all diese Bausteine sind keine Zusatzkomponenten, sondern Standardausstattung im Editor. Genau diese Mischung aus Daten-Bewegung und KI-Bereitschaft unterscheidet n8n von klassischen Automation-Tools.</p>
@@ -250,8 +300,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="was-n8n-nicht-ist" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="was-n8n-nicht-ist"><span class="header-section-number">1.3</span> Was n8n nicht ist</h2>
+<section id="was-n8n-nicht-ist" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="was-n8n-nicht-ist"><span class="header-section-number">7.3</span> Was n8n nicht ist</h2>
 <p>n8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht <strong>dazwischen</strong>, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.</p>
 <div id="fig-n8n-orchestrierung" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -259,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
 <img src="../d2/n8n-orchestrierung.svg" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-n8n-orchestrierung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;1.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, Tools, Daten und KI-Modelle werden angesprochen.
+Abbildung&nbsp;7.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, Tools, Daten und KI-Modelle werden angesprochen.
 </figcaption>
 </figure>
 </div>
@@ -274,8 +324,8 @@ Abbildung&nbsp;1.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, To
 </div>
 </div>
 </section>
-<section id="typische-anwendungsfelder" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="typische-anwendungsfelder"><span class="header-section-number">1.4</span> Typische Anwendungsfelder</h2>
+<section id="typische-anwendungsfelder" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="typische-anwendungsfelder"><span class="header-section-number">7.4</span> Typische Anwendungsfelder</h2>
 <p>Drei Aufgabenklassen sind typische Einsatzgebiete für n8n:</p>
 <ol type="1">
 <li><strong>Routine-Workflows mit Trigger-Aktion-Datenfluss.</strong> Eine Mail trifft ein, eine Aktion wird ausgeführt, ein Eintrag wird geschrieben. Das ist klassisches Tagesgeschäft im Marketing, im Vertrieb und im Customer-Support.</li>

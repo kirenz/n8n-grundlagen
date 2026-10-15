@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "n8n-Grundlagen",
     "section": "",
-    "text": "Willkommen\nWillkommen zum Grundlagenkurs für n8n. Dieses Buch richtet sich an Fachkräfte, Studierende und Teams, die wiederkehrende Abläufe automatisieren möchten, ohne dafür ein Software-Projekt zu starten. Programmierkenntnisse sind nicht nötig, ein Browser und eine beliebige Mail-Adresse genügen zum Mitmachen.\nAm Ende steht ein erster, vollständig funktionierender Workflow: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen.\nAbläufe wie im Demo-Szenario gibt es überall:",
+    "text": "Willkommen\nWillkommen zum Grundlagenkurs für n8n. Dieses Buch richtet sich an Fachkräfte und Teams, die wiederkehrende Abläufe automatisieren möchten, ohne dafür ein Software-Projekt zu starten. Programmierkenntnisse sind nicht nötig, ein Browser und eine beliebige Mail-Adresse genügen zum Mitmachen.\nAm Ende steht ein erster, vollständig funktionierender Workflow: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen.\nAbläufe wie im Demo-Szenario gibt es überall:",
     "crumbs": [
       "Willkommen"
     ]
@@ -60,6 +60,555 @@
     ]
   },
   {
+    "objectID": "bpmn/index.html",
+    "href": "bpmn/index.html",
+    "title": "Abläufe modellieren mit BPMN",
+    "section": "",
+    "text": "Bevor wir einen Workflow in n8n bauen, zeichnen wir ihn. Ein Ablauf, den wir täglich erledigen, ist im Kopf selten so klar, wie wir glauben: Eine Entscheidung wurde nie ausgesprochen, eine Übergabe verliert Informationen, eine Frist steht nirgends. Erst das Bild zeigt die Lücken. Dafür verwenden wir BPMN 2.0, die genormte Notation für Geschäftsprozesse. Sie ist eine gemeinsame Sprache für Fachbereich und IT, und sie zwingt zu Fragen, die ein Workflow später ohnehin beantworten muss: Was löst den Ablauf aus? Wer entscheidet? Was passiert, wenn eine Antwort ausbleibt?\nDieser Teil führt die wichtigsten Elemente an Beispielen aus dem Kundenservice unseres Online-Shops und aus anderen Unternehmensbereichen ein. Am Ende steht ein vollständiges Kollaborationsdiagramm für einen Kulanzantrag und eine Zuordnung, die aus jedem Modellelement einen n8n-Baustein macht.\nWir werden:\n\nDie Grundelemente Start, Aufgabe, Sequenzfluss und Ende lesen, benennen und korrekt einsetzen\nMit exklusiven, parallelen und inklusiven Gateways verzweigen und wieder zusammenführen\nEreignisse, Fristen und Randereignisse modellieren, bei denen ein Prozess wartet oder reagiert\nZuständigkeiten mit Pools und Lanes, Kommunikation mit Nachrichtenflüssen und Daten mit Datenobjekten abbilden\nEin Modell in n8n-Knoten übersetzen und einen KI-Entwurf mit einer Prüfliste kontrollieren\nEinen Kulanzantrag als vollständiges Kollaborationsdiagramm in demo.bpmn.io oder im Camunda Modeler modellieren\n\nWer BPMN bereits kennt, kann direkt zur Abschlussübung springen und die Element-Checkliste dort als Selbsttest verwenden. Wer die Notation zum ersten Mal sieht, geht die Kapitel der Reihe nach durch; jedes baut auf dem vorigen auf.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN"
+    ]
+  },
+  {
+    "objectID": "bpmn/grundelemente.html",
+    "href": "bpmn/grundelemente.html",
+    "title": "1  Grundelemente und gute Namen",
+    "section": "",
+    "text": "1.1 Warum BPMN?\nEin n8n-Workflow beginnt nicht im Editor, sondern mit einer Frage: Was passiert eigentlich genau, wenn eine Kundenmail eingeht? Wer die Antwort nur im Kopf hat, baut später Knoten, verschiebt sie wieder und merkt beim Testen, dass ein Fall fehlt. Wer den Ablauf vorher zeichnet, sieht die Lücken, bevor sie Arbeit kosten. In diesem Kapitel lernen wir die Notation dafür kennen, lesen ein erstes Modell und üben, Elemente so zu benennen, dass andere das Modell ohne Erklärung verstehen.\nBPMN steht für Business Process Model and Notation. Drei Eigenschaften machen die Notation für uns interessant:\nn8n liest kein BPMN. Wir übertragen das Modell am Ende dieses Teils von Hand in Knoten. Der Gewinn liegt davor: Das Modell klärt Auslöser, Entscheidungen, Zuständigkeiten und Wartesituationen, bevor wir den ersten Knoten ziehen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Grundelemente und gute Namen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/grundelemente.html#warum-bpmn",
+    "href": "bpmn/grundelemente.html#warum-bpmn",
+    "title": "1  Grundelemente und gute Namen",
+    "section": "",
+    "text": "Eigenschaft\nWas das für uns bedeutet\n\n\n\n\nStandardisiert\nGepflegt von der Object Management Group (OMG). Version 2.0 gibt es seit 2011, sie ist auch als ISO/IEC 19510 genormt (Object Management Group 2014; ISO/IEC 2013). Ein BPMN-Modell liest sich in jedem Unternehmen gleich.\n\n\nVerständlich\nEine überschaubare Grundnotation reicht für die meisten fachlichen Modelle. Details kommen nur bei Bedarf hinzu.\n\n\nAusführbar\nProzess-Engines wie Camunda führen BPMN-Modelle direkt aus. Das Fachmodell wird damit zur Grundlage der Automatisierung.\n\n\n\n\n\n\n\n\n\n\nTippDas Modell als Grundriss\n\n\n\nEin BPMN-Modell ist für einen Ablauf, was ein Grundriss für eine Wohnung ist. Niemand zeichnet darin jede Steckdose, aber jede Tür und jede Wand steht an der richtigen Stelle. Wer den Grundriss liest, weiß, wie wir von der Küche ins Bad kommen. Wer unser Modell liest, weiß, wer wann was tut und wo entschieden wird.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Grundelemente und gute Namen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/grundelemente.html#vier-gruppen-von-elementen",
+    "href": "bpmn/grundelemente.html#vier-gruppen-von-elementen",
+    "title": "1  Grundelemente und gute Namen",
+    "section": "1.2 Vier Gruppen von Elementen",
+    "text": "1.2 Vier Gruppen von Elementen\nDie Spezifikation kennt sehr viele Symbole. Alle lassen sich auf vier Gruppen zurückführen, und diese vier Gruppen strukturieren auch die folgenden Kapitel:\n\n\n\n\n\n\n\n\nGruppe\nElemente\nFrage, die sie beantworten\n\n\n\n\nFlussobjekte\nEreignis, Aktivität, Gateway\nWas passiert, und in welcher Reihenfolge?\n\n\nVerbindungen\nSequenzfluss, Nachrichtenfluss, Assoziation\nWas folgt worauf, wer spricht mit wem?\n\n\nTeilnehmer\nPool, Lane\nWer ist zuständig?\n\n\nDaten und Artefakte\nDatenobjekt, Datenspeicher, Textanmerkung\nWelche Informationen werden gebraucht oder erzeugt?\n\n\n\nIn diesem Kapitel bleiben wir bei den Flussobjekten und dem Sequenzfluss. Gateways folgen im nächsten Kapitel, Ereignisse, Teilnehmer und Daten danach.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Grundelemente und gute Namen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/grundelemente.html#start-aufgaben-ende",
+    "href": "bpmn/grundelemente.html#start-aufgaben-ende",
+    "title": "1  Grundelemente und gute Namen",
+    "section": "1.3 Start, Aufgaben, Ende",
+    "text": "1.3 Start, Aufgaben, Ende\nDas kleinste sinnvolle Modell besteht aus vier Elementen. Wir lesen es von links nach rechts entlang der Pfeile.\n\n\n\n\n\n\nAbbildung 1.1: Kundenmail erfassen: Ein Startereignis löst den Ablauf aus, zwei Aufgaben folgen, ein Endereignis schließt ab.\n\n\n\n\n\n\n\n\n\n\n\nElement\nSymbol\nBedeutung\n\n\n\n\nStartereignis\nDünner Kreis\nLöst den Prozess aus. Benannt als eingetretener Zustand: „Kundenmail eingegangen“.\n\n\nAufgabe\nRechteck mit abgerundeten Ecken\nEin Arbeitsschritt, den eine Person oder ein System ausführt.\n\n\nSequenzfluss\nDurchgezogener Pfeil\nLegt die Reihenfolge der Schritte innerhalb eines Prozesses fest.\n\n\nEndereignis\nDicker Kreis\nMarkiert ein Ergebnis. Ein Prozess darf mehrere Enden haben, etwa „Anfrage erfasst“ und „Anfrage abgelehnt“.\n\n\n\nGenau dieses Modell bauen wir im Teil „Erste Workflows“ als n8n-Workflow: Das Startereignis wird zum Trigger, jede Aufgabe zu einem Knoten, der Sequenzfluss zur Verbindung zwischen den Knoten. Die Notation gibt uns also schon hier die Struktur des späteren Workflows vor.\n\n\n\n\n\n\nHinweisAufgabe oder Aktivität?\n\n\n\nBPMN spricht von Aktivitäten als Oberbegriff. Eine Aufgabe (Task) ist die kleinste Aktivität, ein einzelner Arbeitsschritt. Ein Teilprozess ist eine Aktivität, die selbst wieder aus Schritten besteht. Im Alltag sagen wir fast immer „Aufgabe“; Teilprozesse lernen wir im Kapitel über Teilnehmer und Daten kennen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Grundelemente und gute Namen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/grundelemente.html#gute-namen",
+    "href": "bpmn/grundelemente.html#gute-namen",
+    "title": "1  Grundelemente und gute Namen",
+    "section": "1.4 Gute Namen",
+    "text": "1.4 Gute Namen\nEin Modell ist nur so verständlich wie seine Beschriftungen. Vier Regeln machen den Unterschied zwischen einem Bild, das jemand erklären muss, und einem Bild, das sich selbst erklärt:\n\n\n\n\n\n\n\n\n\nElement\nRegel\nGut\nUngünstig\n\n\n\n\nAufgabe\nObjekt + Verb im Infinitiv\nAnfrage prüfen\nPrüfung\n\n\nEreignis\nObjekt + Partizip (Zustand)\nAnfrage eingegangen\nEingang\n\n\nXOR-Gateway\nFrage; die ausgehenden Kanten tragen die Antworten\nAnfrage vollständig?\nVollständigkeit\n\n\nLane\nRolle oder Stelle, keine Person\nKundenservice\nFrau Müller\n\n\n\nDie Regel für Aufgaben hat einen praktischen Nebeneffekt: Wer „Prüfung“ schreibt, kann die Prüfung von „Anfrage prüfen“, „Belege prüfen“ und „Bonität prüfen“ nicht mehr unterscheiden. Wer das Objekt nennt, sieht sofort, worauf der Schritt arbeitet. Sammelverben wie „bearbeiten“ oder „verarbeiten“ sagen nichts; sie verstecken meist mehrere Schritte oder eine Entscheidung.\n\n\n\n\n\n\nWichtigKeine Abkürzungen, keine Systemkürzel\n\n\n\n„Anfrage ins CRM“ versteht die Kollegin aus dem Vertrieb. „Lead in SFDC pushen“ versteht nur, wer das System kennt. Ein Modell, das Fachbereich und IT gemeinsam lesen sollen, verwendet die Begriffe, die beide Seiten teilen. Systemnamen gehören in die Beschreibung einer Aufgabe oder in einen Datenspeicher, nicht in den Aufgabennamen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Grundelemente und gute Namen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/grundelemente.html#eine-beschreibung-übersetzen",
+    "href": "bpmn/grundelemente.html#eine-beschreibung-übersetzen",
+    "title": "1  Grundelemente und gute Namen",
+    "section": "1.5 Eine Beschreibung übersetzen",
+    "text": "1.5 Eine Beschreibung übersetzen\nMit den vier Grundelementen und den Benennungsregeln lesen wir einen Satz aus einer typischen Prozessbeschreibung:\n\n„Der Kundenservice kontrolliert die Unterlagen und schickt sie gegebenenfalls zurück.“\n\nDer Satz enthält mehr, als er zeigt. „Kontrolliert“ ist eine Aufgabe: Unterlagen prüfen. „Gegebenenfalls“ versteckt eine Entscheidung mit einer Frage: Unterlagen vollständig? Und „schickt zurück“ ist ein zweiter Schritt, der nur auf einem der beiden Wege liegt: Unterlagen zurücksenden. Aus einem Satz werden also eine Aufgabe, eine Entscheidung und eine weitere Aufgabe, plus zwei mögliche Enden. Wie wir die Entscheidung zeichnen, ist Thema des nächsten Kapitels; wichtig ist hier die Lesetechnik: Jedes Verb wird zu einer Aufgabe, jedes „wenn“, „falls“ oder „gegebenenfalls“ zu einer Frage, jedes mögliche Ergebnis zu einem Ende.\n\n\n\n\n\n\nTippSignalwörter in Prozessbeschreibungen\n\n\n\nBeim Lesen einer Beschreibung markieren wir drei Arten von Wörtern. Verben („prüft“, „versendet“, „verbucht“) werden zu Aufgaben. Bedingungen („wenn“, „falls“, „gegebenenfalls“, „andernfalls“) werden zu Fragen an einem Gateway. Zeit- und Ereigniswörter („sobald“, „nach vier Wochen“, „gleichzeitig“) werden zu Ereignissen oder bestimmen den Gateway-Typ. Diese Markierung ist der erste Schritt jeder Modellierung, auch wenn später ein Sprachmodell den Entwurf zeichnet.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Grundelemente und gute Namen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/grundelemente.html#arbeitsauftrag-ein-erstes-modell-zeichnen",
+    "href": "bpmn/grundelemente.html#arbeitsauftrag-ein-erstes-modell-zeichnen",
+    "title": "1  Grundelemente und gute Namen",
+    "section": "1.6 Arbeitsauftrag: ein erstes Modell zeichnen",
+    "text": "1.6 Arbeitsauftrag: ein erstes Modell zeichnen\nZeitbedarf: etwa 10 Minuten\nVoraussetzungen:\n\nBrowser mit Zugang zu demo.bpmn.io\n\nSchritte:\n\ndemo.bpmn.io öffnen.\nÜber das Plus-Symbol unten links ein neues Diagramm anlegen.\nDas Startereignis anklicken und über Doppelklick mit „Rechnung eingegangen“ beschriften.\nÜber das Menü neben dem Startereignis eine Aufgabe anhängen.\nDie Aufgabe mit „Rechnung prüfen“ beschriften.\nEine zweite Aufgabe „Rechnung zur Zahlung freigeben“ anhängen.\nEin Endereignis anhängen und mit „Rechnung freigegeben“ beschriften.\nDas Diagramm über die Schaltflächen unten links als BPMN-Datei herunterladen.\n\nPrüfen: Das Modell ist fertig, wenn jede Aufgabe ein Objekt und ein Verb im Infinitiv trägt, beide Ereignisse einen Zustand benennen und ein durchgehender Sequenzfluss vom Start bis zum Ende führt.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Grundelemente und gute Namen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/grundelemente.html#kontrollpunkt",
+    "href": "bpmn/grundelemente.html#kontrollpunkt",
+    "title": "1  Grundelemente und gute Namen",
+    "section": "1.7 Kontrollpunkt",
+    "text": "1.7 Kontrollpunkt\n\nDie drei Eigenschaften von BPMN nennen, die es für Fachbereich und IT zur gemeinsamen Sprache machen\nDie vier Elementgruppen unterscheiden\nStart, Aufgabe, Sequenzfluss und Ende in einem Modell erkennen und selbst zeichnen\nAufgaben, Ereignisse, Gateways und Lanes nach den vier Benennungsregeln beschriften\nIn einer Prozessbeschreibung Verben, Bedingungen und Zeitwörter markieren\n\n\n\n\n\nISO/IEC. 2013. ISO/IEC 19510:2013 Information technology – Object Management Group Business Process Model and Notation. Https://www.iso.org/standard/62652.html.\n\n\nObject Management Group. 2014. Business Process Model and Notation (BPMN), Version 2.0.2. Https://www.omg.org/spec/BPMN/2.0.2/.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Grundelemente und gute Namen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/gateways.html",
+    "href": "bpmn/gateways.html",
+    "title": "2  Gateways: verzweigen und zusammenführen",
+    "section": "",
+    "text": "2.1 Exklusives Gateway (XOR): genau ein Weg\nKaum ein Ablauf läuft gerade durch. Eine Rücksendung ist zulässig oder nicht, beim Onboarding passieren mehrere Dinge gleichzeitig, und bei einer Bestellung treffen manchmal zwei Sonderfälle zusammen. BPMN bildet solche Stellen mit Gateways ab, Rauten mit einem Symbol in der Mitte. Ein Gateway trifft keine Entscheidung und erledigt keine Arbeit. Es steuert nur, welche Pfade der Sequenzfluss nimmt. In diesem Kapitel lernen wir die drei Gateway-Typen kennen, die fast jedes fachliche Modell braucht.\nDas exklusive Gateway trägt ein X. Von den ausgehenden Pfaden wird genau einer gewählt, abhängig von Daten, die zu diesem Zeitpunkt bekannt sind.\nDrei Dinge fallen auf. Die Frage steht am Gateway („Rücksendung zulässig?“), die Antworten stehen an den Kanten („ja“, „nein“). Die Prüfung selbst ist eine eigene Aufgabe vor dem Gateway („Rücksendung prüfen“); das Gateway wertet nur ihr Ergebnis aus. Und die Pfade treffen sich wieder in einem zweiten XOR-Gateway, bevor der gemeinsame Rest des Ablaufs folgt.\nWas wäre, wenn die Prüfung noch ein drittes Ergebnis haben kann, etwa „Rückfrage nötig“? Dann bekommt das Gateway eine dritte ausgehende Kante mit dieser Antwort und einen eigenen Pfad, der ebenfalls wieder zusammengeführt wird. Ein XOR-Gateway darf beliebig viele Ausgänge haben, solange genau einer gilt.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gateways: verzweigen und zusammenführen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/gateways.html#exklusives-gateway-xor-genau-ein-weg",
+    "href": "bpmn/gateways.html#exklusives-gateway-xor-genau-ein-weg",
+    "title": "2  Gateways: verzweigen und zusammenführen",
+    "section": "",
+    "text": "Abbildung 2.1: Rücksendung bearbeiten: Das erste XOR-Gateway stellt die Frage, die Kanten tragen die Antworten. Das zweite XOR-Gateway führt die Pfade wieder zusammen.\n\n\n\n\n\n\n\n\n\n\nTippVersteckte Entscheidungen aufdecken\n\n\n\n„Rücksendung prüfen und gegebenenfalls ablehnen“ ist als eine Aufgabe falsch modelliert. Darin stecken eine Aufgabe (prüfen), eine Entscheidung (zulässig?) und eine zweite Aufgabe auf nur einem der Pfade (ablehnen). Wer das in einer Aufgabe zusammenfasst, versteckt die Entscheidung, und im späteren Workflow fehlt dann der IF-Knoten.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gateways: verzweigen und zusammenführen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/gateways.html#paralleles-gateway-and-alle-wege-zugleich",
+    "href": "bpmn/gateways.html#paralleles-gateway-and-alle-wege-zugleich",
+    "title": "2  Gateways: verzweigen und zusammenführen",
+    "section": "2.2 Paralleles Gateway (AND): alle Wege zugleich",
+    "text": "2.2 Paralleles Gateway (AND): alle Wege zugleich\nDas parallele Gateway trägt ein Plus. Alle ausgehenden Pfade starten ohne Bedingung. Das zusammenführende AND-Gateway wartet, bis alle Pfade angekommen sind, und lässt erst dann den Ablauf weiterlaufen.\n\n\n\n\n\n\nAbbildung 2.2: Neue Mitarbeitende einarbeiten: Arbeitsplatz, Zugänge und Willkommenspaket laufen unabhängig voneinander. Erst wenn alle drei erledigt sind, wird der Einführungstag geplant.\n\n\n\n„Gleichzeitig“, „parallel“ und „in beliebiger Reihenfolge“ sind die Signalwörter für dieses Gateway. Wichtig ist das Wort „unabhängig“: Die drei Aufgaben brauchen das Ergebnis der anderen nicht. Hinge das Willkommenspaket von den angelegten Zugängen ab, gehörte es hinter „Zugänge anlegen“ in eine Reihe.\nWas passiert, wenn rechts statt des AND-Gateways ein XOR-Gateway zusammenführt? Das XOR-Gateway wartet nicht. Der erste ankommende Pfad läuft sofort weiter, und der Einführungstag wird dreimal geplant, einmal pro Pfad. Dieser Fehler ist in der Praxis häufig, weil beide Rauten auf den ersten Blick ähnlich aussehen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gateways: verzweigen und zusammenführen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/gateways.html#inklusives-gateway-or-einer-oder-mehrere-wege",
+    "href": "bpmn/gateways.html#inklusives-gateway-or-einer-oder-mehrere-wege",
+    "title": "2  Gateways: verzweigen und zusammenführen",
+    "section": "2.3 Inklusives Gateway (OR): einer oder mehrere Wege",
+    "text": "2.3 Inklusives Gateway (OR): einer oder mehrere Wege\nDas inklusive Gateway trägt einen Kreis. Jeder Pfad, dessen Bedingung zutrifft, startet. Das können einer, mehrere oder alle sein. Der Standardfluss, erkennbar am kleinen Querstrich an der Kante, greift nur, wenn keine Bedingung zutrifft.\n\n\n\n\n\n\nAbbildung 2.3: Bestellung prüfen: Bei einem Neukunden wird die Bonität geprüft, bei einer Lieferung ins Ausland werden Zollunterlagen vorbereitet. Trifft nichts davon zu, läuft der Standardfluss „sonst“. Das zusammenführende OR-Gateway wartet auf alle tatsächlich gestarteten Pfade.\n\n\n\nWelche Pfade laufen bei einem Neukunden mit Lieferadresse im Ausland? Beide: Bonität prüfen und Zollunterlagen vorbereiten. Das zusammenführende OR-Gateway weiß, dass zwei Pfade gestartet wurden, und wartet auf beide, bevor die Bestellung freigegeben wird. Bei einem Bestandskunden im Inland läuft nur der Standardfluss, und das Gateway wartet auf nichts.\n\n\n\n\n\n\nHinweisOR ist seltener, als es scheint\n\n\n\nViele Modellierende greifen zum inklusiven Gateway, wenn sie unsicher sind. Die Faustregel lautet umgekehrt: Zuerst prüfen, ob die Bedingungen sich gegenseitig ausschließen (dann XOR) oder ob ohnehin immer alle Pfade laufen (dann AND). Nur wenn wirklich „einer oder mehrere, je nach Fall“ gemeint ist, passt OR. Im späteren n8n-Workflow wird aus einem OR meist eine Kette von IF-Knoten, die unabhängig voneinander prüfen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gateways: verzweigen und zusammenführen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/gateways.html#drei-gateways-im-vergleich",
+    "href": "bpmn/gateways.html#drei-gateways-im-vergleich",
+    "title": "2  Gateways: verzweigen und zusammenführen",
+    "section": "2.4 Drei Gateways im Vergleich",
+    "text": "2.4 Drei Gateways im Vergleich\n\n\n\n\n\n\n\n\n\n\nExklusiv (XOR)\nParallel (AND)\nInklusiv (OR)\n\n\n\n\nSymbol\nX\nPlus\nKreis\n\n\nVerzweigt\ngenau ein Pfad, abhängig von Daten\nalle Pfade, ohne Bedingung\njeder Pfad, dessen Bedingung zutrifft\n\n\nFührt zusammen\nlässt jeden ankommenden Pfad sofort durch\nwartet, bis alle Pfade angekommen sind\nwartet auf alle tatsächlich gestarteten Pfade\n\n\nSignalwörter\nentweder, oder, falls, je nachdem\ngleichzeitig, parallel, in beliebiger Reihenfolge\nmindestens eines, gegebenenfalls beides\n\n\n\n\n\n\n\n\n\nWichtigFaustregel: Zusammenführen mit dem Typ, mit dem verzweigt wurde\n\n\n\nEin XOR-Split bekommt einen XOR-Join, ein AND-Split einen AND-Join, ein OR-Split einen OR-Join. Gemischte Paare sind fast immer ein Fehler: Ein XOR-Join nach einem AND-Split lässt die Folgeschritte mehrfach laufen, ein AND-Join nach einem XOR-Split wartet auf Pfade, die nie kommen, und der Prozess bleibt stehen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gateways: verzweigen und zusammenführen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/gateways.html#welches-gateway-passt",
+    "href": "bpmn/gateways.html#welches-gateway-passt",
+    "title": "2  Gateways: verzweigen und zusammenführen",
+    "section": "2.5 Welches Gateway passt?",
+    "text": "2.5 Welches Gateway passt?\nDrei kurze Fälle. Für jeden überlegen wir, welches Gateway verzweigt, bevor wir die Auflösung lesen.\nA. Nach der Prüfung wird eine Rechnung entweder zur Zahlung freigegeben oder an den Lieferanten zurückgewiesen.\nB. Vor dem Austritt einer Mitarbeiterin bestätigen IT, Facility-Management und Personalabteilung die Rückgabe von Laptop, Schlüssel und Firmenwagen, in beliebiger Reihenfolge.\nC. Für eine Messeteilnahme werden je nach Standort Reisemittel beantragt, eine Sicherheitsunterweisung organisiert oder beides.\n\n\n\n\n\n\nHinweisAuflösung\n\n\n\n\n\nA ist exklusiv (XOR): „entweder, oder“, genau ein Ergebnis. B ist parallel (AND): drei unabhängige Bestätigungen, alle müssen vorliegen, die Reihenfolge ist egal. C ist inklusiv (OR): „oder beides“ bedeutet einer oder mehrere Pfade je nach Fall. Wer bei C zum XOR greift, kann den Fall „beides“ nicht abbilden; wer zum AND greift, organisiert eine Sicherheitsunterweisung auch dort, wo keine nötig ist.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gateways: verzweigen und zusammenführen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/gateways.html#arbeitsauftrag-eine-entscheidung-modellieren",
+    "href": "bpmn/gateways.html#arbeitsauftrag-eine-entscheidung-modellieren",
+    "title": "2  Gateways: verzweigen und zusammenführen",
+    "section": "2.6 Arbeitsauftrag: eine Entscheidung modellieren",
+    "text": "2.6 Arbeitsauftrag: eine Entscheidung modellieren\nZeitbedarf: etwa 10 Minuten\nVoraussetzungen:\n\nDas Modell „Rechnung prüfen“ aus dem vorigen Kapitel in demo.bpmn.io geöffnet\n\nSchritte:\n\nZwischen „Rechnung prüfen“ und „Rechnung zur Zahlung freigeben“ ein exklusives Gateway einfügen.\nDas Gateway mit der Frage „Rechnung korrekt?“ beschriften.\nDie Kante zur Freigabe mit „ja“ beschriften.\nVom Gateway eine zweite Kante zu einer neuen Aufgabe „Rechnung zurückweisen“ ziehen.\nDiese Kante mit „nein“ beschriften.\nAn „Rechnung zurückweisen“ ein eigenes Endereignis „Rechnung zurückgewiesen“ anhängen.\nDas Diagramm als BPMN-Datei herunterladen.\n\nPrüfen: Das Modell ist fertig, wenn das Gateway eine Frage trägt, jede ausgehende Kante eine Antwort trägt und jeder Pfad in einem benannten Endereignis endet. Eine Zusammenführung ist hier nicht nötig, weil die Pfade in verschiedenen Enden auslaufen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gateways: verzweigen und zusammenführen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/gateways.html#kontrollpunkt",
+    "href": "bpmn/gateways.html#kontrollpunkt",
+    "title": "2  Gateways: verzweigen und zusammenführen",
+    "section": "2.7 Kontrollpunkt",
+    "text": "2.7 Kontrollpunkt\n\nXOR, AND und OR am Symbol erkennen und ihre Verzweigungsregel nennen\nErklären, worauf das zusammenführende Gateway jedes Typs wartet\nEine versteckte Entscheidung in einer Aufgabe erkennen und in Aufgabe, Gateway und Pfad auflösen\nDen Standardfluss eines inklusiven Gateways erkennen und begründen\nFür eine Prozessbeschreibung anhand der Signalwörter den passenden Gateway-Typ wählen",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gateways: verzweigen und zusammenführen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/ereignisse.html",
+    "href": "bpmn/ereignisse.html",
+    "title": "3  Ereignisse: warten, reagieren, abbrechen",
+    "section": "",
+    "text": "3.1 Der Rand sagt wo, das Symbol sagt was\nBisher lief jeder Ablauf, sobald er gestartet war, ohne Pause bis zum Ende. Echte Abläufe warten: auf eine Antwort des Kunden, auf das Monatsende, auf eine Frist. Und sie reagieren auf Dinge, die während einer Aufgabe passieren, etwa eine Rückfrage oder einen abgelaufenen Termin. BPMN bildet all das mit Ereignissen ab, Kreisen mit einem Symbol in der Mitte. In diesem Kapitel lernen wir, wie Position und Symbol eines Ereignisses zusammenwirken, und bauen damit Wartesituationen, die ein n8n-Workflow später mit Wait-Knoten und Triggern abbilden muss.\nJedes Ereignis trägt zwei Informationen. Der Rand zeigt die Position im Prozess, das Symbol zeigt den Auslöser.\nBeide Informationen kombinieren sich frei. Ein dünner Kreis mit Uhr ist ein Zeit-Startereignis („jeden Montag um 8 Uhr“). Ein doppelter Kreis mit hellem Umschlag ist ein Nachrichten-Zwischenereignis („auf Antwort des Kunden warten“). Ein dicker Kreis mit dunklem Umschlag ist ein Nachrichten-Endereignis („Bestätigung versendet, Prozess zu Ende“).",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ereignisse: warten, reagieren, abbrechen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/ereignisse.html#der-rand-sagt-wo-das-symbol-sagt-was",
+    "href": "bpmn/ereignisse.html#der-rand-sagt-wo-das-symbol-sagt-was",
+    "title": "3  Ereignisse: warten, reagieren, abbrechen",
+    "section": "",
+    "text": "Abbildung 3.1: Ereignisse: Die obere Reihe zeigt die drei Positionen am Rand, die untere Reihe vier Auslöser. Ein helles Symbol bedeutet empfangen, ein dunkles Symbol bedeutet senden.\n\n\n\n\n\n\n\n\n\n\n\nPosition\nRand\nBedeutung\n\n\n\n\nStart\ndünn\nLöst den Prozess aus.\n\n\nZwischen\ndoppelt\nTritt während des Prozesses ein; der Prozess wartet darauf oder löst es selbst aus.\n\n\nEnde\ndick\nSchließt einen Pfad oder den ganzen Prozess ab.\n\n\n\n\n\n\n\n\n\n\n\nAuslöser\nSymbol\nBedeutung\n\n\n\n\nNachricht\nBriefumschlag\nHell: Eine Nachricht wird empfangen. Dunkel: Eine Nachricht wird gesendet.\n\n\nZeit\nUhr\nEin Termin, eine Frist oder eine Dauer.\n\n\nFehler\nBlitz\nEin fachlicher Abbruch, der behandelt wird, etwa „Zahlung fehlgeschlagen“.\n\n\nTerminierung\nGefüllter Kreis\nBeendet sofort den ganzen Prozess, auch laufende parallele Pfade.\n\n\n\n\n\n\n\n\n\n\nHinweisFehler und Terminierung kommen selten vor\n\n\n\nIn fachlichen Modellen reichen Nachricht und Zeit für die meisten Fälle. Fehlerereignisse brauchen wir, wenn ein Schritt fachlich scheitern kann und der Prozess darauf eine eigene Antwort hat. Terminierung brauchen wir, wenn ein Ergebnis alle noch laufenden parallelen Pfade sofort beenden soll, etwa die Rücknahme eines Antrags. Im n8n-Workflow entspricht der Fehlerfall einem Error-Trigger oder dem Fehlerausgang eines Knotens.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ereignisse: warten, reagieren, abbrechen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/ereignisse.html#zeitereignisse-starten-und-warten",
+    "href": "bpmn/ereignisse.html#zeitereignisse-starten-und-warten",
+    "title": "3  Ereignisse: warten, reagieren, abbrechen",
+    "section": "3.2 Zeitereignisse: starten und warten",
+    "text": "3.2 Zeitereignisse: starten und warten\nEin Zeitereignis am Start lässt den Prozess zu einem Zeitpunkt beginnen. Ein Zeitereignis dazwischen hält den Prozess an, bis die Zeit verstrichen ist.\n\n\n\n\n\n\nAbbildung 3.2: Mahnlauf: Ein Zeit-Startereignis löst den Prozess am Monatsende aus. Die Zahlungserinnerung versendet eine Sendeaufgabe (dunkler Umschlag). Das Zeit-Zwischenereignis wartet 14 Tage, bevor der Zahlungseingang geprüft wird.\n\n\n\nDrei Elemente sind hier neu:\n\nDas Zeit-Startereignis „Monatsende erreicht“: Der Prozess beginnt zu einem Zeitpunkt, nicht durch eine eingehende Nachricht. In n8n ist das ein Schedule Trigger.\nDas Zeit-Zwischenereignis „14 Tage vergangen“: Der Prozess hält an und wartet, bis die Frist verstrichen ist. In n8n ist das ein Wait-Knoten.\nDie Sendeaufgabe „Zahlungserinnerung versenden“: Der dunkle Umschlag oben links zeigt, dass diese Aufgabe eine Nachricht verschickt. Die Aufgabentypen lernen wir im nächsten Kapitel vollständig kennen.\n\nWas ist unrealistisch an diesem Modell? Es nimmt an, dass alle Kunden bis zum Ende der 14 Tage brauchen. Tatsächlich zahlen viele am zweiten Tag, und der Prozess wartet trotzdem die volle Frist ab, bevor er den Zahlungseingang prüft. Für „was zuerst eintritt“ gibt es ein eigenes Gateway.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ereignisse: warten, reagieren, abbrechen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/ereignisse.html#ereignisbasiertes-gateway-was-zuerst-eintritt",
+    "href": "bpmn/ereignisse.html#ereignisbasiertes-gateway-was-zuerst-eintritt",
+    "title": "3  Ereignisse: warten, reagieren, abbrechen",
+    "section": "3.3 Ereignisbasiertes Gateway: was zuerst eintritt",
+    "text": "3.3 Ereignisbasiertes Gateway: was zuerst eintritt\nDas ereignisbasierte Gateway trägt ein Fünfeck im doppelten Kreis. Es verzweigt nicht nach Daten, sondern nach Ereignissen: Hinter dem Gateway stehen nur Zwischenereignisse, und der Prozess wartet an dieser Stelle. Das erste Ereignis, das eintritt, bestimmt den Pfad. Die anderen verfallen.\n\n\n\n\n\n\nAbbildung 3.3: Angebot nachverfolgen: Nach dem Versand wartet der Prozess. Trifft ein Auftrag ein, wird er angelegt. Trifft eine Absage ein oder läuft die Angebotsfrist ab, wird das Angebot geschlossen.\n\n\n\nWarum kann hier kein exklusives Gateway stehen? Ein XOR-Gateway entscheidet sofort, auf Grundlage von Daten, die zu diesem Zeitpunkt vorliegen. Direkt nach dem Versand liegt aber keine Antwort vor. Es gibt nichts zu entscheiden, sondern etwas abzuwarten. Genau diesen Unterschied drückt das ereignisbasierte Gateway aus. Im n8n-Workflow wird daraus ein Wait-Knoten mit einer Zeitgrenze, der entweder durch eine eingehende Antwort oder durch den Ablauf der Frist weiterläuft.\n\n\n\n\n\n\nTippZwei Fragen für die Wahl des Gateways\n\n\n\nErstens: Liegt die Information, nach der verzweigt wird, zum Zeitpunkt des Gateways schon vor? Wenn ja, XOR. Wenn nein, ereignisbasiert. Zweitens: Was passiert, wenn gar nichts eintritt? Ein ereignisbasiertes Gateway ohne Zeit-Zwischenereignis wartet ewig. Fast immer gehört deshalb eine Frist dazu.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ereignisse: warten, reagieren, abbrechen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/ereignisse.html#randereignisse-ereignisse-während-einer-aufgabe",
+    "href": "bpmn/ereignisse.html#randereignisse-ereignisse-während-einer-aufgabe",
+    "title": "3  Ereignisse: warten, reagieren, abbrechen",
+    "section": "3.4 Randereignisse: Ereignisse während einer Aufgabe",
+    "text": "3.4 Randereignisse: Ereignisse während einer Aufgabe\nManchmal passiert etwas, während eine Aufgabe läuft. Dafür hängt BPMN ein Ereignis an den Rand der Aufgabe, ein Randereignis (Boundary Event). Zwei Varianten unterscheiden sich im Rand des Kreises:\n\n\n\n\n\n\nAbbildung 3.4: Belege nachfordern: Die Empfangsaufgabe wartet auf Belege. Läuft die Frist ab (unterbrechendes Zeit-Randereignis, durchgezogen), wird der Vorgang geschlossen. Trifft währenddessen eine Rückfrage ein (nicht unterbrechendes Nachrichten-Randereignis, gestrichelt), wird sie beantwortet, und das Warten läuft weiter.\n\n\n\n\n\n\n\n\n\n\n\nVariante\nRand\nWirkung\n\n\n\n\nUnterbrechend\ndurchgezogen\nDie Aufgabe wird abgebrochen. Der Prozess folgt nur noch dem neuen Pfad.\n\n\nNicht unterbrechend\ngestrichelt\nDie Aufgabe läuft weiter. Zusätzlich startet ein paralleler Pfad.\n\n\n\nIm Beispiel wartet der Kundenservice auf Belege, die er nachgefordert hat. Läuft die Frist ab, hat das Warten keinen Sinn mehr: Das unterbrechende Zeit-Randereignis bricht die Aufgabe ab, der Vorgang wird geschlossen. Stellt der Kunde zwischendurch eine Rückfrage, soll das Warten nicht enden: Das nicht unterbrechende Nachrichten-Randereignis startet einen zusätzlichen Pfad, auf dem die Rückfrage beantwortet wird, und die Aufgabe wartet weiter.\nWas fehlt im Modell, wenn die Rückfrage den Fall verändert, etwa weil der Kunde nach der Antwort doch keine Belege mehr schickt? Dann müsste der Pfad „Rückfrage beantworten“ in die Hauptaufgabe zurückwirken, etwa über eine Entscheidung „Belege noch nötig?“. Ein nicht unterbrechendes Randereignis eignet sich für Nebentätigkeiten, die den Hauptpfad nicht ändern: Erinnerungen, Zwischenstände, Rückfragen.\n\n\n\n\n\n\nWichtigDie Wahl ist eine fachliche Entscheidung\n\n\n\nOb ein Randereignis unterbricht, entscheidet die Fachabteilung, nicht die Notation. „Nach 14 Tagen gilt der Antrag als zurückgezogen“ ist unterbrechend. „Nach drei Tagen erinnern wir die Fachabteilung, die Prüfung läuft weiter“ ist nicht unterbrechend. Wer das Modell liest, muss diese Regel am Rand des Kreises erkennen können. Deshalb lohnt es sich, die zugehörige Frist in einer Textanmerkung festzuhalten.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ereignisse: warten, reagieren, abbrechen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/ereignisse.html#arbeitsauftrag-eine-frist-modellieren",
+    "href": "bpmn/ereignisse.html#arbeitsauftrag-eine-frist-modellieren",
+    "title": "3  Ereignisse: warten, reagieren, abbrechen",
+    "section": "3.5 Arbeitsauftrag: eine Frist modellieren",
+    "text": "3.5 Arbeitsauftrag: eine Frist modellieren\nZeitbedarf: etwa 15 Minuten\nVoraussetzungen:\n\nBrowser mit Zugang zu demo.bpmn.io\n\nSchritte:\n\nEin neues Diagramm anlegen.\nEin Nachrichten-Startereignis „Bewerbung eingegangen“ anlegen (Startereignis anklicken, Schraubenschlüssel-Symbol, „Message Start Event“ wählen).\nEine Aufgabe „Einladung zum Gespräch versenden“ anhängen.\nEin ereignisbasiertes Gateway anhängen (Gateway anklicken, Schraubenschlüssel-Symbol, „Event based Gateway“ wählen).\nEin Nachrichten-Zwischenereignis „Zusage eingegangen“ anhängen.\nEin Zeit-Zwischenereignis „Frist von 7 Tagen abgelaufen“ als zweiten Ausgang anhängen.\nHinter der Zusage eine Aufgabe „Gespräch terminieren“ und ein Endereignis „Gespräch vereinbart“ anlegen.\nHinter der Frist eine Aufgabe „Nachfassen“ und ein Endereignis „Bewerbung nachgefasst“ anlegen.\nDas Diagramm als BPMN-Datei herunterladen.\n\nPrüfen: Das Modell ist fertig, wenn hinter dem ereignisbasierten Gateway ausschließlich Zwischenereignisse stehen, eines davon ein Zeitereignis ist und jeder Pfad in einem benannten Endereignis endet.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ereignisse: warten, reagieren, abbrechen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/ereignisse.html#kontrollpunkt",
+    "href": "bpmn/ereignisse.html#kontrollpunkt",
+    "title": "3  Ereignisse: warten, reagieren, abbrechen",
+    "section": "3.6 Kontrollpunkt",
+    "text": "3.6 Kontrollpunkt\n\nPosition (Start, Zwischen, Ende) und Auslöser (Nachricht, Zeit, Fehler, Terminierung) eines Ereignisses am Symbol erkennen\nZeit-Start- und Zeit-Zwischenereignis unterscheiden und den passenden n8n-Baustein nennen\nBegründen, wann ein ereignisbasiertes Gateway statt eines exklusiven Gateways nötig ist\nUnterbrechende und nicht unterbrechende Randereignisse am Rand erkennen und ihre Wirkung erklären\nEine Wartesituation mit Frist in demo.bpmn.io modellieren",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ereignisse: warten, reagieren, abbrechen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/teilnehmer-und-daten.html",
+    "href": "bpmn/teilnehmer-und-daten.html",
+    "title": "4  Teilnehmer, Daten und Aufgabentypen",
+    "section": "",
+    "text": "4.1 Pools, Lanes und Nachrichtenflüsse\nEin Kulanzantrag geht durch mehrere Hände: Der Kunde reicht ihn ein, der Kundenservice erfasst ihn, die Fachabteilung entscheidet. Bisher konnten unsere Modelle nicht zeigen, wer einen Schritt ausführt und welche Informationen dabei fließen. In diesem Kapitel kommen die beiden letzten Elementgruppen dazu: Teilnehmer (Pools und Lanes) sowie Daten und Artefakte. Außerdem lernen wir die Aufgabentypen und Marker kennen, die für den späteren n8n-Workflow entscheidend sind, weil sie zeigen, ob ein Mensch oder ein System einen Schritt erledigt.\nEin Pool ist ein eigenständiger Teilnehmer mit eigenem Prozess, etwa unser Online-Shop oder der Kunde. Eine Lane ist eine Rolle oder Stelle innerhalb eines Pools und zeigt, wer eine Aufgabe ausführt. Zwischen Pools gibt es keinen Sequenzfluss, sondern nur Nachrichtenflüsse, gestrichelte Linien mit einem kleinen Kreis am Anfang und einer hellen Pfeilspitze am Ende.\nDer Nachrichtenfluss darf an einem Pool-Rand enden oder beginnen (beim zugeklappten Kunden) oder an einem Element im Pool (beim Nachrichten-Startereignis und bei der Sendeaufgabe im Online-Shop). Welche Nachricht welchen Schritt auslöst, wird damit auf einen Blick sichtbar.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Teilnehmer, Daten und Aufgabentypen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/teilnehmer-und-daten.html#pools-lanes-und-nachrichtenflüsse",
+    "href": "bpmn/teilnehmer-und-daten.html#pools-lanes-und-nachrichtenflüsse",
+    "title": "4  Teilnehmer, Daten und Aufgabentypen",
+    "section": "",
+    "text": "Abbildung 4.1: Kulanzantrag bearbeiten: Der Kunde ist ein zugeklappter Pool, der Online-Shop ein Pool mit zwei Lanes. Der Antrag kommt als Nachricht und startet den Prozess; die Entscheidung geht als Nachricht zurück.\n\n\n\n\n\n\n\n\n\n\nElement\nBedeutung\n\n\n\n\nPool\nEigenständiger Teilnehmer mit eigenem Prozess. Zugeklappt (ohne Inhalt) zeigt er nur, dass es den Teilnehmer gibt: eine Black Box. Wir wissen nicht, was der Kunde intern tut, nur was er uns schickt.\n\n\nLane\nRolle oder Stelle innerhalb eines Pools: „Kundenservice“, „Fachabteilung“. Eine Übergabe zwischen Lanes ist ein normaler Sequenzfluss.\n\n\nNachrichtenfluss\nGestrichelt, nur zwischen Pools. Trägt den Namen der Nachricht: „Antrag mit Belegen“, „Entscheidung“.\n\n\n\n\n\n\n\n\n\n\nHinweisLane oder Pool?\n\n\n\nDie Frage lautet: Arbeitet der Beteiligte im selben Prozess mit, oder führt er einen eigenen Prozess und kommuniziert nur über Nachrichten? Kundenservice und Fachabteilung arbeiten am selben Antrag, folgen derselben Reihenfolge und sehen dieselben Daten: Lanes. Der Kunde entscheidet selbst, wann er Belege schickt, und wir sehen seine Schritte nicht: eigener Pool. Dieselbe Regel gilt für externe Dienstleister, Behörden oder Lieferanten.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Teilnehmer, Daten und Aufgabentypen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/teilnehmer-und-daten.html#daten-und-anmerkungen",
+    "href": "bpmn/teilnehmer-und-daten.html#daten-und-anmerkungen",
+    "title": "4  Teilnehmer, Daten und Aufgabentypen",
+    "section": "4.2 Daten und Anmerkungen",
+    "text": "4.2 Daten und Anmerkungen\nAufgaben erzeugen und brauchen Informationen. BPMN zeigt das mit zwei Datenelementen und einer Anmerkung, alle über gepunktete Assoziationen mit dem Ablauf verbunden.\n\n\n\n\n\n\nAbbildung 4.2: Anfrage erfassen: Das Datenobjekt „Anfrage mit Kategorie“ entsteht in der ersten Aufgabe und wird in der zweiten gebraucht. Der Datenspeicher „Tabelle customer_emails“ bleibt über den Prozessdurchlauf hinaus bestehen. Die Textanmerkung hält eine fachliche Regel fest.\n\n\n\n\n\n\n\n\n\n\n\nElement\nSymbol\nBedeutung\n\n\n\n\nDatenobjekt\nBlatt mit Eselsohr\nInformation, die im Prozess entsteht oder gebraucht wird und nur für diesen Durchlauf gilt: eine Anfrage, ein Bescheid, ein Prüfformular.\n\n\nDatenspeicher\nZylinder\nDauerhafte Ablage über die Prozessinstanz hinaus: eine Tabelle, ein CRM, eine Kundenakte.\n\n\nTextanmerkung\nOffene Klammer mit Text\nErgänzender Hinweis, etwa eine Regel oder eine Frist. Die gepunktete Linie steuert keinen Ablauf.\n\n\n\nDie Pfeilrichtung der Assoziation zeigt, ob eine Aufgabe das Datenobjekt erzeugt (Pfeil zum Objekt) oder verwendet (Pfeil zur Aufgabe). Der Datenspeicher „Tabelle customer_emails“ ist genau die Data Table, die unser Workflow im Teil „Erste Workflows“ beschreibt. Systemnamen gehören hierhin, nicht in den Aufgabennamen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Teilnehmer, Daten und Aufgabentypen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/teilnehmer-und-daten.html#aufgabentypen-und-marker",
+    "href": "bpmn/teilnehmer-und-daten.html#aufgabentypen-und-marker",
+    "title": "4  Teilnehmer, Daten und Aufgabentypen",
+    "section": "4.3 Aufgabentypen und Marker",
+    "text": "4.3 Aufgabentypen und Marker\nBisher haben wir nur neutrale Aufgaben gezeichnet. Ein kleines Symbol oben links legt den Typ fest, also wer oder was den Schritt erledigt. Ein Symbol unten in der Mitte ist ein Marker und sagt, wie oft der Schritt läuft.\n\n\n\n\n\n\nAbbildung 4.3: Aufgabentypen und Marker: Der Typ steht oben links (Benutzer-, Service-, Sende-, Empfangsaufgabe), der Marker unten mittig (Schleife, Mehrfachinstanz parallel und sequenziell, Teilprozess).\n\n\n\n\n\n\n\n\n\n\n\n\nTyp\nSymbol\nBedeutung\nSpäter in n8n\n\n\n\n\nBenutzeraufgabe\nPerson\nEin Mensch arbeitet mit IT-Unterstützung: prüfen, entscheiden, freigeben.\nFormular oder Freigabe, auf die der Workflow wartet\n\n\nServiceaufgabe\nZahnräder\nEin System erledigt den Schritt automatisch: eintragen, abrufen, berechnen.\nEin Knoten\n\n\nSendeaufgabe\nDunkler Umschlag\nVerschickt eine Nachricht an einen anderen Pool.\nSend-Email- oder Chat-Knoten\n\n\nEmpfangsaufgabe\nHeller Umschlag\nWartet auf eine Nachricht von außen.\nWait-Knoten oder Trigger\n\n\n\n\n\n\n\n\n\n\n\nMarker\nSymbol\nBedeutung\n\n\n\n\nSchleife\nPfeil im Kreis\nWiederholen, bis eine Bedingung erfüllt ist: „Entwurf überarbeiten, bis freigegeben“.\n\n\nMehrfach, parallel\nDrei senkrechte Striche\nJe Element einer Liste einmal, gleichzeitig: „je reklamierter Position prüfen“.\n\n\nMehrfach, sequenziell\nDrei waagerechte Striche\nJe Element einer Liste einmal, nacheinander: wenn jede Prüfung auf dem Ergebnis der vorigen aufbaut.\n\n\nTeilprozess\nPlus im Kästchen\nFasst mehrere Schritte zusammen.\n\n\n\n\n\n\n\n\n\nTippDer Typ ist die wichtigste Angabe für den Workflow\n\n\n\nFür die Übertragung nach n8n ist der Aufgabentyp entscheidender als jedes andere Detail. Serviceaufgaben werden zu Knoten, die von allein laufen. Benutzeraufgaben sind die Stellen, an denen der Workflow anhält und einen Menschen fragt. Wer im Modell jede Aufgabe typisiert, hat die Frage „Was automatisieren wir, und was bleibt beim Menschen?“ bereits beantwortet. Im Demo-Szenario des Kurses sind Bestätigen und Eintragen Serviceaufgaben, die Kulanzfreigabe ist eine Benutzeraufgabe.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Teilnehmer, Daten und Aufgabentypen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/teilnehmer-und-daten.html#teilprozesse-details-ein--und-ausblenden",
+    "href": "bpmn/teilnehmer-und-daten.html#teilprozesse-details-ein--und-ausblenden",
+    "title": "4  Teilnehmer, Daten und Aufgabentypen",
+    "section": "4.4 Teilprozesse: Details ein- und ausblenden",
+    "text": "4.4 Teilprozesse: Details ein- und ausblenden\nEin Teilprozess fasst mehrere Schritte zu einer Aktivität zusammen. Zugeklappt zeigt er nur seinen Namen und den Plus-Marker; aufgeklappt zeigt er die Schritte mit eigenem Start und eigenem Ende im Inneren.\n\n\n\n\n\n\nAbbildung 4.4: Zugeklappt: Der Teilprozess „Reklamierte Position prüfen“ verbirgt seine Details hinter dem Plus-Marker.\n\n\n\n\n\n\n\n\n\nAbbildung 4.5: Aufgeklappt: Derselbe Teilprozess mit eigenem Start, zwei parallelen Prüfungen und eigenem Ende im Inneren.\n\n\n\nTeilprozesse halten das Hauptmodell lesbar. Eine Faustregel aus der Praxis: Höchstens etwa zehn Aufgaben pro Ebene. Wer mehr braucht, fasst zusammen und zeichnet die Details in einem eigenen Diagramm. Ein Teilprozess kann zusätzlich einen Mehrfach-Marker tragen: „Reklamierte Position prüfen“ mit drei senkrechten Strichen bedeutet, dass die Prüfung für jede reklamierte Position einmal läuft, parallel. Im n8n-Workflow entspricht ein Teilprozess einem Sub-Workflow, der über einen Execute-Sub-workflow-Knoten aufgerufen wird; der Mehrfach-Marker entspricht dem Verhalten von n8n, einen Knoten je Item auszuführen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Teilnehmer, Daten und Aufgabentypen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/teilnehmer-und-daten.html#sechs-typische-fehler",
+    "href": "bpmn/teilnehmer-und-daten.html#sechs-typische-fehler",
+    "title": "4  Teilnehmer, Daten und Aufgabentypen",
+    "section": "4.5 Sechs typische Fehler",
+    "text": "4.5 Sechs typische Fehler\n\n\n\n\n\n\n\nFehler\nWas stattdessen gilt\n\n\n\n\nSequenzfluss zwischen Pools\nPools verbinden wir ausschließlich mit Nachrichtenflüssen.\n\n\nNachrichtenfluss im Pool\nÜbergaben zwischen Lanes sind normale Sequenzflüsse.\n\n\nGemischte Gateways\nMit dem Typ zusammenführen, mit dem verzweigt wurde.\n\n\nVersteckte Entscheidung\n„Prüfen und ggf. ablehnen“ in Aufgabe und Gateway trennen.\n\n\nOffene Enden\nJeder Pfad endet in einem benannten Endereignis.\n\n\nPersonen als Lanes\nStellen statt Namen: „Kundenservice“, nicht „Frau Müller“.\n\n\n\n\n\n\n\n\n\nWichtigPrüfen, bevor andere lesen\n\n\n\nDiese sechs Fehler sind die häufigsten in Modellen von Einsteigerinnen und Einsteigern, und sie sind alle mechanisch prüfbar. Bevor wir ein Modell weitergeben oder in n8n übertragen, gehen wir die Liste einmal durch. Im Kapitel „Vom Modell zum Workflow“ wird daraus eine vollständige Prüfliste, die auch für KI-Entwürfe gilt.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Teilnehmer, Daten und Aufgabentypen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/teilnehmer-und-daten.html#jetzt-selbst-rückgabefrist-verlängern",
+    "href": "bpmn/teilnehmer-und-daten.html#jetzt-selbst-rückgabefrist-verlängern",
+    "title": "4  Teilnehmer, Daten und Aufgabentypen",
+    "section": "4.6 Jetzt selbst: Rückgabefrist verlängern",
+    "text": "4.6 Jetzt selbst: Rückgabefrist verlängern\nEine kurze Übung, bevor wir das Modell in n8n übertragen. Die Fallbeschreibung:\n\nKunden beantragen beim Kundenservice eine Verlängerung der Rückgabefrist und legen einen Nachweis bei, etwa die Bestellbestätigung. Der Kundenservice prüft den Antrag. Fehlt der Nachweis oder ist er unvollständig, lehnt er den Antrag ab und teilt das dem Kunden mit. Andernfalls setzt er den Status der Bestellung im Shop-System auf „Rückgabe verlängert“ und versendet gleichzeitig eine Bestätigung.\n\nZeitbedarf: etwa 15 Minuten\nVoraussetzungen:\n\nBrowser mit Zugang zu demo.bpmn.io, oder Papier und Stift\n\nSchritte:\n\nPools und Lanes festlegen: Wer kommuniziert nur über Nachrichten, wer arbeitet im Prozess mit?\nStart- und Endereignisse benennen. Dabei die Signalwörter aus der Beschreibung nutzen.\nAufgaben und Gateways ergänzen. Für jede Aufgabe den Typ festlegen.\nNachrichtenflüsse und den Datenspeicher einzeichnen.\nDas Modell mit der Liste der sechs typischen Fehler prüfen.\n\nPrüfen: Das Modell ist fertig, wenn es zwei Pools, ein Nachrichten-Startereignis, zwei Endereignisse, ein XOR-Gateway mit beschrifteten Kanten, ein AND-Gateway mit Zusammenführung und einen Datenspeicher enthält.\n\n\n\n\n\n\nHinweisEine mögliche Lösung\n\n\n\n\n\n\n\n\n\n\n\nAbbildung 4.6: Rückgabefrist verlängern: Der Antrag kommt als Nachricht und startet den Prozess. „Gleichzeitig“ ist das Signalwort für das parallele Gateway. Andere Layouts sind richtig, wenn die Semantik stimmt.\n\n\n\nDrei Beobachtungen: Der Antrag kommt von außen, deshalb ein Nachrichten-Startereignis mit Nachrichtenfluss vom Kunden-Pool. „Gleichzeitig“ führt zum parallelen Gateway mit AND-Zusammenführung. Das Setzen des Status ist eine Serviceaufgabe mit Assoziation zum Datenspeicher „Shop-System“; Ablehnung und Bestätigung sind Sendeaufgaben, weil sie Nachrichten an den anderen Pool schicken. Die Modelldatei zum Öffnen in demo.bpmn.io: uebung-fristverlaengerung.bpmn.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Teilnehmer, Daten und Aufgabentypen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/teilnehmer-und-daten.html#kontrollpunkt",
+    "href": "bpmn/teilnehmer-und-daten.html#kontrollpunkt",
+    "title": "4  Teilnehmer, Daten und Aufgabentypen",
+    "section": "4.7 Kontrollpunkt",
+    "text": "4.7 Kontrollpunkt\n\nPool, Lane und Nachrichtenfluss unterscheiden und begründen, wann ein Beteiligter eine Lane und wann ein eigener Pool ist\nDatenobjekt, Datenspeicher und Textanmerkung erkennen und richtig assoziieren\nDie vier Aufgabentypen und die vier Marker am Symbol erkennen und ihrem n8n-Gegenstück zuordnen\nEinen Teilprozess zu- und aufgeklappt lesen\nDie sechs typischen Fehler in einem fremden Modell finden",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Teilnehmer, Daten und Aufgabentypen</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/zum-workflow.html",
+    "href": "bpmn/zum-workflow.html",
+    "title": "5  Vom Modell zum n8n-Workflow",
+    "section": "",
+    "text": "5.1 Das Modell des Demo-Szenarios\nEin fertiges BPMN-Modell ist der Bauplan für den Workflow. Jedes Element hat ein Gegenstück in n8n, und wer die Zuordnung kennt, baut den Workflow in der Reihenfolge des Modells statt nach Gefühl. In diesem Kapitel legen wir die Zuordnung fest, lassen ein Sprachmodell aus einer Schrittliste einen BPMN-Entwurf schreiben und prüfen das Ergebnis mit einer festen Liste. Denn ein KI-Entwurf sieht überzeugend aus, auch wenn darin Schritte stehen, die es im Ablauf nie gab.\nWir beginnen mit dem Szenario, das den Kurs begleitet: Eine Kundenmail geht ein, wird bestätigt und in die Tabelle customer_emails eingetragen. Kulanzfälle brauchen eine Freigabe durch einen Menschen.\nDas Modell beantwortet schon jetzt, was der Workflow können muss: einen Trigger für eingehende Mails, zwei automatische Schritte, eine Verzweigung, eine Wartestelle für einen Menschen und einen Datenspeicher. Die Lane „Workflow-System (n8n)“ enthält alles, was von allein läuft; die Lane „Kundenservice“ enthält die einzige Stelle, an der ein Mensch gebraucht wird.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Vom Modell zum n8n-Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/zum-workflow.html#das-modell-des-demo-szenarios",
+    "href": "bpmn/zum-workflow.html#das-modell-des-demo-szenarios",
+    "title": "5  Vom Modell zum n8n-Workflow",
+    "section": "",
+    "text": "Abbildung 5.1: Kundenmail bearbeiten: Das Workflow-System bestätigt und trägt ein. Nur bei einem Kulanzfall hält der Ablauf an und wartet auf die Freigabe durch den Kundenservice.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Vom Modell zum n8n-Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/zum-workflow.html#die-zuordnung",
+    "href": "bpmn/zum-workflow.html#die-zuordnung",
+    "title": "5  Vom Modell zum n8n-Workflow",
+    "section": "5.2 Die Zuordnung",
+    "text": "5.2 Die Zuordnung\n\n\n\n\n\n\n\n\nBPMN-Element\nn8n-Baustein\nHinweis\n\n\n\n\nNachrichten-Startereignis\nApp-Trigger: Email Trigger (IMAP), Gmail Trigger, Webhook, Form Trigger\nDer Trigger bestimmt, welche Daten der Workflow am Anfang hat.\n\n\nZeit-Startereignis\nSchedule Trigger\nCron-ähnliche Zeitpläne: täglich, wöchentlich, zum Monatsende.\n\n\nServiceaufgabe\nEin Knoten: Data Table, HTTP Request, Set, Google Sheets, CRM-Knoten\nLäuft ohne Rückfrage durch.\n\n\nSendeaufgabe\nSend Email, Gmail, Slack, Microsoft Teams\nVersand an einen anderen Pool.\n\n\nExklusives Gateway (XOR)\nIF (zwei Ausgänge) oder Switch (mehrere Ausgänge)\nDie Frage am Gateway wird zur Bedingung im Knoten.\n\n\nParalleles Gateway (AND)\nMehrere ausgehende Verbindungen von einem Knoten, Zusammenführung mit Merge\nn8n führt Zweige nacheinander aus, nicht gleichzeitig; das Ergebnis ist dasselbe.\n\n\nInklusives Gateway (OR)\nMehrere IF-Knoten, die unabhängig prüfen, Zusammenführung mit Merge\nDer Standardfluss ist der Fall, in dem keine Bedingung greift.\n\n\nZeit-Zwischenereignis\nWait (Resume: After Time Interval oder At Specified Time)\nDer Workflow pausiert und läuft danach weiter.\n\n\nEreignisbasiertes Gateway\nWait (Resume: On Webhook Call oder On Form Submitted) mit Zeitlimit\nWeiter bei Antwort oder bei Fristablauf, was zuerst eintritt.\n\n\nBenutzeraufgabe, Freigabe\nForm-Knoten, oder ein Knoten mit „Send and Wait for Response“ (Gmail, Slack)\nDer Workflow hält an, bis ein Mensch bestätigt oder ablehnt.\n\n\nEmpfangsaufgabe\nWait (On Webhook Call) oder eigener Trigger in einem zweiten Workflow\nJe nachdem, ob die Nachricht auf den laufenden Workflow bezogen ist.\n\n\nDatenspeicher\nData Table, Google Sheets, Datenbank-Knoten\nDer Name des Speichers im Modell ist der Name der Tabelle im Workflow.\n\n\nTeilprozess\nExecute Sub-workflow\nEin eigener Workflow, der aufgerufen wird.\n\n\nMehrfach-Marker\nVerhalten je Item; bei großen Mengen Loop Over Items\nn8n führt jeden Knoten für jedes Item aus.\n\n\nFehler-Ereignis\nError Trigger oder Fehlerausgang eines Knotens („Continue on Error“)\nEin eigener Pfad für den Fehlerfall.\n\n\nPool „Kunde“\nKein Baustein\nDer Kunde ist außerhalb des Workflows; seine Nachrichten sind Trigger und Wait-Eingänge.\n\n\n\n\n\n\n\n\n\nHinweisWas n8n anders macht als BPMN\n\n\n\nZwei Unterschiede sollten wir kennen. Erstens kennt n8n keine echte Parallelität: Zweige nach einer Verzweigung laufen nacheinander. Für fachliche Modelle spielt das keine Rolle, weil das Ergebnis gleich ist. Zweitens arbeitet n8n mit Items: Ein Knoten läuft für jedes Element seiner Eingabe. Was BPMN mit dem Mehrfach-Marker ausdrücklich macht, ist in n8n das Normalverhalten.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Vom Modell zum n8n-Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/zum-workflow.html#die-reihenfolge-beim-bauen",
+    "href": "bpmn/zum-workflow.html#die-reihenfolge-beim-bauen",
+    "title": "5  Vom Modell zum n8n-Workflow",
+    "section": "5.3 Die Reihenfolge beim Bauen",
+    "text": "5.3 Die Reihenfolge beim Bauen\nAus dem Modell wird der Workflow in vier Schritten:\n\nTrigger wählen. Das Startereignis bestimmt den Trigger und damit die Felder, mit denen der Workflow arbeitet.\nDen Hauptpfad bauen. Alle Serviceaufgaben auf dem Weg vom Start zum häufigsten Ende als Knoten in Reihe, mit Mock-Daten getestet.\nGateways ergänzen. Jedes XOR-Gateway wird zu einem IF-Knoten; die Antworten an den Kanten werden zu den Bedingungen.\nWartestellen einbauen. Benutzeraufgaben, Zeit-Zwischenereignisse und ereignisbasierte Gateways werden zu Wait- oder Form-Knoten. Diese Stellen zuletzt, weil sie beim Testen am meisten Zeit kosten.\n\nFür das Demo-Szenario heißt das: Email Trigger, Send Email, Data Table, dann ein IF-Knoten „Kulanzfall?“, dann der Freigabeschritt. Genau in dieser Reihenfolge entsteht der Workflow im Teil „Erste Workflows“.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Vom Modell zum n8n-Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/zum-workflow.html#mit-ki-vom-formular-zum-modell",
+    "href": "bpmn/zum-workflow.html#mit-ki-vom-formular-zum-modell",
+    "title": "5  Vom Modell zum n8n-Workflow",
+    "section": "5.4 Mit KI vom Formular zum Modell",
+    "text": "5.4 Mit KI vom Formular zum Modell\nIn der Willkommenslektion ist eine Schrittliste entstanden: der Ablauf in einem Satz, Häufigkeit und Aufwand, die Schritte mit der Zuordnung zu Regel, KI-Schritt oder Mensch, und die beteiligten Systeme. Aus dieser Liste kann ein Sprachmodell einen BPMN-Entwurf schreiben. Der folgende Auftrag ist dafür gebaut. Die Stellen in spitzen Klammern ersetzen wir durch die Angaben aus der Schrittliste.\nKontext: Ich beschreibe einen wiederkehrenden Arbeitsablauf aus meinem\nUnternehmen. Er soll später als Workflow in n8n automatisiert werden.\nAblauf (ein Satz mit Auslöser und Ergebnis): &lt;Ablauf&gt;\nHäufigkeit und Aufwand: &lt;Häufigkeit und Aufwand&gt;\nSchritte, je Zeile ein Schritt und dahinter, wer ihn künftig erledigt\n(Regel, KI-Schritt oder Mensch):\n&lt;Schritte&gt;\nBeteiligte Systeme: &lt;Systeme&gt;\n\nAufgabe: Erstelle daraus einen Entwurf für ein BPMN-2.0-Modell. Verwende\nnur diese Elemente: Startereignis (Nachricht oder Zeit), Endereignis,\nAufgabe mit Typ, exklusives Gateway, paralleles Gateway, Zeit-Zwischen-\nereignis, Datenspeicher. Ordne jeder Aufgabe einen Typ zu: Schritte mit\n„Regel“ oder „KI-Schritt“ sind Serviceaufgaben, Versand ist eine\nSendeaufgabe, Schritte mit „Mensch“ sind Benutzeraufgaben. Lege einen\nPool für mein Unternehmen mit einer Lane „Workflow-System“ und je einer\nLane pro menschlicher Rolle an. Externe Beteiligte, die nur Nachrichten\nschicken oder empfangen, sind zugeklappte Pools.\n\nBenennung: Aufgaben als Objekt plus Verb im Infinitiv („Anfrage\nprüfen“), Ereignisse als Objekt plus Partizip („Anfrage eingegangen“),\nGateways als Frage mit beschrifteten Ausgängen („Kulanzfall? ja / nein“).\n\nFormat: Zuerst eine Tabelle mit den Spalten Nr., Element (Start, Aufgabe,\nGateway, Ereignis, Ende), Name, Typ, Lane, Danach (Nummer des nächsten\nElements oder bei Gateways die Ausgänge mit Antwort). Dann eine Liste der\nDatenspeicher mit den Aufgaben, die darauf zugreifen. Dann eine Liste\nder Nachrichtenflüsse zwischen den Pools.\n\nPrüfung: Erfinde keine Schritte, die nicht in meiner Liste stehen. Wo\netwas unklar ist (fehlende Entscheidung, fehlendes Ende, unklare Frist,\nunklare Zuständigkeit), füge in der Tabelle keinen Schritt hinzu, sondern\nschreibe in die Spalte Name „OFFEN:“ und eine Frage an mich. Gib am Ende\nalle offenen Fragen als nummerierte Liste aus.\nDen Entwurf zeichnen wir anschließend in demo.bpmn.io nach. Das Nachzeichnen ist Absicht: Beim Zeichnen prüfen wir jeden Schritt noch einmal. Wer eine fertige Datei möchte, ersetzt den Teil „Format“ durch die Bitte um eine vollständige BPMN-2.0-XML-Datei mit Diagrammteil (BPMNDiagram mit Koordinaten) und öffnet die gespeicherte Datei in demo.bpmn.io; meist braucht das eine zweite Runde mit der Fehlermeldung des Editors.\n\n\n\n\n\n\nWichtigNur freigegebene Werkzeuge, nur anonymisierte Angaben\n\n\n\nWir verwenden ein KI-Werkzeug, das im eigenen Unternehmen für solche Inhalte freigegeben ist. Die Schrittliste enthält keine Namen von Kundinnen, Kunden oder Kolleginnen und keine internen Kennzahlen, die nicht nach außen dürfen. Im Zweifel beschreiben wir allgemeiner: „eine Kundin“, „das Buchhaltungssystem“.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Vom Modell zum n8n-Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/zum-workflow.html#die-prüfliste",
+    "href": "bpmn/zum-workflow.html#die-prüfliste",
+    "title": "5  Vom Modell zum n8n-Workflow",
+    "section": "5.5 Die Prüfliste",
+    "text": "5.5 Die Prüfliste\nJeden Entwurf, ob von Hand oder mit KI, prüfen wir mit denselben Fragen. Ein KI-Modell gilt erst nach dieser fachlichen Prüfung als Modell.\n\n\n\n\n\n\n\n\nNr.\nPrüffrage\nErfüllt, wenn\n\n\n\n\n1\nKommt jeder Schritt in der Schrittliste vor?\nKein Schritt ist erfunden.\n\n\n2\nHat jede Aufgabe einen Typ, und passt er zur Zuordnung Regel, KI-Schritt oder Mensch?\nMenschliche Arbeit ist Benutzeraufgabe, Automatisches ist Serviceaufgabe.\n\n\n3\nLiegt jede Aufgabe in genau einer Lane, und ist die Lane eine Rolle oder ein System?\nKeine Lane mit Personennamen, keine Lane „Sonstiges“.\n\n\n4\nHat jedes Gateway eine Frage und beschriftete Ausgänge?\nKeine Raute ohne Text.\n\n\n5\nWird mit dem Typ zusammengeführt, mit dem verzweigt wurde?\nKeine gemischten Gateway-Paare.\n\n\n6\nIst jede Wartesituation mit einer Frist versehen?\nKein ereignisbasiertes Gateway ohne Zeitereignis.\n\n\n7\nSind alle Enden mit einem Zustand benannt?\nJedes Ergebnis ist erkennbar.\n\n\n8\nLaufen Sequenzflüsse nur innerhalb von Pools und Nachrichtenflüsse nur zwischen Pools?\nKein Pfeil über eine Pool-Grenze.\n\n\n9\nSind offene Fragen festgehalten statt geglättet?\nJede Unklarheit steht als Frage im Entwurf.\n\n\n10\nEnthält das Modell keine Personendaten?\nNur Rollen, keine Namen.\n\n\n\nKI-Entwürfe fallen am häufigsten bei den Fragen 1, 4 und 9 durch: Ein Prüfschritt, der „sinnvoll wäre“, steht plötzlich im Modell, ein Gateway hat nur einen beschrifteten Ausgang, oder eine Unklarheit wurde stillschweigend zu einer Annahme. Das korrigieren wir, bevor wir den ersten Knoten in n8n anlegen.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Vom Modell zum n8n-Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/zum-workflow.html#arbeitsauftrag-die-eigene-schrittliste-modellieren",
+    "href": "bpmn/zum-workflow.html#arbeitsauftrag-die-eigene-schrittliste-modellieren",
+    "title": "5  Vom Modell zum n8n-Workflow",
+    "section": "5.6 Arbeitsauftrag: die eigene Schrittliste modellieren",
+    "text": "5.6 Arbeitsauftrag: die eigene Schrittliste modellieren\nZeitbedarf: etwa 30 Minuten\nVoraussetzungen:\n\nDie Schrittliste aus der Willkommenslektion\nEin im Unternehmen freigegebenes Chat-Werkzeug; ist keines freigegeben, das Demo-Szenario des Kurses als Schrittliste verwenden\nBrowser mit Zugang zu demo.bpmn.io\n\nSchritte:\n\nDen Auftrag kopieren und die Platzhalter mit der eigenen Schrittliste füllen.\nDen Auftrag im Chat-Werkzeug ausführen.\nDie offenen Fragen am Ende der Antwort beantworten und den Entwurf überarbeiten lassen.\nDen Entwurf mit der Prüfliste Frage für Frage prüfen.\nDen geprüften Entwurf in demo.bpmn.io nachzeichnen.\nFür jede Aufgabe mit dem Typ Serviceaufgabe den n8n-Baustein aus der Zuordnungstabelle notieren.\nDas Diagramm als BPMN-Datei und als SVG-Bild herunterladen.\n\nPrüfen: Der Auftrag ist erfüllt, wenn das Modell alle zehn Prüffragen besteht und für jede Serviceaufgabe ein n8n-Baustein feststeht.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Vom Modell zum n8n-Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/zum-workflow.html#kontrollpunkt",
+    "href": "bpmn/zum-workflow.html#kontrollpunkt",
+    "title": "5  Vom Modell zum n8n-Workflow",
+    "section": "5.7 Kontrollpunkt",
+    "text": "5.7 Kontrollpunkt\n\nJedem BPMN-Element aus diesem Teil den passenden n8n-Baustein zuordnen\nDie vier Schritte beim Bauen eines Workflows aus einem Modell in der richtigen Reihenfolge nennen\nMit dem Auftrag aus einer Schrittliste einen BPMN-Entwurf erzeugen lassen\nEinen Entwurf mit der Prüfliste kontrollieren und die typischen Schwächen von KI-Entwürfen erkennen",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Vom Modell zum n8n-Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html",
+    "href": "bpmn/uebung-kulanzantrag.html",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "",
+    "text": "6.1 Ausgangssituation\nIn dieser Übung modellieren wir das Verfahren, mit dem unser Online-Shop Kulanzanträge bearbeitet, als vollständiges BPMN-Kollaborationsdiagramm. Alle Elemente aus diesem Teil kommen vor. Die Übung ist für zwei bis drei Personen gedacht, lässt sich aber auch allein bearbeiten. Als Werkzeug dient demo.bpmn.io im Browser oder der kostenlose Camunda Modeler.\nKunden, die mit einer Lieferung unzufrieden sind, aber keinen Anspruch aus Gewährleistung haben, können einen Kulanzantrag stellen. Beteiligt sind die Kunden, der Kundenservice, die für die jeweilige Produktgruppe zuständige Fachabteilung und die Teamleitung des Kundenservice. Das Verfahren läuft wie folgt ab:",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html#ausgangssituation",
+    "href": "bpmn/uebung-kulanzantrag.html#ausgangssituation",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "",
+    "text": "Der Prozess beginnt, sobald im Kundenservice ein Kulanzantrag eingeht. Die Kunden reichen den Antrag über das Kundenportal ein und fügen die Rechnung sowie Fotos der beanstandeten Positionen bei.\nDer Kundenservice prüft den Antrag auf Vollständigkeit. Fehlen Belege, fordert er diese bei den Kunden nach.\nNach der Nachforderung wartet der Kundenservice. Gehen die Belege ein, wird die Vollständigkeit erneut geprüft. Gehen sie innerhalb von 14 Tagen nicht ein, gilt der Antrag als zurückgezogen: Der Kundenservice informiert die Kunden, und der Prozess endet.\nIst der Antrag vollständig, leitet der Kundenservice ihn an die zuständige Fachabteilung weiter. Diese führt die fachliche Prüfung durch und gibt für jede reklamierte Position eine Empfehlung ab (Kulanz gewähren oder nicht gewähren).\nLiegt die Empfehlung drei Werktage nach der Weiterleitung noch nicht vor, erinnert der Kundenservice die Fachabteilung. Die fachliche Prüfung läuft dabei weiter; sie wird durch die Erinnerung nicht abgebrochen.\nAuf Grundlage der Empfehlungen entscheidet die Teamleitung des Kundenservice über den Antrag.\nAnschließend bereitet der Kundenservice den Bescheid vor: Wurde mindestens eine Position anerkannt, verbucht er die Gutschrift im Shop-System. Wurde mindestens eine Position abgelehnt, formuliert er eine schriftliche Begründung mit Hinweis auf die Beschwerdestelle. Bei einer teilweisen Kulanz geschieht beides.\nDanach erstellt der Kundenservice den Bescheid. Er versendet ihn an die Kunden und archiviert gleichzeitig Antrag und Bescheid in der digitalen Kundenakte. Sind beide Schritte erledigt, ist der Antrag abschließend bearbeitet.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html#aufgabe-1-fallbeschreibung-analysieren-etwa-15-minuten",
+    "href": "bpmn/uebung-kulanzantrag.html#aufgabe-1-fallbeschreibung-analysieren-etwa-15-minuten",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "6.2 Aufgabe 1: Fallbeschreibung analysieren (etwa 15 Minuten)",
+    "text": "6.2 Aufgabe 1: Fallbeschreibung analysieren (etwa 15 Minuten)\nWir lesen die Fallbeschreibung und tragen die gefundenen Begriffe in die mittlere Spalte ein. In der rechten Spalte steht, mit welchem BPMN-Element wir den Begriff darstellen werden.\n\n\n\n\n\n\n\n\nKategorie\nFundstellen im Text (Nr.) und Begriffe\nGeplantes BPMN-Element\n\n\n\n\nBeteiligte Organisationen\n\n\n\n\nRollen innerhalb des Online-Shops\n\n\n\n\nAuslösendes Ereignis\n\n\n\n\nMögliche Ergebnisse des Prozesses\n\n\n\n\nEntscheidungen\n\n\n\n\nWartesituationen und Fristen\n\n\n\n\nNachrichten zwischen den Beteiligten\n\n\n\n\nDokumente und IT-Systeme\n\n\n\n\n\nLeitfragen: Wer arbeitet in eigener Verantwortung und kommuniziert nur über Nachrichten? Welche Schritte laufen gleichzeitig ab, welche schließen sich gegenseitig aus, und wo können mehrere Pfade zugleich aktiv sein?",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html#aufgabe-2-kollaborationsdiagramm-modellieren-etwa-60-minuten",
+    "href": "bpmn/uebung-kulanzantrag.html#aufgabe-2-kollaborationsdiagramm-modellieren-etwa-60-minuten",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "6.3 Aufgabe 2: Kollaborationsdiagramm modellieren (etwa 60 Minuten)",
+    "text": "6.3 Aufgabe 2: Kollaborationsdiagramm modellieren (etwa 60 Minuten)\nWir modellieren das Verfahren aus Sicht des Online-Shops als BPMN-Kollaborationsdiagramm. Die Kunden stellen wir als zugeklappten Pool (Black Box) dar und den Online-Shop als Pool mit einer Lane je Rolle. Die fachliche Prüfung aus Schritt 4 modellieren wir hier als zugeklappten Teilprozess.\nDas Modell muss jedes der folgenden Elemente mindestens einmal fachlich korrekt verwenden:\n\nPool mit Lanes sowie ein zugeklappter Pool\nNachrichtenfluss zwischen den Pools (eingehend und ausgehend)\nNachrichten-Startereignis\nmindestens zwei unterschiedlich benannte Endereignisse\nAufgaben, davon mindestens eine Sende- und eine Benutzeraufgabe\nexklusives Gateway (XOR) mit einer Schleife\nereignisbasiertes Gateway mit Nachrichten- und Zeit-Zwischenereignis\nnicht unterbrechendes Zeit-Randereignis (Boundary Event)\ninklusives Gateway (OR) mit passendem Zusammenführungs-Gateway\nparalleles Gateway (AND) mit passendem Zusammenführungs-Gateway\nzugeklappter Teilprozess\nmindestens zwei Datenobjekte und ein Datenspeicher, jeweils mit Assoziation\neine Textanmerkung, die eine fachliche Regel aus dem Text festhält",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html#aufgabe-3-teilprozess-fachliche-prüfung-detaillieren-etwa-20-minuten",
+    "href": "bpmn/uebung-kulanzantrag.html#aufgabe-3-teilprozess-fachliche-prüfung-detaillieren-etwa-20-minuten",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "6.4 Aufgabe 3: Teilprozess „Fachliche Prüfung“ detaillieren (etwa 20 Minuten)",
+    "text": "6.4 Aufgabe 3: Teilprozess „Fachliche Prüfung“ detaillieren (etwa 20 Minuten)\nWir modellieren den Teilprozess aus Aufgabe 2 in einem eigenen Diagramm. Er läuft vollständig in der Fachabteilung ab und besteht aus folgenden Schritten:\n\nDie Fachabteilung sichtet die eingereichten Belege.\nDanach gleicht sie den gemeldeten Mangel mit der Produktspezifikation ab und prüft Kaufdatum und bisherige Nutzung. Beide Prüfungen sind voneinander unabhängig und können in beliebiger Reihenfolge erfolgen.\nErfüllt die Position die Kulanzrichtlinie, empfiehlt sie Kulanz. Andernfalls hält sie die Abweichung fest und empfiehlt die Ablehnung.\nAbschließend trägt sie ihre Empfehlung in das Prüfformular ein.\n\nIm Diagramm aus Aufgabe 2 kennzeichnen wir zusätzlich, dass der Teilprozess für jede reklamierte Position einmal durchlaufen wird. Welcher Marker ist dafür vorgesehen, und finden die Durchläufe parallel oder nacheinander statt?",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html#aufgabe-4-modell-begründen-etwa-15-minuten",
+    "href": "bpmn/uebung-kulanzantrag.html#aufgabe-4-modell-begründen-etwa-15-minuten",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "6.5 Aufgabe 4: Modell begründen (etwa 15 Minuten)",
+    "text": "6.5 Aufgabe 4: Modell begründen (etwa 15 Minuten)\nWir beantworten die folgenden Fragen jeweils in zwei bis drei Sätzen:\n\nWarum eignet sich nach der Nachforderung ein ereignisbasiertes Gateway besser als ein exklusives Gateway?\nWas würde sich am Prozessablauf ändern, wenn das Zeit-Randereignis aus Schritt 5 unterbrechend wäre?\nWarum verwenden wir in Schritt 7 ein inklusives Gateway und kein exklusives oder paralleles Gateway?\nWarum werden Kundenservice, Fachabteilung und Teamleitung als Lanes eines Pools modelliert, die Kunden dagegen als eigener Pool?\nAn welcher Stelle im Prozess ist die Durchlaufzeit gefährdet, und welche Verbesserung schlagen wir vor?",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html#zusatzaufgabe-rücknahme-des-antrags-optional",
+    "href": "bpmn/uebung-kulanzantrag.html#zusatzaufgabe-rücknahme-des-antrags-optional",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "6.6 Zusatzaufgabe: Rücknahme des Antrags (optional)",
+    "text": "6.6 Zusatzaufgabe: Rücknahme des Antrags (optional)\nKunden können ihren Antrag zurücknehmen, solange die Teamleitung noch nicht entschieden hat. Geht eine Rücknahme ein, wird die laufende Bearbeitung sofort abgebrochen. Der Kundenservice bestätigt den Kunden die Rücknahme, und der Prozess endet.\nWir erweitern das Modell entsprechend. Dazu fassen wir die betroffenen Schritte so zusammen, dass ein einziges Ereignis die Bearbeitung an jeder Stelle beenden kann. Verwenden wir ein unterbrechendes oder ein nicht unterbrechendes Ereignis, und warum?",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html#modellierungsregeln-und-abgabe",
+    "href": "bpmn/uebung-kulanzantrag.html#modellierungsregeln-und-abgabe",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "6.7 Modellierungsregeln und Abgabe",
+    "text": "6.7 Modellierungsregeln und Abgabe\n\n\n\n\n\n\n\n\nElement\nBenennungsregel\nBeispiel\n\n\n\n\nAufgabe\nObjekt + Verb im Infinitiv\nAntrag prüfen\n\n\nEreignis\nObjekt + Partizip (Zustand)\nAntrag eingegangen\n\n\nExklusives Gateway\nFrage; ausgehende Kanten mit den Antworten beschriftet\nAntrag vollständig? ja / nein\n\n\nPool / Lane\nOrganisation bzw. Rolle, keine Person\nKundenservice\n\n\n\n\nSequenzflüsse verbinden nur Elemente innerhalb eines Pools; zwischen Pools gibt es ausschließlich Nachrichtenflüsse.\nJeder Pfad endet in einem Endereignis; Verzweigungen werden mit einem Gateway desselben Typs wieder zusammengeführt.\nWir modellieren von links nach rechts und vermeiden sich kreuzende Kanten, wo es möglich ist.\n\nAbgabe: je Gruppe die Modelldateien (.bpmn) aus Aufgabe 2 und 3, ein PDF oder SVG mit den Diagrammen sowie die Antworten zu Aufgabe 4.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html#musterlösung",
+    "href": "bpmn/uebung-kulanzantrag.html#musterlösung",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "6.8 Musterlösung",
+    "text": "6.8 Musterlösung\nDie Musterlösung ist eine mögliche Lösung. Andere Layouts und abweichende Aufgabennamen sind richtig, wenn die Semantik stimmt und die Checkliste erfüllt ist.\n\n\n\n\n\n\nHinweisAufgabe 2: Kollaborationsdiagramm\n\n\n\n\n\n\n\n\n\n\n\nAbbildung 6.1: Kulanzantrag bearbeiten: Kollaborationsdiagramm mit zugeklapptem Kunden-Pool, drei Lanes, Nachforderungsschleife mit ereignisbasiertem Gateway, nicht unterbrechendem Zeit-Randereignis am Teilprozess, inklusivem und parallelem Gateway sowie Datenobjekten, Datenspeichern und Textanmerkungen.\n\n\n\nModelldatei: kulanzantrag-loesung.bpmn, Bild in voller Auflösung: kulanzantrag-loesung.png.\nWie die Checkliste erfüllt ist:\n\n\n\n\n\n\n\nElement\nIm Modell\n\n\n\n\nPool mit Lanes, zugeklappter Pool\n„Online-Shop“ mit Kundenservice, Fachabteilung, Teamleitung Kundenservice; „Kunde“ zugeklappt\n\n\nNachrichtenfluss ein- und ausgehend\nAntrag mit Belegen, Belege (eingehend); Nachforderung, Mitteilung, Bescheid (ausgehend)\n\n\nNachrichten-Startereignis\n„Antrag eingegangen“\n\n\nZwei Endereignisse\n„Antrag zurückgezogen“, „Erinnerung versendet“, „Antrag abschließend bearbeitet“\n\n\nSende- und Benutzeraufgabe\n„Belege nachfordern“ (senden), „Antrag auf Vollständigkeit prüfen“ (Benutzer)\n\n\nXOR mit Schleife\n„Antrag vollständig?“; der Pfad über das Nachrichten-Zwischenereignis „Belege eingegangen“ führt zurück zur Prüfung\n\n\nEreignisbasiertes Gateway\nnach „Belege nachfordern“, mit „Belege eingegangen“ und „14 Tage verstrichen“\n\n\nNicht unterbrechendes Zeit-Randereignis\n„3 Werktage ohne Empfehlung“ am Teilprozess, führt zu „Fachabteilung erinnern“\n\n\nOR mit Zusammenführung\n„Ergebnis der Entscheidung?“ vor „Gutschrift verbuchen“ und „Ablehnung begründen“\n\n\nAND mit Zusammenführung\nvor „Bescheid versenden“ und „Antrag und Bescheid archivieren“\n\n\nZugeklappter Teilprozess\n„Reklamierte Position prüfen“ mit Mehrfach-Marker (parallel)\n\n\nDatenobjekte und Datenspeicher\n„Kulanzantrag mit Belegen“, „Bescheid“; „Shop-System“, „Kundenakte“\n\n\nTextanmerkung\nFrist von 14 Tagen; Hinweis auf beide Pfade bei teilweiser Kulanz\n\n\n\n\n\n\n\n\n\n\n\n\nHinweisAufgabe 3: Teilprozess\n\n\n\n\n\n\n\n\n\n\n\nAbbildung 6.2: Reklamierte Position prüfen: Belege sichten, dann zwei unabhängige Prüfungen parallel, dann die Entscheidung nach der Kulanzrichtlinie, zuletzt der Eintrag ins Prüfformular.\n\n\n\nModelldatei: kulanzantrag-pruefung.bpmn. Der Marker im Hauptdiagramm ist der Mehrfach-Marker mit drei senkrechten Strichen: Die Prüfungen der einzelnen Positionen sind voneinander unabhängig und können parallel laufen. Baut die Prüfung einer Position auf dem Ergebnis der vorigen auf, wäre der sequenzielle Marker richtig.\n\n\n\n\n\n\n\n\n\nHinweisAufgabe 4: Begründungen\n\n\n\n\n\n\nEreignisbasiertes Gateway. Nach der Nachforderung liegt keine Information vor, nach der entschieden werden könnte. Der Prozess wartet darauf, was zuerst eintritt: die Belege oder das Ende der Frist. Ein exklusives Gateway würde sofort nach Daten entscheiden, die es noch nicht gibt.\nUnterbrechendes Randereignis. Die fachliche Prüfung würde nach drei Werktagen abgebrochen, und der Prozess liefe nur noch auf dem Erinnerungspfad weiter. Die Empfehlung käme nie, und der Antrag bliebe ohne Entscheidung. Nicht unterbrechend ist richtig, weil die Erinnerung eine Nebentätigkeit ist.\nInklusives Gateway. Bei teilweiser Kulanz müssen beide Pfade laufen, bei voller Kulanz oder voller Ablehnung nur einer. Ein exklusives Gateway könnte „beides“ nicht abbilden, ein paralleles Gateway würde auch bei voller Kulanz eine Ablehnung begründen.\nLanes und Pool. Kundenservice, Fachabteilung und Teamleitung arbeiten am selben Antrag in einer Reihenfolge und sehen dieselben Daten; Übergaben sind Sequenzflüsse. Die Kunden führen ihren eigenen Ablauf, den wir nicht sehen, und kommunizieren nur über Nachrichten; das ist ein eigener Pool.\nDurchlaufzeit. Gefährdet ist sie bei der fachlichen Prüfung (bis zu drei Werktage, bevor überhaupt erinnert wird) und bei der Nachforderung (bis zu 14 Tage Wartezeit). Verbesserungen: eine Vollständigkeitsprüfung schon im Kundenportal, bevor der Antrag eingeht, oder eine automatische Erinnerung an die Fachabteilung nach einem statt nach drei Werktagen. Im n8n-Workflow wäre das ein Wait-Knoten mit kürzerer Frist.\n\n\n\n\n\n\n\n\n\n\nHinweisZusatzaufgabe: Rücknahme\n\n\n\n\n\nWir fassen alle Schritte von „Antrag auf Vollständigkeit prüfen“ bis „Über Kulanz entscheiden“ in einem aufgeklappten Teilprozess „Antrag bearbeiten“ zusammen und hängen an seinen Rand ein unterbrechendes Nachrichten-Randereignis „Rücknahme eingegangen“ mit Nachrichtenfluss vom Kunden-Pool. Von dort führt eine Sendeaufgabe „Rücknahme bestätigen“ zu einem Endereignis „Antrag zurückgenommen“. Unterbrechend ist richtig, weil die laufende Bearbeitung sofort abgebrochen werden soll; ein nicht unterbrechendes Ereignis ließe die Prüfung weiterlaufen. Dass die Rücknahme nur bis zur Entscheidung möglich ist, ergibt sich aus der Grenze des Teilprozesses: Nach „Über Kulanz entscheiden“ ist das Randereignis nicht mehr aktiv.",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
+    "objectID": "bpmn/uebung-kulanzantrag.html#kontrollpunkt",
+    "href": "bpmn/uebung-kulanzantrag.html#kontrollpunkt",
+    "title": "6  Übung: Kulanzantrag modellieren",
+    "section": "6.9 Kontrollpunkt",
+    "text": "6.9 Kontrollpunkt\n\nEine Fallbeschreibung systematisch in Organisationen, Rollen, Ereignisse, Entscheidungen, Fristen, Nachrichten und Daten zerlegen\nEin Kollaborationsdiagramm mit allen Elementen der Checkliste in demo.bpmn.io oder im Camunda Modeler erstellen\nEinen Teilprozess in einem eigenen Diagramm detaillieren und den passenden Mehrfach-Marker wählen\nModellentscheidungen zu Gateway-Typ, Randereignis und Pool-Zuschnitt fachlich begründen",
+    "crumbs": [
+      "Abläufe modellieren mit BPMN",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Übung: Kulanzantrag modellieren</span>"
+    ]
+  },
+  {
     "objectID": "overview/index.html",
     "href": "overview/index.html",
     "title": "Plattform und Auswahl",
@@ -72,188 +621,188 @@
   {
     "objectID": "overview/what-is-n8n.html",
     "href": "overview/what-is-n8n.html",
-    "title": "1  Was n8n im Kern leistet",
+    "title": "7  Was n8n im Kern leistet",
     "section": "",
-    "text": "1.1 Ein konkreter Anwendungsfall\nEine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehen. Wir beginnen daher mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.\nÜber das Kontaktformular einer Website geht eine Nachricht ein. Drei Schritte sollen automatisch ablaufen, ohne dass eine Person den Vorgang manuell anstößt:\nGenau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontaktformular, eingehende Rechnung oder wöchentliches Reporting. Drei Schritte, drei Werkzeuge, ein einziger Workflow, der danach von alleine läuft.",
+    "text": "7.1 Ein konkreter Anwendungsfall\nEine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehen. Wir beginnen daher mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.\nÜber das Kontaktformular einer Website geht eine Nachricht ein. Drei Schritte sollen automatisch ablaufen, ohne dass eine Person den Vorgang manuell anstößt:\nGenau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontaktformular, eingehende Rechnung oder wöchentliches Reporting. Drei Schritte, drei Werkzeuge, ein einziger Workflow, der danach von alleine läuft.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
     ]
   },
   {
     "objectID": "overview/what-is-n8n.html#ein-konkreter-anwendungsfall",
     "href": "overview/what-is-n8n.html#ein-konkreter-anwendungsfall",
-    "title": "1  Was n8n im Kern leistet",
+    "title": "7  Was n8n im Kern leistet",
     "section": "",
     "text": "Auslöser: Eine neue Nachricht trifft über das Kontaktformular ein.\nAntworten: Eine Bestätigungs-E-Mail geht zurück: „Vielen Dank, wir melden uns innerhalb eines Werktags.”\nFesthalten: Die Nachricht landet in einer Tabelle, damit das Team sie später bearbeiten kann.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
     ]
   },
   {
     "objectID": "overview/what-is-n8n.html#zwei-kernaufgaben",
     "href": "overview/what-is-n8n.html#zwei-kernaufgaben",
-    "title": "1  Was n8n im Kern leistet",
-    "section": "1.2 Zwei Kernaufgaben",
-    "text": "1.2 Zwei Kernaufgaben\nn8n erfüllt im Kern zwei Aufgaben, die im selben Editor zusammenfallen:\nDaten zwischen Werkzeugen bewegen. n8n bringt über fünfhundert fertige Integrationen mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt, eigener Code ist optional.\nKI-Bausteine als Standard mitbringen. Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen, all diese Bausteine sind keine Zusatzkomponenten, sondern Standardausstattung im Editor. Genau diese Mischung aus Daten-Bewegung und KI-Bereitschaft unterscheidet n8n von klassischen Automation-Tools.\n\n\n\n\n\n\nTippWerkstatt-Analogie für n8n\n\n\n\n\n\nn8n lässt sich gut mit einer gut sortierten Werkstatt vergleichen:\n\nDie Werkstatt ist die n8n-Instanz selbst, also der Raum, in dem alles zusammenläuft.\nWerkbänke sind die einzelnen Workflows, jeder für eine bestimmte Tätigkeit eingerichtet.\nWerkzeuge an der Wand sind die Knoten (Mail-Knoten, Tabellen-Knoten, KI-Knoten), die je nach Bedarf von der Werkbank gegriffen werden.\nStrom und Druckluft sind die Auslöser im Hintergrund, die die Werkstatt überhaupt erst aktivieren, also ein Trigger pro Werkbank.\n\nWer eine Werkstatt einrichtet, muss nicht jedes Werkzeug selbst bauen. Er muss aber wissen, welches Werkzeug zu welcher Aufgabe passt.",
+    "title": "7  Was n8n im Kern leistet",
+    "section": "7.2 Zwei Kernaufgaben",
+    "text": "7.2 Zwei Kernaufgaben\nn8n erfüllt im Kern zwei Aufgaben, die im selben Editor zusammenfallen:\nDaten zwischen Werkzeugen bewegen. n8n bringt über fünfhundert fertige Integrationen mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt, eigener Code ist optional.\nKI-Bausteine als Standard mitbringen. Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen, all diese Bausteine sind keine Zusatzkomponenten, sondern Standardausstattung im Editor. Genau diese Mischung aus Daten-Bewegung und KI-Bereitschaft unterscheidet n8n von klassischen Automation-Tools.\n\n\n\n\n\n\nTippWerkstatt-Analogie für n8n\n\n\n\n\n\nn8n lässt sich gut mit einer gut sortierten Werkstatt vergleichen:\n\nDie Werkstatt ist die n8n-Instanz selbst, also der Raum, in dem alles zusammenläuft.\nWerkbänke sind die einzelnen Workflows, jeder für eine bestimmte Tätigkeit eingerichtet.\nWerkzeuge an der Wand sind die Knoten (Mail-Knoten, Tabellen-Knoten, KI-Knoten), die je nach Bedarf von der Werkbank gegriffen werden.\nStrom und Druckluft sind die Auslöser im Hintergrund, die die Werkstatt überhaupt erst aktivieren, also ein Trigger pro Werkbank.\n\nWer eine Werkstatt einrichtet, muss nicht jedes Werkzeug selbst bauen. Er muss aber wissen, welches Werkzeug zu welcher Aufgabe passt.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
     ]
   },
   {
     "objectID": "overview/what-is-n8n.html#was-n8n-nicht-ist",
     "href": "overview/what-is-n8n.html#was-n8n-nicht-ist",
-    "title": "1  Was n8n im Kern leistet",
-    "section": "1.3 Was n8n nicht ist",
-    "text": "1.3 Was n8n nicht ist\nn8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht dazwischen, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.\n\n\n\n\n\n\nAbbildung 1.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, Tools, Daten und KI-Modelle werden angesprochen.\n\n\n\n\n\n\n\n\n\nn8n ersetzt nicht die spezialisierten Werkzeuge, sondern verbindet sie. Wer Salesforce, ein eigenes Sprach-Modell, eine Postgres-Datenbank und ein Slack-Setup hat, nutzt n8n als Bindeglied und nicht als Ersatz.",
+    "title": "7  Was n8n im Kern leistet",
+    "section": "7.3 Was n8n nicht ist",
+    "text": "7.3 Was n8n nicht ist\nn8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht dazwischen, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.\n\n\n\n\n\n\nAbbildung 7.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, Tools, Daten und KI-Modelle werden angesprochen.\n\n\n\n\n\n\n\n\n\nn8n ersetzt nicht die spezialisierten Werkzeuge, sondern verbindet sie. Wer Salesforce, ein eigenes Sprach-Modell, eine Postgres-Datenbank und ein Slack-Setup hat, nutzt n8n als Bindeglied und nicht als Ersatz.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
     ]
   },
   {
     "objectID": "overview/what-is-n8n.html#typische-anwendungsfelder",
     "href": "overview/what-is-n8n.html#typische-anwendungsfelder",
-    "title": "1  Was n8n im Kern leistet",
-    "section": "1.4 Typische Anwendungsfelder",
-    "text": "1.4 Typische Anwendungsfelder\nDrei Aufgabenklassen sind typische Einsatzgebiete für n8n:\n\nRoutine-Workflows mit Trigger-Aktion-Datenfluss. Eine Mail trifft ein, eine Aktion wird ausgeführt, ein Eintrag wird geschrieben. Das ist klassisches Tagesgeschäft im Marketing, im Vertrieb und im Customer-Support.\nHybride Pipelines mit deterministischen und KI-Schritten. Vor- und Nachverarbeitung laufen deterministisch ab, und mittendrin steht ein KI-Schritt für Klassifikation (also das Zuordnen einer Eingabe zu einer Kategorie), Zusammenfassung oder Antwort-Formulierung.\nWissens-Anwendungen mit eigenen Daten. RAG-Pipelines greifen mit dem Sprach-Modell auf firmeneigene Inhalte zu, statt aus dem allgemeinen Internet-Wissen zu antworten.\n\nDie folgenden Module greifen diese drei Aufgabenklassen jeweils auf und setzen sie Schritt für Schritt mit n8n um.",
+    "title": "7  Was n8n im Kern leistet",
+    "section": "7.4 Typische Anwendungsfelder",
+    "text": "7.4 Typische Anwendungsfelder\nDrei Aufgabenklassen sind typische Einsatzgebiete für n8n:\n\nRoutine-Workflows mit Trigger-Aktion-Datenfluss. Eine Mail trifft ein, eine Aktion wird ausgeführt, ein Eintrag wird geschrieben. Das ist klassisches Tagesgeschäft im Marketing, im Vertrieb und im Customer-Support.\nHybride Pipelines mit deterministischen und KI-Schritten. Vor- und Nachverarbeitung laufen deterministisch ab, und mittendrin steht ein KI-Schritt für Klassifikation (also das Zuordnen einer Eingabe zu einer Kategorie), Zusammenfassung oder Antwort-Formulierung.\nWissens-Anwendungen mit eigenen Daten. RAG-Pipelines greifen mit dem Sprach-Modell auf firmeneigene Inhalte zu, statt aus dem allgemeinen Internet-Wissen zu antworten.\n\nDie folgenden Module greifen diese drei Aufgabenklassen jeweils auf und setzen sie Schritt für Schritt mit n8n um.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html",
     "href": "overview/pricing.html",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
+    "title": "8  Pricing und der Vergleich mit Zapier oder Make",
     "section": "",
-    "text": "2.1 Zwei Abrechnungsmodelle\nDie Abrechnungslogik unterscheidet sich zwischen n8n und den klassischen iPaaS-Anbietern grundlegend. Der Begriff iPaaS (Integration Platform as a Service) bezeichnet Cloud-Plattformen, die Anwendungen, Daten und Prozesse miteinander verbinden, ohne dass eine eigene Integrationssoftware betrieben werden muss. Zapier und Make sind die bekanntesten Vertreter dieser Kategorie.\nDie zentrale Achse des Vergleichs ist die Abrechnungseinheit: Klassische Anbieter rechnen pro Task ab, n8n pro Workflow-Execution. Diese Logik beeinflusst, wie Workflows zugeschnitten werden.\nKlassische Anbieter wie Zapier oder Make rechnen pro Task ab. Jeder einzelne Schritt in einem Workflow zählt. Bei hunderttausend Tasks pro Monat liegen die Lizenzkosten bei mehreren hundert Euro.\nn8n rechnet pro Workflow-Execution ab. Eine vollständige Workflow-Ausführung gilt als eine Einheit, unabhängig von der Anzahl der Schritte. Ein Workflow mit fünfzig Knoten wird gleich abgerechnet wie ein Workflow mit fünf, solange beide einmal laufen.",
+    "text": "8.1 Zwei Abrechnungsmodelle\nDie Abrechnungslogik unterscheidet sich zwischen n8n und den klassischen iPaaS-Anbietern grundlegend. Der Begriff iPaaS (Integration Platform as a Service) bezeichnet Cloud-Plattformen, die Anwendungen, Daten und Prozesse miteinander verbinden, ohne dass eine eigene Integrationssoftware betrieben werden muss. Zapier und Make sind die bekanntesten Vertreter dieser Kategorie.\nDie zentrale Achse des Vergleichs ist die Abrechnungseinheit: Klassische Anbieter rechnen pro Task ab, n8n pro Workflow-Execution. Diese Logik beeinflusst, wie Workflows zugeschnitten werden.\nKlassische Anbieter wie Zapier oder Make rechnen pro Task ab. Jeder einzelne Schritt in einem Workflow zählt. Bei hunderttausend Tasks pro Monat liegen die Lizenzkosten bei mehreren hundert Euro.\nn8n rechnet pro Workflow-Execution ab. Eine vollständige Workflow-Ausführung gilt als eine Einheit, unabhängig von der Anzahl der Schritte. Ein Workflow mit fünfzig Knoten wird gleich abgerechnet wie ein Workflow mit fünf, solange beide einmal laufen.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#zwei-abrechnungsmodelle",
     "href": "overview/pricing.html#zwei-abrechnungsmodelle",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
+    "title": "8  Pricing und der Vergleich mit Zapier oder Make",
     "section": "",
     "text": "WichtigWas das praktisch bedeutet\n\n\n\nDie Abrechnungslogik formt das Workflow-Design. Bei Per-Task-Abrechnung lohnt es sich, Schritte zu konsolidieren. Bei Per-Execution-Abrechnung spielt die Anzahl der Schritte für die Kosten keine Rolle. Welches Modell besser passt, hängt vom Einsatzprofil ab.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#konkrete-größenordnungen",
     "href": "overview/pricing.html#konkrete-größenordnungen",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
-    "section": "2.2 Konkrete Größenordnungen",
-    "text": "2.2 Konkrete Größenordnungen\nFür ein typisches Marketing- oder Operations-Team mit hundert Use-Cases im Monat:\n\nn8n Cloud beginnt bei rund 24 € im Monat für 2.500 Executions, der Pro-Tarif liegt bei rund 50 € im Monat\nn8n Self-Host kostet keine Lizenz; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, was ab rund 5 € im Monat verfügbar ist\nn8n Managed Hosting durch Drittanbieter wie InstaPods ist ab rund 7 € im Monat verfügbar\nZapier im vergleichbaren Tarif ab rund 73 € im Monat für 750 Tasks\nMake im vergleichbaren Tarif ab rund 16 € im Monat für 10.000 Operations\n\nDie Zahlen sind volatil, denn alle genannten Anbieter passen Tarife regelmäßig an. Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab: Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben; bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.",
+    "title": "8  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "8.2 Konkrete Größenordnungen",
+    "text": "8.2 Konkrete Größenordnungen\nFür ein typisches Marketing- oder Operations-Team mit hundert Use-Cases im Monat:\n\nn8n Cloud beginnt bei rund 24 € im Monat für 2.500 Executions, der Pro-Tarif liegt bei rund 50 € im Monat\nn8n Self-Host kostet keine Lizenz; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, was ab rund 5 € im Monat verfügbar ist\nn8n Managed Hosting durch Drittanbieter wie InstaPods ist ab rund 7 € im Monat verfügbar\nZapier im vergleichbaren Tarif ab rund 73 € im Monat für 750 Tasks\nMake im vergleichbaren Tarif ab rund 16 € im Monat für 10.000 Operations\n\nDie Zahlen sind volatil, denn alle genannten Anbieter passen Tarife regelmäßig an. Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab: Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben; bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#vergleich-auf-einen-blick",
     "href": "overview/pricing.html#vergleich-auf-einen-blick",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
-    "section": "2.3 Vergleich auf einen Blick",
-    "text": "2.3 Vergleich auf einen Blick\n\n\n\nAspekt\nn8n\nZapier / Make\n\n\n\n\nAbrechnungs-Einheit\nPro Workflow-Execution\nPro Task / Operation\n\n\nSelf-Host möglich\nJa, kostenfrei (Fair-Code)\nNein\n\n\nKI-Knoten als Standard\nJa, eingebaut\nTeilweise, oft zugekauft\n\n\nCode-Knoten erlaubt\nJa, JavaScript und Python\nEingeschränkt\n\n\nLernkurve\nMittel\nFlach\n\n\n\n\n\n\n\n\n\nEine flache Lernkurve erleichtert den Einstieg, ein größerer Funktionsumfang erlaubt komplexere Workflows. Welches Kriterium stärker zählt, hängt vom Einsatzprofil ab.",
+    "title": "8  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "8.3 Vergleich auf einen Blick",
+    "text": "8.3 Vergleich auf einen Blick\n\n\n\nAspekt\nn8n\nZapier / Make\n\n\n\n\nAbrechnungs-Einheit\nPro Workflow-Execution\nPro Task / Operation\n\n\nSelf-Host möglich\nJa, kostenfrei (Fair-Code)\nNein\n\n\nKI-Knoten als Standard\nJa, eingebaut\nTeilweise, oft zugekauft\n\n\nCode-Knoten erlaubt\nJa, JavaScript und Python\nEingeschränkt\n\n\nLernkurve\nMittel\nFlach\n\n\n\n\n\n\n\n\n\nEine flache Lernkurve erleichtert den Einstieg, ein größerer Funktionsumfang erlaubt komplexere Workflows. Welches Kriterium stärker zählt, hängt vom Einsatzprofil ab.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#wirtschaftliche-einordnung",
     "href": "overview/pricing.html#wirtschaftliche-einordnung",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
-    "section": "2.4 Wirtschaftliche Einordnung",
-    "text": "2.4 Wirtschaftliche Einordnung\nPraxis-Berichte aus dem Mittelstand nennen pro Use-Case Einsparungen zwischen fünf und zwanzig Stunden Wochenarbeitszeit, etwa für Lead-Qualifikation, Customer-Support-Routing, Reporting oder Invoice-Automation. Die Zahlen sind keine Versprechen, sondern Größenordnungen aus aktuellen Erfahrungsberichten.\nSie ordnen die Pricing-Frage in einen Gesamt-Kontext ein: Lizenzkosten sind nur ein Teil der Wirtschaftlichkeitsrechnung. Hinzu kommen Aufwand für Einarbeitung, Workflow-Pflege und die Integration in bestehende Prozesse.",
+    "title": "8  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "8.4 Wirtschaftliche Einordnung",
+    "text": "8.4 Wirtschaftliche Einordnung\nPraxis-Berichte aus dem Mittelstand nennen pro Use-Case Einsparungen zwischen fünf und zwanzig Stunden Wochenarbeitszeit, etwa für Lead-Qualifikation, Customer-Support-Routing, Reporting oder Invoice-Automation. Die Zahlen sind keine Versprechen, sondern Größenordnungen aus aktuellen Erfahrungsberichten.\nSie ordnen die Pricing-Frage in einen Gesamt-Kontext ein: Lizenzkosten sind nur ein Teil der Wirtschaftlichkeitsrechnung. Hinzu kommen Aufwand für Einarbeitung, Workflow-Pflege und die Integration in bestehende Prozesse.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#auswahl-kriterien",
     "href": "overview/pricing.html#auswahl-kriterien",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
-    "section": "2.5 Auswahl-Kriterien",
-    "text": "2.5 Auswahl-Kriterien\nFolgende Kriterien helfen bei der Auswahl zwischen den Plattformen:\n\n\n\n\n\n\n\n\nKriterium\nEher Zapier oder Make\nEher n8n\n\n\n\n\nWorkflow-Länge\nWenige Schritte pro Workflow\nLange, mehrstufige Workflows\n\n\nHosting-Kontrolle\nCloud-only ist akzeptabel\nSelf-Hosting gewünscht oder gefordert\n\n\nKI-Integration\nPunktueller Einsatz reicht\nKI-Bausteine als Standard\n\n\nLernaufwand\nMöglichst flach\nHöherer Einarbeitungs-Aufwand vertretbar\n\n\nCode-Schritte\nSelten erforderlich\nJavaScript oder Python im Workflow\n\n\n\nWer eine bestehende Lösung mit wenigen einfachen Workflows betreibt, hat selten einen Grund zum Wechsel allein wegen des Pricings. Ein Plattform-Wechsel bedeutet immer auch Migrations- und Schulungs-Aufwand.",
+    "title": "8  Pricing und der Vergleich mit Zapier oder Make",
+    "section": "8.5 Auswahl-Kriterien",
+    "text": "8.5 Auswahl-Kriterien\nFolgende Kriterien helfen bei der Auswahl zwischen den Plattformen:\n\n\n\n\n\n\n\n\nKriterium\nEher Zapier oder Make\nEher n8n\n\n\n\n\nWorkflow-Länge\nWenige Schritte pro Workflow\nLange, mehrstufige Workflows\n\n\nHosting-Kontrolle\nCloud-only ist akzeptabel\nSelf-Hosting gewünscht oder gefordert\n\n\nKI-Integration\nPunktueller Einsatz reicht\nKI-Bausteine als Standard\n\n\nLernaufwand\nMöglichst flach\nHöherer Einarbeitungs-Aufwand vertretbar\n\n\nCode-Schritte\nSelten erforderlich\nJavaScript oder Python im Workflow\n\n\n\nWer eine bestehende Lösung mit wenigen einfachen Workflows betreibt, hat selten einen Grund zum Wechsel allein wegen des Pricings. Ein Plattform-Wechsel bedeutet immer auch Migrations- und Schulungs-Aufwand.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html",
     "href": "overview/hosting.html",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
+    "title": "9  Cloud, Self-Hosted oder Managed Hosting",
     "section": "",
-    "text": "3.1 Cloud\nDrei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von der Größe des Vorhabens ab als von drei Faktoren: dem erwarteten Volumen an Workflow-Ausführungen, der Empfindlichkeit der Daten und den verfügbaren IT-Skills im Team.\nDie n8n-Cloud ist eine SaaS-Variante, die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung.\nEigenschaften:",
+    "text": "9.1 Cloud\nDrei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von der Größe des Vorhabens ab als von drei Faktoren: dem erwarteten Volumen an Workflow-Ausführungen, der Empfindlichkeit der Daten und den verfügbaren IT-Skills im Team.\nDie n8n-Cloud ist eine SaaS-Variante, die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung.\nEigenschaften:",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#cloud",
     "href": "overview/hosting.html#cloud",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
+    "title": "9  Cloud, Self-Hosted oder Managed Hosting",
     "section": "",
     "text": "Geringer Setup-Aufwand, keine Server-Wartung, kein Update-Aufwand\nAb rund 24 € im Monat für 2.500 Executions, der Pro-Tarif ab rund 50 € im Monat\nGeeignet für Teams ohne dedizierte IT-Ressourcen oder für erste Schritte\n\n\n\n\n\n\n\nFür eine erste Lernphase ist die Cloud-Variante eine pragmatische Option, weil Linux, Docker oder TLS-Zertifikate dabei kein Thema sind. Wer später Self-Hosting betreiben will, kann Workflows als JSON exportieren und in eine eigene Instanz übertragen.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#self-hosted",
     "href": "overview/hosting.html#self-hosted",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
-    "section": "3.2 Self-Hosted",
-    "text": "3.2 Self-Hosted\nDie Community Edition von n8n nutzt eine Fair-Code-Lizenz: Quellcode öffentlich, kostenlose Nutzung und Anpassung erlaubt, Wiederverkauf als konkurrierender Managed-Service ausgeschlossen. Damit unterscheidet sich Fair-Code von klassischen Open-Source-Lizenzen wie MIT oder Apache, die auch kommerzielle Konkurrenz-Angebote zulassen. n8n läuft auf jeder beliebigen Maschine, vom Raspberry Pi im Heimnetz bis zum Cloud-Server bei Hetzner, AWS oder Azure.\nEigenschaften:\n\nUnbegrenzte Workflows, Ausführungen und Nutzer\nKeine Lizenzkosten; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi im Heimnetz) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, ab rund 5 € im Monat\n1 bis 2 Stunden initialer Setup-Aufwand, danach ca. 1 bis 3 Stunden pro Monat Wartung\nVolle Kontrolle über Daten, Backups und Update-Zeitpunkte\n\n\n\n\n\n\n\nWichtigWas Self-Host wirklich bedeutet\n\n\n\nSelf-Host ist nicht nur eine Installation. Wer eine eigene Instanz betreibt, verantwortet auch:\n\nRegelmäßige Updates der n8n-Version\nBackup-Strategie für Workflows und Credentials\nTLS-Zertifikate und sichere Erreichbarkeit\nMonitoring und Logging im laufenden Betrieb\n\nDiese Aufgaben sind technisch beherrschbar, erfordern aber kontinuierlichen Aufwand. Vor einer Entscheidung für Self-Host sollte daher geklärt sein, wer die Pflege der Instanz im laufenden Betrieb übernimmt.",
+    "title": "9  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "9.2 Self-Hosted",
+    "text": "9.2 Self-Hosted\nDie Community Edition von n8n nutzt eine Fair-Code-Lizenz: Quellcode öffentlich, kostenlose Nutzung und Anpassung erlaubt, Wiederverkauf als konkurrierender Managed-Service ausgeschlossen. Damit unterscheidet sich Fair-Code von klassischen Open-Source-Lizenzen wie MIT oder Apache, die auch kommerzielle Konkurrenz-Angebote zulassen. n8n läuft auf jeder beliebigen Maschine, vom Raspberry Pi im Heimnetz bis zum Cloud-Server bei Hetzner, AWS oder Azure.\nEigenschaften:\n\nUnbegrenzte Workflows, Ausführungen und Nutzer\nKeine Lizenzkosten; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi im Heimnetz) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, ab rund 5 € im Monat\n1 bis 2 Stunden initialer Setup-Aufwand, danach ca. 1 bis 3 Stunden pro Monat Wartung\nVolle Kontrolle über Daten, Backups und Update-Zeitpunkte\n\n\n\n\n\n\n\nWichtigWas Self-Host wirklich bedeutet\n\n\n\nSelf-Host ist nicht nur eine Installation. Wer eine eigene Instanz betreibt, verantwortet auch:\n\nRegelmäßige Updates der n8n-Version\nBackup-Strategie für Workflows und Credentials\nTLS-Zertifikate und sichere Erreichbarkeit\nMonitoring und Logging im laufenden Betrieb\n\nDiese Aufgaben sind technisch beherrschbar, erfordern aber kontinuierlichen Aufwand. Vor einer Entscheidung für Self-Host sollte daher geklärt sein, wer die Pflege der Instanz im laufenden Betrieb übernimmt.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#managed-hosting",
     "href": "overview/hosting.html#managed-hosting",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
-    "section": "3.3 Managed Hosting",
-    "text": "3.3 Managed Hosting\nSpezialisierte Anbieter wie InstaPods betreiben Self-Host-Instanzen für ihre Kunden. Die Kunden behalten die Datenkontrolle einer eigenen Instanz, ohne die Maschine selbst zu pflegen.\nEigenschaften:\n\nAb rund 7 € im Monat für eine Basis-Instanz\nKeine Lizenzkosten, keine eigene Server-Pflege\nDaten bleiben auf europäischen Servern, je nach Anbieter wählbar\nBegrenzte Anpassbarkeit gegenüber einer eigenen Maschine\n\nDiese Variante eignet sich für Teams, die die Kostenstruktur von Self-Host nutzen möchten, ohne den Linux-Server-Betrieb selbst zu übernehmen.",
+    "title": "9  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "9.3 Managed Hosting",
+    "text": "9.3 Managed Hosting\nSpezialisierte Anbieter wie InstaPods betreiben Self-Host-Instanzen für ihre Kunden. Die Kunden behalten die Datenkontrolle einer eigenen Instanz, ohne die Maschine selbst zu pflegen.\nEigenschaften:\n\nAb rund 7 € im Monat für eine Basis-Instanz\nKeine Lizenzkosten, keine eigene Server-Pflege\nDaten bleiben auf europäischen Servern, je nach Anbieter wählbar\nBegrenzte Anpassbarkeit gegenüber einer eigenen Maschine\n\nDiese Variante eignet sich für Teams, die die Kostenstruktur von Self-Host nutzen möchten, ohne den Linux-Server-Betrieb selbst zu übernehmen.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#drei-fragen-die-die-entscheidung-leiten",
     "href": "overview/hosting.html#drei-fragen-die-die-entscheidung-leiten",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
-    "section": "3.4 Drei Fragen, die die Entscheidung leiten",
-    "text": "3.4 Drei Fragen, die die Entscheidung leiten\nStatt mit einem Tool-Vergleich zu starten, lohnen sich drei vorgelagerte Fragen.\n\n3.4.1 Volumen: wie viele Ausführungen pro Monat?\nBei der Cloud-Variante steigen die Kosten mit der Anzahl der Executions, bei Self-Host und Managed Hosting bleiben die Server-Kosten konstant. Reine Lizenz- und Server-Kosten von Self-Host (ab rund 5 € im Monat) liegen meist unter den Cloud-Tarifen. Der praktische Aufwand fällt aber unterschiedlich aus: Cloud benötigt keine Wartung, Self-Host schon.\n\n\n3.4.2 Souveränität: welche Daten verlassen die eigene Infrastruktur?\nIn regulierten Branchen ist Datensouveränität nicht optional, sondern Pflicht. Patientendaten, Kundenkontakte mit besonderem Schutzbedarf oder interne Prozessdokumente werfen die Frage auf, wo sie verarbeitet werden dürfen. Für viele Anwendungsfälle scheiden Cloud-Hosts in den USA aus; EU-Cloud-Hosts oder eigenes Hosting bleiben als Optionen. Hetzner etwa betreibt Rechenzentren in Deutschland und Finnland, was die DSGVO-Anforderungen vereinfacht.\n\n\n3.4.3 Skill-Bestand: wer pflegt die Instanz?\nOhne IT-Kapazität sind Cloud oder Managed Hosting realistische Optionen. Eine Self-Host-Instanz, die nicht aktualisiert und überwacht wird, wird auf Dauer zum Sicherheits-Risiko. Diese Frage gehört vor jede technische Diskussion.",
+    "title": "9  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "9.4 Drei Fragen, die die Entscheidung leiten",
+    "text": "9.4 Drei Fragen, die die Entscheidung leiten\nStatt mit einem Tool-Vergleich zu starten, lohnen sich drei vorgelagerte Fragen.\n\n9.4.1 Volumen: wie viele Ausführungen pro Monat?\nBei der Cloud-Variante steigen die Kosten mit der Anzahl der Executions, bei Self-Host und Managed Hosting bleiben die Server-Kosten konstant. Reine Lizenz- und Server-Kosten von Self-Host (ab rund 5 € im Monat) liegen meist unter den Cloud-Tarifen. Der praktische Aufwand fällt aber unterschiedlich aus: Cloud benötigt keine Wartung, Self-Host schon.\n\n\n9.4.2 Souveränität: welche Daten verlassen die eigene Infrastruktur?\nIn regulierten Branchen ist Datensouveränität nicht optional, sondern Pflicht. Patientendaten, Kundenkontakte mit besonderem Schutzbedarf oder interne Prozessdokumente werfen die Frage auf, wo sie verarbeitet werden dürfen. Für viele Anwendungsfälle scheiden Cloud-Hosts in den USA aus; EU-Cloud-Hosts oder eigenes Hosting bleiben als Optionen. Hetzner etwa betreibt Rechenzentren in Deutschland und Finnland, was die DSGVO-Anforderungen vereinfacht.\n\n\n9.4.3 Skill-Bestand: wer pflegt die Instanz?\nOhne IT-Kapazität sind Cloud oder Managed Hosting realistische Optionen. Eine Self-Host-Instanz, die nicht aktualisiert und überwacht wird, wird auf Dauer zum Sicherheits-Risiko. Diese Frage gehört vor jede technische Diskussion.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#übersicht-zur-auswahl",
     "href": "overview/hosting.html#übersicht-zur-auswahl",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
-    "section": "3.5 Übersicht zur Auswahl",
-    "text": "3.5 Übersicht zur Auswahl\n\n\n\nSituation\nPassende Option\n\n\n\n\nErste Schritte, kleines Team, keine IT\nCloud\n\n\nSensible Daten, IT-Team vorhanden\nSelf-Hosted\n\n\nSensible Daten, keine IT\nManaged Hosting\n\n\nHohe Volumen, niedrige Lizenzkosten gewünscht\nSelf-Hosted\n\n\nLernen und Experimentieren\nCloud oder lokale Docker-Instanz\n\n\n\n\n\n\n\n\n\nDie Übersicht zeigt typische Zuordnungen, keine starren Regeln. Wer mit der Cloud-Variante startet und später wechselt, kann Workflows als JSON-Datei exportieren und in der neuen Instanz importieren. Der Wechsel ist reversibel; die erste Wahl muss daher nicht endgültig sein.",
+    "title": "9  Cloud, Self-Hosted oder Managed Hosting",
+    "section": "9.5 Übersicht zur Auswahl",
+    "text": "9.5 Übersicht zur Auswahl\n\n\n\nSituation\nPassende Option\n\n\n\n\nErste Schritte, kleines Team, keine IT\nCloud\n\n\nSensible Daten, IT-Team vorhanden\nSelf-Hosted\n\n\nSensible Daten, keine IT\nManaged Hosting\n\n\nHohe Volumen, niedrige Lizenzkosten gewünscht\nSelf-Hosted\n\n\nLernen und Experimentieren\nCloud oder lokale Docker-Instanz\n\n\n\n\n\n\n\n\n\nDie Übersicht zeigt typische Zuordnungen, keine starren Regeln. Wer mit der Cloud-Variante startet und später wechselt, kann Workflows als JSON-Datei exportieren und in der neuen Instanz importieren. Der Wechsel ist reversibel; die erste Wahl muss daher nicht endgültig sein.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
     ]
   },
   {
@@ -269,144 +818,144 @@
   {
     "objectID": "first-workflows/credentials.html",
     "href": "first-workflows/credentials.html",
-    "title": "4  Credentials vorbereiten",
+    "title": "10  Credentials vorbereiten",
     "section": "",
-    "text": "4.1 Warum Credentials benötigt werden\nBevor ein Workflow echte Mails lesen oder versenden kann, brauchen wir Zugangsdaten. n8n speichert diese Zugangsdaten als Credentials: getrennt vom Workflow, wiederverwendbar für mehrere Knoten und mit einem eigenen Zugriffsschutz.\nCredentials sind die Voraussetzung dafür, dass ein Workflow nicht nur im Editor simuliert, sondern in echten Systemen laufen kann.\nEin n8n-Knoten kann nur dann mit einem externen Dienst sprechen, wenn er sich dort ausweisen kann. Beim Demo-Workflow betrifft das zwei Richtungen:\nFür den ersten Durchlauf nutzen wir zunächst einen manuellen Trigger und eine simulierte Mail. So lernen wir den Editor ohne Konto-Hürden kennen. Sobald das Prinzip klar ist, ersetzen wir die Simulation durch echte Mail-Credentials.",
+    "text": "10.1 Warum Credentials benötigt werden\nBevor ein Workflow echte Mails lesen oder versenden kann, brauchen wir Zugangsdaten. n8n speichert diese Zugangsdaten als Credentials: getrennt vom Workflow, wiederverwendbar für mehrere Knoten und mit einem eigenen Zugriffsschutz.\nCredentials sind die Voraussetzung dafür, dass ein Workflow nicht nur im Editor simuliert, sondern in echten Systemen laufen kann.\nEin n8n-Knoten kann nur dann mit einem externen Dienst sprechen, wenn er sich dort ausweisen kann. Beim Demo-Workflow betrifft das zwei Richtungen:\nFür den ersten Durchlauf nutzen wir zunächst einen manuellen Trigger und eine simulierte Mail. So lernen wir den Editor ohne Konto-Hürden kennen. Sobald das Prinzip klar ist, ersetzen wir die Simulation durch echte Mail-Credentials.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
     ]
   },
   {
     "objectID": "first-workflows/credentials.html#warum-credentials-benötigt-werden",
     "href": "first-workflows/credentials.html#warum-credentials-benötigt-werden",
-    "title": "4  Credentials vorbereiten",
+    "title": "10  Credentials vorbereiten",
     "section": "",
-    "text": "Zugriff\nWofür wir ihn brauchen\nTypischer Knoten\n\n\n\n\nMail lesen\nEingehende Nachricht als Trigger erkennen\nEmail Trigger (IMAP)\n\n\nMail senden\nAutomatische Bestätigung verschicken\nSend Email (SMTP)\n\n\nOptionale Tools\nSlack, HubSpot, Notion oder Google Sheets ansprechen\njeweiliger App-Knoten\n\n\n\n\n\n\n\n\n\n\nTippErst simulieren, dann verbinden\n\n\n\nMit einem kontrollierten Beispieldatensatz zu starten macht den Datenfluss sofort sichtbar. Erst danach verbinden wir echte Konten, bei denen Authentifizierung, Postfachregeln oder Spamfilter zusätzliche Fehlerquellen sein können.\n\n\n\n\n\n\n\n\nAbbildung 4.1: Credentials-Übersicht in n8n: zentrale Verwaltung getrennt von den Workflows, mit Name, Typ und Verbindungsdetails.",
+    "text": "Zugriff\nWofür wir ihn brauchen\nTypischer Knoten\n\n\n\n\nMail lesen\nEingehende Nachricht als Trigger erkennen\nEmail Trigger (IMAP)\n\n\nMail senden\nAutomatische Bestätigung verschicken\nSend Email (SMTP)\n\n\nOptionale Tools\nSlack, HubSpot, Notion oder Google Sheets ansprechen\njeweiliger App-Knoten\n\n\n\n\n\n\n\n\n\n\nTippErst simulieren, dann verbinden\n\n\n\nMit einem kontrollierten Beispieldatensatz zu starten macht den Datenfluss sofort sichtbar. Erst danach verbinden wir echte Konten, bei denen Authentifizierung, Postfachregeln oder Spamfilter zusätzliche Fehlerquellen sein können.\n\n\n\n\n\n\n\n\nAbbildung 10.1: Credentials-Übersicht in n8n: zentrale Verwaltung getrennt von den Workflows, mit Name, Typ und Verbindungsdetails.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
     ]
   },
   {
     "objectID": "first-workflows/credentials.html#drei-credential-arten-im-kurs",
     "href": "first-workflows/credentials.html#drei-credential-arten-im-kurs",
-    "title": "4  Credentials vorbereiten",
-    "section": "4.2 Drei Credential-Arten im Kurs",
-    "text": "4.2 Drei Credential-Arten im Kurs\nApp-spezifisches Passwort. Einige Mail-Anbieter erlauben ein separates Passwort nur für Programme wie n8n. Dieses Passwort kann später widerrufen werden, ohne das Hauptpasswort des Mail-Kontos zu ändern. Für Internet Message Access Protocol (IMAP) und Simple Mail Transfer Protocol (SMTP) ist das eine verbreitete Einstiegsvariante.\nOAuth.\nBei Gmail, Microsoft 365 und vielen SaaS-Diensten ist OAuth die bessere Lösung. Wir melden uns beim Anbieter an, n8n erhält einen Token, und dieser Token kann begrenzt oder widerrufen werden. OAuth ist sicherer, kann aber in Self-Hosted-Instanzen etwas mehr Konfiguration verlangen.\nAPI-Token.\nSlack, HubSpot, Notion oder interne Systeme arbeiten oft mit API-Tokens. Hier achten wir besonders auf den Scope: Ein Token, der nur Nachrichten in einen Slack-Channel schreiben darf, ist sicherer als ein Token mit Vollzugriff.",
+    "title": "10  Credentials vorbereiten",
+    "section": "10.2 Drei Credential-Arten im Kurs",
+    "text": "10.2 Drei Credential-Arten im Kurs\nApp-spezifisches Passwort. Einige Mail-Anbieter erlauben ein separates Passwort nur für Programme wie n8n. Dieses Passwort kann später widerrufen werden, ohne das Hauptpasswort des Mail-Kontos zu ändern. Für Internet Message Access Protocol (IMAP) und Simple Mail Transfer Protocol (SMTP) ist das eine verbreitete Einstiegsvariante.\nOAuth.\nBei Gmail, Microsoft 365 und vielen SaaS-Diensten ist OAuth die bessere Lösung. Wir melden uns beim Anbieter an, n8n erhält einen Token, und dieser Token kann begrenzt oder widerrufen werden. OAuth ist sicherer, kann aber in Self-Hosted-Instanzen etwas mehr Konfiguration verlangen.\nAPI-Token.\nSlack, HubSpot, Notion oder interne Systeme arbeiten oft mit API-Tokens. Hier achten wir besonders auf den Scope: Ein Token, der nur Nachrichten in einen Slack-Channel schreiben darf, ist sicherer als ein Token mit Vollzugriff.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
     ]
   },
   {
     "objectID": "first-workflows/credentials.html#sichere-praxis",
     "href": "first-workflows/credentials.html#sichere-praxis",
-    "title": "4  Credentials vorbereiten",
-    "section": "4.3 Sichere Praxis",
-    "text": "4.3 Sichere Praxis\nWir halten uns an drei Regeln:\n\nKein Hauptpasswort im Workflow. Wir verwenden App-Passwörter, OAuth oder API-Tokens.\nGeringstmögliche Berechtigungen (Least Privilege). Ein Credential bekommt nur die Berechtigungen, die der konkrete Workflow braucht.\nTrennung von Test und Produktion. Testkonten und Testtabellen verhindern, dass ein Lernworkflow versehentlich echte Kundendaten verändert.\n\n\n\n\n\n\n\nWichtigCredentials sind echte Schlüssel\n\n\n\nEine kompromittierte n8n-Instanz ist nicht nur ein Workflow-Problem. Sie kann Zugriff auf Mail-Konten, CRM-Systeme, Datenbanken und weitere API-Systeme öffnen. Deshalb behandeln wir Credentials wie echte Schlüssel: begrenzen, dokumentieren, regelmäßig prüfen und bei Verdacht widerrufen.",
+    "title": "10  Credentials vorbereiten",
+    "section": "10.3 Sichere Praxis",
+    "text": "10.3 Sichere Praxis\nWir halten uns an drei Regeln:\n\nKein Hauptpasswort im Workflow. Wir verwenden App-Passwörter, OAuth oder API-Tokens.\nGeringstmögliche Berechtigungen (Least Privilege). Ein Credential bekommt nur die Berechtigungen, die der konkrete Workflow braucht.\nTrennung von Test und Produktion. Testkonten und Testtabellen verhindern, dass ein Lernworkflow versehentlich echte Kundendaten verändert.\n\n\n\n\n\n\n\nWichtigCredentials sind echte Schlüssel\n\n\n\nEine kompromittierte n8n-Instanz ist nicht nur ein Workflow-Problem. Sie kann Zugriff auf Mail-Konten, CRM-Systeme, Datenbanken und weitere API-Systeme öffnen. Deshalb behandeln wir Credentials wie echte Schlüssel: begrenzen, dokumentieren, regelmäßig prüfen und bei Verdacht widerrufen.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
     ]
   },
   {
     "objectID": "first-workflows/credentials.html#mini-checkliste-vor-dem-weiterbauen",
     "href": "first-workflows/credentials.html#mini-checkliste-vor-dem-weiterbauen",
-    "title": "4  Credentials vorbereiten",
-    "section": "4.4 Mini-Checkliste vor dem Weiterbauen",
-    "text": "4.4 Mini-Checkliste vor dem Weiterbauen\nFür Modul 02 reicht diese Vorbereitung:\n\nEine n8n-Instanz ist erreichbar, Cloud oder Self-Hosted.\nWir können einen Workflow im Editor öffnen und speichern.\nFür den Live-Modus legen wir später ein SMTP-Credential zum Senden und ein IMAP- oder Gmail-/Microsoft-Credential zum Lesen an.\nDie erste Testadresse sollte keine produktive Support- oder Sales-Adresse sein.\n\nDamit ist die Grundlage gelegt. Im nächsten Kapitel importieren oder bauen wir den ersten Workflow und arbeiten zunächst mit simulierten Maildaten. Danach sehen wir genau, an welcher Stelle echte Credentials eingehängt werden.",
+    "title": "10  Credentials vorbereiten",
+    "section": "10.4 Mini-Checkliste vor dem Weiterbauen",
+    "text": "10.4 Mini-Checkliste vor dem Weiterbauen\nFür Modul 02 reicht diese Vorbereitung:\n\nEine n8n-Instanz ist erreichbar, Cloud oder Self-Hosted.\nWir können einen Workflow im Editor öffnen und speichern.\nFür den Live-Modus legen wir später ein SMTP-Credential zum Senden und ein IMAP- oder Gmail-/Microsoft-Credential zum Lesen an.\nDie erste Testadresse sollte keine produktive Support- oder Sales-Adresse sein.\n\nDamit ist die Grundlage gelegt. Im nächsten Kapitel importieren oder bauen wir den ersten Workflow und arbeiten zunächst mit simulierten Maildaten. Danach sehen wir genau, an welcher Stelle echte Credentials eingehängt werden.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
     ]
   },
   {
     "objectID": "first-workflows/first-workflow.html",
     "href": "first-workflows/first-workflow.html",
-    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "title": "11  Der erste Workflow: Mail an sich selbst",
     "section": "",
-    "text": "5.1 Zielbild\nIn diesem Kapitel bauen wir den ersten vollständigen Workflow. Er simuliert eine eingehende Mail, verschickt eine Bestätigung und schreibt einen Eintrag in eine Tabelle.\nDer fertige Workflow hat fünf Stationen:",
+    "text": "11.1 Zielbild\nIn diesem Kapitel bauen wir den ersten vollständigen Workflow. Er simuliert eine eingehende Mail, verschickt eine Bestätigung und schreibt einen Eintrag in eine Tabelle.\nDer fertige Workflow hat fünf Stationen:",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
     ]
   },
   {
     "objectID": "first-workflows/first-workflow.html#zielbild",
     "href": "first-workflows/first-workflow.html#zielbild",
-    "title": "5  Der erste Workflow: Mail an sich selbst",
+    "title": "11  Der erste Workflow: Mail an sich selbst",
     "section": "",
-    "text": "Start workflow manually: Ein Manual-Trigger-Knoten startet den Workflow per Klick.\nReceive email: Ein Set-Knoten erzeugt die Felder sender, subject, text und received_at.\nSend confirmation: Ein Send-Email-Knoten antwortet an den Absender.\nPrepare table entry: Ein zweiter Set-Knoten bringt die Daten in Tabellenform.\nSave table entry: Ein Data-Table-Knoten schreibt eine Zeile in die Tabelle customer_emails.\n\n\n\n\n\n\n\nAbbildung 5.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge Manual Trigger, Set, Send Email, Set, Data Table.",
+    "text": "Start workflow manually: Ein Manual-Trigger-Knoten startet den Workflow per Klick.\nReceive email: Ein Set-Knoten erzeugt die Felder sender, subject, text und received_at.\nSend confirmation: Ein Send-Email-Knoten antwortet an den Absender.\nPrepare table entry: Ein zweiter Set-Knoten bringt die Daten in Tabellenform.\nSave table entry: Ein Data-Table-Knoten schreibt eine Zeile in die Tabelle customer_emails.\n\n\n\n\n\n\n\nAbbildung 11.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge Manual Trigger, Set, Send Email, Set, Data Table.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
     ]
   },
   {
     "objectID": "first-workflows/first-workflow.html#schnellstart-per-import",
     "href": "first-workflows/first-workflow.html#schnellstart-per-import",
-    "title": "5  Der erste Workflow: Mail an sich selbst",
-    "section": "5.2 Schnellstart per Import",
-    "text": "5.2 Schnellstart per Import\nWer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen, kann ihn direkt per URL in die eigene n8n-Instanz importieren:\n\nIm Editor einen neuen, leeren Workflow anlegen.\nOben rechts auf das Drei-Punkte-Menü klicken.\nImport from URL wählen und folgende Adresse einfügen:\nhttps://raw.githubusercontent.com/kirenz/n8n-workflows/main/n8n-basics/modul-02-first-workflow.json\nBestätigen. Der Workflow erscheint im Editor mit allen Knoten und Verbindungen.\n\nNach dem Import sind Manual Trigger, Set, Send Email und Set vorhanden. Der Data-Table-Knoten fehlt bewusst, weil Tabellen-IDs in jeder n8n-Instanz lokal entstehen. Die Tabelle anlegen und im Data-Table-Knoten neu auswählen, dann ist der Workflow vollständig.",
+    "title": "11  Der erste Workflow: Mail an sich selbst",
+    "section": "11.2 Schnellstart per Import",
+    "text": "11.2 Schnellstart per Import\nWer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen, kann ihn direkt per URL in die eigene n8n-Instanz importieren:\n\nIm Editor einen neuen, leeren Workflow anlegen.\nOben rechts auf das Drei-Punkte-Menü klicken.\nImport from URL wählen und folgende Adresse einfügen:\nhttps://raw.githubusercontent.com/kirenz/n8n-workflows/main/n8n-basics/modul-02-first-workflow.json\nBestätigen. Der Workflow erscheint im Editor mit allen Knoten und Verbindungen.\n\nNach dem Import sind Manual Trigger, Set, Send Email und Set vorhanden. Der Data-Table-Knoten fehlt bewusst, weil Tabellen-IDs in jeder n8n-Instanz lokal entstehen. Die Tabelle anlegen und im Data-Table-Knoten neu auswählen, dann ist der Workflow vollständig.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
     ]
   },
   {
     "objectID": "first-workflows/first-workflow.html#schritt-für-schritt-selbst-bauen",
     "href": "first-workflows/first-workflow.html#schritt-für-schritt-selbst-bauen",
-    "title": "5  Der erste Workflow: Mail an sich selbst",
-    "section": "5.3 Schritt für Schritt selbst bauen",
-    "text": "5.3 Schritt für Schritt selbst bauen\nWir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat dabei einen Namen, der im Canvas angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen wie Edit Fields oder Send an Email. Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.\nIm Kurs folgen wir einer einheitlichen Konvention:\n\nEnglische Namen in Verb-Form, die beschreiben, was der Knoten tut. Beispiel: Receive email.\nZu vermeiden sind Apostrophe ('), Anführungszeichen (\"), geschweifte Klammern ({ }) und Backslashes (\\), weil sie mit der Expression- oder JSON-Syntax kollidieren können.\n\n\n5.3.1 Vorbereitung: Neuen Workflow anlegen\n\nIn n8n anmelden.\nOverview-Ansicht (Haus-Symbol links oben im Menü) auswählen.\nOben rechts den Button Create workflow (oder das Plus-Symbol links oben) wählen.\nIm leeren Canvas oben links auf den Workflow-Namen (My workflow) klicken und ihn umbenennen in n8n-02.\nNeben dem Workflow-Namen auf + Add tag klicken und die beiden Tags n8n-basics und modul-02 erstellen und hinzufügen. Tags helfen später bei der Übersicht, Filterung und Dokumentation der Workflows.\n\n\n\n\n\n\n\nAbbildung 5.2: Leerer Canvas direkt nach dem Anlegen eines neuen Workflows. In der Mitte das Plus-Symbol zum Einfügen des ersten Knotens.\n\n\n\n\n\n5.3.2 Schritt 1: Manuellen Auslöser einfügen\n\nAuf das große Plus-Symbol in der Canvas-Mitte klicken.\nIm rechts erscheinenden Knoten-Picker oben Trigger manually wählen.\nOberhalb des Knotens auf die 3 Punkte klicken und Rename wählen.\nDen Knoten umbenennen in Start workflow manually.\n\nEine weitere Konfiguration ist nicht nötig.\n\n\n\n\n\n\nAbbildung 5.3: Knoten-Picker mit der Auswahl “Trigger manually” als manuellen Auslöser.\n\n\n\n\n\n5.3.3 Schritt 2: Receive email\n\nRechts neben dem Knoten Start workflow manually erscheint ein Plus. Darauf klicken.\nIm Suchfeld des Knoten-Pickers Edit Fields eingeben.\nEdit Fields (Set) auswählen.\nDen Knoten oben links umbenennen in Receive email (Default-Name: Edit Fields).\nMode bei Manual Mapping belassen.\nBei Fields to Set auf Add Field klicken und nacheinander vier Felder eintragen:\n\n\n\n\n\n\n\n\n\n\nName\nTyp\nValue\nModus\n\n\n\n\nsender\nString\nmax@example.com\nFixed\n\n\nsubject\nString\nQuestion about delivery time\nFixed\n\n\ntext\nString\nHello, I ordered yesterday and was wondering when delivery will arrive. Best regards, Max\nFixed\n\n\nreceived_at\nString\n{ $now.toISO() }\nExpression\n\n\n\nDie ersten drei Felder sind feste Werte, die bei jeder Ausführung gleich bleiben. Das vierte Feld received_at soll den tatsächlichen Ausführungszeitpunkt liefern, deshalb verwenden wir hier eine Expression.\n\n\n\n\n\n\nHinweisWas bedeutet der Ausdruck $now.toISO()?\n\n\n\n\n\nDer Ausdruck setzt sich aus drei Bestandteilen zusammen:\n\n{ ... } kennzeichnet in n8n einen Ausdruck. Der Inhalt wird als JavaScript ausgewertet, nicht wörtlich übernommen.\n$now ist eine eingebaute n8n-Variable. Sie liefert den aktuellen Zeitpunkt.\n.toISO() wandelt diesen Zeitpunkt in eine Zeichenkette nach dem ISO-8601-Standard um.\n\nEine typische Ausgabe lautet 2026-05-14T10:23:45.123+02:00 und enthält Datum, Uhrzeit mit Millisekunden sowie den Zeitzonen-Offset. Der Wert wird bei jeder Workflow-Ausführung neu berechnet und entspricht damit dem tatsächlichen Ausführungszeitpunkt.\nVerwandte Varianten:\n\n{ $now.toFormat('dd.MM.yyyy') } liefert das Datum im deutschen Format, etwa 14.05.2026.\n{ $today.toISO() } liefert den aktuellen Tag.\n{{ $now.plus({days: 7}).toISO() }} liefert den Zeitpunkt sieben Tage nach der Ausführung.\n\nSolche Zeit-Ausdrücke lassen sich in jedem Feld eines beliebigen Knotens verwenden, sobald der Expression-Modus aktiv ist. Typische Anwendungsfälle sind Dateinamen mit Zeitstempel, Filterbedingungen auf Basis des aktuellen Datums oder das Setzen eines createdAt-Feldes vor dem Schreiben in eine Datenbank.\n\n\n\n\nAuf Execute step klicken. Im Output-Panel rechts erscheinen die vier Felder.\n\n\n\n\n\n\n\nAbbildung 5.4: Set-Knoten mit den vier Feldzuweisungen und aktiviertem Expression-Modus bei received_at.\n\n\n\n\n\n\n\n\n\nHinweisDrei Ansichten im Output-Panel\n\n\n\nDas Output-Panel bietet drei Ansichten für die Daten, die ein Knoten weitergibt:\n\n\n\nAnsicht\nInhalt\n\n\n\n\nTable\ntabellarische Darstellung der Felder\n\n\nJSON\nvollständige Datenstruktur mit Feldnamen\n\n\nSchema\nListe der vorhandenen Felder ohne Werte\n\n\n\nDie JSON-Ansicht zeigt die exakten Feldnamen, mit denen Expressions in nachfolgenden Knoten arbeiten. Wenn ein Feld sender heißt, funktioniert { $json.sender }. Liefert ein Trigger stattdessen fromEmail, muss die Expression angepasst werden (n8n 2026).\n\n\n\n\n\n\nAbbildung 5.5: Output-Panel mit den drei Ansichten Schema, Table und JSON. Die JSON-Ansicht zeigt die exakten Feldnamen und Werte, die der Knoten weitergibt.\n\n\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\n\n\n\n5.3.4 Schritt 3: Send confirmation\n\nRechts am Knoten Receive email auf + klicken.\nIm Knoten-Picker Send Email suchen und auswählen.\nDen Knoten oben links umbenennen in Send confirmation (Default-Name: Send an Email).\n\nMit dem Öffnen des Knotens erscheint die Drei-Spalten-Ansicht des Knoten-Editors: links der Input, in der Mitte die Parameter dieses Knotens, rechts erscheint nach Execute step der Output.\n\nFelder konfigurieren (Operation auf Send belassen):\n\n\n\n\nFeld\nWert\nModus\n\n\n\n\nFrom Email\ninfo@company.com\nFixed\n\n\nTo Email\n{ $json.sender }\nExpression\n\n\nSubject\nThank you for your message\nFixed\n\n\n\n\n\n\n\n\n\nHinweisWas bedeutet { $json.sender }?\n\n\n\n$json bezeichnet die Daten, die der vorherige Knoten weitergegeben hat. In der Input-Spalte links sind diese Felder sichtbar: sender, subject, text und received_at. .sender greift auf das Feld sender zu, in unserem Fall max@example.com.\nStatt die Expression von Hand zu tippen, kann das Feld sender auch aus der Input-Spalte per Drag-and-drop in das Parameter-Feld gezogen werden. n8n erzeugt die Expression dann automatisch.\n\n\nDas Feld Email Format steht standardmäßig auf HTML. Wir stellen es auf Text um, damit Absätze und Zeilenumbrüche im Beispieltext erhalten bleiben.\nBeispiel-Text für das Feld Text:\nHello,\n\nthank you for your message. We have received it and will get back to you within one business day.\n\nSubject of your inquiry: {{ $json.subject }}\n\nBest regards\nThe customer service team\n\nAuf Execute step klicken.\n\nAn dieser Stelle erscheint die Fehlermeldung Node does not have any credentials set, weil die Credentials für den Mail-Versand fehlen. Den Knoten deaktivieren wir gleich, damit der Workflow trotzdem bis zum Ende durchläuft.\n\n\n\n\n\n\nAbbildung 5.6: Send-Email-Knoten mit Expressions für Empfänger und Betreff: feste Formulierungen kombiniert mit dynamischen Feldern aus dem vorherigen Knoten.\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\nDamit der Workflow trotzdem bis zum Ende durchläuft, stellen wir den Knoten Send confirmation über das Drei-Punkte-Menü oberhalb des Knotens auf Deactivate.\n\nDie folgenden Schritte 4 und 5 können wir nun testen, ohne dass der deaktivierte Knoten einen Fehler ausgibt. Nach dem Anlegen des Credentials aktivieren wir den Knoten wieder.\n\n\n5.3.5 Schritt 4: Prepare table entry\n\nRechts am Knoten Send confirmation auf + klicken.\nIm Knoten-Picker Edit Fields (Set) suchen und auswählen.\nDen Knoten umbenennen in Prepare table entry (Default-Name: Edit Fields).\nMode bleibt auf Manual Mapping.\nIm Input-Panel links auf Receive email klicken. Anschließend die drei Felder sender, subject und received_at nacheinander per Drag-and-drop in den Bereich Fields to Set ziehen.\nEin viertes Feld manuell über Add Field anlegen: Name status, Wert new, Modus Fixed.\n\nDas Ergebnis im Knoten:\n\n\n\n\n\n\n\n\nName\nWert\nModus\n\n\n\n\nsender\n{ $('Receive email').item.json.sender }\nExpression\n\n\nsubject\n{ $('Receive email').item.json.subject }\nExpression\n\n\nreceived_at\n{ $('Receive email').item.json.received_at }\nExpression\n\n\nstatus\nnew\nFixed\n\n\n\n\n\n\n\n\n\nHinweisWarum eine Cross-Node-Expression?\n\n\n\nEine sogenannte Cross-Node-Expression $('Knotenname').item.json.feld greift gezielt auf einen früheren Knoten zu. Sie ist hier nötig, weil zwischen Receive email und diesem Knoten der Send-Email-Knoten liegt. Ein einfaches $json.sender würde dessen Output referenzieren, nicht die ursprünglichen Mail-Felder. Durch das Umschalten der Quelle im Input-Panel auf Receive email erzeugt n8n die robuste Form automatisch.\n\n\n\nAuf Execute step klicken. Im Output stehen die vier Spalten des späteren Tabelleneintrags.\n\n\n\n\n\n\n\nAbbildung 5.7: Set-Knoten mit den vier Cross-Node-Expressions, die Werte aus dem Knoten Receive email beziehen.\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\n\n\n\n5.3.6 Schritt 5: Data Table anlegen und Eintrag schreiben\nEin “Data Table” speichert strukturierte Daten direkt in n8n. Die Tabelle ist nicht Teil des Workflows, sondern liegt auf der Projekt-Ebene und wird aus dem Workflow heraus über einen Data-Table-Knoten beschrieben oder gelesen.\nTabelle anlegen:\nDie Verwaltung der Data Tables liegt außerhalb des Workflow-Editors. Wir verlassen den Editor kurz, legen die Tabelle an und kehren danach in den Workflow zurück.\n\nOben links auf Overview klicken, um zur Projekt-Übersicht zurückzukehren.\nIn der oberen Menüleiste auf Data tables klicken (gleiche Ebene wie Workflows, Credentials und Executions).\nAuf Create Data Table klicken.\nNamen vergeben: customer_emails (From scratch auswählen).\nOben rechts Add Column klicken und nacheinander vier Spalten hinzufügen:\n\n\n\n\nName\nType\n\n\n\n\nsender\nstring\n\n\nsubject\nstring\n\n\nreceived_at\nstring\n\n\nstatus\nstring\n\n\n\nn8n ergänzt automatisch eine id-Spalte, die jede Zeile eindeutig identifiziert. In der Übersicht erscheint die neue Tabelle daher mit insgesamt fünf Spalten.\nData-Table-Knoten in den Workflow einfügen:\n\nIn der Projektübersicht wieder zu Workflows wechseln und n8n-02 auswählen.\nRechts am Knoten Prepare table entry auf das Plus-Symbol klicken.\nIm Knoten-Picker Data table suchen und auswählen.\nIm erscheinenden Action-Menü unter Row Actions die Action Insert row auswählen.\nDen Knoten links oben umbenennen in Save table entry (Default-Name: Insert row).\nIm Parameters-Panel:\n\nResource: Row belassen (Default).\nOperation: Insert belassen (Default).\nData table: Modus From list belassen und im rechten Dropdown customer_emails auswählen.\nMapping Column Mode: auf Map Automatically umstellen.\n\nAuf Execute step klicken.\n\n\n\n\n\n\n\nHinweisWarum Map Automatically hier funktioniert\n\n\n\nMap Automatically sucht im eingehenden Datenobjekt nach Feldern, die genauso heißen wie die Spalten der Tabelle, und übernimmt sie eins zu eins. Weil der Knoten Prepare table entry die Felder bewusst mit identischen Namen liefert (sender, subject, received_at, status), greift das automatische Mapping ohne weitere Konfiguration.\nDer manuelle Modus Map Each Column Manually wäre nötig, wenn die Feldnamen abweichen, ein Wert umgerechnet werden muss oder eine Spalte fest gesetzt werden soll, ohne aus dem Input zu stammen.\n\n\n\n\n\n\n\n\nAbbildung 5.8: Data-Table-Knoten mit Operation Insert Row, Auswahl der Tabelle customer_emails und Mapping der vier Spalten.\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\n\n\n\n5.3.7 Workflow speichern und vollständig ausführen\n\nIn der Workflow-Übersicht auf Execute Workflow klicken.\nAlle fünf Knoten bekommen einen grünen Haken (mit Ausnahme des deaktivierten Knotens Send confirmation, der übersprungen wird). Es erscheint die Bestätigung Workflow executed successfully.\nZur Kontrolle die Tabelle customer_emails öffnen: oben links auf Overview klicken, zur Projekt-Übersicht wechseln und im Tab Data tables auf customer_emails klicken.\nIn der Tabelle erscheint eine neue Zeile mit Werten für sender, subject, received_at und status (Wert new) sowie eine automatisch vergebene id.\n\n\n\n\n\n\n\nAbbildung 5.9: Workflow nach erfolgreichem Lauf mit grünen Häkchen an allen Knoten.",
+    "title": "11  Der erste Workflow: Mail an sich selbst",
+    "section": "11.3 Schritt für Schritt selbst bauen",
+    "text": "11.3 Schritt für Schritt selbst bauen\nWir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat dabei einen Namen, der im Canvas angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen wie Edit Fields oder Send an Email. Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.\nIm Kurs folgen wir einer einheitlichen Konvention:\n\nEnglische Namen in Verb-Form, die beschreiben, was der Knoten tut. Beispiel: Receive email.\nZu vermeiden sind Apostrophe ('), Anführungszeichen (\"), geschweifte Klammern ({ }) und Backslashes (\\), weil sie mit der Expression- oder JSON-Syntax kollidieren können.\n\n\n11.3.1 Vorbereitung: Neuen Workflow anlegen\n\nIn n8n anmelden.\nOverview-Ansicht (Haus-Symbol links oben im Menü) auswählen.\nOben rechts den Button Create workflow (oder das Plus-Symbol links oben) wählen.\nIm leeren Canvas oben links auf den Workflow-Namen (My workflow) klicken und ihn umbenennen in n8n-02.\nNeben dem Workflow-Namen auf + Add tag klicken und die beiden Tags n8n-basics und modul-02 erstellen und hinzufügen. Tags helfen später bei der Übersicht, Filterung und Dokumentation der Workflows.\n\n\n\n\n\n\n\nAbbildung 11.2: Leerer Canvas direkt nach dem Anlegen eines neuen Workflows. In der Mitte das Plus-Symbol zum Einfügen des ersten Knotens.\n\n\n\n\n\n11.3.2 Schritt 1: Manuellen Auslöser einfügen\n\nAuf das große Plus-Symbol in der Canvas-Mitte klicken.\nIm rechts erscheinenden Knoten-Picker oben Trigger manually wählen.\nOberhalb des Knotens auf die 3 Punkte klicken und Rename wählen.\nDen Knoten umbenennen in Start workflow manually.\n\nEine weitere Konfiguration ist nicht nötig.\n\n\n\n\n\n\nAbbildung 11.3: Knoten-Picker mit der Auswahl “Trigger manually” als manuellen Auslöser.\n\n\n\n\n\n11.3.3 Schritt 2: Receive email\n\nRechts neben dem Knoten Start workflow manually erscheint ein Plus. Darauf klicken.\nIm Suchfeld des Knoten-Pickers Edit Fields eingeben.\nEdit Fields (Set) auswählen.\nDen Knoten oben links umbenennen in Receive email (Default-Name: Edit Fields).\nMode bei Manual Mapping belassen.\nBei Fields to Set auf Add Field klicken und nacheinander vier Felder eintragen:\n\n\n\n\n\n\n\n\n\n\nName\nTyp\nValue\nModus\n\n\n\n\nsender\nString\nmax@example.com\nFixed\n\n\nsubject\nString\nQuestion about delivery time\nFixed\n\n\ntext\nString\nHello, I ordered yesterday and was wondering when delivery will arrive. Best regards, Max\nFixed\n\n\nreceived_at\nString\n{ $now.toISO() }\nExpression\n\n\n\nDie ersten drei Felder sind feste Werte, die bei jeder Ausführung gleich bleiben. Das vierte Feld received_at soll den tatsächlichen Ausführungszeitpunkt liefern, deshalb verwenden wir hier eine Expression.\n\n\n\n\n\n\nHinweisWas bedeutet der Ausdruck $now.toISO()?\n\n\n\n\n\nDer Ausdruck setzt sich aus drei Bestandteilen zusammen:\n\n{ ... } kennzeichnet in n8n einen Ausdruck. Der Inhalt wird als JavaScript ausgewertet, nicht wörtlich übernommen.\n$now ist eine eingebaute n8n-Variable. Sie liefert den aktuellen Zeitpunkt.\n.toISO() wandelt diesen Zeitpunkt in eine Zeichenkette nach dem ISO-8601-Standard um.\n\nEine typische Ausgabe lautet 2026-05-14T10:23:45.123+02:00 und enthält Datum, Uhrzeit mit Millisekunden sowie den Zeitzonen-Offset. Der Wert wird bei jeder Workflow-Ausführung neu berechnet und entspricht damit dem tatsächlichen Ausführungszeitpunkt.\nVerwandte Varianten:\n\n{ $now.toFormat('dd.MM.yyyy') } liefert das Datum im deutschen Format, etwa 14.05.2026.\n{ $today.toISO() } liefert den aktuellen Tag.\n{{ $now.plus({days: 7}).toISO() }} liefert den Zeitpunkt sieben Tage nach der Ausführung.\n\nSolche Zeit-Ausdrücke lassen sich in jedem Feld eines beliebigen Knotens verwenden, sobald der Expression-Modus aktiv ist. Typische Anwendungsfälle sind Dateinamen mit Zeitstempel, Filterbedingungen auf Basis des aktuellen Datums oder das Setzen eines createdAt-Feldes vor dem Schreiben in eine Datenbank.\n\n\n\n\nAuf Execute step klicken. Im Output-Panel rechts erscheinen die vier Felder.\n\n\n\n\n\n\n\nAbbildung 11.4: Set-Knoten mit den vier Feldzuweisungen und aktiviertem Expression-Modus bei received_at.\n\n\n\n\n\n\n\n\n\nHinweisDrei Ansichten im Output-Panel\n\n\n\nDas Output-Panel bietet drei Ansichten für die Daten, die ein Knoten weitergibt:\n\n\n\nAnsicht\nInhalt\n\n\n\n\nTable\ntabellarische Darstellung der Felder\n\n\nJSON\nvollständige Datenstruktur mit Feldnamen\n\n\nSchema\nListe der vorhandenen Felder ohne Werte\n\n\n\nDie JSON-Ansicht zeigt die exakten Feldnamen, mit denen Expressions in nachfolgenden Knoten arbeiten. Wenn ein Feld sender heißt, funktioniert { $json.sender }. Liefert ein Trigger stattdessen fromEmail, muss die Expression angepasst werden (n8n 2026).\n\n\n\n\n\n\nAbbildung 11.5: Output-Panel mit den drei Ansichten Schema, Table und JSON. Die JSON-Ansicht zeigt die exakten Feldnamen und Werte, die der Knoten weitergibt.\n\n\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\n\n\n\n11.3.4 Schritt 3: Send confirmation\n\nRechts am Knoten Receive email auf + klicken.\nIm Knoten-Picker Send Email suchen und auswählen.\nDen Knoten oben links umbenennen in Send confirmation (Default-Name: Send an Email).\n\nMit dem Öffnen des Knotens erscheint die Drei-Spalten-Ansicht des Knoten-Editors: links der Input, in der Mitte die Parameter dieses Knotens, rechts erscheint nach Execute step der Output.\n\nFelder konfigurieren (Operation auf Send belassen):\n\n\n\n\nFeld\nWert\nModus\n\n\n\n\nFrom Email\ninfo@company.com\nFixed\n\n\nTo Email\n{ $json.sender }\nExpression\n\n\nSubject\nThank you for your message\nFixed\n\n\n\n\n\n\n\n\n\nHinweisWas bedeutet { $json.sender }?\n\n\n\n$json bezeichnet die Daten, die der vorherige Knoten weitergegeben hat. In der Input-Spalte links sind diese Felder sichtbar: sender, subject, text und received_at. .sender greift auf das Feld sender zu, in unserem Fall max@example.com.\nStatt die Expression von Hand zu tippen, kann das Feld sender auch aus der Input-Spalte per Drag-and-drop in das Parameter-Feld gezogen werden. n8n erzeugt die Expression dann automatisch.\n\n\nDas Feld Email Format steht standardmäßig auf HTML. Wir stellen es auf Text um, damit Absätze und Zeilenumbrüche im Beispieltext erhalten bleiben.\nBeispiel-Text für das Feld Text:\nHello,\n\nthank you for your message. We have received it and will get back to you within one business day.\n\nSubject of your inquiry: {{ $json.subject }}\n\nBest regards\nThe customer service team\n\nAuf Execute step klicken.\n\nAn dieser Stelle erscheint die Fehlermeldung Node does not have any credentials set, weil die Credentials für den Mail-Versand fehlen. Den Knoten deaktivieren wir gleich, damit der Workflow trotzdem bis zum Ende durchläuft.\n\n\n\n\n\n\nAbbildung 11.6: Send-Email-Knoten mit Expressions für Empfänger und Betreff: feste Formulierungen kombiniert mit dynamischen Feldern aus dem vorherigen Knoten.\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\nDamit der Workflow trotzdem bis zum Ende durchläuft, stellen wir den Knoten Send confirmation über das Drei-Punkte-Menü oberhalb des Knotens auf Deactivate.\n\nDie folgenden Schritte 4 und 5 können wir nun testen, ohne dass der deaktivierte Knoten einen Fehler ausgibt. Nach dem Anlegen des Credentials aktivieren wir den Knoten wieder.\n\n\n11.3.5 Schritt 4: Prepare table entry\n\nRechts am Knoten Send confirmation auf + klicken.\nIm Knoten-Picker Edit Fields (Set) suchen und auswählen.\nDen Knoten umbenennen in Prepare table entry (Default-Name: Edit Fields).\nMode bleibt auf Manual Mapping.\nIm Input-Panel links auf Receive email klicken. Anschließend die drei Felder sender, subject und received_at nacheinander per Drag-and-drop in den Bereich Fields to Set ziehen.\nEin viertes Feld manuell über Add Field anlegen: Name status, Wert new, Modus Fixed.\n\nDas Ergebnis im Knoten:\n\n\n\n\n\n\n\n\nName\nWert\nModus\n\n\n\n\nsender\n{ $('Receive email').item.json.sender }\nExpression\n\n\nsubject\n{ $('Receive email').item.json.subject }\nExpression\n\n\nreceived_at\n{ $('Receive email').item.json.received_at }\nExpression\n\n\nstatus\nnew\nFixed\n\n\n\n\n\n\n\n\n\nHinweisWarum eine Cross-Node-Expression?\n\n\n\nEine sogenannte Cross-Node-Expression $('Knotenname').item.json.feld greift gezielt auf einen früheren Knoten zu. Sie ist hier nötig, weil zwischen Receive email und diesem Knoten der Send-Email-Knoten liegt. Ein einfaches $json.sender würde dessen Output referenzieren, nicht die ursprünglichen Mail-Felder. Durch das Umschalten der Quelle im Input-Panel auf Receive email erzeugt n8n die robuste Form automatisch.\n\n\n\nAuf Execute step klicken. Im Output stehen die vier Spalten des späteren Tabelleneintrags.\n\n\n\n\n\n\n\nAbbildung 11.7: Set-Knoten mit den vier Cross-Node-Expressions, die Werte aus dem Knoten Receive email beziehen.\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\n\n\n\n11.3.6 Schritt 5: Data Table anlegen und Eintrag schreiben\nEin “Data Table” speichert strukturierte Daten direkt in n8n. Die Tabelle ist nicht Teil des Workflows, sondern liegt auf der Projekt-Ebene und wird aus dem Workflow heraus über einen Data-Table-Knoten beschrieben oder gelesen.\nTabelle anlegen:\nDie Verwaltung der Data Tables liegt außerhalb des Workflow-Editors. Wir verlassen den Editor kurz, legen die Tabelle an und kehren danach in den Workflow zurück.\n\nOben links auf Overview klicken, um zur Projekt-Übersicht zurückzukehren.\nIn der oberen Menüleiste auf Data tables klicken (gleiche Ebene wie Workflows, Credentials und Executions).\nAuf Create Data Table klicken.\nNamen vergeben: customer_emails (From scratch auswählen).\nOben rechts Add Column klicken und nacheinander vier Spalten hinzufügen:\n\n\n\n\nName\nType\n\n\n\n\nsender\nstring\n\n\nsubject\nstring\n\n\nreceived_at\nstring\n\n\nstatus\nstring\n\n\n\nn8n ergänzt automatisch eine id-Spalte, die jede Zeile eindeutig identifiziert. In der Übersicht erscheint die neue Tabelle daher mit insgesamt fünf Spalten.\nData-Table-Knoten in den Workflow einfügen:\n\nIn der Projektübersicht wieder zu Workflows wechseln und n8n-02 auswählen.\nRechts am Knoten Prepare table entry auf das Plus-Symbol klicken.\nIm Knoten-Picker Data table suchen und auswählen.\nIm erscheinenden Action-Menü unter Row Actions die Action Insert row auswählen.\nDen Knoten links oben umbenennen in Save table entry (Default-Name: Insert row).\nIm Parameters-Panel:\n\nResource: Row belassen (Default).\nOperation: Insert belassen (Default).\nData table: Modus From list belassen und im rechten Dropdown customer_emails auswählen.\nMapping Column Mode: auf Map Automatically umstellen.\n\nAuf Execute step klicken.\n\n\n\n\n\n\n\nHinweisWarum Map Automatically hier funktioniert\n\n\n\nMap Automatically sucht im eingehenden Datenobjekt nach Feldern, die genauso heißen wie die Spalten der Tabelle, und übernimmt sie eins zu eins. Weil der Knoten Prepare table entry die Felder bewusst mit identischen Namen liefert (sender, subject, received_at, status), greift das automatische Mapping ohne weitere Konfiguration.\nDer manuelle Modus Map Each Column Manually wäre nötig, wenn die Feldnamen abweichen, ein Wert umgerechnet werden muss oder eine Spalte fest gesetzt werden soll, ohne aus dem Input zu stammen.\n\n\n\n\n\n\n\n\nAbbildung 11.8: Data-Table-Knoten mit Operation Insert Row, Auswahl der Tabelle customer_emails und Mapping der vier Spalten.\n\n\n\n\nOben rechts im Menü auf x klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.\n\n\n\n11.3.7 Workflow speichern und vollständig ausführen\n\nIn der Workflow-Übersicht auf Execute Workflow klicken.\nAlle fünf Knoten bekommen einen grünen Haken (mit Ausnahme des deaktivierten Knotens Send confirmation, der übersprungen wird). Es erscheint die Bestätigung Workflow executed successfully.\nZur Kontrolle die Tabelle customer_emails öffnen: oben links auf Overview klicken, zur Projekt-Übersicht wechseln und im Tab Data tables auf customer_emails klicken.\nIn der Tabelle erscheint eine neue Zeile mit Werten für sender, subject, received_at und status (Wert new) sowie eine automatisch vergebene id.\n\n\n\n\n\n\n\nAbbildung 11.9: Workflow nach erfolgreichem Lauf mit grünen Häkchen an allen Knoten.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
     ]
   },
   {
     "objectID": "first-workflows/first-workflow.html#fehler-diagnostizieren",
     "href": "first-workflows/first-workflow.html#fehler-diagnostizieren",
-    "title": "5  Der erste Workflow: Mail an sich selbst",
-    "section": "5.4 Fehler diagnostizieren",
-    "text": "5.4 Fehler diagnostizieren\nEin roter Knoten erfordert keinen Neuaufbau des Workflows. Wir lesen die Fehlermeldung, prüfen den Input des Knotens und vergleichen ihn mit der Knoten-Einstellung. Häufige Ursachen sind ein fehlendes Credential, ein abweichender Feldname oder ein Testdatensatz ohne Wert. Den frühesten Fehler im Workflow beheben wir zuerst, denn falsche Daten in Knoten 2 machen einen Blick auf Knoten 4 überflüssig.\nEine erste Orientierung bei wiederkehrenden Symptomen:\n\n\n\n\n\n\n\n\nSymptom\nWahrscheinliche Ursache\nNächster Prüfschritt\n\n\n\n\nSend Email schlägt fehl\nSMTP-Credential fehlt oder Absenderadresse passt nicht\nCredential öffnen, Testadresse prüfen\n\n\nEmpfänger ist leer\nsender existiert im Input nicht\nOutput des vorherigen Knotens in JSON prüfen\n\n\nData Table schreibt nicht\nTabelle oder Spalte fehlt\nTabelle customer_emails und Spaltennamen prüfen\n\n\nZeitstempel fehlt\nExpression im Set-Knoten falsch\n{ $now.toISO() } testen",
+    "title": "11  Der erste Workflow: Mail an sich selbst",
+    "section": "11.4 Fehler diagnostizieren",
+    "text": "11.4 Fehler diagnostizieren\nEin roter Knoten erfordert keinen Neuaufbau des Workflows. Wir lesen die Fehlermeldung, prüfen den Input des Knotens und vergleichen ihn mit der Knoten-Einstellung. Häufige Ursachen sind ein fehlendes Credential, ein abweichender Feldname oder ein Testdatensatz ohne Wert. Den frühesten Fehler im Workflow beheben wir zuerst, denn falsche Daten in Knoten 2 machen einen Blick auf Knoten 4 überflüssig.\nEine erste Orientierung bei wiederkehrenden Symptomen:\n\n\n\n\n\n\n\n\nSymptom\nWahrscheinliche Ursache\nNächster Prüfschritt\n\n\n\n\nSend Email schlägt fehl\nSMTP-Credential fehlt oder Absenderadresse passt nicht\nCredential öffnen, Testadresse prüfen\n\n\nEmpfänger ist leer\nsender existiert im Input nicht\nOutput des vorherigen Knotens in JSON prüfen\n\n\nData Table schreibt nicht\nTabelle oder Spalte fehlt\nTabelle customer_emails und Spaltennamen prüfen\n\n\nZeitstempel fehlt\nExpression im Set-Knoten falsch\n{ $now.toISO() } testen",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
     ]
   },
   {
     "objectID": "first-workflows/first-workflow.html#vom-test-zum-live-betrieb",
     "href": "first-workflows/first-workflow.html#vom-test-zum-live-betrieb",
-    "title": "5  Der erste Workflow: Mail an sich selbst",
-    "section": "5.5 Vom Test zum Live-Betrieb",
-    "text": "5.5 Vom Test zum Live-Betrieb\nBisher lief der Workflow nur per Klick auf Execute Workflow. Damit er automatisch auf eingehende Mails reagiert, sind drei Anpassungen nötig: ein echter Trigger, gültige Credentials und der Active-Modus.\n\nTrigger austauschen. Den Knoten Start workflow manually entfernen und stattdessen einen Mail-Trigger einfügen, etwa Email Trigger (IMAP) oder Gmail Trigger.\nCredentials hinterlegen. Für den Trigger ein IMAP- oder OAuth-Credential anlegen, für Send confirmation ein SMTP-Credential. Die Credential-Arten sind im Kapitel Credentials vorbereiten beschrieben.\nSend-Email-Knoten reaktivieren. Den in Schritt 3 deaktivierten Knoten Send confirmation über das Drei-Punkte-Menü wieder auf Activate setzen.\nWorkflow aktivieren. Oben rechts den Schalter Active einschalten.\nTestlauf prüfen. Eine Testmail aus einer eigenen Adresse an das Trigger-Postfach senden. Im linken Menü auf Executions klicken und den Lauf öffnen. Bestätigungsmail und neue Zeile in der Tabelle customer_emails kontrollieren.\n\n\n\n\n\n\n\nAbbildung 5.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint mit Status, Datum und Dauer und lässt sich für die Nachverfolgung öffnen.\n\n\n\nSobald der Workflow aktiv ist, behandelt n8n jede eingehende Mail im Trigger-Postfach als produktives Ereignis. Eine produktive Support- oder Sales-Adresse eignet sich daher nicht als erste Trigger-Quelle. Für den ersten Live-Test empfiehlt sich eine separate Testadresse.\n\n\n\n\n\n\nWichtigFallstricke im Live-Betrieb\n\n\n\nDrei Stolpersteine zeigen sich erfahrungsgemäß beim ersten produktiven Lauf:\n\nTrigger feuert nicht. Der häufigste Grund ist ein abgelaufener OAuth-Token oder ein IMAP-Server, der nach einer Stunde Inaktivität die Verbindung schließt. Unter Executions prüfen, ob überhaupt ein Lauf stattfindet; in den Trigger-Einstellungen ggf. das Polling-Intervall auf 1 Minute setzen und das Credential neu autorisieren.\nDoppelverarbeitung nach n8n-Restart. Ohne eine Idempotency-Spalte verarbeitet n8n bei einem Neustart die letzten Mails erneut. Für produktive Workflows gehört eine external_message_id-Spalte in die Tabelle, die vor jedem Insert geprüft wird (dieses Pattern vertieft der Aufbaukurs KI-Agenten in n8n).\nBestätigungs-Mail landet im Spam. SMTP-Mails von neuen Absenderdomains haben anfangs keinen Reputations-Score. Vor dem Live-Schalten einen SPF- und DKIM-Eintrag setzen oder einen Mail-Versand-Dienst wie Postmark oder SendGrid nutzen.",
+    "title": "11  Der erste Workflow: Mail an sich selbst",
+    "section": "11.5 Vom Test zum Live-Betrieb",
+    "text": "11.5 Vom Test zum Live-Betrieb\nBisher lief der Workflow nur per Klick auf Execute Workflow. Damit er automatisch auf eingehende Mails reagiert, sind drei Anpassungen nötig: ein echter Trigger, gültige Credentials und der Active-Modus.\n\nTrigger austauschen. Den Knoten Start workflow manually entfernen und stattdessen einen Mail-Trigger einfügen, etwa Email Trigger (IMAP) oder Gmail Trigger.\nCredentials hinterlegen. Für den Trigger ein IMAP- oder OAuth-Credential anlegen, für Send confirmation ein SMTP-Credential. Die Credential-Arten sind im Kapitel Credentials vorbereiten beschrieben.\nSend-Email-Knoten reaktivieren. Den in Schritt 3 deaktivierten Knoten Send confirmation über das Drei-Punkte-Menü wieder auf Activate setzen.\nWorkflow aktivieren. Oben rechts den Schalter Active einschalten.\nTestlauf prüfen. Eine Testmail aus einer eigenen Adresse an das Trigger-Postfach senden. Im linken Menü auf Executions klicken und den Lauf öffnen. Bestätigungsmail und neue Zeile in der Tabelle customer_emails kontrollieren.\n\n\n\n\n\n\n\nAbbildung 11.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint mit Status, Datum und Dauer und lässt sich für die Nachverfolgung öffnen.\n\n\n\nSobald der Workflow aktiv ist, behandelt n8n jede eingehende Mail im Trigger-Postfach als produktives Ereignis. Eine produktive Support- oder Sales-Adresse eignet sich daher nicht als erste Trigger-Quelle. Für den ersten Live-Test empfiehlt sich eine separate Testadresse.\n\n\n\n\n\n\nWichtigFallstricke im Live-Betrieb\n\n\n\nDrei Stolpersteine zeigen sich erfahrungsgemäß beim ersten produktiven Lauf:\n\nTrigger feuert nicht. Der häufigste Grund ist ein abgelaufener OAuth-Token oder ein IMAP-Server, der nach einer Stunde Inaktivität die Verbindung schließt. Unter Executions prüfen, ob überhaupt ein Lauf stattfindet; in den Trigger-Einstellungen ggf. das Polling-Intervall auf 1 Minute setzen und das Credential neu autorisieren.\nDoppelverarbeitung nach n8n-Restart. Ohne eine Idempotency-Spalte verarbeitet n8n bei einem Neustart die letzten Mails erneut. Für produktive Workflows gehört eine external_message_id-Spalte in die Tabelle, die vor jedem Insert geprüft wird (dieses Pattern vertieft der Aufbaukurs KI-Agenten in n8n).\nBestätigungs-Mail landet im Spam. SMTP-Mails von neuen Absenderdomains haben anfangs keinen Reputations-Score. Vor dem Live-Schalten einen SPF- und DKIM-Eintrag setzen oder einen Mail-Versand-Dienst wie Postmark oder SendGrid nutzen.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
     ]
   },
   {
     "objectID": "first-workflows/first-workflow.html#kontrollpunkt-für-modul-02",
     "href": "first-workflows/first-workflow.html#kontrollpunkt-für-modul-02",
-    "title": "5  Der erste Workflow: Mail an sich selbst",
-    "section": "5.6 Kontrollpunkt für Modul 02",
-    "text": "5.6 Kontrollpunkt für Modul 02\nAm Ende dieses Moduls sollten folgende Punkte bekannt sein:\n\nEinen Workflow neu anlegen, umbenennen und mit Tags versehen.\nKnoten einfügen, umbenennen und über das Plus-Symbol verketten.\nMit dem Set-Knoten (Edit Fields) Felder erzeugen, die nachfolgende Knoten weiterverwenden.\nEinfache Expressions schreiben und lesen: { $json.feld }, { $now.toISO() } sowie Cross-Node-Expressions { $('Knotenname').item.json.feld }.\nEine Data Table auf Projekt-Ebene anlegen und mit dem Data-Table-Knoten per Map Automatically Zeilen einfügen.\nEinen Knoten temporär deaktivieren, um den Workflow trotz fehlender Credentials bis zum Ende durchlaufen zu lassen.\nDen Workflow vom Manual-Trigger auf einen Mail-Trigger umstellen und aktivieren.",
+    "title": "11  Der erste Workflow: Mail an sich selbst",
+    "section": "11.6 Kontrollpunkt für Modul 02",
+    "text": "11.6 Kontrollpunkt für Modul 02\nAm Ende dieses Moduls sollten folgende Punkte bekannt sein:\n\nEinen Workflow neu anlegen, umbenennen und mit Tags versehen.\nKnoten einfügen, umbenennen und über das Plus-Symbol verketten.\nMit dem Set-Knoten (Edit Fields) Felder erzeugen, die nachfolgende Knoten weiterverwenden.\nEinfache Expressions schreiben und lesen: { $json.feld }, { $now.toISO() } sowie Cross-Node-Expressions { $('Knotenname').item.json.feld }.\nEine Data Table auf Projekt-Ebene anlegen und mit dem Data-Table-Knoten per Map Automatically Zeilen einfügen.\nEinen Knoten temporär deaktivieren, um den Workflow trotz fehlender Credentials bis zum Ende durchlaufen zu lassen.\nDen Workflow vom Manual-Trigger auf einen Mail-Trigger umstellen und aktivieren.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
     ]
   },
   {
     "objectID": "first-workflows/first-workflow.html#wie-es-weitergeht",
     "href": "first-workflows/first-workflow.html#wie-es-weitergeht",
-    "title": "5  Der erste Workflow: Mail an sich selbst",
-    "section": "5.7 Wie es weitergeht",
-    "text": "5.7 Wie es weitergeht\nDamit steht das handwerkliche Fundament: einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs KI-Agenten in n8n die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.\n\n\n\n\nn8n. 2026. Create and Run Workflows. Https://docs.n8n.io/workflows/create/.",
+    "title": "11  Der erste Workflow: Mail an sich selbst",
+    "section": "11.7 Wie es weitergeht",
+    "text": "11.7 Wie es weitergeht\nDamit steht das handwerkliche Fundament: einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs KI-Agenten in n8n die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.\n\n\n\n\nn8n. 2026. Create and Run Workflows. Https://docs.n8n.io/workflows/create/.",
     "crumbs": [
       "Erste Workflows",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
     ]
   }
 ]

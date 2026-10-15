@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jan Kirenz">
+<meta name="description" content="Von der Plattform zum ersten Workflow">
+
+<title>4&nbsp; Teilnehmer, Daten und Aufgabentypen – n8n-Grundlagen</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-65a8d1e2c23ab61ef86d547ba0112629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5a4191e779943d077ddcaf48741aef9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bpmn/index.html">Abläufe modellieren mit BPMN</a></li><li class="breadcrumb-item"><a href="../bpmn/teilnehmer-und-daten.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">n8n-Grundlagen</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="Suchen"></div>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Willkommen</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einführung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../bpmn/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abläufe modellieren mit BPMN</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/grundelemente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Grundelemente und gute Namen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/gateways.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gateways: verzweigen und zusammenführen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/ereignisse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/teilnehmer-und-daten.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/zum-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Vom Modell zum n8n-Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/uebung-kulanzantrag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plattform und Auswahl</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/what-is-n8n.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/pricing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/hosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../first-workflows/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Erste Workflows</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../first-workflows/credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../first-workflows/first-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#pools-lanes-und-nachrichtenflüsse" id="toc-pools-lanes-und-nachrichtenflüsse" class="nav-link active" data-scroll-target="#pools-lanes-und-nachrichtenflüsse"><span class="header-section-number">4.1</span> Pools, Lanes und Nachrichtenflüsse</a></li>
+  <li><a href="#daten-und-anmerkungen" id="toc-daten-und-anmerkungen" class="nav-link" data-scroll-target="#daten-und-anmerkungen"><span class="header-section-number">4.2</span> Daten und Anmerkungen</a></li>
+  <li><a href="#aufgabentypen-und-marker" id="toc-aufgabentypen-und-marker" class="nav-link" data-scroll-target="#aufgabentypen-und-marker"><span class="header-section-number">4.3</span> Aufgabentypen und Marker</a></li>
+  <li><a href="#teilprozesse-details-ein--und-ausblenden" id="toc-teilprozesse-details-ein--und-ausblenden" class="nav-link" data-scroll-target="#teilprozesse-details-ein--und-ausblenden"><span class="header-section-number">4.4</span> Teilprozesse: Details ein- und ausblenden</a></li>
+  <li><a href="#sechs-typische-fehler" id="toc-sechs-typische-fehler" class="nav-link" data-scroll-target="#sechs-typische-fehler"><span class="header-section-number">4.5</span> Sechs typische Fehler</a></li>
+  <li><a href="#jetzt-selbst-rückgabefrist-verlängern" id="toc-jetzt-selbst-rückgabefrist-verlängern" class="nav-link" data-scroll-target="#jetzt-selbst-rückgabefrist-verlängern"><span class="header-section-number">4.6</span> Jetzt selbst: Rückgabefrist verlängern</a></li>
+  <li><a href="#kontrollpunkt" id="toc-kontrollpunkt" class="nav-link" data-scroll-target="#kontrollpunkt"><span class="header-section-number">4.7</span> Kontrollpunkt</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bpmn/index.html">Abläufe modellieren mit BPMN</a></li><li class="breadcrumb-item"><a href="../bpmn/teilnehmer-und-daten.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Ein Kulanzantrag geht durch mehrere Hände: Der Kunde reicht ihn ein, der Kundenservice erfasst ihn, die Fachabteilung entscheidet. Bisher konnten unsere Modelle nicht zeigen, wer einen Schritt ausführt und welche Informationen dabei fließen. In diesem Kapitel kommen die beiden letzten Elementgruppen dazu: Teilnehmer (Pools und Lanes) sowie Daten und Artefakte. Außerdem lernen wir die Aufgabentypen und Marker kennen, die für den späteren n8n-Workflow entscheidend sind, weil sie zeigen, ob ein Mensch oder ein System einen Schritt erledigt.</p>
+<section id="pools-lanes-und-nachrichtenflüsse" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="pools-lanes-und-nachrichtenflüsse"><span class="header-section-number">4.1</span> Pools, Lanes und Nachrichtenflüsse</h2>
+<p>Ein <strong>Pool</strong> ist ein eigenständiger Teilnehmer mit eigenem Prozess, etwa unser Online-Shop oder der Kunde. Eine <strong>Lane</strong> ist eine Rolle oder Stelle innerhalb eines Pools und zeigt, wer eine Aufgabe ausführt. Zwischen Pools gibt es keinen Sequenzfluss, sondern nur <strong>Nachrichtenflüsse</strong>, gestrichelte Linien mit einem kleinen Kreis am Anfang und einer hellen Pfeilspitze am Ende.</p>
+<div id="fig-pools-lanes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pools-lanes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/bpmn/pools-lanes.svg" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pools-lanes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.1: Kulanzantrag bearbeiten: Der Kunde ist ein zugeklappter Pool, der Online-Shop ein Pool mit zwei Lanes. Der Antrag kommt als Nachricht und startet den Prozess; die Entscheidung geht als Nachricht zurück.
+</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pool</strong></td>
+<td>Eigenständiger Teilnehmer mit eigenem Prozess. <strong>Zugeklappt</strong> (ohne Inhalt) zeigt er nur, dass es den Teilnehmer gibt: eine Black Box. Wir wissen nicht, was der Kunde intern tut, nur was er uns schickt.</td>
+</tr>
+<tr class="even">
+<td><strong>Lane</strong></td>
+<td>Rolle oder Stelle innerhalb eines Pools: „Kundenservice“, „Fachabteilung“. Eine Übergabe zwischen Lanes ist ein normaler Sequenzfluss.</td>
+</tr>
+<tr class="odd">
+<td><strong>Nachrichtenfluss</strong></td>
+<td>Gestrichelt, nur zwischen Pools. Trägt den Namen der Nachricht: „Antrag mit Belegen“, „Entscheidung“.</td>
+</tr>
+</tbody>
+</table>
+<p>Der Nachrichtenfluss darf an einem Pool-Rand enden oder beginnen (beim zugeklappten Kunden) oder an einem Element im Pool (beim Nachrichten-Startereignis und bei der Sendeaufgabe im Online-Shop). Welche Nachricht welchen Schritt auslöst, wird damit auf einen Blick sichtbar.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Lane oder Pool?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Lane oder Pool?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Frage lautet: Arbeitet der Beteiligte im selben Prozess mit, oder führt er einen eigenen Prozess und kommuniziert nur über Nachrichten? Kundenservice und Fachabteilung arbeiten am selben Antrag, folgen derselben Reihenfolge und sehen dieselben Daten: Lanes. Der Kunde entscheidet selbst, wann er Belege schickt, und wir sehen seine Schritte nicht: eigener Pool. Dieselbe Regel gilt für externe Dienstleister, Behörden oder Lieferanten.</p>
+</div>
+</div>
+</section>
+<section id="daten-und-anmerkungen" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="daten-und-anmerkungen"><span class="header-section-number">4.2</span> Daten und Anmerkungen</h2>
+<p>Aufgaben erzeugen und brauchen Informationen. BPMN zeigt das mit zwei Datenelementen und einer Anmerkung, alle über gepunktete <strong>Assoziationen</strong> mit dem Ablauf verbunden.</p>
+<div id="fig-daten" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-daten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/bpmn/daten.svg" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-daten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.2: Anfrage erfassen: Das Datenobjekt „Anfrage mit Kategorie“ entsteht in der ersten Aufgabe und wird in der zweiten gebraucht. Der Datenspeicher „Tabelle customer_emails“ bleibt über den Prozessdurchlauf hinaus bestehen. Die Textanmerkung hält eine fachliche Regel fest.
+</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Symbol</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Datenobjekt</strong></td>
+<td>Blatt mit Eselsohr</td>
+<td>Information, die im Prozess entsteht oder gebraucht wird und nur für diesen Durchlauf gilt: eine Anfrage, ein Bescheid, ein Prüfformular.</td>
+</tr>
+<tr class="even">
+<td><strong>Datenspeicher</strong></td>
+<td>Zylinder</td>
+<td>Dauerhafte Ablage über die Prozessinstanz hinaus: eine Tabelle, ein CRM, eine Kundenakte.</td>
+</tr>
+<tr class="odd">
+<td><strong>Textanmerkung</strong></td>
+<td>Offene Klammer mit Text</td>
+<td>Ergänzender Hinweis, etwa eine Regel oder eine Frist. Die gepunktete Linie steuert keinen Ablauf.</td>
+</tr>
+</tbody>
+</table>
+<p>Die Pfeilrichtung der Assoziation zeigt, ob eine Aufgabe das Datenobjekt erzeugt (Pfeil zum Objekt) oder verwendet (Pfeil zur Aufgabe). Der Datenspeicher „Tabelle customer_emails“ ist genau die Data Table, die unser Workflow im Teil „Erste Workflows“ beschreibt. Systemnamen gehören hierhin, nicht in den Aufgabennamen.</p>
+</section>
+<section id="aufgabentypen-und-marker" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="aufgabentypen-und-marker"><span class="header-section-number">4.3</span> Aufgabentypen und Marker</h2>
+<p>Bisher haben wir nur neutrale Aufgaben gezeichnet. Ein kleines Symbol oben links legt den <strong>Typ</strong> fest, also wer oder was den Schritt erledigt. Ein Symbol unten in der Mitte ist ein <strong>Marker</strong> und sagt, wie oft der Schritt läuft.</p>
+<div id="fig-aufgabentypen" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-aufgabentypen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/bpmn/aufgabentypen-legende.svg" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aufgabentypen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.3: Aufgabentypen und Marker: Der Typ steht oben links (Benutzer-, Service-, Sende-, Empfangsaufgabe), der Marker unten mittig (Schleife, Mehrfachinstanz parallel und sequenziell, Teilprozess).
+</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Typ</th>
+<th>Symbol</th>
+<th>Bedeutung</th>
+<th>Später in n8n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Benutzeraufgabe</strong></td>
+<td>Person</td>
+<td>Ein Mensch arbeitet mit IT-Unterstützung: prüfen, entscheiden, freigeben.</td>
+<td>Formular oder Freigabe, auf die der Workflow wartet</td>
+</tr>
+<tr class="even">
+<td><strong>Serviceaufgabe</strong></td>
+<td>Zahnräder</td>
+<td>Ein System erledigt den Schritt automatisch: eintragen, abrufen, berechnen.</td>
+<td>Ein Knoten</td>
+</tr>
+<tr class="odd">
+<td><strong>Sendeaufgabe</strong></td>
+<td>Dunkler Umschlag</td>
+<td>Verschickt eine Nachricht an einen anderen Pool.</td>
+<td>Send-Email- oder Chat-Knoten</td>
+</tr>
+<tr class="even">
+<td><strong>Empfangsaufgabe</strong></td>
+<td>Heller Umschlag</td>
+<td>Wartet auf eine Nachricht von außen.</td>
+<td>Wait-Knoten oder Trigger</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Marker</th>
+<th>Symbol</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Schleife</strong></td>
+<td>Pfeil im Kreis</td>
+<td>Wiederholen, bis eine Bedingung erfüllt ist: „Entwurf überarbeiten, bis freigegeben“.</td>
+</tr>
+<tr class="even">
+<td><strong>Mehrfach, parallel</strong></td>
+<td>Drei senkrechte Striche</td>
+<td>Je Element einer Liste einmal, gleichzeitig: „je reklamierter Position prüfen“.</td>
+</tr>
+<tr class="odd">
+<td><strong>Mehrfach, sequenziell</strong></td>
+<td>Drei waagerechte Striche</td>
+<td>Je Element einer Liste einmal, nacheinander: wenn jede Prüfung auf dem Ergebnis der vorigen aufbaut.</td>
+</tr>
+<tr class="even">
+<td><strong>Teilprozess</strong></td>
+<td>Plus im Kästchen</td>
+<td>Fasst mehrere Schritte zusammen.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Der Typ ist die wichtigste Angabe für den Workflow">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Der Typ ist die wichtigste Angabe für den Workflow
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Für die Übertragung nach n8n ist der Aufgabentyp entscheidender als jedes andere Detail. Serviceaufgaben werden zu Knoten, die von allein laufen. Benutzeraufgaben sind die Stellen, an denen der Workflow anhält und einen Menschen fragt. Wer im Modell jede Aufgabe typisiert, hat die Frage „Was automatisieren wir, und was bleibt beim Menschen?“ bereits beantwortet. Im Demo-Szenario des Kurses sind Bestätigen und Eintragen Serviceaufgaben, die Kulanzfreigabe ist eine Benutzeraufgabe.</p>
+</div>
+</div>
+</section>
+<section id="teilprozesse-details-ein--und-ausblenden" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="teilprozesse-details-ein--und-ausblenden"><span class="header-section-number">4.4</span> Teilprozesse: Details ein- und ausblenden</h2>
+<p>Ein Teilprozess fasst mehrere Schritte zu einer Aktivität zusammen. Zugeklappt zeigt er nur seinen Namen und den Plus-Marker; aufgeklappt zeigt er die Schritte mit eigenem Start und eigenem Ende im Inneren.</p>
+<div id="fig-teilprozess-zu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-teilprozess-zu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/bpmn/teilprozess-zu.svg" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-teilprozess-zu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.4: Zugeklappt: Der Teilprozess „Reklamierte Position prüfen“ verbirgt seine Details hinter dem Plus-Marker.
+</figcaption>
+</figure>
+</div>
+<div id="fig-teilprozess-auf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-teilprozess-auf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/bpmn/teilprozess-auf.svg" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-teilprozess-auf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.5: Aufgeklappt: Derselbe Teilprozess mit eigenem Start, zwei parallelen Prüfungen und eigenem Ende im Inneren.
+</figcaption>
+</figure>
+</div>
+<p>Teilprozesse halten das Hauptmodell lesbar. Eine Faustregel aus der Praxis: Höchstens etwa zehn Aufgaben pro Ebene. Wer mehr braucht, fasst zusammen und zeichnet die Details in einem eigenen Diagramm. Ein Teilprozess kann zusätzlich einen Mehrfach-Marker tragen: „Reklamierte Position prüfen“ mit drei senkrechten Strichen bedeutet, dass die Prüfung für jede reklamierte Position einmal läuft, parallel. Im n8n-Workflow entspricht ein Teilprozess einem Sub-Workflow, der über einen Execute-Sub-workflow-Knoten aufgerufen wird; der Mehrfach-Marker entspricht dem Verhalten von n8n, einen Knoten je Item auszuführen.</p>
+</section>
+<section id="sechs-typische-fehler" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sechs-typische-fehler"><span class="header-section-number">4.5</span> Sechs typische Fehler</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fehler</th>
+<th>Was stattdessen gilt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sequenzfluss zwischen Pools</strong></td>
+<td>Pools verbinden wir ausschließlich mit Nachrichtenflüssen.</td>
+</tr>
+<tr class="even">
+<td><strong>Nachrichtenfluss im Pool</strong></td>
+<td>Übergaben zwischen Lanes sind normale Sequenzflüsse.</td>
+</tr>
+<tr class="odd">
+<td><strong>Gemischte Gateways</strong></td>
+<td>Mit dem Typ zusammenführen, mit dem verzweigt wurde.</td>
+</tr>
+<tr class="even">
+<td><strong>Versteckte Entscheidung</strong></td>
+<td>„Prüfen und ggf. ablehnen“ in Aufgabe und Gateway trennen.</td>
+</tr>
+<tr class="odd">
+<td><strong>Offene Enden</strong></td>
+<td>Jeder Pfad endet in einem benannten Endereignis.</td>
+</tr>
+<tr class="even">
+<td><strong>Personen als Lanes</strong></td>
+<td>Stellen statt Namen: „Kundenservice“, nicht „Frau Müller“.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-important callout-titled" title="Prüfen, bevor andere lesen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Wichtig</span>Prüfen, bevor andere lesen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Diese sechs Fehler sind die häufigsten in Modellen von Einsteigerinnen und Einsteigern, und sie sind alle mechanisch prüfbar. Bevor wir ein Modell weitergeben oder in n8n übertragen, gehen wir die Liste einmal durch. Im Kapitel „Vom Modell zum Workflow“ wird daraus eine vollständige Prüfliste, die auch für KI-Entwürfe gilt.</p>
+</div>
+</div>
+</section>
+<section id="jetzt-selbst-rückgabefrist-verlängern" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="jetzt-selbst-rückgabefrist-verlängern"><span class="header-section-number">4.6</span> Jetzt selbst: Rückgabefrist verlängern</h2>
+<p>Eine kurze Übung, bevor wir das Modell in n8n übertragen. Die Fallbeschreibung:</p>
+<blockquote class="blockquote">
+<p>Kunden beantragen beim Kundenservice eine Verlängerung der Rückgabefrist und legen einen Nachweis bei, etwa die Bestellbestätigung. Der Kundenservice prüft den Antrag. Fehlt der Nachweis oder ist er unvollständig, lehnt er den Antrag ab und teilt das dem Kunden mit. Andernfalls setzt er den Status der Bestellung im Shop-System auf „Rückgabe verlängert“ und versendet gleichzeitig eine Bestätigung.</p>
+</blockquote>
+<p><strong>Zeitbedarf:</strong> etwa 15 Minuten</p>
+<p><strong>Voraussetzungen:</strong></p>
+<ul>
+<li>Browser mit Zugang zu <a href="https://demo.bpmn.io/">demo.bpmn.io</a>, oder Papier und Stift</li>
+</ul>
+<p><strong>Schritte:</strong></p>
+<ol type="1">
+<li>Pools und Lanes festlegen: Wer kommuniziert nur über Nachrichten, wer arbeitet im Prozess mit?</li>
+<li>Start- und Endereignisse benennen. Dabei die Signalwörter aus der Beschreibung nutzen.</li>
+<li>Aufgaben und Gateways ergänzen. Für jede Aufgabe den Typ festlegen.</li>
+<li>Nachrichtenflüsse und den Datenspeicher einzeichnen.</li>
+<li>Das Modell mit der Liste der sechs typischen Fehler prüfen.</li>
+</ol>
+<p><strong>Prüfen:</strong> Das Modell ist fertig, wenn es zwei Pools, ein Nachrichten-Startereignis, zwei Endereignisse, ein XOR-Gateway mit beschrifteten Kanten, ein AND-Gateway mit Zusammenführung und einen Datenspeicher enthält.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Eine mögliche Lösung">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Eine mögliche Lösung
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="fig-uebung-fristverlaengerung" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uebung-fristverlaengerung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/bpmn/uebung-fristverlaengerung.svg" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uebung-fristverlaengerung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.6: Rückgabefrist verlängern: Der Antrag kommt als Nachricht und startet den Prozess. „Gleichzeitig“ ist das Signalwort für das parallele Gateway. Andere Layouts sind richtig, wenn die Semantik stimmt.
+</figcaption>
+</figure>
+</div>
+<p>Drei Beobachtungen: Der Antrag kommt von außen, deshalb ein Nachrichten-Startereignis mit Nachrichtenfluss vom Kunden-Pool. „Gleichzeitig“ führt zum parallelen Gateway mit AND-Zusammenführung. Das Setzen des Status ist eine Serviceaufgabe mit Assoziation zum Datenspeicher „Shop-System“; Ablehnung und Bestätigung sind Sendeaufgaben, weil sie Nachrichten an den anderen Pool schicken. Die Modelldatei zum Öffnen in demo.bpmn.io: <a href="loesung/uebung-fristverlaengerung.bpmn">uebung-fristverlaengerung.bpmn</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="kontrollpunkt" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="kontrollpunkt"><span class="header-section-number">4.7</span> Kontrollpunkt</h2>
+<ul>
+<li>Pool, Lane und Nachrichtenfluss unterscheiden und begründen, wann ein Beteiligter eine Lane und wann ein eigener Pool ist</li>
+<li>Datenobjekt, Datenspeicher und Textanmerkung erkennen und richtig assoziieren</li>
+<li>Die vier Aufgabentypen und die vier Marker am Symbol erkennen und ihrem n8n-Gegenstück zuordnen</li>
+<li>Einen Teilprozess zu- und aufgeklappt lesen</li>
+<li>Die sechs typischen Fehler in einem fremden Modell finden</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© <a href="https://www.kirenz.com/">Jan Kirenz</a>, 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

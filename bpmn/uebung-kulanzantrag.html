@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jan Kirenz">
+<meta name="description" content="Von der Plattform zum ersten Workflow">
+
+<title>6&nbsp; Übung: Kulanzantrag modellieren – n8n-Grundlagen</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-65a8d1e2c23ab61ef86d547ba0112629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5a4191e779943d077ddcaf48741aef9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bpmn/index.html">Abläufe modellieren mit BPMN</a></li><li class="breadcrumb-item"><a href="../bpmn/uebung-kulanzantrag.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">n8n-Grundlagen</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="Suchen"></div>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Willkommen</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einführung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../bpmn/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abläufe modellieren mit BPMN</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/grundelemente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Grundelemente und gute Namen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/gateways.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gateways: verzweigen und zusammenführen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/ereignisse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/teilnehmer-und-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/zum-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Vom Modell zum n8n-Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/uebung-kulanzantrag.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plattform und Auswahl</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/what-is-n8n.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/pricing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/hosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../first-workflows/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Erste Workflows</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../first-workflows/credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../first-workflows/first-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#ausgangssituation" id="toc-ausgangssituation" class="nav-link active" data-scroll-target="#ausgangssituation"><span class="header-section-number">6.1</span> Ausgangssituation</a></li>
+  <li><a href="#aufgabe-1-fallbeschreibung-analysieren-etwa-15-minuten" id="toc-aufgabe-1-fallbeschreibung-analysieren-etwa-15-minuten" class="nav-link" data-scroll-target="#aufgabe-1-fallbeschreibung-analysieren-etwa-15-minuten"><span class="header-section-number">6.2</span> Aufgabe 1: Fallbeschreibung analysieren (etwa 15 Minuten)</a></li>
+  <li><a href="#aufgabe-2-kollaborationsdiagramm-modellieren-etwa-60-minuten" id="toc-aufgabe-2-kollaborationsdiagramm-modellieren-etwa-60-minuten" class="nav-link" data-scroll-target="#aufgabe-2-kollaborationsdiagramm-modellieren-etwa-60-minuten"><span class="header-section-number">6.3</span> Aufgabe 2: Kollaborationsdiagramm modellieren (etwa 60 Minuten)</a></li>
+  <li><a href="#aufgabe-3-teilprozess-fachliche-prüfung-detaillieren-etwa-20-minuten" id="toc-aufgabe-3-teilprozess-fachliche-prüfung-detaillieren-etwa-20-minuten" class="nav-link" data-scroll-target="#aufgabe-3-teilprozess-fachliche-prüfung-detaillieren-etwa-20-minuten"><span class="header-section-number">6.4</span> Aufgabe 3: Teilprozess „Fachliche Prüfung“ detaillieren (etwa 20 Minuten)</a></li>
+  <li><a href="#aufgabe-4-modell-begründen-etwa-15-minuten" id="toc-aufgabe-4-modell-begründen-etwa-15-minuten" class="nav-link" data-scroll-target="#aufgabe-4-modell-begründen-etwa-15-minuten"><span class="header-section-number">6.5</span> Aufgabe 4: Modell begründen (etwa 15 Minuten)</a></li>
+  <li><a href="#zusatzaufgabe-rücknahme-des-antrags-optional" id="toc-zusatzaufgabe-rücknahme-des-antrags-optional" class="nav-link" data-scroll-target="#zusatzaufgabe-rücknahme-des-antrags-optional"><span class="header-section-number">6.6</span> Zusatzaufgabe: Rücknahme des Antrags (optional)</a></li>
+  <li><a href="#modellierungsregeln-und-abgabe" id="toc-modellierungsregeln-und-abgabe" class="nav-link" data-scroll-target="#modellierungsregeln-und-abgabe"><span class="header-section-number">6.7</span> Modellierungsregeln und Abgabe</a></li>
+  <li><a href="#musterlösung" id="toc-musterlösung" class="nav-link" data-scroll-target="#musterlösung"><span class="header-section-number">6.8</span> Musterlösung</a></li>
+  <li><a href="#kontrollpunkt" id="toc-kontrollpunkt" class="nav-link" data-scroll-target="#kontrollpunkt"><span class="header-section-number">6.9</span> Kontrollpunkt</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bpmn/index.html">Abläufe modellieren mit BPMN</a></li><li class="breadcrumb-item"><a href="../bpmn/uebung-kulanzantrag.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In dieser Übung modellieren wir das Verfahren, mit dem unser Online-Shop Kulanzanträge bearbeitet, als vollständiges BPMN-Kollaborationsdiagramm. Alle Elemente aus diesem Teil kommen vor. Die Übung ist für zwei bis drei Personen gedacht, lässt sich aber auch allein bearbeiten. Als Werkzeug dient <a href="https://demo.bpmn.io/">demo.bpmn.io</a> im Browser oder der kostenlose <a href="https://camunda.com/download/modeler/">Camunda Modeler</a>.</p>
+<section id="ausgangssituation" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="ausgangssituation"><span class="header-section-number">6.1</span> Ausgangssituation</h2>
+<p>Kunden, die mit einer Lieferung unzufrieden sind, aber keinen Anspruch aus Gewährleistung haben, können einen Kulanzantrag stellen. Beteiligt sind die Kunden, der Kundenservice, die für die jeweilige Produktgruppe zuständige Fachabteilung und die Teamleitung des Kundenservice. Das Verfahren läuft wie folgt ab:</p>
+<ol type="1">
+<li>Der Prozess beginnt, sobald im Kundenservice ein Kulanzantrag eingeht. Die Kunden reichen den Antrag über das Kundenportal ein und fügen die Rechnung sowie Fotos der beanstandeten Positionen bei.</li>
+<li>Der Kundenservice prüft den Antrag auf Vollständigkeit. Fehlen Belege, fordert er diese bei den Kunden nach.</li>
+<li>Nach der Nachforderung wartet der Kundenservice. Gehen die Belege ein, wird die Vollständigkeit erneut geprüft. Gehen sie innerhalb von 14 Tagen nicht ein, gilt der Antrag als zurückgezogen: Der Kundenservice informiert die Kunden, und der Prozess endet.</li>
+<li>Ist der Antrag vollständig, leitet der Kundenservice ihn an die zuständige Fachabteilung weiter. Diese führt die fachliche Prüfung durch und gibt für jede reklamierte Position eine Empfehlung ab (Kulanz gewähren oder nicht gewähren).</li>
+<li>Liegt die Empfehlung drei Werktage nach der Weiterleitung noch nicht vor, erinnert der Kundenservice die Fachabteilung. Die fachliche Prüfung läuft dabei weiter; sie wird durch die Erinnerung nicht abgebrochen.</li>
+<li>Auf Grundlage der Empfehlungen entscheidet die Teamleitung des Kundenservice über den Antrag.</li>
+<li>Anschließend bereitet der Kundenservice den Bescheid vor: Wurde mindestens eine Position anerkannt, verbucht er die Gutschrift im Shop-System. Wurde mindestens eine Position abgelehnt, formuliert er eine schriftliche Begründung mit Hinweis auf die Beschwerdestelle. Bei einer teilweisen Kulanz geschieht beides.</li>
+<li>Danach erstellt der Kundenservice den Bescheid. Er versendet ihn an die Kunden und archiviert gleichzeitig Antrag und Bescheid in der digitalen Kundenakte. Sind beide Schritte erledigt, ist der Antrag abschließend bearbeitet.</li>
+</ol>
+</section>
+<section id="aufgabe-1-fallbeschreibung-analysieren-etwa-15-minuten" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="aufgabe-1-fallbeschreibung-analysieren-etwa-15-minuten"><span class="header-section-number">6.2</span> Aufgabe 1: Fallbeschreibung analysieren (etwa 15 Minuten)</h2>
+<p>Wir lesen die Fallbeschreibung und tragen die gefundenen Begriffe in die mittlere Spalte ein. In der rechten Spalte steht, mit welchem BPMN-Element wir den Begriff darstellen werden.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kategorie</th>
+<th>Fundstellen im Text (Nr.) und Begriffe</th>
+<th>Geplantes BPMN-Element</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Beteiligte Organisationen</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Rollen innerhalb des Online-Shops</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Auslösendes Ereignis</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Mögliche Ergebnisse des Prozesses</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Entscheidungen</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Wartesituationen und Fristen</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Nachrichten zwischen den Beteiligten</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Dokumente und IT-Systeme</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Leitfragen: Wer arbeitet in eigener Verantwortung und kommuniziert nur über Nachrichten? Welche Schritte laufen gleichzeitig ab, welche schließen sich gegenseitig aus, und wo können mehrere Pfade zugleich aktiv sein?</p>
+</section>
+<section id="aufgabe-2-kollaborationsdiagramm-modellieren-etwa-60-minuten" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="aufgabe-2-kollaborationsdiagramm-modellieren-etwa-60-minuten"><span class="header-section-number">6.3</span> Aufgabe 2: Kollaborationsdiagramm modellieren (etwa 60 Minuten)</h2>
+<p>Wir modellieren das Verfahren aus Sicht des Online-Shops als BPMN-Kollaborationsdiagramm. Die Kunden stellen wir als zugeklappten Pool (Black Box) dar und den Online-Shop als Pool mit einer Lane je Rolle. Die fachliche Prüfung aus Schritt 4 modellieren wir hier als zugeklappten Teilprozess.</p>
+<p>Das Modell muss jedes der folgenden Elemente mindestens einmal fachlich korrekt verwenden:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Pool mit Lanes sowie ein zugeklappter Pool</label></li>
+<li><label><input type="checkbox">Nachrichtenfluss zwischen den Pools (eingehend und ausgehend)</label></li>
+<li><label><input type="checkbox">Nachrichten-Startereignis</label></li>
+<li><label><input type="checkbox">mindestens zwei unterschiedlich benannte Endereignisse</label></li>
+<li><label><input type="checkbox">Aufgaben, davon mindestens eine Sende- und eine Benutzeraufgabe</label></li>
+<li><label><input type="checkbox">exklusives Gateway (XOR) mit einer Schleife</label></li>
+<li><label><input type="checkbox">ereignisbasiertes Gateway mit Nachrichten- und Zeit-Zwischenereignis</label></li>
+<li><label><input type="checkbox">nicht unterbrechendes Zeit-Randereignis (Boundary Event)</label></li>
+<li><label><input type="checkbox">inklusives Gateway (OR) mit passendem Zusammenführungs-Gateway</label></li>
+<li><label><input type="checkbox">paralleles Gateway (AND) mit passendem Zusammenführungs-Gateway</label></li>
+<li><label><input type="checkbox">zugeklappter Teilprozess</label></li>
+<li><label><input type="checkbox">mindestens zwei Datenobjekte und ein Datenspeicher, jeweils mit Assoziation</label></li>
+<li><label><input type="checkbox">eine Textanmerkung, die eine fachliche Regel aus dem Text festhält</label></li>
+</ul>
+</section>
+<section id="aufgabe-3-teilprozess-fachliche-prüfung-detaillieren-etwa-20-minuten" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="aufgabe-3-teilprozess-fachliche-prüfung-detaillieren-etwa-20-minuten"><span class="header-section-number">6.4</span> Aufgabe 3: Teilprozess „Fachliche Prüfung“ detaillieren (etwa 20 Minuten)</h2>
+<p>Wir modellieren den Teilprozess aus Aufgabe 2 in einem eigenen Diagramm. Er läuft vollständig in der Fachabteilung ab und besteht aus folgenden Schritten:</p>
+<ol type="1">
+<li>Die Fachabteilung sichtet die eingereichten Belege.</li>
+<li>Danach gleicht sie den gemeldeten Mangel mit der Produktspezifikation ab und prüft Kaufdatum und bisherige Nutzung. Beide Prüfungen sind voneinander unabhängig und können in beliebiger Reihenfolge erfolgen.</li>
+<li>Erfüllt die Position die Kulanzrichtlinie, empfiehlt sie Kulanz. Andernfalls hält sie die Abweichung fest und empfiehlt die Ablehnung.</li>
+<li>Abschließend trägt sie ihre Empfehlung in das Prüfformular ein.</li>
+</ol>
+<p>Im Diagramm aus Aufgabe 2 kennzeichnen wir zusätzlich, dass der Teilprozess für jede reklamierte Position einmal durchlaufen wird. Welcher Marker ist dafür vorgesehen, und finden die Durchläufe parallel oder nacheinander statt?</p>
+</section>
+<section id="aufgabe-4-modell-begründen-etwa-15-minuten" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="aufgabe-4-modell-begründen-etwa-15-minuten"><span class="header-section-number">6.5</span> Aufgabe 4: Modell begründen (etwa 15 Minuten)</h2>
+<p>Wir beantworten die folgenden Fragen jeweils in zwei bis drei Sätzen:</p>
+<ol type="1">
+<li>Warum eignet sich nach der Nachforderung ein ereignisbasiertes Gateway besser als ein exklusives Gateway?</li>
+<li>Was würde sich am Prozessablauf ändern, wenn das Zeit-Randereignis aus Schritt 5 unterbrechend wäre?</li>
+<li>Warum verwenden wir in Schritt 7 ein inklusives Gateway und kein exklusives oder paralleles Gateway?</li>
+<li>Warum werden Kundenservice, Fachabteilung und Teamleitung als Lanes eines Pools modelliert, die Kunden dagegen als eigener Pool?</li>
+<li>An welcher Stelle im Prozess ist die Durchlaufzeit gefährdet, und welche Verbesserung schlagen wir vor?</li>
+</ol>
+</section>
+<section id="zusatzaufgabe-rücknahme-des-antrags-optional" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="zusatzaufgabe-rücknahme-des-antrags-optional"><span class="header-section-number">6.6</span> Zusatzaufgabe: Rücknahme des Antrags (optional)</h2>
+<p>Kunden können ihren Antrag zurücknehmen, solange die Teamleitung noch nicht entschieden hat. Geht eine Rücknahme ein, wird die laufende Bearbeitung sofort abgebrochen. Der Kundenservice bestätigt den Kunden die Rücknahme, und der Prozess endet.</p>
+<p>Wir erweitern das Modell entsprechend. Dazu fassen wir die betroffenen Schritte so zusammen, dass ein einziges Ereignis die Bearbeitung an jeder Stelle beenden kann. Verwenden wir ein unterbrechendes oder ein nicht unterbrechendes Ereignis, und warum?</p>
+</section>
+<section id="modellierungsregeln-und-abgabe" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="modellierungsregeln-und-abgabe"><span class="header-section-number">6.7</span> Modellierungsregeln und Abgabe</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Benennungsregel</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Aufgabe</td>
+<td>Objekt + Verb im Infinitiv</td>
+<td>Antrag prüfen</td>
+</tr>
+<tr class="even">
+<td>Ereignis</td>
+<td>Objekt + Partizip (Zustand)</td>
+<td>Antrag eingegangen</td>
+</tr>
+<tr class="odd">
+<td>Exklusives Gateway</td>
+<td>Frage; ausgehende Kanten mit den Antworten beschriftet</td>
+<td>Antrag vollständig? ja / nein</td>
+</tr>
+<tr class="even">
+<td>Pool / Lane</td>
+<td>Organisation bzw. Rolle, keine Person</td>
+<td>Kundenservice</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Sequenzflüsse verbinden nur Elemente innerhalb eines Pools; zwischen Pools gibt es ausschließlich Nachrichtenflüsse.</li>
+<li>Jeder Pfad endet in einem Endereignis; Verzweigungen werden mit einem Gateway desselben Typs wieder zusammengeführt.</li>
+<li>Wir modellieren von links nach rechts und vermeiden sich kreuzende Kanten, wo es möglich ist.</li>
+</ul>
+<p><strong>Abgabe:</strong> je Gruppe die Modelldateien (.bpmn) aus Aufgabe 2 und 3, ein PDF oder SVG mit den Diagrammen sowie die Antworten zu Aufgabe 4.</p>
+</section>
+<section id="musterlösung" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="musterlösung"><span class="header-section-number">6.8</span> Musterlösung</h2>
+<p>Die Musterlösung ist eine mögliche Lösung. Andere Layouts und abweichende Aufgabennamen sind richtig, wenn die Semantik stimmt und die Checkliste erfüllt ist.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Aufgabe 2: Kollaborationsdiagramm">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Aufgabe 2: Kollaborationsdiagramm
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="fig-kulanzantrag-loesung" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-kulanzantrag-loesung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/bpmn/kulanzantrag-loesung.svg" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kulanzantrag-loesung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.1: Kulanzantrag bearbeiten: Kollaborationsdiagramm mit zugeklapptem Kunden-Pool, drei Lanes, Nachforderungsschleife mit ereignisbasiertem Gateway, nicht unterbrechendem Zeit-Randereignis am Teilprozess, inklusivem und parallelem Gateway sowie Datenobjekten, Datenspeichern und Textanmerkungen.
+</figcaption>
+</figure>
+</div>
+<p>Modelldatei: <a href="loesung/kulanzantrag-loesung.bpmn">kulanzantrag-loesung.bpmn</a>, Bild in voller Auflösung: <a href="loesung/kulanzantrag-loesung.png">kulanzantrag-loesung.png</a>.</p>
+<p>Wie die Checkliste erfüllt ist:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Im Modell</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pool mit Lanes, zugeklappter Pool</td>
+<td>„Online-Shop“ mit Kundenservice, Fachabteilung, Teamleitung Kundenservice; „Kunde“ zugeklappt</td>
+</tr>
+<tr class="even">
+<td>Nachrichtenfluss ein- und ausgehend</td>
+<td>Antrag mit Belegen, Belege (eingehend); Nachforderung, Mitteilung, Bescheid (ausgehend)</td>
+</tr>
+<tr class="odd">
+<td>Nachrichten-Startereignis</td>
+<td>„Antrag eingegangen“</td>
+</tr>
+<tr class="even">
+<td>Zwei Endereignisse</td>
+<td>„Antrag zurückgezogen“, „Erinnerung versendet“, „Antrag abschließend bearbeitet“</td>
+</tr>
+<tr class="odd">
+<td>Sende- und Benutzeraufgabe</td>
+<td>„Belege nachfordern“ (senden), „Antrag auf Vollständigkeit prüfen“ (Benutzer)</td>
+</tr>
+<tr class="even">
+<td>XOR mit Schleife</td>
+<td>„Antrag vollständig?“; der Pfad über das Nachrichten-Zwischenereignis „Belege eingegangen“ führt zurück zur Prüfung</td>
+</tr>
+<tr class="odd">
+<td>Ereignisbasiertes Gateway</td>
+<td>nach „Belege nachfordern“, mit „Belege eingegangen“ und „14 Tage verstrichen“</td>
+</tr>
+<tr class="even">
+<td>Nicht unterbrechendes Zeit-Randereignis</td>
+<td>„3 Werktage ohne Empfehlung“ am Teilprozess, führt zu „Fachabteilung erinnern“</td>
+</tr>
+<tr class="odd">
+<td>OR mit Zusammenführung</td>
+<td>„Ergebnis der Entscheidung?“ vor „Gutschrift verbuchen“ und „Ablehnung begründen“</td>
+</tr>
+<tr class="even">
+<td>AND mit Zusammenführung</td>
+<td>vor „Bescheid versenden“ und „Antrag und Bescheid archivieren“</td>
+</tr>
+<tr class="odd">
+<td>Zugeklappter Teilprozess</td>
+<td>„Reklamierte Position prüfen“ mit Mehrfach-Marker (parallel)</td>
+</tr>
+<tr class="even">
+<td>Datenobjekte und Datenspeicher</td>
+<td>„Kulanzantrag mit Belegen“, „Bescheid“; „Shop-System“, „Kundenakte“</td>
+</tr>
+<tr class="odd">
+<td>Textanmerkung</td>
+<td>Frist von 14 Tagen; Hinweis auf beide Pfade bei teilweiser Kulanz</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled" title="Aufgabe 3: Teilprozess">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Aufgabe 3: Teilprozess
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="fig-kulanzantrag-pruefung" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-kulanzantrag-pruefung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/bpmn/kulanzantrag-pruefung.svg" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kulanzantrag-pruefung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.2: Reklamierte Position prüfen: Belege sichten, dann zwei unabhängige Prüfungen parallel, dann die Entscheidung nach der Kulanzrichtlinie, zuletzt der Eintrag ins Prüfformular.
+</figcaption>
+</figure>
+</div>
+<p>Modelldatei: <a href="loesung/kulanzantrag-pruefung.bpmn">kulanzantrag-pruefung.bpmn</a>. Der Marker im Hauptdiagramm ist der Mehrfach-Marker mit drei senkrechten Strichen: Die Prüfungen der einzelnen Positionen sind voneinander unabhängig und können parallel laufen. Baut die Prüfung einer Position auf dem Ergebnis der vorigen auf, wäre der sequenzielle Marker richtig.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled" title="Aufgabe 4: Begründungen">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Aufgabe 4: Begründungen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Ereignisbasiertes Gateway.</strong> Nach der Nachforderung liegt keine Information vor, nach der entschieden werden könnte. Der Prozess wartet darauf, was zuerst eintritt: die Belege oder das Ende der Frist. Ein exklusives Gateway würde sofort nach Daten entscheiden, die es noch nicht gibt.</li>
+<li><strong>Unterbrechendes Randereignis.</strong> Die fachliche Prüfung würde nach drei Werktagen abgebrochen, und der Prozess liefe nur noch auf dem Erinnerungspfad weiter. Die Empfehlung käme nie, und der Antrag bliebe ohne Entscheidung. Nicht unterbrechend ist richtig, weil die Erinnerung eine Nebentätigkeit ist.</li>
+<li><strong>Inklusives Gateway.</strong> Bei teilweiser Kulanz müssen beide Pfade laufen, bei voller Kulanz oder voller Ablehnung nur einer. Ein exklusives Gateway könnte „beides“ nicht abbilden, ein paralleles Gateway würde auch bei voller Kulanz eine Ablehnung begründen.</li>
+<li><strong>Lanes und Pool.</strong> Kundenservice, Fachabteilung und Teamleitung arbeiten am selben Antrag in einer Reihenfolge und sehen dieselben Daten; Übergaben sind Sequenzflüsse. Die Kunden führen ihren eigenen Ablauf, den wir nicht sehen, und kommunizieren nur über Nachrichten; das ist ein eigener Pool.</li>
+<li><strong>Durchlaufzeit.</strong> Gefährdet ist sie bei der fachlichen Prüfung (bis zu drei Werktage, bevor überhaupt erinnert wird) und bei der Nachforderung (bis zu 14 Tage Wartezeit). Verbesserungen: eine Vollständigkeitsprüfung schon im Kundenportal, bevor der Antrag eingeht, oder eine automatische Erinnerung an die Fachabteilung nach einem statt nach drei Werktagen. Im n8n-Workflow wäre das ein Wait-Knoten mit kürzerer Frist.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled" title="Zusatzaufgabe: Rücknahme">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Zusatzaufgabe: Rücknahme
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Wir fassen alle Schritte von „Antrag auf Vollständigkeit prüfen“ bis „Über Kulanz entscheiden“ in einem aufgeklappten Teilprozess „Antrag bearbeiten“ zusammen und hängen an seinen Rand ein <strong>unterbrechendes</strong> Nachrichten-Randereignis „Rücknahme eingegangen“ mit Nachrichtenfluss vom Kunden-Pool. Von dort führt eine Sendeaufgabe „Rücknahme bestätigen“ zu einem Endereignis „Antrag zurückgenommen“. Unterbrechend ist richtig, weil die laufende Bearbeitung sofort abgebrochen werden soll; ein nicht unterbrechendes Ereignis ließe die Prüfung weiterlaufen. Dass die Rücknahme nur bis zur Entscheidung möglich ist, ergibt sich aus der Grenze des Teilprozesses: Nach „Über Kulanz entscheiden“ ist das Randereignis nicht mehr aktiv.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="kontrollpunkt" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="kontrollpunkt"><span class="header-section-number">6.9</span> Kontrollpunkt</h2>
+<ul>
+<li>Eine Fallbeschreibung systematisch in Organisationen, Rollen, Ereignisse, Entscheidungen, Fristen, Nachrichten und Daten zerlegen</li>
+<li>Ein Kollaborationsdiagramm mit allen Elementen der Checkliste in demo.bpmn.io oder im Camunda Modeler erstellen</li>
+<li>Einen Teilprozess in einem eigenen Diagramm detaillieren und den passenden Mehrfach-Marker wählen</li>
+<li>Modellentscheidungen zu Gateway-Typ, Randereignis und Pool-Zuschnitt fachlich begründen</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© <a href="https://www.kirenz.com/">Jan Kirenz</a>, 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

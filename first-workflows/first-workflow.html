@@ -2,22 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jan Kirenz">
 <meta name="description" content="Von der Plattform zum ersten Workflow">
 
-<title>5&nbsp; Der erste Workflow: Mail an sich selbst – n8n-Grundlagen</title>
+<title>11&nbsp; Der erste Workflow: Mail an sich selbst – n8n-Grundlagen</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -60,10 +63,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-acefae45180d251af7289144a764ffe6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-65a8d1e2c23ab61ef86d547ba0112629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f08813803f3a6dabc91b9d88fcfad314.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5a4191e779943d077ddcaf48741aef9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -103,7 +106,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../first-workflows/index.html">Erste Workflows</a></li><li class="breadcrumb-item"><a href="../first-workflows/first-workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../first-workflows/index.html">Erste Workflows</a></li><li class="breadcrumb-item"><a href="../first-workflows/first-workflow.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -140,8 +143,8 @@ div.csl-indent {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Plattform und Auswahl</span></a>
+            <a href="../bpmn/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abläufe modellieren mit BPMN</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -149,20 +152,67 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../bpmn/grundelemente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Grundelemente und gute Namen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/gateways.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gateways: verzweigen und zusammenführen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/ereignisse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/teilnehmer-und-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/zum-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Vom Modell zum n8n-Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/uebung-kulanzantrag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plattform und Auswahl</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../overview/what-is-n8n.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../overview/pricing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../overview/hosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -171,21 +221,21 @@ div.csl-indent {
       <div class="sidebar-item-container"> 
             <a href="../first-workflows/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Erste Workflows</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../first-workflows/credentials.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../first-workflows/first-workflow.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
   </div>
 </li>
       </ul>
@@ -200,31 +250,31 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#zielbild" id="toc-zielbild" class="nav-link active" data-scroll-target="#zielbild"><span class="header-section-number">5.1</span> Zielbild</a></li>
-  <li><a href="#schnellstart-per-import" id="toc-schnellstart-per-import" class="nav-link" data-scroll-target="#schnellstart-per-import"><span class="header-section-number">5.2</span> Schnellstart per Import</a></li>
-  <li><a href="#schritt-für-schritt-selbst-bauen" id="toc-schritt-für-schritt-selbst-bauen" class="nav-link" data-scroll-target="#schritt-für-schritt-selbst-bauen"><span class="header-section-number">5.3</span> Schritt für Schritt selbst bauen</a>
+  <li><a href="#zielbild" id="toc-zielbild" class="nav-link active" data-scroll-target="#zielbild"><span class="header-section-number">11.1</span> Zielbild</a></li>
+  <li><a href="#schnellstart-per-import" id="toc-schnellstart-per-import" class="nav-link" data-scroll-target="#schnellstart-per-import"><span class="header-section-number">11.2</span> Schnellstart per Import</a></li>
+  <li><a href="#schritt-für-schritt-selbst-bauen" id="toc-schritt-für-schritt-selbst-bauen" class="nav-link" data-scroll-target="#schritt-für-schritt-selbst-bauen"><span class="header-section-number">11.3</span> Schritt für Schritt selbst bauen</a>
   <ul class="collapse">
-  <li><a href="#vorbereitung-neuen-workflow-anlegen" id="toc-vorbereitung-neuen-workflow-anlegen" class="nav-link" data-scroll-target="#vorbereitung-neuen-workflow-anlegen"><span class="header-section-number">5.3.1</span> Vorbereitung: Neuen Workflow anlegen</a></li>
-  <li><a href="#schritt-1-manuellen-auslöser-einfügen" id="toc-schritt-1-manuellen-auslöser-einfügen" class="nav-link" data-scroll-target="#schritt-1-manuellen-auslöser-einfügen"><span class="header-section-number">5.3.2</span> Schritt 1: Manuellen Auslöser einfügen</a></li>
-  <li><a href="#schritt-2-receive-email" id="toc-schritt-2-receive-email" class="nav-link" data-scroll-target="#schritt-2-receive-email"><span class="header-section-number">5.3.3</span> Schritt 2: Receive email</a></li>
-  <li><a href="#schritt-3-send-confirmation" id="toc-schritt-3-send-confirmation" class="nav-link" data-scroll-target="#schritt-3-send-confirmation"><span class="header-section-number">5.3.4</span> Schritt 3: Send confirmation</a></li>
-  <li><a href="#schritt-4-prepare-table-entry" id="toc-schritt-4-prepare-table-entry" class="nav-link" data-scroll-target="#schritt-4-prepare-table-entry"><span class="header-section-number">5.3.5</span> Schritt 4: Prepare table entry</a></li>
-  <li><a href="#schritt-5-data-table-anlegen-und-eintrag-schreiben" id="toc-schritt-5-data-table-anlegen-und-eintrag-schreiben" class="nav-link" data-scroll-target="#schritt-5-data-table-anlegen-und-eintrag-schreiben"><span class="header-section-number">5.3.6</span> Schritt 5: Data Table anlegen und Eintrag schreiben</a></li>
-  <li><a href="#workflow-speichern-und-vollständig-ausführen" id="toc-workflow-speichern-und-vollständig-ausführen" class="nav-link" data-scroll-target="#workflow-speichern-und-vollständig-ausführen"><span class="header-section-number">5.3.7</span> Workflow speichern und vollständig ausführen</a></li>
+  <li><a href="#vorbereitung-neuen-workflow-anlegen" id="toc-vorbereitung-neuen-workflow-anlegen" class="nav-link" data-scroll-target="#vorbereitung-neuen-workflow-anlegen"><span class="header-section-number">11.3.1</span> Vorbereitung: Neuen Workflow anlegen</a></li>
+  <li><a href="#schritt-1-manuellen-auslöser-einfügen" id="toc-schritt-1-manuellen-auslöser-einfügen" class="nav-link" data-scroll-target="#schritt-1-manuellen-auslöser-einfügen"><span class="header-section-number">11.3.2</span> Schritt 1: Manuellen Auslöser einfügen</a></li>
+  <li><a href="#schritt-2-receive-email" id="toc-schritt-2-receive-email" class="nav-link" data-scroll-target="#schritt-2-receive-email"><span class="header-section-number">11.3.3</span> Schritt 2: Receive email</a></li>
+  <li><a href="#schritt-3-send-confirmation" id="toc-schritt-3-send-confirmation" class="nav-link" data-scroll-target="#schritt-3-send-confirmation"><span class="header-section-number">11.3.4</span> Schritt 3: Send confirmation</a></li>
+  <li><a href="#schritt-4-prepare-table-entry" id="toc-schritt-4-prepare-table-entry" class="nav-link" data-scroll-target="#schritt-4-prepare-table-entry"><span class="header-section-number">11.3.5</span> Schritt 4: Prepare table entry</a></li>
+  <li><a href="#schritt-5-data-table-anlegen-und-eintrag-schreiben" id="toc-schritt-5-data-table-anlegen-und-eintrag-schreiben" class="nav-link" data-scroll-target="#schritt-5-data-table-anlegen-und-eintrag-schreiben"><span class="header-section-number">11.3.6</span> Schritt 5: Data Table anlegen und Eintrag schreiben</a></li>
+  <li><a href="#workflow-speichern-und-vollständig-ausführen" id="toc-workflow-speichern-und-vollständig-ausführen" class="nav-link" data-scroll-target="#workflow-speichern-und-vollständig-ausführen"><span class="header-section-number">11.3.7</span> Workflow speichern und vollständig ausführen</a></li>
   </ul></li>
-  <li><a href="#fehler-diagnostizieren" id="toc-fehler-diagnostizieren" class="nav-link" data-scroll-target="#fehler-diagnostizieren"><span class="header-section-number">5.4</span> Fehler diagnostizieren</a></li>
-  <li><a href="#vom-test-zum-live-betrieb" id="toc-vom-test-zum-live-betrieb" class="nav-link" data-scroll-target="#vom-test-zum-live-betrieb"><span class="header-section-number">5.5</span> Vom Test zum Live-Betrieb</a></li>
-  <li><a href="#kontrollpunkt-für-modul-02" id="toc-kontrollpunkt-für-modul-02" class="nav-link" data-scroll-target="#kontrollpunkt-für-modul-02"><span class="header-section-number">5.6</span> Kontrollpunkt für Modul 02</a></li>
-  <li><a href="#wie-es-weitergeht" id="toc-wie-es-weitergeht" class="nav-link" data-scroll-target="#wie-es-weitergeht"><span class="header-section-number">5.7</span> Wie es weitergeht</a></li>
+  <li><a href="#fehler-diagnostizieren" id="toc-fehler-diagnostizieren" class="nav-link" data-scroll-target="#fehler-diagnostizieren"><span class="header-section-number">11.4</span> Fehler diagnostizieren</a></li>
+  <li><a href="#vom-test-zum-live-betrieb" id="toc-vom-test-zum-live-betrieb" class="nav-link" data-scroll-target="#vom-test-zum-live-betrieb"><span class="header-section-number">11.5</span> Vom Test zum Live-Betrieb</a></li>
+  <li><a href="#kontrollpunkt-für-modul-02" id="toc-kontrollpunkt-für-modul-02" class="nav-link" data-scroll-target="#kontrollpunkt-für-modul-02"><span class="header-section-number">11.6</span> Kontrollpunkt für Modul 02</a></li>
+  <li><a href="#wie-es-weitergeht" id="toc-wie-es-weitergeht" class="nav-link" data-scroll-target="#wie-es-weitergeht"><span class="header-section-number">11.7</span> Wie es weitergeht</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../first-workflows/index.html">Erste Workflows</a></li><li class="breadcrumb-item"><a href="../first-workflows/first-workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../first-workflows/index.html">Erste Workflows</a></li><li class="breadcrumb-item"><a href="../first-workflows/first-workflow.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></h1>
 </div>
 
 
@@ -242,8 +292,8 @@ div.csl-indent {
 
 
 <p>In diesem Kapitel bauen wir den ersten vollständigen Workflow. Er simuliert eine eingehende Mail, verschickt eine Bestätigung und schreibt einen Eintrag in eine Tabelle.</p>
-<section id="zielbild" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="zielbild"><span class="header-section-number">5.1</span> Zielbild</h2>
+<section id="zielbild" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="zielbild"><span class="header-section-number">11.1</span> Zielbild</h2>
 <p>Der fertige Workflow hat fünf Stationen:</p>
 <ol type="1">
 <li><strong>Start workflow manually:</strong> Ein Manual-Trigger-Knoten startet den Workflow per Klick.</li>
@@ -258,13 +308,13 @@ div.csl-indent {
 <img src="../images/m02-workflow-zielbild.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-workflow-zielbild-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge Manual Trigger, Set, Send Email, Set, Data Table.
+Abbildung&nbsp;11.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge Manual Trigger, Set, Send Email, Set, Data Table.
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="schnellstart-per-import" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="schnellstart-per-import"><span class="header-section-number">5.2</span> Schnellstart per Import</h2>
+<section id="schnellstart-per-import" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="schnellstart-per-import"><span class="header-section-number">11.2</span> Schnellstart per Import</h2>
 <p>Wer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen, kann ihn direkt per URL in die eigene n8n-Instanz importieren:</p>
 <ol type="1">
 <li><p>Im Editor einen neuen, leeren Workflow anlegen.</p></li>
@@ -275,16 +325,16 @@ Abbildung&nbsp;5.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge M
 </ol>
 <p>Nach dem Import sind Manual Trigger, Set, Send Email und Set vorhanden. Der Data-Table-Knoten fehlt bewusst, weil Tabellen-IDs in jeder n8n-Instanz lokal entstehen. Die Tabelle anlegen und im Data-Table-Knoten neu auswählen, dann ist der Workflow vollständig.</p>
 </section>
-<section id="schritt-für-schritt-selbst-bauen" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="schritt-für-schritt-selbst-bauen"><span class="header-section-number">5.3</span> Schritt für Schritt selbst bauen</h2>
+<section id="schritt-für-schritt-selbst-bauen" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="schritt-für-schritt-selbst-bauen"><span class="header-section-number">11.3</span> Schritt für Schritt selbst bauen</h2>
 <p>Wir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat dabei einen Namen, der im Canvas angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen wie <em>Edit Fields</em> oder <em>Send an Email</em>. Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.</p>
 <p>Im Kurs folgen wir einer einheitlichen Konvention:</p>
 <ul>
 <li>Englische Namen in Verb-Form, die beschreiben, was der Knoten tut. Beispiel: <code>Receive email</code>.</li>
 <li>Zu vermeiden sind Apostrophe (<code>'</code>), Anführungszeichen (<code>"</code>), geschweifte Klammern (<code>{ }</code>) und Backslashes (<code>\</code>), weil sie mit der Expression- oder JSON-Syntax kollidieren können.</li>
 </ul>
-<section id="vorbereitung-neuen-workflow-anlegen" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="vorbereitung-neuen-workflow-anlegen"><span class="header-section-number">5.3.1</span> Vorbereitung: Neuen Workflow anlegen</h3>
+<section id="vorbereitung-neuen-workflow-anlegen" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="vorbereitung-neuen-workflow-anlegen"><span class="header-section-number">11.3.1</span> Vorbereitung: Neuen Workflow anlegen</h3>
 <ol type="1">
 <li>In n8n anmelden.</li>
 <li><strong>Overview</strong>-Ansicht (Haus-Symbol links oben im Menü) auswählen.</li>
@@ -298,13 +348,13 @@ Abbildung&nbsp;5.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge M
 <img src="../images/m02-canvas-leer.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-canvas-leer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.2: Leerer Canvas direkt nach dem Anlegen eines neuen Workflows. In der Mitte das Plus-Symbol zum Einfügen des ersten Knotens.
+Abbildung&nbsp;11.2: Leerer Canvas direkt nach dem Anlegen eines neuen Workflows. In der Mitte das Plus-Symbol zum Einfügen des ersten Knotens.
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="schritt-1-manuellen-auslöser-einfügen" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="schritt-1-manuellen-auslöser-einfügen"><span class="header-section-number">5.3.2</span> Schritt 1: Manuellen Auslöser einfügen</h3>
+<section id="schritt-1-manuellen-auslöser-einfügen" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="schritt-1-manuellen-auslöser-einfügen"><span class="header-section-number">11.3.2</span> Schritt 1: Manuellen Auslöser einfügen</h3>
 <ol type="1">
 <li>Auf das große Plus-Symbol in der Canvas-Mitte klicken.</li>
 <li>Im rechts erscheinenden Knoten-Picker oben <strong>Trigger manually</strong> wählen.</li>
@@ -318,13 +368,13 @@ Abbildung&nbsp;5.2: Leerer Canvas direkt nach dem Anlegen eines neuen Workflows.
 <img src="../images/m02-picker-trigger.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-picker-trigger-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.3: Knoten-Picker mit der Auswahl “Trigger manually” als manuellen Auslöser.
+Abbildung&nbsp;11.3: Knoten-Picker mit der Auswahl “Trigger manually” als manuellen Auslöser.
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="schritt-2-receive-email" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="schritt-2-receive-email"><span class="header-section-number">5.3.3</span> Schritt 2: Receive email</h3>
+<section id="schritt-2-receive-email" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="schritt-2-receive-email"><span class="header-section-number">11.3.3</span> Schritt 2: Receive email</h3>
 <ol type="1">
 <li>Rechts neben dem Knoten <em>Start workflow manually</em> erscheint ein Plus. Darauf klicken.</li>
 <li>Im Suchfeld des Knoten-Pickers <em>Edit Fields</em> eingeben.</li>
@@ -414,7 +464,7 @@ Abbildung&nbsp;5.3: Knoten-Picker mit der Auswahl “Trigger manually” als man
 <img src="../images/m02-simulierte-mail-set.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simulierte-mail-set-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.4: Set-Knoten mit den vier Feldzuweisungen und aktiviertem Expression-Modus bei received_at.
+Abbildung&nbsp;11.4: Set-Knoten mit den vier Feldzuweisungen und aktiviertem Expression-Modus bei received_at.
 </figcaption>
 </figure>
 </div>
@@ -458,7 +508,7 @@ Abbildung&nbsp;5.4: Set-Knoten mit den vier Feldzuweisungen und aktiviertem Expr
 <img src="../images/output-panel-ansichten.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-output-panel-ansichten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.5: Output-Panel mit den drei Ansichten Schema, Table und JSON. Die JSON-Ansicht zeigt die exakten Feldnamen und Werte, die der Knoten weitergibt.
+Abbildung&nbsp;11.5: Output-Panel mit den drei Ansichten Schema, Table und JSON. Die JSON-Ansicht zeigt die exakten Feldnamen und Werte, die der Knoten weitergibt.
 </figcaption>
 </figure>
 </div>
@@ -468,8 +518,8 @@ Abbildung&nbsp;5.5: Output-Panel mit den drei Ansichten Schema, Table und JSON. 
 <li>Oben rechts im Menü auf <code>x</code> klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.</li>
 </ol>
 </section>
-<section id="schritt-3-send-confirmation" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="schritt-3-send-confirmation"><span class="header-section-number">5.3.4</span> Schritt 3: Send confirmation</h3>
+<section id="schritt-3-send-confirmation" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="schritt-3-send-confirmation"><span class="header-section-number">11.3.4</span> Schritt 3: Send confirmation</h3>
 <ol type="1">
 <li>Rechts am Knoten <em>Receive email</em> auf <code>+</code> klicken.</li>
 <li>Im Knoten-Picker <strong>Send Email</strong> suchen und auswählen.</li>
@@ -539,7 +589,7 @@ The customer service team</code></pre>
 <img src="../images/m02-send-email-knoten.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-send-email-knoten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.6: Send-Email-Knoten mit Expressions für Empfänger und Betreff: feste Formulierungen kombiniert mit dynamischen Feldern aus dem vorherigen Knoten.
+Abbildung&nbsp;11.6: Send-Email-Knoten mit Expressions für Empfänger und Betreff: feste Formulierungen kombiniert mit dynamischen Feldern aus dem vorherigen Knoten.
 </figcaption>
 </figure>
 </div>
@@ -549,8 +599,8 @@ Abbildung&nbsp;5.6: Send-Email-Knoten mit Expressions für Empfänger und Betref
 </ol>
 <p>Die folgenden Schritte 4 und 5 können wir nun testen, ohne dass der deaktivierte Knoten einen Fehler ausgibt. Nach dem Anlegen des Credentials aktivieren wir den Knoten wieder.</p>
 </section>
-<section id="schritt-4-prepare-table-entry" class="level3" data-number="5.3.5">
-<h3 data-number="5.3.5" class="anchored" data-anchor-id="schritt-4-prepare-table-entry"><span class="header-section-number">5.3.5</span> Schritt 4: Prepare table entry</h3>
+<section id="schritt-4-prepare-table-entry" class="level3" data-number="11.3.5">
+<h3 data-number="11.3.5" class="anchored" data-anchor-id="schritt-4-prepare-table-entry"><span class="header-section-number">11.3.5</span> Schritt 4: Prepare table entry</h3>
 <ol type="1">
 <li>Rechts am Knoten <em>Send confirmation</em> auf <code>+</code> klicken.</li>
 <li>Im Knoten-Picker <strong>Edit Fields (Set)</strong> suchen und auswählen.</li>
@@ -618,7 +668,7 @@ Abbildung&nbsp;5.6: Send-Email-Knoten mit Expressions für Empfänger und Betref
 <img src="../images/m02-set-eintrag.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-set-eintrag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.7: Set-Knoten mit den vier Cross-Node-Expressions, die Werte aus dem Knoten Receive email beziehen.
+Abbildung&nbsp;11.7: Set-Knoten mit den vier Cross-Node-Expressions, die Werte aus dem Knoten Receive email beziehen.
 </figcaption>
 </figure>
 </div>
@@ -626,8 +676,8 @@ Abbildung&nbsp;5.7: Set-Knoten mit den vier Cross-Node-Expressions, die Werte au
 <li>Oben rechts im Menü auf <code>x</code> klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.</li>
 </ol>
 </section>
-<section id="schritt-5-data-table-anlegen-und-eintrag-schreiben" class="level3" data-number="5.3.6">
-<h3 data-number="5.3.6" class="anchored" data-anchor-id="schritt-5-data-table-anlegen-und-eintrag-schreiben"><span class="header-section-number">5.3.6</span> Schritt 5: Data Table anlegen und Eintrag schreiben</h3>
+<section id="schritt-5-data-table-anlegen-und-eintrag-schreiben" class="level3" data-number="11.3.6">
+<h3 data-number="11.3.6" class="anchored" data-anchor-id="schritt-5-data-table-anlegen-und-eintrag-schreiben"><span class="header-section-number">11.3.6</span> Schritt 5: Data Table anlegen und Eintrag schreiben</h3>
 <p>Ein “Data Table” speichert strukturierte Daten direkt in n8n. Die Tabelle ist nicht Teil des Workflows, sondern liegt auf der Projekt-Ebene und wird aus dem Workflow heraus über einen Data-Table-Knoten beschrieben oder gelesen.</p>
 <p><strong>Tabelle anlegen:</strong></p>
 <p>Die Verwaltung der Data Tables liegt außerhalb des Workflow-Editors. Wir verlassen den Editor kurz, legen die Tabelle an und kehren danach in den Workflow zurück.</p>
@@ -701,7 +751,7 @@ Abbildung&nbsp;5.7: Set-Knoten mit den vier Cross-Node-Expressions, die Werte au
 <img src="../images/m02-datatable-knoten.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-datatable-knoten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.8: Data-Table-Knoten mit Operation Insert Row, Auswahl der Tabelle customer_emails und Mapping der vier Spalten.
+Abbildung&nbsp;11.8: Data-Table-Knoten mit Operation Insert Row, Auswahl der Tabelle customer_emails und Mapping der vier Spalten.
 </figcaption>
 </figure>
 </div>
@@ -709,8 +759,8 @@ Abbildung&nbsp;5.8: Data-Table-Knoten mit Operation Insert Row, Auswahl der Tabe
 <li>Oben rechts im Menü auf <code>x</code> klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.</li>
 </ol>
 </section>
-<section id="workflow-speichern-und-vollständig-ausführen" class="level3" data-number="5.3.7">
-<h3 data-number="5.3.7" class="anchored" data-anchor-id="workflow-speichern-und-vollständig-ausführen"><span class="header-section-number">5.3.7</span> Workflow speichern und vollständig ausführen</h3>
+<section id="workflow-speichern-und-vollständig-ausführen" class="level3" data-number="11.3.7">
+<h3 data-number="11.3.7" class="anchored" data-anchor-id="workflow-speichern-und-vollständig-ausführen"><span class="header-section-number">11.3.7</span> Workflow speichern und vollständig ausführen</h3>
 <ol type="1">
 <li>In der Workflow-Übersicht auf <strong>Execute Workflow</strong> klicken.</li>
 <li>Alle fünf Knoten bekommen einen grünen Haken (mit Ausnahme des deaktivierten Knotens <em>Send confirmation</em>, der übersprungen wird). Es erscheint die Bestätigung <em>Workflow executed successfully</em>.</li>
@@ -723,14 +773,14 @@ Abbildung&nbsp;5.8: Data-Table-Knoten mit Operation Insert Row, Auswahl der Tabe
 <img src="../images/m02-workflow-erfolgreich.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m02-workflow-erfolgreich-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.9: Workflow nach erfolgreichem Lauf mit grünen Häkchen an allen Knoten.
+Abbildung&nbsp;11.9: Workflow nach erfolgreichem Lauf mit grünen Häkchen an allen Knoten.
 </figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="fehler-diagnostizieren" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="fehler-diagnostizieren"><span class="header-section-number">5.4</span> Fehler diagnostizieren</h2>
+<section id="fehler-diagnostizieren" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="fehler-diagnostizieren"><span class="header-section-number">11.4</span> Fehler diagnostizieren</h2>
 <p>Ein roter Knoten erfordert keinen Neuaufbau des Workflows. Wir lesen die Fehlermeldung, prüfen den Input des Knotens und vergleichen ihn mit der Knoten-Einstellung. Häufige Ursachen sind ein fehlendes Credential, ein abweichender Feldname oder ein Testdatensatz ohne Wert. Den frühesten Fehler im Workflow beheben wir zuerst, denn falsche Daten in Knoten 2 machen einen Blick auf Knoten 4 überflüssig.</p>
 <p>Eine erste Orientierung bei wiederkehrenden Symptomen:</p>
 <table class="caption-top table">
@@ -770,8 +820,8 @@ Abbildung&nbsp;5.9: Workflow nach erfolgreichem Lauf mit grünen Häkchen an all
 </tbody>
 </table>
 </section>
-<section id="vom-test-zum-live-betrieb" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="vom-test-zum-live-betrieb"><span class="header-section-number">5.5</span> Vom Test zum Live-Betrieb</h2>
+<section id="vom-test-zum-live-betrieb" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="vom-test-zum-live-betrieb"><span class="header-section-number">11.5</span> Vom Test zum Live-Betrieb</h2>
 <p>Bisher lief der Workflow nur per Klick auf <em>Execute Workflow</em>. Damit er automatisch auf eingehende Mails reagiert, sind drei Anpassungen nötig: ein echter Trigger, gültige Credentials und der Active-Modus.</p>
 <ol type="1">
 <li><strong>Trigger austauschen.</strong> Den Knoten <em>Start workflow manually</em> entfernen und stattdessen einen Mail-Trigger einfügen, etwa <em>Email Trigger (IMAP)</em> oder <em>Gmail Trigger</em>.</li>
@@ -786,7 +836,7 @@ Abbildung&nbsp;5.9: Workflow nach erfolgreichem Lauf mit grünen Häkchen an all
 <img src="../images/executions-log.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-executions-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;5.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint mit Status, Datum und Dauer und lässt sich für die Nachverfolgung öffnen.
+Abbildung&nbsp;11.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint mit Status, Datum und Dauer und lässt sich für die Nachverfolgung öffnen.
 </figcaption>
 </figure>
 </div>
@@ -810,8 +860,8 @@ Abbildung&nbsp;5.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint 
 </div>
 </div>
 </section>
-<section id="kontrollpunkt-für-modul-02" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="kontrollpunkt-für-modul-02"><span class="header-section-number">5.6</span> Kontrollpunkt für Modul 02</h2>
+<section id="kontrollpunkt-für-modul-02" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="kontrollpunkt-für-modul-02"><span class="header-section-number">11.6</span> Kontrollpunkt für Modul 02</h2>
 <p>Am Ende dieses Moduls sollten folgende Punkte bekannt sein:</p>
 <ul>
 <li>Einen Workflow neu anlegen, umbenennen und mit Tags versehen.</li>
@@ -823,8 +873,8 @@ Abbildung&nbsp;5.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint 
 <li>Den Workflow vom Manual-Trigger auf einen Mail-Trigger umstellen und aktivieren.</li>
 </ul>
 </section>
-<section id="wie-es-weitergeht" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="wie-es-weitergeht"><span class="header-section-number">5.7</span> Wie es weitergeht</h2>
+<section id="wie-es-weitergeht" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="wie-es-weitergeht"><span class="header-section-number">11.7</span> Wie es weitergeht</h2>
 <p>Damit steht das handwerkliche Fundament: einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs <em>KI-Agenten in n8n</em> die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.</p>
 
 
