@@ -1,0 +1,27 @@
+direction: right
+
+classes: {
+  txt: {
+    shape: rectangle
+    style: {fill: "#f4f4f5"; stroke: "#e4e4e7"; border-radius: 8; font-color: "#3f3f46"; italic: true}
+  }
+  el: {
+    style: {fill: "#ffffff"; stroke: "#18181b"; stroke-width: 2; font-color: "#18181b"}
+  }
+  pf: {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+}
+
+t1: "„Der Kundenservice\nprüft die Rechnung“" {class: txt}
+t2: "„falls fehlerhaft,\nzurückweisen“" {class: txt}
+t3: "„nach vier Wochen\nohne Antwort“" {class: txt}
+t4: "„angenommen\noder abgelehnt“" {class: txt}
+
+e1: "Aufgabe\nRechnung prüfen" {class: el; style.border-radius: 12}
+e2: "Gateway: Rechnung korrekt?" {class: el; shape: diamond; width: 60; height: 60; label.near: outside-bottom-center}
+e3: "Zeitereignis: 4 Wochen verstrichen" {class: el; shape: circle; width: 50; height: 50; style.double-border: true; label.near: outside-bottom-center}
+e4: "Endereignis: je Ergebnis eins" {class: el; shape: circle; width: 50; height: 50; style.stroke-width: 4; label.near: outside-bottom-center}
+
+t1 -> e1: "Verb" {class: pf}
+t2 -> e2: "Bedingung" {class: pf}
+t3 -> e3: "Zeitwort" {class: pf}
+t4 -> e4: "Ergebnis" {class: pf}
