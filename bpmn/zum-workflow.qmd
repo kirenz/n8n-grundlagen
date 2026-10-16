@@ -14,9 +14,9 @@ Das Modell beantwortet schon jetzt, was der Workflow können muss: einen Trigger
 
 | BPMN-Element | n8n-Baustein | Hinweis |
 |---|---|---|
-| Nachrichten-Startereignis | App-Trigger: Email Trigger (IMAP), Gmail Trigger, Webhook, Form Trigger | Der Trigger bestimmt, welche Daten der Workflow am Anfang hat. |
+| Nachrichten-Startereignis | App-Trigger: Email Trigger (IMAP, Mail-Abruf), Gmail Trigger, Webhook (Aufruf durch ein anderes Programm), Form Trigger (ausgefülltes Formular) | Der Trigger bestimmt, welche Daten der Workflow am Anfang hat. |
 | Zeit-Startereignis | Schedule Trigger | Cron-ähnliche Zeitpläne: täglich, wöchentlich, zum Monatsende. |
-| Serviceaufgabe | Ein Knoten: Data Table, HTTP Request, Set, Google Sheets, CRM-Knoten | Läuft ohne Rückfrage durch. |
+| Serviceaufgabe | Ein Knoten: Data Table (eingebaute Tabelle), HTTP Request (Aufruf einer Schnittstelle), Set (Felder setzen), Google Sheets, CRM-Knoten | Läuft ohne Rückfrage durch. |
 | Sendeaufgabe | Send Email, Gmail, Slack, Microsoft Teams | Versand an einen anderen Pool. |
 | Exklusives Gateway (XOR) | IF (zwei Ausgänge) oder Switch (mehrere Ausgänge) | Die Frage am Gateway wird zur Bedingung im Knoten. |
 | Paralleles Gateway (AND) | Mehrere ausgehende Verbindungen von einem Knoten, Zusammenführung mit Merge | n8n führt Zweige nacheinander aus, nicht gleichzeitig; das Ergebnis ist dasselbe. |

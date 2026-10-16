@@ -31,7 +31,7 @@ Die Zahlen sind volatil, denn alle genannten Anbieter passen Tarife regelmäßig
 | Aspekt | n8n | Zapier / Make |
 |---|---|---|
 | Abrechnungs-Einheit | Pro Workflow-Execution | Pro Task / Operation |
-| Self-Host möglich | Ja, kostenfrei (Fair-Code) | Nein |
+| Self-Host möglich | Ja, kostenfrei (Fair-Code: Quellcode offen, Nutzung im eigenen Betrieb kostenlos) | Nein |
 | KI-Knoten als Standard | Ja, eingebaut | Teilweise, oft zugekauft |
 | Code-Knoten erlaubt | Ja, JavaScript und Python | Eingeschränkt |
 | Lernkurve | Mittel | Flach |

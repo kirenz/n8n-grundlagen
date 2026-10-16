@@ -4,7 +4,7 @@ Drei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von d
 
 ## Cloud
 
-Die n8n-Cloud ist eine SaaS-Variante, die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung.
+Die n8n-Cloud ist eine SaaS-Variante (Software, die im Internet gemietet statt installiert wird), die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung.
 
 **Eigenschaften:**
 
@@ -13,7 +13,7 @@ Die n8n-Cloud ist eine SaaS-Variante, die n8n selbst betreibt. Konto anlegen, Wo
 - Geeignet für Teams ohne dedizierte IT-Ressourcen oder für erste Schritte
 
 ::: {.callout-tip}
-Für eine erste Lernphase ist die Cloud-Variante eine pragmatische Option, weil Linux, Docker oder TLS-Zertifikate dabei kein Thema sind. Wer später Self-Hosting betreiben will, kann Workflows als JSON exportieren und in eine eigene Instanz übertragen.
+Für eine erste Lernphase ist die Cloud-Variante eine pragmatische Option, weil Serverbetrieb mit Linux, Docker (Software-Container) oder TLS-Zertifikaten (für verschlüsselte Verbindungen) dabei kein Thema ist. Wer später Self-Hosting betreiben will, kann Workflows als JSON (ein Textformat für Daten) exportieren und in eine eigene Instanz übertragen.
 :::
 
 ## Self-Hosted
@@ -61,7 +61,7 @@ Bei der Cloud-Variante steigen die Kosten mit der Anzahl der Executions, bei Sel
 
 ### Souveränität: welche Daten verlassen die eigene Infrastruktur?
 
-In regulierten Branchen ist Datensouveränität nicht optional, sondern Pflicht. Patientendaten, Kundenkontakte mit besonderem Schutzbedarf oder interne Prozessdokumente werfen die Frage auf, wo sie verarbeitet werden dürfen. Für viele Anwendungsfälle scheiden Cloud-Hosts in den USA aus; EU-Cloud-Hosts oder eigenes Hosting bleiben als Optionen. Hetzner etwa betreibt Rechenzentren in Deutschland und Finnland, was die DSGVO-Anforderungen vereinfacht.
+In regulierten Branchen ist Datensouveränität nicht optional, sondern Pflicht. Patientendaten, Kundenkontakte mit besonderem Schutzbedarf oder interne Prozessdokumente werfen die Frage auf, wo sie verarbeitet werden dürfen. Für viele Anwendungsfälle scheiden Cloud-Hosts in den USA aus; EU-Cloud-Hosts oder eigenes Hosting bleiben als Optionen. Hetzner etwa betreibt Rechenzentren in Deutschland und Finnland, was die Anforderungen der DSGVO (Datenschutz-Grundverordnung der EU) vereinfacht.
 
 ### Skill-Bestand: wer pflegt die Instanz?
 

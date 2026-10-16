@@ -66,7 +66,7 @@ Ein Teilprozess fasst mehrere Schritte zu einer Aktivität zusammen. Zugeklappt 
 
 ![Aufgeklappt: Derselbe Teilprozess mit eigenem Start, zwei parallelen Prüfungen und eigenem Ende im Inneren.](../images/bpmn/teilprozess-auf.svg){#fig-teilprozess-auf width="100%"}
 
-Teilprozesse halten das Hauptmodell lesbar. Eine Faustregel aus der Praxis: Höchstens etwa zehn Aufgaben pro Ebene. Wer mehr braucht, fasst zusammen und zeichnet die Details in einem eigenen Diagramm. Ein Teilprozess kann zusätzlich einen Mehrfach-Marker tragen: „Reklamierte Position prüfen“ mit drei senkrechten Strichen bedeutet, dass die Prüfung für jede reklamierte Position einmal läuft, parallel. Im n8n-Workflow entspricht ein Teilprozess einem Sub-Workflow, der über einen Execute-Sub-workflow-Knoten aufgerufen wird; der Mehrfach-Marker entspricht dem Verhalten von n8n, einen Knoten je Item auszuführen.
+Teilprozesse halten das Hauptmodell lesbar. Eine Faustregel aus der Praxis: Höchstens etwa zehn Aufgaben pro Ebene. Wer mehr braucht, fasst zusammen und zeichnet die Details in einem eigenen Diagramm. Ein Teilprozess kann zusätzlich einen Mehrfach-Marker tragen: „Reklamierte Position prüfen“ mit drei senkrechten Strichen bedeutet, dass die Prüfung für jede reklamierte Position einmal läuft, parallel. Im n8n-Workflow entspricht ein Teilprozess einem Sub-Workflow (einem eigenen Workflow, den ein anderer aufruft), der über einen Execute-Sub-workflow-Knoten aufgerufen wird; der Mehrfach-Marker entspricht dem Verhalten von n8n, einen Knoten je Item (je Datensatz) auszuführen.
 
 ## Sechs typische Fehler
 

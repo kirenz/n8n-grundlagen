@@ -1,6 +1,6 @@
 # Ereignisse: warten, reagieren, abbrechen
 
-Bisher lief jeder Ablauf, sobald er gestartet war, ohne Pause bis zum Ende. Echte Abläufe warten: auf eine Antwort des Kunden, auf das Monatsende, auf eine Frist. Und sie reagieren auf Dinge, die während einer Aufgabe passieren, etwa eine Rückfrage oder einen abgelaufenen Termin. BPMN bildet all das mit **Ereignissen** ab, Kreisen mit einem Symbol in der Mitte. In diesem Kapitel lernen wir, wie Position und Symbol eines Ereignisses zusammenwirken, und bauen damit Wartesituationen, die ein n8n-Workflow später mit Wait-Knoten und Triggern abbilden muss.
+Bisher lief jeder Ablauf, sobald er gestartet war, ohne Pause bis zum Ende. Echte Abläufe warten: auf eine Antwort des Kunden, auf das Monatsende, auf eine Frist. Und sie reagieren auf Dinge, die während einer Aufgabe passieren, etwa eine Rückfrage oder einen abgelaufenen Termin. BPMN bildet all das mit **Ereignissen** ab, Kreisen mit einem Symbol in der Mitte. In diesem Kapitel lernen wir, wie Position und Symbol eines Ereignisses zusammenwirken, und bauen damit Wartesituationen, die ein n8n-Workflow später mit Wait-Knoten (Bausteinen, die den Ablauf anhalten) und Triggern abbilden muss.
 
 ## Der Rand sagt wo, das Symbol sagt was
 
@@ -35,7 +35,7 @@ Ein Zeitereignis am Start lässt den Prozess zu einem Zeitpunkt beginnen. Ein Ze
 
 Drei Elemente sind hier neu:
 
-- Das **Zeit-Startereignis** „Monatsende erreicht“: Der Prozess beginnt zu einem Zeitpunkt, nicht durch eine eingehende Nachricht. In n8n ist das ein Schedule Trigger.
+- Das **Zeit-Startereignis** „Monatsende erreicht“: Der Prozess beginnt zu einem Zeitpunkt, nicht durch eine eingehende Nachricht. In n8n ist das ein Schedule Trigger, der den Workflow nach Zeitplan startet.
 - Das **Zeit-Zwischenereignis** „14 Tage vergangen“: Der Prozess hält an und wartet, bis die Frist verstrichen ist. In n8n ist das ein Wait-Knoten.
 - Die **Sendeaufgabe** „Zahlungserinnerung versenden“: Der dunkle Umschlag oben links zeigt, dass diese Aufgabe eine Nachricht verschickt. Die Aufgabentypen lernen wir im nächsten Kapitel vollständig kennen.
 
