@@ -2,7 +2,7 @@
 
 Willkommen zum Grundlagenkurs für n8n. Dieses Buch richtet sich an Fachkräfte und Teams, die wiederkehrende Abläufe automatisieren möchten, ohne dafür ein Software-Projekt zu starten. Programmierkenntnisse sind nicht nötig, ein Browser und eine beliebige Mail-Adresse genügen zum Mitmachen.
 
-Am Ende steht ein erster, vollständig funktionierender Workflow: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin in drei Schritten: die Plattform einordnen, eine eigene Instanz einrichten, den ersten Workflow bauen.
+Am Ende steht ein erster, vollständig funktionierender Workflow: Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin in vier Schritten: die Plattform einordnen, den Ablauf als BPMN-Modell zeichnen, eine eigene Instanz einrichten, den ersten Workflow bauen.
 
 Abläufe wie im Demo-Szenario gibt es überall:
 

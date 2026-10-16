@@ -42,6 +42,12 @@ book:
     - index.qmd
     - introduction.qmd
 
+    - part: overview/index.qmd
+      chapters:
+        - overview/what-is-n8n.qmd
+        - overview/pricing.qmd
+        - overview/hosting.qmd
+
     - part: bpmn/index.qmd
       chapters:
         - bpmn/grundelemente.qmd
@@ -50,12 +56,6 @@ book:
         - bpmn/teilnehmer-und-daten.qmd
         - bpmn/zum-workflow.qmd
         - bpmn/uebung-kulanzantrag.qmd
-
-    - part: overview/index.qmd
-      chapters:
-        - overview/what-is-n8n.qmd
-        - overview/pricing.qmd
-        - overview/hosting.qmd
 
     - part: first-workflows/index.qmd
       chapters:
