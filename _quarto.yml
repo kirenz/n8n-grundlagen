@@ -11,6 +11,9 @@ project:
     - "first-workflows/*.qmd"
   resources:
     - "bpmn/loesung/*"
+    - "images/lektionen/*"
+    - "d2/*.svg"
+    - "images/*.png"
 
 lang: de
 
