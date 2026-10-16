@@ -255,6 +255,10 @@ def glyph(kind, cx, cy):
     if kind == "uebung":
         return f'<rect x="{cx - 14}" y="{cy - 16}" width="28" height="32" rx="3" {st}/>' + "".join(
             f'<line x1="{cx - 8}" y1="{cy - 8 + i * 8}" x2="{cx + 8}" y2="{cy - 8 + i * 8}" stroke="{INK}" stroke-width="1.5"/>' for i in range(3))
+    if kind == "wait":
+        return f'<line x1="{cx - 6}" y1="{cy - 14}" x2="{cx - 6}" y2="{cy + 14}" stroke="{INK}" stroke-width="3"/><line x1="{cx + 6}" y1="{cy - 14}" x2="{cx + 6}" y2="{cy + 14}" stroke="{INK}" stroke-width="3"/>'
+    if kind == "gemini":
+        return f'<path d="M{cx},{cy - 16} C{cx + 2},{cy - 2} {cx + 2},{cy - 2} {cx + 16},{cy} C{cx + 2},{cy + 2} {cx + 2},{cy + 2} {cx},{cy + 16} C{cx - 2},{cy + 2} {cx - 2},{cy + 2} {cx - 16},{cy} C{cx - 2},{cy - 2} {cx - 2},{cy - 2} {cx},{cy - 16} Z" fill="{BLUE}"/>'
     if kind == "key":
         return f'<circle cx="{cx - 12}" cy="{cy}" r="9" {st}/><line x1="{cx - 3}" y1="{cy}" x2="{cx + 22}" y2="{cy}" stroke="{INK}" stroke-width="3"/><line x1="{cx + 16}" y1="{cy}" x2="{cx + 16}" y2="{cy + 8}" stroke="{INK}" stroke-width="3"/>'
     return ""
@@ -319,6 +323,15 @@ def testphase():
     return svg(900, 305, b)
 
 
+def kapitel_beispiele():
+    return lernweg("Vier Beispiele zum Mitmachen", [
+        ("n8n", "Kontaktanfragen sortieren", "Formular, Entscheidung, Priorität"),
+        ("wait", "Rechnung freigeben", "Freigabe durch eine Person"),
+        ("uebung", "Wochenbericht", "Datei hochladen, Tabelle auswerten"),
+        ("gemini", "Anfrage mit Gemini einordnen", "KI-Modell im Workflow"),
+    ], 2, "Beispiel 1 und 2 Klick für Klick, Beispiel 3 und 4 als Datei zum Hochladen.", 125)
+
+
 FIGS = {
     "grundlagen-formularfluss.svg": schicht,
     "grundlagen-daten-und-ki.svg": daten_ki,
@@ -332,6 +345,7 @@ FIGS = {
     "kapitel-bpmn-lernweg.svg": kapitel_bpmn,
     "kapitel-workflows-lernweg.svg": kapitel_workflows,
     "testphase-zeitplan.svg": testphase,
+    "kapitel-beispiele-lernweg.svg": kapitel_beispiele,
 }
 
 if __name__ == "__main__":

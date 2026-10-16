@@ -9,10 +9,14 @@ project:
     - "bpmn/*.qmd"
     - "overview/*.qmd"
     - "first-workflows/*.qmd"
+    - "beispiele/*.qmd"
   resources:
     - "bpmn/loesung/*"
     - "images/lektionen/*"
     - "images/bpmn/*"
+    - "images/beispiele/*"
+    - "images/erste-workflows/*"
+    - "workflows/beispiele/*"
     - "d2/*.svg"
     - "images/*.png"
 
@@ -62,6 +66,13 @@ book:
         - first-workflows/testzugang.qmd
         - first-workflows/credentials.qmd
         - first-workflows/first-workflow.qmd
+
+    - part: beispiele/index.qmd
+      chapters:
+        - beispiele/kontaktanfragen.qmd
+        - beispiele/rechnung.qmd
+        - beispiele/wochenbericht.qmd
+        - beispiele/gemini.qmd
 
 format:
   html:

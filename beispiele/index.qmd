@@ -1,0 +1,14 @@
+# Beispiele zum Mitmachen {.unnumbered}
+
+Nach dem ersten Workflow bauen wir vier kleine Abläufe aus dem Alltag des Online-Shops. Beispiel 1 und 2 bauen wir Klick für Klick nach. Beispiel 3 und 4 sind etwas umfangreicher: Wir laden die fertige Datei in n8n hoch und gehen den Workflow Knoten für Knoten durch. Alle Beispiele laufen in der Testphase von n8n Cloud; Beispiel 4 braucht zusätzlich das Gemini-Credential aus [Credentials vorbereiten](../first-workflows/credentials.qmd).
+
+![Vier Beispiele: Kontaktanfragen sortieren, Rechnung freigeben, Wochenbericht, Anfrage mit Gemini einordnen.](../images/lektionen/kapitel-beispiele-lernweg.svg)
+
+## Eine Datei in n8n hochladen
+
+1. Die Workflow-Datei (JSON) herunterladen.
+2. In n8n einen neuen Workflow öffnen.
+3. Oben rechts im Drei-Punkte-Menü **Import from File…** wählen und die Datei auswählen.
+4. Zugangsdaten (Credentials) und Tabellen nach dem Import einmal zuordnen. Sie sind nie Teil der Datei.
+
+Die Abbildungen in diesem Teil sind nach n8n nachgezeichnet, keine Screenshots. Je nach n8n-Version heißen einzelne Felder leicht anders; die fertigen Dateien dienen dann als Vergleich.

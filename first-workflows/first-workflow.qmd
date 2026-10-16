@@ -32,6 +32,8 @@ Wer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen
 Nach dem Import sind Manual Trigger, Set, Send Email und Set vorhanden. Der Data-Table-Knoten fehlt bewusst, weil Tabellen-IDs in jeder n8n-Instanz lokal entstehen. Die Tabelle anlegen und im Data-Table-Knoten neu auswählen, dann ist der Workflow vollständig.
 
 
+![Was zwischen den Knoten wandert: Felder, Expressions und der Zugriff per Knotenname.](../images/erste-workflows/erster-datenfluss.svg)
+
 ## Schritt für Schritt selbst bauen
 
 Wir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat dabei einen Namen, der im Canvas angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen wie *Edit Fields* oder *Send an Email*. Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.
