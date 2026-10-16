@@ -1,10 +1,26 @@
-# Pricing und der Vergleich mit Zapier oder Make
+# Werkzeuge im Vergleich
 
 Die Abrechnungslogik unterscheidet sich zwischen n8n und den klassischen iPaaS-Anbietern grundlegend. Der Begriff iPaaS (Integration Platform as a Service) bezeichnet Cloud-Plattformen, die Anwendungen, Daten und Prozesse miteinander verbinden, ohne dass eine eigene Integrationssoftware betrieben werden muss. Zapier und Make sind die bekanntesten Vertreter dieser Kategorie.
 
 Die zentrale Achse des Vergleichs ist die Abrechnungseinheit: Klassische Anbieter rechnen pro Task ab, n8n pro Workflow-Execution. Diese Logik beeinflusst, wie Workflows zugeschnitten werden.
 
+## Überblick
+
+| | n8n | Zapier | Make |
+|---|---|---|---|
+| Abrechnung | pro Durchlauf (Execution) | pro Schritt (Task) | pro Schritt (Operation) |
+| Einstiegstarif | ab ca. 24 € im Monat für 2.500 Executions | ab ca. 73 € im Monat für 750 Tasks | ab ca. 16 € im Monat für 10.000 Operations |
+| Selbst betreiben | ja, ohne Lizenzkosten | nein, nur Cloud | nein, nur Cloud |
+| KI-Bausteine | eingebaut | teilweise, oft zugekauft | teilweise, oft zugekauft |
+| Code-Schritte | JavaScript und Python | eingeschränkt | eingeschränkt |
+| Einstieg | mittlere Lernkurve | flach | flach |
+| **Passt, wenn …** | lange Workflows, KI oder eigener Betrieb wichtig | wenige Schritte, schneller Einstieg | wenige Schritte, viele Durchläufe |
+
+: Drei Werkzeuge im Überblick. Preise sind Größenordnungen, alle Anbieter ändern ihre Tarife regelmäßig.
+
 ## Zwei Abrechnungsmodelle
+
+![Derselbe Durchlauf mit 50 Schritten: bei Zapier oder Make 50 Tasks, bei n8n eine Execution.](../images/lektionen/preis-rechnungseinheit.svg)
 
 Klassische Anbieter wie Zapier oder Make rechnen **pro Task** ab. Jeder einzelne Schritt in einem Workflow zählt. Bei hunderttausend Tasks pro Monat liegen die Lizenzkosten bei mehreren hundert Euro.
 
@@ -23,6 +39,8 @@ Für ein typisches Marketing- oder Operations-Team mit hundert Use-Cases im Mona
 - **n8n Managed Hosting** durch Drittanbieter wie InstaPods ist ab rund 7 € im Monat verfügbar
 - **Zapier** im vergleichbaren Tarif ab rund 73 € im Monat für 750 Tasks
 - **Make** im vergleichbaren Tarif ab rund 16 € im Monat für 10.000 Operations
+
+![100 Durchläufe im Monat: Verbrauch im Verhältnis zum Einstiegstarif bei 5 und bei 50 Schritten.](../images/lektionen/preis-schrittzahl.svg)
 
 Die Zahlen sind volatil, denn alle genannten Anbieter passen Tarife regelmäßig an. Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab: Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben; bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.
 

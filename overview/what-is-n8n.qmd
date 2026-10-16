@@ -1,4 +1,4 @@
-# Was n8n im Kern leistet
+# Was n8n leistet
 
 Eine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehen. Wir beginnen daher mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.
 
@@ -11,6 +11,8 @@ Eine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehe
 3. **Festhalten:** Die Nachricht landet in einer Tabelle, damit das Team sie später bearbeiten kann.
 
 Genau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontaktformular, eingehende Rechnung oder wöchentliches Reporting. Drei Schritte, drei Werkzeuge, ein einziger Workflow, der danach von alleine läuft.
+
+![n8n verbindet vorhandene Werkzeuge: Ein Kontaktformular startet einen Workflow mit drei Schritten, der eine Bestätigung ins Postfach schickt und eine Zeile in die Tabelle schreibt.](../images/lektionen/grundlagen-formularfluss.svg)
 
 ## Zwei Kernaufgaben
 
@@ -31,7 +33,11 @@ n8n lässt sich gut mit einer gut sortierten Werkstatt vergleichen:
 Wer eine Werkstatt einrichtet, muss nicht jedes Werkzeug selbst bauen. Er muss aber wissen, welches Werkzeug zu welcher Aufgabe passt.
 :::
 
+![Rechnung per Mail, n8n fragt einen KI-Dienst nach der Kategorie und legt die Rechnung im passenden Ordner ab.](../images/lektionen/grundlagen-daten-und-ki.svg)
+
 ## Was n8n nicht ist
+
+![Was n8n ist und was nicht.](../images/lektionen/uebersicht-ist-nicht.svg)
 
 n8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht **dazwischen**, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.
 

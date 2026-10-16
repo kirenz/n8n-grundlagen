@@ -1,6 +1,22 @@
-# Cloud, Self-Hosted oder Managed Hosting
+# Betrieb wählen
 
 Drei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von der Größe des Vorhabens ab als von drei Faktoren: dem erwarteten Volumen an Workflow-Ausführungen, der Empfindlichkeit der Daten und den verfügbaren IT-Skills im Team.
+
+## Überblick
+
+![Wer übernimmt welche Aufgabe: Bei Cloud betreibt n8n die Technik, bei Managed Hosting ein Anbieter, bei Self-Hosted das eigene Team.](../images/lektionen/hosting-betriebsverantwortung.svg)
+
+| | Cloud | Managed Hosting | Self-Hosted |
+|---|---|---|---|
+| Wer betreibt die Technik? | n8n selbst | ein Anbieter, z. B. InstaPods | das eigene Team |
+| Kosten | ab ca. 24 € im Monat für 2.500 Executions | ab ca. 7 € im Monat | keine Lizenz, Server ab ca. 5 € im Monat |
+| Eigener Aufwand | keiner | kaum | 1 bis 2 Std. Einrichtung, 1 bis 3 Std. Pflege im Monat |
+| Start | in Minuten | kurzfristig | nach der Einrichtung |
+| Kontrolle über Daten | Daten beim Hersteller | eigene Instanz, EU-Server wählbar | volle Kontrolle |
+| Anpassbarkeit | im Rahmen des Tarifs | begrenzt | vollständig |
+| **Passt, wenn …** | erste Schritte, keine IT im Team | sensible Daten, aber keine IT | sensible Daten oder hohes Volumen, IT vorhanden |
+
+: Drei Betriebsformen im Überblick. Preise sind Größenordnungen.
 
 ## Cloud
 
@@ -66,6 +82,8 @@ In regulierten Branchen ist Datensouveränität nicht optional, sondern Pflicht.
 ### Skill-Bestand: wer pflegt die Instanz?
 
 Ohne IT-Kapazität sind Cloud oder Managed Hosting realistische Optionen. Eine Self-Host-Instanz, die nicht aktualisiert und überwacht wird, wird auf Dauer zum Sicherheits-Risiko. Diese Frage gehört vor jede technische Diskussion.
+
+![Entscheidungsbaum: Sensible Daten im eigenen Haus? Mit IT Self-Hosted, ohne IT Managed Hosting. Ohne sensible Daten: bei vielen Durchläufen und IT Self-Hosted, sonst Cloud.](../images/lektionen/hosting-leitfragen.svg)
 
 ## Übersicht zur Auswahl
 
