@@ -72,188 +72,210 @@
   {
     "objectID": "overview/what-is-n8n.html",
     "href": "overview/what-is-n8n.html",
-    "title": "1  Was n8n im Kern leistet",
+    "title": "1  Was n8n leistet",
     "section": "",
     "text": "1.1 Ein konkreter Anwendungsfall\nEine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehen. Wir beginnen daher mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.\nÜber das Kontaktformular einer Website geht eine Nachricht ein. Drei Schritte sollen automatisch ablaufen, ohne dass eine Person den Vorgang manuell anstößt:\nGenau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontaktformular, eingehende Rechnung oder wöchentliches Reporting. Drei Schritte, drei Werkzeuge, ein einziger Workflow, der danach von alleine läuft.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n leistet</span>"
     ]
   },
   {
     "objectID": "overview/what-is-n8n.html#ein-konkreter-anwendungsfall",
     "href": "overview/what-is-n8n.html#ein-konkreter-anwendungsfall",
-    "title": "1  Was n8n im Kern leistet",
+    "title": "1  Was n8n leistet",
     "section": "",
-    "text": "Auslöser: Eine neue Nachricht trifft über das Kontaktformular ein.\nAntworten: Eine Bestätigungs-E-Mail geht zurück: „Vielen Dank, wir melden uns innerhalb eines Werktags.”\nFesthalten: Die Nachricht landet in einer Tabelle, damit das Team sie später bearbeiten kann.",
+    "text": "Auslöser: Eine neue Nachricht trifft über das Kontaktformular ein.\nAntworten: Eine Bestätigungs-E-Mail geht zurück: „Vielen Dank, wir melden uns innerhalb eines Werktags.”\nFesthalten: Die Nachricht landet in einer Tabelle, damit das Team sie später bearbeiten kann.\n\n\n\n\n\nn8n verbindet vorhandene Werkzeuge: Ein Kontaktformular startet einen Workflow mit drei Schritten, der eine Bestätigung ins Postfach schickt und eine Zeile in die Tabelle schreibt.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n leistet</span>"
     ]
   },
   {
     "objectID": "overview/what-is-n8n.html#zwei-kernaufgaben",
     "href": "overview/what-is-n8n.html#zwei-kernaufgaben",
-    "title": "1  Was n8n im Kern leistet",
+    "title": "1  Was n8n leistet",
     "section": "1.2 Zwei Kernaufgaben",
-    "text": "1.2 Zwei Kernaufgaben\nn8n erfüllt im Kern zwei Aufgaben, die im selben Editor zusammenfallen:\nDaten zwischen Werkzeugen bewegen. n8n bringt über fünfhundert fertige Integrationen mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt, eigener Code ist optional.\nKI-Bausteine als Standard mitbringen. Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen, all diese Bausteine sind keine Zusatzkomponenten, sondern Standardausstattung im Editor. Genau diese Mischung aus Daten-Bewegung und KI-Bereitschaft unterscheidet n8n von klassischen Automation-Tools.\n\n\n\n\n\n\nTippWerkstatt-Analogie für n8n\n\n\n\n\n\nn8n lässt sich gut mit einer gut sortierten Werkstatt vergleichen:\n\nDie Werkstatt ist die n8n-Instanz selbst, also der Raum, in dem alles zusammenläuft.\nWerkbänke sind die einzelnen Workflows, jeder für eine bestimmte Tätigkeit eingerichtet.\nWerkzeuge an der Wand sind die Knoten (Mail-Knoten, Tabellen-Knoten, KI-Knoten), die je nach Bedarf von der Werkbank gegriffen werden.\nStrom und Druckluft sind die Auslöser im Hintergrund, die die Werkstatt überhaupt erst aktivieren, also ein Trigger pro Werkbank.\n\nWer eine Werkstatt einrichtet, muss nicht jedes Werkzeug selbst bauen. Er muss aber wissen, welches Werkzeug zu welcher Aufgabe passt.",
+    "text": "1.2 Zwei Kernaufgaben\nn8n erfüllt im Kern zwei Aufgaben, die im selben Editor zusammenfallen:\nDaten zwischen Werkzeugen bewegen. n8n bringt über fünfhundert fertige Integrationen mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt, eigener Code ist optional.\nKI-Bausteine als Standard mitbringen. Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen, all diese Bausteine sind keine Zusatzkomponenten, sondern Standardausstattung im Editor. Genau diese Mischung aus Daten-Bewegung und KI-Bereitschaft unterscheidet n8n von klassischen Automation-Tools.\n\n\n\n\n\n\nTippWerkstatt-Analogie für n8n\n\n\n\n\n\nn8n lässt sich gut mit einer gut sortierten Werkstatt vergleichen:\n\nDie Werkstatt ist die n8n-Instanz selbst, also der Raum, in dem alles zusammenläuft.\nWerkbänke sind die einzelnen Workflows, jeder für eine bestimmte Tätigkeit eingerichtet.\nWerkzeuge an der Wand sind die Knoten (Mail-Knoten, Tabellen-Knoten, KI-Knoten), die je nach Bedarf von der Werkbank gegriffen werden.\nStrom und Druckluft sind die Auslöser im Hintergrund, die die Werkstatt überhaupt erst aktivieren, also ein Trigger pro Werkbank.\n\nWer eine Werkstatt einrichtet, muss nicht jedes Werkzeug selbst bauen. Er muss aber wissen, welches Werkzeug zu welcher Aufgabe passt.\n\n\n\n\n\n\nRechnung per Mail, n8n fragt einen KI-Dienst nach der Kategorie und legt die Rechnung im passenden Ordner ab.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n leistet</span>"
     ]
   },
   {
     "objectID": "overview/what-is-n8n.html#was-n8n-nicht-ist",
     "href": "overview/what-is-n8n.html#was-n8n-nicht-ist",
-    "title": "1  Was n8n im Kern leistet",
+    "title": "1  Was n8n leistet",
     "section": "1.3 Was n8n nicht ist",
-    "text": "1.3 Was n8n nicht ist\nn8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht dazwischen, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.\n\n\n\n\n\n\nAbbildung 1.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, Tools, Daten und KI-Modelle werden angesprochen.\n\n\n\n\n\n\n\n\n\nn8n ersetzt nicht die spezialisierten Werkzeuge, sondern verbindet sie. Wer Salesforce, ein eigenes Sprach-Modell, eine Postgres-Datenbank und ein Slack-Setup hat, nutzt n8n als Bindeglied und nicht als Ersatz.",
+    "text": "1.3 Was n8n nicht ist\n\n\n\nWas n8n ist und was nicht.\n\n\nn8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht dazwischen, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.\n\n\n\n\n\n\nAbbildung 1.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, Tools, Daten und KI-Modelle werden angesprochen.\n\n\n\n\n\n\n\n\n\nn8n ersetzt nicht die spezialisierten Werkzeuge, sondern verbindet sie. Wer Salesforce, ein eigenes Sprach-Modell, eine Postgres-Datenbank und ein Slack-Setup hat, nutzt n8n als Bindeglied und nicht als Ersatz.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n leistet</span>"
     ]
   },
   {
     "objectID": "overview/what-is-n8n.html#typische-anwendungsfelder",
     "href": "overview/what-is-n8n.html#typische-anwendungsfelder",
-    "title": "1  Was n8n im Kern leistet",
+    "title": "1  Was n8n leistet",
     "section": "1.4 Typische Anwendungsfelder",
     "text": "1.4 Typische Anwendungsfelder\nDrei Aufgabenklassen sind typische Einsatzgebiete für n8n:\n\nRoutine-Workflows mit Trigger-Aktion-Datenfluss. Eine Mail trifft ein, eine Aktion wird ausgeführt, ein Eintrag wird geschrieben. Das ist klassisches Tagesgeschäft im Marketing, im Vertrieb und im Customer-Support.\nHybride Pipelines mit deterministischen und KI-Schritten. Vor- und Nachverarbeitung laufen deterministisch ab, und mittendrin steht ein KI-Schritt für Klassifikation (also das Zuordnen einer Eingabe zu einer Kategorie), Zusammenfassung oder Antwort-Formulierung.\nWissens-Anwendungen mit eigenen Daten. RAG-Pipelines greifen mit dem Sprach-Modell auf firmeneigene Inhalte zu, statt aus dem allgemeinen Internet-Wissen zu antworten.\n\nDie folgenden Module greifen diese drei Aufgabenklassen jeweils auf und setzen sie Schritt für Schritt mit n8n um.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n im Kern leistet</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Was n8n leistet</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html",
     "href": "overview/pricing.html",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
+    "title": "2  Werkzeuge im Vergleich",
     "section": "",
-    "text": "2.1 Zwei Abrechnungsmodelle\nDie Abrechnungslogik unterscheidet sich zwischen n8n und den klassischen iPaaS-Anbietern grundlegend. Der Begriff iPaaS (Integration Platform as a Service) bezeichnet Cloud-Plattformen, die Anwendungen, Daten und Prozesse miteinander verbinden, ohne dass eine eigene Integrationssoftware betrieben werden muss. Zapier und Make sind die bekanntesten Vertreter dieser Kategorie.\nDie zentrale Achse des Vergleichs ist die Abrechnungseinheit: Klassische Anbieter rechnen pro Task ab, n8n pro Workflow-Execution. Diese Logik beeinflusst, wie Workflows zugeschnitten werden.\nKlassische Anbieter wie Zapier oder Make rechnen pro Task ab. Jeder einzelne Schritt in einem Workflow zählt. Bei hunderttausend Tasks pro Monat liegen die Lizenzkosten bei mehreren hundert Euro.\nn8n rechnet pro Workflow-Execution ab. Eine vollständige Workflow-Ausführung gilt als eine Einheit, unabhängig von der Anzahl der Schritte. Ein Workflow mit fünfzig Knoten wird gleich abgerechnet wie ein Workflow mit fünf, solange beide einmal laufen.",
+    "text": "2.1 Überblick\nDie Abrechnungslogik unterscheidet sich zwischen n8n und den klassischen iPaaS-Anbietern grundlegend. Der Begriff iPaaS (Integration Platform as a Service) bezeichnet Cloud-Plattformen, die Anwendungen, Daten und Prozesse miteinander verbinden, ohne dass eine eigene Integrationssoftware betrieben werden muss. Zapier und Make sind die bekanntesten Vertreter dieser Kategorie.\nDie zentrale Achse des Vergleichs ist die Abrechnungseinheit: Klassische Anbieter rechnen pro Task ab, n8n pro Workflow-Execution. Diese Logik beeinflusst, wie Workflows zugeschnitten werden.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Werkzeuge im Vergleich</span>"
+    ]
+  },
+  {
+    "objectID": "overview/pricing.html#überblick",
+    "href": "overview/pricing.html#überblick",
+    "title": "2  Werkzeuge im Vergleich",
+    "section": "",
+    "text": "Drei Werkzeuge im Überblick. Preise sind Größenordnungen, alle Anbieter ändern ihre Tarife regelmäßig.\n\n\n\n\n\n\n\n\n\nn8n\nZapier\nMake\n\n\n\n\nAbrechnung\npro Durchlauf (Execution)\npro Schritt (Task)\npro Schritt (Operation)\n\n\nEinstiegstarif\nab ca. 24 € im Monat für 2.500 Executions\nab ca. 73 € im Monat für 750 Tasks\nab ca. 16 € im Monat für 10.000 Operations\n\n\nSelbst betreiben\nja, ohne Lizenzkosten\nnein, nur Cloud\nnein, nur Cloud\n\n\nKI-Bausteine\neingebaut\nteilweise, oft zugekauft\nteilweise, oft zugekauft\n\n\nCode-Schritte\nJavaScript und Python\neingeschränkt\neingeschränkt\n\n\nEinstieg\nmittlere Lernkurve\nflach\nflach\n\n\nPasst, wenn …\nlange Workflows, KI oder eigener Betrieb wichtig\nwenige Schritte, schneller Einstieg\nwenige Schritte, viele Durchläufe",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Werkzeuge im Vergleich</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#zwei-abrechnungsmodelle",
     "href": "overview/pricing.html#zwei-abrechnungsmodelle",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
-    "section": "",
-    "text": "WichtigWas das praktisch bedeutet\n\n\n\nDie Abrechnungslogik formt das Workflow-Design. Bei Per-Task-Abrechnung lohnt es sich, Schritte zu konsolidieren. Bei Per-Execution-Abrechnung spielt die Anzahl der Schritte für die Kosten keine Rolle. Welches Modell besser passt, hängt vom Einsatzprofil ab.",
+    "title": "2  Werkzeuge im Vergleich",
+    "section": "2.2 Zwei Abrechnungsmodelle",
+    "text": "2.2 Zwei Abrechnungsmodelle\n\n\n\nDerselbe Durchlauf mit 50 Schritten: bei Zapier oder Make 50 Tasks, bei n8n eine Execution.\n\n\nKlassische Anbieter wie Zapier oder Make rechnen pro Task ab. Jeder einzelne Schritt in einem Workflow zählt. Bei hunderttausend Tasks pro Monat liegen die Lizenzkosten bei mehreren hundert Euro.\nn8n rechnet pro Workflow-Execution ab. Eine vollständige Workflow-Ausführung gilt als eine Einheit, unabhängig von der Anzahl der Schritte. Ein Workflow mit fünfzig Knoten wird gleich abgerechnet wie ein Workflow mit fünf, solange beide einmal laufen.\n\n\n\n\n\n\nWichtigWas das praktisch bedeutet\n\n\n\nDie Abrechnungslogik formt das Workflow-Design. Bei Per-Task-Abrechnung lohnt es sich, Schritte zu konsolidieren. Bei Per-Execution-Abrechnung spielt die Anzahl der Schritte für die Kosten keine Rolle. Welches Modell besser passt, hängt vom Einsatzprofil ab.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Werkzeuge im Vergleich</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#konkrete-größenordnungen",
     "href": "overview/pricing.html#konkrete-größenordnungen",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
-    "section": "2.2 Konkrete Größenordnungen",
-    "text": "2.2 Konkrete Größenordnungen\nFür ein typisches Marketing- oder Operations-Team mit hundert Use-Cases im Monat:\n\nn8n Cloud beginnt bei rund 24 € im Monat für 2.500 Executions, der Pro-Tarif liegt bei rund 50 € im Monat\nn8n Self-Host kostet keine Lizenz; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, was ab rund 5 € im Monat verfügbar ist\nn8n Managed Hosting durch Drittanbieter wie InstaPods ist ab rund 7 € im Monat verfügbar\nZapier im vergleichbaren Tarif ab rund 73 € im Monat für 750 Tasks\nMake im vergleichbaren Tarif ab rund 16 € im Monat für 10.000 Operations\n\nDie Zahlen sind volatil, denn alle genannten Anbieter passen Tarife regelmäßig an. Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab: Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben; bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.",
+    "title": "2  Werkzeuge im Vergleich",
+    "section": "2.3 Konkrete Größenordnungen",
+    "text": "2.3 Konkrete Größenordnungen\nFür ein typisches Marketing- oder Operations-Team mit hundert Use-Cases im Monat:\n\nn8n Cloud beginnt bei rund 24 € im Monat für 2.500 Executions, der Pro-Tarif liegt bei rund 50 € im Monat\nn8n Self-Host kostet keine Lizenz; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, was ab rund 5 € im Monat verfügbar ist\nn8n Managed Hosting durch Drittanbieter wie InstaPods ist ab rund 7 € im Monat verfügbar\nZapier im vergleichbaren Tarif ab rund 73 € im Monat für 750 Tasks\nMake im vergleichbaren Tarif ab rund 16 € im Monat für 10.000 Operations\n\n\n\n\n100 Durchläufe im Monat: Verbrauch im Verhältnis zum Einstiegstarif bei 5 und bei 50 Schritten.\n\n\nDie Zahlen sind volatil, denn alle genannten Anbieter passen Tarife regelmäßig an. Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab: Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben; bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Werkzeuge im Vergleich</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#vergleich-auf-einen-blick",
     "href": "overview/pricing.html#vergleich-auf-einen-blick",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
-    "section": "2.3 Vergleich auf einen Blick",
-    "text": "2.3 Vergleich auf einen Blick\n\n\n\n\n\n\n\n\nAspekt\nn8n\nZapier / Make\n\n\n\n\nAbrechnungs-Einheit\nPro Workflow-Execution\nPro Task / Operation\n\n\nSelf-Host möglich\nJa, kostenfrei (Fair-Code: Quellcode offen, Nutzung im eigenen Betrieb kostenlos)\nNein\n\n\nKI-Knoten als Standard\nJa, eingebaut\nTeilweise, oft zugekauft\n\n\nCode-Knoten erlaubt\nJa, JavaScript und Python\nEingeschränkt\n\n\nLernkurve\nMittel\nFlach\n\n\n\n\n\n\n\n\n\nEine flache Lernkurve erleichtert den Einstieg, ein größerer Funktionsumfang erlaubt komplexere Workflows. Welches Kriterium stärker zählt, hängt vom Einsatzprofil ab.",
+    "title": "2  Werkzeuge im Vergleich",
+    "section": "2.4 Vergleich auf einen Blick",
+    "text": "2.4 Vergleich auf einen Blick\n\n\n\n\n\n\n\n\nAspekt\nn8n\nZapier / Make\n\n\n\n\nAbrechnungs-Einheit\nPro Workflow-Execution\nPro Task / Operation\n\n\nSelf-Host möglich\nJa, kostenfrei (Fair-Code: Quellcode offen, Nutzung im eigenen Betrieb kostenlos)\nNein\n\n\nKI-Knoten als Standard\nJa, eingebaut\nTeilweise, oft zugekauft\n\n\nCode-Knoten erlaubt\nJa, JavaScript und Python\nEingeschränkt\n\n\nLernkurve\nMittel\nFlach\n\n\n\n\n\n\n\n\n\nEine flache Lernkurve erleichtert den Einstieg, ein größerer Funktionsumfang erlaubt komplexere Workflows. Welches Kriterium stärker zählt, hängt vom Einsatzprofil ab.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Werkzeuge im Vergleich</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#wirtschaftliche-einordnung",
     "href": "overview/pricing.html#wirtschaftliche-einordnung",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
-    "section": "2.4 Wirtschaftliche Einordnung",
-    "text": "2.4 Wirtschaftliche Einordnung\nPraxis-Berichte aus dem Mittelstand nennen pro Use-Case Einsparungen zwischen fünf und zwanzig Stunden Wochenarbeitszeit, etwa für Lead-Qualifikation, Customer-Support-Routing, Reporting oder Invoice-Automation. Die Zahlen sind keine Versprechen, sondern Größenordnungen aus aktuellen Erfahrungsberichten.\nSie ordnen die Pricing-Frage in einen Gesamt-Kontext ein: Lizenzkosten sind nur ein Teil der Wirtschaftlichkeitsrechnung. Hinzu kommen Aufwand für Einarbeitung, Workflow-Pflege und die Integration in bestehende Prozesse.",
+    "title": "2  Werkzeuge im Vergleich",
+    "section": "2.5 Wirtschaftliche Einordnung",
+    "text": "2.5 Wirtschaftliche Einordnung\nPraxis-Berichte aus dem Mittelstand nennen pro Use-Case Einsparungen zwischen fünf und zwanzig Stunden Wochenarbeitszeit, etwa für Lead-Qualifikation, Customer-Support-Routing, Reporting oder Invoice-Automation. Die Zahlen sind keine Versprechen, sondern Größenordnungen aus aktuellen Erfahrungsberichten.\nSie ordnen die Pricing-Frage in einen Gesamt-Kontext ein: Lizenzkosten sind nur ein Teil der Wirtschaftlichkeitsrechnung. Hinzu kommen Aufwand für Einarbeitung, Workflow-Pflege und die Integration in bestehende Prozesse.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Werkzeuge im Vergleich</span>"
     ]
   },
   {
     "objectID": "overview/pricing.html#auswahl-kriterien",
     "href": "overview/pricing.html#auswahl-kriterien",
-    "title": "2  Pricing und der Vergleich mit Zapier oder Make",
-    "section": "2.5 Auswahl-Kriterien",
-    "text": "2.5 Auswahl-Kriterien\nFolgende Kriterien helfen bei der Auswahl zwischen den Plattformen:\n\n\n\n\n\n\n\n\nKriterium\nEher Zapier oder Make\nEher n8n\n\n\n\n\nWorkflow-Länge\nWenige Schritte pro Workflow\nLange, mehrstufige Workflows\n\n\nHosting-Kontrolle\nCloud-only ist akzeptabel\nSelf-Hosting gewünscht oder gefordert\n\n\nKI-Integration\nPunktueller Einsatz reicht\nKI-Bausteine als Standard\n\n\nLernaufwand\nMöglichst flach\nHöherer Einarbeitungs-Aufwand vertretbar\n\n\nCode-Schritte\nSelten erforderlich\nJavaScript oder Python im Workflow\n\n\n\nWer eine bestehende Lösung mit wenigen einfachen Workflows betreibt, hat selten einen Grund zum Wechsel allein wegen des Pricings. Ein Plattform-Wechsel bedeutet immer auch Migrations- und Schulungs-Aufwand.",
+    "title": "2  Werkzeuge im Vergleich",
+    "section": "2.6 Auswahl-Kriterien",
+    "text": "2.6 Auswahl-Kriterien\nFolgende Kriterien helfen bei der Auswahl zwischen den Plattformen:\n\n\n\n\n\n\n\n\nKriterium\nEher Zapier oder Make\nEher n8n\n\n\n\n\nWorkflow-Länge\nWenige Schritte pro Workflow\nLange, mehrstufige Workflows\n\n\nHosting-Kontrolle\nCloud-only ist akzeptabel\nSelf-Hosting gewünscht oder gefordert\n\n\nKI-Integration\nPunktueller Einsatz reicht\nKI-Bausteine als Standard\n\n\nLernaufwand\nMöglichst flach\nHöherer Einarbeitungs-Aufwand vertretbar\n\n\nCode-Schritte\nSelten erforderlich\nJavaScript oder Python im Workflow\n\n\n\nWer eine bestehende Lösung mit wenigen einfachen Workflows betreibt, hat selten einen Grund zum Wechsel allein wegen des Pricings. Ein Plattform-Wechsel bedeutet immer auch Migrations- und Schulungs-Aufwand.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pricing und der Vergleich mit Zapier oder Make</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Werkzeuge im Vergleich</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html",
     "href": "overview/hosting.html",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
+    "title": "3  Betrieb wählen",
     "section": "",
-    "text": "3.1 Cloud\nDrei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von der Größe des Vorhabens ab als von drei Faktoren: dem erwarteten Volumen an Workflow-Ausführungen, der Empfindlichkeit der Daten und den verfügbaren IT-Skills im Team.\nDie n8n-Cloud ist eine SaaS-Variante (Software, die im Internet gemietet statt installiert wird), die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung.\nEigenschaften:",
+    "text": "3.1 Überblick\nDrei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von der Größe des Vorhabens ab als von drei Faktoren: dem erwarteten Volumen an Workflow-Ausführungen, der Empfindlichkeit der Daten und den verfügbaren IT-Skills im Team.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Betrieb wählen</span>"
+    ]
+  },
+  {
+    "objectID": "overview/hosting.html#überblick",
+    "href": "overview/hosting.html#überblick",
+    "title": "3  Betrieb wählen",
+    "section": "",
+    "text": "Wer übernimmt welche Aufgabe: Bei Cloud betreibt n8n die Technik, bei Managed Hosting ein Anbieter, bei Self-Hosted das eigene Team.\n\n\n\nDrei Betriebsformen im Überblick. Preise sind Größenordnungen.\n\n\n\n\n\n\n\n\n\nCloud\nManaged Hosting\nSelf-Hosted\n\n\n\n\nWer betreibt die Technik?\nn8n selbst\nein Anbieter, z. B. InstaPods\ndas eigene Team\n\n\nKosten\nab ca. 24 € im Monat für 2.500 Executions\nab ca. 7 € im Monat\nkeine Lizenz, Server ab ca. 5 € im Monat\n\n\nEigener Aufwand\nkeiner\nkaum\n1 bis 2 Std. Einrichtung, 1 bis 3 Std. Pflege im Monat\n\n\nStart\nin Minuten\nkurzfristig\nnach der Einrichtung\n\n\nKontrolle über Daten\nDaten beim Hersteller\neigene Instanz, EU-Server wählbar\nvolle Kontrolle\n\n\nAnpassbarkeit\nim Rahmen des Tarifs\nbegrenzt\nvollständig\n\n\nPasst, wenn …\nerste Schritte, keine IT im Team\nsensible Daten, aber keine IT\nsensible Daten oder hohes Volumen, IT vorhanden",
+    "crumbs": [
+      "Plattform und Auswahl",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Betrieb wählen</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#cloud",
     "href": "overview/hosting.html#cloud",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
-    "section": "",
-    "text": "Geringer Setup-Aufwand, keine Server-Wartung, kein Update-Aufwand\nAb rund 24 € im Monat für 2.500 Executions, der Pro-Tarif ab rund 50 € im Monat\nGeeignet für Teams ohne dedizierte IT-Ressourcen oder für erste Schritte\n\n\n\n\n\n\n\nFür eine erste Lernphase ist die Cloud-Variante eine pragmatische Option, weil Serverbetrieb mit Linux, Docker (Software-Container) oder TLS-Zertifikaten (für verschlüsselte Verbindungen) dabei kein Thema ist. Wer später Self-Hosting betreiben will, kann Workflows als JSON (ein Textformat für Daten) exportieren und in eine eigene Instanz übertragen.",
+    "title": "3  Betrieb wählen",
+    "section": "3.2 Cloud",
+    "text": "3.2 Cloud\nDie n8n-Cloud ist eine SaaS-Variante (Software, die im Internet gemietet statt installiert wird), die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung.\nEigenschaften:\n\nGeringer Setup-Aufwand, keine Server-Wartung, kein Update-Aufwand\nAb rund 24 € im Monat für 2.500 Executions, der Pro-Tarif ab rund 50 € im Monat\nGeeignet für Teams ohne dedizierte IT-Ressourcen oder für erste Schritte\n\n\n\n\n\n\n\nFür eine erste Lernphase ist die Cloud-Variante eine pragmatische Option, weil Serverbetrieb mit Linux, Docker (Software-Container) oder TLS-Zertifikaten (für verschlüsselte Verbindungen) dabei kein Thema ist. Wer später Self-Hosting betreiben will, kann Workflows als JSON (ein Textformat für Daten) exportieren und in eine eigene Instanz übertragen.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Betrieb wählen</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#self-hosted",
     "href": "overview/hosting.html#self-hosted",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
-    "section": "3.2 Self-Hosted",
-    "text": "3.2 Self-Hosted\nDie Community Edition von n8n nutzt eine Fair-Code-Lizenz: Quellcode öffentlich, kostenlose Nutzung und Anpassung erlaubt, Wiederverkauf als konkurrierender Managed-Service ausgeschlossen. Damit unterscheidet sich Fair-Code von klassischen Open-Source-Lizenzen wie MIT oder Apache, die auch kommerzielle Konkurrenz-Angebote zulassen. n8n läuft auf jeder beliebigen Maschine, vom Raspberry Pi im Heimnetz bis zum Cloud-Server bei Hetzner, AWS oder Azure.\nEigenschaften:\n\nUnbegrenzte Workflows, Ausführungen und Nutzer\nKeine Lizenzkosten; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi im Heimnetz) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, ab rund 5 € im Monat\n1 bis 2 Stunden initialer Setup-Aufwand, danach ca. 1 bis 3 Stunden pro Monat Wartung\nVolle Kontrolle über Daten, Backups und Update-Zeitpunkte\n\n\n\n\n\n\n\nWichtigWas Self-Host wirklich bedeutet\n\n\n\nSelf-Host ist nicht nur eine Installation. Wer eine eigene Instanz betreibt, verantwortet auch:\n\nRegelmäßige Updates der n8n-Version\nBackup-Strategie für Workflows und Credentials\nTLS-Zertifikate und sichere Erreichbarkeit\nMonitoring und Logging im laufenden Betrieb\n\nDiese Aufgaben sind technisch beherrschbar, erfordern aber kontinuierlichen Aufwand. Vor einer Entscheidung für Self-Host sollte daher geklärt sein, wer die Pflege der Instanz im laufenden Betrieb übernimmt.",
+    "title": "3  Betrieb wählen",
+    "section": "3.3 Self-Hosted",
+    "text": "3.3 Self-Hosted\nDie Community Edition von n8n nutzt eine Fair-Code-Lizenz: Quellcode öffentlich, kostenlose Nutzung und Anpassung erlaubt, Wiederverkauf als konkurrierender Managed-Service ausgeschlossen. Damit unterscheidet sich Fair-Code von klassischen Open-Source-Lizenzen wie MIT oder Apache, die auch kommerzielle Konkurrenz-Angebote zulassen. n8n läuft auf jeder beliebigen Maschine, vom Raspberry Pi im Heimnetz bis zum Cloud-Server bei Hetzner, AWS oder Azure.\nEigenschaften:\n\nUnbegrenzte Workflows, Ausführungen und Nutzer\nKeine Lizenzkosten; auf vorhandener Hardware (eigener Server, Arbeitsplatz-Rechner, Raspberry Pi im Heimnetz) entstehen keine zusätzlichen Kosten. Wer keine eigene Hardware nutzen möchte, kann einen virtuellen Server bei einem Cloud-Anbieter wie Hetzner, DigitalOcean oder AWS mieten, ab rund 5 € im Monat\n1 bis 2 Stunden initialer Setup-Aufwand, danach ca. 1 bis 3 Stunden pro Monat Wartung\nVolle Kontrolle über Daten, Backups und Update-Zeitpunkte\n\n\n\n\n\n\n\nWichtigWas Self-Host wirklich bedeutet\n\n\n\nSelf-Host ist nicht nur eine Installation. Wer eine eigene Instanz betreibt, verantwortet auch:\n\nRegelmäßige Updates der n8n-Version\nBackup-Strategie für Workflows und Credentials\nTLS-Zertifikate und sichere Erreichbarkeit\nMonitoring und Logging im laufenden Betrieb\n\nDiese Aufgaben sind technisch beherrschbar, erfordern aber kontinuierlichen Aufwand. Vor einer Entscheidung für Self-Host sollte daher geklärt sein, wer die Pflege der Instanz im laufenden Betrieb übernimmt.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Betrieb wählen</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#managed-hosting",
     "href": "overview/hosting.html#managed-hosting",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
-    "section": "3.3 Managed Hosting",
-    "text": "3.3 Managed Hosting\nSpezialisierte Anbieter wie InstaPods betreiben Self-Host-Instanzen für ihre Kunden. Die Kunden behalten die Datenkontrolle einer eigenen Instanz, ohne die Maschine selbst zu pflegen.\nEigenschaften:\n\nAb rund 7 € im Monat für eine Basis-Instanz\nKeine Lizenzkosten, keine eigene Server-Pflege\nDaten bleiben auf europäischen Servern, je nach Anbieter wählbar\nBegrenzte Anpassbarkeit gegenüber einer eigenen Maschine\n\nDiese Variante eignet sich für Teams, die die Kostenstruktur von Self-Host nutzen möchten, ohne den Linux-Server-Betrieb selbst zu übernehmen.",
+    "title": "3  Betrieb wählen",
+    "section": "3.4 Managed Hosting",
+    "text": "3.4 Managed Hosting\nSpezialisierte Anbieter wie InstaPods betreiben Self-Host-Instanzen für ihre Kunden. Die Kunden behalten die Datenkontrolle einer eigenen Instanz, ohne die Maschine selbst zu pflegen.\nEigenschaften:\n\nAb rund 7 € im Monat für eine Basis-Instanz\nKeine Lizenzkosten, keine eigene Server-Pflege\nDaten bleiben auf europäischen Servern, je nach Anbieter wählbar\nBegrenzte Anpassbarkeit gegenüber einer eigenen Maschine\n\nDiese Variante eignet sich für Teams, die die Kostenstruktur von Self-Host nutzen möchten, ohne den Linux-Server-Betrieb selbst zu übernehmen.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Betrieb wählen</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#drei-fragen-die-die-entscheidung-leiten",
     "href": "overview/hosting.html#drei-fragen-die-die-entscheidung-leiten",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
-    "section": "3.4 Drei Fragen, die die Entscheidung leiten",
-    "text": "3.4 Drei Fragen, die die Entscheidung leiten\nStatt mit einem Tool-Vergleich zu starten, lohnen sich drei vorgelagerte Fragen.\n\n3.4.1 Volumen: wie viele Ausführungen pro Monat?\nBei der Cloud-Variante steigen die Kosten mit der Anzahl der Executions, bei Self-Host und Managed Hosting bleiben die Server-Kosten konstant. Reine Lizenz- und Server-Kosten von Self-Host (ab rund 5 € im Monat) liegen meist unter den Cloud-Tarifen. Der praktische Aufwand fällt aber unterschiedlich aus: Cloud benötigt keine Wartung, Self-Host schon.\n\n\n3.4.2 Souveränität: welche Daten verlassen die eigene Infrastruktur?\nIn regulierten Branchen ist Datensouveränität nicht optional, sondern Pflicht. Patientendaten, Kundenkontakte mit besonderem Schutzbedarf oder interne Prozessdokumente werfen die Frage auf, wo sie verarbeitet werden dürfen. Für viele Anwendungsfälle scheiden Cloud-Hosts in den USA aus; EU-Cloud-Hosts oder eigenes Hosting bleiben als Optionen. Hetzner etwa betreibt Rechenzentren in Deutschland und Finnland, was die Anforderungen der DSGVO (Datenschutz-Grundverordnung der EU) vereinfacht.\n\n\n3.4.3 Skill-Bestand: wer pflegt die Instanz?\nOhne IT-Kapazität sind Cloud oder Managed Hosting realistische Optionen. Eine Self-Host-Instanz, die nicht aktualisiert und überwacht wird, wird auf Dauer zum Sicherheits-Risiko. Diese Frage gehört vor jede technische Diskussion.",
+    "title": "3  Betrieb wählen",
+    "section": "3.5 Drei Fragen, die die Entscheidung leiten",
+    "text": "3.5 Drei Fragen, die die Entscheidung leiten\nStatt mit einem Tool-Vergleich zu starten, lohnen sich drei vorgelagerte Fragen.\n\n3.5.1 Volumen: wie viele Ausführungen pro Monat?\nBei der Cloud-Variante steigen die Kosten mit der Anzahl der Executions, bei Self-Host und Managed Hosting bleiben die Server-Kosten konstant. Reine Lizenz- und Server-Kosten von Self-Host (ab rund 5 € im Monat) liegen meist unter den Cloud-Tarifen. Der praktische Aufwand fällt aber unterschiedlich aus: Cloud benötigt keine Wartung, Self-Host schon.\n\n\n3.5.2 Souveränität: welche Daten verlassen die eigene Infrastruktur?\nIn regulierten Branchen ist Datensouveränität nicht optional, sondern Pflicht. Patientendaten, Kundenkontakte mit besonderem Schutzbedarf oder interne Prozessdokumente werfen die Frage auf, wo sie verarbeitet werden dürfen. Für viele Anwendungsfälle scheiden Cloud-Hosts in den USA aus; EU-Cloud-Hosts oder eigenes Hosting bleiben als Optionen. Hetzner etwa betreibt Rechenzentren in Deutschland und Finnland, was die Anforderungen der DSGVO (Datenschutz-Grundverordnung der EU) vereinfacht.\n\n\n3.5.3 Skill-Bestand: wer pflegt die Instanz?\nOhne IT-Kapazität sind Cloud oder Managed Hosting realistische Optionen. Eine Self-Host-Instanz, die nicht aktualisiert und überwacht wird, wird auf Dauer zum Sicherheits-Risiko. Diese Frage gehört vor jede technische Diskussion.\n\n\n\nEntscheidungsbaum: Sensible Daten im eigenen Haus? Mit IT Self-Hosted, ohne IT Managed Hosting. Ohne sensible Daten: bei vielen Durchläufen und IT Self-Hosted, sonst Cloud.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Betrieb wählen</span>"
     ]
   },
   {
     "objectID": "overview/hosting.html#übersicht-zur-auswahl",
     "href": "overview/hosting.html#übersicht-zur-auswahl",
-    "title": "3  Cloud, Self-Hosted oder Managed Hosting",
-    "section": "3.5 Übersicht zur Auswahl",
-    "text": "3.5 Übersicht zur Auswahl\n\n\n\nSituation\nPassende Option\n\n\n\n\nErste Schritte, kleines Team, keine IT\nCloud\n\n\nSensible Daten, IT-Team vorhanden\nSelf-Hosted\n\n\nSensible Daten, keine IT\nManaged Hosting\n\n\nHohe Volumen, niedrige Lizenzkosten gewünscht\nSelf-Hosted\n\n\nLernen und Experimentieren\nCloud oder lokale Docker-Instanz\n\n\n\n\n\n\n\n\n\nDie Übersicht zeigt typische Zuordnungen, keine starren Regeln. Wer mit der Cloud-Variante startet und später wechselt, kann Workflows als JSON-Datei exportieren und in der neuen Instanz importieren. Der Wechsel ist reversibel; die erste Wahl muss daher nicht endgültig sein.",
+    "title": "3  Betrieb wählen",
+    "section": "3.6 Übersicht zur Auswahl",
+    "text": "3.6 Übersicht zur Auswahl\n\n\n\nSituation\nPassende Option\n\n\n\n\nErste Schritte, kleines Team, keine IT\nCloud\n\n\nSensible Daten, IT-Team vorhanden\nSelf-Hosted\n\n\nSensible Daten, keine IT\nManaged Hosting\n\n\nHohe Volumen, niedrige Lizenzkosten gewünscht\nSelf-Hosted\n\n\nLernen und Experimentieren\nCloud oder lokale Docker-Instanz\n\n\n\n\n\n\n\n\n\nDie Übersicht zeigt typische Zuordnungen, keine starren Regeln. Wer mit der Cloud-Variante startet und später wechselt, kann Workflows als JSON-Datei exportieren und in der neuen Instanz importieren. Der Wechsel ist reversibel; die erste Wahl muss daher nicht endgültig sein.",
     "crumbs": [
       "Plattform und Auswahl",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cloud, Self-Hosted oder Managed Hosting</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Betrieb wählen</span>"
     ]
   },
   {

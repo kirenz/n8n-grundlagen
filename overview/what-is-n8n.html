@@ -9,7 +9,7 @@
 <meta name="author" content="Jan Kirenz">
 <meta name="description" content="Von der Plattform zum ersten Workflow">
 
-<title>1&nbsp; Was n8n im Kern leistet – n8n-Grundlagen</title>
+<title>1&nbsp; Was n8n leistet – n8n-Grundlagen</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../overview/index.html">Plattform und Auswahl</a></li><li class="breadcrumb-item"><a href="../overview/what-is-n8n.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../overview/index.html">Plattform und Auswahl</a></li><li class="breadcrumb-item"><a href="../overview/what-is-n8n.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n leistet</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -134,19 +134,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../overview/what-is-n8n.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n leistet</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../overview/pricing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Werkzeuge im Vergleich</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../overview/hosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Betrieb wählen</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,9 +241,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../overview/index.html">Plattform und Auswahl</a></li><li class="breadcrumb-item"><a href="../overview/what-is-n8n.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../overview/index.html">Plattform und Auswahl</a></li><li class="breadcrumb-item"><a href="../overview/what-is-n8n.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n leistet</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n leistet</span></h1>
 </div>
 
 
@@ -270,6 +270,12 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Festhalten:</strong> Die Nachricht landet in einer Tabelle, damit das Team sie später bearbeiten kann.</li>
 </ol>
 <p>Genau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontaktformular, eingehende Rechnung oder wöchentliches Reporting. Drei Schritte, drei Werkzeuge, ein einziger Workflow, der danach von alleine läuft.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lektionen/grundlagen-formularfluss.svg" class="img-fluid figure-img"></p>
+<figcaption>n8n verbindet vorhandene Werkzeuge: Ein Kontaktformular startet einen Workflow mit drei Schritten, der eine Bestätigung ins Postfach schickt und eine Zeile in die Tabelle schreibt.</figcaption>
+</figure>
+</div>
 </section>
 <section id="zwei-kernaufgaben" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="zwei-kernaufgaben"><span class="header-section-number">1.2</span> Zwei Kernaufgaben</h2>
@@ -299,9 +305,21 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lektionen/grundlagen-daten-und-ki.svg" class="img-fluid figure-img"></p>
+<figcaption>Rechnung per Mail, n8n fragt einen KI-Dienst nach der Kategorie und legt die Rechnung im passenden Ordner ab.</figcaption>
+</figure>
+</div>
 </section>
 <section id="was-n8n-nicht-ist" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="was-n8n-nicht-ist"><span class="header-section-number">1.3</span> Was n8n nicht ist</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lektionen/uebersicht-ist-nicht.svg" class="img-fluid figure-img"></p>
+<figcaption>Was n8n ist und was nicht.</figcaption>
+</figure>
+</div>
 <p>n8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht <strong>dazwischen</strong>, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.</p>
 <div id="fig-n8n-orchestrierung" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
