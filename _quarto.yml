@@ -12,6 +12,7 @@ project:
   resources:
     - "bpmn/loesung/*"
     - "images/lektionen/*"
+    - "images/bpmn/*"
     - "d2/*.svg"
     - "images/*.png"
 
