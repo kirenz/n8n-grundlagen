@@ -1,0 +1,50 @@
+direction: right
+
+
+r: {
+ label: "Regel\ngleicher Weg, feste Schritte"
+ shape: rectangle
+ style: {
+  fill: "#18181b"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#fafafa"
+ }
+}
+k: {
+ label: "KI-Schritt\nschätzt Inhalt ein, entwirft Text"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+a: {
+ label: "Agent\nwählt den Weg je Fall,\nschlägt in Werkzeugen nach"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+m: {
+ label: "Mensch\nentscheidet bei Ermessen\nmit Folgen"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+r -> k {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+k -> a {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+a -> m {style: {stroke: "#a1a1aa"; stroke-width: 2}}
