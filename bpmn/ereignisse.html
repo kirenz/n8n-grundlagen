@@ -9,7 +9,7 @@
 <meta name="author" content="Jan Kirenz">
 <meta name="description" content="Von der Plattform zum ersten Workflow">
 
-<title>3&nbsp; Ereignisse: warten, reagieren, abbrechen – n8n-Grundlagen</title>
+<title>6&nbsp; Ereignisse: warten, reagieren, abbrechen – n8n-Grundlagen</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bpmn/index.html">Abläufe modellieren mit BPMN</a></li><li class="breadcrumb-item"><a href="../bpmn/ereignisse.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bpmn/index.html">Abläufe modellieren mit BPMN</a></li><li class="breadcrumb-item"><a href="../bpmn/ereignisse.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -124,8 +124,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../bpmn/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Abläufe modellieren mit BPMN</span></a>
+            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plattform und Auswahl</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -133,46 +133,28 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bpmn/grundelemente.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Grundelemente und gute Namen</span></span></a>
+  <a href="../overview/what-is-n8n.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bpmn/gateways.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gateways: verzweigen und zusammenführen</span></span></a>
+  <a href="../overview/pricing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bpmn/ereignisse.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bpmn/teilnehmer-und-daten.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bpmn/zum-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Vom Modell zum n8n-Workflow</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bpmn/uebung-kulanzantrag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></span></a>
+  <a href="../overview/hosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Plattform und Auswahl</span></a>
+            <a href="../bpmn/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abläufe modellieren mit BPMN</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -180,20 +162,38 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../overview/what-is-n8n.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Was n8n im Kern leistet</span></span></a>
+  <a href="../bpmn/grundelemente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grundelemente und gute Namen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../overview/pricing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Pricing und der Vergleich mit Zapier oder Make</span></span></a>
+  <a href="../bpmn/gateways.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gateways: verzweigen und zusammenführen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../overview/hosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cloud, Self-Hosted oder Managed Hosting</span></span></a>
+  <a href="../bpmn/ereignisse.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/teilnehmer-und-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/zum-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vom Modell zum n8n-Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/uebung-kulanzantrag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></span></a>
   </div>
 </li>
       </ul>
@@ -231,21 +231,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#der-rand-sagt-wo-das-symbol-sagt-was" id="toc-der-rand-sagt-wo-das-symbol-sagt-was" class="nav-link active" data-scroll-target="#der-rand-sagt-wo-das-symbol-sagt-was"><span class="header-section-number">3.1</span> Der Rand sagt wo, das Symbol sagt was</a></li>
-  <li><a href="#zeitereignisse-starten-und-warten" id="toc-zeitereignisse-starten-und-warten" class="nav-link" data-scroll-target="#zeitereignisse-starten-und-warten"><span class="header-section-number">3.2</span> Zeitereignisse: starten und warten</a></li>
-  <li><a href="#ereignisbasiertes-gateway-was-zuerst-eintritt" id="toc-ereignisbasiertes-gateway-was-zuerst-eintritt" class="nav-link" data-scroll-target="#ereignisbasiertes-gateway-was-zuerst-eintritt"><span class="header-section-number">3.3</span> Ereignisbasiertes Gateway: was zuerst eintritt</a></li>
-  <li><a href="#randereignisse-ereignisse-während-einer-aufgabe" id="toc-randereignisse-ereignisse-während-einer-aufgabe" class="nav-link" data-scroll-target="#randereignisse-ereignisse-während-einer-aufgabe"><span class="header-section-number">3.4</span> Randereignisse: Ereignisse während einer Aufgabe</a></li>
-  <li><a href="#arbeitsauftrag-eine-frist-modellieren" id="toc-arbeitsauftrag-eine-frist-modellieren" class="nav-link" data-scroll-target="#arbeitsauftrag-eine-frist-modellieren"><span class="header-section-number">3.5</span> Arbeitsauftrag: eine Frist modellieren</a></li>
-  <li><a href="#kontrollpunkt" id="toc-kontrollpunkt" class="nav-link" data-scroll-target="#kontrollpunkt"><span class="header-section-number">3.6</span> Kontrollpunkt</a></li>
+  <li><a href="#der-rand-sagt-wo-das-symbol-sagt-was" id="toc-der-rand-sagt-wo-das-symbol-sagt-was" class="nav-link active" data-scroll-target="#der-rand-sagt-wo-das-symbol-sagt-was"><span class="header-section-number">6.1</span> Der Rand sagt wo, das Symbol sagt was</a></li>
+  <li><a href="#zeitereignisse-starten-und-warten" id="toc-zeitereignisse-starten-und-warten" class="nav-link" data-scroll-target="#zeitereignisse-starten-und-warten"><span class="header-section-number">6.2</span> Zeitereignisse: starten und warten</a></li>
+  <li><a href="#ereignisbasiertes-gateway-was-zuerst-eintritt" id="toc-ereignisbasiertes-gateway-was-zuerst-eintritt" class="nav-link" data-scroll-target="#ereignisbasiertes-gateway-was-zuerst-eintritt"><span class="header-section-number">6.3</span> Ereignisbasiertes Gateway: was zuerst eintritt</a></li>
+  <li><a href="#randereignisse-ereignisse-während-einer-aufgabe" id="toc-randereignisse-ereignisse-während-einer-aufgabe" class="nav-link" data-scroll-target="#randereignisse-ereignisse-während-einer-aufgabe"><span class="header-section-number">6.4</span> Randereignisse: Ereignisse während einer Aufgabe</a></li>
+  <li><a href="#arbeitsauftrag-eine-frist-modellieren" id="toc-arbeitsauftrag-eine-frist-modellieren" class="nav-link" data-scroll-target="#arbeitsauftrag-eine-frist-modellieren"><span class="header-section-number">6.5</span> Arbeitsauftrag: eine Frist modellieren</a></li>
+  <li><a href="#kontrollpunkt" id="toc-kontrollpunkt" class="nav-link" data-scroll-target="#kontrollpunkt"><span class="header-section-number">6.6</span> Kontrollpunkt</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bpmn/index.html">Abläufe modellieren mit BPMN</a></li><li class="breadcrumb-item"><a href="../bpmn/ereignisse.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bpmn/index.html">Abläufe modellieren mit BPMN</a></li><li class="breadcrumb-item"><a href="../bpmn/ereignisse.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></h1>
 </div>
 
 
@@ -263,8 +263,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Bisher lief jeder Ablauf, sobald er gestartet war, ohne Pause bis zum Ende. Echte Abläufe warten: auf eine Antwort des Kunden, auf das Monatsende, auf eine Frist. Und sie reagieren auf Dinge, die während einer Aufgabe passieren, etwa eine Rückfrage oder einen abgelaufenen Termin. BPMN bildet all das mit <strong>Ereignissen</strong> ab, Kreisen mit einem Symbol in der Mitte. In diesem Kapitel lernen wir, wie Position und Symbol eines Ereignisses zusammenwirken, und bauen damit Wartesituationen, die ein n8n-Workflow später mit Wait-Knoten und Triggern abbilden muss.</p>
-<section id="der-rand-sagt-wo-das-symbol-sagt-was" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="der-rand-sagt-wo-das-symbol-sagt-was"><span class="header-section-number">3.1</span> Der Rand sagt wo, das Symbol sagt was</h2>
+<section id="der-rand-sagt-wo-das-symbol-sagt-was" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="der-rand-sagt-wo-das-symbol-sagt-was"><span class="header-section-number">6.1</span> Der Rand sagt wo, das Symbol sagt was</h2>
 <p>Jedes Ereignis trägt zwei Informationen. Der <strong>Rand</strong> zeigt die Position im Prozess, das <strong>Symbol</strong> zeigt den Auslöser.</p>
 <div id="fig-ereignisse-legende" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -272,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
 <img src="../images/bpmn/ereignisse-legende.svg" class="img-fluid figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ereignisse-legende-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;3.1: Ereignisse: Die obere Reihe zeigt die drei Positionen am Rand, die untere Reihe vier Auslöser. Ein helles Symbol bedeutet empfangen, ein dunkles Symbol bedeutet senden.
+Abbildung&nbsp;6.1: Ereignisse: Die obere Reihe zeigt die drei Positionen am Rand, die untere Reihe vier Auslöser. Ein helles Symbol bedeutet empfangen, ein dunkles Symbol bedeutet senden.
 </figcaption>
 </figure>
 </div>
@@ -358,8 +358,8 @@ Abbildung&nbsp;3.1: Ereignisse: Die obere Reihe zeigt die drei Positionen am Ran
 </div>
 </div>
 </section>
-<section id="zeitereignisse-starten-und-warten" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="zeitereignisse-starten-und-warten"><span class="header-section-number">3.2</span> Zeitereignisse: starten und warten</h2>
+<section id="zeitereignisse-starten-und-warten" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="zeitereignisse-starten-und-warten"><span class="header-section-number">6.2</span> Zeitereignisse: starten und warten</h2>
 <p>Ein Zeitereignis am Start lässt den Prozess zu einem Zeitpunkt beginnen. Ein Zeitereignis dazwischen hält den Prozess an, bis die Zeit verstrichen ist.</p>
 <div id="fig-zeitereignisse" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -367,7 +367,7 @@ Abbildung&nbsp;3.1: Ereignisse: Die obere Reihe zeigt die drei Positionen am Ran
 <img src="../images/bpmn/zeitereignisse.svg" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zeitereignisse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;3.2: Mahnlauf: Ein Zeit-Startereignis löst den Prozess am Monatsende aus. Die Zahlungserinnerung versendet eine Sendeaufgabe (dunkler Umschlag). Das Zeit-Zwischenereignis wartet 14 Tage, bevor der Zahlungseingang geprüft wird.
+Abbildung&nbsp;6.2: Mahnlauf: Ein Zeit-Startereignis löst den Prozess am Monatsende aus. Die Zahlungserinnerung versendet eine Sendeaufgabe (dunkler Umschlag). Das Zeit-Zwischenereignis wartet 14 Tage, bevor der Zahlungseingang geprüft wird.
 </figcaption>
 </figure>
 </div>
@@ -379,8 +379,8 @@ Abbildung&nbsp;3.2: Mahnlauf: Ein Zeit-Startereignis löst den Prozess am Monats
 </ul>
 <p>Was ist unrealistisch an diesem Modell? Es nimmt an, dass alle Kunden bis zum Ende der 14 Tage brauchen. Tatsächlich zahlen viele am zweiten Tag, und der Prozess wartet trotzdem die volle Frist ab, bevor er den Zahlungseingang prüft. Für „was zuerst eintritt“ gibt es ein eigenes Gateway.</p>
 </section>
-<section id="ereignisbasiertes-gateway-was-zuerst-eintritt" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="ereignisbasiertes-gateway-was-zuerst-eintritt"><span class="header-section-number">3.3</span> Ereignisbasiertes Gateway: was zuerst eintritt</h2>
+<section id="ereignisbasiertes-gateway-was-zuerst-eintritt" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="ereignisbasiertes-gateway-was-zuerst-eintritt"><span class="header-section-number">6.3</span> Ereignisbasiertes Gateway: was zuerst eintritt</h2>
 <p>Das ereignisbasierte Gateway trägt ein Fünfeck im doppelten Kreis. Es verzweigt nicht nach Daten, sondern nach Ereignissen: Hinter dem Gateway stehen nur Zwischenereignisse, und der Prozess wartet an dieser Stelle. Das erste Ereignis, das eintritt, bestimmt den Pfad. Die anderen verfallen.</p>
 <div id="fig-gateway-ereignisbasiert" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -388,7 +388,7 @@ Abbildung&nbsp;3.2: Mahnlauf: Ein Zeit-Startereignis löst den Prozess am Monats
 <img src="../images/bpmn/gateway-ereignisbasiert.svg" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gateway-ereignisbasiert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;3.3: Angebot nachverfolgen: Nach dem Versand wartet der Prozess. Trifft ein Auftrag ein, wird er angelegt. Trifft eine Absage ein oder läuft die Angebotsfrist ab, wird das Angebot geschlossen.
+Abbildung&nbsp;6.3: Angebot nachverfolgen: Nach dem Versand wartet der Prozess. Trifft ein Auftrag ein, wird er angelegt. Trifft eine Absage ein oder läuft die Angebotsfrist ab, wird das Angebot geschlossen.
 </figcaption>
 </figure>
 </div>
@@ -407,8 +407,8 @@ Abbildung&nbsp;3.3: Angebot nachverfolgen: Nach dem Versand wartet der Prozess. 
 </div>
 </div>
 </section>
-<section id="randereignisse-ereignisse-während-einer-aufgabe" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="randereignisse-ereignisse-während-einer-aufgabe"><span class="header-section-number">3.4</span> Randereignisse: Ereignisse während einer Aufgabe</h2>
+<section id="randereignisse-ereignisse-während-einer-aufgabe" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="randereignisse-ereignisse-während-einer-aufgabe"><span class="header-section-number">6.4</span> Randereignisse: Ereignisse während einer Aufgabe</h2>
 <p>Manchmal passiert etwas, während eine Aufgabe läuft. Dafür hängt BPMN ein Ereignis an den Rand der Aufgabe, ein <strong>Randereignis</strong> (Boundary Event). Zwei Varianten unterscheiden sich im Rand des Kreises:</p>
 <div id="fig-randereignisse" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -416,7 +416,7 @@ Abbildung&nbsp;3.3: Angebot nachverfolgen: Nach dem Versand wartet der Prozess. 
 <img src="../images/bpmn/randereignisse.svg" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-randereignisse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;3.4: Belege nachfordern: Die Empfangsaufgabe wartet auf Belege. Läuft die Frist ab (unterbrechendes Zeit-Randereignis, durchgezogen), wird der Vorgang geschlossen. Trifft währenddessen eine Rückfrage ein (nicht unterbrechendes Nachrichten-Randereignis, gestrichelt), wird sie beantwortet, und das Warten läuft weiter.
+Abbildung&nbsp;6.4: Belege nachfordern: Die Empfangsaufgabe wartet auf Belege. Läuft die Frist ab (unterbrechendes Zeit-Randereignis, durchgezogen), wird der Vorgang geschlossen. Trifft währenddessen eine Rückfrage ein (nicht unterbrechendes Nachrichten-Randereignis, gestrichelt), wird sie beantwortet, und das Warten läuft weiter.
 </figcaption>
 </figure>
 </div>
@@ -462,8 +462,8 @@ Abbildung&nbsp;3.4: Belege nachfordern: Die Empfangsaufgabe wartet auf Belege. L
 </div>
 </div>
 </section>
-<section id="arbeitsauftrag-eine-frist-modellieren" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="arbeitsauftrag-eine-frist-modellieren"><span class="header-section-number">3.5</span> Arbeitsauftrag: eine Frist modellieren</h2>
+<section id="arbeitsauftrag-eine-frist-modellieren" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="arbeitsauftrag-eine-frist-modellieren"><span class="header-section-number">6.5</span> Arbeitsauftrag: eine Frist modellieren</h2>
 <p><strong>Zeitbedarf:</strong> etwa 15 Minuten</p>
 <p><strong>Voraussetzungen:</strong></p>
 <ul>
@@ -483,8 +483,8 @@ Abbildung&nbsp;3.4: Belege nachfordern: Die Empfangsaufgabe wartet auf Belege. L
 </ol>
 <p><strong>Prüfen:</strong> Das Modell ist fertig, wenn hinter dem ereignisbasierten Gateway ausschließlich Zwischenereignisse stehen, eines davon ein Zeitereignis ist und jeder Pfad in einem benannten Endereignis endet.</p>
 </section>
-<section id="kontrollpunkt" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="kontrollpunkt"><span class="header-section-number">3.6</span> Kontrollpunkt</h2>
+<section id="kontrollpunkt" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="kontrollpunkt"><span class="header-section-number">6.6</span> Kontrollpunkt</h2>
 <ul>
 <li>Position (Start, Zwischen, Ende) und Auslöser (Nachricht, Zeit, Fehler, Terminierung) eines Ereignisses am Symbol erkennen</li>
 <li>Zeit-Start- und Zeit-Zwischenereignis unterscheiden und den passenden n8n-Baustein nennen</li>
