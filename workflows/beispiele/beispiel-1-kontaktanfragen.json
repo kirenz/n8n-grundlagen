@@ -1,0 +1,205 @@
+{
+  "name": "Beispiel 1 · Kontaktanfragen sortieren",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Kontakt",
+        "formDescription": "Wir melden uns innerhalb eines Werktags.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "E-Mail",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Anliegen",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Frage zur Bestellung"
+                  },
+                  {
+                    "option": "Beschwerde"
+                  },
+                  {
+                    "option": "Rückruf"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Nachricht",
+              "fieldType": "textarea"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "form",
+      "name": "Kontaktformular",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "if-c1",
+              "leftValue": "={{ $json.Anliegen }}",
+              "rightValue": "Beschwerde",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if",
+      "name": "Beschwerde?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "h1",
+              "name": "name",
+              "value": "={{ $json.Name }}",
+              "type": "string"
+            },
+            {
+              "id": "h2",
+              "name": "email",
+              "value": "={{ $json['E-Mail'] }}",
+              "type": "string"
+            },
+            {
+              "id": "h3",
+              "name": "anliegen",
+              "value": "={{ $json.Anliegen }}",
+              "type": "string"
+            },
+            {
+              "id": "h4",
+              "name": "prioritaet",
+              "value": "hoch",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "hoch",
+      "name": "Priorität hoch",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "n1",
+              "name": "name",
+              "value": "={{ $json.Name }}",
+              "type": "string"
+            },
+            {
+              "id": "n2",
+              "name": "email",
+              "value": "={{ $json['E-Mail'] }}",
+              "type": "string"
+            },
+            {
+              "id": "n3",
+              "name": "anliegen",
+              "value": "={{ $json.Anliegen }}",
+              "type": "string"
+            },
+            {
+              "id": "n4",
+              "name": "prioritaet",
+              "value": "normal",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "normal",
+      "name": "Priorität normal",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Kontaktformular": {
+      "main": [
+        [
+          {
+            "node": "Beschwerde?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Beschwerde?": {
+      "main": [
+        [
+          {
+            "node": "Priorität hoch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Priorität normal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

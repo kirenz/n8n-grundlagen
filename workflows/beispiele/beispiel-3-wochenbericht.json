@@ -1,0 +1,154 @@
+{
+  "name": "Beispiel 3 · Wochenbericht",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "sched",
+      "name": "Montags 8 Uhr",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        -100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "manual",
+      "name": "Zum Testen starten",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "get",
+        "returnAll": true,
+        "dataTableId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "read",
+      "name": "Anfragen lesen",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "count",
+              "field": "id"
+            }
+          ]
+        },
+        "fieldsToSplitBy": "status",
+        "options": {}
+      },
+      "id": "sum",
+      "name": "Nach Status zählen",
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "z1",
+              "name": "zeile",
+              "value": "=Status {{ $json.status }}: {{ $json.count_id }} Anfragen",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "zeile",
+      "name": "Berichtszeile",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        780,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Montags 8 Uhr": {
+      "main": [
+        [
+          {
+            "node": "Anfragen lesen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zum Testen starten": {
+      "main": [
+        [
+          {
+            "node": "Anfragen lesen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anfragen lesen": {
+      "main": [
+        [
+          {
+            "node": "Nach Status zählen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nach Status zählen": {
+      "main": [
+        [
+          {
+            "node": "Berichtszeile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

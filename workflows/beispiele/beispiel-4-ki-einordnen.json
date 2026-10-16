@@ -1,0 +1,127 @@
+{
+  "name": "Beispiel 4 · Anfrage mit Gemini einordnen",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Kundenanfrage",
+        "formDescription": "Beschreiben Sie Ihr Anliegen.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nachricht",
+              "fieldType": "textarea",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "form",
+      "name": "Kundenanfrage",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Ordne die folgende Kundenanfrage genau einer Kategorie zu: Lieferung, Rücksendung, Rechnung oder Sonstiges. Antworte nur mit dem Namen der Kategorie.\n\nAnfrage: {{ $json.Nachricht }}"
+      },
+      "id": "chain",
+      "name": "Kategorie bestimmen",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3-flash-preview",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "gemini",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        260,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "k1",
+              "name": "kategorie",
+              "value": "={{ $json.text.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "k2",
+              "name": "nachricht",
+              "value": "={{ $('Kundenanfrage').item.json.Nachricht }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "out",
+      "name": "Ergebnis",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Kundenanfrage": {
+      "main": [
+        [
+          {
+            "node": "Kategorie bestimmen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kategorie bestimmen": {
+      "main": [
+        [
+          {
+            "node": "Ergebnis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Kategorie bestimmen",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

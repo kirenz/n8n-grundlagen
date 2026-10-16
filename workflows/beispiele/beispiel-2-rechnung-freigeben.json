@@ -1,0 +1,210 @@
+{
+  "name": "Beispiel 2 · Rechnung freigeben",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Rechnung erfassen",
+        "formDescription": "Eingangsrechnung zur Prüfung erfassen.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Lieferant",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Rechnungsnummer",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Betrag",
+              "fieldType": "number",
+              "placeholder": "Betrag in Euro",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "form",
+      "name": "Rechnung erfassen",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "if-c1",
+              "leftValue": "={{ $json.Betrag }}",
+              "rightValue": 1000,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if",
+      "name": "Betrag über 1.000 €?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resume": "form",
+        "formTitle": "Rechnung freigeben",
+        "formDescription": "=Rechnung {{ $json.Rechnungsnummer }} von {{ $json.Lieferant }} über {{ $json.Betrag }} Euro",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Entscheidung",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Freigeben"
+                  },
+                  {
+                    "option": "Ablehnen"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "wait",
+      "name": "Freigabe einholen",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e1",
+              "name": "rechnung",
+              "value": "={{ $('Rechnung erfassen').item.json.Rechnungsnummer }}",
+              "type": "string"
+            },
+            {
+              "id": "e2",
+              "name": "status",
+              "value": "={{ $json.Entscheidung }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ergebnis",
+      "name": "Entscheidung festhalten",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        780,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "rechnung",
+              "value": "={{ $json.Rechnungsnummer }}",
+              "type": "string"
+            },
+            {
+              "id": "a2",
+              "name": "status",
+              "value": "automatisch freigegeben",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "auto",
+      "name": "Automatisch freigeben",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Rechnung erfassen": {
+      "main": [
+        [
+          {
+            "node": "Betrag über 1.000 €?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Betrag über 1.000 €?": {
+      "main": [
+        [
+          {
+            "node": "Freigabe einholen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Automatisch freigeben",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Freigabe einholen": {
+      "main": [
+        [
+          {
+            "node": "Entscheidung festhalten",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

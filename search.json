@@ -886,7 +886,7 @@
     "href": "first-workflows/credentials.html#warum-credentials-benötigt-werden",
     "title": "11  Credentials vorbereiten",
     "section": "",
-    "text": "Zugriff\nWofür wir ihn brauchen\nTypischer Knoten\n\n\n\n\nMail lesen\nEingehende Nachricht als Trigger erkennen\nEmail Trigger (IMAP)\n\n\nMail senden\nAutomatische Bestätigung verschicken\nSend Email (SMTP, Mail-Versand)\n\n\nOptionale Tools\nSlack, HubSpot, Notion oder Google Sheets ansprechen\njeweiliger App-Knoten\n\n\n\n\n\n\n\n\n\n\nTippErst simulieren, dann verbinden\n\n\n\nMit einem kontrollierten Beispieldatensatz zu starten macht den Datenfluss sofort sichtbar. Erst danach verbinden wir echte Konten, bei denen Authentifizierung, Postfachregeln oder Spamfilter zusätzliche Fehlerquellen sein können.\n\n\n\n\n\n\n\n\nAbbildung 11.1: Credentials-Übersicht in n8n: zentrale Verwaltung getrennt von den Workflows, mit Name, Typ und Verbindungsdetails.",
+    "text": "Zugriff\nWofür wir ihn brauchen\nTypischer Knoten\n\n\n\n\nMail lesen\nEingehende Nachricht als Trigger erkennen\nEmail Trigger (IMAP)\n\n\nMail senden\nAutomatische Bestätigung verschicken\nSend Email (SMTP, Mail-Versand)\n\n\nOptionale Tools\nSlack, HubSpot, Notion oder Google Sheets ansprechen\njeweiliger App-Knoten\n\n\n\n\n\n\n\n\n\n\nTippErst simulieren, dann verbinden\n\n\n\nMit einem kontrollierten Beispieldatensatz zu starten macht den Datenfluss sofort sichtbar. Erst danach verbinden wir echte Konten, bei denen Authentifizierung, Postfachregeln oder Spamfilter zusätzliche Fehlerquellen sein können.\n\n\n\n\n\n\n\n\nAbbildung 11.1: Credentials-Übersicht in n8n: zentrale Verwaltung getrennt von den Workflows, mit Name, Typ und Verbindungsdetails.\n\n\n\n\n\n\nCredentials liegen getrennt vom Workflow: Der Knoten kennt nur den Namen, der Schlüssel liegt verschlüsselt in n8n.",
     "crumbs": [
       "Erste Workflows",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
@@ -897,7 +897,7 @@
     "href": "first-workflows/credentials.html#drei-credential-arten-im-kurs",
     "title": "11  Credentials vorbereiten",
     "section": "11.2 Drei Credential-Arten im Kurs",
-    "text": "11.2 Drei Credential-Arten im Kurs\nApp-spezifisches Passwort. Einige Mail-Anbieter erlauben ein separates Passwort nur für Programme wie n8n. Dieses Passwort kann später widerrufen werden, ohne das Hauptpasswort des Mail-Kontos zu ändern. Für Internet Message Access Protocol (IMAP) und Simple Mail Transfer Protocol (SMTP) ist das eine verbreitete Einstiegsvariante.\nOAuth.\nBei Gmail, Microsoft 365 und vielen SaaS-Diensten ist OAuth die bessere Lösung. Wir melden uns beim Anbieter an, n8n erhält einen Token, und dieser Token kann begrenzt oder widerrufen werden. OAuth ist sicherer, kann aber in Self-Hosted-Instanzen etwas mehr Konfiguration verlangen.\nAPI-Token.\nSlack, HubSpot, Notion oder interne Systeme arbeiten oft mit API-Tokens. Hier achten wir besonders auf den Scope: Ein Token, der nur Nachrichten in einen Slack-Channel schreiben darf, ist sicherer als ein Token mit Vollzugriff.",
+    "text": "11.2 Drei Credential-Arten im Kurs\n\n\n\nDrei Arten von Zugangsdaten: App-Passwort, OAuth, API-Schlüssel.\n\n\nApp-spezifisches Passwort. Einige Mail-Anbieter erlauben ein separates Passwort nur für Programme wie n8n. Dieses Passwort kann später widerrufen werden, ohne das Hauptpasswort des Mail-Kontos zu ändern. Für Internet Message Access Protocol (IMAP) und Simple Mail Transfer Protocol (SMTP) ist das eine verbreitete Einstiegsvariante.\nOAuth.\nBei Gmail, Microsoft 365 und vielen SaaS-Diensten ist OAuth die bessere Lösung. Wir melden uns beim Anbieter an, n8n erhält einen Token, und dieser Token kann begrenzt oder widerrufen werden. OAuth ist sicherer, kann aber in Self-Hosted-Instanzen etwas mehr Konfiguration verlangen.\nAPI-Token.\nSlack, HubSpot, Notion oder interne Systeme arbeiten oft mit API-Tokens. Hier achten wir besonders auf den Scope: Ein Token, der nur Nachrichten in einen Slack-Channel schreiben darf, ist sicherer als ein Token mit Vollzugriff.",
     "crumbs": [
       "Erste Workflows",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
@@ -908,7 +908,18 @@
     "href": "first-workflows/credentials.html#sichere-praxis",
     "title": "11  Credentials vorbereiten",
     "section": "11.3 Sichere Praxis",
-    "text": "11.3 Sichere Praxis\nWir halten uns an drei Regeln:\n\nKein Hauptpasswort im Workflow. Wir verwenden App-Passwörter, OAuth oder API-Tokens.\nGeringstmögliche Berechtigungen (Least Privilege). Ein Credential bekommt nur die Berechtigungen, die der konkrete Workflow braucht.\nTrennung von Test und Produktion. Testkonten und Testtabellen verhindern, dass ein Lernworkflow versehentlich echte Kundendaten verändert.\n\n\n\n\n\n\n\nWichtigCredentials sind echte Schlüssel\n\n\n\nEine kompromittierte n8n-Instanz ist nicht nur ein Workflow-Problem. Sie kann Zugriff auf Mail-Konten, CRM-Systeme, Datenbanken und weitere API-Systeme öffnen. Deshalb behandeln wir Credentials wie echte Schlüssel: begrenzen, dokumentieren, regelmäßig prüfen und bei Verdacht widerrufen.",
+    "text": "11.3 Sichere Praxis\n\n\n\nSo nicht, so richtig: Hauptpasswort im Workflow gegen getrenntes Credential mit begrenzten Rechten.\n\n\nWir halten uns an drei Regeln:\n\nKein Hauptpasswort im Workflow. Wir verwenden App-Passwörter, OAuth oder API-Tokens.\nGeringstmögliche Berechtigungen (Least Privilege). Ein Credential bekommt nur die Berechtigungen, die der konkrete Workflow braucht.\nTrennung von Test und Produktion. Testkonten und Testtabellen verhindern, dass ein Lernworkflow versehentlich echte Kundendaten verändert.\n\n\n\n\n\n\n\nWichtigCredentials sind echte Schlüssel\n\n\n\nEine kompromittierte n8n-Instanz ist nicht nur ein Workflow-Problem. Sie kann Zugriff auf Mail-Konten, CRM-Systeme, Datenbanken und weitere API-Systeme öffnen. Deshalb behandeln wir Credentials wie echte Schlüssel: begrenzen, dokumentieren, regelmäßig prüfen und bei Verdacht widerrufen.",
+    "crumbs": [
+      "Erste Workflows",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
+    ]
+  },
+  {
+    "objectID": "first-workflows/credentials.html#beispiel-einen-gemini-schlüssel-anlegen",
+    "href": "first-workflows/credentials.html#beispiel-einen-gemini-schlüssel-anlegen",
+    "title": "11  Credentials vorbereiten",
+    "section": "11.4 Beispiel: einen Gemini-Schlüssel anlegen",
+    "text": "11.4 Beispiel: einen Gemini-Schlüssel anlegen\nFür Beispiel 4 brauchen wir einen API-Schlüssel für Google Gemini. Google erzeugt ihn kostenlos in AI Studio; ein Google-Konto genügt.\n\n\n\nVom Gemini-Schlüssel zum Workflow in vier Schritten.\n\n\n\nDie Seite API Keys in AI Studio öffnen: https://aistudio.google.com/apikey.\nMit dem Google-Konto anmelden und beim ersten Besuch die Nutzungsbedingungen bestätigen. AI Studio legt dabei ein Standardprojekt an.\nAuf Create API key klicken und den Schlüssel kopieren.\nIn n8n unter Credentials auf Create credential klicken und Google Gemini(PaLM) Api wählen.\nDen Schlüssel in API Key einfügen, Host unverändert lassen (https://generativelanguage.googleapis.com) und mit Save speichern.\n\n\n\n\n\n\n\nWarnungSchlüssel und Daten schützen\n\n\n\nDen Schlüssel behandeln wir wie ein Passwort (Google, o. J.). In der kostenlosen Stufe nutzt Google Eingaben zur Produktverbesserung; wir senden deshalb nur Übungsdaten, keine Kunden- oder Personaldaten.",
     "crumbs": [
       "Erste Workflows",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
@@ -918,8 +929,8 @@
     "objectID": "first-workflows/credentials.html#mini-checkliste-vor-dem-weiterbauen",
     "href": "first-workflows/credentials.html#mini-checkliste-vor-dem-weiterbauen",
     "title": "11  Credentials vorbereiten",
-    "section": "11.4 Mini-Checkliste vor dem Weiterbauen",
-    "text": "11.4 Mini-Checkliste vor dem Weiterbauen\nFür Modul 02 reicht diese Vorbereitung:\n\nEine n8n-Instanz ist erreichbar, Cloud oder Self-Hosted.\nWir können einen Workflow im Editor öffnen und speichern.\nFür den Live-Modus legen wir später ein SMTP-Credential zum Senden und ein IMAP- oder Gmail-/Microsoft-Credential zum Lesen an.\nDie erste Testadresse sollte keine produktive Support- oder Sales-Adresse sein.\n\nDamit ist die Grundlage gelegt. Im nächsten Kapitel importieren oder bauen wir den ersten Workflow und arbeiten zunächst mit simulierten Maildaten. Danach sehen wir genau, an welcher Stelle echte Credentials eingehängt werden.",
+    "section": "11.5 Mini-Checkliste vor dem Weiterbauen",
+    "text": "11.5 Mini-Checkliste vor dem Weiterbauen\nFür Modul 02 reicht diese Vorbereitung:\n\nEine n8n-Instanz ist erreichbar, Cloud oder Self-Hosted.\nWir können einen Workflow im Editor öffnen und speichern.\nFür den Live-Modus legen wir später ein SMTP-Credential zum Senden und ein IMAP- oder Gmail-/Microsoft-Credential zum Lesen an.\nDie erste Testadresse sollte keine produktive Support- oder Sales-Adresse sein.\n\nDamit ist die Grundlage gelegt. Im nächsten Kapitel importieren oder bauen wir den ersten Workflow und arbeiten zunächst mit simulierten Maildaten. Danach sehen wir genau, an welcher Stelle echte Credentials eingehängt werden.\n\n\n\n\nGoogle. o. J. „Using Gemini API keys“. Zugegriffen 16. Oktober 2026. https://ai.google.dev/gemini-api/docs/api-key.",
     "crumbs": [
       "Erste Workflows",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
@@ -952,7 +963,7 @@
     "href": "first-workflows/first-workflow.html#schnellstart-per-import",
     "title": "12  Der erste Workflow: Mail an sich selbst",
     "section": "12.2 Schnellstart per Import",
-    "text": "12.2 Schnellstart per Import\nWer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen, kann ihn direkt per URL in die eigene n8n-Instanz importieren:\n\nIm Editor einen neuen, leeren Workflow anlegen.\nOben rechts auf das Drei-Punkte-Menü klicken.\nImport from URL wählen und folgende Adresse einfügen:\nhttps://raw.githubusercontent.com/kirenz/n8n-workflows/main/n8n-basics/modul-02-first-workflow.json\nBestätigen. Der Workflow erscheint im Editor mit allen Knoten und Verbindungen.\n\nNach dem Import sind Manual Trigger, Set, Send Email und Set vorhanden. Der Data-Table-Knoten fehlt bewusst, weil Tabellen-IDs in jeder n8n-Instanz lokal entstehen. Die Tabelle anlegen und im Data-Table-Knoten neu auswählen, dann ist der Workflow vollständig.",
+    "text": "12.2 Schnellstart per Import\nWer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen, kann ihn direkt per URL in die eigene n8n-Instanz importieren:\n\nIm Editor einen neuen, leeren Workflow anlegen.\nOben rechts auf das Drei-Punkte-Menü klicken.\nImport from URL wählen und folgende Adresse einfügen:\nhttps://raw.githubusercontent.com/kirenz/n8n-workflows/main/n8n-basics/modul-02-first-workflow.json\nBestätigen. Der Workflow erscheint im Editor mit allen Knoten und Verbindungen.\n\nNach dem Import sind Manual Trigger, Set, Send Email und Set vorhanden. Der Data-Table-Knoten fehlt bewusst, weil Tabellen-IDs in jeder n8n-Instanz lokal entstehen. Die Tabelle anlegen und im Data-Table-Knoten neu auswählen, dann ist der Workflow vollständig.\n\n\n\nWas zwischen den Knoten wandert: Felder, Expressions und der Zugriff per Knotenname.",
     "crumbs": [
       "Erste Workflows",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
@@ -1011,6 +1022,169 @@
     "crumbs": [
       "Erste Workflows",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Der erste Workflow: Mail an sich selbst</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/index.html",
+    "href": "beispiele/index.html",
+    "title": "Beispiele zum Mitmachen",
+    "section": "",
+    "text": "Eine Datei in n8n hochladen\nNach dem ersten Workflow bauen wir vier kleine Abläufe aus dem Alltag des Online-Shops. Beispiel 1 und 2 bauen wir Klick für Klick nach. Beispiel 3 und 4 sind etwas umfangreicher: Wir laden die fertige Datei in n8n hoch und gehen den Workflow Knoten für Knoten durch. Alle Beispiele laufen in der Testphase von n8n Cloud; Beispiel 4 braucht zusätzlich das Gemini-Credential aus Credentials vorbereiten.\nDie Abbildungen in diesem Teil sind nach n8n nachgezeichnet, keine Screenshots. Je nach n8n-Version heißen einzelne Felder leicht anders; die fertigen Dateien dienen dann als Vergleich.",
+    "crumbs": [
+      "Beispiele zum Mitmachen"
+    ]
+  },
+  {
+    "objectID": "beispiele/index.html#eine-datei-in-n8n-hochladen",
+    "href": "beispiele/index.html#eine-datei-in-n8n-hochladen",
+    "title": "Beispiele zum Mitmachen",
+    "section": "",
+    "text": "Die Workflow-Datei (JSON) herunterladen.\nIn n8n einen neuen Workflow öffnen.\nOben rechts im Drei-Punkte-Menü Import from File… wählen und die Datei auswählen.\nZugangsdaten (Credentials) und Tabellen nach dem Import einmal zuordnen. Sie sind nie Teil der Datei.",
+    "crumbs": [
+      "Beispiele zum Mitmachen"
+    ]
+  },
+  {
+    "objectID": "beispiele/kontaktanfragen.html",
+    "href": "beispiele/kontaktanfragen.html",
+    "title": "13  Beispiel 1: Kontaktanfragen sortieren",
+    "section": "",
+    "text": "13.1 Formular anlegen\nÜber das Kontaktformular kommen jeden Tag Anfragen. Beschwerden sollen sofort auffallen, alles andere hat normale Priorität. Der Workflow nimmt die Anfrage aus einem Formular entgegen, prüft das Anliegen und setzt die Priorität.\nFertige Datei zum Vergleich: beispiel-1-kontaktanfragen.json",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Beispiel 1: Kontaktanfragen sortieren</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/kontaktanfragen.html#formular-anlegen",
+    "href": "beispiele/kontaktanfragen.html#formular-anlegen",
+    "title": "13  Beispiel 1: Kontaktanfragen sortieren",
+    "section": "",
+    "text": "Einen neuen Workflow öffnen und in Kontaktanfragen sortieren umbenennen.\nÜber das Plus-Symbol den Trigger On form submission einfügen und in Kontaktformular umbenennen.\nForm Title Kontakt, Form Description Wir melden uns innerhalb eines Werktags.\nVier Form Elements anlegen: Name (Text, Pflicht), E-Mail (Email, Pflicht), Anliegen (Dropdown List mit Frage zur Bestellung, Beschwerde, Rückruf, Pflicht), Nachricht (Textarea).\n\n\n\n\nKontaktformular (Darstellung).",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Beispiel 1: Kontaktanfragen sortieren</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/kontaktanfragen.html#entscheidung-einbauen",
+    "href": "beispiele/kontaktanfragen.html#entscheidung-einbauen",
+    "title": "13  Beispiel 1: Kontaktanfragen sortieren",
+    "section": "13.2 Entscheidung einbauen",
+    "text": "13.2 Entscheidung einbauen\n\nAm Kontaktformular einen If-Knoten anhängen und in Beschwerde? umbenennen.\nBedingung: { $json.Anliegen } mit String › is equal to Beschwerde.\n\n\n\n\nIf-Knoten Beschwerde? (Darstellung).\n\n\nDer If-Knoten hat zwei Ausgänge: true für Beschwerden, false für alles andere. Eine Entscheidung aus dem BPMN-Modell (ein XOR-Gateway) wird in n8n zu genau so einem Knoten.",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Beispiel 1: Kontaktanfragen sortieren</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/kontaktanfragen.html#priorität-setzen-und-testen",
+    "href": "beispiele/kontaktanfragen.html#priorität-setzen-und-testen",
+    "title": "13  Beispiel 1: Kontaktanfragen sortieren",
+    "section": "13.3 Priorität setzen und testen",
+    "text": "13.3 Priorität setzen und testen\n\nAm Ausgang true einen Knoten Edit Fields (Set) namens Priorität hoch anhängen: Felder name, email, anliegen per Expression aus dem Formular, prioritaet mit dem Wert hoch.\nAm Ausgang false dasselbe als Priorität normal mit dem Wert normal.\nMit Execute workflow das Formular öffnen, einmal eine Beschwerde und einmal einen Rückruf absenden.\n\n\n\n\nPriorität hoch (Darstellung).\n\n\nPrüfen: Die Beschwerde landet in Priorität hoch, der Rückruf in Priorität normal.",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Beispiel 1: Kontaktanfragen sortieren</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/rechnung.html",
+    "href": "beispiele/rechnung.html",
+    "title": "14  Beispiel 2: Rechnung freigeben",
+    "section": "",
+    "text": "14.1 Rechnung erfassen und Betrag prüfen\nEingangsrechnungen bis 1.000 Euro gibt das Team ohne Rückfrage frei. Darüber entscheidet eine Person. Der Workflow erfasst die Rechnung, prüft den Betrag und hält bei großen Beträgen an, bis jemand im Freigabe-Formular entscheidet. Das ist die Benutzeraufgabe aus dem BPMN-Teil, umgesetzt mit dem Wait-Knoten.\nFertige Datei zum Vergleich: beispiel-2-rechnung-freigeben.json",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Beispiel 2: Rechnung freigeben</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/rechnung.html#rechnung-erfassen-und-betrag-prüfen",
+    "href": "beispiele/rechnung.html#rechnung-erfassen-und-betrag-prüfen",
+    "title": "14  Beispiel 2: Rechnung freigeben",
+    "section": "",
+    "text": "Neuer Workflow Rechnung freigeben, Trigger On form submission namens Rechnung erfassen mit den Pflichtfeldern Lieferant, Rechnungsnummer (Text) und Betrag (Number).\nIf-Knoten Betrag über 1.000 €? mit { $json.Betrag } und Number › is greater than 1000.\n\n\n\n\nFormular Rechnung erfassen (Darstellung).\n\n\n\n\n\nIf-Knoten Betrag über 1.000 €? (Darstellung).",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Beispiel 2: Rechnung freigeben</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/rechnung.html#freigabe-einholen",
+    "href": "beispiele/rechnung.html#freigabe-einholen",
+    "title": "14  Beispiel 2: Rechnung freigeben",
+    "section": "14.2 Freigabe einholen",
+    "text": "14.2 Freigabe einholen\n\nAm Ausgang true einen Wait-Knoten namens Freigabe einholen anhängen, Resume auf On Form Submitted.\nForm Title Rechnung freigeben, Form Description als Expression mit Rechnungsnummer, Lieferant und Betrag, ein Pflichtfeld Entscheidung (Dropdown List: Freigeben, Ablehnen).\nDahinter Entscheidung festhalten (Edit Fields): rechnung aus Rechnung erfassen, status aus dem Feld Entscheidung.\nAm Ausgang false Automatisch freigeben (Edit Fields) mit status = automatisch freigegeben.\n\n\n\n\nWait-Knoten Freigabe einholen (Darstellung).\n\n\n\n\n\nEntscheidung festhalten (Darstellung).\n\n\nPrüfen: Eine Rechnung über 240 Euro endet in Automatisch freigeben. Eine Rechnung über 2.400 Euro wartet in Freigabe einholen, bis das Freigabe-Formular abgeschickt ist.",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Beispiel 2: Rechnung freigeben</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/wochenbericht.html",
+    "href": "beispiele/wochenbericht.html",
+    "title": "15  Beispiel 3: Wochenbericht",
+    "section": "",
+    "text": "15.1 Hochladen und Tabelle zuordnen\nMontags will die Teamleitung wissen, wie viele Anfragen in welchem Status sind. Ein Workflow liest dazu jeden Montag um 8 Uhr die Tabelle customer_emails aus dem ersten Workflow und zählt nach Status. Diesen Workflow laden wir als fertige Datei hoch.\nDatei: beispiel-3-wochenbericht.json",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Beispiel 3: Wochenbericht</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/wochenbericht.html#hochladen-und-tabelle-zuordnen",
+    "href": "beispiele/wochenbericht.html#hochladen-und-tabelle-zuordnen",
+    "title": "15  Beispiel 3: Wochenbericht",
+    "section": "",
+    "text": "Datei herunterladen, neuen Workflow öffnen, im Drei-Punkte-Menü Import from File… wählen.\nIm Knoten Anfragen lesen bei Data table die Tabelle customer_emails wählen. Tabellen gehören zur jeweiligen Instanz und sind deshalb nicht Teil der Datei.\nMit Execute workflow über den Auslöser Zum Testen starten einen Lauf starten.\n\n\n\n\nAnfragen lesen (Darstellung).",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Beispiel 3: Wochenbericht</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/wochenbericht.html#die-knoten",
+    "href": "beispiele/wochenbericht.html#die-knoten",
+    "title": "15  Beispiel 3: Wochenbericht",
+    "section": "15.2 Die Knoten",
+    "text": "15.2 Die Knoten\nDer Schedule Trigger startet den Workflow nach Zeitplan, hier jeden Montag um 8 Uhr, sobald der Workflow aktiv ist. Der zweite Auslöser Zum Testen starten erlaubt einen Lauf per Klick. Anfragen lesen holt mit Get row(s) alle Zeilen, Nach Status zählen (Summarize) zählt sie je Wert im Feld status, Berichtszeile formuliert daraus je Status einen Satz.\n\n\n\nSchedule Trigger (Darstellung).\n\n\n\n\n\nSummarize (Darstellung).",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Beispiel 3: Wochenbericht</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/gemini.html",
+    "href": "beispiele/gemini.html",
+    "title": "16  Beispiel 4: Anfrage mit Gemini einordnen",
+    "section": "",
+    "text": "16.1 Hochladen und verbinden\nKundinnen und Kunden schreiben frei, worum es geht. Eine feste Regel scheitert daran, ein Sprachmodell kann den Text einordnen: Lieferung, Rücksendung, Rechnung oder Sonstiges. Wir nutzen ein Modell von Google; das Credential dafür haben wir in Credentials vorbereiten mit einem Schlüssel aus Google AI Studio angelegt.\nDatei: beispiel-4-ki-einordnen.json",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Beispiel 4: Anfrage mit Gemini einordnen</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/gemini.html#hochladen-und-verbinden",
+    "href": "beispiele/gemini.html#hochladen-und-verbinden",
+    "title": "16  Beispiel 4: Anfrage mit Gemini einordnen",
+    "section": "",
+    "text": "Datei herunterladen, neuen Workflow öffnen, Import from File… wählen.\nIm Knoten Google Gemini Chat Model das eigene Gemini-Credential wählen und, falls nötig, ein aktuelles Flash-Modell aus der Liste.\nMit Execute workflow das Formular öffnen und eine Übungsanfrage senden, etwa Mein Paket ist seit einer Woche unterwegs, wann kommt es an?\n\n\n\n\nGoogle Gemini Chat Model (Darstellung).\n\n\n\n\n\n\n\n\nWarnungNur Übungsdaten\n\n\n\nIn der kostenlosen Stufe nutzt Google Eingaben zur Produktverbesserung. Wir senden nur Übungstexte, keine Kunden- oder Personaldaten.",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Beispiel 4: Anfrage mit Gemini einordnen</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/gemini.html#prompt-und-modell",
+    "href": "beispiele/gemini.html#prompt-und-modell",
+    "title": "16  Beispiel 4: Anfrage mit Gemini einordnen",
+    "section": "16.2 Prompt und Modell",
+    "text": "16.2 Prompt und Modell\nDer Knoten Kategorie bestimmen (Basic LLM Chain) schickt einen Auftrag an das Modell: Der Prompt nennt die erlaubten Kategorien und fügt per Expression die Nachricht aus dem Formular ein. Das Modell hängt als eigener Knoten unter der Kette und liefert die Antwort, die als Feld text weiterwandert. Eine Temperatur von 0 macht die Antworten möglichst gleichbleibend.\n\n\n\nKategorie bestimmen (Darstellung).",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Beispiel 4: Anfrage mit Gemini einordnen</span>"
     ]
   }
 ]
