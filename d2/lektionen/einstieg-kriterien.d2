@@ -1,0 +1,64 @@
+direction: right
+
+a: {
+ label: "Wiederkehrend?"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+b: {
+ label: "Regelbasiert?"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+c: {
+ label: "Digital\nerreichbar?"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+d: {
+ label: "Workflow-\nKandidat"
+ shape: rectangle
+ style: {
+  fill: "#18181b"
+  stroke: "#e4e4e7"
+  stroke-width: 2
+  border-radius: 8
+  font-color: "#fafafa"
+  bold: true
+ }
+}
+e: {
+ label: "Handarbeit oder\nmanuelle Freigabe"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+a -> b: "Ja" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+b -> c: "Ja" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+c -> d: "Ja" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+a -> e: "Nein" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+b -> e: "Nein" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+c -> e: "Nein" {style: {stroke: "#a1a1aa"; stroke-width: 2}}

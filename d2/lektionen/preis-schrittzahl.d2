@@ -1,0 +1,19 @@
+direction: right
+
+kurz: {
+  label: "5 oder 50 Knoten\nein vollständiger Durchlauf"
+  style: {fill: "#ffffff"; stroke: "#e4e4e7"; stroke-width: 1; border-radius: 8; font-color: "#18181b"}
+}
+
+n8n: {
+  label: "n8n\n1 Execution"
+  style: {fill: "#18181b"; stroke: "#18181b"; stroke-width: 2; border-radius: 8; font-color: "#fafafa"; bold: true}
+}
+
+tasks: {
+  label: "Pro Task\n5 Knoten: 5 Tasks\n50 Knoten: 50 Tasks"
+  style: {fill: "#ffffff"; stroke: "#e4e4e7"; stroke-width: 1; border-radius: 8; font-color: "#18181b"}
+}
+
+kurz -> n8n {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+kurz -> tasks {style: {stroke: "#a1a1aa"; stroke-width: 2}}

@@ -1,0 +1,50 @@
+direction: right
+
+a: {
+ label: "Rechnung\neingegangen"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+b: {
+ label: "Daten\nerfassen"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+c: {
+ label: "KI-Dienst:\nKategorie zuordnen"
+ shape: rectangle
+ style: {
+  fill: "#18181b"
+  stroke: "#e4e4e7"
+  stroke-width: 2
+  border-radius: 8
+  font-color: "#fafafa"
+  bold: true
+ }
+}
+d: {
+ label: "Rechnung\nablegen"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+a -> b: {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+b -> c: "Rechnungsinhalt" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+c -> d: "Kategorie" {style: {stroke: "#a1a1aa"; stroke-width: 2}}

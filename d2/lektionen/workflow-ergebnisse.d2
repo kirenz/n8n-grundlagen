@@ -1,0 +1,32 @@
+direction: right
+
+mail: "Simulierte Kundenmail\nsender · subject · text\nreceived_at" {
+  style: {
+    fill: "#18181b"
+    stroke: "#18181b"
+    stroke-width: 2
+    border-radius: 8
+    font-color: "#fafafa"
+    bold: true
+  }
+}
+bestaetigung: "Ergebnis: Bestätigung\nan den Absender" {
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+tabelle: "Ergebnis: Tabelleneintrag\ncustomer_emails\nStatus: new" {
+  style: {
+    fill: "#ffffff"
+    stroke: "#e4e4e7"
+    stroke-width: 1
+    border-radius: 8
+    font-color: "#18181b"
+  }
+}
+mail -> bestaetigung: "gefordertes Ergebnis" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+mail -> tabelle: "gefordertes Ergebnis" {style: {stroke: "#a1a1aa"; stroke-width: 2}}

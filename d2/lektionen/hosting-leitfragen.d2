@@ -1,0 +1,25 @@
+direction: right
+
+volumen: {
+  label: "Volumen\nAusführungen pro Monat?"
+  style: {fill: "#ffffff"; stroke: "#e4e4e7"; stroke-width: 1; border-radius: 8; font-color: "#18181b"}
+}
+
+daten: {
+  label: "Souveränität\nWo dürfen Daten verarbeitet werden?"
+  style: {fill: "#ffffff"; stroke: "#e4e4e7"; stroke-width: 1; border-radius: 8; font-color: "#18181b"}
+}
+
+skills: {
+  label: "Skills\nWer pflegt die Instanz?"
+  style: {fill: "#ffffff"; stroke: "#e4e4e7"; stroke-width: 1; border-radius: 8; font-color: "#18181b"}
+}
+
+wahl: {
+  label: "Betriebsform\nfür den eigenen Fall abwägen"
+  style: {fill: "#18181b"; stroke: "#18181b"; stroke-width: 2; border-radius: 8; font-color: "#fafafa"; bold: true}
+}
+
+volumen -> wahl {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+daten -> wahl {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+skills -> wahl {style: {stroke: "#a1a1aa"; stroke-width: 2}}

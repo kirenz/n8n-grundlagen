@@ -1,0 +1,19 @@
+direction: right
+
+praxis: {
+  label: "Arztpraxis\nPatientendaten\nKeine Server-Pflege im Team"
+  style: {fill: "#ffffff"; stroke: "#e4e4e7"; stroke-width: 1; border-radius: 8; font-color: "#18181b"}
+}
+
+marketing: {
+  label: "Marketing-Team\nHeute starten"
+  style: {fill: "#ffffff"; stroke: "#e4e4e7"; stroke-width: 1; border-radius: 8; font-color: "#18181b"}
+}
+
+software: {
+  label: "Dieselbe n8n-Software\nUnterschiedliche Anforderungen"
+  style: {fill: "#18181b"; stroke: "#18181b"; stroke-width: 2; border-radius: 8; font-color: "#fafafa"; bold: true}
+}
+
+praxis -> software {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+marketing -> software {style: {stroke: "#a1a1aa"; stroke-width: 2}}

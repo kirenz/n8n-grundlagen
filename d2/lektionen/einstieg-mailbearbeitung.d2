@@ -1,0 +1,50 @@
+direction: right
+
+a: {
+ label: "Kundenmail\ntrifft ein"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+b: {
+ label: "Eingang\nbestätigen"
+ shape: rectangle
+ style: {
+  fill: "#18181b"
+  stroke: "#e4e4e7"
+  stroke-width: 2
+  border-radius: 8
+  font-color: "#fafafa"
+  bold: true
+ }
+}
+c: {
+ label: "In Team-Tabelle\neintragen"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+d: {
+ label: "Team beantwortet\ndas Anliegen"
+ shape: rectangle
+ style: {
+  fill: "#ffffff"
+  stroke: "#e4e4e7"
+  stroke-width: 1
+  border-radius: 8
+  font-color: "#18181b"
+ }
+}
+a -> b: "Workflow" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+b -> c: "Workflow" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
+c -> d: "Übergabe" {style: {stroke: "#a1a1aa"; stroke-width: 2}}
