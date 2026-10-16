@@ -28,7 +28,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -209,14 +228,20 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../first-workflows/testzugang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">n8n-Testzugang einrichten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../first-workflows/credentials.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../first-workflows/first-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
   </div>
 </li>
       </ul>
@@ -313,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>Start</td>
-<td>in Minuten</td>
+<td>in Minuten, 14 Tage kostenlos testen</td>
 <td>kurzfristig</td>
 <td>nach der Einrichtung</td>
 </tr>
@@ -340,7 +365,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="cloud" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="cloud"><span class="header-section-number">3.2</span> Cloud</h2>
-<p>Die n8n-Cloud ist eine SaaS-Variante (Software, die im Internet gemietet statt installiert wird), die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung.</p>
+<p>Die n8n-Cloud ist eine SaaS-Variante (Software, die im Internet gemietet statt installiert wird), die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung. Eine 14-tägige Testphase ist kostenlos und ohne Kreditkarte <span class="citation" data-cites="n8nCloudTrial">(<a href="#ref-n8nCloudTrial" role="doc-biblioref"><span class="nocase">n8n GmbH</span>, o.&nbsp;J.</a>)</span>; mit ihr arbeiten wir in diesem Kurs.</p>
 <p><strong>Eigenschaften:</strong></p>
 <ul>
 <li>Geringer Setup-Aufwand, keine Server-Wartung, kein Update-Aufwand</li>
@@ -467,6 +492,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-n8nCloudTrial" class="csl-entry" role="listitem">
+<span class="nocase">n8n GmbH</span>. o.&nbsp;J. <span>„Cloud free trial“</span>. Zugegriffen 16. Oktober 2026. <a href="https://docs.n8n.io/manage-cloud/cloud-free-trial">https://docs.n8n.io/manage-cloud/cloud-free-trial</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
