@@ -236,6 +236,68 @@ def drei_fragen():
     return svg(900, 280, b)
 
 
+def glyph(kind, cx, cy):
+    """Kleines BPMN-Symbol als Erkennungszeichen."""
+    st = f'stroke="{INK}" stroke-width="2" fill="#ffffff"'
+    if kind == "grund":
+        return (f'<circle cx="{cx - 34}" cy="{cy}" r="9" {st}/><rect x="{cx - 18}" y="{cy - 10}" width="36" height="20" rx="4" {st}/>'
+                f'<circle cx="{cx + 34}" cy="{cy}" r="9" stroke="{INK}" stroke-width="4" fill="#ffffff"/>')
+    if kind == "gateway":
+        return f'<polygon points="{cx},{cy - 14} {cx + 14},{cy} {cx},{cy + 14} {cx - 14},{cy}" {st}/><text x="{cx}" y="{cy + 5}" {F} font-size="13" font-weight="700" text-anchor="middle">X</text>'
+    if kind == "ereignis":
+        return f'<circle cx="{cx}" cy="{cy}" r="13" {st}/><circle cx="{cx}" cy="{cy}" r="9" {st}/><line x1="{cx}" y1="{cy}" x2="{cx}" y2="{cy - 6}" stroke="{INK}" stroke-width="2"/><line x1="{cx}" y1="{cy}" x2="{cx + 5}" y2="{cy}" stroke="{INK}" stroke-width="2"/>'
+    if kind == "pool":
+        return f'<rect x="{cx - 40}" y="{cy - 15}" width="80" height="30" {st}/><line x1="{cx - 28}" y1="{cy - 15}" x2="{cx - 28}" y2="{cy + 15}" stroke="{INK}" stroke-width="2"/><line x1="{cx - 28}" y1="{cy}" x2="{cx + 40}" y2="{cy}" stroke="{INK}" stroke-width="1.5"/>'
+    if kind == "n8n":
+        return (f'<rect x="{cx - 40}" y="{cy - 11}" width="22" height="22" rx="5" fill="{LIGHT}" stroke="{BLUE}" stroke-width="2"/>'
+                f'<rect x="{cx - 11}" y="{cy - 11}" width="22" height="22" rx="5" fill="{LIGHT}" stroke="{BLUE}" stroke-width="2"/>'
+                f'<rect x="{cx + 18}" y="{cy - 11}" width="22" height="22" rx="5" fill="{LIGHT}" stroke="{BLUE}" stroke-width="2"/>')
+    if kind == "uebung":
+        return f'<rect x="{cx - 14}" y="{cy - 16}" width="28" height="32" rx="3" {st}/>' + "".join(
+            f'<line x1="{cx - 8}" y1="{cy - 8 + i * 8}" x2="{cx + 8}" y2="{cy - 8 + i * 8}" stroke="{INK}" stroke-width="1.5"/>' for i in range(3))
+    if kind == "key":
+        return f'<circle cx="{cx - 12}" cy="{cy}" r="9" {st}/><line x1="{cx - 3}" y1="{cy}" x2="{cx + 22}" y2="{cy}" stroke="{INK}" stroke-width="3"/><line x1="{cx + 16}" y1="{cy}" x2="{cx + 16}" y2="{cy + 8}" stroke="{INK}" stroke-width="3"/>'
+    return ""
+
+
+def lernweg(title, items, cols, note, h_card=150):
+    rows = (len(items) + cols - 1) // cols
+    cw, gap = (840 - (cols - 1) * 30) / cols, 30
+    H = 70 + rows * (h_card + 30) + 30
+    b = [text(450, 32, title, 17, 700, INK, "middle")]
+    for i, (g, name, sub) in enumerate(items):
+        r, c = divmod(i, cols)
+        x, y = 30 + c * (cw + gap), 55 + r * (h_card + 30)
+        b.append(box(x, y, cw, h_card, "#ffffff", RULE, 12))
+        b.append(f'<circle cx="{x + 26}" cy="{y + 26}" r="14" fill="{BLUE}"/>')
+        b.append(text(x + 26, y + 31, str(i + 1), 13, 700, "#ffffff", "middle"))
+        b.append(glyph(g, x + cw - 60, y + 28))
+        b.append(text(x + 18, y + 80, name, 15, 700))
+        b.append(text(x + 18, y + 104, sub, 12, 400, MUTED))
+        if c < cols - 1 and i < len(items) - 1:
+            b.append(arrow(x + cw + 2, y + h_card / 2, x + cw + gap - 2, y + h_card / 2))
+    b.append(text(450, H - 14, note, 13, 400, MUTED, "middle"))
+    return svg(900, H, b)
+
+
+def kapitel_bpmn():
+    return lernweg("Sechs Lektionen vom Ablauf zum Modell", [
+        ("grund", "Grundelemente", "Start, Aufgabe, Ende, gute Namen"),
+        ("gateway", "Gateways", "verzweigen und zusammenführen"),
+        ("ereignis", "Ereignisse", "warten, Fristen, reagieren"),
+        ("pool", "Teilnehmer und Daten", "Pools, Lanes, Datenspeicher"),
+        ("n8n", "Vom Modell zum Workflow", "Modell in n8n-Knoten übersetzen"),
+        ("uebung", "Übung Kulanzantrag", "vollständiges Modell zeichnen"),
+    ], 3, "Jede Lektion baut auf der vorigen auf. Wer BPMN kennt, startet mit der Übung als Selbsttest.", 125)
+
+
+def kapitel_workflows():
+    return lernweg("Zwei Lektionen bis zum laufenden Workflow", [
+        ("key", "Credentials vorbereiten", "Zugänge anlegen, getrennt vom Workflow"),
+        ("n8n", "Der erste Workflow", "Kundenmail bestätigen und eintragen"),
+    ], 2, "Ergebnis: ein getesteter Workflow mit fünf Knoten und eine neue Zeile in customer_emails.", 125)
+
+
 FIGS = {
     "grundlagen-formularfluss.svg": schicht,
     "grundlagen-daten-und-ki.svg": daten_ki,
@@ -246,6 +308,8 @@ FIGS = {
     "hosting-zwei-teams.svg": zwei_teams,
     "hosting-leitfragen.svg": entscheidung,
     "kapitel-plattform-fragen.svg": drei_fragen,
+    "kapitel-bpmn-lernweg.svg": kapitel_bpmn,
+    "kapitel-workflows-lernweg.svg": kapitel_workflows,
 }
 
 if __name__ == "__main__":
