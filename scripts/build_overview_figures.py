@@ -215,6 +215,27 @@ def entscheidung():
     return svg(900, 410, b)
 
 
+def drei_fragen():
+    """Kapitelüberblick: drei Fragen, drei Lektionen."""
+    b = [text(450, 32, "Drei Fragen vor dem ersten Workflow", 17, 700, INK, "middle")]
+    cards = [("1", "Was leistet n8n?", "und wofür ist es nicht gebaut", "Was n8n leistet"),
+             ("2", "Welches Werkzeug?", "n8n, Zapier oder Make", "Werkzeuge im Vergleich"),
+             ("3", "Wie betreiben?", "Cloud, Managed oder Self-Hosted", "Betrieb wählen")]
+    for i, (n, q, sub, lesson) in enumerate(cards):
+        x = 30 + i * 290
+        b.append(box(x, 60, 260, 170, "#ffffff", RULE, 12))
+        b.append(f'<circle cx="{x + 36}" cy="96" r="18" fill="{BLUE}"/>')
+        b.append(text(x + 36, 102, n, 16, 700, "#ffffff", "middle"))
+        b.append(text(x + 24, 150, q, 18, 700))
+        b.append(text(x + 24, 176, sub, 13, 400, MUTED))
+        b.append(box(x + 16, 192, 228, 28, LIGHT, LIGHT, 14))
+        b.append(text(x + 130, 211, "Lektion: " + lesson, 12, 600, BLUE, "middle"))
+        if i < 2:
+            b.append(arrow(x + 262, 145, x + 288, 145))
+    b.append(text(450, 262, "Ergebnis: eine begründete Wahl für Werkzeug und Betrieb, bevor gebaut wird.", 13, 400, MUTED, "middle"))
+    return svg(900, 280, b)
+
+
 FIGS = {
     "grundlagen-formularfluss.svg": schicht,
     "grundlagen-daten-und-ki.svg": daten_ki,
@@ -224,6 +245,7 @@ FIGS = {
     "preis-schrittzahl.svg": kontingent,
     "hosting-zwei-teams.svg": zwei_teams,
     "hosting-leitfragen.svg": entscheidung,
+    "kapitel-plattform-fragen.svg": drei_fragen,
 }
 
 if __name__ == "__main__":
