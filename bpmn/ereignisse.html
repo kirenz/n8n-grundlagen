@@ -262,7 +262,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Bisher lief jeder Ablauf, sobald er gestartet war, ohne Pause bis zum Ende. Echte Abläufe warten: auf eine Antwort des Kunden, auf das Monatsende, auf eine Frist. Und sie reagieren auf Dinge, die während einer Aufgabe passieren, etwa eine Rückfrage oder einen abgelaufenen Termin. BPMN bildet all das mit <strong>Ereignissen</strong> ab, Kreisen mit einem Symbol in der Mitte. In diesem Kapitel lernen wir, wie Position und Symbol eines Ereignisses zusammenwirken, und bauen damit Wartesituationen, die ein n8n-Workflow später mit Wait-Knoten und Triggern abbilden muss.</p>
+<p>Bisher lief jeder Ablauf, sobald er gestartet war, ohne Pause bis zum Ende. Echte Abläufe warten: auf eine Antwort des Kunden, auf das Monatsende, auf eine Frist. Und sie reagieren auf Dinge, die während einer Aufgabe passieren, etwa eine Rückfrage oder einen abgelaufenen Termin. BPMN bildet all das mit <strong>Ereignissen</strong> ab, Kreisen mit einem Symbol in der Mitte. In diesem Kapitel lernen wir, wie Position und Symbol eines Ereignisses zusammenwirken, und bauen damit Wartesituationen, die ein n8n-Workflow später mit Wait-Knoten (Bausteinen, die den Ablauf anhalten) und Triggern abbilden muss.</p>
 <section id="der-rand-sagt-wo-das-symbol-sagt-was" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="der-rand-sagt-wo-das-symbol-sagt-was"><span class="header-section-number">6.1</span> Der Rand sagt wo, das Symbol sagt was</h2>
 <p>Jedes Ereignis trägt zwei Informationen. Der <strong>Rand</strong> zeigt die Position im Prozess, das <strong>Symbol</strong> zeigt den Auslöser.</p>
@@ -373,7 +373,7 @@ Abbildung&nbsp;6.2: Mahnlauf: Ein Zeit-Startereignis löst den Prozess am Monats
 </div>
 <p>Drei Elemente sind hier neu:</p>
 <ul>
-<li>Das <strong>Zeit-Startereignis</strong> „Monatsende erreicht“: Der Prozess beginnt zu einem Zeitpunkt, nicht durch eine eingehende Nachricht. In n8n ist das ein Schedule Trigger.</li>
+<li>Das <strong>Zeit-Startereignis</strong> „Monatsende erreicht“: Der Prozess beginnt zu einem Zeitpunkt, nicht durch eine eingehende Nachricht. In n8n ist das ein Schedule Trigger, der den Workflow nach Zeitplan startet.</li>
 <li>Das <strong>Zeit-Zwischenereignis</strong> „14 Tage vergangen“: Der Prozess hält an und wartet, bis die Frist verstrichen ist. In n8n ist das ein Wait-Knoten.</li>
 <li>Die <strong>Sendeaufgabe</strong> „Zahlungserinnerung versenden“: Der dunkle Umschlag oben links zeigt, dass diese Aufgabe eine Nachricht verschickt. Die Aufgabentypen lernen wir im nächsten Kapitel vollständig kennen.</li>
 </ul>
