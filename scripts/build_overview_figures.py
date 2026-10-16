@@ -259,6 +259,8 @@ def glyph(kind, cx, cy):
         return f'<line x1="{cx - 6}" y1="{cy - 14}" x2="{cx - 6}" y2="{cy + 14}" stroke="{INK}" stroke-width="3"/><line x1="{cx + 6}" y1="{cy - 14}" x2="{cx + 6}" y2="{cy + 14}" stroke="{INK}" stroke-width="3"/>'
     if kind == "gemini":
         return f'<path d="M{cx},{cy - 16} C{cx + 2},{cy - 2} {cx + 2},{cy - 2} {cx + 16},{cy} C{cx + 2},{cy + 2} {cx + 2},{cy + 2} {cx},{cy + 16} C{cx - 2},{cy + 2} {cx - 2},{cy + 2} {cx - 16},{cy} C{cx - 2},{cy - 2} {cx - 2},{cy - 2} {cx},{cy - 16} Z" fill="{BLUE}"/>'
+    if kind == "agent":
+        return f'<rect x="{cx - 16}" y="{cy - 12}" width="32" height="26" rx="7" stroke="{INK}" stroke-width="2" fill="#ffffff"/><circle cx="{cx - 6}" cy="{cy}" r="3" fill="{INK}"/><circle cx="{cx + 6}" cy="{cy}" r="3" fill="{INK}"/>'
     if kind == "key":
         return f'<circle cx="{cx - 12}" cy="{cy}" r="9" {st}/><line x1="{cx - 3}" y1="{cy}" x2="{cx + 22}" y2="{cy}" stroke="{INK}" stroke-width="3"/><line x1="{cx + 16}" y1="{cy}" x2="{cx + 16}" y2="{cy + 8}" stroke="{INK}" stroke-width="3"/>'
     return ""
@@ -269,12 +271,15 @@ def lernweg(title, items, cols, note, h_card=150):
     cw, gap = (840 - (cols - 1) * 30) / cols, 30
     H = 70 + rows * (h_card + 30) + 30
     b = [text(450, 32, title, 17, 700, INK, "middle")]
-    for i, (g, name, sub) in enumerate(items):
+    for i, item in enumerate(items):
+        g, name, sub = item[:3]
+        badge = item[3] if len(item) > 3 else str(i + 1)
         r, c = divmod(i, cols)
         x, y = 30 + c * (cw + gap), 55 + r * (h_card + 30)
         b.append(box(x, y, cw, h_card, "#ffffff", RULE, 12))
-        b.append(f'<circle cx="{x + 26}" cy="{y + 26}" r="14" fill="{BLUE}"/>')
-        b.append(text(x + 26, y + 31, str(i + 1), 13, 700, "#ffffff", "middle"))
+        if badge:
+            b.append(f'<circle cx="{x + 26}" cy="{y + 26}" r="14" fill="{BLUE}"/>')
+            b.append(text(x + 26, y + 31, badge, 13, 700, "#ffffff", "middle"))
         b.append(glyph(g, x + cw - 60, y + 28))
         b.append(text(x + 18, y + 80, name, 15, 700))
         b.append(text(x + 18, y + 104, sub, 12, 400, MUTED))
@@ -324,12 +329,36 @@ def testphase():
 
 
 def kapitel_beispiele():
-    return lernweg("Vier Beispiele zum Mitmachen", [
-        ("n8n", "Kontaktanfragen sortieren", "Formular, Entscheidung, Priorität"),
-        ("wait", "Rechnung freigeben", "Freigabe durch eine Person"),
-        ("uebung", "Wochenbericht", "Datei hochladen, Tabelle auswerten"),
-        ("gemini", "Anfrage mit Gemini einordnen", "KI-Modell im Workflow"),
-    ], 2, "Beispiel 1 und 2 Klick für Klick, Beispiel 3 und 4 als Datei zum Hochladen.", 125)
+    return lernweg("Beispiele zum Mitmachen", [
+        ("n8n", "Kontaktanfragen sortieren", "Formular, Entscheidung, Priorität", "1"),
+        ("wait", "Rechnung freigeben", "Freigabe durch eine Person", "2"),
+        ("uebung", "Wochenbericht", "Datei hochladen, Tabelle auswerten", "3"),
+        ("key", "Gemini-Schlüssel einrichten", "Vorbereitung für Beispiel 4 und 5", ""),
+        ("gemini", "Anfrage mit Gemini einordnen", "KI-Modell im Workflow", "4"),
+        ("agent", "FAQ-Agent mit RAG", "Agent sucht in eigenen Texten", "5"),
+    ], 3, "Beispiel 1 und 2 Klick für Klick, Beispiel 3 bis 5 als Datei zum Hochladen.", 125)
+
+
+def rag_konzept():
+    b = [text(450, 30, "RAG: erst Wissen speichern, dann damit antworten", 17, 700, INK, "middle")]
+
+    def row(y, label, steps, col):
+        out = [text(30, y - 12, label, 14, 700, col)]
+        for i, (t1, t2) in enumerate(steps):
+            x = 30 + i * 215
+            out.append(box(x, y, 195, 70, "#ffffff" if i < 3 else LIGHT, RULE if i < 3 else BLUE, 10, 1.5 if i < 3 else 2))
+            out.append(text(x + 97, y + 30, t1, 14, 700, INK, "middle"))
+            out.append(text(x + 97, y + 52, t2, 12, 400, MUTED, "middle"))
+            if i < 3:
+                out.append(arrow(x + 195, y + 35, x + 213, y + 35))
+        return out
+    b += row(75, "1  Wissen speichern (einmal)", [("FAQ-Text", "die eigenen Inhalte"), ("Abschnitte", "Text Splitter teilt auf"),
+                                                ("Embeddings", "Bedeutung als Zahlen"), ("Vector Store", "Speicher shop_faq")], INK)
+    b += row(215, "2  Frage beantworten (bei jeder Frage)", [("Frage im Chat", "„Wie lange dauert …?“"), ("Agent", "entscheidet: nachschlagen"),
+                                                         ("Werkzeug", "findet ähnliche Abschnitte"), ("Antwort", "aus den Fundstellen")], INK)
+    b.append(box(30, 310, 840, 48, PAPER, PAPER, 8))
+    b.append(text(50, 340, "RAG (Retrieval-Augmented Generation): Das Modell antwortet mit Hilfe von Textstellen, die vorher gefunden wurden.", 13, 400, INK))
+    return svg(900, 370, b)
 
 
 FIGS = {
@@ -346,6 +375,7 @@ FIGS = {
     "kapitel-workflows-lernweg.svg": kapitel_workflows,
     "testphase-zeitplan.svg": testphase,
     "kapitel-beispiele-lernweg.svg": kapitel_beispiele,
+    "rag-konzept.svg": rag_konzept,
 }
 
 if __name__ == "__main__":

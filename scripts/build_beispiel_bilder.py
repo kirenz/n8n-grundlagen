@@ -16,6 +16,8 @@ FORM, IF, SET, WAIT = "n8n-nodes-base.formTrigger", "n8n-nodes-base.if", "n8n-no
 TABLE, SUM, SCHED = "n8n-nodes-base.dataTable", "n8n-nodes-base.summarize", "n8n-nodes-base.scheduleTrigger"
 CHAIN, GEM = "@n8n/n8n-nodes-langchain.chainLlm", "@n8n/n8n-nodes-langchain.lmChatGoogleGemini"
 
+VEC, LOADER, AGENT = "@n8n/n8n-nodes-langchain.vectorStoreInMemory", "@n8n/n8n-nodes-langchain.documentDefaultDataLoader", "@n8n/n8n-nodes-langchain.agent"
+
 BILDER = {
     "b1-canvas.svg": lambda: canvas(WF / "beispiel-1-kontaktanfragen.json", "Beispiel 1 · Kontaktanfragen sortieren"),
     "b1-formular.svg": lambda: panel("Kontaktformular", FORM, [
@@ -71,6 +73,23 @@ BILDER = {
         ("Credential to connect with", "Google Gemini(PaLM) Api account", "select"),
         ("Model", "models/gemini-3-flash-preview", "select"), ("Options › Sampling Temperature", "0", "fixed")],
         hint="Temperatur 0: Das Modell antwortet möglichst gleichbleibend, gut für feste Kategorien."),
+    "b5-canvas.svg": lambda: canvas(WF / "beispiel-5-faq-agent-rag.json", "Beispiel 5 · FAQ-Agent mit RAG"),
+    "b5-speichern.svg": lambda: panel("FAQ speichern", VEC, [
+        ("Operation Mode", "Insert Documents", "select"), ("Memory Key", "shop_faq", "fixed"),
+        ("Clear Store", "aktiviert", "toggle")],
+        hint="Clear Store leert den Speicher vor jedem Laden, damit die FAQ nicht doppelt drinstehen."),
+    "b5-loader.svg": lambda: panel("Default Data Loader", LOADER, [
+        ("Type of Data", "JSON", "select"), ("Mode", "Load Specific Data", "select"),
+        ("Data", "{{ $json.text }}", "expr"), ("Text Splitting", "Custom", "select")],
+        hint="Der Text Splitter darunter zerlegt die FAQ in Abschnitte von höchstens 300 Zeichen."),
+    "b5-agent.svg": lambda: panel("FAQ-Agent", AGENT, [
+        ("Source for Prompt (User Message)", "Connected Chat Trigger Node", "select"),
+        ("Options › System Message", "Du bist der Kundenservice-Assistent des Online-Shops. Beantworte Fragen nur mit Informationen aus dem Werkzeug FAQ durchsuchen. Wenn die FAQ keine Antwort enthalten, sage das ehrlich …", "expr")]),
+    "b5-tool.svg": lambda: panel("FAQ durchsuchen", VEC, [
+        ("Operation Mode", "Retrieve Documents (As Tool for AI Agent)", "select"),
+        ("Description", "Durchsucht die FAQ des Online-Shops zu Lieferung, Rücksendung, beschädigter Ware, Zahlung und Kundenkonto.", "fixed"),
+        ("Memory Key", "shop_faq", "fixed"), ("Limit", "3", "fixed")],
+        hint="Gleicher Memory Key wie beim Speichern: So findet der Agent die geladenen FAQ."),
 }
 
 if __name__ == "__main__":

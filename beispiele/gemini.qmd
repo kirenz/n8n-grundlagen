@@ -1,6 +1,6 @@
 # Beispiel 4: Anfrage mit Gemini einordnen
 
-Kundinnen und Kunden schreiben frei, worum es geht. Eine feste Regel scheitert daran, ein Sprachmodell kann den Text einordnen: Lieferung, Rücksendung, Rechnung oder Sonstiges. Wir nutzen ein Modell von Google; das Credential dafür haben wir in [Credentials vorbereiten](../first-workflows/credentials.qmd) mit einem Schlüssel aus Google AI Studio angelegt.
+Kundinnen und Kunden schreiben frei, worum es geht. Eine feste Regel scheitert daran, ein Sprachmodell kann den Text einordnen: Lieferung, Rücksendung, Rechnung oder Sonstiges. Wir nutzen ein Modell von Google; das Credential dafür haben wir in [Gemini-Schlüssel einrichten](gemini-schluessel.qmd) angelegt.
 
 ![Workflow: Kundenanfrage, Kategorie bestimmen mit Google Gemini Chat Model, Ergebnis (Darstellung).](../images/beispiele/b4-canvas.svg)
 

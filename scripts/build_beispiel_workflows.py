@@ -60,7 +60,14 @@ def link(*pairs):
     return conns
 
 
+WEBHOOK_TYPES = {"n8n-nodes-base.formTrigger", "n8n-nodes-base.wait", "@n8n/n8n-nodes-langchain.chatTrigger"}
+
+
 def wf(name, nodes, connections):
+    import uuid
+    for n in nodes:
+        if n["type"] in WEBHOOK_TYPES:
+            n["webhookId"] = str(uuid.uuid5(uuid.NAMESPACE_URL, f"kirenz-n8n-grundlagen/{name}/{n['name']}"))
     return {"name": name, "nodes": nodes, "connections": connections, "settings": {"executionOrder": "v1"}, "pinData": {}}
 
 
@@ -163,9 +170,59 @@ def ki_einordnen():
     return wf("Beispiel 4 · Anfrage mit Gemini einordnen", nodes, conns)
 
 
+FAQ = """Beispiel-FAQ des Online-Shops (erfundene Angaben für den Kurs)
+
+Lieferung: Der Standardversand dauert innerhalb Deutschlands 2 bis 4 Werktage. Ab 50 Euro Bestellwert ist der Versand kostenlos, darunter kostet er 4,90 Euro. Expressversand kostet 9,90 Euro und kommt am nächsten Werktag, wenn die Bestellung bis 12 Uhr eingeht.
+
+Rücksendung: Es gilt ein Rückgaberecht von 30 Tagen ab Erhalt der Ware. Das Rücksendeetikett steht im Kundenkonto unter Bestellungen. Die Erstattung erfolgt innerhalb von 5 Werktagen nach Eingang der Rücksendung.
+
+Beschädigte Ware: Schäden bitte innerhalb von 7 Tagen mit einem Foto an den Kundenservice melden. Dann gibt es Ersatz oder eine Gutschrift.
+
+Zahlung: Möglich sind Rechnung, Kreditkarte und PayPal. Rechnungen sind innerhalb von 14 Tagen zu zahlen.
+
+Kundenkonto: Das Passwort lässt sich über Passwort vergessen auf der Anmeldeseite zurücksetzen. Die Lieferadresse ändert man im Kundenkonto unter Profil."""
+
+
+def sub(src, dst, ctype):
+    return {src: {ctype: [[{"node": dst, "type": ctype, "index": 0}]]}}
+
+
+def rag():
+    gem_emb = ("@n8n/n8n-nodes-langchain.embeddingsGoogleGemini", 1, {"modelName": "models/gemini-embedding-001"})
+    nodes = [
+        node("load", "Wissen laden", "n8n-nodes-base.manualTrigger", 1, [0, 0], {}),
+        set_node("faq", "FAQ-Text", [220, 0], [assign("f1", "text", FAQ)]),
+        node("insert", "FAQ speichern", "@n8n/n8n-nodes-langchain.vectorStoreInMemory", 1.3, [460, 0], {
+            "mode": "insert", "memoryKey": {"__rl": True, "mode": "list", "value": "shop_faq"}, "clearStore": True}),
+        node("emb1", "Embeddings (Speichern)", gem_emb[0], gem_emb[1], [360, 220], gem_emb[2]),
+        node("loader", "Default Data Loader", "@n8n/n8n-nodes-langchain.documentDefaultDataLoader", 1.1, [580, 220], {
+            "jsonMode": "expressionData", "jsonData": "={{ $json.text }}", "textSplittingMode": "custom", "options": {}}),
+        node("split", "Text Splitter", "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter", 1, [680, 420], {
+            "chunkSize": 300, "chunkOverlap": 0, "options": {}}),
+        node("chat", "Chat", "@n8n/n8n-nodes-langchain.chatTrigger", 1.5, [0, 640], {"options": {}}),
+        node("agent", "FAQ-Agent", "@n8n/n8n-nodes-langchain.agent", 3.1, [300, 640], {"options": {"systemMessage":
+            "Du bist der Kundenservice-Assistent des Online-Shops. Beantworte Fragen nur mit Informationen aus dem Werkzeug FAQ durchsuchen. "
+            "Wenn die FAQ keine Antwort enthalten, sage das ehrlich und verweise auf den Kundenservice. Antworte kurz und auf Deutsch."}}),
+        node("model", "Google Gemini Chat Model", "@n8n/n8n-nodes-langchain.lmChatGoogleGemini", 1.1, [200, 860], {
+            "modelName": "models/gemini-3-flash-preview", "options": {"temperature": 0}}),
+        node("tool", "FAQ durchsuchen", "@n8n/n8n-nodes-langchain.vectorStoreInMemory", 1.3, [460, 860], {
+            "mode": "retrieve-as-tool", "memoryKey": {"__rl": True, "mode": "list", "value": "shop_faq"},
+            "toolDescription": "Durchsucht die FAQ des Online-Shops zu Lieferung, Rücksendung, beschädigter Ware, Zahlung und Kundenkonto.",
+            "topK": 3}),
+        node("emb2", "Embeddings (Suchen)", gem_emb[0], gem_emb[1], [460, 1060], gem_emb[2]),
+    ]
+    conns = link(("Wissen laden", "FAQ-Text", 0), ("FAQ-Text", "FAQ speichern", 0), ("Chat", "FAQ-Agent", 0))
+    for part in (sub("Embeddings (Speichern)", "FAQ speichern", "ai_embedding"), sub("Default Data Loader", "FAQ speichern", "ai_document"),
+                 sub("Text Splitter", "Default Data Loader", "ai_textSplitter"), sub("Google Gemini Chat Model", "FAQ-Agent", "ai_languageModel"),
+                 sub("FAQ durchsuchen", "FAQ-Agent", "ai_tool"), sub("Embeddings (Suchen)", "FAQ durchsuchen", "ai_embedding")):
+        conns.update(part)
+    return wf("Beispiel 5 · FAQ-Agent mit RAG", nodes, conns)
+
+
 FILES = {"beispiel-1-kontaktanfragen.json": kontakt, "beispiel-2-rechnung-freigeben.json": rechnung,
          "beispiel-3-wochenbericht.json": bericht,
-         "beispiel-4-ki-einordnen.json": ki_einordnen}
+         "beispiel-4-ki-einordnen.json": ki_einordnen,
+         "beispiel-5-faq-agent-rag.json": rag}
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)

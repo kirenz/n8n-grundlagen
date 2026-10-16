@@ -24,7 +24,15 @@ TYPE = {
     "n8n-nodes-base.emailSend": ("mail", "#6b7280", False),
     "@n8n/n8n-nodes-langchain.chainLlm": ("chain", "#7c3aed", False),
     "@n8n/n8n-nodes-langchain.lmChatGoogleGemini": ("gemini", "#2563eb", False),
+    "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini": ("gemini", "#0d9488", False),
+    "@n8n/n8n-nodes-langchain.vectorStoreInMemory": ("vector", "#7c3aed", False),
+    "@n8n/n8n-nodes-langchain.documentDefaultDataLoader": ("doc", "#6b7280", False),
+    "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter": ("split", "#6b7280", False),
+    "@n8n/n8n-nodes-langchain.agent": ("agent", "#7c3aed", False),
+    "@n8n/n8n-nodes-langchain.chatTrigger": ("chat", "#ee6b3a", True),
 }
+SUB_LABEL = {"ai_languageModel": "Model", "ai_embedding": "Embedding", "ai_document": "Document",
+             "ai_textSplitter": "Text Splitter", "ai_tool": "Tool", "ai_memory": "Memory"}
 
 
 def t(x, y, s, size=13, weight=400, fill=INK, anchor="start", mono=False):
@@ -54,6 +62,16 @@ def icon(kind, cx, cy, col):
         return f'<rect x="{cx-14}" y="{cy-10}" width="28" height="20" rx="2" {s}/><path d="M{cx-14},{cy-10} L{cx},{cy+2} L{cx+14},{cy-10}" {s}/>'
     if kind == "chain":
         return t(cx, cy + 7, "KI", 20, 800, col, "middle")
+    if kind == "vector":
+        return "".join(f'<ellipse cx="{cx}" cy="{cy-8+i*8}" rx="13" ry="5" {s}/>' for i in range(3))
+    if kind == "doc":
+        return f'<path d="M{cx-11},{cy-14} L{cx+5},{cy-14} L{cx+11},{cy-8} L{cx+11},{cy+14} L{cx-11},{cy+14} Z" {s}/>'
+    if kind == "split":
+        return f'<path d="M{cx-12},{cy-10} L{cx+12},{cy-10} M{cx-12},{cy} L{cx+4},{cy} M{cx-12},{cy+10} L{cx+12},{cy+10}" {s}/>'
+    if kind == "agent":
+        return f'<rect x="{cx-14}" y="{cy-10}" width="28" height="22" rx="6" {s}/><circle cx="{cx-5}" cy="{cy}" r="2.5" fill="{col}"/><circle cx="{cx+5}" cy="{cy}" r="2.5" fill="{col}"/><line x1="{cx}" y1="{cy-10}" x2="{cx}" y2="{cy-16}" {s}/>'
+    if kind == "chat":
+        return f'<path d="M{cx-14},{cy-10} L{cx+14},{cy-10} L{cx+14},{cy+8} L{cx-2},{cy+8} L{cx-8},{cy+14} L{cx-8},{cy+8} L{cx-14},{cy+8} Z" {s}/>'
     if kind == "gemini":
         return f'<path d="M{cx},{cy-14} C{cx+2},{cy-2} {cx+2},{cy-2} {cx+14},{cy} C{cx+2},{cy+2} {cx+2},{cy+2} {cx},{cy+14} C{cx-2},{cy+2} {cx-2},{cy+2} {cx-14},{cy} C{cx-2},{cy-2} {cx-2},{cy-2} {cx},{cy-14} Z" fill="{col}"/>'
     return ""
@@ -86,9 +104,9 @@ def canvas(workflow_file, title, highlight=None, width=900):
                 for tg in targets:
                     a, b = nodes[src], nodes[tg["node"]]
                     (x1, y1), (x2, y2) = pos(a), pos(b)
-                    if ctype == "ai_languageModel":
+                    if ctype.startswith("ai_"):
                         out.append(f'<path d="M{x1+sz/2},{y1} L{x2+sz/2},{y2+sz+26}" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5 4" fill="none"/>')
-                        out.append(t(x2 + sz / 2 + 8, (y1 + y2 + sz) / 2 + 16, "Model", 11, 600, MUTED))
+                        out.append(t((x1 + x2) / 2 + sz / 2 + 8, (y1 + y2 + sz) / 2 + 16, SUB_LABEL.get(ctype, ctype), 11, 600, MUTED))
                         continue
                     sx, sy = x1 + sz, y1 + sz / 2
                     if a["type"].endswith(".if"):
@@ -101,7 +119,7 @@ def canvas(workflow_file, title, highlight=None, width=900):
     for n in w["nodes"]:
         x, y = pos(n)
         kind, col, trig = TYPE.get(n["type"], ("set", MUTED, False))
-        sub = n["type"].endswith("lmChatGoogleGemini")
+        sub = any(n["name"] == src and any(k.startswith("ai_") for k in c) for src, c in w["connections"].items())
         hl = highlight == n["name"]
         stroke = "#ff6d5a" if hl else "#c7c7cc"
         if sub:

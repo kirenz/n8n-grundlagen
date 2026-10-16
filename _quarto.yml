@@ -72,7 +72,9 @@ book:
         - beispiele/kontaktanfragen.qmd
         - beispiele/rechnung.qmd
         - beispiele/wochenbericht.qmd
+        - beispiele/gemini-schluessel.qmd
         - beispiele/gemini.qmd
+        - beispiele/rag.qmd
 
 format:
   html:

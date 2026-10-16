@@ -1,8 +1,8 @@
 # Beispiele zum Mitmachen {.unnumbered}
 
-Nach dem ersten Workflow bauen wir vier kleine Abläufe aus dem Alltag des Online-Shops. Beispiel 1 und 2 bauen wir Klick für Klick nach. Beispiel 3 und 4 sind etwas umfangreicher: Wir laden die fertige Datei in n8n hoch und gehen den Workflow Knoten für Knoten durch. Alle Beispiele laufen in der Testphase von n8n Cloud; Beispiel 4 braucht zusätzlich das Gemini-Credential aus [Credentials vorbereiten](../first-workflows/credentials.qmd).
+Nach dem ersten Workflow bauen wir fünf kleine Abläufe aus dem Alltag des Online-Shops. Beispiel 1 und 2 bauen wir Klick für Klick nach. Beispiel 3 bis 5 sind umfangreicher: Wir laden die fertige Datei in n8n hoch und gehen den Workflow Knoten für Knoten durch. Alle Beispiele laufen in der Testphase von n8n Cloud; Für Beispiel 4 und 5 richten wir vorher einmal einen kostenlosen Schlüssel ein: [Gemini-Schlüssel einrichten](gemini-schluessel.qmd).
 
-![Vier Beispiele: Kontaktanfragen sortieren, Rechnung freigeben, Wochenbericht, Anfrage mit Gemini einordnen.](../images/lektionen/kapitel-beispiele-lernweg.svg)
+![Fünf Beispiele und der Gemini-Schlüssel vor Beispiel 4.](../images/lektionen/kapitel-beispiele-lernweg.svg)
 
 ## Eine Datei in n8n hochladen
 
