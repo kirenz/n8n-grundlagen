@@ -915,11 +915,11 @@
     ]
   },
   {
-    "objectID": "first-workflows/credentials.html#beispiel-einen-gemini-schlüssel-anlegen",
-    "href": "first-workflows/credentials.html#beispiel-einen-gemini-schlüssel-anlegen",
+    "objectID": "first-workflows/credentials.html#beispiel-ein-api-schlüssel-für-gemini",
+    "href": "first-workflows/credentials.html#beispiel-ein-api-schlüssel-für-gemini",
     "title": "11  Credentials vorbereiten",
-    "section": "11.4 Beispiel: einen Gemini-Schlüssel anlegen",
-    "text": "11.4 Beispiel: einen Gemini-Schlüssel anlegen\nFür Beispiel 4 brauchen wir einen API-Schlüssel für Google Gemini. Google erzeugt ihn kostenlos in AI Studio; ein Google-Konto genügt.\n\n\n\nVom Gemini-Schlüssel zum Workflow in vier Schritten.\n\n\n\nDie Seite API Keys in AI Studio öffnen: https://aistudio.google.com/apikey.\nMit dem Google-Konto anmelden und beim ersten Besuch die Nutzungsbedingungen bestätigen. AI Studio legt dabei ein Standardprojekt an.\nAuf Create API key klicken und den Schlüssel kopieren.\nIn n8n unter Credentials auf Create credential klicken und Google Gemini(PaLM) Api wählen.\nDen Schlüssel in API Key einfügen, Host unverändert lassen (https://generativelanguage.googleapis.com) und mit Save speichern.\n\n\n\n\n\n\n\nWarnungSchlüssel und Daten schützen\n\n\n\nDen Schlüssel behandeln wir wie ein Passwort (Google, o. J.). In der kostenlosen Stufe nutzt Google Eingaben zur Produktverbesserung; wir senden deshalb nur Übungsdaten, keine Kunden- oder Personaldaten.",
+    "section": "11.4 Beispiel: ein API-Schlüssel für Gemini",
+    "text": "11.4 Beispiel: ein API-Schlüssel für Gemini\nEin häufiges Credential ist ein API-Schlüssel. Wie wir einen kostenlosen Schlüssel für Google Gemini erzeugen und in n8n hinterlegen, zeigt Gemini-Schlüssel einrichten bei den Beispielen.",
     "crumbs": [
       "Erste Workflows",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
@@ -930,7 +930,7 @@
     "href": "first-workflows/credentials.html#mini-checkliste-vor-dem-weiterbauen",
     "title": "11  Credentials vorbereiten",
     "section": "11.5 Mini-Checkliste vor dem Weiterbauen",
-    "text": "11.5 Mini-Checkliste vor dem Weiterbauen\nFür Modul 02 reicht diese Vorbereitung:\n\nEine n8n-Instanz ist erreichbar, Cloud oder Self-Hosted.\nWir können einen Workflow im Editor öffnen und speichern.\nFür den Live-Modus legen wir später ein SMTP-Credential zum Senden und ein IMAP- oder Gmail-/Microsoft-Credential zum Lesen an.\nDie erste Testadresse sollte keine produktive Support- oder Sales-Adresse sein.\n\nDamit ist die Grundlage gelegt. Im nächsten Kapitel importieren oder bauen wir den ersten Workflow und arbeiten zunächst mit simulierten Maildaten. Danach sehen wir genau, an welcher Stelle echte Credentials eingehängt werden.\n\n\n\n\nGoogle. o. J. „Using Gemini API keys“. Zugegriffen 16. Oktober 2026. https://ai.google.dev/gemini-api/docs/api-key.",
+    "text": "11.5 Mini-Checkliste vor dem Weiterbauen\nFür Modul 02 reicht diese Vorbereitung:\n\nEine n8n-Instanz ist erreichbar, Cloud oder Self-Hosted.\nWir können einen Workflow im Editor öffnen und speichern.\nFür den Live-Modus legen wir später ein SMTP-Credential zum Senden und ein IMAP- oder Gmail-/Microsoft-Credential zum Lesen an.\nDie erste Testadresse sollte keine produktive Support- oder Sales-Adresse sein.\n\nDamit ist die Grundlage gelegt. Im nächsten Kapitel importieren oder bauen wir den ersten Workflow und arbeiten zunächst mit simulierten Maildaten. Danach sehen wir genau, an welcher Stelle echte Credentials eingehängt werden.",
     "crumbs": [
       "Erste Workflows",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Credentials vorbereiten</span>"
@@ -1029,7 +1029,7 @@
     "href": "beispiele/index.html",
     "title": "Beispiele zum Mitmachen",
     "section": "",
-    "text": "Eine Datei in n8n hochladen\nNach dem ersten Workflow bauen wir vier kleine Abläufe aus dem Alltag des Online-Shops. Beispiel 1 und 2 bauen wir Klick für Klick nach. Beispiel 3 und 4 sind etwas umfangreicher: Wir laden die fertige Datei in n8n hoch und gehen den Workflow Knoten für Knoten durch. Alle Beispiele laufen in der Testphase von n8n Cloud; Beispiel 4 braucht zusätzlich das Gemini-Credential aus Credentials vorbereiten.\nDie Abbildungen in diesem Teil sind nach n8n nachgezeichnet, keine Screenshots. Je nach n8n-Version heißen einzelne Felder leicht anders; die fertigen Dateien dienen dann als Vergleich.",
+    "text": "Eine Datei in n8n hochladen\nNach dem ersten Workflow bauen wir fünf kleine Abläufe aus dem Alltag des Online-Shops. Beispiel 1 und 2 bauen wir Klick für Klick nach. Beispiel 3 bis 5 sind umfangreicher: Wir laden die fertige Datei in n8n hoch und gehen den Workflow Knoten für Knoten durch. Alle Beispiele laufen in der Testphase von n8n Cloud; Für Beispiel 4 und 5 richten wir vorher einmal einen kostenlosen Schlüssel ein: Gemini-Schlüssel einrichten.\nDie Abbildungen in diesem Teil sind nach n8n nachgezeichnet, keine Screenshots. Je nach n8n-Version heißen einzelne Felder leicht anders; die fertigen Dateien dienen dann als Vergleich.",
     "crumbs": [
       "Beispiele zum Mitmachen"
     ]
@@ -1155,36 +1155,124 @@
     ]
   },
   {
-    "objectID": "beispiele/gemini.html",
-    "href": "beispiele/gemini.html",
-    "title": "16  Beispiel 4: Anfrage mit Gemini einordnen",
+    "objectID": "beispiele/gemini-schluessel.html",
+    "href": "beispiele/gemini-schluessel.html",
+    "title": "16  Gemini-Schlüssel einrichten",
     "section": "",
-    "text": "16.1 Hochladen und verbinden\nKundinnen und Kunden schreiben frei, worum es geht. Eine feste Regel scheitert daran, ein Sprachmodell kann den Text einordnen: Lieferung, Rücksendung, Rechnung oder Sonstiges. Wir nutzen ein Modell von Google; das Credential dafür haben wir in Credentials vorbereiten mit einem Schlüssel aus Google AI Studio angelegt.\nDatei: beispiel-4-ki-einordnen.json",
+    "text": "16.1 Was Google AI Studio ist\nBeispiel 4 und 5 nutzen ein KI-Modell von Google. Dafür braucht n8n einen API-Schlüssel: eine lange Zeichenfolge, mit der sich n8n bei Google ausweist, ähnlich wie ein Passwort. Wir erzeugen ihn einmal kostenlos in Google AI Studio und hinterlegen ihn als Credential in n8n. Beide Beispiele nutzen danach dasselbe Credential.\nAI Studio ist eine Webseite von Google, auf der sich die Gemini-Modelle ausprobieren lassen und auf der Schlüssel für die Nutzung in anderen Programmen entstehen. Ein Google-Konto genügt, eine Kreditkarte ist nicht nötig. Die Nutzung ist bis zu einer bestimmten Zahl von Anfragen pro Minute und Tag kostenlos; für die Beispiele reicht das. Wird die Grenze erreicht, meldet n8n einen Fehler, und nach kurzer Wartezeit geht es weiter.",
     "crumbs": [
       "Beispiele zum Mitmachen",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Beispiel 4: Anfrage mit Gemini einordnen</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Gemini-Schlüssel einrichten</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/gemini-schluessel.html#schlüssel-erzeugen",
+    "href": "beispiele/gemini-schluessel.html#schlüssel-erzeugen",
+    "title": "16  Gemini-Schlüssel einrichten",
+    "section": "16.2 Schlüssel erzeugen",
+    "text": "16.2 Schlüssel erzeugen\nVoraussetzung: ein Google-Konto.\n\nDie Seite API Keys in AI Studio öffnen: https://aistudio.google.com/apikey.\nMit dem Google-Konto anmelden.\nBeim ersten Besuch die Nutzungsbedingungen bestätigen. AI Studio legt dabei ein Standardprojekt an.\nAuf Create API key klicken.\nDas vorgeschlagene Projekt wählen, falls AI Studio danach fragt.\nDen Schlüssel kopieren.\n\nPrüfen: Auf der Seite API Keys steht der neue Schlüssel.",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Gemini-Schlüssel einrichten</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/gemini-schluessel.html#credential-in-n8n-anlegen",
+    "href": "beispiele/gemini-schluessel.html#credential-in-n8n-anlegen",
+    "title": "16  Gemini-Schlüssel einrichten",
+    "section": "16.3 Credential in n8n anlegen",
+    "text": "16.3 Credential in n8n anlegen\n\nIn n8n die Credentials öffnen und auf Create credential klicken.\nNach Gemini suchen und Google Gemini(PaLM) Api wählen.\nDen Schlüssel in das Feld API Key einfügen.\nHost unverändert lassen (https://generativelanguage.googleapis.com).\nAuf Save klicken.\n\nPrüfen: n8n meldet einen erfolgreichen Verbindungstest, und das Credential erscheint in der Liste.\n\n\n\nCredential Google Gemini(PaLM) Api (Darstellung).\n\n\n\n\n\n\n\n\nWarnungSchlüssel und Daten schützen\n\n\n\nDen Schlüssel behandeln wir wie ein Passwort und geben ihn nicht weiter (Google, o. J.). Im Workflow steht nie der Schlüssel, nur der Name des Credentials. In der kostenlosen Stufe nutzt Google Eingaben zur Produktverbesserung; wir senden deshalb nur Übungsdaten, keine Kunden- oder Personaldaten.\n\n\n\n\n\n\nGoogle. o. J. „Using Gemini API keys“. Zugegriffen 16. Oktober 2026. https://ai.google.dev/gemini-api/docs/api-key.",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Gemini-Schlüssel einrichten</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/gemini.html",
+    "href": "beispiele/gemini.html",
+    "title": "17  Beispiel 4: Anfrage mit Gemini einordnen",
+    "section": "",
+    "text": "17.1 Hochladen und verbinden\nKundinnen und Kunden schreiben frei, worum es geht. Eine feste Regel scheitert daran, ein Sprachmodell kann den Text einordnen: Lieferung, Rücksendung, Rechnung oder Sonstiges. Wir nutzen ein Modell von Google; das Credential dafür haben wir in Gemini-Schlüssel einrichten angelegt.\nDatei: beispiel-4-ki-einordnen.json",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Beispiel 4: Anfrage mit Gemini einordnen</span>"
     ]
   },
   {
     "objectID": "beispiele/gemini.html#hochladen-und-verbinden",
     "href": "beispiele/gemini.html#hochladen-und-verbinden",
-    "title": "16  Beispiel 4: Anfrage mit Gemini einordnen",
+    "title": "17  Beispiel 4: Anfrage mit Gemini einordnen",
     "section": "",
     "text": "Datei herunterladen, neuen Workflow öffnen, Import from File… wählen.\nIm Knoten Google Gemini Chat Model das eigene Gemini-Credential wählen und, falls nötig, ein aktuelles Flash-Modell aus der Liste.\nMit Execute workflow das Formular öffnen und eine Übungsanfrage senden, etwa Mein Paket ist seit einer Woche unterwegs, wann kommt es an?\n\n\n\n\nGoogle Gemini Chat Model (Darstellung).\n\n\n\n\n\n\n\n\nWarnungNur Übungsdaten\n\n\n\nIn der kostenlosen Stufe nutzt Google Eingaben zur Produktverbesserung. Wir senden nur Übungstexte, keine Kunden- oder Personaldaten.",
     "crumbs": [
       "Beispiele zum Mitmachen",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Beispiel 4: Anfrage mit Gemini einordnen</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Beispiel 4: Anfrage mit Gemini einordnen</span>"
     ]
   },
   {
     "objectID": "beispiele/gemini.html#prompt-und-modell",
     "href": "beispiele/gemini.html#prompt-und-modell",
-    "title": "16  Beispiel 4: Anfrage mit Gemini einordnen",
-    "section": "16.2 Prompt und Modell",
-    "text": "16.2 Prompt und Modell\nDer Knoten Kategorie bestimmen (Basic LLM Chain) schickt einen Auftrag an das Modell: Der Prompt nennt die erlaubten Kategorien und fügt per Expression die Nachricht aus dem Formular ein. Das Modell hängt als eigener Knoten unter der Kette und liefert die Antwort, die als Feld text weiterwandert. Eine Temperatur von 0 macht die Antworten möglichst gleichbleibend.\n\n\n\nKategorie bestimmen (Darstellung).",
+    "title": "17  Beispiel 4: Anfrage mit Gemini einordnen",
+    "section": "17.2 Prompt und Modell",
+    "text": "17.2 Prompt und Modell\nDer Knoten Kategorie bestimmen (Basic LLM Chain) schickt einen Auftrag an das Modell: Der Prompt nennt die erlaubten Kategorien und fügt per Expression die Nachricht aus dem Formular ein. Das Modell hängt als eigener Knoten unter der Kette und liefert die Antwort, die als Feld text weiterwandert. Eine Temperatur von 0 macht die Antworten möglichst gleichbleibend.\n\n\n\nKategorie bestimmen (Darstellung).",
     "crumbs": [
       "Beispiele zum Mitmachen",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Beispiel 4: Anfrage mit Gemini einordnen</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Beispiel 4: Anfrage mit Gemini einordnen</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/rag.html",
+    "href": "beispiele/rag.html",
+    "title": "18  Beispiel 5: FAQ-Agent mit RAG",
+    "section": "",
+    "text": "18.1 Wie RAG funktioniert\nDer Kundenservice beantwortet immer wieder dieselben Fragen zu Lieferung, Rücksendung und Zahlung. Ein Agent soll diese Fragen im Chat beantworten, aber nur mit dem, was in den FAQ des Shops steht. Dafür bekommt er ein Werkzeug, mit dem er in den FAQ nachschlägt. Dieses Vorgehen heißt RAG (Retrieval-Augmented Generation): Das Modell antwortet mit Hilfe von Textstellen, die vorher gefunden wurden.\nDatei: beispiel-5-faq-agent-rag.json",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Beispiel 5: FAQ-Agent mit RAG</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/rag.html#wie-rag-funktioniert",
+    "href": "beispiele/rag.html#wie-rag-funktioniert",
+    "title": "18  Beispiel 5: FAQ-Agent mit RAG",
+    "section": "",
+    "text": "Wissen speichern und Frage beantworten.\n\n\n\nEmbedding: Ein Modell wandelt jeden Textabschnitt in eine Zahlenfolge um, die seine Bedeutung abbildet. Ähnliche Bedeutung ergibt ähnliche Zahlen.\nVector Store: ein Speicher für diese Zahlenfolgen. Er findet zu einer Frage die Abschnitte mit der ähnlichsten Bedeutung.\nAgent mit Werkzeug: Der Agent entscheidet selbst, wann er nachschlägt, und formuliert die Antwort aus den Fundstellen.",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Beispiel 5: FAQ-Agent mit RAG</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/rag.html#hochladen-wissen-laden-fragen",
+    "href": "beispiele/rag.html#hochladen-wissen-laden-fragen",
+    "title": "18  Beispiel 5: FAQ-Agent mit RAG",
+    "section": "18.2 Hochladen, Wissen laden, fragen",
+    "text": "18.2 Hochladen, Wissen laden, fragen\nVoraussetzung: das Gemini-Credential aus Gemini-Schlüssel einrichten.\n\nDie Datei herunterladen und einen neuen Workflow öffnen.\nIm Drei-Punkte-Menü Import from File… wählen und die Datei auswählen.\nIn den drei Gemini-Knoten (Google Gemini Chat Model, Embeddings (Speichern), Embeddings (Suchen)) jeweils das eigene Gemini-Credential wählen.\nIm Knoten Wissen laden auf Execute workflow klicken. Die FAQ werden gespeichert.\nUnten auf Open chat klicken und fragen: Wie lange dauert die Lieferung und was kostet der Versand?\nEine Frage stellen, die die FAQ nicht beantworten: Kann ich in Raten zahlen?\n\nPrüfen: Die erste Antwort nennt 2 bis 4 Werktage und die Versandkosten. Bei der zweiten Frage sagt der Agent, dass die FAQ dazu nichts enthalten.\nDer Simple Vector Store hält die FAQ nur im Arbeitsspeicher. Nach einem Neustart von n8n führen wir Wissen laden erneut aus.",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Beispiel 5: FAQ-Agent mit RAG</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/rag.html#teil-1-wissen-speichern",
+    "href": "beispiele/rag.html#teil-1-wissen-speichern",
+    "title": "18  Beispiel 5: FAQ-Agent mit RAG",
+    "section": "18.3 Teil 1: Wissen speichern",
+    "text": "18.3 Teil 1: Wissen speichern\nFAQ speichern legt die Abschnitte im Simple Vector Store unter dem Schlüssel shop_faq ab; Clear Store leert ihn vorher, damit nichts doppelt gespeichert wird. Der Data Loader nimmt den FAQ-Text, der Text Splitter teilt ihn in Abschnitte von höchstens 300 Zeichen. Kleine Abschnitte machen die Suche genauer.\n\n\n\nFAQ speichern (Darstellung).\n\n\n\n\n\nDefault Data Loader (Darstellung).",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Beispiel 5: FAQ-Agent mit RAG</span>"
+    ]
+  },
+  {
+    "objectID": "beispiele/rag.html#teil-2-agent-und-werkzeug",
+    "href": "beispiele/rag.html#teil-2-agent-und-werkzeug",
+    "title": "18  Beispiel 5: FAQ-Agent mit RAG",
+    "section": "18.4 Teil 2: Agent und Werkzeug",
+    "text": "18.4 Teil 2: Agent und Werkzeug\nFAQ durchsuchen ist derselbe Speicher, diesmal als Werkzeug für den Agenten. Die Beschreibung sagt dem Agenten, wofür das Werkzeug taugt; Limit 3 liefert die drei passendsten Abschnitte. Die System Message des FAQ-Agent legt fest, dass er nur mit Informationen aus dem Werkzeug antwortet und offen sagt, wenn die FAQ nichts enthalten. So gibt er im Namen des Shops keine erfundenen Zusagen.\n\n\n\nFAQ durchsuchen (Darstellung).\n\n\n\n\n\nFAQ-Agent (Darstellung).",
+    "crumbs": [
+      "Beispiele zum Mitmachen",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Beispiel 5: FAQ-Agent mit RAG</span>"
     ]
   }
 ]

@@ -1,0 +1,285 @@
+{
+  "name": "Beispiel 5 · FAQ-Agent mit RAG",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "load",
+      "name": "Wissen laden",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f1",
+              "name": "text",
+              "value": "Beispiel-FAQ des Online-Shops (erfundene Angaben für den Kurs)\n\nLieferung: Der Standardversand dauert innerhalb Deutschlands 2 bis 4 Werktage. Ab 50 Euro Bestellwert ist der Versand kostenlos, darunter kostet er 4,90 Euro. Expressversand kostet 9,90 Euro und kommt am nächsten Werktag, wenn die Bestellung bis 12 Uhr eingeht.\n\nRücksendung: Es gilt ein Rückgaberecht von 30 Tagen ab Erhalt der Ware. Das Rücksendeetikett steht im Kundenkonto unter Bestellungen. Die Erstattung erfolgt innerhalb von 5 Werktagen nach Eingang der Rücksendung.\n\nBeschädigte Ware: Schäden bitte innerhalb von 7 Tagen mit einem Foto an den Kundenservice melden. Dann gibt es Ersatz oder eine Gutschrift.\n\nZahlung: Möglich sind Rechnung, Kreditkarte und PayPal. Rechnungen sind innerhalb von 14 Tagen zu zahlen.\n\nKundenkonto: Das Passwort lässt sich über Passwort vergessen auf der Anmeldeseite zurücksetzen. Die Lieferadresse ändert man im Kundenkonto unter Profil.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "faq",
+      "name": "FAQ-Text",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "shop_faq"
+        },
+        "clearStore": true
+      },
+      "id": "insert",
+      "name": "FAQ speichern",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        460,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-001"
+      },
+      "id": "emb1",
+      "name": "Embeddings (Speichern)",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        360,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.text }}",
+        "textSplittingMode": "custom",
+        "options": {}
+      },
+      "id": "loader",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        580,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "chunkSize": 300,
+        "chunkOverlap": 0,
+        "options": {}
+      },
+      "id": "split",
+      "name": "Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        680,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "chat",
+      "name": "Chat",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        0,
+        640
+      ],
+      "webhookId": "add02c11-8d95-5f80-b1cb-c0db34b0ec66"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Du bist der Kundenservice-Assistent des Online-Shops. Beantworte Fragen nur mit Informationen aus dem Werkzeug FAQ durchsuchen. Wenn die FAQ keine Antwort enthalten, sage das ehrlich und verweise auf den Kundenservice. Antworte kurz und auf Deutsch."
+        }
+      },
+      "id": "agent",
+      "name": "FAQ-Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        300,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3-flash-preview",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "model",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        200,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "shop_faq"
+        },
+        "toolDescription": "Durchsucht die FAQ des Online-Shops zu Lieferung, Rücksendung, beschädigter Ware, Zahlung und Kundenkonto.",
+        "topK": 3
+      },
+      "id": "tool",
+      "name": "FAQ durchsuchen",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        460,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-001"
+      },
+      "id": "emb2",
+      "name": "Embeddings (Suchen)",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        460,
+        1060
+      ]
+    }
+  ],
+  "connections": {
+    "Wissen laden": {
+      "main": [
+        [
+          {
+            "node": "FAQ-Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FAQ-Text": {
+      "main": [
+        [
+          {
+            "node": "FAQ speichern",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat": {
+      "main": [
+        [
+          {
+            "node": "FAQ-Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings (Speichern)": {
+      "ai_embedding": [
+        [
+          {
+            "node": "FAQ speichern",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "FAQ speichern",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "FAQ-Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FAQ durchsuchen": {
+      "ai_tool": [
+        [
+          {
+            "node": "FAQ-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings (Suchen)": {
+      "ai_embedding": [
+        [
+          {
+            "node": "FAQ durchsuchen",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
