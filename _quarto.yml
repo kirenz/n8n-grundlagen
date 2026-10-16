@@ -59,6 +59,7 @@ book:
 
     - part: first-workflows/index.qmd
       chapters:
+        - first-workflows/testzugang.qmd
         - first-workflows/credentials.qmd
         - first-workflows/first-workflow.qmd
 

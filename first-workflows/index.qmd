@@ -6,6 +6,7 @@ Zwei Themen ziehen sich durch: die saubere Trennung zwischen Simulation und Prod
 
 Wir werden:
 
+- Einen kostenlosen Testzugang bei n8n Cloud einrichten
 - Den n8n-Editor öffnen und die drei wichtigsten Bereiche (Canvas, Node-Panel, Output-Spalte) kennenlernen
 - Credentials vorbereiten, also wie man sie anlegt, zuweist und vom Workflow trennt
 - Den Demo-Workflow Schritt für Schritt zusammenbauen, mit Mock-Daten testen und in den Live-Modus überführen

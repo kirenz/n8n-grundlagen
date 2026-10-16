@@ -11,7 +11,7 @@ Drei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von d
 | Wer betreibt die Technik? | n8n selbst | ein Anbieter, z. B. InstaPods | das eigene Team |
 | Kosten | ab ca. 24 € im Monat für 2.500 Executions | ab ca. 7 € im Monat | keine Lizenz, Server ab ca. 5 € im Monat |
 | Eigener Aufwand | keiner | kaum | 1 bis 2 Std. Einrichtung, 1 bis 3 Std. Pflege im Monat |
-| Start | in Minuten | kurzfristig | nach der Einrichtung |
+| Start | in Minuten, 14 Tage kostenlos testen | kurzfristig | nach der Einrichtung |
 | Kontrolle über Daten | Daten beim Hersteller | eigene Instanz, EU-Server wählbar | volle Kontrolle |
 | Anpassbarkeit | im Rahmen des Tarifs | begrenzt | vollständig |
 | **Passt, wenn …** | erste Schritte, keine IT im Team | sensible Daten, aber keine IT | sensible Daten oder hohes Volumen, IT vorhanden |
@@ -20,7 +20,7 @@ Drei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von d
 
 ## Cloud
 
-Die n8n-Cloud ist eine SaaS-Variante (Software, die im Internet gemietet statt installiert wird), die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung.
+Die n8n-Cloud ist eine SaaS-Variante (Software, die im Internet gemietet statt installiert wird), die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung. Eine 14-tägige Testphase ist kostenlos und ohne Kreditkarte [@n8nCloudTrial]; mit ihr arbeiten wir in diesem Kurs.
 
 **Eigenschaften:**
 

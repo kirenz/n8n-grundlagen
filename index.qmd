@@ -2,7 +2,7 @@
 
 Willkommen zum Grundlagenkurs für n8n, ein Werkzeug, das Programme wie Postfach, Tabelle und CRM ohne Programmieren miteinander verbindet. Dieses Buch richtet sich an Fachkräfte und Teams, die wiederkehrende Abläufe automatisieren möchten, ohne dafür ein Software-Projekt zu starten. Programmierkenntnisse sind nicht nötig, ein Browser und eine beliebige Mail-Adresse genügen zum Mitmachen.
 
-Am Ende steht ein erster, vollständig funktionierender Workflow (ein automatischer Ablauf): Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin in vier Schritten: die Plattform einordnen, den Ablauf als BPMN-Modell zeichnen (BPMN ist eine genormte Zeichensprache für Abläufe), eine eigene Instanz einrichten (den eigenen n8n-Zugang), den ersten Workflow bauen.
+Am Ende steht ein erster, vollständig funktionierender Workflow (ein automatischer Ablauf): Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin in vier Schritten: die Plattform einordnen, den Ablauf als BPMN-Modell zeichnen (BPMN ist eine genormte Zeichensprache für Abläufe), einen kostenlosen n8n-Testzugang anlegen, den ersten Workflow bauen.
 
 Abläufe wie im Demo-Szenario gibt es überall:
 
@@ -26,5 +26,5 @@ Die Beispiele im Kurs kommen aus Marketing, Vertrieb und Customer-Support. Diese
 :::
 
 ::: {.callout-tip title="Lernempfehlung"}
-Die Kapitel bauen aufeinander auf. Am meisten nehmen wir mit, wenn wir sie der Reihe nach durchgehen und den Demo-Workflow Schritt für Schritt mitbauen. Die wichtigste Voraussetzung ist eine eigene n8n-Instanz, als Cloud-Variante (von n8n betrieben) oder Self-Hosted (auf einem eigenen Server).
+Die Kapitel bauen aufeinander auf. Am meisten nehmen wir mit, wenn wir sie der Reihe nach durchgehen und den Demo-Workflow Schritt für Schritt mitbauen. Die wichtigste Voraussetzung ist ein n8n-Zugang. Dafür reicht die kostenlose 14-tägige Testphase von n8n Cloud; die Einrichtung zeigt das Kapitel [n8n-Testzugang einrichten](first-workflows/testzugang.qmd).
 :::

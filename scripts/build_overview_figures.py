@@ -292,10 +292,31 @@ def kapitel_bpmn():
 
 
 def kapitel_workflows():
-    return lernweg("Zwei Lektionen bis zum laufenden Workflow", [
+    return lernweg("Drei Lektionen bis zum laufenden Workflow", [
+        ("uebung", "Testzugang einrichten", "n8n Cloud 14 Tage kostenlos"),
         ("key", "Credentials vorbereiten", "Zugänge anlegen, getrennt vom Workflow"),
         ("n8n", "Der erste Workflow", "Kundenmail bestätigen und eintragen"),
-    ], 2, "Ergebnis: ein getesteter Workflow mit fünf Knoten und eine neue Zeile in customer_emails.", 125)
+    ], 3, "Ergebnis: ein getesteter Workflow mit fünf Knoten und eine neue Zeile in customer_emails.", 125)
+
+
+def testphase():
+    """Zeitplan der n8n-Testphase (14 Tage, danach 90 Tage Download)."""
+    b = [text(450, 32, "Die 14 Testtage für das Bauen nutzen", 17, 700, INK, "middle")]
+    y = 110
+    b.append(box(30, y, 230, 44, PAPER, PAPER, 8))
+    b.append(text(145, y + 27, "Kurs lesen: Start, Plattform, BPMN", 13, 600, MUTED, "middle"))
+    b.append(box(270, y, 420, 44, BLUE, BLUE, 8))
+    b.append(text(480, y + 27, "14 Tage Testphase: bauen und testen", 14, 700, "#ffffff", "middle"))
+    b.append(box(700, y, 170, 44, "#ffffff", RULE, 8))
+    b.append(text(785, y + 27, "90 Tage nur Download", 13, 600, MUTED, "middle"))
+    for x, lab, sub in ((270, "Tag 1", "registrieren"), (690, "Tag 14", "Workflows sichern"), (870, "nach 90 Tagen", "endgültig gelöscht")):
+        b.append(f'<line x1="{x}" y1="{y - 18}" x2="{x}" y2="{y + 62}" stroke="{INK}" stroke-width="2"/>')
+        b.append(text(x, y - 28, lab, 13, 700, INK, "middle" if x < 860 else "end"))
+        b.append(text(x, y + 82, sub, 12, 400, MUTED, "middle" if x < 860 else "end"))
+    b.append(box(30, 230, 840, 60, LIGHT, LIGHT, 10))
+    b.append(text(50, 256, "Testphase von n8n Cloud: alle Pro-Funktionen, bis zu 1.000 Ausführungen, keine Kreditkarte.", 13, 600, INK))
+    b.append(text(50, 278, "Endet automatisch ohne Kosten. Erst registrieren, wenn die Lektion zum ersten Workflow beginnt.", 13, 400, INK))
+    return svg(900, 305, b)
 
 
 FIGS = {
@@ -310,6 +331,7 @@ FIGS = {
     "kapitel-plattform-fragen.svg": drei_fragen,
     "kapitel-bpmn-lernweg.svg": kapitel_bpmn,
     "kapitel-workflows-lernweg.svg": kapitel_workflows,
+    "testphase-zeitplan.svg": testphase,
 }
 
 if __name__ == "__main__":
