@@ -61,6 +61,8 @@ Ein Modell ist nur so verständlich wie seine Beschriftungen. Vier Regeln machen
 | XOR-Gateway | Frage; die ausgehenden Kanten tragen die Antworten | Anfrage vollständig? | Vollständigkeit |
 | Lane | Rolle oder Stelle, keine Person | Kundenservice | Frau Müller |
 
+Zur Erinnerung: Der **Infinitiv** ist die Grundform eines Verbs („prüfen“, „bestätigen“). Das **Partizip** beschreibt etwas Abgeschlossenes („eingegangen“, „geprüft“).
+
 Die Regel für Aufgaben hat einen praktischen Nebeneffekt: Wer „Prüfung“ schreibt, kann die Prüfung von „Anfrage prüfen“, „Belege prüfen“ und „Bonität prüfen“ nicht mehr unterscheiden. Wer das Objekt nennt, sieht sofort, worauf der Schritt arbeitet. Sammelverben wie „bearbeiten“ oder „verarbeiten“ sagen nichts; sie verstecken meist mehrere Schritte oder eine Entscheidung.
 
 ::: {.callout-important title="Keine Abkürzungen, keine Systemkürzel"}
