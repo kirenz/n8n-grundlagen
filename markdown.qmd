@@ -84,7 +84,7 @@ Die Striche müssen nicht untereinander stehen. Wichtig ist nur, dass jede Zeile
 
 ## Warum der Agent Markdown bevorzugt
 
-Eine Word- oder Google-Datei ist ein gepacktes Paket aus Text und Formatierungsangaben. Eine `.docx`-Datei zum Beispiel ist technisch ein komprimierter Ordner mit mehreren Dateien, in denen Schriftart, Farben, Seitenränder und der eigentliche Text verteilt liegen. Ein Agent muss dieses Paket erst auspacken, um an den Text zu kommen, und manche Werkzeuge können das gar nicht. Markdown ist der Text selbst. Im Bild des neuen Mitarbeiters: Markdown-Dateien sind Notizen, die jeder ohne Spezialprogramm lesen kann. Eine Word-Datei gleicht eher einer verschlossenen Akte, die erst jemand öffnen muss.
+Eine Word- oder Google-Datei ist ein gepacktes Paket aus Text und Formatierungsangaben. Eine `.docx`-Datei zum Beispiel ist technisch ein komprimierter Ordner mit mehreren Dateien, in denen Schriftart, Farben, Seitenränder und der eigentliche Text verteilt liegen. Ein Agent muss dieses Paket erst auspacken, um an den Text zu kommen, und manche Werkzeuge können das gar nicht. Markdown ist der Text selbst. Für den neuen Mitarbeiter heißt das: Markdown-Dateien sind Notizen, die jeder ohne Spezialprogramm lesen kann. Eine Word-Datei gleicht eher einer verschlossenen Akte, die erst jemand öffnen muss.
 
 Daraus folgen zwei Vorteile im Alltag. Der Agent liest und ändert Markdown direkt, ohne Hilfsprogramm. Und jede Änderung ist Zeile für Zeile sichtbar: Ergänzt der Agent eine Regel, sehen wir genau die eine neue Zeile. Eine Farbmarkierung in Word zeigt das nicht verlässlich.
 
