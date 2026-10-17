@@ -6,12 +6,12 @@ Ein Chat-Assistent und ein Agent nutzen oft dasselbe Sprachmodell (das KI-Modell
 
 Mit Agent meinen wir in diesem Buch einen **Coding-Agenten**: ein KI-Werkzeug, das auf dem eigenen Rechner in einem Ordner mitarbeitet. Gebaut wurden diese Werkzeuge für Programmcode. Sie arbeiten aber mit allen Textdateien, also auch mit Kundenanfragen, Protokollen oder Konzepten. Bekannte Beispiele:
 
-| Werkzeug | Anbieter | App |
-|---|---|---|
-| Claude Code | Anthropic | Claude-Desktop-App, Bereich „Code“ |
-| Codex | OpenAI | Codex-App |
-| Antigravity | Google | Antigravity-App |
-| Cursor | Anysphere | Cursor-App |
+| Werkzeug | Anbieter | App | Anleitung |
+|---|---|---|---|
+| Claude Code | Anthropic | [Claude-Desktop-App](https://claude.com/download), Bereich „Code“ | [Claude Code in der Desktop-App](https://code.claude.com/docs/en/desktop) |
+| Codex | OpenAI | [Codex-App](https://learn.chatgpt.com/docs/app) | [Codex-Dokumentation](https://learn.chatgpt.com/docs) |
+| Antigravity | Google | [Antigravity-App](https://antigravity.google/download) | [Antigravity-Dokumentation](https://antigravity.google/docs) |
+| Cursor | Anysphere | [Cursor-App](https://cursor.com/download) | [Cursor-Dokumentation](https://cursor.com/docs) |
 
 Wir arbeiten in diesem Buch in der App des jeweiligen Werkzeugs. Manche Werkzeuge lassen sich auch über ein Textfenster für Befehle (Terminal) bedienen; das brauchen wir nicht.
 
@@ -101,12 +101,12 @@ Diese Tabelle ist die einzige Stelle im Buch mit Produktdetails. Sie nennt drei 
 
 | Begriff | Claude Code | Codex | Antigravity |
 |---|---|---|---|
-| **App** | Claude-Desktop-App, Bereich „Code“ | Codex-App | Antigravity-App |
+| **App** | [Claude-Desktop-App](https://claude.com/download), Bereich „Code“ | [Codex-App](https://learn.chatgpt.com/docs/app) | [Antigravity-App](https://antigravity.google/download) |
 | **Anweisungsdatei** | `CLAUDE.md`. Liest `AGENTS.md` nur, wenn kein `CLAUDE.md` vorliegt. Alternativ in `CLAUDE.md` die Zeile `@AGENTS.md`.[^cc-memory] | `AGENTS.md` im Projektordner, zusätzlich global in `~/.codex/`.[^cx-agents] | `AGENTS.md` oder `GEMINI.md`, zusätzlich Regeln in `.agents/rules/`.[^ag-rules] |
 | **Skills-Ordner** | `.claude/skills/` im Projekt, persönlich `~/.claude/skills/`.[^cc-skills] | `.agents/skills/` im Projekt, persönlich `~/.agents/skills/`.[^cx-skills] | `.agents/skills/` im Projekt, global `~/.gemini/config/skills/`.[^ag-skills] |
 | **MCP-Konfiguration** | Datei `.mcp.json` im Projekt.[^cc-mcp] | Datei `.codex/config.toml` im Projekt oder `~/.codex/config.toml`.[^cx-mcp] | MCP Store im Agent-Panel, Datei `mcp_config.json`.[^ag-mcp] |
 | **Plugins und Konnektoren** | Plugins aus Marketplaces.[^cc-plugins] Konnektoren (Connectors) in den Claude-Apps, je Werkzeug freigebbar.[^cc-connectors] | Plugins bündeln Skills und MCP-Server. Ein eigener Begriff „Konnektor“ ist nicht belegt.[^cx-plugins] | Plugins mit `plugin.json`, Marketplace in der App.[^ag-plugins] |
-| **Installations&shy;anleitung** | [code.claude.com/docs](https://code.claude.com/docs) | [learn.chatgpt.com/docs](https://learn.chatgpt.com/docs) | [antigravity.google/docs](https://antigravity.google/docs) |
+| **Installations&shy;anleitung** | [code.claude.com/docs/en/desktop](https://code.claude.com/docs/en/desktop) | [learn.chatgpt.com/docs](https://learn.chatgpt.com/docs) | [antigravity.google/docs](https://antigravity.google/docs) |
 
 Ein Pfad mit `~` liegt im eigenen Benutzerordner und gilt für alle Projekte. Pfade ohne `~` liegen im Projektordner und gelten nur dort. Ein Punkt am Anfang eines Ordnernamens (`.agents/`) bedeutet, dass der Ordner im Dateimanager meist ausgeblendet ist. Die Begriffe Skills, MCP, Plugins und Konnektoren erklären die späteren Kapitel.
 
