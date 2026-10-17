@@ -444,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Was wir dem Agenten gestern im Chat gesagt haben, weiß er heute nicht mehr. Dauerhafte Regeln schreiben wir deshalb in eine Datei, die der Agent zu Beginn jeder Sitzung von selbst liest: die <code>AGENTS.md</code>. Sie ist die Hausordnung des Projektordners. Fünf kurze, prüfbare Regeln reichen, damit der Agent auf Deutsch antwortet, nichts erfindet und meldet, was er geändert hat.</p>
+<p>Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Was wir dem Agenten gestern im Chat gesagt haben, weiß er heute nicht mehr. Dauerhafte Regeln schreiben wir deshalb in eine Datei, die der Agent zu Beginn jeder Sitzung von selbst liest: die <code>AGENTS.md</code>. Sie ist die Hausordnung des Projektordners. Fünf kurze, prüfbare Regeln halten den Agenten an, auf Deutsch zu antworten, Angaben ohne Quelle als Annahme zu kennzeichnen und zu melden, was er geändert hat.</p>
 <section id="ohne-und-mit-hausordnung" class="level2" data-number="22.1">
 <h2 data-number="22.1" class="anchored" data-anchor-id="ohne-und-mit-hausordnung"><span class="header-section-number">22.1</span> Ohne und mit Hausordnung</h2>
 <p>Die beiden Nachbauten zeigen denselben Ordner <code>kundenanfragen</code> mit derselben Frage: „Wie teuer ist eine Reparatur bei uns?“ Eine Preisliste liegt noch nicht im Ordner, die Frage lässt sich aus den Dateien also nicht beantworten. Im ersten Nachbau fehlt die <code>AGENTS.md</code>, im zweiten liegt sie im Ordner. Mit „Weiter“ klicken wir durch beide Sitzungen und vergleichen die Antworten.</p>
@@ -494,7 +494,7 @@ Angelegt oder geändert: keine Dateien.</code></pre>
 </tr>
 <tr class="even">
 <td>2. Nur Fakten aus dem Ordner, sonst „Annahme:“</td>
-<td>Der Agent erfindet keine Preise, Termine oder Zusagen.</td>
+<td>Erfundene Preise, Termine oder Zusagen werden seltener, Lücken werden sichtbar.</td>
 <td>Jede Angabe steht in einer Datei oder trägt „Annahme:“.</td>
 </tr>
 <tr class="odd">
@@ -515,6 +515,19 @@ Angelegt oder geändert: keine Dateien.</code></pre>
 </tbody>
 </table>
 <p>Die Regeln sind in Befehlsform und in der Du-Form geschrieben, so wie wir auch Aufträge an den Agenten formulieren. Sie stehen als nummerierte Liste, damit wir uns im Gespräch auf „Regel 2“ beziehen können.</p>
+<div class="callout callout-style-simple callout-warning callout-titled" title="Regeln sind keine Garantie">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Regeln sind keine Garantie
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ein Sprachmodell kann sich auch mit Regel 2 eine Angabe ausdenken, die in keiner Datei steht. Die Regeln senken dieses Risiko und machen Abweichungen leichter erkennbar. Preise, Termine und Zusagen prüfen wir deshalb weiter gegen die Quelle, bevor ein Entwurf das Haus verlässt.</p>
+</div>
+</div>
 </section>
 <section id="prüfbare-regeln" class="level2" data-number="22.3">
 <h2 data-number="22.3" class="anchored" data-anchor-id="prüfbare-regeln"><span class="header-section-number">22.3</span> Prüfbare Regeln</h2>
@@ -608,7 +621,7 @@ Zeige mir die Datei, bevor du sie speicherst.</code></pre></li>
 <pre class="text"><code>Wie teuer ist eine Reparatur bei uns?</code></pre></li>
 <li><p>Prüfen: Die Antwort ist auf Deutsch und enthält „Annahme:“.</p></li>
 </ol>
-<p><strong>Prüfkriterium:</strong> Die Prüfungen in Schritt 6 und Schritt 8 bestehen in einer neuen Sitzung. Dann liest der Agent die Hausordnung von selbst.</p>
+<p><strong>Prüfkriterium:</strong> Die Prüfungen in Schritt 6 und Schritt 8 bestehen in einer neuen Sitzung. Dann liest der Agent die Hausordnung von selbst. Dass er sich bei jedem späteren Auftrag daran hält, zeigt der Test nicht; das prüfen wir am jeweiligen Ergebnis.</p>
 <p>Besteht die Prüfung in Schritt 6 nicht, liest das Werkzeug die <code>AGENTS.md</code> wahrscheinlich nicht automatisch. Dann hilft die Frage im Kasten unten.</p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Den Agenten fragen">
 <div class="callout-header d-flex align-content-center">
