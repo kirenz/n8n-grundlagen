@@ -499,32 +499,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="markdown-das-dateiformat-in-diesem-buch" class="level2" data-number="19.2">
 <h2 data-number="19.2" class="anchored" data-anchor-id="markdown-das-dateiformat-in-diesem-buch"><span class="header-section-number">19.2</span> Markdown: das Dateiformat in diesem Buch</h2>
-<p>Fast alle Dateien in diesem Buch sind <strong>Markdown</strong>-Dateien. Markdown ist reiner Text mit wenigen Zeichen für die Gliederung: <code>#</code> am Zeilenanfang macht eine Überschrift, <code>-</code> einen Listenpunkt. Die Dateien enden auf <code>.md</code>.</p>
-<p>Warum dieses Format? Eine Word-Datei ist innen ein Paket aus Text und Formatierungsangaben. Markdown ist der Text selbst. Dieselbe Kundenanfrage sieht in beiden Formaten so aus:</p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>terminwunsch.docx, Inhalt der Datei (Ausschnitt)</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">w:p</span>&gt;&lt;<span class="kw">w:pPr</span>&gt;&lt;<span class="kw">w:pStyle</span> <span class="ot">w:val=</span><span class="st">"Heading1"</span>/&gt;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">w:pPr</span>&gt;&lt;<span class="kw">w:r</span>&gt;&lt;<span class="kw">w:t</span>&gt;Terminwunsch&lt;/<span class="kw">w:t</span>&gt;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">w:r</span>&gt;&lt;/<span class="kw">w:p</span>&gt;&lt;<span class="kw">w:p</span>&gt;&lt;<span class="kw">w:pPr</span>&gt;&lt;<span class="kw">w:numPr</span>&gt;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">w:ilvl</span> <span class="ot">w:val=</span><span class="st">"0"</span>/&gt;&lt;/<span class="kw">w:numPr</span>&gt;&lt;/<span class="kw">w:pPr</span>&gt;</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">w:r</span>&gt;&lt;<span class="kw">w:t</span>&gt;Kanal: E-Mail&lt;/<span class="kw">w:t</span>&gt;&lt;/<span class="kw">w:r</span>&gt;</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">w:p</span>&gt;&lt;<span class="kw">w:p</span>&gt;&lt;<span class="kw">w:r</span>&gt;&lt;<span class="kw">w:t</span>&gt;Anliegen:&lt;/<span class="kw">w:t</span>&gt;</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">w:r</span>&gt;&lt;<span class="kw">w:r</span>&gt;&lt;<span class="kw">w:t</span>&gt; Termin für eine</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Reparatur&lt;/<span class="kw">w:t</span>&gt;&lt;/<span class="kw">w:r</span>&gt;&lt;/<span class="kw">w:p</span>&gt;</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>terminwunsch.md</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Terminwunsch</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Datum: 2026-10-05</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kanal: E-Mail</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Anliegen: Termin für eine Reparatur</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-<p>Markdown ist reiner Text: Mensch und Agent lesen dieselbe Datei, ohne Spezialprogramm und ohne Umweg. Ändert der Agent etwas, ist jede neue Zeile sichtbar. Wie Markdown im Einzelnen funktioniert, zeigt das Kapitel <a href="../agent-arbeitsumgebung/markdown.html">Markdown: Text, den Mensch und Agent lesen</a>.</p>
+<p>Fast alle Dateien in diesem Buch sind <strong>Markdown</strong>-Dateien. Markdown ist reiner Text mit wenigen Zeichen für die Gliederung: <code>#</code> am Zeilenanfang macht eine Überschrift, <code>-</code> einen Listenpunkt. Die Dateien enden auf <code>.md</code>. Eine Kundenanfrage sieht darin so aus:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Terminwunsch</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Datum: 2026-10-05</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kanal: E-Mail</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Anliegen: Termin für eine Reparatur</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Warum dieses Format? Mensch und Agent lesen dieselbe Datei, ohne Spezialprogramm und ohne Umweg. Ändert der Agent etwas, ist jede neue Zeile sichtbar. Im Kapitel <a href="../agent-arbeitsumgebung/markdown.html">Markdown: Text, den Mensch und Agent lesen</a> legen wir Schritt für Schritt eigene Markdown-Dateien an und sehen dort auch, was eine Word-Datei davon unterscheidet.</p>
 </section>
 <section id="zwei-arten-zu-arbeiten" class="level2" data-number="19.3">
 <h2 data-number="19.3" class="anchored" data-anchor-id="zwei-arten-zu-arbeiten"><span class="header-section-number">19.3</span> Zwei Arten zu arbeiten</h2>
@@ -578,15 +559,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>UEBERSICHT.md</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="UEBERSICHT.md"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Übersicht der Anfragen</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Sortiert nach Dringlichkeit, dringendste zuerst.</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rang <span class="pp">|</span> Datei <span class="pp">|</span> Anliegen <span class="pp">|</span> Grund <span class="pp">|</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> 2026-10-07-beschwerde.md <span class="pp">|</span> Reparatur nicht fertig <span class="pp">|</span> für Freitag zugesagt, keine Nachricht <span class="pp">|</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> 2026-10-05-terminwunsch.md <span class="pp">|</span> Termin für eine Reparatur <span class="pp">|</span> Termin nächste Woche gewünscht <span class="pp">|</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> 2026-10-06-preisfrage.md <span class="pp">|</span> Preis für eine Reparatur <span class="pp">|</span> keine Frist genannt <span class="pp">|</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="UEBERSICHT.md"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Übersicht der Anfragen</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Sortiert nach Dringlichkeit, dringendste zuerst.</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rang <span class="pp">|</span> Datei <span class="pp">|</span> Anliegen <span class="pp">|</span> Grund <span class="pp">|</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> 2026-10-07-beschwerde.md <span class="pp">|</span> Reparatur nicht fertig <span class="pp">|</span> für Freitag zugesagt, keine Nachricht <span class="pp">|</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> 2026-10-05-terminwunsch.md <span class="pp">|</span> Termin für eine Reparatur <span class="pp">|</span> Termin nächste Woche gewünscht <span class="pp">|</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> 2026-10-06-preisfrage.md <span class="pp">|</span> Preis für eine Reparatur <span class="pp">|</span> keine Frist genannt <span class="pp">|</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In der Vorschau der App, die Markdown formatiert anzeigt, sieht dieselbe Datei so aus:</p>
 <div style="border:1px solid #dcd9d2;border-radius:10px;overflow:hidden;background:#fbfaf7;margin:0 0 1.2rem">
