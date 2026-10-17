@@ -9,7 +9,7 @@
 <meta name="author" content="Jan Kirenz">
 <meta name="description" content="Von der Plattform zum ersten Workflow">
 
-<title>27&nbsp; MCP: die Steckdose für andere Systeme – n8n-Grundlagen</title>
+<title>28&nbsp; MCP: die Steckdose für andere Systeme – n8n-Grundlagen</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/mcp.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/mcp.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -321,14 +321,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/excel-als-quelle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Excel-Tabellen als Quelle</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/laufend-neue-dateien.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/skills.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Skills: Abläufe, die bleiben</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Skills: Abläufe, die bleiben</span></span></a>
   </div>
 </li>
       </ul>
@@ -345,25 +351,25 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/mcp.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/konnektoren-plugins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Konnektoren und Plugins</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Konnektoren und Plugins</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-n8n/n8n-mit-dem-agenten.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-n8n/starterpaket.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Starterpaket</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Starterpaket</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,19 +384,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#was-mcp-ist" id="toc-was-mcp-ist" class="nav-link active" data-scroll-target="#was-mcp-ist"><span class="header-section-number">27.1</span> Was MCP ist</a></li>
-  <li><a href="#ein-werkzeugaufruf-im-ablauf" id="toc-ein-werkzeugaufruf-im-ablauf" class="nav-link" data-scroll-target="#ein-werkzeugaufruf-im-ablauf"><span class="header-section-number">27.2</span> Ein Werkzeugaufruf im Ablauf</a></li>
-  <li><a href="#brauchen-wir-eine-anbindung" id="toc-brauchen-wir-eine-anbindung" class="nav-link" data-scroll-target="#brauchen-wir-eine-anbindung"><span class="header-section-number">27.3</span> Brauchen wir eine Anbindung?</a></li>
-  <li><a href="#praxis-verbundene-server-auflisten" id="toc-praxis-verbundene-server-auflisten" class="nav-link" data-scroll-target="#praxis-verbundene-server-auflisten"><span class="header-section-number">27.4</span> Praxis: verbundene Server auflisten</a></li>
+  <li><a href="#was-mcp-ist" id="toc-was-mcp-ist" class="nav-link active" data-scroll-target="#was-mcp-ist"><span class="header-section-number">28.1</span> Was MCP ist</a></li>
+  <li><a href="#ein-werkzeugaufruf-im-ablauf" id="toc-ein-werkzeugaufruf-im-ablauf" class="nav-link" data-scroll-target="#ein-werkzeugaufruf-im-ablauf"><span class="header-section-number">28.2</span> Ein Werkzeugaufruf im Ablauf</a></li>
+  <li><a href="#brauchen-wir-eine-anbindung" id="toc-brauchen-wir-eine-anbindung" class="nav-link" data-scroll-target="#brauchen-wir-eine-anbindung"><span class="header-section-number">28.3</span> Brauchen wir eine Anbindung?</a></li>
+  <li><a href="#praxis-verbundene-server-auflisten" id="toc-praxis-verbundene-server-auflisten" class="nav-link" data-scroll-target="#praxis-verbundene-server-auflisten"><span class="header-section-number">28.4</span> Praxis: verbundene Server auflisten</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/mcp.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/mcp.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></h1>
+<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></h1>
 </div>
 
 
@@ -408,8 +414,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Ein Agent im Projektordner kennt nur die Dateien in diesem Ordner. Der Terminwunsch vom 5. Oktober liegt als Datei in <code>anfragen/</code>, die freien Zeiten im Teamkalender liegen dort nicht. Damit der Agent sie trotzdem nachsehen kann, braucht er einen Anschluss an den Kalender. MCP ist ein solcher Anschluss, und zwar ein genormter: Ein Agent, der MCP beherrscht, kann jedes System erreichen, das ebenfalls MCP anbietet.</p>
-<section id="was-mcp-ist" class="level2" data-number="27.1">
-<h2 data-number="27.1" class="anchored" data-anchor-id="was-mcp-ist"><span class="header-section-number">27.1</span> Was MCP ist</h2>
+<section id="was-mcp-ist" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="was-mcp-ist"><span class="header-section-number">28.1</span> Was MCP ist</h2>
 <p><strong>MCP</strong> steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Das passende Bild ist eine genormte Steckdose. Jedes Gerät mit dem passenden Stecker funktioniert an ihr, egal von welchem Hersteller es stammt.</p>
 <p><strong>MCP-Server</strong> heißt das Programm auf der anderen Seite der Steckdose. Ein Server ist hier einfach ein Programm, das auf Anfragen antwortet; es kann auf dem eigenen Rechner laufen oder bei einem Anbieter im Internet. Der MCP-Server stellt <strong>Werkzeuge</strong> bereit (englisch Tools), die der Agent aufrufen darf. Ein Werkzeug ist eine einzelne Fähigkeit mit einem festen Namen, etwa <code>termine_lesen</code>.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -476,8 +482,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="ein-werkzeugaufruf-im-ablauf" class="level2" data-number="27.2">
-<h2 data-number="27.2" class="anchored" data-anchor-id="ein-werkzeugaufruf-im-ablauf"><span class="header-section-number">27.2</span> Ein Werkzeugaufruf im Ablauf</h2>
+<section id="ein-werkzeugaufruf-im-ablauf" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="ein-werkzeugaufruf-im-ablauf"><span class="header-section-number">28.2</span> Ein Werkzeugaufruf im Ablauf</h2>
 <p>Wie ein Werkzeugaufruf im Alltag aussieht, zeigt die folgende Szene. Der Ordner <code>kundenanfragen</code> hat den Stand nach dem Kapitel <a href="../agent-arbeitsumgebung/skills.html">Skills: Abläufe, die bleiben</a>. Neu ist eine Verbindung zu einem Kalender-Server. Mit „Weiter“ klicken wir uns Schritt für Schritt durch die Sitzung.</p>
 <iframe class="muster-agent" src="widgets/09-steckdose.html" title="Nachbau eines Agenten: Termin über den Kalender-Server" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
 <script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
@@ -486,8 +492,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Was wo entsteht.</strong> Die drei freien Zeiten kommen aus dem Kalender, nicht aus einer Datei. Im Projektordner entsteht nur der Antwortentwurf in <code>antworten/</code>, dazu die neue Zeile in <code>UEBERSICHT.md</code>. Der Kalender selbst bleibt unverändert.</p>
 <p><strong>Was der Agent nicht tut.</strong> <code>termin_anlegen</code> würde den Kalender ändern. Der Agent ruft es nicht auf, weil der Auftrag einen Entwurf verlangt. Ein Entwurf bietet drei Zeiten an; einen Termin trägt erst ein Mensch ein, wenn die Zusage der Kundin oder des Kunden da ist.</p>
 </section>
-<section id="brauchen-wir-eine-anbindung" class="level2" data-number="27.3">
-<h2 data-number="27.3" class="anchored" data-anchor-id="brauchen-wir-eine-anbindung"><span class="header-section-number">27.3</span> Brauchen wir eine Anbindung?</h2>
+<section id="brauchen-wir-eine-anbindung" class="level2" data-number="28.3">
+<h2 data-number="28.3" class="anchored" data-anchor-id="brauchen-wir-eine-anbindung"><span class="header-section-number">28.3</span> Brauchen wir eine Anbindung?</h2>
 <p>Ein MCP-Server bringt dem Agenten Werkzeuge. Er bringt kein besseres Sprachmodell, kein Gedächtnis für frühere Unterhaltungen und keine Kopie der Daten in den Projektordner. Die Daten bleiben im Kalender oder im Ticket-System; der Agent holt sich bei jedem Aufruf nur das Ergebnis.</p>
 <p>Daraus folgt eine einfache Faustregel. Eine Anbindung lohnt sich, wenn ein Auftrag Daten aus einem anderen System braucht, die nicht als Datei im Ordner liegen. Freie Termine im Teamkalender sind so ein Fall, weil sie sich jeden Tag ändern. Für alles, was als Datei vorliegt, reicht der Projektordner.</p>
 <table class="caption-top table">
@@ -553,8 +559,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="praxis-verbundene-server-auflisten" class="level2" data-number="27.4">
-<h2 data-number="27.4" class="anchored" data-anchor-id="praxis-verbundene-server-auflisten"><span class="header-section-number">27.4</span> Praxis: verbundene Server auflisten</h2>
+<section id="praxis-verbundene-server-auflisten" class="level2" data-number="28.4">
+<h2 data-number="28.4" class="anchored" data-anchor-id="praxis-verbundene-server-auflisten"><span class="header-section-number">28.4</span> Praxis: verbundene Server auflisten</h2>
 <p>Wir lassen den eigenen Agenten auflisten, welche Server bei ihm verbunden sind. Der Auftrag ändert nichts und ruft kein Werkzeug auf. Beide möglichen Ergebnisse sind gültig: eine Liste von Servern oder die Feststellung, dass keiner verbunden ist.</p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Den Agenten fragen">
 <div class="callout-header d-flex align-content-center">

@@ -9,7 +9,7 @@
 <meta name="author" content="Jan Kirenz">
 <meta name="description" content="Von der Plattform zum ersten Workflow">
 
-<title>25&nbsp; Laufend neue Dateien – n8n-Grundlagen</title>
+<title>26&nbsp; Laufend neue Dateien – n8n-Grundlagen</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/index.html">Mit einem Agenten arbeiten</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/laufend-neue-dateien.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/index.html">Mit einem Agenten arbeiten</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/laufend-neue-dateien.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -321,14 +321,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/excel-als-quelle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Excel-Tabellen als Quelle</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/laufend-neue-dateien.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/skills.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Skills: Abläufe, die bleiben</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Skills: Abläufe, die bleiben</span></span></a>
   </div>
 </li>
       </ul>
@@ -345,25 +351,25 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/mcp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/konnektoren-plugins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Konnektoren und Plugins</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Konnektoren und Plugins</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-n8n/n8n-mit-dem-agenten.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-n8n/starterpaket.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Starterpaket</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Starterpaket</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,21 +384,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#ein-ort-für-alles-neue" id="toc-ein-ort-für-alles-neue" class="nav-link active" data-scroll-target="#ein-ort-für-alles-neue"><span class="header-section-number">25.1</span> Ein Ort für alles Neue</a></li>
-  <li><a href="#die-namenskonvention" id="toc-die-namenskonvention" class="nav-link" data-scroll-target="#die-namenskonvention"><span class="header-section-number">25.2</span> Die Namenskonvention</a></li>
-  <li><a href="#der-feste-ablauf-in-sechs-schritten" id="toc-der-feste-ablauf-in-sechs-schritten" class="nav-link" data-scroll-target="#der-feste-ablauf-in-sechs-schritten"><span class="header-section-number">25.3</span> Der feste Ablauf in sechs Schritten</a></li>
-  <li><a href="#was-nicht-passt-bleibt-liegen" id="toc-was-nicht-passt-bleibt-liegen" class="nav-link" data-scroll-target="#was-nicht-passt-bleibt-liegen"><span class="header-section-number">25.4</span> Was nicht passt, bleibt liegen</a></li>
-  <li><a href="#im-nachbau-den-posteingang-leeren" id="toc-im-nachbau-den-posteingang-leeren" class="nav-link" data-scroll-target="#im-nachbau-den-posteingang-leeren"><span class="header-section-number">25.5</span> Im Nachbau: den Posteingang leeren</a></li>
-  <li><a href="#praxis-eingang-einrichten-und-leeren" id="toc-praxis-eingang-einrichten-und-leeren" class="nav-link" data-scroll-target="#praxis-eingang-einrichten-und-leeren"><span class="header-section-number">25.6</span> Praxis: Eingang einrichten und leeren</a></li>
+  <li><a href="#ein-ort-für-alles-neue" id="toc-ein-ort-für-alles-neue" class="nav-link active" data-scroll-target="#ein-ort-für-alles-neue"><span class="header-section-number">26.1</span> Ein Ort für alles Neue</a></li>
+  <li><a href="#die-namenskonvention" id="toc-die-namenskonvention" class="nav-link" data-scroll-target="#die-namenskonvention"><span class="header-section-number">26.2</span> Die Namenskonvention</a></li>
+  <li><a href="#der-feste-ablauf-in-sechs-schritten" id="toc-der-feste-ablauf-in-sechs-schritten" class="nav-link" data-scroll-target="#der-feste-ablauf-in-sechs-schritten"><span class="header-section-number">26.3</span> Der feste Ablauf in sechs Schritten</a></li>
+  <li><a href="#was-nicht-passt-bleibt-liegen" id="toc-was-nicht-passt-bleibt-liegen" class="nav-link" data-scroll-target="#was-nicht-passt-bleibt-liegen"><span class="header-section-number">26.4</span> Was nicht passt, bleibt liegen</a></li>
+  <li><a href="#im-nachbau-den-posteingang-leeren" id="toc-im-nachbau-den-posteingang-leeren" class="nav-link" data-scroll-target="#im-nachbau-den-posteingang-leeren"><span class="header-section-number">26.5</span> Im Nachbau: den Posteingang leeren</a></li>
+  <li><a href="#praxis-eingang-einrichten-und-leeren" id="toc-praxis-eingang-einrichten-und-leeren" class="nav-link" data-scroll-target="#praxis-eingang-einrichten-und-leeren"><span class="header-section-number">26.6</span> Praxis: Eingang einrichten und leeren</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/index.html">Mit einem Agenten arbeiten</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/laufend-neue-dateien.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/index.html">Mit einem Agenten arbeiten</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/laufend-neue-dateien.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></h1>
+<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></h1>
 </div>
 
 
@@ -410,8 +416,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Ein Projektordner bleibt nur so lange brauchbar, wie neues Material denselben Weg nimmt. Im Alltag kommen Anfragen als weitergeleitete E-Mail, als Export aus dem Kontaktformular oder als PDF eines Lieferanten. Sie tragen Namen wie <code>Mail Mustermann.txt</code> oder <code>anfrage_formular(2).md</code>, und oft steht ein Personenname darin. Legen wir solche Dateien einzeln von Hand ab, wächst die Unordnung mit jeder Woche. Wir richten deshalb einen festen Weg ein: ein Ordner, in dem alles Neue landet, und ein Auftrag, der den Ordner immer gleich leert.</p>
-<section id="ein-ort-für-alles-neue" class="level2" data-number="25.1">
-<h2 data-number="25.1" class="anchored" data-anchor-id="ein-ort-für-alles-neue"><span class="header-section-number">25.1</span> Ein Ort für alles Neue</h2>
+<section id="ein-ort-für-alles-neue" class="level2" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="ein-ort-für-alles-neue"><span class="header-section-number">26.1</span> Ein Ort für alles Neue</h2>
 <p>Der <strong>Eingangsordner</strong> heißt bei uns <code>eingang/</code>. Er ist der einzige Ort im Projektordner, an dem neue Dateien landen, egal in welchem Format und mit welchem Namen. Alles andere im Ordner ist sortiert.</p>
 <pre class="text"><code>kundenanfragen/
 ├── AGENTS.md
@@ -426,8 +432,8 @@ ul.task-list li input[type="checkbox"] {
     └── text/</code></pre>
 <p>Die Trennung hat zwei Vorteile. Wir müssen beim Ablegen nicht nachdenken: Eine weitergeleitete E-Mail und ein Formularexport kommen beide zuerst nach <code>eingang/</code>. Und der Zustand des Ordners ist auf einen Blick erkennbar. Ein leerer Eingang heißt: Alles ist einsortiert.</p>
 </section>
-<section id="die-namenskonvention" class="level2" data-number="25.2">
-<h2 data-number="25.2" class="anchored" data-anchor-id="die-namenskonvention"><span class="header-section-number">25.2</span> Die Namenskonvention</h2>
+<section id="die-namenskonvention" class="level2" data-number="26.2">
+<h2 data-number="26.2" class="anchored" data-anchor-id="die-namenskonvention"><span class="header-section-number">26.2</span> Die Namenskonvention</h2>
 <p>Damit Dateien in <code>anfragen/</code> auffindbar bleiben, folgen ihre Namen der Namenskonvention aus dem Kapitel <a href="../agent-arbeitsumgebung/projektordner.html">Der Projektordner</a>:</p>
 <pre class="text"><code>JJJJ-MM-TT-anliegen.md</code></pre>
 <p>Das Datum steht vorne, in der Reihenfolge Jahr, Monat, Tag. So sortiert jedes Dateiprogramm die Anfragen automatisch chronologisch. Danach folgt das Anliegen in einem oder zwei Wörtern, klein geschrieben und mit Bindestrichen verbunden.</p>
@@ -464,8 +470,8 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <p>Das Datum ist der Tag des Eingangs, also das Datum aus der Datei selbst. Der Tag, an dem wir einsortieren, spielt keine Rolle. Sortieren wir am Montag drei Anfragen vom Freitag ein, tragen alle drei das Datum vom Freitag. Nur wenn die Datei kein Datum enthält, nimmt der Agent den heutigen Tag. PDF-Dateien und andere Dateien, die kein Text sind, behalten ihre Endung, etwa <code>.pdf</code>.</p>
 </section>
-<section id="der-feste-ablauf-in-sechs-schritten" class="level2" data-number="25.3">
-<h2 data-number="25.3" class="anchored" data-anchor-id="der-feste-ablauf-in-sechs-schritten"><span class="header-section-number">25.3</span> Der feste Ablauf in sechs Schritten</h2>
+<section id="der-feste-ablauf-in-sechs-schritten" class="level2" data-number="26.3">
+<h2 data-number="26.3" class="anchored" data-anchor-id="der-feste-ablauf-in-sechs-schritten"><span class="header-section-number">26.3</span> Der feste Ablauf in sechs Schritten</h2>
 <p>Ein <strong>fester Ablauf</strong> ist ein Auftrag, der immer gleich lautet, egal was im Eingang liegt. Unserer hat sechs Schritte:</p>
 <table class="caption-top table">
 <colgroup>
@@ -516,8 +522,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Die Reihenfolge folgt einer einfachen Logik: erst lesen, dann entscheiden, dann handeln, zuletzt dokumentieren. Wer die Schritte für den eigenen Eingang in anderen Worten beschreibt, sollte diese Reihenfolge beibehalten.</p>
 <p>Bevor der Agent verschiebt, zeigt er uns einen Plan als Tabelle mit den Spalten alt, neu und Ziel. So sehen wir jede Änderung, bevor sie passiert, auch wenn das eigene Werkzeug beim Verschieben nicht von selbst nachfragt.</p>
 </section>
-<section id="was-nicht-passt-bleibt-liegen" class="level2" data-number="25.4">
-<h2 data-number="25.4" class="anchored" data-anchor-id="was-nicht-passt-bleibt-liegen"><span class="header-section-number">25.4</span> Was nicht passt, bleibt liegen</h2>
+<section id="was-nicht-passt-bleibt-liegen" class="level2" data-number="26.4">
+<h2 data-number="26.4" class="anchored" data-anchor-id="was-nicht-passt-bleibt-liegen"><span class="header-section-number">26.4</span> Was nicht passt, bleibt liegen</h2>
 <p>Nicht jede Datei im Eingang passt in einen der drei Zielordner. Liegt dort etwa eine Rechnung, die der Betrieb an einen Kunden geschickt hat, gibt es im Projektordner keinen passenden Platz. Schritt 5 regelt diesen Fall: Unklare Dateien bleiben in <code>eingang/</code>, und der Agent meldet sie.</p>
 <p>Die Entscheidung liegt dann bei uns. Gehören Rechnungen überhaupt in diesen Projektordner? Wenn ja, legen wir bewusst einen Zielordner an und ergänzen den Ablauf. Zwei andere Reaktionen des Agenten wären problematisch. Ein selbst angelegter Ordner <code>rechnungen/</code> wirkt hilfsbereit, ändert aber ohne Auftrag die Ordnerstruktur. Eine Rechnung in <code>anfragen/</code> verfälscht die Übersicht der Anfragen. Löschen kommt in keinem Schritt des Ablaufs vor.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Eingang leer, Arbeit nicht fertig">
@@ -534,8 +540,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="im-nachbau-den-posteingang-leeren" class="level2" data-number="25.5">
-<h2 data-number="25.5" class="anchored" data-anchor-id="im-nachbau-den-posteingang-leeren"><span class="header-section-number">25.5</span> Im Nachbau: den Posteingang leeren</h2>
+<section id="im-nachbau-den-posteingang-leeren" class="level2" data-number="26.5">
+<h2 data-number="26.5" class="anchored" data-anchor-id="im-nachbau-den-posteingang-leeren"><span class="header-section-number">26.5</span> Im Nachbau: den Posteingang leeren</h2>
 <p>Der folgende Nachbau zeigt den festen Ablauf an zwei Dateien mit unordentlichen Namen. Eine davon enthält einen Personennamen. Wir sehen, wie der Agent beide Dateien liest, den Plan als Tabelle zeigt, nach der Freigabe verschiebt, den Namen durch „Kundin“ ersetzt und die Übersicht ergänzt. Mit „Weiter“ klicken wir uns durch die Sitzung.</p>
 <iframe class="muster-agent" src="widgets/07-posteingang-leeren.html" title="Nachbau eines Agenten: Posteingang leeren" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
 <script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
@@ -555,8 +561,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="praxis-eingang-einrichten-und-leeren" class="level2" data-number="25.6">
-<h2 data-number="25.6" class="anchored" data-anchor-id="praxis-eingang-einrichten-und-leeren"><span class="header-section-number">25.6</span> Praxis: Eingang einrichten und leeren</h2>
+<section id="praxis-eingang-einrichten-und-leeren" class="level2" data-number="26.6">
+<h2 data-number="26.6" class="anchored" data-anchor-id="praxis-eingang-einrichten-und-leeren"><span class="header-section-number">26.6</span> Praxis: Eingang einrichten und leeren</h2>
 <p>Wir lassen den Agenten den Eingangsordner mit zwei unordentlichen Beispieldateien anlegen und ihn mit dem festen Ablauf leeren.</p>
 <p><strong>Voraussetzung:</strong> Der Ordner <code>kundenanfragen</code> ist im Agenten geöffnet. <code>AGENTS.md</code> enthält sechs Regeln, <code>UEBERSICHT.md</code> liegt im Ordner (Stand nach dem Kapitel <a href="../agent-arbeitsumgebung/kontext-bereitstellen.html">Kontext bereitstellen</a>).</p>
 <ol type="1">

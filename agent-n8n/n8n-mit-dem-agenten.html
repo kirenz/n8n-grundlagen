@@ -9,7 +9,7 @@
 <meta name="author" content="Jan Kirenz">
 <meta name="description" content="Von der Plattform zum ersten Workflow">
 
-<title>29&nbsp; n8n mit dem Agenten – n8n-Grundlagen</title>
+<title>30&nbsp; n8n mit dem Agenten – n8n-Grundlagen</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-n8n/n8n-mit-dem-agenten.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-n8n/n8n-mit-dem-agenten.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -356,14 +356,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/excel-als-quelle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Excel-Tabellen als Quelle</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/laufend-neue-dateien.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/skills.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Skills: Abläufe, die bleiben</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Skills: Abläufe, die bleiben</span></span></a>
   </div>
 </li>
       </ul>
@@ -380,25 +386,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/mcp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/konnektoren-plugins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Konnektoren und Plugins</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Konnektoren und Plugins</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-n8n/n8n-mit-dem-agenten.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-n8n/starterpaket.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Starterpaket</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Starterpaket</span></span></a>
   </div>
 </li>
       </ul>
@@ -413,21 +419,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#die-workflow-datei" id="toc-die-workflow-datei" class="nav-link active" data-scroll-target="#die-workflow-datei"><span class="header-section-number">29.1</span> Die Workflow-Datei</a></li>
-  <li><a href="#zwei-wege-zu-n8n" id="toc-zwei-wege-zu-n8n" class="nav-link" data-scroll-target="#zwei-wege-zu-n8n"><span class="header-section-number">29.2</span> Zwei Wege zu n8n</a></li>
-  <li><a href="#workflow-lesen-und-ändern" id="toc-workflow-lesen-und-ändern" class="nav-link" data-scroll-target="#workflow-lesen-und-ändern"><span class="header-section-number">29.3</span> Workflow lesen und ändern</a></li>
-  <li><a href="#praxis-datei-ablegen-und-erklären-lassen" id="toc-praxis-datei-ablegen-und-erklären-lassen" class="nav-link" data-scroll-target="#praxis-datei-ablegen-und-erklären-lassen"><span class="header-section-number">29.4</span> Praxis: Datei ablegen und erklären lassen</a></li>
-  <li><a href="#praxis-workflow-ändern-und-in-n8n-testen" id="toc-praxis-workflow-ändern-und-in-n8n-testen" class="nav-link" data-scroll-target="#praxis-workflow-ändern-und-in-n8n-testen"><span class="header-section-number">29.5</span> Praxis: Workflow ändern und in n8n testen</a></li>
-  <li><a href="#weg-b-anbindung-erfragen-freiwillig" id="toc-weg-b-anbindung-erfragen-freiwillig" class="nav-link" data-scroll-target="#weg-b-anbindung-erfragen-freiwillig"><span class="header-section-number">29.6</span> Weg B: Anbindung erfragen (freiwillig)</a></li>
+  <li><a href="#die-workflow-datei" id="toc-die-workflow-datei" class="nav-link active" data-scroll-target="#die-workflow-datei"><span class="header-section-number">30.1</span> Die Workflow-Datei</a></li>
+  <li><a href="#zwei-wege-zu-n8n" id="toc-zwei-wege-zu-n8n" class="nav-link" data-scroll-target="#zwei-wege-zu-n8n"><span class="header-section-number">30.2</span> Zwei Wege zu n8n</a></li>
+  <li><a href="#workflow-lesen-und-ändern" id="toc-workflow-lesen-und-ändern" class="nav-link" data-scroll-target="#workflow-lesen-und-ändern"><span class="header-section-number">30.3</span> Workflow lesen und ändern</a></li>
+  <li><a href="#praxis-datei-ablegen-und-erklären-lassen" id="toc-praxis-datei-ablegen-und-erklären-lassen" class="nav-link" data-scroll-target="#praxis-datei-ablegen-und-erklären-lassen"><span class="header-section-number">30.4</span> Praxis: Datei ablegen und erklären lassen</a></li>
+  <li><a href="#praxis-workflow-ändern-und-in-n8n-testen" id="toc-praxis-workflow-ändern-und-in-n8n-testen" class="nav-link" data-scroll-target="#praxis-workflow-ändern-und-in-n8n-testen"><span class="header-section-number">30.5</span> Praxis: Workflow ändern und in n8n testen</a></li>
+  <li><a href="#weg-b-anbindung-erfragen-freiwillig" id="toc-weg-b-anbindung-erfragen-freiwillig" class="nav-link" data-scroll-target="#weg-b-anbindung-erfragen-freiwillig"><span class="header-section-number">30.6</span> Weg B: Anbindung erfragen (freiwillig)</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-n8n/n8n-mit-dem-agenten.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-n8n/n8n-mit-dem-agenten.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></h1>
+<h1 class="title"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></h1>
 </div>
 
 
@@ -445,8 +451,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Jeder n8n-Workflow lässt sich als Datei speichern. Für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner: Er kann sie lesen, erklären und eine geänderte Fassung schreiben. Damit lässt sich ein Workflow ändern, ohne im Canvas jeden Knoten einzeln anzufassen. Prüfen müssen wir die Änderung trotzdem selbst, und zwar in n8n. Als Beispiel dient der Workflow aus <a href="../beispiele/kontaktanfragen.html">Beispiel 1: Kontaktanfragen sortieren</a>, der eine dritte Art von Anfragen mit hoher Priorität behandeln soll.</p>
-<section id="die-workflow-datei" class="level2" data-number="29.1">
-<h2 data-number="29.1" class="anchored" data-anchor-id="die-workflow-datei"><span class="header-section-number">29.1</span> Die Workflow-Datei</h2>
+<section id="die-workflow-datei" class="level2" data-number="30.1">
+<h2 data-number="30.1" class="anchored" data-anchor-id="die-workflow-datei"><span class="header-section-number">30.1</span> Die Workflow-Datei</h2>
 <p><strong>Workflow-JSON</strong> nennen wir die Datei, in der n8n einen Workflow speichert. JSON (JavaScript Object Notation) ist ein Textformat, das Daten als Felder mit Namen und Wert in geschweiften Klammern ablegt. Jeder Workflow lässt sich über das Menü des Workflows als JSON-Datei exportieren und in eine andere Instanz wieder importieren. Die Datei enthält alle Knoten mit ihren Einstellungen und die Verbindungen zwischen ihnen. Die Knotennamen in der Datei sind dieselben wie im Canvas.</p>
 <p>Die Entscheidung im If-Knoten „Beschwerde?“ sieht in der Datei von Beispiel 1 so aus (gekürzt):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="st">"conditions"</span><span class="er">:</span> <span class="ot">[</span></span>
@@ -459,8 +465,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">"combinator"</span><span class="er">:</span> <span class="st">"and"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfeld <code>Anliegen</code>, rechts der Vergleichswert <code>Beschwerde</code>, dazwischen der Vergleich „ist gleich“ (<code>equals</code>). Das Feld <code>combinator</code> legt fest, wie mehrere Vergleiche zusammenwirken. Mit <code>and</code> (und) müssen alle zutreffen, mit <code>or</code> (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Sobald ein zweiter dazukommt, entscheidet dieses Feld über das Ergebnis.</p>
 </section>
-<section id="zwei-wege-zu-n8n" class="level2" data-number="29.2">
-<h2 data-number="29.2" class="anchored" data-anchor-id="zwei-wege-zu-n8n"><span class="header-section-number">29.2</span> Zwei Wege zu n8n</h2>
+<section id="zwei-wege-zu-n8n" class="level2" data-number="30.2">
+<h2 data-number="30.2" class="anchored" data-anchor-id="zwei-wege-zu-n8n"><span class="header-section-number">30.2</span> Zwei Wege zu n8n</h2>
 <p>Wie die Datei vom Agenten zu n8n kommt, dafür gibt es zwei Wege.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -501,8 +507,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Für Weg B bietet n8n eine eigene Anbindung namens <strong>Instance-level MCP</strong>. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet (<a href="https://docs.n8n.io/connect/connect-to-n8n-mcp-server">Anleitung in der n8n-Dokumentation</a>). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n ist ein natürlicher Prüfpunkt.</p>
 </section>
-<section id="workflow-lesen-und-ändern" class="level2" data-number="29.3">
-<h2 data-number="29.3" class="anchored" data-anchor-id="workflow-lesen-und-ändern"><span class="header-section-number">29.3</span> Workflow lesen und ändern</h2>
+<section id="workflow-lesen-und-ändern" class="level2" data-number="30.3">
+<h2 data-number="30.3" class="anchored" data-anchor-id="workflow-lesen-und-ändern"><span class="header-section-number">30.3</span> Workflow lesen und ändern</h2>
 <p>Die folgende Szene zeigt beide Schritte: Zuerst erklärt der Agent den Workflow aus Beispiel 1, dann legt er eine geänderte Kopie an. Datenschutzanfragen sollen künftig wie Beschwerden in „Priorität hoch“ landen. Für die Anzeige ist die Datei auf Knoten, Formularfelder und Bedingung gekürzt. Mit „Weiter“ klicken wir uns durch die Sitzung.</p>
 <iframe class="muster-agent" src="widgets/11-workflow-lesen.html" title="Nachbau eines Agenten: Workflow-Datei lesen und als Kopie ändern" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
 <script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
@@ -536,8 +542,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Mit <code>or</code> führt jetzt Beschwerde oder Datenschutz zum Ausgang true. Ob der Workflow damit läuft, zeigt erst der Import und ein Testlauf in n8n. Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diesen Test nicht. Auch das Durchlesen der Datei reicht nicht: Es zeigt weder, ob n8n die Datei annimmt (schon ein fehlendes Komma verhindert den Import), noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen.</p>
 </section>
-<section id="praxis-datei-ablegen-und-erklären-lassen" class="level2" data-number="29.4">
-<h2 data-number="29.4" class="anchored" data-anchor-id="praxis-datei-ablegen-und-erklären-lassen"><span class="header-section-number">29.4</span> Praxis: Datei ablegen und erklären lassen</h2>
+<section id="praxis-datei-ablegen-und-erklären-lassen" class="level2" data-number="30.4">
+<h2 data-number="30.4" class="anchored" data-anchor-id="praxis-datei-ablegen-und-erklären-lassen"><span class="header-section-number">30.4</span> Praxis: Datei ablegen und erklären lassen</h2>
 <p>Wir legen die Workflow-Datei aus Beispiel 1 in den Projektordner und lassen den Agenten den Workflow erklären, bevor er etwas ändert.</p>
 <p><strong>Voraussetzung:</strong> Der Agent ist im Ordner <code>kundenanfragen</code> geöffnet.</p>
 <ol type="1">
@@ -779,8 +785,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="praxis-workflow-ändern-und-in-n8n-testen" class="level2" data-number="29.5">
-<h2 data-number="29.5" class="anchored" data-anchor-id="praxis-workflow-ändern-und-in-n8n-testen"><span class="header-section-number">29.5</span> Praxis: Workflow ändern und in n8n testen</h2>
+<section id="praxis-workflow-ändern-und-in-n8n-testen" class="level2" data-number="30.5">
+<h2 data-number="30.5" class="anchored" data-anchor-id="praxis-workflow-ändern-und-in-n8n-testen"><span class="header-section-number">30.5</span> Praxis: Workflow ändern und in n8n testen</h2>
 <p><strong>Voraussetzung:</strong> Die Anmeldung in der eigenen n8n-Instanz ist erfolgt. Die Datei <code>beispiel-1-kontaktanfragen.json</code> liegt in <code>kundenanfragen/n8n/</code>.</p>
 <ol type="1">
 <li><p>Diesen Auftrag senden:</p>
@@ -820,8 +826,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="weg-b-anbindung-erfragen-freiwillig" class="level2" data-number="29.6">
-<h2 data-number="29.6" class="anchored" data-anchor-id="weg-b-anbindung-erfragen-freiwillig"><span class="header-section-number">29.6</span> Weg B: Anbindung erfragen (freiwillig)</h2>
+<section id="weg-b-anbindung-erfragen-freiwillig" class="level2" data-number="30.6">
+<h2 data-number="30.6" class="anchored" data-anchor-id="weg-b-anbindung-erfragen-freiwillig"><span class="header-section-number">30.6</span> Weg B: Anbindung erfragen (freiwillig)</h2>
 <p>Ob der eigene Agent schon eine Verbindung zu n8n hat, lässt sich ohne Risiko herausfinden. Beide Aufträge lesen nur.</p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Den Agenten fragen">
 <div class="callout-header d-flex align-content-center">
