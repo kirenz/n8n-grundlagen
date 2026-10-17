@@ -333,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/projektordner.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Der Projektordner: Material an einem Ort</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Der Projektordner: Arbeitsplatz mit Ablage</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -386,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/mcp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: Zugänge zu anderen Systemen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -450,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Jeder n8n-Workflow lässt sich als Datei speichern. Für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner: Er kann sie lesen, erklären und eine geänderte Fassung schreiben. Damit lässt sich ein Workflow ändern, ohne im Canvas jeden Knoten einzeln anzufassen. Prüfen müssen wir die Änderung trotzdem selbst, und zwar in n8n. Als Beispiel dient der Workflow aus <a href="../beispiele/kontaktanfragen.html">Beispiel 1: Kontaktanfragen sortieren</a>, der eine dritte Art von Anfragen mit hoher Priorität behandeln soll.</p>
+<p>Jeder n8n-Workflow lässt sich als Datei speichern. Für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner: Er kann sie lesen, erklären und eine geänderte Fassung schreiben, so wie ein neuer Mitarbeiter einen Ablaufplan liest und eine Änderung vorschlägt. Damit lässt sich ein Workflow ändern, ohne im Canvas jeden Knoten einzeln anzufassen. Freigeben dürfen wir den Vorschlag erst nach unserem eigenen Test, und zwar in n8n. Als Beispiel dient der Workflow aus <a href="../beispiele/kontaktanfragen.html">Beispiel 1: Kontaktanfragen sortieren</a>, der eine dritte Art von Anfragen mit hoher Priorität behandeln soll.</p>
 <section id="die-workflow-datei" class="level2" data-number="30.1">
 <h2 data-number="30.1" class="anchored" data-anchor-id="die-workflow-datei"><span class="header-section-number">30.1</span> Die Workflow-Datei</h2>
 <p><strong>Workflow-JSON</strong> nennen wir die Datei, in der n8n einen Workflow speichert. JSON (JavaScript Object Notation) ist ein Textformat, das Daten als Felder mit Namen und Wert in geschweiften Klammern ablegt. Jeder Workflow lässt sich über das Menü des Workflows als JSON-Datei exportieren und in eine andere Instanz wieder importieren. Die Datei enthält alle Knoten mit ihren Einstellungen und die Verbindungen zwischen ihnen. Die Knotennamen in der Datei sind dieselben wie im Canvas.</p>
@@ -470,7 +470,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Wie die Datei vom Agenten zu n8n kommt, dafür gibt es zwei Wege.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/11-zwei-wege.svg" class="img-fluid figure-img" alt="Zwei Wege. Weg A, im Kurs: Der Agent schreibt die Datei n8n/beispiel-1-datenschutz.json, wir importieren sie mit Import from File in n8n. Weg B, gestrichelt, nur Hinweis: Der Agent erreicht n8n über eine MCP-Steckdose und liest oder legt Workflows direkt an; in n8n heißt die Anbindung Instance-level MCP."></p>
+<p><img src="images/11-zwei-wege.svg" class="img-fluid figure-img" alt="Zwei Wege. Weg A, im Kurs: Der Agent schreibt die Datei n8n/beispiel-1-datenschutz.json, wir importieren sie mit Import from File in n8n. Weg B, gestrichelt, nur Hinweis: Der Agent erreicht n8n über einen MCP-Zugang (Zugangskarte) und liest oder legt Workflows direkt an; in n8n heißt die Anbindung Instance-level MCP."></p>
 <figcaption>Weg A: Der Agent schreibt die Datei, wir importieren sie in n8n. Weg B: Der Agent erreicht n8n direkt über einen MCP-Server.</figcaption>
 </figure>
 </div>
@@ -496,7 +496,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>Was gebraucht wird</td>
 <td>nur den Projektordner</td>
-<td>einen MCP-Server (siehe <a href="../agent-arbeitsumgebung/mcp.html">MCP: die Steckdose für andere Systeme</a>) und eine Freischaltung in n8n</td>
+<td>einen MCP-Server (siehe <a href="../agent-arbeitsumgebung/mcp.html">MCP: Zugänge zu anderen Systemen</a>) und eine Freischaltung in n8n</td>
 </tr>
 <tr class="even">
 <td>Rolle hier</td>

@@ -9,7 +9,7 @@
 <meta name="author" content="Jan Kirenz">
 <meta name="description" content="Von der Plattform zum ersten Workflow">
 
-<title>28&nbsp; MCP: die Steckdose für andere Systeme – n8n-Grundlagen</title>
+<title>28&nbsp; MCP: Zugänge zu anderen Systemen – n8n-Grundlagen</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/mcp.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/mcp.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: Zugänge zu anderen Systemen</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -298,7 +298,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/projektordner.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Der Projektordner: Material an einem Ort</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Der Projektordner: Arbeitsplatz mit Ablage</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -351,7 +351,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/mcp.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: Zugänge zu anderen Systemen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -394,9 +394,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/mcp.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/mcp.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: Zugänge zu anderen Systemen</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></h1>
+<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: Zugänge zu anderen Systemen</span></h1>
 </div>
 
 
@@ -413,15 +413,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ein Agent im Projektordner kennt nur die Dateien in diesem Ordner. Der Terminwunsch vom 5. Oktober liegt als Datei in <code>anfragen/</code>, die freien Zeiten im Teamkalender liegen dort nicht. Damit der Agent sie trotzdem nachsehen kann, braucht er einen Anschluss an den Kalender. MCP ist ein solcher Anschluss, und zwar ein genormter: Ein Agent, der MCP beherrscht, kann jedes System erreichen, das ebenfalls MCP anbietet.</p>
+<p>Ein Agent im Projektordner kennt nur die Dateien in diesem Ordner. Der Terminwunsch vom 5. Oktober liegt als Datei in <code>anfragen/</code>, die freien Zeiten im Teamkalender liegen dort nicht. Damit der Agent sie trotzdem nachsehen kann, braucht er einen Zugang zum Kalender. MCP regelt solche Zugänge, und zwar genormt: Ein Agent, der MCP beherrscht, kann jedes System erreichen, das ebenfalls MCP anbietet.</p>
 <section id="was-mcp-ist" class="level2" data-number="28.1">
 <h2 data-number="28.1" class="anchored" data-anchor-id="was-mcp-ist"><span class="header-section-number">28.1</span> Was MCP ist</h2>
-<p><strong>MCP</strong> steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Ein passender Vergleich ist eine genormte Steckdose. Jedes Gerät mit dem passenden Stecker funktioniert an ihr, egal von welchem Hersteller es stammt.</p>
-<p><strong>MCP-Server</strong> heißt das Programm auf der anderen Seite der Steckdose. Ein Server ist hier einfach ein Programm, das auf Anfragen antwortet; es kann auf dem eigenen Rechner laufen oder bei einem Anbieter im Internet. Der MCP-Server stellt <strong>Werkzeuge</strong> bereit (englisch Tools), die der Agent aufrufen darf. Ein Werkzeug ist eine einzelne Fähigkeit mit einem festen Namen, etwa <code>termine_lesen</code>.</p>
+<p><strong>MCP</strong> steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Für den Agenten als neuen Mitarbeiter sind das seine Zugänge zu anderen Systemen. MCP funktioniert dabei wie ein genormtes Schließsystem: Eine Karte öffnet viele Türen, aber nur die, für die sie freigeschaltet ist.</p>
+<p><strong>MCP-Server</strong> heißt das Programm hinter einer dieser Türen. Ein Server ist hier einfach ein Programm, das auf Anfragen antwortet; es kann auf dem eigenen Rechner laufen oder bei einem Anbieter im Internet. Der MCP-Server stellt <strong>Werkzeuge</strong> bereit (englisch Tools), die der Agent aufrufen darf. Ein Werkzeug ist eine einzelne Fähigkeit mit einem festen Namen, etwa <code>termine_lesen</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/09-mcp-steckdose.svg" class="img-fluid figure-img" alt="Schema: links der Agent im Ordner kundenanfragen, in der Mitte eine Steckdose mit der Aufschrift MCP, rechts drei MCP-Server. Kalender-Server mit termine_lesen (liest) und termin_anlegen (ändert), Ablage-Server mit dateien_suchen (liest), Ticket-Server mit ticket_anlegen (ändert)."></p>
-<figcaption>Der Agent im Ordner <code>kundenanfragen</code> erreicht über den genormten Anschluss MCP drei Server mit ihren Werkzeugen.</figcaption>
+<p><img src="images/09-mcp-zugaenge.svg" class="img-fluid figure-img" alt="Schema: links der Agent im Ordner kundenanfragen, in der Mitte eine Zugangskarte mit der Aufschrift MCP, rechts vier Türen zu anderen Systemen. Offen, weil die Karte dafür freigeschaltet ist: Kalender-Server mit termine_lesen (liest) und termin_anlegen (ändert), Ablage-Server mit dateien_suchen (liest), Ticket-Server mit ticket_anlegen (ändert). Verschlossen: Buchhaltung, nicht freigeschaltet."></p>
+<figcaption>Mit der Zugangskarte MCP erreicht der Agent im Ordner <code>kundenanfragen</code> drei freigeschaltete Server mit ihren Werkzeugen. Die Tür zur Buchhaltung bleibt zu.</figcaption>
 </figure>
 </div>
 <p>Jedes Werkzeug tut eine von zwei Arten von Dingen. Es liest nur, oder es ändert etwas im anderen System. Für die Abbildung oben sieht das so aus:</p>
@@ -494,7 +494,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="brauchen-wir-eine-anbindung" class="level2" data-number="28.3">
 <h2 data-number="28.3" class="anchored" data-anchor-id="brauchen-wir-eine-anbindung"><span class="header-section-number">28.3</span> Brauchen wir eine Anbindung?</h2>
-<p>Ein MCP-Server bringt dem Agenten Werkzeuge. Er bringt kein besseres Sprachmodell, kein Gedächtnis für frühere Unterhaltungen und keine Kopie der Daten in den Projektordner. Die Daten bleiben im Kalender oder im Ticket-System; der Agent holt sich bei jedem Aufruf nur das Ergebnis.</p>
+<p>An dieser Stelle hinkt das Bild von Karte und Tür: Der Agent betritt das andere System nicht. Ein MCP-Server bringt ihm Werkzeuge, aber kein besseres Sprachmodell, kein Gedächtnis für frühere Unterhaltungen und keine Kopie der Daten in den Projektordner. Die Daten bleiben im Kalender oder im Ticket-System; der Agent holt sich bei jedem Aufruf nur das Ergebnis.</p>
 <p>Daraus folgt eine einfache Faustregel. Eine Anbindung lohnt sich, wenn ein Auftrag Daten aus einem anderen System braucht, die nicht als Datei im Ordner liegen. Freie Termine im Teamkalender sind so ein Fall, weil sie sich jeden Tag ändern. Für alles, was als Datei vorliegt, reicht der Projektordner.</p>
 <table class="caption-top table">
 <colgroup>

@@ -333,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/projektordner.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Der Projektordner: Material an einem Ort</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Der Projektordner: Arbeitsplatz mit Ablage</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -386,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/mcp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: Zugänge zu anderen Systemen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -495,6 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="19.2" class="anchored" data-anchor-id="zwei-arten-zu-arbeiten"><span class="header-section-number">19.2</span> Zwei Arten zu arbeiten</h2>
 <p>Ein <strong>Chat-Assistent</strong> antwortet auf das, was im Eingabefeld steht. Für drei Kundenanfragen heißt das: jede Anfrage öffnen, den Text kopieren, in den Chat einfügen, um eine Sortierung bitten und die Antwort danach von Hand in eine Datei übertragen. Beim nächsten Mal beginnt das Kopieren von vorn.</p>
 <p>Ein <strong>Agent</strong> arbeitet in einem Ordner. Er liest Dateien, legt neue an und führt Befehle aus. Ein <strong>Befehl</strong> ist hier ein kleines Programm, das der Agent startet, etwa um eine Datei umzuwandeln oder einen Ordner zu durchsuchen. Vor jeder Änderung und vor jedem Befehl fragt der Agent nach oder zeigt, was er vorhat. Für dieselben drei Anfragen genügt ein Satz: „Sortiere die Anfragen in <code>anfragen/</code> nach Dringlichkeit und schreibe das Ergebnis in <code>UEBERSICHT.md</code>.“</p>
+<p>Ein Bild dafür: Der Chat gleicht einem externen Berater am Telefon, dem wir jedes Mal alles vorlesen. Der Agent gleicht einem neuen Mitarbeiter am eigenen Schreibtisch, mit Zugang zur Ablage. Vor wichtigen Schritten fragt er nach.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -598,18 +599,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="vier-bausteine-für-die-arbeit-mit-einem-agenten" class="level2" data-number="19.5">
 <h2 data-number="19.5" class="anchored" data-anchor-id="vier-bausteine-für-die-arbeit-mit-einem-agenten"><span class="header-section-number">19.5</span> Vier Bausteine für die Arbeit mit einem Agenten</h2>
-<p>Damit ein Agent verlässlich arbeitet, braucht er mehr als einen Auftrag. Vier Bausteine fassen zusammen, was die folgenden Kapitel aufbauen. Zu jedem gehört ein Vergleich aus dem Alltag:</p>
+<p>Damit ein Agent verlässlich arbeitet, braucht er mehr als einen Auftrag. Der neue Mitarbeiter ist fachlich fit, kennt aber unseren Betrieb nicht. Anders als ein Mensch erinnert er sich nicht von selbst an gestern: Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Darum steht alles Wichtige schriftlich in seinem <strong>Onboarding</strong>, der Einarbeitung neuer Mitarbeitender. Vier Bausteine bilden seine Onboarding-Mappe und fassen zusammen, was die folgenden Kapitel aufbauen:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/01-leitbild.svg" class="img-fluid figure-img" style="width:100.0%" alt="Vier Karten: Ordner gleich Material, AGENTS.md gleich Hausordnung, Skills gleich Rezepte, MCP gleich Steckdose."></p>
+<p><img src="images/01-leitbild.svg" class="img-fluid figure-img" style="width:100.0%" alt="Vier Karten: Ordner gleich Arbeitsplatz mit Ablage, AGENTS.md gleich Hausordnung, Skills gleich Arbeitsanweisungen, MCP gleich Zugänge."></p>
 <figcaption>Vier Bausteine einer Arbeitsumgebung für einen Agenten</figcaption>
 </figure>
 </div>
 <ul>
-<li><strong>Ordner = Material.</strong> Alles, was der Agent kennen soll, liegt als Datei im Projektordner. Darum geht es in den Kapiteln <a href="../agent-arbeitsumgebung/projektordner.html">Der Projektordner</a>, <a href="../agent-arbeitsumgebung/kontext-bereitstellen.html">Kontext bereitstellen</a>, <a href="../agent-arbeitsumgebung/pdf-als-quelle.html">PDFs als Quellen</a> und <a href="../agent-arbeitsumgebung/laufend-neue-dateien.html">Laufend neue Dateien</a>.</li>
-<li><strong>AGENTS.md = Hausordnung.</strong> Kurze, prüfbare Regeln, die in jeder Sitzung gelten. Eine <strong>Sitzung</strong> ist eine Unterhaltung mit dem Agenten vom Start bis zum Schließen. Siehe <a href="../agent-arbeitsumgebung/agents-md.html">AGENTS.md: die Hausordnung</a>.</li>
-<li><strong>Skills = Rezepte.</strong> Abläufe mit mehreren Schritten, die der Agent bei Bedarf holt. Siehe <a href="../agent-arbeitsumgebung/skills.html">Skills</a>.</li>
-<li><strong>MCP = Steckdose.</strong> Ein genormter Anschluss, über den der Agent andere Systeme erreicht (MCP steht für Model Context Protocol). Siehe <a href="../agent-arbeitsumgebung/mcp.html">MCP</a> und <a href="../agent-arbeitsumgebung/konnektoren-plugins.html">Konnektoren und Plugins</a>.</li>
+<li><strong>Ordner = Arbeitsplatz mit Ablage.</strong> Alles, was der Agent kennen soll, liegt als Datei im Projektordner. Darum geht es in den Kapiteln <a href="../agent-arbeitsumgebung/projektordner.html">Der Projektordner</a>, <a href="../agent-arbeitsumgebung/kontext-bereitstellen.html">Kontext bereitstellen</a>, <a href="../agent-arbeitsumgebung/pdf-als-quelle.html">PDFs als Quellen</a>, <a href="../agent-arbeitsumgebung/excel-als-quelle.html">Excel-Tabellen als Quelle</a> und <a href="../agent-arbeitsumgebung/laufend-neue-dateien.html">Laufend neue Dateien</a>.</li>
+<li><strong>AGENTS.md = Hausordnung.</strong> Kurze, prüfbare Regeln, die der Agent zu Beginn jeder Sitzung zuerst liest. Eine <strong>Sitzung</strong> ist eine Unterhaltung mit dem Agenten vom Start bis zum Schließen. Siehe <a href="../agent-arbeitsumgebung/agents-md.html">AGENTS.md: die Hausordnung</a>.</li>
+<li><strong>Skills = Arbeitsanweisungen.</strong> Abläufe mit mehreren Schritten, die der Agent bei Bedarf hervorholt. Siehe <a href="../agent-arbeitsumgebung/skills.html">Skills</a>.</li>
+<li><strong>MCP = Zugänge.</strong> Zugänge zu anderen Systemen nach einem gemeinsamen Standard (MCP steht für Model Context Protocol). Siehe <a href="../agent-arbeitsumgebung/mcp.html">MCP</a> und <a href="../agent-arbeitsumgebung/konnektoren-plugins.html">Konnektoren und Plugins</a>.</li>
 </ul>
 </section>
 <section id="was-der-agent-können-muss" class="level2" data-number="19.6">

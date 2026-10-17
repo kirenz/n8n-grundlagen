@@ -298,7 +298,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/projektordner.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Der Projektordner: Material an einem Ort</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Der Projektordner: Arbeitsplatz mit Ablage</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -351,7 +351,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../agent-arbeitsumgebung/mcp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">MCP: Zugänge zu anderen Systemen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -415,7 +415,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Neben PDFs liegt das Zahlenmaterial eines Betriebs meist in Excel-Dateien: Auftragslisten, Stundenzettel, Lagerbestände, Exporte aus der Buchhaltung. Eine Excel-Datei sieht wie eine Tabelle aus, ist aber keine Textdatei. Wir gehen mit ihr darum genauso um wie mit einem PDF: Original ablegen, eine Textfassung erzeugen lassen, prüfen, in die Quellenliste eintragen. Zwei Dinge kommen hinzu, die es bei PDFs nicht gibt: mehrere Tabellenblätter in einer Datei und Zellen, in denen eine Formel steht statt einer Zahl.</p>
+<p>Neben PDFs liegen die Zahlen eines Betriebs meist in Excel-Dateien: Auftragslisten, Stundenzettel, Lagerbestände, Exporte aus der Buchhaltung. Eine Excel-Datei sieht wie eine Tabelle aus, ist aber keine Textdatei. Wir gehen mit ihr darum genauso um wie mit einem PDF: Original ablegen, eine Textfassung erzeugen lassen, prüfen, in die Quellenliste eintragen. Zwei Dinge kommen hinzu, die es bei PDFs nicht gibt: mehrere Tabellenblätter in einer Datei und Zellen, in denen eine Formel steht statt einer Zahl.</p>
 <section id="gepackt-statt-text" class="level2" data-number="25.1">
 <h2 data-number="25.1" class="anchored" data-anchor-id="gepackt-statt-text"><span class="header-section-number">25.1</span> Gepackt statt Text</h2>
 <p>Eine <strong>Excel-Datei (.xlsx)</strong> ist ein gepacktes Dateiformat. Blätter, Zellen, Formeln und Formate liegen in mehreren Dateien, die zu einem Paket verpackt sind. Text liest ein Agent direkt, dieses Paket nur mit einem Werkzeug, das es auspackt. Ob der eigene Agent das kann, fragen wir ihn selbst (Kasten „Den Agenten fragen“ unten).</p>
@@ -456,7 +456,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Der Rest läuft wie im Kapitel <a href="../agent-arbeitsumgebung/pdf-als-quelle.html">PDFs als Quellen</a>: Stichprobe gegen das Original, Eintrag mit Prüfvermerk in <code>QUELLEN.md</code>. Jede CSV bekommt dort eine eigene Zeile, denn jede kann für sich geprüft oder ungeprüft sein.</p>
+<p>Der Rest läuft wie im Kapitel <a href="../agent-arbeitsumgebung/pdf-als-quelle.html">PDFs als Quellen</a>: Stichprobe gegen das Original, Eintrag mit Prüfvermerk in <code>QUELLEN.md</code>. Jede CSV bekommt dort eine eigene Zeile, denn jede kann für sich geprüft oder ungeprüft sein. Es gilt also dasselbe Vier-Augen-Prinzip wie bei einem neuen Mitarbeiter: Der Agent bringt die Tabelle in eine lesbare Form, wir lesen gegen.</p>
 <p>So sieht die CSV des Blatts „Aufträge“ aus, wenn alles geklappt hat:</p>
 <pre class="text"><code>Nr.;Datum;Leistung;Menge;Einheit;Einzelpreis;Betrag
 1;2026-07-03;Kleine Reparatur;1;pauschal;45,00;45,00
@@ -552,7 +552,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="25.4" class="anchored" data-anchor-id="excel-als-ergebnis"><span class="header-section-number">25.4</span> Excel als Ergebnis</h2>
 <p>Umgekehrt lassen wir den Agenten Auswertungen erzeugen: Summen je Leistung, Aufträge je Monat, eine Liste offener Posten. Das Ergebnis ist eine neue Datei, als CSV oder, wenn der Agent es kann, als Excel-Datei. Sie liegt in einem eigenen Ordner <code>auswertungen/</code>, nie als neues Blatt im Original. Regel 4 unserer <code>AGENTS.md</code> verlangt das ohnehin: Ergebnisse als neue Datei, bestehende Dateien nur nach Rückfrage.</p>
 <p>Fragt der Agent, ob er die Auswertung als neues Blatt in <code>quellen/original/auftragsliste-2026.xlsx</code> anlegen soll, „damit alles in einer Datei bleibt“, lautet die Antwort nein. Das Original ist der Beleg für die CSV-Fassungen und ihren Prüfvermerk. Sobald der Agent in der Datei schreibt, auch nur in einem neuen Blatt, ist nicht mehr sicher, dass der Rest unverändert ist. Die CSV ersetzt das Original nicht: Sie ist daraus abgeleitet, und jede spätere Prüfung braucht die Quelle. Auch eine datierte Kopie des Originals hilft nicht; sie füllt <code>original/</code> mit zwei fast gleichen Dateien, und beim nächsten Auftrag ist unklar, welche gilt.</p>
-<p>Die neue Datei öffnen wir im Tabellenprogramm und rechnen eine Zahl selbst nach. Ein Agent kann beim Zusammenrechnen eine Zeile vergessen oder doppelt zählen. In der Auftragsliste gibt es drei Aufträge „Kleine Reparatur“ zu 45,00 EUR; in der Auswertung müssen 135,00 stehen.</p>
+<p>Das Vier-Augen-Prinzip gilt auch für Ergebnisse. Die neue Datei öffnen wir im Tabellenprogramm und rechnen eine Zahl selbst nach. Ein Agent kann beim Zusammenrechnen eine Zeile vergessen oder doppelt zählen. In der Auftragsliste gibt es drei Aufträge „Kleine Reparatur“ zu 45,00 EUR; in der Auswertung müssen 135,00 stehen.</p>
 <div class="callout callout-style-simple callout-warning callout-titled" title="Regeln sind keine Garantie">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
