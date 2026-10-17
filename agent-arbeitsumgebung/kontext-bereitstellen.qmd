@@ -74,7 +74,7 @@ Eine Übersicht nützt nur, solange sie vollständig ist. Deshalb pflegt der Age
 6. Lies zu Beginn UEBERSICHT.md. Ergänze sie nach jedem Auftrag, wenn neue Dateien entstanden sind.
 ```
 
-Damit gilt die Übersicht in jeder Sitzung, ohne dass wir sie im Auftrag erwähnen. Die `README.md` bleibt daneben bestehen. Sie erklärt Menschen, worum es im Ordner geht. Die Übersicht ist das Inhaltsverzeichnis für die Arbeit, und Regel 6 sorgt dafür, dass neue Dateien darin auftauchen.
+Damit gilt die Übersicht in jeder Sitzung, ohne dass wir sie im Auftrag erwähnen. Die `README.md` bleibt daneben bestehen. Sie erklärt Menschen, worum es im Ordner geht. Die Übersicht ist das Inhaltsverzeichnis für die Arbeit, und Regel 6 hält den Agenten an, neue Dateien dort einzutragen.
 
 ## Im Nachbau: der Weg zur Preisliste
 

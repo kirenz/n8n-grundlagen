@@ -1,6 +1,6 @@
 # AGENTS.md: die Hausordnung
 
-Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Was wir dem Agenten gestern im Chat gesagt haben, weiß er heute nicht mehr. Dauerhafte Regeln schreiben wir deshalb in eine Datei, die der Agent zu Beginn jeder Sitzung von selbst liest: die `AGENTS.md`. Sie ist die Hausordnung des Projektordners. Fünf kurze, prüfbare Regeln reichen, damit der Agent auf Deutsch antwortet, nichts erfindet und meldet, was er geändert hat.
+Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Was wir dem Agenten gestern im Chat gesagt haben, weiß er heute nicht mehr. Dauerhafte Regeln schreiben wir deshalb in eine Datei, die der Agent zu Beginn jeder Sitzung von selbst liest: die `AGENTS.md`. Sie ist die Hausordnung des Projektordners. Fünf kurze, prüfbare Regeln halten den Agenten an, auf Deutsch zu antworten, Angaben ohne Quelle als Annahme zu kennzeichnen und zu melden, was er geändert hat.
 
 ## Ohne und mit Hausordnung
 
@@ -49,12 +49,16 @@ Die Projektbeschreibung gibt dem Agenten den Zusammenhang, ähnlich wie die `REA
 | Regel | Wozu sie dient | Woran wir sie prüfen |
 |---|---|---|
 | 1. Antworte auf Deutsch. | Antworten und Entwürfe passen zur Kundschaft. | Jede Antwort ist deutsch. |
-| 2. Nur Fakten aus dem Ordner, sonst „Annahme:“ | Der Agent erfindet keine Preise, Termine oder Zusagen. | Jede Angabe steht in einer Datei oder trägt „Annahme:“. |
+| 2. Nur Fakten aus dem Ordner, sonst „Annahme:“ | Erfundene Preise, Termine oder Zusagen werden seltener, Lücken werden sichtbar. | Jede Angabe steht in einer Datei oder trägt „Annahme:“. |
 | 3. Keine Personennamen in neue Dateien | Entwürfe und Übersichten enthalten keine personenbezogenen Daten. | In keiner neuen Datei steht ein Name. |
 | 4. Ergebnisse als neue Datei, Änderungen nur nach Rückfrage | Bestehendes Material bleibt erhalten. | Der Agent fragt, bevor er eine vorhandene Datei ändert. |
 | 5. Am Ende angelegte und geänderte Dateien nennen | Wir sehen bei jedem Auftrag, was sich im Ordner geändert hat. | Jede Antwort endet mit dieser Liste. |
 
 Die Regeln sind in Befehlsform und in der Du-Form geschrieben, so wie wir auch Aufträge an den Agenten formulieren. Sie stehen als nummerierte Liste, damit wir uns im Gespräch auf „Regel 2“ beziehen können.
+
+::: {.callout-warning title="Regeln sind keine Garantie"}
+Ein Sprachmodell kann sich auch mit Regel 2 eine Angabe ausdenken, die in keiner Datei steht. Die Regeln senken dieses Risiko und machen Abweichungen leichter erkennbar. Preise, Termine und Zusagen prüfen wir deshalb weiter gegen die Quelle, bevor ein Entwurf das Haus verlässt.
+:::
 
 ## Prüfbare Regeln
 
@@ -130,7 +134,7 @@ Wir lassen den Agenten die Hausordnung anlegen und prüfen in einer neuen Sitzun
 
 8. Prüfen: Die Antwort ist auf Deutsch und enthält „Annahme:“.
 
-**Prüfkriterium:** Die Prüfungen in Schritt 6 und Schritt 8 bestehen in einer neuen Sitzung. Dann liest der Agent die Hausordnung von selbst.
+**Prüfkriterium:** Die Prüfungen in Schritt 6 und Schritt 8 bestehen in einer neuen Sitzung. Dann liest der Agent die Hausordnung von selbst. Dass er sich bei jedem späteren Auftrag daran hält, zeigt der Test nicht; das prüfen wir am jeweiligen Ergebnis.
 
 Besteht die Prüfung in Schritt 6 nicht, liest das Werkzeug die `AGENTS.md` wahrscheinlich nicht automatisch. Dann hilft die Frage im Kasten unten.
 
