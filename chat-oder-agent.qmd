@@ -79,9 +79,9 @@ Der folgende Nachbau zeigt einen typischen Agenten mit dem Ordner `kundenanfrage
 <script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
 ```
 
-Vier Dinge fallen auf. Der Auftrag nennt nur den Ordner und die Zieldatei; niemand kopiert eine Anfrage in den Chat. Der Agent öffnet jede der drei Anfragen selbst und liest die Zeile mit dem Anliegen. Bevor er etwas anlegt, fragt er. Und das Ergebnis steht danach als Datei im Ordner:
+Vier Dinge fallen auf. Der Auftrag nennt nur den Ordner und die Zieldatei; niemand kopiert eine Anfrage in den Chat. Der Agent öffnet jede der drei Anfragen selbst und liest die Zeile mit dem Anliegen. Bevor er etwas anlegt, fragt er. Und das Ergebnis steht danach als Datei im Ordner: Der Agent hat die Datei `UEBERSICHT.md` neu angelegt, so wie es der Auftrag verlangt. Sie liegt jetzt neben dem Ordner `anfragen/` und hat diesen Inhalt:
 
-```markdown
+```{.markdown filename="UEBERSICHT.md"}
 # Übersicht der Anfragen
 
 Sortiert nach Dringlichkeit, dringendste zuerst.
