@@ -1,6 +1,6 @@
 # Starterpaket
 
-Das Starterpaket fasst den ganzen Teil in einem Ordner zusammen: Regeln, Übersicht, Ordnerstruktur, zwei Skills und eine Checkliste, mit der sich prüfen lässt, ob alles zusammenspielt. Einen Download gibt es nicht. Der Agent legt den Ordner mit einem einzigen Auftrag selbst an, und genau das ist schon der erste Test der Arbeitsumgebung. Danach dient der Ordner als Vorlage für jedes neue Vorhaben.
+Das Starterpaket fasst den ganzen Teil in einem Ordner zusammen: Regeln, Übersicht, Ordnerstruktur, zwei Skills und eine Checkliste, mit der sich prüfen lässt, ob alles zusammenspielt. Er ist die Onboarding-Mappe für das nächste Projekt: Der Agent findet darin vom ersten Tag an Hausordnung, Ablage und Arbeitsanweisungen. Einen Download gibt es nicht. Der Agent legt den Ordner mit einem einzigen Auftrag selbst an, und genau das ist schon der erste Test der Arbeitsumgebung. Danach dient der Ordner als Vorlage für jedes neue Vorhaben.
 
 ## Was im Paket liegt
 
@@ -237,7 +237,7 @@ Besteht ein Punkt nicht, hilft das passende Kapitel weiter:
 | 5 | Übersicht | [Kontext bereitstellen](../agent-arbeitsumgebung/kontext-bereitstellen.qmd) |
 | 6 bis 8 | Skills, Eingang, Wochenbericht | [Skills: Abläufe, die bleiben](../agent-arbeitsumgebung/skills.qmd) |
 | 9 | fremde Inhalte | [Konnektoren und Plugins](../agent-arbeitsumgebung/konnektoren-plugins.qmd) |
-| 10 | Anbindungen | [MCP: die Steckdose für andere Systeme](../agent-arbeitsumgebung/mcp.qmd) |
+| 10 | Anbindungen | [MCP: Zugänge zu anderen Systemen](../agent-arbeitsumgebung/mcp.qmd) |
 
 ## Für ein neues Vorhaben anpassen
 
