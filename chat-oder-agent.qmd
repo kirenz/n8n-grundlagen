@@ -93,6 +93,28 @@ Sortiert nach Dringlichkeit, dringendste zuerst.
 | 3 | 2026-10-06-preisfrage.md | Preis für eine Reparatur | keine Frist genannt |
 ```
 
+In der Vorschau der App, die Markdown formatiert anzeigt, sieht dieselbe Datei so aus:
+
+```{=html}
+<div style="border:1px solid #dcd9d2;border-radius:10px;overflow:hidden;background:#fbfaf7;margin:0 0 1.2rem">
+  <div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170;font-family:ui-monospace,Menlo,monospace">UEBERSICHT.md · Vorschau</div>
+  <div style="padding:14px 18px;color:#1f2430">
+    <div style="font-size:1.5rem;font-weight:700;margin:0 0 .5rem">Übersicht der Anfragen</div>
+    <p style="margin:0 0 .8rem">Sortiert nach Dringlichkeit, dringendste zuerst.</p>
+    <div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;font-size:.92rem">
+      <thead><tr style="border-bottom:2px solid #dcd9d2;text-align:left"><th style="padding:6px 8px">Rang</th><th style="padding:6px 8px">Datei</th><th style="padding:6px 8px">Anliegen</th><th style="padding:6px 8px">Grund</th></tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #dcd9d2"><td style="padding:6px 8px">1</td><td style="padding:6px 8px">2026-10-07-beschwerde.md</td><td style="padding:6px 8px">Reparatur nicht fertig</td><td style="padding:6px 8px">für Freitag zugesagt, keine Nachricht</td></tr>
+        <tr style="border-bottom:1px solid #dcd9d2"><td style="padding:6px 8px">2</td><td style="padding:6px 8px">2026-10-05-terminwunsch.md</td><td style="padding:6px 8px">Termin für eine Reparatur</td><td style="padding:6px 8px">Termin nächste Woche gewünscht</td></tr>
+        <tr><td style="padding:6px 8px">3</td><td style="padding:6px 8px">2026-10-06-preisfrage.md</td><td style="padding:6px 8px">Preis für eine Reparatur</td><td style="padding:6px 8px">keine Frist genannt</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+```
+
+Aus `#` wird eine Überschrift, aus den Zeilen mit senkrechten Strichen eine Tabelle. Ein normaler Webbrowser zeigt `.md`-Dateien dagegen oft nur als Rohtext; für die formatierte Ansicht nutzen wir die Vorschau der App.
+
 Die Datei bleibt liegen. Kommt morgen eine vierte Anfrage, ergänzt der Agent dieselbe Übersicht, statt eine neue Liste im Chat zu erzeugen. Zum Schluss meldet er, was sich im Ordner geändert hat: eine Datei angelegt, keine geändert. Diese Meldung machen wir im Kapitel [AGENTS.md: die Hausordnung](agents-md.qmd) zur festen Regel.
 
 ## Wann sich der Agent lohnt
