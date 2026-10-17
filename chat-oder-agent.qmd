@@ -21,27 +21,7 @@ Gemeint ist ein Arbeitswerkzeug am eigenen Rechner. Agenten, die als Baustein in
 
 ## Markdown: das Dateiformat in diesem Buch
 
-Fast alle Dateien in diesem Buch sind **Markdown**-Dateien. Markdown ist reiner Text mit wenigen Zeichen für die Gliederung: `#` am Zeilenanfang macht eine Überschrift, `-` einen Listenpunkt. Die Dateien enden auf `.md`.
-
-Warum dieses Format? Eine Word-Datei ist innen ein Paket aus Text und Formatierungsangaben. Markdown ist der Text selbst. Dieselbe Kundenanfrage sieht in beiden Formaten so aus:
-
-:::: {layout-ncol=2}
-::: {}
-**terminwunsch.docx, Inhalt der Datei (Ausschnitt)**
-
-```xml
-<w:p><w:pPr><w:pStyle w:val="Heading1"/>
-</w:pPr><w:r><w:t>Terminwunsch</w:t>
-</w:r></w:p><w:p><w:pPr><w:numPr>
-<w:ilvl w:val="0"/></w:numPr></w:pPr>
-<w:r><w:t>Kanal: E-Mail</w:t></w:r>
-</w:p><w:p><w:r><w:t>Anliegen:</w:t>
-</w:r><w:r><w:t> Termin für eine
-Reparatur</w:t></w:r></w:p>
-```
-:::
-::: {}
-**terminwunsch.md**
+Fast alle Dateien in diesem Buch sind **Markdown**-Dateien. Markdown ist reiner Text mit wenigen Zeichen für die Gliederung: `#` am Zeilenanfang macht eine Überschrift, `-` einen Listenpunkt. Die Dateien enden auf `.md`. Eine Kundenanfrage sieht darin so aus:
 
 ```markdown
 # Terminwunsch
@@ -50,10 +30,8 @@ Reparatur</w:t></w:r></w:p>
 - Kanal: E-Mail
 - Anliegen: Termin für eine Reparatur
 ```
-:::
-::::
 
-Markdown ist reiner Text: Mensch und Agent lesen dieselbe Datei, ohne Spezialprogramm und ohne Umweg. Ändert der Agent etwas, ist jede neue Zeile sichtbar. Wie Markdown im Einzelnen funktioniert, zeigt das Kapitel [Markdown: Text, den Mensch und Agent lesen](markdown.qmd).
+Warum dieses Format? Mensch und Agent lesen dieselbe Datei, ohne Spezialprogramm und ohne Umweg. Ändert der Agent etwas, ist jede neue Zeile sichtbar. Im Kapitel [Markdown: Text, den Mensch und Agent lesen](markdown.qmd) legen wir Schritt für Schritt eigene Markdown-Dateien an und sehen dort auch, was eine Word-Datei davon unterscheidet.
 
 ## Zwei Arten zu arbeiten
 
