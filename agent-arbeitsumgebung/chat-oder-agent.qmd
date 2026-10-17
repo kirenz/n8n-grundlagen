@@ -2,6 +2,22 @@
 
 Ein Chat-Assistent und ein Agent nutzen oft dasselbe Sprachmodell (das KI-Modell, das den Text erzeugt). Der Unterschied liegt im Arbeitsplatz. Der Chat sieht nur, was wir ins Eingabefeld schreiben oder hineinkopieren. Der Agent arbeitet in einem Ordner auf unserem Rechner, öffnet dort selbst Dateien und legt seine Ergebnisse als Dateien ab. Sobald Material schon als Dateien vorliegt oder ein Ergebnis als Datei entstehen soll, spart der Agent die Kopierarbeit in beide Richtungen.
 
+## Was hier mit Agent gemeint ist
+
+Mit Agent meinen wir in diesem Buch einen **Coding-Agenten**: ein KI-Werkzeug, das auf dem eigenen Rechner in einem Ordner mitarbeitet. Gebaut wurden diese Werkzeuge für Programmcode. Sie arbeiten aber mit allen Textdateien, also auch mit Kundenanfragen, Protokollen oder Konzepten. Bekannte Beispiele:
+
+| Werkzeug | Anbieter | Wo es läuft |
+|---|---|---|
+| Claude Code | Anthropic | Desktop-App, Erweiterung für Code-Editoren wie VS Code, Terminal |
+| Codex | OpenAI | ChatGPT-App, Erweiterung für Code-Editoren, Terminal |
+| Antigravity | Google | eigene App mit Editor, Terminal |
+
+Weitere Werkzeuge wie Cursor arbeiten ähnlich. Das **Terminal** ist ein Textfenster, in dem wir Befehle eintippen statt zu klicken. Für dieses Buch reicht jede der genannten Oberflächen.
+
+Die Bedienung unterscheidet sich von Werkzeug zu Werkzeug und ändert sich oft. Das Buch zeigt deshalb keine bestimmte Oberfläche. Die Nachbauten in den Kapiteln stellen einen typischen Agenten nach; Dateibaum, Chat und Rückfrage finden wir in ähnlicher Form in jedem der genannten Werkzeuge. Was sich je Werkzeug unterscheidet, etwa Dateinamen und Speicherorte, steht gesammelt in der [Übersicht nach Werkzeug](#uebersicht-nach-werkzeug).
+
+Gemeint ist ein Arbeitswerkzeug am eigenen Rechner. Agenten, die als Baustein in eine Automatisierung eingebaut sind, etwa in einen Workflow, sind etwas anderes.
+
 ## Zwei Arten zu arbeiten
 
 Ein **Chat-Assistent** antwortet auf das, was im Eingabefeld steht. Für drei Kundenanfragen heißt das: jede Anfrage öffnen, den Text kopieren, in den Chat einfügen, um eine Sortierung bitten und die Antwort danach von Hand in eine Datei übertragen. Beim nächsten Mal beginnt das Kopieren von vorn.
