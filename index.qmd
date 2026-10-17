@@ -7,7 +7,7 @@ Wir werden:
 - Erkennen, wann ein Agent im Ordner dem Chat überlegen ist, und das eigene Werkzeug mit einem Selbsttest prüfen
 - Markdown-Dateien mit Überschriften, Listen, Tabellen und Links lesen und schreiben lassen
 - Einen Projektordner mit sprechenden Datei- und Ordnernamen anlegen lassen
-- Eine `AGENTS.md` mit prüfbaren Regeln schreiben und nachweisen, dass der Agent sie ohne Erwähnung befolgt
+- Eine `AGENTS.md` mit prüfbaren Regeln schreiben und prüfen, ob der Agent sie ohne Erwähnung liest
 - Material so ablegen, dass der Agent es findet: relevant, aktuell und mit Verweisen statt Kopien
 - PDFs als Quellen aufnehmen, in Markdown umwandeln und stichprobenartig prüfen
 - Einen festen Ablauf für neu eintreffende Dateien einrichten
