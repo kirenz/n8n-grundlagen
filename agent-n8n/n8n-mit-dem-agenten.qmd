@@ -1,64 +1,10 @@
 # n8n mit dem Agenten
 
-Jeder n8n-Workflow lässt sich als Datei speichern. Für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner: Er kann sie lesen, erklären und eine geänderte Fassung schreiben, so wie ein neuer Mitarbeiter einen Ablaufplan liest und eine Änderung vorschlägt. Damit lässt sich ein Workflow ändern, ohne im Canvas jeden Knoten einzeln anzufassen. Freigeben dürfen wir den Vorschlag erst nach unserem eigenen Test, und zwar in n8n. Als Beispiel dient der Workflow aus [Beispiel 1: Kontaktanfragen sortieren](../beispiele/kontaktanfragen.qmd), der eine dritte Art von Anfragen mit hoher Priorität behandeln soll.
+Jeder n8n-Workflow lässt sich als Datei speichern, und für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner. In diesem Kapitel lassen wir den eigenen Agenten den Workflow aus [Beispiel 1: Kontaktanfragen sortieren](../beispiele/kontaktanfragen.qmd) erklären und als Kopie ändern. Danach testen wir die Kopie in n8n. Die Kopie soll eine dritte Art von Anfragen mit hoher Priorität behandeln: Datenschutzanfragen. Die Erklärung folgt jeweils am eigenen Ergebnis.
 
-## Die Workflow-Datei
+Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.
 
-**Workflow-JSON** nennen wir die Datei, in der n8n einen Workflow speichert. JSON (JavaScript Object Notation) ist ein Textformat, das Daten als Felder mit Namen und Wert in geschweiften Klammern ablegt. Jeder Workflow lässt sich über das Menü des Workflows als JSON-Datei exportieren und in eine andere Instanz wieder importieren. Die Datei enthält alle Knoten mit ihren Einstellungen und die Verbindungen zwischen ihnen. Die Knotennamen in der Datei sind dieselben wie im Canvas.
-
-Die Entscheidung im If-Knoten „Beschwerde?“ sieht in der Datei von Beispiel 1 so aus (gekürzt):
-
-```json
-"conditions": [
-  {
-    "leftValue": "={{ $json.Anliegen }}",
-    "rightValue": "Beschwerde",
-    "operator": { "type": "string", "operation": "equals" }
-  }
-],
-"combinator": "and"
-```
-
-Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfeld `Anliegen`, rechts der Vergleichswert `Beschwerde`, dazwischen der Vergleich „ist gleich“ (`equals`). Das Feld `combinator` legt fest, wie mehrere Vergleiche zusammenwirken. Mit `and` (und) müssen alle zutreffen, mit `or` (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Sobald ein zweiter dazukommt, entscheidet dieses Feld über das Ergebnis.
-
-## Zwei Wege zu n8n
-
-Wie die Datei vom Agenten zu n8n kommt, dafür gibt es zwei Wege.
-
-![Weg A: Der Agent schreibt die Datei, wir importieren sie in n8n. Weg B: Der Agent erreicht n8n direkt über einen MCP-Server.](images/11-zwei-wege.svg){fig-alt="Zwei Wege. Weg A, im Kurs: Der Agent schreibt die Datei n8n/beispiel-1-datenschutz.json, wir importieren sie mit Import from File in n8n. Weg B, gestrichelt, nur Hinweis: Der Agent erreicht n8n über einen MCP-Zugang (Zugangskarte) und liest oder legt Workflows direkt an; in n8n heißt die Anbindung Instance-level MCP."}
-
-| | Weg A: Datei und Import | Weg B: direkte Anbindung |
-|---|---|---|
-| Was der Agent tut | schreibt eine JSON-Datei in den Ordner `n8n/` | liest und legt Workflows direkt in n8n an |
-| Was wir tun | importieren die Datei mit **Import from File** | schalten die Anbindung in n8n frei |
-| Was gebraucht wird | nur den Projektordner | einen MCP-Server (siehe [MCP: Zugänge zu anderen Systemen](../agent-arbeitsumgebung/mcp.qmd)) und eine Freischaltung in n8n |
-| Rolle hier | Praxisweg | freiwillige Prüfung am Ende |
-
-Für Weg B bietet n8n eine eigene Anbindung namens **Instance-level MCP**. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet ([Anleitung in der n8n-Dokumentation](https://docs.n8n.io/connect/connect-to-n8n-mcp-server)). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n ist ein natürlicher Prüfpunkt.
-
-## Workflow lesen und ändern
-
-Die folgende Szene zeigt beide Schritte: Zuerst erklärt der Agent den Workflow aus Beispiel 1, dann legt er eine geänderte Kopie an. Datenschutzanfragen sollen künftig wie Beschwerden in „Priorität hoch“ landen. Für die Anzeige ist die Datei auf Knoten, Formularfelder und Bedingung gekürzt. Mit „Weiter“ klicken wir uns durch die Sitzung.
-
-```{=html}
-<iframe class="muster-agent" src="widgets/11-workflow-lesen.html" title="Nachbau eines Agenten: Workflow-Datei lesen und als Kopie ändern" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
-<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
-```
-
-In der Erklärung nennt der Agent drei Dinge: das Formular als Auslöser, den If-Knoten „Beschwerde?“ als Entscheidung und die beiden Set-Knoten als Ergebnis. Diese Erklärung lässt sich am Canvas prüfen, bevor wir irgendetwas ändern lassen.
-
-Für die Änderung liest der Agent die alte Bedingung noch einmal: ein Vergleich, verknüpft mit `and`. Dann legt er eine neue Datei an. Das Original bleibt, wie es ist (Regel 4 der AGENTS.md aus [AGENTS.md: die Hausordnung](../agent-arbeitsumgebung/agents-md.qmd)). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die Kopie unterscheidet sich an zwei Stellen:
-
-| Stelle | Original | Kopie |
-|---|---|---|
-| Formularfeld `Anliegen` | drei Optionen: Frage zur Bestellung, Beschwerde, Rückruf | vierte Option `Datenschutz` |
-| If-Knoten „Beschwerde?“ | ein Vergleich: Anliegen ist gleich `Beschwerde`, `combinator: and` | zweiter Vergleich: Anliegen ist gleich `Datenschutz`, `combinator: or` |
-
-Mit `or` führt jetzt Beschwerde oder Datenschutz zum Ausgang true. Ob der Workflow damit läuft, zeigt erst der Import und ein Testlauf in n8n. Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diesen Test nicht. Auch das Durchlesen der Datei reicht nicht: Es zeigt weder, ob n8n die Datei annimmt (schon ein fehlendes Komma verhindert den Import), noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen.
-
-## Praxis: Datei ablegen und erklären lassen
-
-Wir legen die Workflow-Datei aus Beispiel 1 in den Projektordner und lassen den Agenten den Workflow erklären, bevor er etwas ändert.
+## Schritt 1: Workflow-Datei ablegen und erklären lassen
 
 **Voraussetzung:** Der Agent ist im Ordner `kundenanfragen` geöffnet.
 
@@ -78,8 +24,6 @@ Wir legen die Workflow-Datei aus Beispiel 1 in den Projektordner und lassen den 
    ```
 
 6. Prüfen: Die Erklärung nennt das Formular, den If-Knoten „Beschwerde?“ und zwei Ausgänge.
-
-**Prüfkriterium:** Die Prüfungen in Schritt 4 und Schritt 6 bestehen.
 
 ::: {.callout-note collapse="true" title="Alternative: Datei vom Agenten anlegen lassen"}
 Statt Schritt 1 bis 3 kann der Agent die Datei selbst anlegen. Der Auftrag enthält den vollständigen Inhalt der Datei aus Beispiel 1; auf der Lernplattform ist er der Hauptweg.
@@ -300,9 +244,107 @@ Lege den Ordner n8n an und darin die Datei beispiel-1-kontaktanfragen.json. Übe
 Danach weiter mit Schritt 4.
 :::
 
-## Praxis: Workflow ändern und in n8n testen
+### Das sollten wir jetzt sehen
 
-**Voraussetzung:** Die Anmeldung in der eigenen n8n-Instanz ist erfolgt. Die Datei `beispiel-1-kontaktanfragen.json` liegt in `kundenanfragen/n8n/`.
+```{=html}
+<style>
+.bx{max-width:820px;margin:0 auto;color:#1f2430;font-size:14px;line-height:1.45}
+.bx *{box-sizing:border-box}
+.bx-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bx-box{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;min-width:0}
+.bx-bar{padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
+.bx-bar b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.bx pre{margin:0;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:transparent;border:0;color:#1f2430}
+.bx pre i{color:#23417a;font-style:normal;font-weight:700}
+.bx pre em{color:#5b6170;font-style:normal}
+.bx pre .alt{display:block;background:color-mix(in oklch,#c8962f 22%,transparent);text-decoration:line-through;text-decoration-color:#5b6170}
+.bx pre .neu{display:block;background:color-mix(in oklch,#23417a 16%,transparent)}
+.bx pre .mark{background:color-mix(in oklch,#23417a 16%,transparent)}
+.bx pre .weg{color:#5b6170;text-decoration:line-through}
+.bx-body{padding:12px 16px 14px;font-size:14.5px}
+.bx-body p{margin:0 0 8px}
+.bx-body p:last-child{margin-bottom:0}
+.bx-h{font-size:20px;font-weight:700;margin:0 0 8px}
+.bx-h2{font-size:16px;font-weight:700;margin:10px 0 6px}
+.bx ul,.bx ol{margin:0;padding-left:22px}
+.bx li{margin:2px 0}
+.bx table{border-collapse:collapse;font-size:13px;width:100%}
+.bx th,.bx td{border:1px solid #dcd9d2;padding:5px 8px;text-align:left;vertical-align:top}
+.bx th{background:#f4f2ed}
+.bx code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+.bx-tag{display:inline-block;margin-left:6px;padding:0 6px;border-radius:999px;background:#f4f2ed;border:1px solid #dcd9d2;font-size:11px;color:#5b6170}
+.bx-ok{color:#23417a;font-weight:700}
+.bx-flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 12px;font-size:12.5px}
+.bx-node{padding:4px 9px;border:1px solid #dcd9d2;border-radius:8px;background:#f4f2ed}
+.bx-node.an{border-color:#23417a;background:color-mix(in oklch,#23417a 12%,#fbfaf7);font-weight:600}
+.bx-arr{color:#5b6170}
+.bx-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
+@media (max-width:640px){.bx-grid{grid-template-columns:1fr}}
+</style>
+<div class="bx" style="margin:0 0 1rem">
+<div class="bx-grid" role="group" aria-label="Ausschnitt der Workflow-Datei und Erklärung des Agenten">
+<div class="bx-box"><div class="bx-bar">Ausschnitt: <b>n8n/beispiel-1-kontaktanfragen.json</b></div>
+<pre>"name": "<i>Kontaktformular</i>",
+"type": "n8n-nodes-base.formTrigger",
+<em>…</em>
+"name": "<i>Beschwerde?</i>",
+"conditions": [
+  {
+    <span class="mark">"leftValue": "=&#123;&#123; $json.Anliegen &#125;&#125;",</span>
+    <span class="mark">"rightValue": "Beschwerde",</span>
+    "operator": {
+      "type": "string",
+      <span class="mark">"operation": "equals"</span>
+    }
+  }
+],
+"combinator": "and"
+<em>…</em>
+"name": "<i>Priorität hoch</i>",
+<em>…</em>
+"name": "<i>Priorität normal</i>",</pre></div>
+<div class="bx-box"><div class="bx-bar">Antwort des Agenten (Kurzform)</div>
+<div class="bx-body"><p><b>Auslöser:</b> Das Formular „Kontaktformular“ startet den Workflow, wenn jemand Name, E-Mail, Anliegen und Nachricht absendet.</p>
+<p><b>Entscheidung:</b> Der If-Knoten „Beschwerde?“ prüft, ob das Anliegen gleich „Beschwerde“ ist.</p>
+<p><b>Ergebnis:</b> Beschwerden gehen an „Priorität hoch“, alle anderen Anfragen an „Priorität normal“. Beide Knoten setzen das Feld prioritaet.</p></div></div>
+</div>
+<p class="bx-cap">Links die Stellen, aus denen der Agent liest: Knotennamen in Blau, die Bedingung hinterlegt. Rechts seine Erklärung. Der eigene Agent formuliert anders. Wichtig sind Auslöser, Entscheidung und die zwei Ausgänge.</p>
+</div>
+```
+
+### Was gerade passiert ist
+
+Der Agent hat die Workflow-Datei gelesen wie jede Anfrage im Ordner. Die Namen in seiner Erklärung stehen wörtlich in der Datei.
+
+**Workflow-JSON** nennen wir die Datei, in der n8n einen Workflow speichert. JSON (JavaScript Object Notation) ist ein Textformat, das Daten als Felder mit Namen und Wert in geschweiften Klammern ablegt. Die Datei enthält alle Knoten mit ihren Einstellungen und die Verbindungen zwischen ihnen. Jeder Workflow lässt sich über das Menü des Workflows als JSON-Datei exportieren und in eine andere Instanz wieder importieren. Die Knotennamen in der Datei sind dieselben wie im Canvas.
+
+Die **Bedingung** ist der Vergleich im If-Knoten „Beschwerde?“. In der Datei sieht sie so aus (gekürzt):
+
+```json
+"conditions": [
+  {
+    "leftValue": "={{ $json.Anliegen }}",
+    "rightValue": "Beschwerde",
+    "operator": { "type": "string", "operation": "equals" }
+  }
+],
+"combinator": "and"
+```
+
+Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfeld `Anliegen`, rechts der Vergleichswert `Beschwerde`, dazwischen der Vergleich „ist gleich“ (`equals`). Wie ein neuer Mitarbeiter liest der Agent zuerst den Ablaufplan und erklärt ihn, bevor er etwas ändert. Seine Erklärung lässt sich am Canvas in n8n prüfen.
+
+::: {.callout-note title="Wenn es anders aussieht"}
+- Der Agent kürzt die Datei oder ändert Zeilen beim Anlegen (Alternative oben): ablehnen und die Datei herunterladen.
+- Die heruntergeladene Datei heißt `beispiel-1-kontaktanfragen.json.txt` oder liegt noch im Download-Ordner: nach `kundenanfragen/n8n/` verschieben und die Endung `.txt` entfernen.
+- Die Erklärung nennt andere Namen als „Beschwerde?“ oder „Priorität hoch“: „Nenne die Knotennamen genau so, wie sie in der Datei stehen.“
+- Der Agent schlägt von sich aus eine Änderung vor: ablehnen. Der Auftrag lautet „Ändere danach nichts“.
+:::
+
+## Schritt 2: Eine geänderte Kopie anlegen lassen
+
+Aus dem Quiz in Beispiel 1 bekannt: Auch Datenschutzanfragen sollen hohe Priorität bekommen.
+
+**Voraussetzung:** `n8n/beispiel-1-kontaktanfragen.json` aus Schritt 1 liegt im Ordner `kundenanfragen`.
 
 1. Diesen Auftrag senden:
 
@@ -310,24 +352,203 @@ Danach weiter mit Schritt 4.
    Erstelle eine Kopie als n8n/beispiel-1-datenschutz.json. Änderung: Der If-Knoten „Beschwerde?“ prüft zusätzlich, ob Anliegen gleich „Datenschutz“ ist, beide Bedingungen mit OR. Das Formular bekommt die Option „Datenschutz“. Sonst nichts ändern. Nenne mir die beiden Stellen, die du geändert hast.
    ```
 
-2. Prüfen: Der Agent nennt zwei Stellen, die neue Formularoption und die zweite Bedingung im If-Knoten.
-3. In n8n einen neuen Workflow öffnen.
-4. Oben rechts auf das Drei-Punkte-Menü klicken.
-5. **Import from File** wählen.
-6. Die Datei `kundenanfragen/n8n/beispiel-1-datenschutz.json` wählen.
-7. Prüfen: Der Canvas zeigt vier Knoten: Kontaktformular, Beschwerde?, Priorität hoch, Priorität normal.
-8. Unten auf **Execute workflow** klicken. n8n öffnet das Formular in einem neuen Tab.
-9. Name und E-Mail mit Testwerten ausfüllen.
-10. Als Anliegen **Datenschutz** wählen.
-11. Das Formular absenden.
-12. Zurück zu n8n wechseln und den Knoten **Priorität hoch** öffnen.
-13. Prüfen: Im Knoten steht die Anfrage mit `prioritaet` gleich `hoch`.
-14. Einen zweiten Lauf mit dem Anliegen **Rückruf** starten.
-15. Prüfen: Die Anfrage landet in **Priorität normal**.
+2. Das Anlegen freigeben, wenn der Agent fragt.
+3. Prüfen: Der Agent nennt zwei Stellen, die neue Formularoption und die zweite Bedingung im If-Knoten.
+4. `n8n/beispiel-1-datenschutz.json` in der App öffnen.
+5. Prüfen: Die Datei enthält `"option": "Datenschutz"`, `"rightValue": "Datenschutz"` und `"combinator": "or"`.
+6. Prüfen: `beispiel-1-kontaktanfragen.json` liegt weiter im Ordner `n8n/`.
 
-**Prüfkriterium:** Die Anfrage mit Datenschutz landet in **Priorität hoch**, die Anfrage mit Rückruf in **Priorität normal**.
+### Das sollten wir jetzt sehen
 
-Besteht Prüfung 13 nicht, bekommt der Agent den Befund, etwa „Datenschutz landet in Priorität normal. Prüfe die Bedingung im If-Knoten.“ Danach die korrigierte Datei erneut importieren.
+```{=html}
+<style>
+.bx{max-width:820px;margin:0 auto;color:#1f2430;font-size:14px;line-height:1.45}
+.bx *{box-sizing:border-box}
+.bx-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bx-box{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;min-width:0}
+.bx-bar{padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
+.bx-bar b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.bx pre{margin:0;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:transparent;border:0;color:#1f2430}
+.bx pre i{color:#23417a;font-style:normal;font-weight:700}
+.bx pre em{color:#5b6170;font-style:normal}
+.bx pre .alt{display:block;background:color-mix(in oklch,#c8962f 22%,transparent);text-decoration:line-through;text-decoration-color:#5b6170}
+.bx pre .neu{display:block;background:color-mix(in oklch,#23417a 16%,transparent)}
+.bx pre .mark{background:color-mix(in oklch,#23417a 16%,transparent)}
+.bx pre .weg{color:#5b6170;text-decoration:line-through}
+.bx-body{padding:12px 16px 14px;font-size:14.5px}
+.bx-body p{margin:0 0 8px}
+.bx-body p:last-child{margin-bottom:0}
+.bx-h{font-size:20px;font-weight:700;margin:0 0 8px}
+.bx-h2{font-size:16px;font-weight:700;margin:10px 0 6px}
+.bx ul,.bx ol{margin:0;padding-left:22px}
+.bx li{margin:2px 0}
+.bx table{border-collapse:collapse;font-size:13px;width:100%}
+.bx th,.bx td{border:1px solid #dcd9d2;padding:5px 8px;text-align:left;vertical-align:top}
+.bx th{background:#f4f2ed}
+.bx code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+.bx-tag{display:inline-block;margin-left:6px;padding:0 6px;border-radius:999px;background:#f4f2ed;border:1px solid #dcd9d2;font-size:11px;color:#5b6170}
+.bx-ok{color:#23417a;font-weight:700}
+.bx-flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 12px;font-size:12.5px}
+.bx-node{padding:4px 9px;border:1px solid #dcd9d2;border-radius:8px;background:#f4f2ed}
+.bx-node.an{border-color:#23417a;background:color-mix(in oklch,#23417a 12%,#fbfaf7);font-weight:600}
+.bx-arr{color:#5b6170}
+.bx-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
+@media (max-width:640px){.bx-grid{grid-template-columns:1fr}}
+</style>
+<div class="bx" style="margin:0 0 1rem">
+<div class="bx-grid" role="group" aria-label="Die zwei Änderungen in der Kopie und die Antwort des Agenten">
+<div class="bx-box"><div class="bx-bar">Änderungen in <b>n8n/beispiel-1-datenschutz.json</b></div>
+<pre><em>Stelle 1: Kontaktformular, Feld Anliegen</em>
+  { "option": "Beschwerde" },
+  { "option": "Rückruf" },
+<span class="neu">+ { "option": "Datenschutz" }</span><em>Stelle 2: If-Knoten Beschwerde?</em>
+  "rightValue": "Beschwerde", <em>…</em>
+<span class="neu">+ {
++   "leftValue": "=&#123;&#123; $json.Anliegen &#125;&#125;",
++   "rightValue": "Datenschutz",
++   "operator": { "type": "string", "operation": "equals" }
++ }</span><span class="alt">- "combinator": "and"</span><span class="neu">+ "combinator": "or"</span></pre></div>
+<div class="bx-box"><div class="bx-bar">Antwort des Agenten (Kurzform)</div>
+<div class="bx-body"><p>Ich habe n8n/beispiel-1-datenschutz.json angelegt und zwei Stellen geändert:</p>
+<ol><li>Kontaktformular, Feld Anliegen: neue Option „Datenschutz“.</li>
+<li>If-Knoten „Beschwerde?“: zweiter Vergleich Anliegen gleich „Datenschutz“, Verknüpfung von and auf or.</li></ol>
+<p>Die Datei beispiel-1-kontaktanfragen.json ist unverändert.</p></div></div>
+</div>
+<p class="bx-cap">Gekürzt. In der echten Datei stehen die Felder auf mehreren Zeilen, und der neue Vergleich hat meist eine eigene id. Neue Zeilen sind blau hinterlegt, die alte Zeile ist durchgestrichen.</p>
+</div>
+```
+
+### Was gerade passiert ist
+
+Der Agent hat die alte Bedingung gelesen und eine neue Datei mit zwei Änderungen angelegt. Das Original liegt unverändert daneben.
+
+Das Feld **combinator** legt fest, wie mehrere Vergleiche im If-Knoten zusammenwirken. Mit `and` (und) müssen alle zutreffen, mit `or` (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Sobald ein zweiter dazukommt, entscheidet dieses Feld über das Ergebnis: Mit `or` führt jetzt Beschwerde oder Datenschutz zum Ausgang true.
+
+Der Agent ändert eine **Kopie mit neuem Namen**, das Original bleibt, wie es ist (Regel 4 der AGENTS.md aus [AGENTS.md: die Hausordnung](../agent-arbeitsumgebung/agents-md.qmd)). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die beiden Stellen im Überblick:
+
+| Stelle | Original | Kopie |
+|---|---|---|
+| Formularfeld `Anliegen` | drei Optionen: Frage zur Bestellung, Beschwerde, Rückruf | vierte Option `Datenschutz` |
+| If-Knoten „Beschwerde?“ | ein Vergleich: Anliegen ist gleich `Beschwerde`, `combinator: and` | zweiter Vergleich: Anliegen ist gleich `Datenschutz`, `combinator: or` |
+
+::: {.callout-note title="Wenn es anders aussieht"}
+- Der Agent hat das Original geändert: das Original mit Schritt 1 neu anlegen und den Auftrag aus Schritt 2 wiederholen.
+- `"combinator"` steht noch auf `"and"`: Dann müssen beide Vergleiche zugleich zutreffen, und keine Anfrage landet in „Priorität hoch“. „Setze combinator im If-Knoten auf or.“
+- Der Agent nennt mehr als zwei Stellen: sich die alten und neuen Zeilen zeigen lassen und jede weitere Änderung zurücknehmen lassen.
+- Der neue Vergleich hat eine eigene `id` oder steht über mehrere Zeilen verteilt: Das ist in Ordnung.
+:::
+
+## Schritt 3: In n8n importieren und zweimal testen
+
+**Voraussetzung:** Die Anmeldung in der eigenen n8n-Instanz ist erfolgt. `n8n/beispiel-1-datenschutz.json` aus Schritt 2 liegt im Ordner `kundenanfragen`.
+
+1. In n8n einen neuen Workflow öffnen.
+2. Im Drei-Punkte-Menü oben rechts **Import from File** wählen und dann die Datei `kundenanfragen/n8n/beispiel-1-datenschutz.json`.
+3. Prüfen: Der Canvas zeigt vier Knoten: Kontaktformular, Beschwerde?, Priorität hoch, Priorität normal.
+4. Unten auf **Execute workflow** klicken. n8n öffnet das Formular in einem neuen Tab.
+5. Das Formular ausfüllen: Testwerte für Name und E-Mail, Anliegen **Datenschutz**. Absenden.
+6. In n8n den Knoten **Priorität hoch** öffnen.
+7. Prüfen: Die Ausgabe (OUTPUT) zeigt `prioritaet` mit dem Wert `hoch`.
+8. Schritt 4 bis 6 mit dem Anliegen **Rückruf** und dem Knoten **Priorität normal** wiederholen.
+9. Prüfen: Die Ausgabe zeigt `anliegen` mit `Rückruf` und `prioritaet` mit `normal`.
+
+Besteht Prüfung 7 nicht, bekommt der Agent den Befund, etwa „Datenschutz landet in Priorität normal. Prüfe die Bedingung im If-Knoten.“ Danach die korrigierte Datei erneut importieren.
+
+### Das sollten wir jetzt sehen
+
+```{=html}
+<style>
+.bx{max-width:820px;margin:0 auto;color:#1f2430;font-size:14px;line-height:1.45}
+.bx *{box-sizing:border-box}
+.bx-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bx-box{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;min-width:0}
+.bx-bar{padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
+.bx-bar b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.bx pre{margin:0;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:transparent;border:0;color:#1f2430}
+.bx pre i{color:#23417a;font-style:normal;font-weight:700}
+.bx pre em{color:#5b6170;font-style:normal}
+.bx pre .alt{display:block;background:color-mix(in oklch,#c8962f 22%,transparent);text-decoration:line-through;text-decoration-color:#5b6170}
+.bx pre .neu{display:block;background:color-mix(in oklch,#23417a 16%,transparent)}
+.bx pre .mark{background:color-mix(in oklch,#23417a 16%,transparent)}
+.bx pre .weg{color:#5b6170;text-decoration:line-through}
+.bx-body{padding:12px 16px 14px;font-size:14.5px}
+.bx-body p{margin:0 0 8px}
+.bx-body p:last-child{margin-bottom:0}
+.bx-h{font-size:20px;font-weight:700;margin:0 0 8px}
+.bx-h2{font-size:16px;font-weight:700;margin:10px 0 6px}
+.bx ul,.bx ol{margin:0;padding-left:22px}
+.bx li{margin:2px 0}
+.bx table{border-collapse:collapse;font-size:13px;width:100%}
+.bx th,.bx td{border:1px solid #dcd9d2;padding:5px 8px;text-align:left;vertical-align:top}
+.bx th{background:#f4f2ed}
+.bx code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+.bx-tag{display:inline-block;margin-left:6px;padding:0 6px;border-radius:999px;background:#f4f2ed;border:1px solid #dcd9d2;font-size:11px;color:#5b6170}
+.bx-ok{color:#23417a;font-weight:700}
+.bx-flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 12px;font-size:12.5px}
+.bx-node{padding:4px 9px;border:1px solid #dcd9d2;border-radius:8px;background:#f4f2ed}
+.bx-node.an{border-color:#23417a;background:color-mix(in oklch,#23417a 12%,#fbfaf7);font-weight:600}
+.bx-arr{color:#5b6170}
+.bx-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
+@media (max-width:640px){.bx-grid{grid-template-columns:1fr}}
+</style>
+<div class="bx" style="margin:0 0 1rem">
+<div class="bx-grid" role="group" aria-label="Ergebnis der zwei Testläufe in n8n">
+<div class="bx-box"><div class="bx-bar">Lauf 1: Anliegen <b>Datenschutz</b></div>
+<div class="bx-flow"><span class="bx-node">Kontaktformular</span><span class="bx-arr">→</span><span class="bx-node">Beschwerde?</span><span class="bx-arr">→ true →</span><span class="bx-node an">Priorität hoch</span></div>
+<pre><em>OUTPUT von Priorität hoch, Ansicht JSON</em>
+[
+  {
+    "name": "Test",
+    "email": "test@example.com",
+    "anliegen": "Datenschutz",
+    <span class="mark">"prioritaet": "hoch"</span>
+  }
+]</pre></div>
+<div class="bx-box"><div class="bx-bar">Lauf 2: Anliegen <b>Rückruf</b></div>
+<div class="bx-flow"><span class="bx-node">Kontaktformular</span><span class="bx-arr">→</span><span class="bx-node">Beschwerde?</span><span class="bx-arr">→ false →</span><span class="bx-node an">Priorität normal</span></div>
+<pre><em>OUTPUT von Priorität normal, Ansicht JSON</em>
+[
+  {
+    "name": "Test",
+    "email": "test@example.com",
+    "anliegen": "Rückruf",
+    <span class="mark">"prioritaet": "normal"</span>
+  }
+]</pre></div>
+</div>
+<p class="bx-cap">Im Canvas tragen die durchlaufenen Knoten nach dem Lauf einen grünen Haken. Die Ausgabe steht im Knoten unter OUTPUT. Name und E-Mail sind die eigenen Testwerte.</p>
+</div>
+```
+
+### Was gerade passiert ist
+
+Aus der Datei des Agenten ist ein Workflow in der eigenen Instanz geworden, und zwei Läufe haben sein Verhalten gezeigt.
+
+Beim **Import** liest n8n die JSON-Datei und baut daraus Knoten und Verbindungen im Canvas. Das gelingt nur, wenn die Datei gültiges JSON ist; schon ein fehlendes Komma verhindert den Import. Damit ist der Import der erste Prüfpunkt. Der zweite Lauf ist eine **Gegenprobe**: ein Anliegen, für das sich nichts ändern soll. Er zeigt, ob die Änderung nur dort wirkt, wo sie wirken soll.
+
+Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diese Läufe nicht, und das Durchlesen der Datei auch nicht: Es zeigt weder, ob n8n die Datei annimmt, noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen. So endet auch beim neuen Mitarbeiter ein Änderungsvorschlag: Er schlägt vor, wir testen, erst dann geben wir frei.
+
+::: {.callout-note title="Wenn es anders aussieht"}
+- n8n meldet beim Import einen Fehler oder zeigt keine Knoten: Meist ist das JSON nicht gültig, etwa durch ein fehlendes Komma. Dem Agenten die Fehlermeldung senden und die korrigierte Datei importieren.
+- Im Formular fehlt die Option Datenschutz: Die erste Änderung fehlt in der Datei. Den Befund an den Agenten senden.
+- Der Knoten zeigt keine Ausgabe: Der Lauf hat diesen Knoten nicht erreicht. Den anderen Ausgangsknoten öffnen und dort prüfen.
+- Das Formular öffnet sich nicht: prüfen, ob der Browser den neuen Tab blockiert hat.
+:::
+
+## Zwei Wege zu n8n
+
+In diesem Kapitel hat der Agent die Datei geschrieben, und wir haben sie importiert. Das ist Weg A. Es gibt einen zweiten Weg.
+
+![Weg A: Der Agent schreibt die Datei, wir importieren sie in n8n. Weg B: Der Agent erreicht n8n direkt über einen MCP-Server.](images/11-zwei-wege.svg){fig-alt="Zwei Wege. Weg A, im Kurs: Der Agent schreibt die Datei n8n/beispiel-1-datenschutz.json, wir importieren sie mit Import from File in n8n. Weg B, gestrichelt, nur Hinweis: Der Agent erreicht n8n über einen MCP-Zugang (Zugangskarte) und liest oder legt Workflows direkt an; in n8n heißt die Anbindung Instance-level MCP."}
+
+| | Weg A: Datei und Import | Weg B: direkte Anbindung |
+|---|---|---|
+| Was der Agent tut | schreibt eine JSON-Datei in den Ordner `n8n/` | liest und legt Workflows direkt in n8n an |
+| Was wir tun | importieren die Datei mit **Import from File** | schalten die Anbindung in n8n frei |
+| Was gebraucht wird | nur den Projektordner | einen MCP-Server (siehe [MCP: Zugänge zu anderen Systemen](../agent-arbeitsumgebung/mcp.qmd)) und eine Freischaltung in n8n |
+| Rolle hier | Praxisweg | freiwillige Prüfung am Ende |
+
+Für Weg B bietet n8n eine eigene Anbindung namens **Instance-level MCP**. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet ([Anleitung in der n8n-Dokumentation](https://docs.n8n.io/connect/connect-to-n8n-mcp-server)). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n ist ein natürlicher Prüfpunkt.
 
 ::: {.callout-warning title="Agent mit Zugriff auf n8n"}
 - Eine n8n-Anbindung (Weg B) handelt mit den Rechten des eigenen n8n-Kontos. Sie kann Workflows anlegen und ändern, je nach Freischaltung auch ausführen.

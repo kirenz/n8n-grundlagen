@@ -25,7 +25,6 @@ project:
     - "agent-arbeitsumgebung/widgets/*"
     - "agent-arbeitsumgebung/downloads/*"
     - "agent-arbeitsumgebung/images/*"
-    - "agent-n8n/widgets/*"
     - "agent-n8n/images/*"
     - "d2/*.svg"
     - "images/*.png"
