@@ -1,0 +1,125 @@
+# Kontext bereitstellen
+
+Ein Agent weiß für einen Auftrag nur das, was er dafür liest. Ob eine Antwort stimmt, entscheidet sich deshalb oft schon vor dem Auftrag: bei der Frage, welche Dateien im Projektordner liegen, wie sie heißen und ob der Agent die richtige davon findet. Unser Ordner `kundenanfragen` enthält bisher eine `README.md`, eine `AGENTS.md` mit fünf Regeln und drei Anfragen. Jetzt kommt Material dazu, mit dem der Agent arbeiten soll, etwa eine Preisliste. Damit stellt sich die Frage, was hineingehört und wie der Agent es findet.
+
+## Was zum Kontext gehört
+
+**Kontext** nennen wir alles, was der Agent für einen Auftrag liest. Das sind drei Dinge:
+
+| Teil des Kontexts | Beispiel | Wann der Agent ihn liest |
+|---|---|---|
+| Der Auftrag | „Beantworte die Preisfrage vom 6.10.“ | bei jedem Auftrag |
+| Die Anweisungsdatei | `AGENTS.md` mit den Regeln des Ordners | zu Beginn jeder Sitzung |
+| Die Dateien, die er öffnet | `anfragen/2026-10-06-preisfrage.md`, die Preisliste | wenn er sie für den Auftrag braucht |
+
+Was der Agent in einer früheren Sitzung gelesen hat, kennt er in der neuen nicht mehr. Was im Ordner liegt, kann er dagegen jederzeit wieder öffnen.
+
+Mehr Kontext führt nicht automatisch zu besseren Antworten. Liegt die Preisliste vom Vorjahr neben der aktuellen, kann der Agent den alten Betrag nehmen. Er hat dann korrekt gelesen, nur die falsche Datei. Doppelte und veraltete Dateien sind deshalb die häufigste Ursache für Antworten, die plausibel klingen und trotzdem falsch sind.
+
+## Drei Prüffragen je Datei
+
+Bevor eine Datei in den Projektordner kommt, stellen wir drei Fragen:
+
+| Prüffrage | Was wir prüfen | Gut | Ungünstig |
+|---|---|---|---|
+| **Relevant?** | Braucht der Agent die Datei für die nächsten Aufträge? | Vorlage für Antwort-E-Mails | Präsentation vom Betriebsausflug |
+| **Aktuell?** | Ist das der gültige Stand, oder liegt eine neuere Fassung woanders? | Preisliste mit Stand 1. Januar 2026 | Preisliste von 2025 neben der aktuellen |
+| **Auffindbar?** | Sagen Name und Ort, was in der Datei steht? | `quellen/text/preisliste-2026.md` | `Dokument1 (final).md` im Hauptordner |
+
+An vier typischen Materialien zeigt sich, wie die Fragen zusammenwirken. Die aktuelle Preisliste und die Vorlage für Antwort-E-Mails braucht der Agent für die nächsten Antworten, beide kommen in den Ordner. Die Preisliste von 2025 ist veraltet. Wird sie als Nachweis gebraucht, archivieren wir sie mit Datum außerhalb des Projektordners. Der schwierigste Fall ist ein Chatverlauf mit einer Kundin, in dem ihr voller Name und ihre Telefonnummer stehen. Das Anliegen kann relevant sein, Name und Telefonnummer sind es nicht. Das Anliegen kommt deshalb ohne Personendaten als neue Datei nach `anfragen/`. Das entspricht Regel 3 unserer `AGENTS.md`: keine Personennamen in neue Dateien.
+
+## Verweis statt Kopie
+
+Im Chat liegt es nahe, die Preisliste einfach in den Auftrag zu kopieren. Das funktioniert genau einmal. Mit der nächsten Preisänderung ist die Kopie veraltet, und niemand sieht ihr das an. Wir nennen deshalb den Ort der Datei:
+
+```text
+Nutze die Preisliste in quellen/text/ und beantworte die Preisfrage vom 6.10.
+```
+
+Ein **Verweis** ist eine Angabe, wo eine Information liegt, etwa ein Dateiname oder ein Ordner. Ersetzt die neue Preisliste die alte Datei, führt derselbe Verweis automatisch zum neuen Stand.
+
+| | Kopie im Auftrag | Verweis auf die Datei |
+|---|---|---|
+| Nach einer Preisänderung | veraltet, ohne dass es auffällt | zeigt auf den neuen Stand |
+| Länge des Auftrags | eine Textwand | eine Zeile |
+| Nachprüfbar | nur im Chatverlauf | jederzeit im Ordner |
+| Für andere Aufträge nutzbar | nein, jedes Mal neu einfügen | ja, jeder Auftrag kann darauf verweisen |
+
+Zwei Alternativen wirken naheliegend und führen trotzdem zu Problemen. Ein Link auf die Preisseite der Website liegt außerhalb des Ordners. Ob der Agent die Seite abrufen kann, hängt vom Werkzeug ab, und welcher Stand dort gerade steht, ist nicht belegt. Preise als Regel in die `AGENTS.md` zu schreiben, vermischt Regeln und Material. Die Hausordnung wird lang und muss jedes Quartal geändert werden.
+
+## Die Übersichtsdatei
+
+Bei drei Dateien findet der Agent alles von selbst. Bei fünfzig Dateien in mehreren Ordnern öffnet er schnell die falsche oder sucht lange. Eine Übersichtsdatei löst das.
+
+Die **Übersichtsdatei** heißt bei uns `UEBERSICHT.md` und liegt im Projektordner. Sie nennt jede wichtige Datei mit einem Satz und ihrem Stand:
+
+```markdown
+# Übersicht
+
+| Datei | Inhalt | Stand |
+|---|---|---|
+| README.md | Zweck des Ordners, für Menschen | 2026-10-12 |
+| AGENTS.md | Regeln für den Agenten | 2026-10-14 |
+| anfragen/2026-10-05-terminwunsch.md | Terminwunsch für eine Reparatur | 2026-10-05 |
+| anfragen/2026-10-06-preisfrage.md | Frage nach Preis und Anfahrt | 2026-10-06 |
+| anfragen/2026-10-07-beschwerde.md | Beschwerde über eine verspätete Reparatur | 2026-10-07 |
+| quellen/text/preisliste-2026.md | Preisliste 2026 | 2026-01-01 |
+```
+
+Der Agent liest die Übersicht zu Beginn und öffnet danach nur die Dateien, die er für den Auftrag braucht. Die Spalte „Stand“ hilft zusätzlich bei der Prüffrage „Aktuell?“: Ein altes Datum fällt in der Tabelle sofort auf.
+
+Eine Übersicht nützt nur, solange sie vollständig ist. Deshalb pflegt der Agent sie selbst. Dafür ergänzen wir die `AGENTS.md` um eine sechste Regel:
+
+```text
+6. Lies zu Beginn UEBERSICHT.md. Ergänze sie nach jedem Auftrag, wenn neue Dateien entstanden sind.
+```
+
+Damit gilt die Übersicht in jeder Sitzung, ohne dass wir sie im Auftrag erwähnen. Die `README.md` bleibt daneben bestehen. Sie erklärt Menschen, worum es im Ordner geht. Die Übersicht ist das Inhaltsverzeichnis für die Arbeit, und Regel 6 sorgt dafür, dass neue Dateien darin auftauchen.
+
+## Im Nachbau: der Weg zur Preisliste
+
+Der folgende Nachbau zeigt einen typischen Agenten im Ordner `kundenanfragen`. Der Auftrag nennt nur den Ort der Preisliste. Wir sehen, wie der Agent über Regel 6 zuerst die Übersicht öffnet, dann die Preisliste und die Anfrage liest, vor dem Anlegen des Antwortentwurfs fragt und am Ende die Übersicht um eine Zeile ergänzt. Mit „Weiter“ klicken wir uns Schritt für Schritt durch die Sitzung.
+
+```{=html}
+<iframe class="muster-agent" src="widgets/05-verweis-statt-kopie.html" title="Nachbau eines Agenten: Verweis statt Kopie" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+```
+
+Zwei Details lohnen einen zweiten Blick. Der Entwurf nennt am Ende seine Quelle mit Datei und Stand, so lässt sich jeder Betrag nachprüfen. Und der Chat zeigt bei `UEBERSICHT.md` „ändert“ statt „schreibt“, weil die Datei schon vorhanden war.
+
+::: {.callout-tip title="Den Agenten fragen"}
+Welche Dateien der Agent tatsächlich geöffnet hat, sagt er auf Nachfrage selbst. Die Frage eignet sich nach jedem Auftrag, bei dem eine Antwort überrascht:
+
+```text
+Welche Dateien hast du für diese Antwort gelesen? Nenne die Dateinamen in der Reihenfolge, in der du sie geöffnet hast.
+```
+:::
+
+## Praxis: Übersicht anlegen und prüfen
+
+Wir lassen den Agenten die Übersicht anlegen und Regel 6 ergänzen. In einer neuen Sitzung prüfen wir, ob er die Übersicht von selbst liest.
+
+**Voraussetzung:** Der Projektordner `kundenanfragen` ist im Agenten geöffnet. Er enthält `README.md`, `AGENTS.md` mit fünf Regeln und drei Anfragen in `anfragen/` (Stand nach dem Kapitel [AGENTS.md: die Hausordnung](agents-md.qmd)).
+
+1. Diesen Auftrag senden:
+
+   ```text
+   Lege die Datei UEBERSICHT.md an: eine Tabelle mit den Spalten Datei, Inhalt, Stand. Trage README.md, AGENTS.md und alle Dateien in anfragen ein, je mit einem Satz. Ergänze dann in AGENTS.md die Regel 6: „Lies zu Beginn UEBERSICHT.md. Ergänze sie nach jedem Auftrag, wenn neue Dateien entstanden sind.“ Zeige mir beide Änderungen vor dem Speichern.
+   ```
+
+2. Beide Änderungen prüfen und freigeben.
+3. Prüfen: `UEBERSICHT.md` hat eine Tabelle mit mindestens fünf Zeilen.
+4. Prüfen: `AGENTS.md` enthält sechs Regeln.
+5. Eine neue Sitzung im selben Ordner starten.
+6. Diese Frage senden:
+
+   ```text
+   Welche Anfrage ist die älteste? Antworte mit Dateiname und Datum.
+   ```
+
+7. Prüfen: Die Antwort nennt `2026-10-05-terminwunsch.md` (oder die älteste eigene Datei) und das Datum aus dem Dateinamen.
+8. Die Frage aus dem Kasten „Den Agenten fragen“ senden.
+
+**Prüfkriterium:** Die Liste aus Schritt 8 nennt `UEBERSICHT.md` als erste Datei oder direkt nach `AGENTS.md`. Fehlt `UEBERSICHT.md` in der Liste, lohnt ein Blick, ob Regel 6 in `AGENTS.md` gespeichert ist.
+
+Nach diesem Auftrag hat der Ordner eine Übersicht, und jede neue Datei landet von selbst darin. Im nächsten Kapitel, [PDFs als Quellen](pdf-als-quelle.qmd), kommt die Preisliste dazu, auf die der Auftrag in der Szene schon verweist.

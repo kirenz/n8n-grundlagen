@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 250" role="img" aria-labelledby="t d" font-family="Geist, Helvetica, Arial, sans-serif">
+<title id="t">Vier Bilder für die Arbeit mit einem Agenten</title>
+<desc id="d">Ordner gleich Material, AGENTS.md gleich Hausordnung, Skills gleich Rezepte, MCP gleich Steckdose.</desc>
+<rect width="880" height="250" fill="#fbfaf7"/>
+<!-- Karte 1 -->
+<g transform="translate(10,10)">
+<rect width="425" height="112" rx="12" fill="#ffffff" stroke="#dcd9d2"/>
+<g transform="translate(18,22)">
+<path d="M4 12h14l4 5h18v19H4z" fill="none" stroke="#23417a" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M12 25h20M12 30h14" stroke="#c8962f" stroke-width="2.5" stroke-linecap="round"/>
+</g>
+<text x="76" y="44" font-size="19" font-weight="600" fill="#1f2430">Ordner <tspan fill="#5b6170" font-weight="400">=</tspan> Material</text>
+<text x="76" y="72" font-size="14.5" fill="#1f2430">Alles, was der Agent kennen soll,</text>
+<text x="76" y="92" font-size="14.5" fill="#1f2430">liegt als Datei im Projektordner.</text>
+</g>
+<!-- Karte 2 -->
+<g transform="translate(445,10)">
+<rect width="425" height="112" rx="12" fill="#ffffff" stroke="#dcd9d2"/>
+<g transform="translate(18,22)">
+<rect x="9" y="5" width="26" height="34" rx="3" fill="none" stroke="#23417a" stroke-width="2.5"/>
+<path d="M15 14h14M15 20h14M15 26h9" stroke="#c8962f" stroke-width="2.5" stroke-linecap="round"/>
+</g>
+<text x="76" y="44" font-size="19" font-weight="600" fill="#1f2430">AGENTS.md <tspan fill="#5b6170" font-weight="400">=</tspan> Hausordnung</text>
+<text x="76" y="72" font-size="14.5" fill="#1f2430">Kurze, prüfbare Regeln, die in jeder</text>
+<text x="76" y="92" font-size="14.5" fill="#1f2430">Sitzung gelten.</text>
+</g>
+<!-- Karte 3 -->
+<g transform="translate(10,130)">
+<rect width="425" height="112" rx="12" fill="#ffffff" stroke="#dcd9d2"/>
+<g transform="translate(18,22)">
+<rect x="5" y="9" width="34" height="26" rx="3" fill="none" stroke="#23417a" stroke-width="2.5"/>
+<circle cx="12" cy="17" r="1.8" fill="#c8962f"/><circle cx="12" cy="23" r="1.8" fill="#c8962f"/><circle cx="12" cy="29" r="1.8" fill="#c8962f"/>
+<path d="M17 17h15M17 23h15M17 29h10" stroke="#23417a" stroke-width="2" stroke-linecap="round"/>
+</g>
+<text x="76" y="44" font-size="19" font-weight="600" fill="#1f2430">Skills <tspan fill="#5b6170" font-weight="400">=</tspan> Rezepte</text>
+<text x="76" y="72" font-size="14.5" fill="#1f2430">Abläufe mit mehreren Schritten,</text>
+<text x="76" y="92" font-size="14.5" fill="#1f2430">die der Agent bei Bedarf holt.</text>
+</g>
+<!-- Karte 4 -->
+<g transform="translate(445,130)">
+<rect width="425" height="112" rx="12" fill="#ffffff" stroke="#dcd9d2"/>
+<g transform="translate(18,22)">
+<rect x="8" y="8" width="28" height="28" rx="8" fill="none" stroke="#23417a" stroke-width="2.5"/>
+<circle cx="17" cy="22" r="2.6" fill="#c8962f"/><circle cx="27" cy="22" r="2.6" fill="#c8962f"/>
+</g>
+<text x="76" y="44" font-size="19" font-weight="600" fill="#1f2430">MCP <tspan fill="#5b6170" font-weight="400">=</tspan> Steckdose</text>
+<text x="76" y="72" font-size="14.5" fill="#1f2430">Ein genormter Anschluss, über den</text>
+<text x="76" y="92" font-size="14.5" fill="#1f2430">der Agent andere Systeme erreicht.</text>
+</g>
+</svg>

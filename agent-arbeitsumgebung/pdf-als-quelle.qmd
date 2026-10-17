@@ -1,0 +1,143 @@
+# PDFs als Quellen
+
+Viele Unterlagen eines Betriebs liegen als PDF vor: Preislisten, Merkblätter, Verträge, Angebote von Lieferanten. Das Format ist für den Druck gemacht. Es hält fest, wo jedes Zeichen auf der Seite steht, aber nicht, welche Zeichen zu einer Tabellenzeile oder zu einem Absatz gehören. Ein Agent arbeitet am zuverlässigsten mit reinem Text. Wir legen deshalb neben jedes PDF eine Textfassung in Markdown, prüfen sie gegen das Original und tragen sie in eine Quellenliste ein. Erst dann stützt sich der Agent auf sie.
+
+## Original und Textfassung
+
+Für Quellen bekommt der Projektordner einen eigenen Bereich mit zwei Unterordnern:
+
+```text
+kundenanfragen/
+└── quellen/
+    ├── QUELLEN.md
+    ├── original/
+    │   └── preisliste-2026.pdf
+    └── text/
+        └── preisliste-2026.md
+```
+
+| Ordner | Was dort liegt | Wer die Datei ändert |
+|---|---|---|
+| `quellen/original/` | Das PDF, so wie es von außen kam. Es dient als Beleg. | niemand |
+| `quellen/text/` | Die **Textfassung**: eine Markdown-Datei mit demselben Namen, die der Agent aus dem Original erzeugt. Mit ihr arbeitet der Agent. | der Agent, nach Rückfrage |
+
+Der gleiche Dateiname vor der Endung macht die Zuordnung eindeutig: `original/preisliste-2026.pdf` gehört zu `text/preisliste-2026.md`. Weicht die Textfassung irgendwann vom Original ab, können wir jederzeit nachsehen, was im Beleg steht.
+
+In `original/` liegt alles, was von außen kommt und unverändert als Beleg bleibt. Das kann auch eine gespeicherte E-Mail sein, etwa eine `.eml`-Datei (eine E-Mail, als Datei auf dem Rechner gespeichert) eines Lieferanten mit neuen Einkaufspreisen. Sie wirkt wie Korrespondenz, enthält aber Zahlen, auf die sich Antworten stützen. In `text/` liegen nur Fassungen, die aus einem Original erzeugt wurden. Eine eigene Notiz zu einem Telefonat mit einer Kundin gehört in keinen der beiden Ordner. Sie ist eine Anfrage in unseren eigenen Worten und kommt nach `anfragen/`, ohne den Namen der Kundin.
+
+## Was bei der Umwandlung schiefgeht
+
+Viele Agenten lesen PDF-Dateien direkt. Manche brauchen dafür ein zusätzliches Werkzeug, das erst eingerichtet werden muss. Was der eigene Agent kann, fragen wir ihn selbst (Kasten „Den Agenten fragen“ unten).
+
+Das Lesen allein ist selten das Problem. Fehler entstehen beim Übertragen der Seitengestaltung in Text. Drei Stellen sind besonders anfällig:
+
+| Element | Typischer Fehler | Woran wir ihn erkennen |
+|---|---|---|
+| **Tabellen** | Zellen bleiben leer, Werte rutschen in die Nachbarspalte, Zeilen fehlen | Zahl der Zeilen und einzelne Beträge stimmen nicht mit dem PDF überein |
+| **Fußnoten** | Der Fußnotentext landet mitten in einem Absatz | Ein Satz bricht ab und geht nach einem fremden Einschub weiter |
+| **Mehrspaltige Seiten** | Zeilen aus zwei Spalten werden abwechselnd zusammengesetzt | Sätze ergeben keinen Sinn mehr |
+
+Solche Fehler fallen beim schnellen Lesen nicht auf. Eine Tabelle mit einer leeren Zelle sieht im Markdown vollständig aus. Wenn genau nach diesem Betrag die nächste Anfrage fragt, schreibt der Agent eine Antwort ohne Preis oder, schlimmer, mit einem Betrag aus der falschen Zeile.
+
+::: {.callout-important title="Gescannte PDFs"}
+Ein gescanntes PDF enthält Bilder der Seiten, aber keine **Textebene** (den unsichtbaren Text, der sich mit der Maus markieren und kopieren lässt). Die Textfassung wird dann leer oder enthält falsche Zeichen.
+
+Vor dem Auftrag prüfen: Lässt sich Text im PDF mit der Maus auswählen? Wenn nicht, das PDF zuerst mit einer Texterkennung umwandeln (OCR, Optical Character Recognition: Umwandlung von Bild in Text).
+:::
+
+## Die Stichprobe
+
+Eine vollständige Prüfung Zeile für Zeile ist bei langen Dokumenten zu aufwendig. Eine **Stichprobe** genügt meist: Wir vergleichen drei Stellen der Textfassung mit dem Original.
+
+| Prüfstelle | Frage | Beispiel aus der Preisliste |
+|---|---|---|
+| Eine Tabelle | Sind Zeilen und Spalten vollständig? | Fünf Zeilen im PDF, fünf Zeilen in der Textfassung |
+| Zwei Zahlen | Sind sie identisch? | „Kleine Reparatur“ kostet in beiden 45,00 EUR, „Beratung vor Ort“ 89,00 EUR |
+| Eine Überschrift | Stimmt die Reihenfolge? | „Bedingungen“ steht nach der Tabelle |
+
+Den Agenten binden wir in die Prüfung ein. Wir lassen ihn drei Beträge mit Seite und Zeile nennen und vergleichen sie selbst mit dem PDF. So prüft nicht der Agent seine eigene Arbeit allein.
+
+Findet die Stichprobe einen Fehler, korrigieren wir gezielt. Zeigt die Textfassung etwa 12 Tabellenzeilen und das PDF 14, nennen wir dem Agenten die fehlenden Zeilen und lassen ihn nachtragen. Die ganze Tabelle abzutippen kostet unnötig Zeit. Ebenso wenig hilft es, den Agenten künftig das PDF statt der Textfassung lesen zu lassen: Hat die Umwandlung die Tabelle falsch gelesen, liest er sie beim nächsten Mal wieder falsch, dann ohne Prüfung.
+
+## Die Quellenliste
+
+Die **Quellenliste** ist die Datei `quellen/QUELLEN.md`. Sie hält fest, welche Textfassungen geprüft sind:
+
+```markdown
+# Quellen
+
+Nur Dateien mit Prüfvermerk gelten als Quelle.
+
+| Datei | Herkunft | Stand | Prüfung |
+|---|---|---|---|
+| text/preisliste-2026.md | Preisliste des Betriebs | 2026-01-01 | 2026-10-17 drei Beträge geprüft |
+```
+
+Der Satz über der Tabelle ist die eigentliche Regel. Eine Textfassung ohne Zeile in der Quellenliste ist damit für uns und den Agenten erkennbar ungeprüft. Den Prüfvermerk setzen wir erst, wenn die Stichprobe bestanden ist. Fehlen noch zwei Zeilen, ist der Vermerk falsch, auch wenn zwei von vierzehn Zeilen wenig erscheinen.
+
+Die Quellenliste ergänzt Regel 2 unserer `AGENTS.md`: „Nutze nur Fakten aus Dateien in diesem Ordner.“ Regel 2 sagt, woher Fakten kommen dürfen. Die Quellenliste sagt, welchen dieser Dateien wir trauen.
+
+## Im Nachbau: die Preisliste prüfen
+
+Der folgende Nachbau zeigt, wie ein Agent die Preisliste umwandelt und prüft. Die erste Textfassung sieht vollständig aus, doch in Zeile 7 fehlt der Betrag. Erst die Prüfung findet den Fehler, und die Korrektur geschieht nach einer Rückfrage. Am Ende stehen ein Prüfvermerk in `QUELLEN.md` und drei Beträge zum Vergleich. Mit „Weiter“ klicken wir uns durch die Sitzung.
+
+```{=html}
+<iframe class="muster-agent" src="widgets/06-preisliste-pruefen.html" title="Nachbau eines Agenten: Preisliste prüfen" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+```
+
+Auch die Korrektur einer einzelnen Zelle ist eine Änderung an einer bestehenden Datei. Deshalb fragt der Agent vorher, wie es Regel 4 der `AGENTS.md` verlangt.
+
+::: {.callout-tip title="Den Agenten fragen"}
+Ob der eigene Agent PDF-Dateien direkt lesen kann, ist je nach Werkzeug verschieden. Die Antwort gibt der Agent selbst:
+
+```text
+Kannst du PDF-Dateien in diesem Ordner direkt lesen? Wenn nein: Welches Werkzeug nutzt du oder brauchst du dafür? Nur antworten, nichts ändern.
+```
+:::
+
+## Praxis: die Preisliste als Quelle aufnehmen
+
+Wir lassen den Agenten die Preisliste umwandeln, prüfen drei Beträge gegen das PDF und tragen die Quelle mit Prüfvermerk ein.
+
+**Voraussetzungen:**
+
+- Der Ordner `kundenanfragen` ist im Agenten geöffnet. `AGENTS.md` enthält sechs Regeln, `UEBERSICHT.md` liegt im Ordner (Stand nach dem Kapitel [Kontext bereitstellen](kontext-bereitstellen.qmd)).
+- Die [Beispiel-Preisliste als PDF](downloads/preisliste-2026.pdf) ist heruntergeladen (zwei Seiten, eine Tabelle, Text lässt sich mit der Maus markieren). Alternativ eignet sich ein eigenes PDF mit mindestens einer Tabelle, mit Textebene und ohne vertrauliche Daten; dann in den Aufträgen den Namen `preisliste-2026.pdf` durch den Namen der eigenen Datei ersetzen.
+
+1. Die Frage aus dem Kasten „Den Agenten fragen“ senden.
+2. Prüfen: Der Agent sagt ja oder nennt ein Werkzeug.
+3. Braucht der Agent ein Werkzeug: das Werkzeug nach der Anleitung des Herstellers einrichten.
+4. Senden:
+
+   ```text
+   Lege die Ordner quellen/original und quellen/text an.
+   ```
+
+5. Das PDF in den Ordner `quellen/original/` legen.
+6. Senden:
+
+   ```text
+   Lies quellen/original/preisliste-2026.pdf und lege eine Markdown-Fassung unter quellen/text/preisliste-2026.md an. Überschriften, Tabellen und Zahlen vollständig übernehmen, nichts zusammenfassen. Prüfe danach: Hat die Tabelle im Markdown dieselbe Zahl Zeilen wie im PDF? Nenne mir drei Beträge mit Seite und Zeile, damit ich sie vergleichen kann.
+   ```
+
+7. Das PDF öffnen und die drei Beträge aus der Antwort mit dem PDF vergleichen.
+8. Prüfen: Alle drei Beträge stimmen überein.
+9. Weicht ein Betrag ab: dem Agenten die Zeile nennen und korrigieren lassen.
+10. Senden:
+
+    ```text
+    Lege quellen/QUELLEN.md an. Über der Tabelle steht der Satz: „Nur Dateien mit Prüfvermerk gelten als Quelle.“ Die Tabelle hat die Spalten Datei, Herkunft, Stand, Prüfung. Trage die Preisliste ein, Prüfung: heutiges Datum, „drei Beträge geprüft“. Ergänze die neuen Dateien in UEBERSICHT.md.
+    ```
+
+11. Prüfen: `QUELLEN.md` hat eine Zeile mit Datum und Prüfvermerk.
+12. Eine neue Sitzung im selben Ordner starten.
+13. Diese Frage senden, den Text in Klammern durch eine Position aus der Preisliste ersetzt:
+
+    ```text
+    Was kostet [eine Position aus der Preisliste]? Nenne die Quelle.
+    ```
+
+**Prüfkriterium:** Die Antwort auf Schritt 13 nennt den Betrag aus der Preisliste und die Datei `quellen/text/preisliste-2026.md`.
+
+Damit hat der Ordner seine erste geprüfte Quelle. Neue Preislisten, Merkblätter und Lieferantenmails kommen künftig laufend dazu. Wie sie ohne Handarbeit an den richtigen Ort gelangen, zeigt das Kapitel [Laufend neue Dateien](laufend-neue-dateien.qmd).

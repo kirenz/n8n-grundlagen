@@ -1,0 +1,162 @@
+# Der Projektordner: Material an einem Ort
+
+Alles, was der Agent kennen soll, liegt als Datei im Projektordner. Der Ordner ist sein Material und zugleich die Grenze seiner Arbeit. Wir starten den Agenten in diesem Ordner, und er liest und ändert nur, was darin liegt. Wie gut der Agent arbeitet, hängt deshalb stark davon ab, wie der Ordner aufgebaut ist: ob die Dateien sprechende Namen tragen, ob jede Art von Material einen festen Platz hat und ob eine kurze Beschreibung sagt, wozu der Ordner da ist.
+
+## Ein Ordner je Vorhaben
+
+Ein **Projektordner** ist ein Ordner je Vorhaben, mit allem Material darin. Für unser Beispiel heißt er `kundenanfragen`. Darin liegen die eingegangenen Anfragen, die Antwortentwürfe und später Preislisten, Regeln und Abläufe. Material für andere Vorhaben, etwa die Buchhaltung oder private Dokumente, liegt woanders.
+
+Diese Trennung hat zwei Gründe. Erstens weiß der Agent ohne weitere Erklärung, womit er arbeiten soll: mit allem, was im Ordner liegt. Zweitens ist klar, was er lesen und ändern darf. Die meisten Agenten arbeiten nur in dem Ordner, in dem sie gestartet wurden, und fragen nach, bevor sie außerhalb etwas öffnen. Ein eigener Ordner je Vorhaben hält damit Fremdes außen vor, ohne dass wir es eigens verbieten müssen.
+
+## Der Ordner entsteht
+
+Den Projektordner legen wir nicht von Hand an. Wir beschreiben ihn in einem Auftrag, und der Agent legt Ordner und Dateien selbst an. Der Nachbau zeigt diesen Ablauf im Ordner `Dokumente`. Mit „Weiter“ klicken wir durch die Sitzung: erst der Plan, dann die Rückfrage, dann die neuen Dateien im Baum links.
+
+```{=html}
+<iframe class="muster-agent" src="widgets/03-projektordner-entsteht.html" title="Nachbau eines Agenten: den Projektordner kundenanfragen anlegen" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+```
+
+Der Auftrag verlangt ausdrücklich, dass der Agent vorher den Plan zeigt und fragt. So sehen wir, was entstehen soll, bevor etwas auf der Festplatte landet. Ein Plan lässt sich leichter korrigieren als ein fertiger Ordner.
+
+Leere Ordner zeigt der Nachbau mit einer leeren Platzhalterdatei namens `.gitkeep`. Sie hat keinen Inhalt und dient nur dazu, dass ein leerer Ordner im Baum erscheint. Der eigene Agent legt leere Ordner vielleicht ohne sie an; beides ist in Ordnung.
+
+Im zweiten Teil der Szene gibt der Auftrag drei Beispielanfragen wörtlich vor. Der Agent soll nichts dazuerfinden. So hat jeder Ordner dieselben Dateien, und die Prüfkriterien der folgenden Kapitel passen.
+
+## README.md: die Beschreibung für Menschen
+
+Jeder Projektordner bekommt eine Datei `README.md`. Der Name ist eine alte Konvention aus der Softwareentwicklung und bedeutet „lies mich“. Die Datei beschreibt für Menschen in wenigen Sätzen, wozu der Ordner da ist und was darin liegt. Für `kundenanfragen` reichen drei Sätze:
+
+```markdown
+# Kundenanfragen
+
+Der Ordner sammelt Kundenanfragen eines kleinen Betriebs.
+Antworten entstehen als Entwürfe in antworten.
+Anfragen liegen als Markdown in anfragen.
+```
+
+Wer den Ordner in einem Jahr öffnet oder ihn an eine Kollegin weitergibt, weiß damit sofort, worum es geht. Der Agent liest die `README.md` ebenfalls, wenn er sich einen Überblick verschafft. Regeln für den Agenten gehören aber in eine eigene Datei, die `AGENTS.md`. Sie ist Thema des Kapitels [AGENTS.md: die Hausordnung](agents-md.qmd).
+
+## Sprechende Namen
+
+Eine **Namenskonvention** ist eine feste Regel für Datei- und Ordnernamen. Für unseren Projektordner gilt:
+
+- nur Kleinbuchstaben
+- keine Umlaute und kein ß (`ae`, `oe`, `ue`, `ss` statt `ä`, `ö`, `ü`, `ß`)
+- keine Leerzeichen, Bindestrich statt Leerzeichen
+- das Datum vorn im Format `JJJJ-MM-TT`, danach das Anliegen
+
+So entstehen Namen wie `2026-10-05-terminwunsch.md`. Die Regeln haben praktische Gründe. Das Datum vorn sortiert die Dateien von selbst nach Eingang, weil Jahr, Monat und Tag in dieser Reihenfolge alphabetisch und zeitlich gleich sortieren. Leerzeichen und Umlaute machen Probleme in Befehlen und Links: Ein Leerzeichen trennt in vielen Befehlen zwei Angaben, und ein `ü` wird auf manchen Systemen anders gespeichert als auf anderen.
+
+| Dateiname | Passt? | Grund |
+|---|---|---|
+| `2026-10-05-terminwunsch.md` | ja | Datum vorn, Kleinbuchstaben, Bindestriche |
+| `2026-10-08-rueckruf.md` | ja | Umlaut als `ue` geschrieben |
+| `Beschwerde vom Montag.md` | nein | Großbuchstabe, Leerzeichen, kein Datum |
+| `preisfrage_okt.md` | nein | Unterstrich, kein vollständiges Datum |
+| `rückruf-2026-10-09.md` | nein | Umlaut, Datum hinten, sortiert nicht nach Eingang |
+
+Der letzte Name wird am häufigsten übersehen. Er sieht ordentlich aus, enthält aber ein `ü`, und weil das Datum hinten steht, sortiert sich die Datei nach dem Anliegen statt nach dem Eingang.
+
+::: {.callout-tip title="Die Konvention dem Agenten überlassen"}
+Wir müssen die Namen nicht selbst tippen. Es genügt, die Konvention im Auftrag zu nennen, etwa „Dateiname mit Datum vorn, JJJJ-MM-TT-anliegen.md“. Im Kapitel [AGENTS.md: die Hausordnung](agents-md.qmd) lernen wir, wie solche Regeln dauerhaft gelten, ohne dass wir sie jedes Mal wiederholen.
+:::
+
+## Ein Ordner je Art von Material
+
+Unterordner sortieren wir nach der **Art des Materials**: ein Ordner für Anfragen, einer für Antwortentwürfe, später einer für Quellen. Ordner je Monat oder je Person führen in die Irre.
+
+Ein Beispiel zeigt das Problem. Ein Kollege legt pro Monat einen Ordner an (`oktober`, `november`, `dezember`) und speichert darin alles zusammen: Anfragen, Antwortentwürfe, Preislisten. Nach einem Jahr soll der Agent alle Beschwerden finden. Weil die Art des Materials nicht im Pfad steht, muss er alle zwölf Ordner durchsuchen und jede Datei erst einordnen. Bei einem Ordner je Art liegen alle Anfragen in `anfragen/`, und jede Beschwerde trägt ihr Anliegen im Dateinamen. Ein Blick auf die Dateiliste reicht.
+
+Nach diesem Kapitel sieht unser Projektordner so aus:
+
+```text
+kundenanfragen/
+├── README.md
+├── anfragen/
+│   ├── 2026-10-05-terminwunsch.md
+│   ├── 2026-10-06-preisfrage.md
+│   └── 2026-10-07-beschwerde.md
+└── antworten/
+```
+
+In den folgenden Kapiteln kommen die Hausordnung `AGENTS.md`, eine Übersichtsdatei, ein Ordner für Quellen und ein Eingangsordner für neue Dateien hinzu.
+
+## Praxis: den Projektordner anlegen lassen
+
+Wir lassen den Agenten den Ordner `kundenanfragen` mit drei Beispielanfragen anlegen. Alle folgenden Kapitel bauen auf diesem Ordner auf.
+
+**Voraussetzung:** Der Agent besteht den Selbsttest aus dem Kapitel [Chat oder Agent?](chat-oder-agent.qmd).
+
+1. Im Agenten den Ordner öffnen, in dem die eigenen Projekte liegen sollen, etwa `Dokumente`.
+2. Diesen Auftrag senden:
+
+   ```text
+   Lege den Projektordner kundenanfragen an. Darin die Ordner anfragen und antworten und eine Datei README.md mit drei Sätzen: Der Ordner sammelt Kundenanfragen eines kleinen Betriebs, Antworten entstehen als Entwürfe in antworten, Anfragen liegen als Markdown in anfragen. Zeige mir vorher den Plan und frage, bevor du etwas anlegst.
+   ```
+
+3. Prüfen: Der Agent zeigt den Plan und fragt vor dem Anlegen.
+4. Den Plan freigeben.
+5. Diesen Auftrag für die Beispielanfragen senden:
+
+   ```text
+   Lege im Ordner anfragen drei Dateien an, jede mit genau diesem Inhalt. Erfinde nichts dazu.
+
+   Datei 2026-10-05-terminwunsch.md:
+   # Terminwunsch
+
+   - Datum: 2026-10-05
+   - Kanal: E-Mail
+   - Anliegen: Termin für eine Reparatur
+
+   Guten Tag, ich möchte einen Termin für eine Reparatur.
+   Passt es nächste Woche am Dienstag oder Mittwoch vormittags?
+
+   Datei 2026-10-06-preisfrage.md:
+   # Preisfrage
+
+   - Datum: 2026-10-06
+   - Kanal: Kontaktformular
+   - Anliegen: Preis für eine Reparatur
+
+   Guten Tag, was kostet bei Ihnen eine Reparatur?
+   Und kommt eine Anfahrt dazu, wenn Sie zu mir kommen?
+
+   Datei 2026-10-07-beschwerde.md:
+   # Beschwerde
+
+   - Datum: 2026-10-07
+   - Kanal: E-Mail
+   - Anliegen: Reparatur nicht rechtzeitig fertig
+
+   Guten Tag, die Reparatur war für Freitag zugesagt.
+   Bis heute habe ich keine Nachricht. Bitte melden Sie sich.
+
+   Frage, bevor du die Dateien anlegst.
+   ```
+
+6. Das Anlegen freigeben.
+7. Den Ordner `kundenanfragen` im Agenten in einer neuen Sitzung öffnen.
+8. Diese Frage senden:
+
+   ```text
+   Was liegt in diesem Ordner?
+   ```
+
+9. Prüfen: Die Antwort nennt `README.md` und drei Dateien in `anfragen/`.
+
+**Prüfkriterium:** Der Projektordner `kundenanfragen` enthält `README.md`, den Ordner `anfragen/` mit drei Anfragen und den Ordner `antworten/`.
+
+::: {.callout-important title="Ab jetzt im Projektordner starten"}
+Den Agenten ab jetzt immer direkt im Ordner `kundenanfragen` starten. Wird er im übergeordneten Ordner gestartet, sieht er auch die übrigen Dokumente. Dann gelten die Regeln aus dem nächsten Kapitel nicht verlässlich.
+:::
+
+::: {.callout-tip title="Den Agenten fragen"}
+Wie weit der Zugriff des Agenten reicht, hängt vom Werkzeug und seinen Einstellungen ab. Im Ordner `kundenanfragen` diese Frage senden:
+
+```text
+In welchem Ordner arbeitest du gerade, und kannst du Dateien außerhalb dieses Ordners lesen oder ändern? Nur antworten.
+```
+
+Die Antwort nennt den Ordner `kundenanfragen`. Sagt der Agent, dass er auch außerhalb lesen oder ändern kann, verdienen die Pfade in seinen Rückfragen besondere Aufmerksamkeit.
+:::

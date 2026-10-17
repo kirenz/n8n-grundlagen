@@ -1,0 +1,143 @@
+# Chat oder Agent?
+
+Ein Chat-Assistent und ein Agent nutzen oft dasselbe Sprachmodell (das KI-Modell, das den Text erzeugt). Der Unterschied liegt im Arbeitsplatz. Der Chat sieht nur, was wir ins Eingabefeld schreiben oder hineinkopieren. Der Agent arbeitet in einem Ordner auf unserem Rechner, öffnet dort selbst Dateien und legt seine Ergebnisse als Dateien ab. Sobald Material schon als Dateien vorliegt oder ein Ergebnis als Datei entstehen soll, spart der Agent die Kopierarbeit in beide Richtungen.
+
+## Zwei Arten zu arbeiten
+
+Ein **Chat-Assistent** antwortet auf das, was im Eingabefeld steht. Für drei Kundenanfragen heißt das: jede Anfrage öffnen, den Text kopieren, in den Chat einfügen, um eine Sortierung bitten und die Antwort danach von Hand in eine Datei übertragen. Beim nächsten Mal beginnt das Kopieren von vorn.
+
+Ein **Agent** arbeitet in einem Ordner. Er liest Dateien, legt neue an und führt Befehle aus. Ein **Befehl** ist hier ein kleines Programm, das der Agent startet, etwa um eine Datei umzuwandeln oder einen Ordner zu durchsuchen. Vor jeder Änderung und vor jedem Befehl fragt der Agent nach oder zeigt, was er vorhat. Für dieselben drei Anfragen genügt ein Satz: „Sortiere die Anfragen in `anfragen/` nach Dringlichkeit und schreibe das Ergebnis in `UEBERSICHT.md`.“
+
+| | Chat-Assistent | Agent im Ordner |
+|---|---|---|
+| **Woher kommt das Material?** | Wir kopieren es ins Eingabefeld. | Der Agent öffnet die Dateien im Ordner selbst. |
+| **Wohin geht das Ergebnis?** | Es steht als Text im Chat und wird von Hand übertragen. | Es entsteht als Datei im Ordner. |
+| **Was bleibt für das nächste Mal?** | Der Chatverlauf, sofern wir ihn wiederfinden. | Die Dateien im Ordner, für jede neue Sitzung lesbar. |
+| **Wer behält die Kontrolle?** | Wir, weil nichts außerhalb des Chats passiert. | Wir, weil der Agent vor Änderungen fragt. |
+
+## Ein Agent bei der Arbeit
+
+Der folgende Nachbau zeigt einen typischen Agenten mit dem Ordner `kundenanfragen`: links der Dateibaum, in der Mitte der Editor mit dem Inhalt der gerade geöffneten Datei, rechts der Chat. Mit „Weiter“ klicken wir Schritt für Schritt durch die Sitzung. An der Rückfrage entscheiden wir selbst, ob der Agent die Datei anlegen darf.
+
+```{=html}
+<iframe class="muster-agent" src="widgets/01-chat-oder-agent-sortieren.html" title="Nachbau eines Agenten: drei Anfragen nach Dringlichkeit sortieren" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+```
+
+Vier Dinge fallen auf. Der Auftrag nennt nur den Ordner und die Zieldatei; niemand kopiert eine Anfrage in den Chat. Der Agent öffnet jede der drei Anfragen selbst und liest die Zeile mit dem Anliegen. Bevor er etwas anlegt, fragt er. Und das Ergebnis steht danach als Datei im Ordner:
+
+```markdown
+# Übersicht der Anfragen
+
+Sortiert nach Dringlichkeit, dringendste zuerst.
+
+| Rang | Datei | Anliegen | Grund |
+|---|---|---|---|
+| 1 | 2026-10-07-beschwerde.md | Reparatur nicht fertig | für Freitag zugesagt, keine Nachricht |
+| 2 | 2026-10-05-terminwunsch.md | Termin für eine Reparatur | Termin nächste Woche gewünscht |
+| 3 | 2026-10-06-preisfrage.md | Preis für eine Reparatur | keine Frist genannt |
+```
+
+Die Datei bleibt liegen. Kommt morgen eine vierte Anfrage, ergänzt der Agent dieselbe Übersicht, statt eine neue Liste im Chat zu erzeugen. Zum Schluss meldet er, was sich im Ordner geändert hat: eine Datei angelegt, keine geändert. Diese Meldung machen wir im Kapitel [AGENTS.md: die Hausordnung](agents-md.qmd) zur festen Regel.
+
+## Wann sich der Agent lohnt
+
+Der Agent lohnt sich, wenn das Material schon als Dateien vorliegt oder das Ergebnis als Datei entstehen soll. Für eine kurze Frage ohne Material reicht der Chat. Vier Aufgaben aus dem Büroalltag zeigen die Grenze:
+
+| Aufgabe | Material als Dateien? | Ergebnis als Datei? | Passendes Werkzeug |
+|---|---|---|---|
+| Eine Betreffzeile für eine E-Mail formulieren | nein | nein | Chat |
+| Einen Satz ins Englische übersetzen | nein | nein | Chat |
+| Eine Begrüßung für die Website vorschlagen | nein | kurzer Text | Chat |
+| 40 Anfragen aus einem Ordner in eine Tabelle übertragen | ja | ja | Agent |
+
+Die Begrüßung für die Website klingt nach Arbeit an einer Datei. Sie ist aber ein kurzer Text ohne Material, den wir an einer Stelle einfügen. Bei den 40 Anfragen dagegen liest der Agent den Ordner selbst und schreibt die Tabelle, ohne dass wir vierzigmal kopieren.
+
+## Vier Bilder für die Arbeit mit einem Agenten
+
+Damit ein Agent verlässlich arbeitet, braucht er mehr als einen Auftrag. Vier Bilder fassen zusammen, was die folgenden Kapitel aufbauen:
+
+![Vier Bausteine einer Arbeitsumgebung für einen Agenten](images/01-leitbild.svg){fig-alt="Vier Karten: Ordner gleich Material, AGENTS.md gleich Hausordnung, Skills gleich Rezepte, MCP gleich Steckdose." width="100%"}
+
+- **Ordner = Material.** Alles, was der Agent kennen soll, liegt als Datei im Projektordner. Darum geht es in den Kapiteln [Der Projektordner](projektordner.qmd), [Kontext bereitstellen](kontext-bereitstellen.qmd), [PDFs als Quellen](pdf-als-quelle.qmd) und [Laufend neue Dateien](laufend-neue-dateien.qmd).
+- **AGENTS.md = Hausordnung.** Kurze, prüfbare Regeln, die in jeder Sitzung gelten. Eine **Sitzung** ist eine Unterhaltung mit dem Agenten vom Start bis zum Schließen. Siehe [AGENTS.md: die Hausordnung](agents-md.qmd).
+- **Skills = Rezepte.** Abläufe mit mehreren Schritten, die der Agent bei Bedarf holt. Siehe [Skills](skills.qmd).
+- **MCP = Steckdose.** Ein genormter Anschluss, über den der Agent andere Systeme erreicht (MCP steht für Model Context Protocol). Siehe [MCP](mcp.qmd) und [Konnektoren und Plugins](konnektoren-plugins.qmd).
+
+## Was der Agent können muss
+
+Welches Werkzeug wir nutzen, ist für dieses Buch unerheblich. Es muss drei Dinge können:
+
+1. Es arbeitet in einem Ordner auf dem eigenen Rechner: Dateien lesen, anlegen und ändern.
+2. Es fragt vor Änderungen und vor dem Ausführen von Befehlen nach oder zeigt die Änderungen zur Prüfung.
+3. Es liest eine **Anweisungsdatei** im Projektordner. Das ist eine Datei mit Regeln, die der Agent zu Beginn jeder Sitzung von selbst öffnet: `AGENTS.md` oder der Name, den das Werkzeug dafür nutzt.
+
+Die Installation erklärt dieses Buch nicht. Die Anleitungen der Hersteller stehen in der Übersicht unten. Einige Details hängen vom Werkzeug ab, etwa der Name der Anweisungsdatei oder der Ort für Skills. Statt sie für jedes Produkt nachzuschlagen, fragen wir den Agenten selbst. Diese **Selbstauskunft** ersetzt im Buch die Produktdokumentation: Jedes Kapitel enthält eine passende Frage zum Kopieren.
+
+## Übersicht nach Werkzeug {#uebersicht-nach-werkzeug}
+
+Diese Tabelle ist die einzige Stelle im Buch mit Produktdetails. Sie nennt drei verbreitete Agenten. Andere Werkzeuge funktionieren ebenso, wenn sie die drei Anforderungen oben erfüllen.
+
+**Stand: 17. Oktober 2026.** Quelle ist jeweils die Dokumentation des Herstellers.
+
+| Begriff | Claude Code | Codex | Antigravity |
+|---|---|---|---|
+| **Anweisungsdatei** | `CLAUDE.md`. Liest `AGENTS.md` nur, wenn kein `CLAUDE.md` vorliegt. Alternativ in `CLAUDE.md` die Zeile `@AGENTS.md`.[^cc-memory] | `AGENTS.md` im Projektordner, zusätzlich global in `~/.codex/`.[^cx-agents] | `AGENTS.md` oder `GEMINI.md`, zusätzlich Regeln in `.agents/rules/`.[^ag-rules] |
+| **Skills-Ordner** | `.claude/skills/` im Projekt, persönlich `~/.claude/skills/`.[^cc-skills] | `.agents/skills/` im Projekt, persönlich `~/.agents/skills/`.[^cx-skills] | `.agents/skills/` im Projekt, global `~/.gemini/config/skills/`.[^ag-skills] |
+| **MCP-Konfiguration** | Datei `.mcp.json` im Projekt, Befehl `claude mcp add`.[^cc-mcp] | Datei `.codex/config.toml` im Projekt oder `~/.codex/config.toml`, Befehl `codex mcp add`.[^cx-mcp] | MCP Store im Agent-Panel, Datei `mcp_config.json`.[^ag-mcp] |
+| **Plugins und Konnektoren** | Plugins aus Marketplaces, Befehl `/plugin`.[^cc-plugins] Konnektoren (Connectors) in den Claude-Apps, je Werkzeug freigebbar.[^cc-connectors] | Plugins bündeln Skills und MCP-Server, Befehl `/plugins` in der CLI; die IDE-Erweiterung unterstützt keine Plugins. Ein eigener Begriff „Konnektor“ ist nicht belegt.[^cx-plugins] | Plugins mit `plugin.json`, Befehl `/plugin`, Marketplace in App und CLI.[^ag-plugins] |
+| **Installations&shy;anleitung** | [code.claude.com/docs](https://code.claude.com/docs) | [learn.chatgpt.com/docs](https://learn.chatgpt.com/docs) | [antigravity.google/docs](https://antigravity.google/docs) |
+
+Ein Pfad mit `~` liegt im eigenen Benutzerordner und gilt für alle Projekte. Pfade ohne `~` liegen im Projektordner und gelten nur dort. Ein Punkt am Anfang eines Ordnernamens (`.agents/`) bedeutet, dass der Ordner im Dateimanager meist ausgeblendet ist. Die Begriffe Skills, MCP, Plugins und Konnektoren erklären die späteren Kapitel.
+
+[^cc-memory]: Claude Code, „How Claude remembers your project“: <https://code.claude.com/docs/en/memory>
+[^cx-agents]: Codex, „AGENTS.md“: <https://learn.chatgpt.com/docs/agent-configuration/agents-md>
+[^ag-rules]: Antigravity, „Rules“: <https://antigravity.google/docs/rules/>
+[^cc-skills]: Claude Code, „Skills“: <https://code.claude.com/docs/en/skills>
+[^cx-skills]: Codex, „Build skills“: <https://learn.chatgpt.com/docs/build-skills>
+[^ag-skills]: Antigravity, „Skills“: <https://antigravity.google/docs/skills/>
+[^cc-mcp]: Claude Code, „MCP“: <https://code.claude.com/docs/en/mcp>
+[^cx-mcp]: Codex, „MCP“: <https://learn.chatgpt.com/docs/extend/mcp>
+[^ag-mcp]: Antigravity, „MCP“: <https://antigravity.google/docs/mcp/>
+[^cc-plugins]: Claude Code, „Plugins“: <https://code.claude.com/docs/en/plugins>
+[^cc-connectors]: Claude Help Center, „Use connectors to extend Claude's capabilities“: <https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities>
+[^cx-plugins]: Codex, „Plugins“: <https://learn.chatgpt.com/docs/plugins>
+[^ag-plugins]: Antigravity, „Plugins“: <https://antigravity.google/docs/plugins/>
+
+::: {.callout-note title="Die Tabelle altert"}
+Hersteller ändern Dateinamen und Speicherorte. Weicht der eigene Agent von der Tabelle ab, gilt seine Selbstauskunft. Die Kapitel dieses Buches nennen deshalb keine Produktpfade und bleiben gültig, wenn sich eine Zeile hier ändert.
+:::
+
+## Selbsttest des Werkzeugs
+
+Mit einem leeren Testordner prüfen wir, ob das eigene Werkzeug die Mindestanforderung erfüllt. Den Ordner `agent-test` nutzen wir im Kapitel [Markdown](markdown.qmd) weiter.
+
+**Voraussetzung:** Der Agent ist nach der Anleitung des Herstellers installiert und gestartet.
+
+1. Einen leeren Ordner `agent-test` anlegen, etwa im Ordner `Dokumente`.
+2. Den Ordner `agent-test` im Agenten öffnen.
+3. Diesen Auftrag senden:
+
+   ```text
+   Lege in diesem Ordner die Datei hallo.md an. Inhalt: eine Überschrift „Test“ und ein Satz, welches Datum heute ist. Frage vorher, ob du die Datei anlegen darfst.
+   ```
+
+4. Prüfen: Der Agent fragt vor dem Anlegen nach oder zeigt die Änderung zur Freigabe.
+5. Das Anlegen freigeben.
+6. Prüfen: Im Ordner `agent-test` liegt die Datei `hallo.md`.
+
+**Prüfkriterium:** Die Prüfungen in Schritt 4 und Schritt 6 bestehen. Dann erfüllt das Werkzeug die Mindestanforderung.
+
+::: {.callout-important title="Keine Rückfrage vor dem Anlegen"}
+Legt der Agent die Datei ohne Rückfrage an, läuft das Werkzeug wahrscheinlich in einem Modus ohne Rückfragen. Die Einstellung steht in der Anleitung des Herstellers. Erst weiterarbeiten, wenn der Agent vor Änderungen fragt.
+:::
+
+::: {.callout-tip title="Den Agenten fragen"}
+Welche Anweisungsdatei das eigene Werkzeug liest, verrät der Agent selbst. Diese Frage im Ordner `agent-test` senden:
+
+```text
+Welche Datei im Projektordner liest du automatisch als Anweisung? Nenne den Dateinamen und den Ort. Nur antworten, nichts ändern.
+```
+
+Die Antwort nennt einen Dateinamen. Wir brauchen ihn im Kapitel [AGENTS.md: die Hausordnung](agents-md.qmd).
+:::

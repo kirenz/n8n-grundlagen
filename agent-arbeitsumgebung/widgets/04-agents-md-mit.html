@@ -1,0 +1,186 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><style>:root { --paper: oklch(0.985 0.004 85); --paper-deep: oklch(0.965 0.007 85); --ink: oklch(0.18 0.02 255); --ink-soft: oklch(0.42 0.018 255); --rule: oklch(0.88 0.008 85); --ochre: oklch(0.72 0.13 70); --terracotta: oklch(0.6 0.15 35); --primary: oklch(0.32 0.12 258) } body { margin: 0; background: transparent; color: var(--ink); font-family: ui-sans-serif, system-ui, sans-serif; }</style><script>(function(){var post=function(){parent.postMessage({type:'claude-widget-height',height:document.body.scrollHeight},'*')};window.addEventListener('load',post);document.addEventListener('DOMContentLoaded',function(){new ResizeObserver(post).observe(document.body);post();});})();</script></head><body><!-- szene: 04-agents-md-mit.json -->
+<style>
+  .ma { --mono: ui-monospace, SFMono-Regular, Menlo, monospace; max-width: 920px; margin: 0 auto; font-size: 14px; line-height: 1.45; color: var(--ink); }
+  .ma * { box-sizing: border-box; }
+  .ma-win { border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; background: var(--paper); }
+  .ma-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--paper-deep); border-bottom: 1px solid var(--rule); font-size: 12px; color: var(--ink-soft); }
+  .ma-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rule); }
+  .ma-bar b { margin-left: 6px; font-weight: 600; color: var(--ink); font-family: var(--mono); }
+  .ma-grid { display: grid; grid-template-columns: 200px 1fr 280px; min-height: 340px; }
+  .ma-pane { min-width: 0; display: flex; flex-direction: column; }
+  .ma-pane + .ma-pane { border-left: 1px solid var(--rule); }
+  .ma-head { padding: 6px 12px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
+  .ma-tree { list-style: none; margin: 0; padding: 6px 0; font-family: var(--mono); font-size: 12.5px; }
+  .ma-tree li { padding: 3px 12px; overflow-wrap: anywhere; border-left: 3px solid transparent; transition: background .3s; }
+  .ma-tree li.ordner { color: var(--ink-soft); }
+  .ma-tree li.offen { background: var(--paper-deep); border-left-color: var(--primary); }
+  .ma-tree li.neu { animation: ma-neu 1.6s ease-out; }
+  @keyframes ma-neu { from { background: color-mix(in oklch, var(--ochre) 45%, transparent); } to { background: transparent; } }
+  .ma-file { padding: 6px 12px; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); border-bottom: 1px solid var(--rule); min-height: 29px; }
+  .ma-code { margin: 0; padding: 8px 0; font-family: var(--mono); font-size: 12.5px; overflow: auto; flex: 1; }
+  .ma-code div { display: grid; grid-template-columns: 34px 1fr; padding: 0 12px 0 0; white-space: pre-wrap; word-break: break-word; transition: background .3s; }
+  .ma-code span.nr { color: var(--ink-soft); opacity: .6; text-align: right; padding-right: 10px; user-select: none; }
+  .ma-code div.mark { background: color-mix(in oklch, var(--ochre) 28%, transparent); }
+  .ma-code .h { font-weight: 700; color: var(--primary); }
+  .ma-leer { padding: 24px 16px; color: var(--ink-soft); font-size: 13px; }
+  .ma-chat { flex: 1; overflow: auto; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+  .ma-msg { padding: 8px 10px; border-radius: 10px; max-width: 92%; animation: ma-rein .3s ease-out; white-space: pre-wrap; }
+  @keyframes ma-rein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .ma-msg.nutzer { align-self: flex-end; background: var(--primary); color: var(--paper); }
+  .ma-msg.agent { align-self: flex-start; background: var(--paper-deep); border: 1px solid var(--rule); }
+  .ma-msg.werkzeug { align-self: flex-start; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); padding: 2px 4px; }
+  .ma-msg.werkzeug::before { content: "› "; color: var(--ochre); font-weight: 700; }
+  .ma-frage { align-self: stretch; border: 1px solid var(--ochre); border-radius: 10px; padding: 10px; background: color-mix(in oklch, var(--ochre) 10%, var(--paper)); animation: ma-rein .3s ease-out; }
+  .ma-frage p { margin: 0 0 8px; }
+  .ma-frage .knoepfe { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ma-input { margin: 0 10px 10px; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-soft); font-size: 13px; }
+  .ma button { font: inherit; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .ma button.prim { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 600; }
+  .ma button:disabled { opacity: .4; cursor: default; }
+  .ma button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+  .ma-steuer { display: flex; align-items: flex-start; gap: 12px; margin-top: 12px; }
+  .ma-erkl { flex: 1; margin: 0; padding: 10px 14px; border-left: 3px solid var(--primary); background: var(--paper-deep); border-radius: 0 8px 8px 0; min-height: 44px; }
+  .ma-erkl small { display: block; color: var(--ink-soft); font-size: 12px; margin-bottom: 2px; }
+  .ma-knoepfe { display: flex; gap: 8px; }
+  @media (max-width: 720px) {
+    .ma-grid { grid-template-columns: 1fr; }
+    .ma-pane + .ma-pane { border-left: 0; border-top: 1px solid var(--rule); }
+    .ma-chat { max-height: 320px; }
+    .ma-code { max-height: 220px; }
+    .ma-chat { min-height: 200px; }
+    .ma-steuer { flex-direction: column; align-items: stretch; }
+    .ma-knoepfe button { flex: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ma * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="ma">
+  <div class="ma-win">
+    <div class="ma-bar"><span class="ma-dot"></span><span class="ma-dot"></span><span class="ma-dot"></span><b id="ma-titel"></b><span style="margin-left:auto">Nachbau eines Agenten</span></div>
+    <div class="ma-grid">
+      <section class="ma-pane" aria-label="Dateibaum">
+        <div class="ma-head">Ordner</div>
+        <ul class="ma-tree" id="ma-tree"></ul>
+      </section>
+      <section class="ma-pane" aria-label="Editor">
+        <div class="ma-file" id="ma-file"></div>
+        <div class="ma-code" id="ma-code"><p class="ma-leer">Keine Datei geöffnet.</p></div>
+      </section>
+      <section class="ma-pane" aria-label="Chat mit dem Agenten">
+        <div class="ma-head">Agent</div>
+        <div class="ma-chat" id="ma-chat" aria-live="polite"></div>
+        <div class="ma-input">Auftrag an den Agenten …</div>
+      </section>
+    </div>
+  </div>
+  <div class="ma-steuer">
+    <p class="ma-erkl" id="ma-erkl" aria-live="polite"></p>
+    <div class="ma-knoepfe">
+      <button type="button" id="ma-neu">Neu starten</button>
+      <button type="button" class="prim" id="ma-weiter">Weiter</button>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="szene">{"titel": "kundenanfragen (mit AGENTS.md)", "dateien": {"README.md": "# Kundenanfragen\n\nDer Ordner sammelt Kundenanfragen eines kleinen Betriebs.\nAntworten entstehen als Entwürfe in antworten.\nAnfragen liegen als Markdown in anfragen.", "anfragen/2026-10-05-terminwunsch.md": "# Terminwunsch\n\n- Datum: 2026-10-05\n- Kanal: E-Mail\n- Anliegen: Termin für eine Reparatur\n\nGuten Tag, ich möchte einen Termin für eine Reparatur.\nPasst es nächste Woche am Dienstag oder Mittwoch vormittags?", "anfragen/2026-10-06-preisfrage.md": "# Preisfrage\n\n- Datum: 2026-10-06\n- Kanal: Kontaktformular\n- Anliegen: Preis für eine Reparatur\n\nGuten Tag, was kostet bei Ihnen eine Reparatur?\nUnd kommt eine Anfahrt dazu, wenn Sie zu mir kommen?", "anfragen/2026-10-07-beschwerde.md": "# Beschwerde\n\n- Datum: 2026-10-07\n- Kanal: E-Mail\n- Anliegen: Reparatur nicht rechtzeitig fertig\n\nGuten Tag, die Reparatur war für Freitag zugesagt.\nBis heute habe ich keine Nachricht. Bitte melden Sie sich.", "antworten/": "", "AGENTS.md": "# Kundenanfragen\n\nDieser Ordner sammelt Kundenanfragen eines kleinen Betriebs.\nAntworten entstehen als Entwürfe in antworten/.\n\n## Regeln\n\n1. Antworte auf Deutsch.\n2. Nutze nur Fakten aus Dateien in diesem Ordner. Schreibe „Annahme:“ vor jede Angabe, die nicht daraus stammt.\n3. Schreibe keine Personennamen in neue Dateien.\n4. Lege Ergebnisse als neue Datei an. Ändere bestehende Dateien nur nach Rückfrage.\n5. Nenne am Ende jedes Auftrags, welche Dateien du angelegt oder geändert hast."}, "schritte": [{"erklaerung": "Nachbau eines typischen Agenten, kein echtes Produkt. Jetzt liegt AGENTS.md im Ordner.", "aktionen": []}, {"erklaerung": "Dieselbe Frage. Die Regeln erwähnt niemand.", "aktionen": [{"nutzer": "Wie teuer ist eine Reparatur bei uns?"}]}, {"erklaerung": "Der Agent liest AGENTS.md von selbst. Für diese Frage greifen Regel 1 und Regel 2.", "aktionen": [{"liest": "AGENTS.md", "zeilen": [8, 9]}]}, {"erklaerung": "Die Antwort ist auf Deutsch, die fehlende Angabe ist als Annahme gekennzeichnet. Der letzte Satz folgt aus Regel 5.", "aktionen": [{"agent": "Annahme: Eine Preisliste liegt noch nicht im Ordner. Sobald sie in quellen/ liegt, nenne ich den Betrag daraus.\n\nAngelegt oder geändert: keine Dateien."}]}]}</script>
+
+<script>
+(function () {
+  var S = JSON.parse(document.getElementById('szene').textContent);
+  var el = function (id) { return document.getElementById(id); };
+  var tree = el('ma-tree'), code = el('ma-code'), datei = el('ma-file'), chat = el('ma-chat');
+  var erkl = el('ma-erkl'), weiter = el('ma-weiter'), neu = el('ma-neu');
+  var dateien, offen, neuePfade, schritt, wartet;
+
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function baum() {
+    var pfade = Object.keys(dateien), ordner = {};
+    pfade.forEach(function (p) { var i = p.indexOf('/'); if (i > 0) ordner[p.slice(0, i + 1)] = true; });
+    var oben = pfade.filter(function (p) { return p.indexOf('/') < 0; }).sort();
+    var html = Object.keys(ordner).sort().map(function (o) {
+      var kinder = pfade.filter(function (p) { return p.indexOf(o) === 0 && p !== o; }).sort();
+      return '<li class="ordner">▾ ' + esc(o) + '</li>' + kinder.map(function (k) {
+        return '<li data-p="' + esc(k) + '" style="padding-left:28px">' + esc(k.slice(o.length)) + '</li>';
+      }).join('');
+    }).join('') + oben.map(function (p) { return '<li data-p="' + esc(p) + '">' + esc(p) + '</li>'; }).join('');
+    tree.innerHTML = html;
+    Array.prototype.forEach.call(tree.querySelectorAll('li[data-p]'), function (li) {
+      var p = li.getAttribute('data-p');
+      if (p === offen) li.className = 'offen';
+      if (neuePfade[p]) { li.className += ' neu'; delete neuePfade[p]; }
+    });
+  }
+
+  function zeige(pfad, zeilen) {
+    offen = pfad;
+    var marks = {}; (zeilen || []).forEach(function (z) { marks[z] = true; });
+    datei.textContent = pfad;
+    code.innerHTML = dateien[pfad].split('\n').map(function (z, i) {
+      var inhalt = /^#{1,3} /.test(z) ? '<span class="h">' + esc(z) + '</span>' : esc(z);
+      return '<div' + (marks[i + 1] ? ' class="mark"' : '') + '><span class="nr">' + (i + 1) + '</span><span>' + inhalt + '</span></div>';
+    }).join('');
+    var erste = code.querySelector('.mark'); if (erste) code.scrollTop = Math.max(0, erste.offsetTop - 40);
+    baum();
+  }
+
+  function nachricht(klasse, text) {
+    var d = document.createElement('div'); d.className = 'ma-msg ' + klasse; d.textContent = text;
+    chat.appendChild(d); chat.scrollTop = chat.scrollHeight; return d;
+  }
+
+  function aktion(a) {
+    if (a.nutzer) nachricht('nutzer', a.nutzer);
+    if (a.agent) nachricht('agent', a.agent);
+    if (a.liest) { nachricht('werkzeug', 'liest ' + a.liest); zeige(a.liest, a.zeilen); }
+    if (a.schreibt) {
+      var war = a.schreibt in dateien;
+      dateien[a.schreibt] = a.inhalt; neuePfade[a.schreibt] = true;
+      nachricht('werkzeug', (war ? 'ändert ' : 'legt an ') + a.schreibt); zeige(a.schreibt);
+    }
+    if (a.verschiebt) {
+      dateien[a.nach] = dateien[a.verschiebt]; delete dateien[a.verschiebt]; neuePfade[a.nach] = true;
+      if (offen === a.verschiebt) offen = a.nach;
+      nachricht('werkzeug', 'verschiebt ' + a.verschiebt + ' → ' + a.nach);
+      if (offen === a.nach) zeige(a.nach); else baum();
+    }
+    if (a.werkzeug) nachricht('werkzeug', 'ruft auf ' + a.werkzeug);
+    if (a.frage) {
+      wartet = true;
+      var box = document.createElement('div'); box.className = 'ma-frage';
+      box.innerHTML = '<p>' + esc(a.frage) + '</p><div class="knoepfe"><button type="button" class="prim" data-j="1">Erlauben</button><button type="button" data-j="0">Ablehnen</button></div>';
+      chat.appendChild(box); chat.scrollTop = chat.scrollHeight;
+      box.addEventListener('click', function (e) {
+        var j = e.target.getAttribute && e.target.getAttribute('data-j'); if (j === null || !wartet) return;
+        wartet = false;
+        box.querySelector('.knoepfe').outerHTML = '<p style="margin:0;color:var(--ink-soft)">' + (j === '1' ? '✓ Erlaubt' : '✕ Abgelehnt') + '</p>';
+        if (j === '1') { weiter.disabled = false; weiter.focus(); }
+        else { nachricht('agent', a.abgelehnt || 'In Ordnung, ich mache das nicht.'); schritt = S.schritte.length; erkl.innerHTML = '<small>Ende</small>Ohne Erlaubnis ändert der Agent nichts im Ordner. Mit „Neu starten“ sehen Sie den anderen Weg.'; weiter.disabled = true; }
+      });
+      weiter.disabled = true;
+      var knopf = box.querySelector('button'); if (knopf) knopf.focus();
+    }
+  }
+
+  function los(i) {
+    schritt = i;
+    var s = S.schritte[i];
+    erkl.innerHTML = '<small>Schritt ' + (i + 1) + ' von ' + S.schritte.length + '</small>' + esc(s.erklaerung);
+    s.aktionen.forEach(aktion);
+    if (!wartet) weiter.disabled = i >= S.schritte.length - 1;
+    weiter.textContent = i >= S.schritte.length - 1 ? 'Fertig' : 'Weiter';
+  }
+
+  function start() {
+    dateien = JSON.parse(JSON.stringify(S.dateien)); offen = null; neuePfade = {}; wartet = false;
+    el('ma-titel').textContent = S.titel;
+    chat.innerHTML = ''; datei.textContent = ''; code.innerHTML = '<p class="ma-leer">Keine Datei geöffnet.</p>';
+    baum(); los(0);
+  }
+
+  weiter.addEventListener('click', function () { if (!wartet && schritt < S.schritte.length - 1) los(schritt + 1); });
+  neu.addEventListener('click', start);
+  start();
+})();
+</script>
+</body></html>
