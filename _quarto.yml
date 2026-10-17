@@ -94,6 +94,7 @@ book:
         - agent-arbeitsumgebung/agents-md.qmd
         - agent-arbeitsumgebung/kontext-bereitstellen.qmd
         - agent-arbeitsumgebung/pdf-als-quelle.qmd
+        - agent-arbeitsumgebung/excel-als-quelle.qmd
         - agent-arbeitsumgebung/laufend-neue-dateien.qmd
         - agent-arbeitsumgebung/skills.qmd
 
