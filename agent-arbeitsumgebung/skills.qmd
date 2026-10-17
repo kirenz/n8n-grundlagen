@@ -6,7 +6,7 @@ Den Ablauf zum Einsortieren aus dem Kapitel [Laufend neue Dateien](laufend-neue-
 
 Ein **Skill** ist ein Ordner mit dem Namen des Skills und darin die Datei `SKILL.md`. Sie beschreibt einen wiederkehrenden Ablauf in Schritten. Das Format heißt [Agent Skills](https://agentskills.io/). Es ist offen beschrieben und wird von vielen Agenten gelesen.
 
-Das Bild dafür ist das Rezept: Es liegt im Regal, und wer das Gericht kochen will, schlägt es auf und arbeitet die Schritte ab. Der Agent kennt die Rezepttitel und holt das passende Rezept, wenn ein Auftrag danach verlangt.
+Der passende Vergleich ist das Rezept: Es liegt im Regal, und wer das Gericht kochen will, schlägt es auf und arbeitet die Schritte ab. Der Agent kennt die Rezepttitel und holt das passende Rezept, wenn ein Auftrag danach verlangt.
 
 Unser erster Skill sieht so aus:
 
