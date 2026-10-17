@@ -1,10 +1,10 @@
 # Laufend neue Dateien
 
-Ein Projektordner bleibt nur so lange brauchbar, wie neues Material denselben Weg nimmt. Im Alltag kommen Anfragen als weitergeleitete E-Mail, als Export aus dem Kontaktformular oder als PDF eines Lieferanten. Sie tragen Namen wie `Mail Mustermann.txt` oder `anfrage_formular(2).md`, und oft steht ein Personenname darin. Legen wir solche Dateien einzeln von Hand ab, wächst die Unordnung mit jeder Woche. Wir richten deshalb einen festen Weg ein: ein Ordner, in dem alles Neue landet, und ein Auftrag, der den Ordner immer gleich leert.
+Ein Projektordner bleibt nur so lange brauchbar, wie neue Unterlagen denselben Weg nehmen. Im Alltag kommen Anfragen als weitergeleitete E-Mail, als Export aus dem Kontaktformular oder als PDF eines Lieferanten. Sie tragen Namen wie `Mail Mustermann.txt` oder `anfrage_formular(2).md`, und oft steht ein Personenname darin. Legen wir solche Dateien einzeln von Hand ab, wächst die Unordnung mit jeder Woche. Wir richten deshalb einen festen Weg ein: ein Ordner, in dem alles Neue landet, und ein Auftrag, der den Ordner immer gleich leert.
 
 ## Ein Ort für alles Neue
 
-Der **Eingangsordner** heißt bei uns `eingang/`. Er ist der einzige Ort im Projektordner, an dem neue Dateien landen, egal in welchem Format und mit welchem Namen. Alles andere im Ordner ist sortiert.
+Der **Eingangsordner** heißt bei uns `eingang/`. Er ist der einzige Ort im Projektordner, an dem neue Dateien landen, egal in welchem Format und mit welchem Namen. Alles andere im Ordner ist sortiert. Der Eingangsordner entspricht dem Postfach eines neuen Mitarbeiters: Alles, was für ihn hereinkommt, landet zuerst dort.
 
 ```text
 kundenanfragen/
@@ -42,7 +42,7 @@ Das Datum ist der Tag des Eingangs, also das Datum aus der Datei selbst. Der Tag
 
 ## Der feste Ablauf in sechs Schritten
 
-Ein **fester Ablauf** ist ein Auftrag, der immer gleich lautet, egal was im Eingang liegt. Unserer hat sechs Schritte:
+Ein **fester Ablauf** ist ein Auftrag, der immer gleich lautet, egal was im Eingang liegt. Er ist die Morgenroutine für dieses Postfach. Der Agent schaut aber nicht von selbst hinein: Wir senden ihm den Ablauf. Unserer hat sechs Schritte:
 
 | Schritt | Was der Agent tut | Warum an dieser Stelle |
 |---|---|---|

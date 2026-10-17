@@ -1,14 +1,14 @@
-# MCP: die Steckdose für andere Systeme
+# MCP: Zugänge zu anderen Systemen
 
-Ein Agent im Projektordner kennt nur die Dateien in diesem Ordner. Der Terminwunsch vom 5. Oktober liegt als Datei in `anfragen/`, die freien Zeiten im Teamkalender liegen dort nicht. Damit der Agent sie trotzdem nachsehen kann, braucht er einen Anschluss an den Kalender. MCP ist ein solcher Anschluss, und zwar ein genormter: Ein Agent, der MCP beherrscht, kann jedes System erreichen, das ebenfalls MCP anbietet.
+Ein Agent im Projektordner kennt nur die Dateien in diesem Ordner. Der Terminwunsch vom 5. Oktober liegt als Datei in `anfragen/`, die freien Zeiten im Teamkalender liegen dort nicht. Damit der Agent sie trotzdem nachsehen kann, braucht er einen Zugang zum Kalender. MCP regelt solche Zugänge, und zwar genormt: Ein Agent, der MCP beherrscht, kann jedes System erreichen, das ebenfalls MCP anbietet.
 
 ## Was MCP ist
 
-**MCP** steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Ein passender Vergleich ist eine genormte Steckdose. Jedes Gerät mit dem passenden Stecker funktioniert an ihr, egal von welchem Hersteller es stammt.
+**MCP** steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Für den Agenten als neuen Mitarbeiter sind das seine Zugänge zu anderen Systemen. MCP funktioniert dabei wie ein genormtes Schließsystem: Eine Karte öffnet viele Türen, aber nur die, für die sie freigeschaltet ist.
 
-**MCP-Server** heißt das Programm auf der anderen Seite der Steckdose. Ein Server ist hier einfach ein Programm, das auf Anfragen antwortet; es kann auf dem eigenen Rechner laufen oder bei einem Anbieter im Internet. Der MCP-Server stellt **Werkzeuge** bereit (englisch Tools), die der Agent aufrufen darf. Ein Werkzeug ist eine einzelne Fähigkeit mit einem festen Namen, etwa `termine_lesen`.
+**MCP-Server** heißt das Programm hinter einer dieser Türen. Ein Server ist hier einfach ein Programm, das auf Anfragen antwortet; es kann auf dem eigenen Rechner laufen oder bei einem Anbieter im Internet. Der MCP-Server stellt **Werkzeuge** bereit (englisch Tools), die der Agent aufrufen darf. Ein Werkzeug ist eine einzelne Fähigkeit mit einem festen Namen, etwa `termine_lesen`.
 
-![Der Agent im Ordner `kundenanfragen` erreicht über den genormten Anschluss MCP drei Server mit ihren Werkzeugen.](images/09-mcp-steckdose.svg){fig-alt="Schema: links der Agent im Ordner kundenanfragen, in der Mitte eine Steckdose mit der Aufschrift MCP, rechts drei MCP-Server. Kalender-Server mit termine_lesen (liest) und termin_anlegen (ändert), Ablage-Server mit dateien_suchen (liest), Ticket-Server mit ticket_anlegen (ändert)."}
+![Mit der Zugangskarte MCP erreicht der Agent im Ordner `kundenanfragen` drei freigeschaltete Server mit ihren Werkzeugen. Die Tür zur Buchhaltung bleibt zu.](images/09-mcp-zugaenge.svg){fig-alt="Schema: links der Agent im Ordner kundenanfragen, in der Mitte eine Zugangskarte mit der Aufschrift MCP, rechts vier Türen zu anderen Systemen. Offen, weil die Karte dafür freigeschaltet ist: Kalender-Server mit termine_lesen (liest) und termin_anlegen (ändert), Ablage-Server mit dateien_suchen (liest), Ticket-Server mit ticket_anlegen (ändert). Verschlossen: Buchhaltung, nicht freigeschaltet."}
 
 Jedes Werkzeug tut eine von zwei Arten von Dingen. Es liest nur, oder es ändert etwas im anderen System. Für die Abbildung oben sieht das so aus:
 
@@ -44,7 +44,7 @@ Drei Stellen in der Szene sind wichtig.
 
 ## Brauchen wir eine Anbindung?
 
-Ein MCP-Server bringt dem Agenten Werkzeuge. Er bringt kein besseres Sprachmodell, kein Gedächtnis für frühere Unterhaltungen und keine Kopie der Daten in den Projektordner. Die Daten bleiben im Kalender oder im Ticket-System; der Agent holt sich bei jedem Aufruf nur das Ergebnis.
+An dieser Stelle hinkt das Bild von Karte und Tür: Der Agent betritt das andere System nicht. Ein MCP-Server bringt ihm Werkzeuge, aber kein besseres Sprachmodell, kein Gedächtnis für frühere Unterhaltungen und keine Kopie der Daten in den Projektordner. Die Daten bleiben im Kalender oder im Ticket-System; der Agent holt sich bei jedem Aufruf nur das Ergebnis.
 
 Daraus folgt eine einfache Faustregel. Eine Anbindung lohnt sich, wenn ein Auftrag Daten aus einem anderen System braucht, die nicht als Datei im Ordner liegen. Freie Termine im Teamkalender sind so ein Fall, weil sie sich jeden Tag ändern. Für alles, was als Datei vorliegt, reicht der Projektordner.
 

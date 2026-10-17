@@ -1,6 +1,6 @@
 # Excel-Tabellen als Quelle
 
-Neben PDFs liegt das Zahlenmaterial eines Betriebs meist in Excel-Dateien: Auftragslisten, Stundenzettel, Lagerbestände, Exporte aus der Buchhaltung. Eine Excel-Datei sieht wie eine Tabelle aus, ist aber keine Textdatei. Wir gehen mit ihr darum genauso um wie mit einem PDF: Original ablegen, eine Textfassung erzeugen lassen, prüfen, in die Quellenliste eintragen. Zwei Dinge kommen hinzu, die es bei PDFs nicht gibt: mehrere Tabellenblätter in einer Datei und Zellen, in denen eine Formel steht statt einer Zahl.
+Neben PDFs liegen die Zahlen eines Betriebs meist in Excel-Dateien: Auftragslisten, Stundenzettel, Lagerbestände, Exporte aus der Buchhaltung. Eine Excel-Datei sieht wie eine Tabelle aus, ist aber keine Textdatei. Wir gehen mit ihr darum genauso um wie mit einem PDF: Original ablegen, eine Textfassung erzeugen lassen, prüfen, in die Quellenliste eintragen. Zwei Dinge kommen hinzu, die es bei PDFs nicht gibt: mehrere Tabellenblätter in einer Datei und Zellen, in denen eine Formel steht statt einer Zahl.
 
 ## Gepackt statt Text
 
@@ -26,7 +26,7 @@ kundenanfragen/
 | `quellen/original/` | Die Excel-Datei, so wie sie von außen kam. Sie dient als Beleg. | niemand |
 | `quellen/text/` | Je Tabellenblatt eine CSV, die der Agent aus dem Original erzeugt. Mit ihr arbeitet der Agent. | der Agent, nach Rückfrage |
 
-Der Rest läuft wie im Kapitel [PDFs als Quellen](pdf-als-quelle.qmd): Stichprobe gegen das Original, Eintrag mit Prüfvermerk in `QUELLEN.md`. Jede CSV bekommt dort eine eigene Zeile, denn jede kann für sich geprüft oder ungeprüft sein.
+Der Rest läuft wie im Kapitel [PDFs als Quellen](pdf-als-quelle.qmd): Stichprobe gegen das Original, Eintrag mit Prüfvermerk in `QUELLEN.md`. Jede CSV bekommt dort eine eigene Zeile, denn jede kann für sich geprüft oder ungeprüft sein. Es gilt also dasselbe Vier-Augen-Prinzip wie bei einem neuen Mitarbeiter: Der Agent bringt die Tabelle in eine lesbare Form, wir lesen gegen.
 
 So sieht die CSV des Blatts „Aufträge“ aus, wenn alles geklappt hat:
 
@@ -75,7 +75,7 @@ Umgekehrt lassen wir den Agenten Auswertungen erzeugen: Summen je Leistung, Auft
 
 Fragt der Agent, ob er die Auswertung als neues Blatt in `quellen/original/auftragsliste-2026.xlsx` anlegen soll, „damit alles in einer Datei bleibt“, lautet die Antwort nein. Das Original ist der Beleg für die CSV-Fassungen und ihren Prüfvermerk. Sobald der Agent in der Datei schreibt, auch nur in einem neuen Blatt, ist nicht mehr sicher, dass der Rest unverändert ist. Die CSV ersetzt das Original nicht: Sie ist daraus abgeleitet, und jede spätere Prüfung braucht die Quelle. Auch eine datierte Kopie des Originals hilft nicht; sie füllt `original/` mit zwei fast gleichen Dateien, und beim nächsten Auftrag ist unklar, welche gilt.
 
-Die neue Datei öffnen wir im Tabellenprogramm und rechnen eine Zahl selbst nach. Ein Agent kann beim Zusammenrechnen eine Zeile vergessen oder doppelt zählen. In der Auftragsliste gibt es drei Aufträge „Kleine Reparatur“ zu 45,00 EUR; in der Auswertung müssen 135,00 stehen.
+Das Vier-Augen-Prinzip gilt auch für Ergebnisse. Die neue Datei öffnen wir im Tabellenprogramm und rechnen eine Zahl selbst nach. Ein Agent kann beim Zusammenrechnen eine Zeile vergessen oder doppelt zählen. In der Auftragsliste gibt es drei Aufträge „Kleine Reparatur“ zu 45,00 EUR; in der Auswertung müssen 135,00 stehen.
 
 ::: {.callout-warning title="Regeln sind keine Garantie"}
 Regel 4 senkt das Risiko, dass der Agent das Original überschreibt. Sie schließt es nicht aus. Nach jedem Auftrag, der Dateien in `quellen/` berührt, das Änderungsdatum des Originals prüfen. Eine Summe, die wir nicht nachgerechnet haben, gilt als ungeprüft.
