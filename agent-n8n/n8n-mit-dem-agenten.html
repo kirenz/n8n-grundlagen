@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jan Kirenz">
+<meta name="description" content="Von der Plattform zum ersten Workflow">
+
+<title>29&nbsp; n8n mit dem Agenten – n8n-Grundlagen</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-65a8d1e2c23ab61ef86d547ba0112629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5a4191e779943d077ddcaf48741aef9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-n8n/n8n-mit-dem-agenten.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">n8n-Grundlagen</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="Suchen"></div>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Willkommen</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einführung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../overview/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plattform und Auswahl</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/what-is-n8n.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Was n8n leistet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/pricing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Werkzeuge im Vergleich</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../overview/hosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Betrieb wählen</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../bpmn/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abläufe modellieren mit BPMN</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/grundelemente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grundelemente und gute Namen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/gateways.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gateways: verzweigen und zusammenführen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/ereignisse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ereignisse: warten, reagieren, abbrechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/teilnehmer-und-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Teilnehmer, Daten und Aufgabentypen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/zum-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vom Modell zum n8n-Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../bpmn/uebung-kulanzantrag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Übung: Kulanzantrag modellieren</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../first-workflows/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Erste Workflows</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../first-workflows/testzugang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">n8n-Testzugang einrichten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../first-workflows/credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Credentials vorbereiten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../first-workflows/first-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Der erste Workflow: Mail an sich selbst</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../beispiele/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Beispiele zum Mitmachen</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beispiele/kontaktanfragen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Beispiel 1: Kontaktanfragen sortieren</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beispiele/rechnung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Beispiel 2: Rechnung freigeben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beispiele/wochenbericht.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Beispiel 3: Wochenbericht</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beispiele/gemini-schluessel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Gemini-Schlüssel einrichten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beispiele/gemini.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Beispiel 4: Anfrage mit Gemini einordnen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beispiele/rag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Beispiel 5: FAQ-Agent mit RAG</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../agent-arbeitsumgebung/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mit einem Agenten arbeiten</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/chat-oder-agent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Chat oder Agent?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Markdown: Text, den Mensch und Agent lesen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/projektordner.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Der Projektordner: Material an einem Ort</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/agents-md.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">AGENTS.md: die Hausordnung</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/kontext-bereitstellen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Kontext bereitstellen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/pdf-als-quelle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">PDFs als Quellen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/laufend-neue-dateien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Laufend neue Dateien</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/skills.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Skills: Abläufe, die bleiben</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../agent-arbeitsumgebung/erweitern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Den Agenten erweitern</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/mcp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">MCP: die Steckdose für andere Systeme</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-arbeitsumgebung/konnektoren-plugins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Konnektoren und Plugins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-n8n/n8n-mit-dem-agenten.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../agent-n8n/starterpaket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Starterpaket</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#die-workflow-datei" id="toc-die-workflow-datei" class="nav-link active" data-scroll-target="#die-workflow-datei"><span class="header-section-number">29.1</span> Die Workflow-Datei</a></li>
+  <li><a href="#zwei-wege-zu-n8n" id="toc-zwei-wege-zu-n8n" class="nav-link" data-scroll-target="#zwei-wege-zu-n8n"><span class="header-section-number">29.2</span> Zwei Wege zu n8n</a></li>
+  <li><a href="#workflow-lesen-und-ändern" id="toc-workflow-lesen-und-ändern" class="nav-link" data-scroll-target="#workflow-lesen-und-ändern"><span class="header-section-number">29.3</span> Workflow lesen und ändern</a></li>
+  <li><a href="#praxis-datei-ablegen-und-erklären-lassen" id="toc-praxis-datei-ablegen-und-erklären-lassen" class="nav-link" data-scroll-target="#praxis-datei-ablegen-und-erklären-lassen"><span class="header-section-number">29.4</span> Praxis: Datei ablegen und erklären lassen</a></li>
+  <li><a href="#praxis-workflow-ändern-und-in-n8n-testen" id="toc-praxis-workflow-ändern-und-in-n8n-testen" class="nav-link" data-scroll-target="#praxis-workflow-ändern-und-in-n8n-testen"><span class="header-section-number">29.5</span> Praxis: Workflow ändern und in n8n testen</a></li>
+  <li><a href="#weg-b-anbindung-erfragen-freiwillig" id="toc-weg-b-anbindung-erfragen-freiwillig" class="nav-link" data-scroll-target="#weg-b-anbindung-erfragen-freiwillig"><span class="header-section-number">29.6</span> Weg B: Anbindung erfragen (freiwillig)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../agent-arbeitsumgebung/erweitern.html">Den Agenten erweitern</a></li><li class="breadcrumb-item"><a href="../agent-n8n/n8n-mit-dem-agenten.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">n8n mit dem Agenten</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Jeder n8n-Workflow lässt sich als Datei speichern. Für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner: Er kann sie lesen, erklären und eine geänderte Fassung schreiben. Damit lässt sich ein Workflow ändern, ohne im Canvas jeden Knoten einzeln anzufassen. Prüfen müssen wir die Änderung trotzdem selbst, und zwar in n8n. Als Beispiel dient der Workflow aus <a href="../beispiele/kontaktanfragen.html">Beispiel 1: Kontaktanfragen sortieren</a>, der eine dritte Art von Anfragen mit hoher Priorität behandeln soll.</p>
+<section id="die-workflow-datei" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="die-workflow-datei"><span class="header-section-number">29.1</span> Die Workflow-Datei</h2>
+<p><strong>Workflow-JSON</strong> nennen wir die Datei, in der n8n einen Workflow speichert. JSON (JavaScript Object Notation) ist ein Textformat, das Daten als Felder mit Namen und Wert in geschweiften Klammern ablegt. Jeder Workflow lässt sich über das Menü des Workflows als JSON-Datei exportieren und in eine andere Instanz wieder importieren. Die Datei enthält alle Knoten mit ihren Einstellungen und die Verbindungen zwischen ihnen. Die Knotennamen in der Datei sind dieselben wie im Canvas.</p>
+<p>Die Entscheidung im If-Knoten „Beschwerde?“ sieht in der Datei von Beispiel 1 so aus (gekürzt):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="st">"conditions"</span><span class="er">:</span> <span class="ot">[</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"leftValue"</span><span class="fu">:</span> <span class="st">"={{ $json.Anliegen }}"</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"rightValue"</span><span class="fu">:</span> <span class="st">"Beschwerde"</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"operator"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span> <span class="dt">"operation"</span><span class="fu">:</span> <span class="st">"equals"</span> <span class="fu">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span><span class="er">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">"combinator"</span><span class="er">:</span> <span class="st">"and"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfeld <code>Anliegen</code>, rechts der Vergleichswert <code>Beschwerde</code>, dazwischen der Vergleich „ist gleich“ (<code>equals</code>). Das Feld <code>combinator</code> legt fest, wie mehrere Vergleiche zusammenwirken. Mit <code>and</code> (und) müssen alle zutreffen, mit <code>or</code> (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Sobald ein zweiter dazukommt, entscheidet dieses Feld über das Ergebnis.</p>
+</section>
+<section id="zwei-wege-zu-n8n" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="zwei-wege-zu-n8n"><span class="header-section-number">29.2</span> Zwei Wege zu n8n</h2>
+<p>Wie die Datei vom Agenten zu n8n kommt, dafür gibt es zwei Wege.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/11-zwei-wege.svg" class="img-fluid figure-img" alt="Zwei Wege. Weg A, im Kurs: Der Agent schreibt die Datei n8n/beispiel-1-datenschutz.json, wir importieren sie mit Import from File in n8n. Weg B, gestrichelt, nur Hinweis: Der Agent erreicht n8n über eine MCP-Steckdose und liest oder legt Workflows direkt an; in n8n heißt die Anbindung Instance-level MCP."></p>
+<figcaption>Weg A: Der Agent schreibt die Datei, wir importieren sie in n8n. Weg B: Der Agent erreicht n8n direkt über einen MCP-Server.</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Weg A: Datei und Import</th>
+<th>Weg B: direkte Anbindung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Was der Agent tut</td>
+<td>schreibt eine JSON-Datei in den Ordner <code>n8n/</code></td>
+<td>liest und legt Workflows direkt in n8n an</td>
+</tr>
+<tr class="even">
+<td>Was wir tun</td>
+<td>importieren die Datei mit <strong>Import from File</strong></td>
+<td>schalten die Anbindung in n8n frei</td>
+</tr>
+<tr class="odd">
+<td>Was gebraucht wird</td>
+<td>nur den Projektordner</td>
+<td>einen MCP-Server (siehe <a href="../agent-arbeitsumgebung/mcp.html">MCP: die Steckdose für andere Systeme</a>) und eine Freischaltung in n8n</td>
+</tr>
+<tr class="even">
+<td>Rolle hier</td>
+<td>Praxisweg</td>
+<td>freiwillige Prüfung am Ende</td>
+</tr>
+</tbody>
+</table>
+<p>Für Weg B bietet n8n eine eigene Anbindung namens <strong>Instance-level MCP</strong>. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet (<a href="https://docs.n8n.io/connect/connect-to-n8n-mcp-server">Anleitung in der n8n-Dokumentation</a>). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n ist ein natürlicher Prüfpunkt.</p>
+</section>
+<section id="workflow-lesen-und-ändern" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="workflow-lesen-und-ändern"><span class="header-section-number">29.3</span> Workflow lesen und ändern</h2>
+<p>Die folgende Szene zeigt beide Schritte: Zuerst erklärt der Agent den Workflow aus Beispiel 1, dann legt er eine geänderte Kopie an. Datenschutzanfragen sollen künftig wie Beschwerden in „Priorität hoch“ landen. Für die Anzeige ist die Datei auf Knoten, Formularfelder und Bedingung gekürzt. Mit „Weiter“ klicken wir uns durch die Sitzung.</p>
+<iframe class="muster-agent" src="widgets/11-workflow-lesen.html" title="Nachbau eines Agenten: Workflow-Datei lesen und als Kopie ändern" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+<p>In der Erklärung nennt der Agent drei Dinge: das Formular als Auslöser, den If-Knoten „Beschwerde?“ als Entscheidung und die beiden Set-Knoten als Ergebnis. Diese Erklärung lässt sich am Canvas prüfen, bevor wir irgendetwas ändern lassen.</p>
+<p>Für die Änderung liest der Agent die alte Bedingung noch einmal: ein Vergleich, verknüpft mit <code>and</code>. Dann legt er eine neue Datei an. Das Original bleibt, wie es ist (Regel 4 der AGENTS.md aus <a href="../agent-arbeitsumgebung/agents-md.html">AGENTS.md: die Hausordnung</a>). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die Kopie unterscheidet sich an zwei Stellen:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stelle</th>
+<th>Original</th>
+<th>Kopie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Formularfeld <code>Anliegen</code></td>
+<td>drei Optionen: Frage zur Bestellung, Beschwerde, Rückruf</td>
+<td>vierte Option <code>Datenschutz</code></td>
+</tr>
+<tr class="even">
+<td>If-Knoten „Beschwerde?“</td>
+<td>ein Vergleich: Anliegen ist gleich <code>Beschwerde</code>, <code>combinator: and</code></td>
+<td>zweiter Vergleich: Anliegen ist gleich <code>Datenschutz</code>, <code>combinator: or</code></td>
+</tr>
+</tbody>
+</table>
+<p>Mit <code>or</code> führt jetzt Beschwerde oder Datenschutz zum Ausgang true. Ob der Workflow damit läuft, zeigt erst der Import und ein Testlauf in n8n. Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diesen Test nicht. Auch das Durchlesen der Datei reicht nicht: Es zeigt weder, ob n8n die Datei annimmt (schon ein fehlendes Komma verhindert den Import), noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen.</p>
+</section>
+<section id="praxis-datei-ablegen-und-erklären-lassen" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="praxis-datei-ablegen-und-erklären-lassen"><span class="header-section-number">29.4</span> Praxis: Datei ablegen und erklären lassen</h2>
+<p>Wir legen die Workflow-Datei aus Beispiel 1 in den Projektordner und lassen den Agenten den Workflow erklären, bevor er etwas ändert.</p>
+<p><strong>Voraussetzung:</strong> Der Agent ist im Ordner <code>kundenanfragen</code> geöffnet.</p>
+<ol type="1">
+<li><p>Diesen Auftrag senden:</p>
+<pre class="text"><code>Lege in diesem Ordner den Ordner n8n an. Frage, bevor du ihn anlegst.</code></pre></li>
+<li><p>Die Datei <a href="../workflows/beispiele/beispiel-1-kontaktanfragen.json">beispiel-1-kontaktanfragen.json</a> herunterladen (im Browser: rechte Maustaste, „Link speichern unter“).</p></li>
+<li><p>Die Datei im Ordner <code>kundenanfragen/n8n/</code> speichern.</p></li>
+<li><p>Prüfen: Im Ordner <code>n8n/</code> liegt <code>beispiel-1-kontaktanfragen.json</code>.</p></li>
+<li><p>Diesen Auftrag senden:</p>
+<pre class="text"><code>Erkläre den Workflow in n8n/beispiel-1-kontaktanfragen.json in drei Sätzen: Auslöser, Entscheidung, Ergebnis. Ändere danach nichts.</code></pre></li>
+<li><p>Prüfen: Die Erklärung nennt das Formular, den If-Knoten „Beschwerde?“ und zwei Ausgänge.</p></li>
+</ol>
+<p><strong>Prüfkriterium:</strong> Die Prüfungen in Schritt 4 und Schritt 6 bestehen.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Alternative: Datei vom Agenten anlegen lassen">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Alternative: Datei vom Agenten anlegen lassen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Statt Schritt 1 bis 3 kann der Agent die Datei selbst anlegen. Der Auftrag enthält den vollständigen Inhalt der Datei aus Beispiel 1; auf der Lernplattform ist er der Hauptweg.</p>
+<pre class="text"><code>Lege den Ordner n8n an und darin die Datei beispiel-1-kontaktanfragen.json. Übernimm den Text zwischen BEGINN und ENDE wörtlich, ohne etwas zu ändern. Frage, bevor du etwas anlegst.
+
+=== BEGINN ===
+{
+  "name": "Beispiel 1 · Kontaktanfragen sortieren",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Kontakt",
+        "formDescription": "Wir melden uns innerhalb eines Werktags.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "E-Mail",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Anliegen",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Frage zur Bestellung"
+                  },
+                  {
+                    "option": "Beschwerde"
+                  },
+                  {
+                    "option": "Rückruf"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Nachricht",
+              "fieldType": "textarea"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "form",
+      "name": "Kontaktformular",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "e0160819-96b1-5a28-9571-24dd6a26c008"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "if-c1",
+              "leftValue": "={{ $json.Anliegen }}",
+              "rightValue": "Beschwerde",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if",
+      "name": "Beschwerde?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "h1",
+              "name": "name",
+              "value": "={{ $json.Name }}",
+              "type": "string"
+            },
+            {
+              "id": "h2",
+              "name": "email",
+              "value": "={{ $json['E-Mail'] }}",
+              "type": "string"
+            },
+            {
+              "id": "h3",
+              "name": "anliegen",
+              "value": "={{ $json.Anliegen }}",
+              "type": "string"
+            },
+            {
+              "id": "h4",
+              "name": "prioritaet",
+              "value": "hoch",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "hoch",
+      "name": "Priorität hoch",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "n1",
+              "name": "name",
+              "value": "={{ $json.Name }}",
+              "type": "string"
+            },
+            {
+              "id": "n2",
+              "name": "email",
+              "value": "={{ $json['E-Mail'] }}",
+              "type": "string"
+            },
+            {
+              "id": "n3",
+              "name": "anliegen",
+              "value": "={{ $json.Anliegen }}",
+              "type": "string"
+            },
+            {
+              "id": "n4",
+              "name": "prioritaet",
+              "value": "normal",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "normal",
+      "name": "Priorität normal",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Kontaktformular": {
+      "main": [
+        [
+          {
+            "node": "Beschwerde?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Beschwerde?": {
+      "main": [
+        [
+          {
+            "node": "Priorität hoch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Priorität normal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
+=== ENDE ===</code></pre>
+<p>Danach weiter mit Schritt 4.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="praxis-workflow-ändern-und-in-n8n-testen" class="level2" data-number="29.5">
+<h2 data-number="29.5" class="anchored" data-anchor-id="praxis-workflow-ändern-und-in-n8n-testen"><span class="header-section-number">29.5</span> Praxis: Workflow ändern und in n8n testen</h2>
+<p><strong>Voraussetzung:</strong> Die Anmeldung in der eigenen n8n-Instanz ist erfolgt. Die Datei <code>beispiel-1-kontaktanfragen.json</code> liegt in <code>kundenanfragen/n8n/</code>.</p>
+<ol type="1">
+<li><p>Diesen Auftrag senden:</p>
+<pre class="text"><code>Erstelle eine Kopie als n8n/beispiel-1-datenschutz.json. Änderung: Der If-Knoten „Beschwerde?“ prüft zusätzlich, ob Anliegen gleich „Datenschutz“ ist, beide Bedingungen mit OR. Das Formular bekommt die Option „Datenschutz“. Sonst nichts ändern. Nenne mir die beiden Stellen, die du geändert hast.</code></pre></li>
+<li><p>Prüfen: Der Agent nennt zwei Stellen, die neue Formularoption und die zweite Bedingung im If-Knoten.</p></li>
+<li><p>In n8n einen neuen Workflow öffnen.</p></li>
+<li><p>Oben rechts auf das Drei-Punkte-Menü klicken.</p></li>
+<li><p><strong>Import from File</strong> wählen.</p></li>
+<li><p>Die Datei <code>kundenanfragen/n8n/beispiel-1-datenschutz.json</code> wählen.</p></li>
+<li><p>Prüfen: Der Canvas zeigt vier Knoten: Kontaktformular, Beschwerde?, Priorität hoch, Priorität normal.</p></li>
+<li><p>Unten auf <strong>Execute workflow</strong> klicken. n8n öffnet das Formular in einem neuen Tab.</p></li>
+<li><p>Name und E-Mail mit Testwerten ausfüllen.</p></li>
+<li><p>Als Anliegen <strong>Datenschutz</strong> wählen.</p></li>
+<li><p>Das Formular absenden.</p></li>
+<li><p>Zurück zu n8n wechseln und den Knoten <strong>Priorität hoch</strong> öffnen.</p></li>
+<li><p>Prüfen: Im Knoten steht die Anfrage mit <code>prioritaet</code> gleich <code>hoch</code>.</p></li>
+<li><p>Einen zweiten Lauf mit dem Anliegen <strong>Rückruf</strong> starten.</p></li>
+<li><p>Prüfen: Die Anfrage landet in <strong>Priorität normal</strong>.</p></li>
+</ol>
+<p><strong>Prüfkriterium:</strong> Die Anfrage mit Datenschutz landet in <strong>Priorität hoch</strong>, die Anfrage mit Rückruf in <strong>Priorität normal</strong>.</p>
+<p>Besteht Prüfung 13 nicht, bekommt der Agent den Befund, etwa „Datenschutz landet in Priorität normal. Prüfe die Bedingung im If-Knoten.“ Danach die korrigierte Datei erneut importieren.</p>
+<div class="callout callout-style-simple callout-warning callout-titled" title="Agent mit Zugriff auf n8n">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Agent mit Zugriff auf n8n
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Eine n8n-Anbindung (Weg B) handelt mit den Rechten des eigenen n8n-Kontos. Sie kann Workflows anlegen und ändern, je nach Freischaltung auch ausführen.</li>
+<li>Die Anbindung nur in einer Test-Instanz freischalten oder mit Freigabe der IT. Workflows, die echte Kundendaten verarbeiten, bleiben ohne Anbindung.</li>
+<li>Exportierte Workflow-Dateien enthalten die Namen hinterlegter Zugangsdaten (Credentials), aber keine Passwörter. Vor dem Weitergeben einer Datei diese Namen entfernen.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="weg-b-anbindung-erfragen-freiwillig" class="level2" data-number="29.6">
+<h2 data-number="29.6" class="anchored" data-anchor-id="weg-b-anbindung-erfragen-freiwillig"><span class="header-section-number">29.6</span> Weg B: Anbindung erfragen (freiwillig)</h2>
+<p>Ob der eigene Agent schon eine Verbindung zu n8n hat, lässt sich ohne Risiko herausfinden. Beide Aufträge lesen nur.</p>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Den Agenten fragen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Den Agenten fragen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre class="text"><code>Nur lesen und auflisten, nichts ändern. Hast du eine Anbindung an n8n (MCP-Server oder Werkzeug), mit der du Workflows lesen oder anlegen kannst? Nur antworten, nichts aufrufen.</code></pre>
+</div>
+</div>
+<ol type="1">
+<li><p>Die Frage aus dem Kasten „Den Agenten fragen“ senden.</p></li>
+<li><p>Prüfen: Die Antwort sagt ja oder nein. Bei nein endet die Aufgabe hier.</p></li>
+<li><p>Bei ja: diesen Auftrag senden:</p>
+<pre class="text"><code>Nur lesen und auflisten, nichts ändern. Liste über die n8n-Anbindung den Workflow „Kontaktanfragen sortieren“ aus Beispiel 1 auf: Namen der Knoten und ihre Verbindungen. Nichts anlegen, nichts ändern, nichts ausführen.</code></pre></li>
+</ol>
+<p><strong>Prüfkriterium:</strong> Die Antwort nennt die vier Knoten aus Beispiel 1, und der Agent hat vor dem Aufruf gefragt.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© <a href="https://www.kirenz.com/">Jan Kirenz</a>, 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
