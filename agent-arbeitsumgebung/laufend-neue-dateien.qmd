@@ -1,48 +1,142 @@
 # Laufend neue Dateien
 
-Ein Projektordner bleibt nur so lange brauchbar, wie neue Unterlagen denselben Weg nehmen. Im Alltag kommen Anfragen als weitergeleitete E-Mail, als Export aus dem Kontaktformular oder als PDF eines Lieferanten. Sie tragen Namen wie `Mail Mustermann.txt` oder `anfrage_formular(2).md`, und oft steht ein Personenname darin. Legen wir solche Dateien einzeln von Hand ab, wächst die Unordnung mit jeder Woche. Wir richten deshalb einen festen Weg ein: ein Ordner, in dem alles Neue landet, und ein Auftrag, der den Ordner immer gleich leert.
+Ein Projektordner bleibt nur so lange brauchbar, wie neue Unterlagen denselben Weg nehmen. Im Alltag kommen Anfragen als weitergeleitete E-Mail, als Export aus dem Kontaktformular oder als PDF eines Lieferanten. In diesem Kapitel richten wir mit dem eigenen Agenten einen Ordner ein, in dem alles Neue landet, und leeren ihn mit einem Auftrag, der immer gleich lautet. Die Erklärung folgt jeweils am eigenen Ergebnis.
 
-## Ein Ort für alles Neue
+Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.
 
-Der **Eingangsordner** heißt bei uns `eingang/`. Er ist der einzige Ort im Projektordner, an dem neue Dateien landen, egal in welchem Format und mit welchem Namen. Alles andere im Ordner ist sortiert. Der Eingangsordner entspricht dem Postfach eines neuen Mitarbeiters: Alles, was für ihn hereinkommt, landet zuerst dort.
+**Voraussetzung:** Der Ordner `kundenanfragen` ist in der App des Agenten geöffnet. `AGENTS.md` enthält sechs Regeln, `UEBERSICHT.md` und der Ordner `quellen/` liegen im Ordner (Stand nach dem Kapitel [Excel-Tabellen als Quelle](excel-als-quelle.qmd)).
+
+## Schritt 1: Den Eingang anlegen
+
+1. Diese Frage senden:
+
+   ```text
+   Kannst du Dateien innerhalb dieses Ordners umbenennen und verschieben? Fragst du vorher, oder muss ich das in AGENTS.md festlegen? Nur antworten, nichts ändern.
+   ```
+
+2. Prüfen: Der Agent sagt, ob er umbenennen und verschieben kann und ob er vorher fragt. Fragt er nicht von selbst, verlangt der Auftrag in Schritt 2 einen Plan vor dem Verschieben.
+3. Diesen Auftrag senden:
+
+   ```text
+   Lege den Ordner eingang an und darin zwei Beispielanfragen mit unordentlichen Dateinamen, etwa mit Leerzeichen oder ohne Datum. Eine Anfrage enthält einen erfundenen Personennamen im Text, zum Beispiel Erika Mustermann.
+   ```
+
+4. Den Ordner `eingang/` öffnen.
+5. Prüfen: `eingang/` enthält zwei Dateien. Eine davon nennt im Text einen Personennamen.
+
+### Das sollten wir jetzt sehen
+
+```text
+eingang/
+├── Mail Mustermann.txt
+└── anfrage_formular(2).md
+```
+
+Inhalt von `Mail Mustermann.txt`:
+
+```text
+Von: Erika Mustermann
+Datum: 16.10.2026
+Betreff: Rückruf
+
+Guten Tag, bitte rufen Sie mich wegen der Reparatur zurück.
+Viele Grüße
+Erika Mustermann
+```
+
+Ein mögliches Ergebnis. Dateinamen und Inhalte wählt der Agent selbst. Entscheidend sind unordentliche Namen und ein Personenname im Text.
+
+### Was gerade passiert ist
+
+Der Agent hat zwei Dateien angelegt, die nach keiner Regel benannt sind. Das ist Absicht: So sieht neues Material aus, bevor es sortiert ist. Legen wir solche Dateien einzeln von Hand ab, wächst die Unordnung mit jeder Woche.
+
+Der **Eingangsordner** heißt bei uns `eingang/`. Er ist der einzige Ort im Projektordner, an dem neue Dateien landen, egal in welchem Format und mit welchem Namen. Alles andere im Ordner ist sortiert. Der Eingangsordner entspricht dem Postfach eines neuen Mitarbeiters: Alles, was für ihn hereinkommt, landet zuerst dort. Die Trennung hat zwei Vorteile. Wir müssen beim Ablegen nicht nachdenken: Eine weitergeleitete E-Mail und ein Formularexport kommen beide zuerst nach `eingang/`. Und der Zustand des Ordners ist auf einen Blick erkennbar.
+
+::: {.callout-note title="Wenn es anders aussieht"}
+- Die Dateien haben schon ordentliche Namen: eine Datei selbst umbenennen, etwa in `Mail Mustermann.txt`.
+- Kein Personenname im Text: „Ergänze in einer der beiden Dateien den Namen Erika Mustermann als Absenderin.“
+- Der Agent sagt, er kann nicht umbenennen oder verschieben: Er schreibt die Datei dann unter dem neuen Namen neu. Nach Schritt 2 prüfen, ob die alte Datei aus `eingang/` verschwunden ist.
+:::
+
+## Schritt 2: Der feste Ablauf
+
+**Voraussetzung:** In `eingang/` liegen die zwei Beispielanfragen aus Schritt 1.
+
+1. Den festen Ablauf senden:
+
+   ```text
+   Sortiere alle Dateien in eingang/ ein: 1. Lies jede Datei. 2. Bestimme die Art (Anfrage, Antwort, Quelle, sonstiges). 3. Benenne um nach JJJJ-MM-TT-anliegen.md mit dem Datum aus der Datei, sonst heute. PDF und andere Dateien, die kein Text sind, behalten ihre Endung. 4. Entferne Personennamen und ersetze sie durch „Kundin“ oder „Kunde“. 5. Verschiebe nach anfragen/, antworten/ oder quellen/original/; unklare Dateien bleiben in eingang/ und werden mir gemeldet. 6. Ergänze UEBERSICHT.md. Zeige mir den Plan als Tabelle (alt, neu, Ziel), bevor du verschiebst.
+   ```
+
+2. Prüfen: Der Plan nennt für jede Datei den alten Namen, den neuen Namen und den Zielordner.
+3. Den Plan freigeben.
+4. Prüfen: `eingang/` ist leer, `UEBERSICHT.md` hat zwei neue Zeilen, und in keiner neuen Datei steht ein Personenname.
+
+### Das sollten wir jetzt sehen
+
+Der Plan des Agenten vor dem Verschieben:
+
+| alt | neu | Ziel |
+|---|---|---|
+| `Mail Mustermann.txt` | `2026-10-16-rueckruf.md` | `anfragen/` |
+| `anfrage_formular(2).md` | `2026-10-17-preisfrage.md` | `anfragen/` |
+
+Der Ordner vorher:
 
 ```text
 kundenanfragen/
 ├── AGENTS.md
+├── README.md
 ├── UEBERSICHT.md
-├── eingang/                      ← hier landet alles Neue
+├── anfragen/
+│   ├── 2026-10-05-terminwunsch.md
+│   ├── 2026-10-06-preisfrage.md
+│   └── 2026-10-07-beschwerde.md
+├── eingang/
 │   ├── Mail Mustermann.txt
 │   └── anfrage_formular(2).md
-├── anfragen/
-├── antworten/
 └── quellen/
-    ├── original/
-    └── text/
 ```
 
-Die Trennung hat zwei Vorteile. Wir müssen beim Ablegen nicht nachdenken: Eine weitergeleitete E-Mail und ein Formularexport kommen beide zuerst nach `eingang/`. Und der Zustand des Ordners ist auf einen Blick erkennbar. Ein leerer Eingang heißt: Alles ist einsortiert.
-
-## Die Namenskonvention
-
-Damit Dateien in `anfragen/` auffindbar bleiben, folgen ihre Namen der Namenskonvention aus dem Kapitel [Der Projektordner](projektordner.qmd):
+Der Ordner nachher:
 
 ```text
-JJJJ-MM-TT-anliegen.md
+kundenanfragen/
+├── AGENTS.md
+├── README.md
+├── UEBERSICHT.md                    ← zwei neue Zeilen
+├── anfragen/
+│   ├── 2026-10-05-terminwunsch.md
+│   ├── 2026-10-06-preisfrage.md
+│   ├── 2026-10-07-beschwerde.md
+│   ├── 2026-10-16-rueckruf.md       ← neu, „Kundin“ statt Name
+│   └── 2026-10-17-preisfrage.md     ← neu
+├── eingang/                         (leer)
+└── quellen/
 ```
 
-Das Datum steht vorne, in der Reihenfolge Jahr, Monat, Tag. So sortiert jedes Dateiprogramm die Anfragen automatisch chronologisch. Danach folgt das Anliegen in einem oder zwei Wörtern, klein geschrieben und mit Bindestrichen verbunden.
+Namen und Daten der eigenen Dateien weichen ab. Entscheidend: `eingang/` ist leer, und die neuen Dateien folgen dem Muster `JJJJ-MM-TT-anliegen.md`.
 
-| Alter Name | Neuer Name | Was sich ändert |
-|---|---|---|
-| `Mail Mustermann.txt` | `2026-10-16-rueckruf.md` | Datum und Anliegen statt Personenname |
-| `anfrage_formular(2).md` | `2026-10-17-preisfrage.md` | Datum und Anliegen statt Zählnummer |
-| `Terminanfrage NEU.txt` | `2026-10-20-terminwunsch.md` | Datum statt „NEU“ |
+### Was gerade passiert ist
 
-Das Datum ist der Tag des Eingangs, also das Datum aus der Datei selbst. Der Tag, an dem wir einsortieren, spielt keine Rolle. Sortieren wir am Montag drei Anfragen vom Freitag ein, tragen alle drei das Datum vom Freitag. Nur wenn die Datei kein Datum enthält, nimmt der Agent den heutigen Tag. PDF-Dateien und andere Dateien, die kein Text sind, behalten ihre Endung, etwa `.pdf`.
+Ein einziger Auftrag hat beide Dateien gelesen, umbenannt, von Namen befreit, einsortiert und in die Übersicht eingetragen.
 
-## Der feste Ablauf in sechs Schritten
+Ein **fester Ablauf** ist ein Auftrag, der immer gleich lautet, egal was im Eingang liegt. Er ist die Morgenroutine für dieses Postfach. Der Agent schaut aber nicht von selbst hinein: Wir senden ihm den Ablauf. So wurde `Mail Mustermann.txt` zu `anfragen/2026-10-16-rueckruf.md`, und im Text steht „Kundin“ statt des Namens (Regel 3).
 
-Ein **fester Ablauf** ist ein Auftrag, der immer gleich lautet, egal was im Eingang liegt. Er ist die Morgenroutine für dieses Postfach. Der Agent schaut aber nicht von selbst hinein: Wir senden ihm den Ablauf. Unserer hat sechs Schritte:
+Die neuen Namen folgen der **Namenskonvention** aus dem Kapitel [Der Projektordner](projektordner.qmd): `JJJJ-MM-TT-anliegen.md`. Das Datum steht vorne, in der Reihenfolge Jahr, Monat, Tag. So sortiert jedes Dateiprogramm die Anfragen chronologisch. Danach folgt das Anliegen in einem oder zwei Wörtern, klein geschrieben und mit Bindestrichen verbunden. Das Datum ist der Tag des Eingangs, also das Datum aus der Datei selbst, nicht der Tag des Einsortierens. Sortieren wir am Montag drei Anfragen vom Freitag ein, tragen alle drei das Datum vom Freitag. Nur wenn die Datei kein Datum enthält, nimmt der Agent den heutigen Tag. PDF-Dateien und andere Dateien, die kein Text sind, behalten ihre Endung.
+
+Bevor der Agent verschiebt, zeigt er uns den Plan als Tabelle. So sehen wir jede Änderung, bevor sie passiert, auch wenn das eigene Werkzeug beim Verschieben nicht von selbst nachfragt.
+
+::: {.callout-note title="Wenn es anders aussieht"}
+- Eine Datei bleibt in `eingang/`, und der Agent meldet sie: Der Ablauf konnte sie nicht zuordnen. Wohin sie gehört, entscheiden wir selbst.
+- `eingang/` fehlt im Nachher-Stand: Manche Apps blenden leere Ordner aus. Entscheidend ist, dass keine Datei mehr darin liegt.
+- Ein Personenname steht noch im Text: „Ersetze in den neuen Dateien in anfragen/ alle Personennamen durch Kundin oder Kunde.“
+- Der Agent hat ohne Plan verschoben: die neuen Dateien und `UEBERSICHT.md` selbst prüfen. „Welche Dateien hast du umbenannt und verschoben?“
+:::
+
+## Rückblick: der Ablauf in sechs Schritten
+
+Diese sechs Schritte stehen wörtlich im Auftrag aus Schritt 2:
 
 | Schritt | Was der Agent tut | Warum an dieser Stelle |
 |---|---|---|
@@ -55,60 +149,10 @@ Ein **fester Ablauf** ist ein Auftrag, der immer gleich lautet, egal was im Eing
 
 Die Reihenfolge folgt einer einfachen Logik: erst lesen, dann entscheiden, dann handeln, zuletzt dokumentieren. Wer die Schritte für den eigenen Eingang in anderen Worten beschreibt, sollte diese Reihenfolge beibehalten.
 
-Bevor der Agent verschiebt, zeigt er uns einen Plan als Tabelle mit den Spalten alt, neu und Ziel. So sehen wir jede Änderung, bevor sie passiert, auch wenn das eigene Werkzeug beim Verschieben nicht von selbst nachfragt.
-
-## Was nicht passt, bleibt liegen
-
-Nicht jede Datei im Eingang passt in einen der drei Zielordner. Liegt dort etwa eine Rechnung, die der Betrieb an einen Kunden geschickt hat, gibt es im Projektordner keinen passenden Platz. Schritt 5 regelt diesen Fall: Unklare Dateien bleiben in `eingang/`, und der Agent meldet sie.
-
-Die Entscheidung liegt dann bei uns. Gehören Rechnungen überhaupt in diesen Projektordner? Wenn ja, legen wir bewusst einen Zielordner an und ergänzen den Ablauf. Zwei andere Reaktionen des Agenten wären problematisch. Ein selbst angelegter Ordner `rechnungen/` wirkt hilfsbereit, ändert aber ohne Auftrag die Ordnerstruktur. Eine Rechnung in `anfragen/` verfälscht die Übersicht der Anfragen. Löschen kommt in keinem Schritt des Ablaufs vor.
+Nicht jede Datei im Eingang passt in einen der drei Zielordner. Liegt dort etwa eine Rechnung, die der Betrieb an einen Kunden geschickt hat, gibt es im Projektordner keinen passenden Platz. Schritt 5 regelt diesen Fall: Unklare Dateien bleiben in `eingang/`, und der Agent meldet sie. Die Entscheidung liegt dann bei uns. Gehören Rechnungen überhaupt in diesen Projektordner? Wenn ja, legen wir bewusst einen Zielordner an und ergänzen den Ablauf. Zwei andere Reaktionen des Agenten wären problematisch. Ein selbst angelegter Ordner `rechnungen/` wirkt hilfsbereit, ändert aber ohne Auftrag die Ordnerstruktur. Eine Rechnung in `anfragen/` verfälscht die Übersicht der Anfragen. Löschen kommt in keinem Schritt des Ablaufs vor.
 
 ::: {.callout-note title="Eingang leer, Arbeit nicht fertig"}
 Ein leerer Eingang bedeutet: Alle Dateien liegen am richtigen Ort und stehen in der Übersicht. Beantwortet ist damit noch keine Anfrage. Einsortieren und Bearbeiten sind getrennte Aufträge, und das hält beide kurz und prüfbar.
 :::
 
-## Im Nachbau: den Posteingang leeren
-
-Der folgende Nachbau zeigt den festen Ablauf an zwei Dateien mit unordentlichen Namen. Eine davon enthält einen Personennamen. Wir sehen, wie der Agent beide Dateien liest, den Plan als Tabelle zeigt, nach der Freigabe verschiebt, den Namen durch „Kundin“ ersetzt und die Übersicht ergänzt. Mit „Weiter“ klicken wir uns durch die Sitzung.
-
-```{=html}
-<iframe class="muster-agent" src="widgets/07-posteingang-leeren.html" title="Nachbau eines Agenten: Posteingang leeren" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
-<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
-```
-
-Am Ende verschwindet `eingang/` aus dem Dateibaum des Nachbaus, weil der Ordner leer ist. Im eigenen Werkzeug kann der leere Ordner sichtbar bleiben. Entscheidend ist, dass keine Datei mehr darin liegt.
-
-::: {.callout-tip title="Den Agenten fragen"}
-Ob der Agent Dateien umbenennen und verschieben darf und ob er vorher fragt, hängt vom Werkzeug und seinen Einstellungen ab:
-
-```text
-Kannst du Dateien innerhalb dieses Ordners umbenennen und verschieben? Fragst du vorher, oder muss ich das in AGENTS.md festlegen? Nur antworten, nichts ändern.
-```
-:::
-
-## Praxis: Eingang einrichten und leeren
-
-Wir lassen den Agenten den Eingangsordner mit zwei unordentlichen Beispieldateien anlegen und ihn mit dem festen Ablauf leeren.
-
-**Voraussetzung:** Der Ordner `kundenanfragen` ist im Agenten geöffnet. `AGENTS.md` enthält sechs Regeln, `UEBERSICHT.md` liegt im Ordner (Stand nach dem Kapitel [Kontext bereitstellen](kontext-bereitstellen.qmd)).
-
-1. Die Frage aus dem Kasten „Den Agenten fragen“ senden.
-2. Prüfen: Der Agent sagt, ob er umbenennen und verschieben kann und ob er vorher fragt. Fragt er nicht von selbst, sorgt der Plan in Schritt 4 für die Rückfrage.
-3. Senden:
-
-   ```text
-   Lege den Ordner eingang an und darin zwei Beispielanfragen mit unordentlichen Dateinamen, etwa mit Leerzeichen oder ohne Datum. Eine Anfrage enthält einen erfundenen Personennamen im Text, zum Beispiel Erika Mustermann.
-   ```
-
-4. Den festen Ablauf senden:
-
-   ```text
-   Sortiere alle Dateien in eingang/ ein: 1. Lies jede Datei. 2. Bestimme die Art (Anfrage, Antwort, Quelle, sonstiges). 3. Benenne um nach JJJJ-MM-TT-anliegen.md mit dem Datum aus der Datei, sonst heute. PDF und andere Dateien, die kein Text sind, behalten ihre Endung. 4. Entferne Personennamen und ersetze sie durch „Kundin“ oder „Kunde“. 5. Verschiebe nach anfragen/, antworten/ oder quellen/original/; unklare Dateien bleiben in eingang/ und werden mir gemeldet. 6. Ergänze UEBERSICHT.md. Zeige mir den Plan als Tabelle (alt, neu, Ziel), bevor du verschiebst.
-   ```
-
-5. Prüfen: Der Plan nennt für jede Datei den alten Namen, den neuen Namen und den Zielordner.
-6. Den Plan freigeben.
-
-**Prüfkriterium:** `eingang/` ist leer, `UEBERSICHT.md` hat zwei neue Zeilen, und in keiner neuen Datei steht ein Personenname.
-
-Der Auftrag in Schritt 4 ist lang, und wir brauchen ihn jede Woche wieder. Im Kapitel [Skills: Abläufe, die bleiben](skills.qmd) schreiben wir ihn einmal als Skill auf. Danach genügen zwei Wörter.
+Der Auftrag aus Schritt 2 ist lang, und wir brauchen ihn jede Woche wieder. Im Kapitel [Skills: Abläufe, die bleiben](skills.qmd) schreiben wir ihn einmal als Skill auf. Danach genügen zwei Wörter.
