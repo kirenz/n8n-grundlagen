@@ -1,6 +1,6 @@
 # Chat oder Agent?
 
-Ein Chat-Assistent und ein Agent nutzen oft dasselbe Sprachmodell (das KI-Modell, das den Text erzeugt). Der Unterschied liegt im Arbeitsplatz. Der Chat sieht nur, was wir ins Eingabefeld schreiben oder hineinkopieren. Der Agent arbeitet in einem Ordner auf unserem Rechner, öffnet dort selbst Dateien und legt seine Ergebnisse als Dateien ab. Sobald Material schon als Dateien vorliegt oder ein Ergebnis als Datei entstehen soll, spart der Agent die Kopierarbeit in beide Richtungen.
+Ein Chat-Assistent und ein Agent nutzen oft dasselbe Sprachmodell (das KI-Modell, das den Text erzeugt). Der Unterschied liegt im Arbeitsplatz. Der Chat sieht nur, was wir ins Eingabefeld schreiben oder hineinkopieren. Der Agent arbeitet in einem Ordner auf unserem Rechner, öffnet dort selbst Dateien und legt seine Ergebnisse als Dateien ab. In diesem Kapitel richten wir den eigenen Agenten ein und geben ihm zwei Aufträge. Die Erklärung folgt jeweils am eigenen Ergebnis.
 
 ## Was hier mit Agent gemeint ist
 
@@ -13,49 +13,117 @@ Mit Agent meinen wir in diesem Buch einen **Coding-Agenten**: ein KI-Werkzeug, d
 | Antigravity | Google | [Antigravity-App](https://antigravity.google/download) | [Antigravity-Dokumentation](https://antigravity.google/docs) |
 | Cursor | Anysphere | [Cursor-App](https://cursor.com/download) | [Cursor-Dokumentation](https://cursor.com/docs) |
 
-Wir arbeiten in diesem Buch in der App des jeweiligen Werkzeugs. Manche Werkzeuge lassen sich auch über ein Textfenster für Befehle (Terminal) bedienen; das brauchen wir nicht.
-
-Die Bedienung unterscheidet sich von Werkzeug zu Werkzeug und ändert sich oft. Das Buch zeigt deshalb keine bestimmte Oberfläche. Die Nachbauten in den Kapiteln stellen einen typischen Agenten nach; Dateibaum, Chat und Rückfrage finden wir in ähnlicher Form in jedem der genannten Werkzeuge. Was sich je Werkzeug unterscheidet, etwa Dateinamen und Speicherorte, steht gesammelt in der [Übersicht nach Werkzeug](#uebersicht-nach-werkzeug).
+Wir arbeiten in diesem Buch in der **App** des jeweiligen Werkzeugs, dem Programm auf dem Rechner. Manche Werkzeuge lassen sich auch über ein Textfenster für Befehle (Terminal) bedienen; das brauchen wir nicht. Die Bedienung unterscheidet sich von Werkzeug zu Werkzeug und ändert sich oft. Das Buch zeigt deshalb keine bestimmte Oberfläche. Was sich je Werkzeug unterscheidet, etwa Dateinamen und Speicherorte, steht gesammelt in der [Übersicht nach Werkzeug](#uebersicht-nach-werkzeug).
 
 Gemeint ist ein Arbeitswerkzeug am eigenen Rechner. Agenten, die als Baustein in eine Automatisierung eingebaut sind, etwa in einen Workflow, sind etwas anderes.
 
-## Markdown: das Dateiformat in diesem Buch
+Jeder Schritt hat denselben Aufbau: eine Anleitung, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.
 
-Fast alle Dateien in diesem Buch sind **Markdown**-Dateien. Markdown ist reiner Text mit wenigen Zeichen für die Gliederung: `#` am Zeilenanfang macht eine Überschrift, `-` einen Listenpunkt. Die Dateien enden auf `.md`. Eine Kundenanfrage sieht darin so aus:
+## Schritt 1: App installieren und Ordner öffnen
 
-```markdown
-# Terminwunsch
+**Voraussetzung:** Ein Konto bei einem der Anbieter.
 
-- Datum: 2026-10-05
-- Kanal: E-Mail
-- Anliegen: Termin für eine Reparatur
+1. Die App des eigenen Werkzeugs aus der Tabelle oben herunterladen.
+2. Die App installieren und sich anmelden. Die Anleitung des Herstellers steht in der Tabelle.
+3. Einen leeren Ordner `agent-test` anlegen, etwa im Ordner `Dokumente`.
+4. Den Ordner `agent-test` in der App öffnen.
+5. Prüfen: Die App zeigt den Ordner `agent-test`. Der Ordner ist leer.
+
+### Das sollten wir jetzt sehen
+
+Schema einer typischen App, kein echtes Produkt:
+
+```{=html}
+<div style="max-width:640px;border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;color:#1f2430;margin:0 0 1rem;display:flex;flex-wrap:wrap">
+<div style="flex:1 1 150px;border-right:1px solid #dcd9d2"><div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170">Dateibaum</div><div style="padding:12px;font-size:.9rem;color:#5b6170;min-height:120px"><span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#1f2430;font-weight:600">agent-test</span><br>(leer)</div></div>
+<div style="flex:1 1 150px;border-right:1px solid #dcd9d2"><div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170">Editor</div><div style="padding:12px;font-size:.9rem;color:#5b6170">Keine Datei geöffnet</div></div>
+<div style="flex:1 1 180px"><div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170">Chat</div><div style="padding:12px;font-size:.9rem;color:#5b6170"><div style="margin-top:72px;border:1px solid #dcd9d2;border-radius:999px;padding:6px 12px;background:#fbfaf7">Auftrag eingeben …</div></div></div>
+</div>
 ```
 
-Warum dieses Format? Mensch und Agent lesen dieselbe Datei, ohne Spezialprogramm und ohne Umweg. Ändert der Agent etwas, ist jede neue Zeile sichtbar. Im Kapitel [Markdown: Text, den Mensch und Agent lesen](markdown.qmd) legen wir Schritt für Schritt eigene Markdown-Dateien an und sehen dort auch, was eine Word-Datei davon unterscheidet.
+Aufteilung und Bezeichnungen unterscheiden sich je App. Manche Apps zeigen den Dateibaum erst auf Klick.
 
-## Zwei Arten zu arbeiten
+### Was gerade passiert ist
 
-Ein **Chat-Assistent** antwortet auf das, was im Eingabefeld steht. Für drei Kundenanfragen heißt das: jede Anfrage öffnen, den Text kopieren, in den Chat einfügen, um eine Sortierung bitten und die Antwort danach von Hand in eine Datei übertragen. Beim nächsten Mal beginnt das Kopieren von vorn.
+Wir haben den Arbeitsplatz des Agenten festgelegt: Er arbeitet in dem Ordner, den wir in der App geöffnet haben. Der **Dateibaum** ist die Liste der Dateien und Unterordner in diesem Ordner; hier erscheinen die Dateien, die der Agent anlegt. Der **Chat** ist das Eingabefeld für unsere Aufträge, darüber steht der Verlauf mit den Antworten und Rückfragen des Agenten.
 
-Ein **Agent** arbeitet in einem Ordner. Er liest Dateien, legt neue an und führt Befehle aus. Ein **Befehl** ist hier ein kleines Programm, das der Agent startet, etwa um eine Datei umzuwandeln oder einen Ordner zu durchsuchen. Vor jeder Änderung und vor jedem Befehl fragt der Agent nach oder zeigt, was er vorhat. Für dieselben drei Anfragen genügt ein Satz: „Sortiere die Anfragen in `anfragen/` nach Dringlichkeit und schreibe das Ergebnis in `UEBERSICHT.md`.“
+Welches Werkzeug wir nutzen, ist für dieses Buch unerheblich. Es muss drei Dinge können:
 
-Zum Vergleich: Der Chat gleicht einem externen Berater am Telefon, dem wir jedes Mal alles vorlesen. Der Agent gleicht einem neuen Mitarbeiter am eigenen Schreibtisch, mit Zugang zur Ablage. Vor wichtigen Schritten fragt er nach.
+1. Es arbeitet in einem Ordner auf dem eigenen Rechner: Dateien lesen, anlegen und ändern.
+2. Es fragt vor Änderungen und vor dem Ausführen von Befehlen nach oder zeigt die Änderungen zur Prüfung.
+3. Es liest eine Anweisungsdatei im Projektordner.
 
-| | Chat-Assistent | Agent im Ordner |
-|---|---|---|
-| **Woher kommt das Material?** | Wir kopieren es ins Eingabefeld. | Der Agent öffnet die Dateien im Ordner selbst. |
-| **Wohin geht das Ergebnis?** | Es steht als Text im Chat und wird von Hand übertragen. | Es entsteht als Datei im Ordner. |
-| **Was bleibt für das nächste Mal?** | Der Chatverlauf, sofern wir ihn wiederfinden. | Die Dateien im Ordner, für jede neue Sitzung lesbar. |
-| **Wer behält die Kontrolle?** | Wir, weil nichts außerhalb des Chats passiert. | Wir, weil der Agent vor Änderungen fragt. |
+Schritt 2 prüft die ersten beiden Punkte, Schritt 3 den dritten.
 
-## Ein Agent bei der Arbeit
+::: {.callout-note title="Wenn es anders aussieht"}
+- Die App fragt nach einem Projekt oder Arbeitsbereich: den Ordner `agent-test` wählen.
+- Die Claude-Desktop-App zeigt nur einen Chat ohne Ordner: in den Bereich „Code“ wechseln und dort den Ordner wählen.
+- Die App zeigt keinen Dateibaum: Viele Apps blenden ihn erst auf Klick ein. Der Agent arbeitet trotzdem im geöffneten Ordner.
+:::
 
-Der folgende Nachbau zeigt einen typischen Agenten mit dem Ordner `kundenanfragen`: links der Dateibaum, in der Mitte der Editor mit dem Inhalt der gerade geöffneten Datei, rechts der Chat. Mit „Weiter“ klicken wir Schritt für Schritt durch die Sitzung. An der Rückfrage entscheiden wir selbst, ob der Agent die Datei anlegen darf.
+## Schritt 2: Der erste Auftrag
+
+Mit diesem Selbsttest prüfen wir, ob das eigene Werkzeug die ersten beiden Anforderungen erfüllt. Den Ordner `agent-test` nutzen wir im Kapitel [Markdown](markdown.qmd) weiter.
+
+**Voraussetzung:** Der leere Ordner `agent-test` ist in der App geöffnet.
+
+1. Diesen Auftrag senden:
+
+   ```text
+   Lege in diesem Ordner die Datei hallo.md an. Inhalt: eine Überschrift „Test“ und ein Satz, welches Datum heute ist. Frage vorher, ob du die Datei anlegen darfst.
+   ```
+
+2. Prüfen: Der Agent fragt vor dem Anlegen nach oder zeigt die Änderung zur Freigabe.
+3. Das Anlegen freigeben.
+4. Prüfen: Im Dateibaum steht die Datei `hallo.md`.
+5. `hallo.md` in der App öffnen.
+6. Prüfen: Zeile 1 beginnt mit `#`. Darunter steht ein Satz mit dem heutigen Datum.
+
+### Das sollten wir jetzt sehen
+
+Die Rückfrage im Chat, sinngemäß:
+
+```{=html}
+<div style="max-width:560px;border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;color:#1f2430;margin:0 0 1rem">
+<div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170">Chat</div>
+<div style="padding:10px 12px;line-height:1.45">
+<div style="background:#f4f2ed;border:1px solid #dcd9d2;border-radius:10px;padding:8px 11px"><span style="display:block;font-size:11.5px;color:#5b6170">Agent</span>Ich lege die Datei <code>hallo.md</code> mit einer Überschrift und dem heutigen Datum an. Darf ich?<br><span style="display:inline-block;margin:6px 6px 0 0;padding:2px 10px;border:1px solid #23417a;color:#23417a;border-radius:999px;font-size:12.5px;font-weight:600">Erlauben</span><span style="display:inline-block;margin:6px 6px 0 0;padding:2px 10px;border:1px solid #dcd9d2;border-radius:999px;font-size:12.5px">Ablehnen</span></div>
+</div>
+</div>
+```
+
+Nach der Freigabe die Datei `hallo.md` mit allen Zeichen, das Datum ist das eigene:
+
+```{.markdown filename="hallo.md"}
+# Test
+
+Heute ist der 17. Oktober 2026.
+```
+
+### Was gerade passiert ist
+
+Wir haben einen Satz geschrieben. Der Agent hat nachgefragt und dann die Datei `hallo.md` in unserem Ordner angelegt. Das Ergebnis liegt als Datei auf unserem Rechner.
+
+Ein **Agent** arbeitet in einem Ordner. Er liest Dateien, legt neue an und führt Befehle aus. Ein Befehl ist hier ein kleines Programm, das der Agent startet, etwa um eine Datei umzuwandeln oder einen Ordner zu durchsuchen. Vor jeder Änderung und vor jedem Befehl fragt der Agent nach oder zeigt, was er vorhat. Ein Chat-Assistent antwortet nur auf das, was im Eingabefeld steht. Mit ihm hätten wir den Text erhalten und `hallo.md` selbst angelegt. Zum Vergleich: Der Chat gleicht einem externen Berater am Telefon, dem wir jedes Mal alles vorlesen. Der Agent gleicht einem neuen Mitarbeiter am eigenen Schreibtisch, mit Zugang zur Ablage. Vor wichtigen Schritten fragt er nach.
+
+`hallo.md` ist eine **Markdown**-Datei. Markdown ist reiner Text mit wenigen Zeichen für die Gliederung: `#` am Zeilenanfang macht eine Überschrift, `-` einen Listenpunkt. Die Dateien enden auf `.md`. Fast alle Dateien in diesem Buch sind Markdown-Dateien, weil Mensch und Agent dieselbe Datei ohne Spezialprogramm lesen und jede geänderte Zeile sichtbar ist. Im Kapitel [Markdown: Text, den Mensch und Agent lesen](markdown.qmd) legen wir Schritt für Schritt weitere Markdown-Dateien an und sehen dort auch, was eine Word-Datei davon unterscheidet.
+
+::: {.callout-note title="Wenn es anders aussieht"}
+- Der Agent legt die Datei ohne Rückfrage an: Das Werkzeug läuft wahrscheinlich in einem Modus ohne Rückfragen. Die Einstellung steht in der Anleitung des Herstellers. Erst weiterarbeiten, wenn der Agent vor Änderungen fragt.
+- Der Agent fragt auch vor dem Lesen oder vor einem Befehl: Das ist in Ordnung. Freigeben, was zum Auftrag passt.
+- `hallo.md` fehlt im Dateibaum: den Ordner schließen und erneut öffnen. Fehlt die Datei weiter: „Wo hast du hallo.md angelegt?“
+:::
+
+### So sieht es mit echtem Material aus
+
+Der folgende Nachbau zeigt dasselbe Prinzip mit drei Kundenanfragen im Ordner `kundenanfragen`, den wir im Kapitel [Der Projektordner](projektordner.qmd) selbst anlegen. Er stellt einen typischen Agenten nach, kein echtes Produkt: links der Dateibaum, in der Mitte der Editor mit dem Inhalt der gerade geöffneten Datei, rechts der Chat. Mit „Weiter“ klicken wir Schritt für Schritt durch die Sitzung. An der Rückfrage entscheiden wir selbst, ob der Agent die Datei anlegen darf.
 
 ```{=html}
 <iframe class="muster-agent" src="widgets/01-chat-oder-agent-sortieren.html" title="Nachbau eines Agenten: drei Anfragen nach Dringlichkeit sortieren" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
 <script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
 ```
+
+Mit einem Chat-Assistenten hieße das: jede Anfrage öffnen, den Text kopieren, in den Chat einfügen, um eine Sortierung bitten und die Antwort danach von Hand in eine Datei übertragen. Beim nächsten Mal beginnt das Kopieren von vorn. Dem Agenten genügt ein Satz: „Sortiere die Anfragen in `anfragen/` nach Dringlichkeit und schreibe das Ergebnis in `UEBERSICHT.md`.“
 
 Vier Dinge fallen auf. Der Auftrag nennt nur den Ordner und die Zieldatei; niemand kopiert eine Anfrage in den Chat. Der Agent öffnet jede der drei Anfragen selbst und liest die Zeile mit dem Anliegen. Bevor er etwas anlegt, fragt er. Und das Ergebnis steht danach als Datei im Ordner: Der Agent hat die Datei `UEBERSICHT.md` neu angelegt, so wie es der Auftrag verlangt. Sie liegt jetzt neben dem Ordner `anfragen/` und hat diesen Inhalt:
 
@@ -95,9 +163,14 @@ Aus `#` wird eine Überschrift, aus den Zeilen mit senkrechten Strichen eine Tab
 
 Die Datei bleibt liegen. Kommt morgen eine vierte Anfrage, ergänzt der Agent dieselbe Übersicht, statt eine neue Liste im Chat zu erzeugen. Zum Schluss meldet er, was sich im Ordner geändert hat: eine Datei angelegt, keine geändert. Diese Meldung machen wir im Kapitel [AGENTS.md: die Hausordnung](agents-md.qmd) zur festen Regel.
 
-## Wann sich der Agent lohnt
+| | Chat-Assistent | Agent im Ordner |
+|---|---|---|
+| **Woher kommt das Material?** | Wir kopieren es ins Eingabefeld. | Der Agent öffnet die Dateien im Ordner selbst. |
+| **Wohin geht das Ergebnis?** | Es steht als Text im Chat und wird von Hand übertragen. | Es entsteht als Datei im Ordner. |
+| **Was bleibt für das nächste Mal?** | Der Chatverlauf, sofern wir ihn wiederfinden. | Die Dateien im Ordner, für jede neue Sitzung lesbar. |
+| **Wer behält die Kontrolle?** | Wir, weil nichts außerhalb des Chats passiert. | Wir, weil der Agent vor Änderungen fragt. |
 
-Der Agent lohnt sich, wenn das Material schon als Dateien vorliegt oder das Ergebnis als Datei entstehen soll. Für eine kurze Frage ohne Material reicht der Chat. Vier Aufgaben aus dem Büroalltag zeigen die Grenze:
+Der Agent lohnt sich also, wenn das Material schon als Dateien vorliegt oder das Ergebnis als Datei entstehen soll. Für eine kurze Frage ohne Material reicht der Chat. Vier Aufgaben aus dem Büroalltag zeigen die Grenze:
 
 | Aufgabe | Material als Dateien? | Ergebnis als Datei? | Passendes Werkzeug |
 |---|---|---|---|
@@ -108,26 +181,45 @@ Der Agent lohnt sich, wenn das Material schon als Dateien vorliegt oder das Erge
 
 Die Begrüßung für die Website klingt nach Arbeit an einer Datei. Sie ist aber ein kurzer Text ohne Material, den wir an einer Stelle einfügen. Bei den 40 Anfragen dagegen liest der Agent den Ordner selbst und schreibt die Tabelle, ohne dass wir vierzigmal kopieren.
 
-## Vier Bausteine für die Arbeit mit einem Agenten
+## Schritt 3: Den Agenten nach sich selbst fragen
 
-Damit ein Agent verlässlich arbeitet, braucht er mehr als einen Auftrag. Der neue Mitarbeiter ist fachlich fit, kennt aber unseren Betrieb nicht. Anders als ein Mensch erinnert er sich nicht von selbst an gestern: Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Darum steht alles Wichtige schriftlich in seinem **Onboarding**, der Einarbeitung neuer Mitarbeitender. Vier Bausteine bilden seine Onboarding-Mappe und fassen zusammen, was die folgenden Kapitel aufbauen:
+Einige Details hängen vom Werkzeug ab, etwa der Name der Anweisungsdatei. Statt sie nachzuschlagen, fragen wir den Agenten selbst.
 
-![Vier Bausteine einer Arbeitsumgebung für einen Agenten](images/01-leitbild.svg){fig-alt="Vier Karten: Ordner gleich Arbeitsplatz mit Ablage, AGENTS.md gleich Hausordnung, Skills gleich Arbeitsanweisungen, MCP gleich Zugänge." width="100%"}
+**Voraussetzung:** Der Ordner `agent-test` ist in der App geöffnet.
 
-- **Ordner = Arbeitsplatz mit Ablage.** Alles, was der Agent kennen soll, liegt als Datei im Projektordner. Darum geht es in den Kapiteln [Der Projektordner](projektordner.qmd), [Kontext bereitstellen](kontext-bereitstellen.qmd), [PDFs als Quellen](pdf-als-quelle.qmd), [Excel-Tabellen als Quelle](excel-als-quelle.qmd) und [Laufend neue Dateien](laufend-neue-dateien.qmd).
-- **AGENTS.md = Hausordnung.** Kurze, prüfbare Regeln, die der Agent zu Beginn jeder Sitzung zuerst liest. Eine **Sitzung** ist eine Unterhaltung mit dem Agenten vom Start bis zum Schließen. Siehe [AGENTS.md: die Hausordnung](agents-md.qmd).
-- **Skills = Arbeitsanweisungen.** Abläufe mit mehreren Schritten, die der Agent bei Bedarf hervorholt. Siehe [Skills](skills.qmd).
-- **MCP = Zugänge.** Zugänge zu anderen Systemen nach einem gemeinsamen Standard (MCP steht für Model Context Protocol). Siehe [MCP](mcp.qmd) und [Konnektoren und Plugins](konnektoren-plugins.qmd).
+1. Diese Frage senden:
 
-## Was der Agent können muss
+   ```text
+   Welche Datei im Projektordner liest du automatisch als Anweisung? Nenne den Dateinamen und den Ort. Nur antworten, nichts ändern.
+   ```
 
-Welches Werkzeug wir nutzen, ist für dieses Buch unerheblich. Es muss drei Dinge können:
+2. Prüfen: Die Antwort nennt einen Dateinamen, etwa `AGENTS.md` oder `CLAUDE.md`.
 
-1. Es arbeitet in einem Ordner auf dem eigenen Rechner: Dateien lesen, anlegen und ändern.
-2. Es fragt vor Änderungen und vor dem Ausführen von Befehlen nach oder zeigt die Änderungen zur Prüfung.
-3. Es liest eine **Anweisungsdatei** im Projektordner. Das ist eine Datei mit Regeln, die der Agent zu Beginn jeder Sitzung von selbst öffnet: `AGENTS.md` oder der Name, den das Werkzeug dafür nutzt.
+### Das sollten wir jetzt sehen
 
-Die Installation erklärt dieses Buch nicht. Die Anleitungen der Hersteller stehen in der Übersicht unten. Einige Details hängen vom Werkzeug ab, etwa der Name der Anweisungsdatei oder der Ort für Skills. Statt sie für jedes Produkt nachzuschlagen, fragen wir den Agenten selbst. Diese **Selbstauskunft** ersetzt im Buch die Produktdokumentation: Jedes Kapitel enthält eine passende Frage zum Kopieren.
+Eine Beispielantwort:
+
+```{=html}
+<div style="max-width:560px;border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;color:#1f2430;margin:0 0 1rem">
+<div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170">Chat</div>
+<div style="padding:10px 12px;line-height:1.45">
+<div style="background:#f4f2ed;border:1px solid #dcd9d2;border-radius:10px;padding:8px 11px"><span style="display:block;font-size:11.5px;color:#5b6170">Agent</span>Ich lese automatisch die Datei <code>AGENTS.md</code> im geöffneten Ordner, hier also <code>agent-test/AGENTS.md</code>. Im Moment liegt dort keine solche Datei.</div>
+</div>
+</div>
+```
+
+Je nach Werkzeug nennt der Agent einen anderen Namen, etwa `CLAUDE.md`, und weitere Orte.
+
+### Was gerade passiert ist
+
+Der Agent hat über sich selbst Auskunft gegeben und nichts geändert; dafür sorgt der Zusatz „Nur antworten, nichts ändern“. Eine **Anweisungsdatei** ist eine Datei mit Regeln, die der Agent zu Beginn jeder Sitzung (Unterhaltung vom Start bis zum Schließen) von selbst öffnet: `AGENTS.md` oder der Name, den das Werkzeug dafür nutzt. Damit ist die dritte Anforderung geprüft. Den Namen brauchen wir im Kapitel [AGENTS.md: die Hausordnung](agents-md.qmd).
+
+Diese **Selbstauskunft** ersetzt im Buch die Produktdokumentation. Hängt ein Detail vom Werkzeug ab, fragen wir den Agenten. Jedes Kapitel enthält dafür eine passende Frage zum Kopieren.
+
+::: {.callout-note title="Wenn es anders aussieht"}
+- Die Antwort nennt mehrere Dateien oder Orte: Das ist in Ordnung. Wichtig ist der Name der Datei im Projektordner.
+- Der Agent nennt keine Anweisungsdatei: in der Übersicht nach Werkzeug unten nachsehen. Liest das Werkzeug keine Anweisungsdatei, erfüllt es die dritte Anforderung nicht.
+:::
 
 ## Übersicht nach Werkzeug {#uebersicht-nach-werkzeug}
 
@@ -164,36 +256,14 @@ Ein Pfad mit `~` liegt im eigenen Benutzerordner und gilt für alle Projekte. Pf
 Hersteller ändern Dateinamen und Speicherorte. Weicht der eigene Agent von der Tabelle ab, gilt seine Selbstauskunft. Die Kapitel dieses Buches nennen deshalb keine Produktpfade und bleiben gültig, wenn sich eine Zeile hier ändert.
 :::
 
-## Selbsttest des Werkzeugs
+## Vier Bausteine für die Arbeit mit einem Agenten
 
-Mit einem leeren Testordner prüfen wir, ob das eigene Werkzeug die Mindestanforderung erfüllt. Den Ordner `agent-test` nutzen wir im Kapitel [Markdown](markdown.qmd) weiter.
+Damit ein Agent verlässlich arbeitet, braucht er mehr als einen Auftrag. Der neue Mitarbeiter ist fachlich fit, kennt aber unseren Betrieb nicht. Anders als ein Mensch erinnert er sich nicht von selbst an gestern: Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Darum steht alles Wichtige schriftlich in seinem **Onboarding**, der Einarbeitung neuer Mitarbeitender. Vier Bausteine bilden seine Onboarding-Mappe und fassen zusammen, was die folgenden Kapitel aufbauen:
 
-**Voraussetzung:** Der Agent ist nach der Anleitung des Herstellers installiert und gestartet.
+![Vier Bausteine einer Arbeitsumgebung für einen Agenten](images/01-leitbild.svg){fig-alt="Vier Karten: Ordner gleich Arbeitsplatz mit Ablage, AGENTS.md gleich Hausordnung, Skills gleich Arbeitsanweisungen, MCP gleich Zugänge." width="100%"}
 
-1. Einen leeren Ordner `agent-test` anlegen, etwa im Ordner `Dokumente`.
-2. Den Ordner `agent-test` im Agenten öffnen.
-3. Diesen Auftrag senden:
+- **Ordner = Arbeitsplatz mit Ablage.** Alles, was der Agent kennen soll, liegt als Datei im Projektordner. Darum geht es in den Kapiteln [Der Projektordner](projektordner.qmd), [Kontext bereitstellen](kontext-bereitstellen.qmd), [PDFs als Quellen](pdf-als-quelle.qmd), [Excel-Tabellen als Quelle](excel-als-quelle.qmd) und [Laufend neue Dateien](laufend-neue-dateien.qmd).
+- **AGENTS.md = Hausordnung.** Kurze, prüfbare Regeln, die der Agent zu Beginn jeder Sitzung zuerst liest. Eine **Sitzung** ist eine Unterhaltung mit dem Agenten vom Start bis zum Schließen. Siehe [AGENTS.md: die Hausordnung](agents-md.qmd).
+- **Skills = Arbeitsanweisungen.** Abläufe mit mehreren Schritten, die der Agent bei Bedarf hervorholt. Siehe [Skills](skills.qmd).
+- **MCP = Zugänge.** Zugänge zu anderen Systemen nach einem gemeinsamen Standard (MCP steht für Model Context Protocol). Siehe [MCP](mcp.qmd) und [Konnektoren und Plugins](konnektoren-plugins.qmd).
 
-   ```text
-   Lege in diesem Ordner die Datei hallo.md an. Inhalt: eine Überschrift „Test“ und ein Satz, welches Datum heute ist. Frage vorher, ob du die Datei anlegen darfst.
-   ```
-
-4. Prüfen: Der Agent fragt vor dem Anlegen nach oder zeigt die Änderung zur Freigabe.
-5. Das Anlegen freigeben.
-6. Prüfen: Im Ordner `agent-test` liegt die Datei `hallo.md`.
-
-**Prüfkriterium:** Die Prüfungen in Schritt 4 und Schritt 6 bestehen. Dann erfüllt das Werkzeug die Mindestanforderung.
-
-::: {.callout-important title="Keine Rückfrage vor dem Anlegen"}
-Legt der Agent die Datei ohne Rückfrage an, läuft das Werkzeug wahrscheinlich in einem Modus ohne Rückfragen. Die Einstellung steht in der Anleitung des Herstellers. Erst weiterarbeiten, wenn der Agent vor Änderungen fragt.
-:::
-
-::: {.callout-tip title="Den Agenten fragen"}
-Welche Anweisungsdatei das eigene Werkzeug liest, verrät der Agent selbst. Diese Frage im Ordner `agent-test` senden:
-
-```text
-Welche Datei im Projektordner liest du automatisch als Anweisung? Nenne den Dateinamen und den Ort. Nur antworten, nichts ändern.
-```
-
-Die Antwort nennt einen Dateinamen. Wir brauchen ihn im Kapitel [AGENTS.md: die Hausordnung](agents-md.qmd).
-:::
