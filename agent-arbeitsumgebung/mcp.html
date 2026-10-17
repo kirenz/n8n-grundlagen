@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,16 +11,10 @@
 
 <title>28&nbsp; MCP: Zugänge zu anderen Systemen – n8n-Grundlagen</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -40,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-65a8d1e2c23ab61ef86d547ba0112629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7844a46a9663d9eb3b08f9a74813e6a7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-170b15d773ef64dac8f1901f18a4bb52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d6d5554c18694e3e2107192893140508.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -384,10 +379,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#was-mcp-ist" id="toc-was-mcp-ist" class="nav-link active" data-scroll-target="#was-mcp-ist"><span class="header-section-number">28.1</span> Was MCP ist</a></li>
-  <li><a href="#ein-werkzeugaufruf-im-ablauf" id="toc-ein-werkzeugaufruf-im-ablauf" class="nav-link" data-scroll-target="#ein-werkzeugaufruf-im-ablauf"><span class="header-section-number">28.2</span> Ein Werkzeugaufruf im Ablauf</a></li>
-  <li><a href="#brauchen-wir-eine-anbindung" id="toc-brauchen-wir-eine-anbindung" class="nav-link" data-scroll-target="#brauchen-wir-eine-anbindung"><span class="header-section-number">28.3</span> Brauchen wir eine Anbindung?</a></li>
-  <li><a href="#praxis-verbundene-server-auflisten" id="toc-praxis-verbundene-server-auflisten" class="nav-link" data-scroll-target="#praxis-verbundene-server-auflisten"><span class="header-section-number">28.4</span> Praxis: verbundene Server auflisten</a></li>
+  <li><a href="#schritt-1-verbundene-server-auflisten" id="toc-schritt-1-verbundene-server-auflisten" class="nav-link active" data-scroll-target="#schritt-1-verbundene-server-auflisten"><span class="header-section-number">28.1</span> Schritt 1: Verbundene Server auflisten</a>
+  <ul class="collapse">
+  <li><a href="#das-sollten-wir-jetzt-sehen" id="toc-das-sollten-wir-jetzt-sehen" class="nav-link" data-scroll-target="#das-sollten-wir-jetzt-sehen"><span class="header-section-number">28.1.1</span> Das sollten wir jetzt sehen</a></li>
+  <li><a href="#was-gerade-passiert-ist" id="toc-was-gerade-passiert-ist" class="nav-link" data-scroll-target="#was-gerade-passiert-ist"><span class="header-section-number">28.1.2</span> Was gerade passiert ist</a></li>
+  </ul></li>
+  <li><a href="#schritt-2-wo-die-server-eingetragen-sind" id="toc-schritt-2-wo-die-server-eingetragen-sind" class="nav-link" data-scroll-target="#schritt-2-wo-die-server-eingetragen-sind"><span class="header-section-number">28.2</span> Schritt 2: Wo die Server eingetragen sind</a>
+  <ul class="collapse">
+  <li><a href="#das-sollten-wir-jetzt-sehen-1" id="toc-das-sollten-wir-jetzt-sehen-1" class="nav-link" data-scroll-target="#das-sollten-wir-jetzt-sehen-1"><span class="header-section-number">28.2.1</span> Das sollten wir jetzt sehen</a></li>
+  <li><a href="#was-gerade-passiert-ist-1" id="toc-was-gerade-passiert-ist-1" class="nav-link" data-scroll-target="#was-gerade-passiert-ist-1"><span class="header-section-number">28.2.2</span> Was gerade passiert ist</a></li>
+  </ul></li>
+  <li><a href="#im-nachbau-ein-werkzeugaufruf" id="toc-im-nachbau-ein-werkzeugaufruf" class="nav-link" data-scroll-target="#im-nachbau-ein-werkzeugaufruf"><span class="header-section-number">28.3</span> Im Nachbau: ein Werkzeugaufruf</a></li>
+  <li><a href="#schritt-3-brauchen-wir-eine-anbindung" id="toc-schritt-3-brauchen-wir-eine-anbindung" class="nav-link" data-scroll-target="#schritt-3-brauchen-wir-eine-anbindung"><span class="header-section-number">28.4</span> Schritt 3: Brauchen wir eine Anbindung?</a>
+  <ul class="collapse">
+  <li><a href="#so-kann-die-antwort-aussehen" id="toc-so-kann-die-antwort-aussehen" class="nav-link" data-scroll-target="#so-kann-die-antwort-aussehen"><span class="header-section-number">28.4.1</span> So kann die Antwort aussehen</a></li>
+  <li><a href="#was-die-drei-schritte-gezeigt-haben" id="toc-was-die-drei-schritte-gezeigt-haben" class="nav-link" data-scroll-target="#was-die-drei-schritte-gezeigt-haben"><span class="header-section-number">28.4.2</span> Was die drei Schritte gezeigt haben</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -414,17 +421,64 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Ein Agent im Projektordner kennt nur die Dateien in diesem Ordner. Der Terminwunsch vom 5. Oktober liegt als Datei in <code>anfragen/</code>, die freien Zeiten im Teamkalender liegen dort nicht. Damit der Agent sie trotzdem nachsehen kann, braucht er einen Zugang zum Kalender. MCP regelt solche Zugänge, und zwar genormt: Ein Agent, der MCP beherrscht, kann jedes System erreichen, das ebenfalls MCP anbietet.</p>
-<section id="was-mcp-ist" class="level2" data-number="28.1">
-<h2 data-number="28.1" class="anchored" data-anchor-id="was-mcp-ist"><span class="header-section-number">28.1</span> Was MCP ist</h2>
-<p><strong>MCP</strong> steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Für den Agenten als neuen Mitarbeiter sind das seine Zugänge zu anderen Systemen. MCP funktioniert dabei wie ein genormtes Schließsystem: Eine Karte öffnet viele Türen, aber nur die, für die sie freigeschaltet ist.</p>
-<p><strong>MCP-Server</strong> heißt das Programm hinter einer dieser Türen. Ein Server ist hier einfach ein Programm, das auf Anfragen antwortet; es kann auf dem eigenen Rechner laufen oder bei einem Anbieter im Internet. Der MCP-Server stellt <strong>Werkzeuge</strong> bereit (englisch Tools), die der Agent aufrufen darf. Ein Werkzeug ist eine einzelne Fähigkeit mit einem festen Namen, etwa <code>termine_lesen</code>.</p>
+<p>In diesem Kapitel richten wir nichts ein. Wir fragen den eigenen Agenten, welche Zugänge er hat, und entscheiden, ob wir einen brauchen. Die Erklärung folgt jeweils am eigenen Ergebnis. Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.</p>
+<p><strong>Voraussetzung:</strong> Der Ordner <code>kundenanfragen</code> ist in der App des Agenten geöffnet.</p>
+<section id="schritt-1-verbundene-server-auflisten" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="schritt-1-verbundene-server-auflisten"><span class="header-section-number">28.1</span> Schritt 1: Verbundene Server auflisten</h2>
+<ol type="1">
+<li><p>Eine neue Sitzung starten.</p></li>
+<li><p>Diesen Auftrag senden:</p>
+<pre class="text"><code>Nur lesen und auflisten, nichts ändern. Welche MCP-Server sind in dieser Umgebung verbunden, und welche Werkzeuge stellen sie bereit? Markiere je Werkzeug, ob es nur liest oder etwas ändert. Nichts ausführen, keine Zugangsdaten anzeigen.</code></pre></li>
+<li><p>Prüfen: Die Antwort nennt Server mit Werkzeugen, oder sie stellt fest, dass keiner verbunden ist. Beide Ergebnisse sind gültig.</p></li>
+<li><p>Prüfen: Bei jedem genannten Werkzeug steht, ob es nur liest oder etwas ändert.</p></li>
+</ol>
+<section id="das-sollten-wir-jetzt-sehen" class="level3" data-number="28.1.1">
+<h3 data-number="28.1.1" class="anchored" data-anchor-id="das-sollten-wir-jetzt-sehen"><span class="header-section-number">28.1.1</span> Das sollten wir jetzt sehen</h3>
+<p>Eine von zwei Antworten. Namen und Zahl der Server hängen vom Werkzeug und den eigenen Einstellungen ab.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 1rem">
+<div style="flex:1 1 240px;max-width:360px;border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;color:#1f2430">
+<div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170">Antwort A: kein Server verbunden</div>
+<div style="padding:12px 16px 14px;line-height:1.5;font-size:.92rem">In dieser Umgebung ist kein MCP-Server verbunden. Ich arbeite nur mit den Dateien im Ordner <code>kundenanfragen</code>.</div>
+</div>
+<div style="flex:1 1 240px;max-width:360px;border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;color:#1f2430">
+<div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170">Antwort B: Server verbunden (Beispiel)</div>
+<div style="padding:12px 16px 14px;line-height:1.5;font-size:.92rem">
+<p style="margin:0 0 8px">Verbunden ist ein Server: <code>kalender</code>.</p>
+
+<table class="caption-top table">
+<thead>
+<tr class="header" style="border-bottom:2px solid #dcd9d2;text-align:left">
+<th data-quarto-table-cell-role="th" style="padding: 5px 8px">Werkzeug</th>
+<th data-quarto-table-cell-role="th" style="padding: 5px 8px">Art</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd" style="border-bottom:1px solid #dcd9d2">
+<td style="padding: 5px 8px"><code>termine_lesen</code></td>
+<td style="padding: 5px 8px">liest</td>
+</tr>
+<tr class="even">
+<td style="padding: 5px 8px"><code>termin_anlegen</code></td>
+<td style="padding: 5px 8px">ändert</td>
+</tr>
+</tbody>
+</table>
+
+<p style="margin:8px 0 0">Ich habe nichts ausgeführt.</p>
+</div></div>
+</div>
+</section>
+<section id="was-gerade-passiert-ist" class="level3" data-number="28.1.2">
+<h3 data-number="28.1.2" class="anchored" data-anchor-id="was-gerade-passiert-ist"><span class="header-section-number">28.1.2</span> Was gerade passiert ist</h3>
+<p>Der Agent hat aufgelistet, welche Systeme außerhalb des Ordners er erreicht. <strong>MCP</strong> steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Für den Agenten als neuen Mitarbeiter sind das seine Zugänge zu anderen Systemen. MCP funktioniert dabei wie ein genormtes Schließsystem: Eine Karte öffnet viele Türen, aber nur die, für die sie freigeschaltet ist.</p>
+<p><strong>MCP-Server</strong> heißt das Programm hinter einer dieser Türen. Ein Server ist hier einfach ein Programm, das auf Anfragen antwortet; es kann auf dem eigenen Rechner laufen oder bei einem Anbieter im Internet. Der MCP-Server stellt Werkzeuge bereit (englisch Tools), die der Agent aufrufen darf. Ein Werkzeug ist eine einzelne Fähigkeit mit einem festen Namen, etwa <code>termine_lesen</code>. Hier hinkt der Vergleich von Karte und Tür: Der Agent betritt das andere System nicht, er ruft einzelne Werkzeuge auf und bekommt das Ergebnis zurück.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/09-mcp-zugaenge.svg" class="img-fluid figure-img" alt="Schema: links der Agent im Ordner kundenanfragen, in der Mitte eine Zugangskarte mit der Aufschrift MCP, rechts vier Türen zu anderen Systemen. Offen, weil die Karte dafür freigeschaltet ist: Kalender-Server mit termine_lesen (liest) und termin_anlegen (ändert), Ablage-Server mit dateien_suchen (liest), Ticket-Server mit ticket_anlegen (ändert). Verschlossen: Buchhaltung, nicht freigeschaltet."></p>
 <figcaption>Mit der Zugangskarte MCP erreicht der Agent im Ordner <code>kundenanfragen</code> drei freigeschaltete Server mit ihren Werkzeugen. Die Tür zur Buchhaltung bleibt zu.</figcaption>
 </figure>
 </div>
-<p>Jedes Werkzeug tut eine von zwei Arten von Dingen. Es liest nur, oder es ändert etwas im anderen System. Für die Abbildung oben sieht das so aus:</p>
+<p>Jedes Werkzeug liest nur, oder es ändert etwas im anderen System. Deshalb haben wir diese Markierung verlangt. Für die Abbildung oben sieht das so aus:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -481,9 +535,74 @@ ul.task-list li input[type="checkbox"] {
 <p>MCP ist eine offene Spezifikation, die jeder Hersteller umsetzen darf. Seit Dezember 2025 gehört MCP zur Agentic AI Foundation der Linux Foundation, zusammen mit AGENTS.md. Die Anwendung, in der der Agent läuft, baut zu jedem Server eine eigene Verbindung auf. Ein Server kann neben Werkzeugen auch Daten (Resources) und vorbereitete Aufträge (Prompts) anbieten; für unsere Zwecke reichen die Werkzeuge. Spezifikation und Erklärungen: <a href="https://modelcontextprotocol.io/">modelcontextprotocol.io</a>, Aufbau im Detail: <a href="https://modelcontextprotocol.io/docs/learn/architecture">Architecture Overview</a>.</p>
 </div>
 </div>
+<div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Wenn es anders aussieht
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kein Server verbunden: Das ist der häufigste Fall. Alles aus den bisherigen Kapiteln funktioniert ohne MCP-Server: Projektordner, AGENTS.md, Quellen, Eingang und Skills.</li>
+<li>Die Liste nennt auch Konnektoren oder Plugins: Hinter ihnen steckt oft ein MCP-Server. Mehr dazu im Kapitel <a href="../agent-arbeitsumgebung/konnektoren-plugins.html">Konnektoren und Plugins</a>.</li>
+<li>Der Agent will ein Werkzeug zum Test aufrufen: ablehnen. Der Auftrag verlangt nur eine Liste.</li>
+<li>Die Antwort enthält ein Kennwort oder einen langen Schlüssel: ihn nirgendwohin kopieren und die Sitzung schließen. Im Unternehmen die IT fragen, ob der Schlüssel erneuert werden muss.</li>
+</ul>
+</div>
+</div>
 </section>
-<section id="ein-werkzeugaufruf-im-ablauf" class="level2" data-number="28.2">
-<h2 data-number="28.2" class="anchored" data-anchor-id="ein-werkzeugaufruf-im-ablauf"><span class="header-section-number">28.2</span> Ein Werkzeugaufruf im Ablauf</h2>
+</section>
+<section id="schritt-2-wo-die-server-eingetragen-sind" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="schritt-2-wo-die-server-eingetragen-sind"><span class="header-section-number">28.2</span> Schritt 2: Wo die Server eingetragen sind</h2>
+<p><strong>Voraussetzung:</strong> Die Sitzung aus Schritt 1 ist offen.</p>
+<ol type="1">
+<li><p>Diese Frage senden:</p>
+<pre class="text"><code>Wo ist die Konfiguration der MCP-Server bei dir gespeichert? Nur den Pfad oder den Ort in den Einstellungen nennen, nichts öffnen.</code></pre></li>
+<li><p>Prüfen: Der Agent nennt einen Pfad zu einer Datei oder einen Bereich in den Einstellungen.</p></li>
+<li><p>Den genannten Ort mit der <a href="../agent-arbeitsumgebung/chat-oder-agent.html#uebersicht-nach-werkzeug">Übersicht nach Werkzeug</a> vergleichen.</p></li>
+<li><p>Prüfen: Der Ort passt zum eigenen Werkzeug in der Übersicht.</p></li>
+</ol>
+<section id="das-sollten-wir-jetzt-sehen-1" class="level3" data-number="28.2.1">
+<h3 data-number="28.2.1" class="anchored" data-anchor-id="das-sollten-wir-jetzt-sehen-1"><span class="header-section-number">28.2.1</span> Das sollten wir jetzt sehen</h3>
+<p>Zwei typische Antworten in eigenen Worten. Der eigene Agent nennt den genauen Pfad oder den Namen des Bereichs in seiner App.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 1rem">
+<div style="flex:1 1 240px;max-width:360px;border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;color:#1f2430">
+<div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170">Antwort A: eine Datei</div>
+<div style="padding:12px 16px 14px;line-height:1.5;font-size:.92rem">Die MCP-Server stehen in einer Konfigurationsdatei. Für dieses Projekt liegt sie im Projektordner, für alle Projekte in Ihrem Benutzerordner. Ich nenne den Pfad und öffne nichts.</div>
+</div>
+<div style="flex:1 1 240px;max-width:360px;border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;color:#1f2430">
+<div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170">Antwort B: die Einstellungen</div>
+<div style="padding:12px 16px 14px;line-height:1.5;font-size:.92rem">Verbindungen richten Sie in den Einstellungen der App ein, im Bereich für Konnektoren oder MCP. Dort sehen Sie auch, welche Verbindungen aktiv sind.</div>
+</div>
+</div>
+</section>
+<section id="was-gerade-passiert-ist-1" class="level3" data-number="28.2.2">
+<h3 data-number="28.2.2" class="anchored" data-anchor-id="was-gerade-passiert-ist-1"><span class="header-section-number">28.2.2</span> Was gerade passiert ist</h3>
+<p>Der Agent hat gesagt, wo seine Verbindungen eingetragen sind, ohne etwas zu öffnen. Manche Agenten lesen die Liste ihrer MCP-Server aus einer <strong>Konfigurationsdatei</strong> (einer Datei mit Einstellungen), oft eine für das Projekt im Projektordner und eine für alle Projekte im Benutzerordner. Andere verwalten sie in einem Bereich der Einstellungen.</p>
+<p>Dieses Buch richtet keinen Server ein. Der Weg dahin ist je Werkzeug anders, und viele Anbindungen brauchen außerdem Zugangsdaten und im Unternehmen eine Freigabe der IT. Ob sich eine Anbindung lohnt, entscheiden wir in Schritt 3. Vorher zeigt ein Nachbau, wie ein Werkzeugaufruf abläuft.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Wenn es anders aussieht
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Der Agent weiß den Ort nicht: in der <a href="../agent-arbeitsumgebung/chat-oder-agent.html#uebersicht-nach-werkzeug">Übersicht nach Werkzeug</a> nachsehen.</li>
+<li>Der Agent bietet an, die Datei zu öffnen oder zu ändern: ablehnen. Die Frage verlangt nur den Ort.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="im-nachbau-ein-werkzeugaufruf" class="level2" data-number="28.3">
+<h2 data-number="28.3" class="anchored" data-anchor-id="im-nachbau-ein-werkzeugaufruf"><span class="header-section-number">28.3</span> Im Nachbau: ein Werkzeugaufruf</h2>
 <p>Wie ein Werkzeugaufruf im Alltag aussieht, zeigt die folgende Szene. Der Ordner <code>kundenanfragen</code> hat den Stand nach dem Kapitel <a href="../agent-arbeitsumgebung/skills.html">Skills: Abläufe, die bleiben</a>. Neu ist eine Verbindung zu einem Kalender-Server. Mit „Weiter“ klicken wir uns Schritt für Schritt durch die Sitzung.</p>
 <iframe class="muster-agent" src="widgets/09-steckdose.html" title="Nachbau eines Agenten: Termin über den Kalender-Server" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
 <script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
@@ -491,11 +610,71 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Die Rückfrage vor dem Aufruf.</strong> Bevor der Agent den Kalender abfragt, fragt er, wie er es auch vor dem Anlegen einer Datei tut. Die Rückfrage nennt den Server (<code>kalender</code>), das Werkzeug (<code>termine_lesen</code>) und den Hinweis, dass es nur liest. Die Zeile mit „› ruft auf“ im Chat zeigt danach den eigentlichen Aufruf.</p>
 <p><strong>Was wo entsteht.</strong> Die drei freien Zeiten kommen aus dem Kalender, nicht aus einer Datei. Im Projektordner entsteht nur der Antwortentwurf in <code>antworten/</code>, dazu die neue Zeile in <code>UEBERSICHT.md</code>. Der Kalender selbst bleibt unverändert.</p>
 <p><strong>Was der Agent nicht tut.</strong> <code>termin_anlegen</code> würde den Kalender ändern. Der Agent ruft es nicht auf, weil der Auftrag einen Entwurf verlangt. Ein Entwurf bietet drei Zeiten an; einen Termin trägt erst ein Mensch ein, wenn die Zusage der Kundin oder des Kunden da ist.</p>
+<div class="callout callout-style-simple callout-warning callout-titled" title="Rechte eines Servers">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Rechte eines Servers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ein verbundener MCP-Server handelt mit den Rechten, die wir ihm geben. <code>termin_anlegen</code> legt echte Termine an, <code>ticket_anlegen</code> echte Tickets.</p>
+<ul>
+<li>Vor jeder Anbindung klären: Welche Werkzeuge stellt der Server bereit? Welche davon ändern etwas? Wer hat die Anbindung geprüft?</li>
+<li>Nur Server aus vertrauenswürdigen Quellen anbinden, bevorzugt den offiziellen Server des Anbieters.</li>
+<li>Im Unternehmen vorher die Freigabe der IT einholen.</li>
+</ul>
+<p>Hintergrund zu den Risiken: <a href="https://modelcontextprotocol.io/specification/latest/basic/security_best_practices">Security Best Practices der MCP-Spezifikation</a>.</p>
+</div>
+</div>
 </section>
-<section id="brauchen-wir-eine-anbindung" class="level2" data-number="28.3">
-<h2 data-number="28.3" class="anchored" data-anchor-id="brauchen-wir-eine-anbindung"><span class="header-section-number">28.3</span> Brauchen wir eine Anbindung?</h2>
-<p>An dieser Stelle hinkt das Bild von Karte und Tür: Der Agent betritt das andere System nicht. Ein MCP-Server bringt ihm Werkzeuge, aber kein besseres Sprachmodell, kein Gedächtnis für frühere Unterhaltungen und keine Kopie der Daten in den Projektordner. Die Daten bleiben im Kalender oder im Ticket-System; der Agent holt sich bei jedem Aufruf nur das Ergebnis.</p>
-<p>Daraus folgt eine einfache Faustregel. Eine Anbindung lohnt sich, wenn ein Auftrag Daten aus einem anderen System braucht, die nicht als Datei im Ordner liegen. Freie Termine im Teamkalender sind so ein Fall, weil sie sich jeden Tag ändern. Für alles, was als Datei vorliegt, reicht der Projektordner.</p>
+<section id="schritt-3-brauchen-wir-eine-anbindung" class="level2" data-number="28.4">
+<h2 data-number="28.4" class="anchored" data-anchor-id="schritt-3-brauchen-wir-eine-anbindung"><span class="header-section-number">28.4</span> Schritt 3: Brauchen wir eine Anbindung?</h2>
+<p>Zum Abschluss entscheiden wir für die eigenen Anfragen, ob der Agent ein anderes System erreichen muss.</p>
+<p><strong>Voraussetzung:</strong> Die Antworten aus Schritt 1 und 2 liegen vor.</p>
+<ol type="1">
+<li>Beantworten: Welches System müsste der Agent für die eigenen Anfragen erreichen, etwa Kalender, Ablage oder Ticket-System?</li>
+<li>Beantworten: Gibt es dafür einen offiziellen Server des Anbieters?</li>
+<li>Beantworten: Wer gibt die Anbindung frei?</li>
+<li>Prüfen: Für jede der drei Fragen liegt eine Antwort vor.</li>
+</ol>
+<section id="so-kann-die-antwort-aussehen" class="level3" data-number="28.4.1">
+<h3 data-number="28.4.1" class="anchored" data-anchor-id="so-kann-die-antwort-aussehen"><span class="header-section-number">28.4.1</span> So kann die Antwort aussehen</h3>
+<p>Ein Beispiel für den Ordner <code>kundenanfragen</code>. Auch „kein System nötig“ ist eine gültige Antwort.</p>
+<div style="max-width:560px;border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;color:#1f2430;margin:0 0 1rem">
+
+<table class="caption-top table">
+<thead>
+<tr class="header" style="background:#f4f2ed;border-bottom:1px solid #dcd9d2;text-align:left">
+<th data-quarto-table-cell-role="th" style="padding: 6px 10px">Frage</th>
+<th data-quarto-table-cell-role="th" style="padding: 6px 10px">Beispiel für <code>kundenanfragen</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd" style="border-bottom:1px solid #dcd9d2">
+<td style="padding: 6px 10px">Welches System?</td>
+<td style="padding: 6px 10px">Teamkalender, für Rückfragen zu Terminwünschen</td>
+</tr>
+<tr class="even" style="border-bottom:1px solid #dcd9d2">
+<td style="padding: 6px 10px">Offizieller Server des Anbieters?</td>
+<td style="padding: 6px 10px">ja, der Anbieter des Kalenders stellt einen bereit</td>
+</tr>
+<tr class="odd">
+<td style="padding: 6px 10px">Wer gibt frei?</td>
+<td style="padding: 6px 10px">die IT; beim eigenen Konto die Person, der das Konto gehört</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</section>
+<section id="was-die-drei-schritte-gezeigt-haben" class="level3" data-number="28.4.2">
+<h3 data-number="28.4.2" class="anchored" data-anchor-id="was-die-drei-schritte-gezeigt-haben"><span class="header-section-number">28.4.2</span> Was die drei Schritte gezeigt haben</h3>
+<p>Wir haben die Zugänge des eigenen Agenten erkundet, ohne etwas zu ändern, und eine Entscheidung vorbereitet. Ein MCP-Server bringt dem Agenten Werkzeuge, aber kein besseres Sprachmodell, kein Gedächtnis für frühere Unterhaltungen und keine Kopie der Daten in den Projektordner. Die Daten bleiben im Kalender oder im Ticket-System; der Agent holt sich bei jedem Aufruf nur das Ergebnis.</p>
+<p>Daraus folgt eine Faustregel. Eine Anbindung lohnt sich, wenn ein Auftrag Daten aus einem anderen System braucht, die nicht als Datei im Ordner liegen, etwa Dokumente in der Cloud-Ablage, die das Team laufend ändert. Für alles, was als Datei vorliegt, reicht der Projektordner. Der offizielle Server des Anbieters ist die erste Wahl vor Servern von Dritten. Im Unternehmen gibt meist die IT frei, bei einem eigenen Konto die Person, der das Konto gehört.</p>
+<p>Vier Aufträge an den Agenten im Ordner <code>kundenanfragen</code> zeigen die Faustregel im Einsatz:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -504,7 +683,7 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>Auftrag an den Agenten im Ordner <code>kundenanfragen</code></th>
+<th>Auftrag</th>
 <th>Braucht MCP?</th>
 <th>Warum</th>
 </tr>
@@ -533,62 +712,9 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>Der Antwortentwurf wirkt auf den ersten Blick wie ein Fall für eine Anbindung, weil er am Ende nach außen geht. Er entsteht aber als Datei in <code>antworten/</code>. Erst der Mensch, der ihn liest und abschickt, bringt ihn nach außen.</p>
-<p>Dieses Buch richtet keinen Server ein. Der Weg dahin ist je Werkzeug anders: Manche Agenten erwarten eine Konfigurationsdatei (eine Datei mit Einstellungen), andere einen Bereich in den Einstellungen. Die <a href="../agent-arbeitsumgebung/chat-oder-agent.html#uebersicht-nach-werkzeug">Übersicht nach Werkzeug</a> nennt den Ort für die verbreiteten Werkzeuge. Viele Anbindungen brauchen außerdem Zugangsdaten und im Unternehmen eine Freigabe der IT. Was wir hier tun können, ist die Entscheidung vorbereiten. Drei Fragen helfen dabei:</p>
-<ol type="1">
-<li><strong>Welches System</strong> muss der Agent erreichen? Kalender, Ablage, Ticket-System oder etwas anderes.</li>
-<li><strong>Gibt es einen offiziellen Server</strong> des Anbieters? Viele Anbieter stellen selbst einen MCP-Server bereit. Er ist die erste Wahl vor Servern von Dritten.</li>
-<li><strong>Wer gibt die Anbindung frei?</strong> Im Unternehmen ist das meist die IT, bei einem eigenen Konto die Person, der das Konto gehört.</li>
-</ol>
-<div class="callout callout-style-simple callout-warning callout-titled" title="Rechte eines Servers">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warnung</span>Rechte eines Servers
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ein verbundener MCP-Server handelt mit den Rechten, die wir ihm geben. <code>termin_anlegen</code> legt echte Termine an, <code>ticket_anlegen</code> echte Tickets.</p>
-<ul>
-<li>Vor jeder Anbindung klären: Welche Werkzeuge stellt der Server bereit? Welche davon ändern etwas? Wer hat die Anbindung geprüft?</li>
-<li>Nur Server aus vertrauenswürdigen Quellen anbinden, bevorzugt den offiziellen Server des Anbieters.</li>
-<li>Im Unternehmen vorher die Freigabe der IT einholen.</li>
-</ul>
-<p>Hintergrund zu den Risiken: <a href="https://modelcontextprotocol.io/specification/latest/basic/security_best_practices">Security Best Practices der MCP-Spezifikation</a>.</p>
-</div>
-</div>
+
+
 </section>
-<section id="praxis-verbundene-server-auflisten" class="level2" data-number="28.4">
-<h2 data-number="28.4" class="anchored" data-anchor-id="praxis-verbundene-server-auflisten"><span class="header-section-number">28.4</span> Praxis: verbundene Server auflisten</h2>
-<p>Wir lassen den eigenen Agenten auflisten, welche Server bei ihm verbunden sind. Der Auftrag ändert nichts und ruft kein Werkzeug auf. Beide möglichen Ergebnisse sind gültig: eine Liste von Servern oder die Feststellung, dass keiner verbunden ist.</p>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Den Agenten fragen">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tipp</span>Den Agenten fragen
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Wo die Server eingetragen sind, ist je Werkzeug verschieden. Der Agent kann es selbst sagen:</p>
-<pre class="text"><code>Wo ist die Konfiguration der MCP-Server bei dir gespeichert? Nur den Pfad oder den Ort in den Einstellungen nennen, nichts öffnen.</code></pre>
-</div>
-</div>
-<p><strong>Voraussetzung:</strong> Der Agent ist im Ordner <code>kundenanfragen</code> geöffnet.</p>
-<ol type="1">
-<li><p>Eine neue Sitzung starten.</p></li>
-<li><p>Diesen Auftrag senden:</p>
-<pre class="text"><code>Nur lesen und auflisten, nichts ändern. Welche MCP-Server sind in dieser Umgebung verbunden, und welche Werkzeuge stellen sie bereit? Markiere je Werkzeug, ob es nur liest oder etwas ändert. Nichts ausführen, keine Zugangsdaten anzeigen.</code></pre></li>
-<li><p>Prüfen: Die Antwort nennt Server mit Werkzeugen, oder sie stellt fest, dass keiner verbunden ist. Beide Ergebnisse sind gültig.</p></li>
-<li><p>Die Frage aus dem Kasten „Den Agenten fragen“ senden.</p></li>
-<li><p>Den genannten Ort mit der <a href="../agent-arbeitsumgebung/chat-oder-agent.html#uebersicht-nach-werkzeug">Übersicht nach Werkzeug</a> vergleichen.</p></li>
-<li><p>Für die eigenen Anfragen die drei Fragen beantworten: Welches System? Offizieller Server des Anbieters? Wer gibt frei?</p></li>
-</ol>
-<p><strong>Prüfkriterium:</strong> Für jede der drei Fragen liegt eine Antwort vor.</p>
-
-
 </section>
 
 </main> <!-- /main -->

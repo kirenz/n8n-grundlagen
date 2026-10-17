@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,16 +11,10 @@
 
 <title>26&nbsp; Laufend neue Dateien – n8n-Grundlagen</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -40,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-65a8d1e2c23ab61ef86d547ba0112629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7844a46a9663d9eb3b08f9a74813e6a7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-170b15d773ef64dac8f1901f18a4bb52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d6d5554c18694e3e2107192893140508.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -384,12 +379,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#ein-ort-für-alles-neue" id="toc-ein-ort-für-alles-neue" class="nav-link active" data-scroll-target="#ein-ort-für-alles-neue"><span class="header-section-number">26.1</span> Ein Ort für alles Neue</a></li>
-  <li><a href="#die-namenskonvention" id="toc-die-namenskonvention" class="nav-link" data-scroll-target="#die-namenskonvention"><span class="header-section-number">26.2</span> Die Namenskonvention</a></li>
-  <li><a href="#der-feste-ablauf-in-sechs-schritten" id="toc-der-feste-ablauf-in-sechs-schritten" class="nav-link" data-scroll-target="#der-feste-ablauf-in-sechs-schritten"><span class="header-section-number">26.3</span> Der feste Ablauf in sechs Schritten</a></li>
-  <li><a href="#was-nicht-passt-bleibt-liegen" id="toc-was-nicht-passt-bleibt-liegen" class="nav-link" data-scroll-target="#was-nicht-passt-bleibt-liegen"><span class="header-section-number">26.4</span> Was nicht passt, bleibt liegen</a></li>
-  <li><a href="#im-nachbau-den-posteingang-leeren" id="toc-im-nachbau-den-posteingang-leeren" class="nav-link" data-scroll-target="#im-nachbau-den-posteingang-leeren"><span class="header-section-number">26.5</span> Im Nachbau: den Posteingang leeren</a></li>
-  <li><a href="#praxis-eingang-einrichten-und-leeren" id="toc-praxis-eingang-einrichten-und-leeren" class="nav-link" data-scroll-target="#praxis-eingang-einrichten-und-leeren"><span class="header-section-number">26.6</span> Praxis: Eingang einrichten und leeren</a></li>
+  <li><a href="#schritt-1-den-eingang-anlegen" id="toc-schritt-1-den-eingang-anlegen" class="nav-link active" data-scroll-target="#schritt-1-den-eingang-anlegen"><span class="header-section-number">26.1</span> Schritt 1: Den Eingang anlegen</a>
+  <ul class="collapse">
+  <li><a href="#das-sollten-wir-jetzt-sehen" id="toc-das-sollten-wir-jetzt-sehen" class="nav-link" data-scroll-target="#das-sollten-wir-jetzt-sehen"><span class="header-section-number">26.1.1</span> Das sollten wir jetzt sehen</a></li>
+  <li><a href="#was-gerade-passiert-ist" id="toc-was-gerade-passiert-ist" class="nav-link" data-scroll-target="#was-gerade-passiert-ist"><span class="header-section-number">26.1.2</span> Was gerade passiert ist</a></li>
+  </ul></li>
+  <li><a href="#schritt-2-der-feste-ablauf" id="toc-schritt-2-der-feste-ablauf" class="nav-link" data-scroll-target="#schritt-2-der-feste-ablauf"><span class="header-section-number">26.2</span> Schritt 2: Der feste Ablauf</a>
+  <ul class="collapse">
+  <li><a href="#das-sollten-wir-jetzt-sehen-1" id="toc-das-sollten-wir-jetzt-sehen-1" class="nav-link" data-scroll-target="#das-sollten-wir-jetzt-sehen-1"><span class="header-section-number">26.2.1</span> Das sollten wir jetzt sehen</a></li>
+  <li><a href="#was-gerade-passiert-ist-1" id="toc-was-gerade-passiert-ist-1" class="nav-link" data-scroll-target="#was-gerade-passiert-ist-1"><span class="header-section-number">26.2.2</span> Was gerade passiert ist</a></li>
+  </ul></li>
+  <li><a href="#rückblick-der-ablauf-in-sechs-schritten" id="toc-rückblick-der-ablauf-in-sechs-schritten" class="nav-link" data-scroll-target="#rückblick-der-ablauf-in-sechs-schritten"><span class="header-section-number">26.3</span> Rückblick: der Ablauf in sechs Schritten</a></li>
   </ul>
 </nav>
     </div>
@@ -415,64 +415,149 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ein Projektordner bleibt nur so lange brauchbar, wie neue Unterlagen denselben Weg nehmen. Im Alltag kommen Anfragen als weitergeleitete E-Mail, als Export aus dem Kontaktformular oder als PDF eines Lieferanten. Sie tragen Namen wie <code>Mail Mustermann.txt</code> oder <code>anfrage_formular(2).md</code>, und oft steht ein Personenname darin. Legen wir solche Dateien einzeln von Hand ab, wächst die Unordnung mit jeder Woche. Wir richten deshalb einen festen Weg ein: ein Ordner, in dem alles Neue landet, und ein Auftrag, der den Ordner immer gleich leert.</p>
-<section id="ein-ort-für-alles-neue" class="level2" data-number="26.1">
-<h2 data-number="26.1" class="anchored" data-anchor-id="ein-ort-für-alles-neue"><span class="header-section-number">26.1</span> Ein Ort für alles Neue</h2>
-<p>Der <strong>Eingangsordner</strong> heißt bei uns <code>eingang/</code>. Er ist der einzige Ort im Projektordner, an dem neue Dateien landen, egal in welchem Format und mit welchem Namen. Alles andere im Ordner ist sortiert. Der Eingangsordner entspricht dem Postfach eines neuen Mitarbeiters: Alles, was für ihn hereinkommt, landet zuerst dort.</p>
-<pre class="text"><code>kundenanfragen/
-├── AGENTS.md
-├── UEBERSICHT.md
-├── eingang/                      ← hier landet alles Neue
-│   ├── Mail Mustermann.txt
-│   └── anfrage_formular(2).md
-├── anfragen/
-├── antworten/
-└── quellen/
-    ├── original/
-    └── text/</code></pre>
-<p>Die Trennung hat zwei Vorteile. Wir müssen beim Ablegen nicht nachdenken: Eine weitergeleitete E-Mail und ein Formularexport kommen beide zuerst nach <code>eingang/</code>. Und der Zustand des Ordners ist auf einen Blick erkennbar. Ein leerer Eingang heißt: Alles ist einsortiert.</p>
+<p>Ein Projektordner bleibt nur so lange brauchbar, wie neue Unterlagen denselben Weg nehmen. Im Alltag kommen Anfragen als weitergeleitete E-Mail, als Export aus dem Kontaktformular oder als PDF eines Lieferanten. In diesem Kapitel richten wir mit dem eigenen Agenten einen Ordner ein, in dem alles Neue landet, und leeren ihn mit einem Auftrag, der immer gleich lautet. Die Erklärung folgt jeweils am eigenen Ergebnis.</p>
+<p>Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.</p>
+<p><strong>Voraussetzung:</strong> Der Ordner <code>kundenanfragen</code> ist in der App des Agenten geöffnet. <code>AGENTS.md</code> enthält sechs Regeln, <code>UEBERSICHT.md</code> und der Ordner <code>quellen/</code> liegen im Ordner (Stand nach dem Kapitel <a href="../agent-arbeitsumgebung/excel-als-quelle.html">Excel-Tabellen als Quelle</a>).</p>
+<section id="schritt-1-den-eingang-anlegen" class="level2" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="schritt-1-den-eingang-anlegen"><span class="header-section-number">26.1</span> Schritt 1: Den Eingang anlegen</h2>
+<ol type="1">
+<li><p>Diese Frage senden:</p>
+<pre class="text"><code>Kannst du Dateien innerhalb dieses Ordners umbenennen und verschieben? Fragst du vorher, oder muss ich das in AGENTS.md festlegen? Nur antworten, nichts ändern.</code></pre></li>
+<li><p>Prüfen: Der Agent sagt, ob er umbenennen und verschieben kann und ob er vorher fragt. Fragt er nicht von selbst, verlangt der Auftrag in Schritt 2 einen Plan vor dem Verschieben.</p></li>
+<li><p>Diesen Auftrag senden:</p>
+<pre class="text"><code>Lege den Ordner eingang an und darin zwei Beispielanfragen mit unordentlichen Dateinamen, etwa mit Leerzeichen oder ohne Datum. Eine Anfrage enthält einen erfundenen Personennamen im Text, zum Beispiel Erika Mustermann.</code></pre></li>
+<li><p>Den Ordner <code>eingang/</code> öffnen.</p></li>
+<li><p>Prüfen: <code>eingang/</code> enthält zwei Dateien. Eine davon nennt im Text einen Personennamen.</p></li>
+</ol>
+<section id="das-sollten-wir-jetzt-sehen" class="level3" data-number="26.1.1">
+<h3 data-number="26.1.1" class="anchored" data-anchor-id="das-sollten-wir-jetzt-sehen"><span class="header-section-number">26.1.1</span> Das sollten wir jetzt sehen</h3>
+<pre class="text"><code>eingang/
+├── Mail Mustermann.txt
+└── anfrage_formular(2).md</code></pre>
+<p>Inhalt von <code>Mail Mustermann.txt</code>:</p>
+<pre class="text"><code>Von: Erika Mustermann
+Datum: 16.10.2026
+Betreff: Rückruf
+
+Guten Tag, bitte rufen Sie mich wegen der Reparatur zurück.
+Viele Grüße
+Erika Mustermann</code></pre>
+<p>Ein mögliches Ergebnis. Dateinamen und Inhalte wählt der Agent selbst. Entscheidend sind unordentliche Namen und ein Personenname im Text.</p>
 </section>
-<section id="die-namenskonvention" class="level2" data-number="26.2">
-<h2 data-number="26.2" class="anchored" data-anchor-id="die-namenskonvention"><span class="header-section-number">26.2</span> Die Namenskonvention</h2>
-<p>Damit Dateien in <code>anfragen/</code> auffindbar bleiben, folgen ihre Namen der Namenskonvention aus dem Kapitel <a href="../agent-arbeitsumgebung/projektordner.html">Der Projektordner</a>:</p>
-<pre class="text"><code>JJJJ-MM-TT-anliegen.md</code></pre>
-<p>Das Datum steht vorne, in der Reihenfolge Jahr, Monat, Tag. So sortiert jedes Dateiprogramm die Anfragen automatisch chronologisch. Danach folgt das Anliegen in einem oder zwei Wörtern, klein geschrieben und mit Bindestrichen verbunden.</p>
+<section id="was-gerade-passiert-ist" class="level3" data-number="26.1.2">
+<h3 data-number="26.1.2" class="anchored" data-anchor-id="was-gerade-passiert-ist"><span class="header-section-number">26.1.2</span> Was gerade passiert ist</h3>
+<p>Der Agent hat zwei Dateien angelegt, die nach keiner Regel benannt sind. Das ist Absicht: So sieht neues Material aus, bevor es sortiert ist. Legen wir solche Dateien einzeln von Hand ab, wächst die Unordnung mit jeder Woche.</p>
+<p>Der <strong>Eingangsordner</strong> heißt bei uns <code>eingang/</code>. Er ist der einzige Ort im Projektordner, an dem neue Dateien landen, egal in welchem Format und mit welchem Namen. Alles andere im Ordner ist sortiert. Der Eingangsordner entspricht dem Postfach eines neuen Mitarbeiters: Alles, was für ihn hereinkommt, landet zuerst dort. Die Trennung hat zwei Vorteile. Wir müssen beim Ablegen nicht nachdenken: Eine weitergeleitete E-Mail und ein Formularexport kommen beide zuerst nach <code>eingang/</code>. Und der Zustand des Ordners ist auf einen Blick erkennbar.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Wenn es anders aussieht
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Die Dateien haben schon ordentliche Namen: eine Datei selbst umbenennen, etwa in <code>Mail Mustermann.txt</code>.</li>
+<li>Kein Personenname im Text: „Ergänze in einer der beiden Dateien den Namen Erika Mustermann als Absenderin.“</li>
+<li>Der Agent sagt, er kann nicht umbenennen oder verschieben: Er schreibt die Datei dann unter dem neuen Namen neu. Nach Schritt 2 prüfen, ob die alte Datei aus <code>eingang/</code> verschwunden ist.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="schritt-2-der-feste-ablauf" class="level2" data-number="26.2">
+<h2 data-number="26.2" class="anchored" data-anchor-id="schritt-2-der-feste-ablauf"><span class="header-section-number">26.2</span> Schritt 2: Der feste Ablauf</h2>
+<p><strong>Voraussetzung:</strong> In <code>eingang/</code> liegen die zwei Beispielanfragen aus Schritt 1.</p>
+<ol type="1">
+<li><p>Den festen Ablauf senden:</p>
+<pre class="text"><code>Sortiere alle Dateien in eingang/ ein: 1. Lies jede Datei. 2. Bestimme die Art (Anfrage, Antwort, Quelle, sonstiges). 3. Benenne um nach JJJJ-MM-TT-anliegen.md mit dem Datum aus der Datei, sonst heute. PDF und andere Dateien, die kein Text sind, behalten ihre Endung. 4. Entferne Personennamen und ersetze sie durch „Kundin“ oder „Kunde“. 5. Verschiebe nach anfragen/, antworten/ oder quellen/original/; unklare Dateien bleiben in eingang/ und werden mir gemeldet. 6. Ergänze UEBERSICHT.md. Zeige mir den Plan als Tabelle (alt, neu, Ziel), bevor du verschiebst.</code></pre></li>
+<li><p>Prüfen: Der Plan nennt für jede Datei den alten Namen, den neuen Namen und den Zielordner.</p></li>
+<li><p>Den Plan freigeben.</p></li>
+<li><p>Prüfen: <code>eingang/</code> ist leer, <code>UEBERSICHT.md</code> hat zwei neue Zeilen, und in keiner neuen Datei steht ein Personenname.</p></li>
+</ol>
+<section id="das-sollten-wir-jetzt-sehen-1" class="level3" data-number="26.2.1">
+<h3 data-number="26.2.1" class="anchored" data-anchor-id="das-sollten-wir-jetzt-sehen-1"><span class="header-section-number">26.2.1</span> Das sollten wir jetzt sehen</h3>
+<p>Der Plan des Agenten vor dem Verschieben:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Alter Name</th>
-<th>Neuer Name</th>
-<th>Was sich ändert</th>
+<th>alt</th>
+<th>neu</th>
+<th>Ziel</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>Mail Mustermann.txt</code></td>
 <td><code>2026-10-16-rueckruf.md</code></td>
-<td>Datum und Anliegen statt Personenname</td>
+<td><code>anfragen/</code></td>
 </tr>
 <tr class="even">
 <td><code>anfrage_formular(2).md</code></td>
 <td><code>2026-10-17-preisfrage.md</code></td>
-<td>Datum und Anliegen statt Zählnummer</td>
-</tr>
-<tr class="odd">
-<td><code>Terminanfrage NEU.txt</code></td>
-<td><code>2026-10-20-terminwunsch.md</code></td>
-<td>Datum statt „NEU“</td>
+<td><code>anfragen/</code></td>
 </tr>
 </tbody>
 </table>
-<p>Das Datum ist der Tag des Eingangs, also das Datum aus der Datei selbst. Der Tag, an dem wir einsortieren, spielt keine Rolle. Sortieren wir am Montag drei Anfragen vom Freitag ein, tragen alle drei das Datum vom Freitag. Nur wenn die Datei kein Datum enthält, nimmt der Agent den heutigen Tag. PDF-Dateien und andere Dateien, die kein Text sind, behalten ihre Endung, etwa <code>.pdf</code>.</p>
+<p>Der Ordner vorher:</p>
+<pre class="text"><code>kundenanfragen/
+├── AGENTS.md
+├── README.md
+├── UEBERSICHT.md
+├── anfragen/
+│   ├── 2026-10-05-terminwunsch.md
+│   ├── 2026-10-06-preisfrage.md
+│   └── 2026-10-07-beschwerde.md
+├── eingang/
+│   ├── Mail Mustermann.txt
+│   └── anfrage_formular(2).md
+└── quellen/</code></pre>
+<p>Der Ordner nachher:</p>
+<pre class="text"><code>kundenanfragen/
+├── AGENTS.md
+├── README.md
+├── UEBERSICHT.md                    ← zwei neue Zeilen
+├── anfragen/
+│   ├── 2026-10-05-terminwunsch.md
+│   ├── 2026-10-06-preisfrage.md
+│   ├── 2026-10-07-beschwerde.md
+│   ├── 2026-10-16-rueckruf.md       ← neu, „Kundin“ statt Name
+│   └── 2026-10-17-preisfrage.md     ← neu
+├── eingang/                         (leer)
+└── quellen/</code></pre>
+<p>Namen und Daten der eigenen Dateien weichen ab. Entscheidend: <code>eingang/</code> ist leer, und die neuen Dateien folgen dem Muster <code>JJJJ-MM-TT-anliegen.md</code>.</p>
 </section>
-<section id="der-feste-ablauf-in-sechs-schritten" class="level2" data-number="26.3">
-<h2 data-number="26.3" class="anchored" data-anchor-id="der-feste-ablauf-in-sechs-schritten"><span class="header-section-number">26.3</span> Der feste Ablauf in sechs Schritten</h2>
-<p>Ein <strong>fester Ablauf</strong> ist ein Auftrag, der immer gleich lautet, egal was im Eingang liegt. Er ist die Morgenroutine für dieses Postfach. Der Agent schaut aber nicht von selbst hinein: Wir senden ihm den Ablauf. Unserer hat sechs Schritte:</p>
+<section id="was-gerade-passiert-ist-1" class="level3" data-number="26.2.2">
+<h3 data-number="26.2.2" class="anchored" data-anchor-id="was-gerade-passiert-ist-1"><span class="header-section-number">26.2.2</span> Was gerade passiert ist</h3>
+<p>Ein einziger Auftrag hat beide Dateien gelesen, umbenannt, von Namen befreit, einsortiert und in die Übersicht eingetragen.</p>
+<p>Ein <strong>fester Ablauf</strong> ist ein Auftrag, der immer gleich lautet, egal was im Eingang liegt. Er ist die Morgenroutine für dieses Postfach. Der Agent schaut aber nicht von selbst hinein: Wir senden ihm den Ablauf. So wurde <code>Mail Mustermann.txt</code> zu <code>anfragen/2026-10-16-rueckruf.md</code>, und im Text steht „Kundin“ statt des Namens (Regel 3).</p>
+<p>Die neuen Namen folgen der <strong>Namenskonvention</strong> aus dem Kapitel <a href="../agent-arbeitsumgebung/projektordner.html">Der Projektordner</a>: <code>JJJJ-MM-TT-anliegen.md</code>. Das Datum steht vorne, in der Reihenfolge Jahr, Monat, Tag. So sortiert jedes Dateiprogramm die Anfragen chronologisch. Danach folgt das Anliegen in einem oder zwei Wörtern, klein geschrieben und mit Bindestrichen verbunden. Das Datum ist der Tag des Eingangs, also das Datum aus der Datei selbst, nicht der Tag des Einsortierens. Sortieren wir am Montag drei Anfragen vom Freitag ein, tragen alle drei das Datum vom Freitag. Nur wenn die Datei kein Datum enthält, nimmt der Agent den heutigen Tag. PDF-Dateien und andere Dateien, die kein Text sind, behalten ihre Endung.</p>
+<p>Bevor der Agent verschiebt, zeigt er uns den Plan als Tabelle. So sehen wir jede Änderung, bevor sie passiert, auch wenn das eigene Werkzeug beim Verschieben nicht von selbst nachfragt.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Wenn es anders aussieht
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Eine Datei bleibt in <code>eingang/</code>, und der Agent meldet sie: Der Ablauf konnte sie nicht zuordnen. Wohin sie gehört, entscheiden wir selbst.</li>
+<li><code>eingang/</code> fehlt im Nachher-Stand: Manche Apps blenden leere Ordner aus. Entscheidend ist, dass keine Datei mehr darin liegt.</li>
+<li>Ein Personenname steht noch im Text: „Ersetze in den neuen Dateien in anfragen/ alle Personennamen durch Kundin oder Kunde.“</li>
+<li>Der Agent hat ohne Plan verschoben: die neuen Dateien und <code>UEBERSICHT.md</code> selbst prüfen. „Welche Dateien hast du umbenannt und verschoben?“</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="rückblick-der-ablauf-in-sechs-schritten" class="level2" data-number="26.3">
+<h2 data-number="26.3" class="anchored" data-anchor-id="rückblick-der-ablauf-in-sechs-schritten"><span class="header-section-number">26.3</span> Rückblick: der Ablauf in sechs Schritten</h2>
+<p>Diese sechs Schritte stehen wörtlich im Auftrag aus Schritt 2:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -520,12 +605,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>Die Reihenfolge folgt einer einfachen Logik: erst lesen, dann entscheiden, dann handeln, zuletzt dokumentieren. Wer die Schritte für den eigenen Eingang in anderen Worten beschreibt, sollte diese Reihenfolge beibehalten.</p>
-<p>Bevor der Agent verschiebt, zeigt er uns einen Plan als Tabelle mit den Spalten alt, neu und Ziel. So sehen wir jede Änderung, bevor sie passiert, auch wenn das eigene Werkzeug beim Verschieben nicht von selbst nachfragt.</p>
-</section>
-<section id="was-nicht-passt-bleibt-liegen" class="level2" data-number="26.4">
-<h2 data-number="26.4" class="anchored" data-anchor-id="was-nicht-passt-bleibt-liegen"><span class="header-section-number">26.4</span> Was nicht passt, bleibt liegen</h2>
-<p>Nicht jede Datei im Eingang passt in einen der drei Zielordner. Liegt dort etwa eine Rechnung, die der Betrieb an einen Kunden geschickt hat, gibt es im Projektordner keinen passenden Platz. Schritt 5 regelt diesen Fall: Unklare Dateien bleiben in <code>eingang/</code>, und der Agent meldet sie.</p>
-<p>Die Entscheidung liegt dann bei uns. Gehören Rechnungen überhaupt in diesen Projektordner? Wenn ja, legen wir bewusst einen Zielordner an und ergänzen den Ablauf. Zwei andere Reaktionen des Agenten wären problematisch. Ein selbst angelegter Ordner <code>rechnungen/</code> wirkt hilfsbereit, ändert aber ohne Auftrag die Ordnerstruktur. Eine Rechnung in <code>anfragen/</code> verfälscht die Übersicht der Anfragen. Löschen kommt in keinem Schritt des Ablaufs vor.</p>
+<p>Nicht jede Datei im Eingang passt in einen der drei Zielordner. Liegt dort etwa eine Rechnung, die der Betrieb an einen Kunden geschickt hat, gibt es im Projektordner keinen passenden Platz. Schritt 5 regelt diesen Fall: Unklare Dateien bleiben in <code>eingang/</code>, und der Agent meldet sie. Die Entscheidung liegt dann bei uns. Gehören Rechnungen überhaupt in diesen Projektordner? Wenn ja, legen wir bewusst einen Zielordner an und ergänzen den Ablauf. Zwei andere Reaktionen des Agenten wären problematisch. Ein selbst angelegter Ordner <code>rechnungen/</code> wirkt hilfsbereit, ändert aber ohne Auftrag die Ordnerstruktur. Eine Rechnung in <code>anfragen/</code> verfälscht die Übersicht der Anfragen. Löschen kommt in keinem Schritt des Ablaufs vor.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Eingang leer, Arbeit nicht fertig">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -539,44 +619,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Ein leerer Eingang bedeutet: Alle Dateien liegen am richtigen Ort und stehen in der Übersicht. Beantwortet ist damit noch keine Anfrage. Einsortieren und Bearbeiten sind getrennte Aufträge, und das hält beide kurz und prüfbar.</p>
 </div>
 </div>
-</section>
-<section id="im-nachbau-den-posteingang-leeren" class="level2" data-number="26.5">
-<h2 data-number="26.5" class="anchored" data-anchor-id="im-nachbau-den-posteingang-leeren"><span class="header-section-number">26.5</span> Im Nachbau: den Posteingang leeren</h2>
-<p>Der folgende Nachbau zeigt den festen Ablauf an zwei Dateien mit unordentlichen Namen. Eine davon enthält einen Personennamen. Wir sehen, wie der Agent beide Dateien liest, den Plan als Tabelle zeigt, nach der Freigabe verschiebt, den Namen durch „Kundin“ ersetzt und die Übersicht ergänzt. Mit „Weiter“ klicken wir uns durch die Sitzung.</p>
-<iframe class="muster-agent" src="widgets/07-posteingang-leeren.html" title="Nachbau eines Agenten: Posteingang leeren" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
-<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
-<p>Am Ende verschwindet <code>eingang/</code> aus dem Dateibaum des Nachbaus, weil der Ordner leer ist. Im eigenen Werkzeug kann der leere Ordner sichtbar bleiben. Entscheidend ist, dass keine Datei mehr darin liegt.</p>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Den Agenten fragen">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tipp</span>Den Agenten fragen
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ob der Agent Dateien umbenennen und verschieben darf und ob er vorher fragt, hängt vom Werkzeug und seinen Einstellungen ab:</p>
-<pre class="text"><code>Kannst du Dateien innerhalb dieses Ordners umbenennen und verschieben? Fragst du vorher, oder muss ich das in AGENTS.md festlegen? Nur antworten, nichts ändern.</code></pre>
-</div>
-</div>
-</section>
-<section id="praxis-eingang-einrichten-und-leeren" class="level2" data-number="26.6">
-<h2 data-number="26.6" class="anchored" data-anchor-id="praxis-eingang-einrichten-und-leeren"><span class="header-section-number">26.6</span> Praxis: Eingang einrichten und leeren</h2>
-<p>Wir lassen den Agenten den Eingangsordner mit zwei unordentlichen Beispieldateien anlegen und ihn mit dem festen Ablauf leeren.</p>
-<p><strong>Voraussetzung:</strong> Der Ordner <code>kundenanfragen</code> ist im Agenten geöffnet. <code>AGENTS.md</code> enthält sechs Regeln, <code>UEBERSICHT.md</code> liegt im Ordner (Stand nach dem Kapitel <a href="../agent-arbeitsumgebung/kontext-bereitstellen.html">Kontext bereitstellen</a>).</p>
-<ol type="1">
-<li><p>Die Frage aus dem Kasten „Den Agenten fragen“ senden.</p></li>
-<li><p>Prüfen: Der Agent sagt, ob er umbenennen und verschieben kann und ob er vorher fragt. Fragt er nicht von selbst, sorgt der Plan in Schritt 4 für die Rückfrage.</p></li>
-<li><p>Senden:</p>
-<pre class="text"><code>Lege den Ordner eingang an und darin zwei Beispielanfragen mit unordentlichen Dateinamen, etwa mit Leerzeichen oder ohne Datum. Eine Anfrage enthält einen erfundenen Personennamen im Text, zum Beispiel Erika Mustermann.</code></pre></li>
-<li><p>Den festen Ablauf senden:</p>
-<pre class="text"><code>Sortiere alle Dateien in eingang/ ein: 1. Lies jede Datei. 2. Bestimme die Art (Anfrage, Antwort, Quelle, sonstiges). 3. Benenne um nach JJJJ-MM-TT-anliegen.md mit dem Datum aus der Datei, sonst heute. PDF und andere Dateien, die kein Text sind, behalten ihre Endung. 4. Entferne Personennamen und ersetze sie durch „Kundin“ oder „Kunde“. 5. Verschiebe nach anfragen/, antworten/ oder quellen/original/; unklare Dateien bleiben in eingang/ und werden mir gemeldet. 6. Ergänze UEBERSICHT.md. Zeige mir den Plan als Tabelle (alt, neu, Ziel), bevor du verschiebst.</code></pre></li>
-<li><p>Prüfen: Der Plan nennt für jede Datei den alten Namen, den neuen Namen und den Zielordner.</p></li>
-<li><p>Den Plan freigeben.</p></li>
-</ol>
-<p><strong>Prüfkriterium:</strong> <code>eingang/</code> ist leer, <code>UEBERSICHT.md</code> hat zwei neue Zeilen, und in keiner neuen Datei steht ein Personenname.</p>
-<p>Der Auftrag in Schritt 4 ist lang, und wir brauchen ihn jede Woche wieder. Im Kapitel <a href="../agent-arbeitsumgebung/skills.html">Skills: Abläufe, die bleiben</a> schreiben wir ihn einmal als Skill auf. Danach genügen zwei Wörter.</p>
+<p>Der Auftrag aus Schritt 2 ist lang, und wir brauchen ihn jede Woche wieder. Im Kapitel <a href="../agent-arbeitsumgebung/skills.html">Skills: Abläufe, die bleiben</a> schreiben wir ihn einmal als Skill auf. Danach genügen zwei Wörter.</p>
 
 
 </section>
