@@ -2,7 +2,7 @@
 
 Ein **KI-Agent** beantwortet nicht nur Fragen. Er bekommt eine Aufgabe, plant die nötigen Schritte, nutzt dafür Werkzeuge wie das Öffnen und Anlegen von Dateien und prüft das Ergebnis, bis die Aufgabe erledigt ist. Agenten gibt es in Chat-Apps, als Baustein in Automatisierungen und als Werkzeug auf dem eigenen Rechner. Dieser Teil behandelt die letzte Form: **Coding-Agenten** wie Claude Code, Codex oder Antigravity, die in einem Ordner auf unserem Rechner mitarbeiten. Programmieren müssen wir dafür nicht.
 
-In diesem Teil entsteht der Projektordner `kundenanfragen`, in dem ein Agent verlässlich für uns arbeitet. Wir beginnen mit einem leeren Testordner und einer einfachen Prüfung des eigenen Werkzeugs. Kapitel für Kapitel kommen Material, Regeln und Abläufe hinzu. Am Ende liegt ein Ordner vor, den jeder Agent mit einer Anweisungsdatei sofort versteht: mit Anfragen und Antwortentwürfen, einer Hausordnung, einer Übersichtsdatei, geprüften Quellen, einem Eingangsordner und einem ersten Skill.
+In diesem Teil entsteht der Projektordner `kundenanfragen`, in dem ein Agent verlässlich für uns arbeitet. Wir beginnen mit einem leeren Testordner und einer einfachen Prüfung des eigenen Werkzeugs. Kapitel für Kapitel kommen Material, Regeln und Abläufe hinzu. Im Bild des Buches richten wir damit den Arbeitsplatz eines neuen Mitarbeiters ein und schreiben seine Einarbeitung auf. Am Ende liegt ein Ordner vor, den jeder Agent mit einer Anweisungsdatei sofort versteht: mit Anfragen und Antwortentwürfen, einer Hausordnung, einer Übersichtsdatei, geprüften Quellen, einem Eingangsordner und einem ersten Skill.
 
 Wir werden:
 

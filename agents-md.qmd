@@ -1,6 +1,6 @@
 # AGENTS.md: die Hausordnung
 
-Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Was wir dem Agenten gestern im Chat gesagt haben, weiß er heute nicht mehr. Dauerhafte Regeln schreiben wir deshalb in eine Datei, die der Agent zu Beginn jeder Sitzung von selbst liest: die `AGENTS.md`. Sie ist die Hausordnung des Projektordners. Fünf kurze, prüfbare Regeln halten den Agenten an, auf Deutsch zu antworten, Angaben ohne Quelle als Annahme zu kennzeichnen und zu melden, was er geändert hat.
+Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Was wir dem Agenten gestern im Chat gesagt haben, weiß er heute nicht mehr. Dauerhafte Regeln schreiben wir deshalb in eine Datei, die der Agent zu Beginn jeder Sitzung von selbst liest: die `AGENTS.md`. Sie ist die Hausordnung des Projektordners: Wie ein neuer Mitarbeiter liest der Agent sie jeden Morgen zuerst, also zu Beginn jeder Sitzung. Fünf kurze, prüfbare Regeln halten den Agenten an, auf Deutsch zu antworten, Angaben ohne Quelle als Annahme zu kennzeichnen und zu melden, was er geändert hat.
 
 ## Ohne und mit Hausordnung
 
@@ -57,7 +57,7 @@ Die Projektbeschreibung gibt dem Agenten den Zusammenhang, ähnlich wie die `REA
 Die Regeln sind in Befehlsform und in der Du-Form geschrieben, so wie wir auch Aufträge an den Agenten formulieren. Sie stehen als nummerierte Liste, damit wir uns im Gespräch auf „Regel 2“ beziehen können.
 
 ::: {.callout-warning title="Regeln sind keine Garantie"}
-Ein Sprachmodell kann sich auch mit Regel 2 eine Angabe ausdenken, die in keiner Datei steht. Die Regeln senken dieses Risiko und machen Abweichungen leichter erkennbar. Preise, Termine und Zusagen prüfen wir deshalb weiter gegen die Quelle, bevor ein Entwurf das Haus verlässt.
+Auch Neue machen Fehler, obwohl sie die Hausordnung kennen. Ein Sprachmodell kann sich auch mit Regel 2 eine Angabe ausdenken, die in keiner Datei steht. Die Regeln senken dieses Risiko und machen Abweichungen leichter erkennbar. Preise, Termine und Zusagen prüfen wir deshalb weiter gegen die Quelle, bevor ein Entwurf das Haus verlässt.
 :::
 
 ## Prüfbare Regeln

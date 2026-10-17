@@ -1,6 +1,6 @@
 # Den Agenten erweitern {.unnumbered}
 
-Bis hierhin arbeitet der Agent mit dem, was im Projektordner liegt: Anfragen, Antwortentwürfe, Quellen, die AGENTS.md und die Skills. Manche Aufträge brauchen aber Daten, die nie als Datei im Ordner landen, etwa freie Zeiten im Teamkalender oder Tickets im Service-System. Dafür lässt sich der Agent mit anderen Systemen verbinden. Dieser Teil erklärt, wie solche Verbindungen funktionieren, wann sie sich lohnen und welche Regeln wir vorher festlegen. Eingerichtet wird hier nichts; alles aus dem ersten Teil funktioniert ohne Erweiterung.
+Bis hierhin arbeitet der Agent mit dem, was im Projektordner liegt: Anfragen, Antwortentwürfe, Quellen, die AGENTS.md und die Skills. Manche Aufträge brauchen aber Daten, die nie als Datei im Ordner landen, etwa freie Zeiten im Teamkalender oder Tickets im Service-System. Dafür lässt sich der Agent mit anderen Systemen verbinden, so wie ein neuer Mitarbeiter nach den ersten Tagen Zugänge zu Kalender und Ticket-System bekommt. Dieser Teil erklärt, wie solche Verbindungen funktionieren, wann sie sich lohnen und welche Regeln wir vorher festlegen. Eingerichtet wird hier nichts; alles aus dem ersten Teil funktioniert ohne Erweiterung.
 
 Wir werden:
 

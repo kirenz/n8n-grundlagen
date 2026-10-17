@@ -55,7 +55,7 @@ Eine vollständige Prüfung Zeile für Zeile ist bei langen Dokumenten zu aufwen
 | Zwei Zahlen | Sind sie identisch? | „Kleine Reparatur“ kostet in beiden 45,00 EUR, „Beratung vor Ort“ 89,00 EUR |
 | Eine Überschrift | Stimmt die Reihenfolge? | „Bedingungen“ steht nach der Tabelle |
 
-Den Agenten binden wir in die Prüfung ein. Wir lassen ihn drei Beträge mit Seite und Zeile nennen und vergleichen sie selbst mit dem PDF. So prüft nicht der Agent seine eigene Arbeit allein.
+Wie bei einem neuen Mitarbeiter gilt das Vier-Augen-Prinzip: Der Agent bringt die Unterlage in eine lesbare Form, wir lesen gegen. Den Agenten binden wir in die Prüfung ein. Wir lassen ihn drei Beträge mit Seite und Zeile nennen und vergleichen sie selbst mit dem PDF. So prüft nicht der Agent seine eigene Arbeit allein.
 
 Findet die Stichprobe einen Fehler, korrigieren wir gezielt. Zeigt die Textfassung etwa 12 Tabellenzeilen und das PDF 14, nennen wir dem Agenten die fehlenden Zeilen und lassen ihn nachtragen. Die ganze Tabelle abzutippen kostet unnötig Zeit. Ebenso wenig hilft es, den Agenten künftig das PDF statt der Textfassung lesen zu lassen: Hat die Umwandlung die Tabelle falsch gelesen, liest er sie beim nächsten Mal wieder falsch, dann ohne Prüfung.
 
@@ -75,7 +75,7 @@ Nur Dateien mit Prüfvermerk gelten als Quelle.
 
 Der Satz über der Tabelle ist die eigentliche Regel. Eine Textfassung ohne Zeile in der Quellenliste ist damit für uns und den Agenten erkennbar ungeprüft. Den Prüfvermerk setzen wir erst, wenn die Stichprobe bestanden ist. Fehlen noch zwei Zeilen, ist der Vermerk falsch, auch wenn zwei von vierzehn Zeilen wenig erscheinen.
 
-Die Quellenliste ergänzt Regel 2 unserer `AGENTS.md`: „Nutze nur Fakten aus Dateien in diesem Ordner.“ Regel 2 sagt, woher Fakten kommen dürfen. Die Quellenliste sagt, welchen dieser Dateien wir trauen.
+Die Quellenliste ergänzt Regel 2 unserer `AGENTS.md`: „Nutze nur Fakten aus Dateien in diesem Ordner.“ Regel 2 sagt, woher Fakten kommen dürfen. Die Quellenliste sagt, welchen dieser Dateien wir trauen. Sie ist damit die Liste der freigegebenen Unterlagen.
 
 ## Im Nachbau: die Preisliste prüfen
 
@@ -140,4 +140,4 @@ Wir lassen den Agenten die Preisliste umwandeln, prüfen drei Beträge gegen das
 
 **Prüfkriterium:** Die Antwort auf Schritt 13 nennt den Betrag aus der Preisliste und die Datei `quellen/text/preisliste-2026.md`.
 
-Damit hat der Ordner seine erste geprüfte Quelle. Neue Preislisten, Merkblätter und Lieferantenmails kommen künftig laufend dazu. Wie sie ohne Handarbeit an den richtigen Ort gelangen, zeigt das Kapitel [Laufend neue Dateien](laufend-neue-dateien.qmd).
+Damit hat der Ordner seine erste geprüfte Quelle. Neben PDFs liegen viele Zahlen eines Betriebs in Excel-Dateien. Wie wir sie nach demselben Muster aufnehmen, zeigt das Kapitel [Excel-Tabellen als Quelle](excel-als-quelle.qmd).

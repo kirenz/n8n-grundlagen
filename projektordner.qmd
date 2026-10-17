@@ -1,6 +1,6 @@
-# Der Projektordner: Material an einem Ort
+# Der Projektordner: Arbeitsplatz mit Ablage
 
-Alles, was der Agent kennen soll, liegt als Datei im Projektordner. Der Ordner ist sein Material und zugleich die Grenze seiner Arbeit. Wir starten den Agenten in diesem Ordner, und er liest und ändert nur, was darin liegt. Wie gut der Agent arbeitet, hängt deshalb stark davon ab, wie der Ordner aufgebaut ist: ob die Dateien sprechende Namen tragen, ob jede Art von Material einen festen Platz hat und ob eine kurze Beschreibung sagt, wozu der Ordner da ist.
+Der Projektordner ist der Arbeitsplatz des Agenten, mit einer beschrifteten Ablage. Alles, was er kennen soll, liegt dort als Datei. Zugleich ist der Ordner die Grenze seiner Arbeit. Wir starten den Agenten in diesem Ordner, und er liest und ändert nur, was darin liegt. Wie gut der Agent arbeitet, hängt deshalb stark davon ab, wie der Ordner aufgebaut ist: ob die Dateien sprechende Namen tragen, ob jede Art von Material einen festen Platz hat und ob eine kurze Beschreibung sagt, wozu der Ordner da ist.
 
 ## Ein Ordner je Vorhaben
 
@@ -25,7 +25,7 @@ Im zweiten Teil der Szene gibt der Auftrag drei Beispielanfragen wörtlich vor. 
 
 ## README.md: die Beschreibung für Menschen
 
-Jeder Projektordner bekommt eine Datei `README.md`. Der Name ist eine alte Konvention aus der Softwareentwicklung und bedeutet „lies mich“. Die Datei beschreibt für Menschen in wenigen Sätzen, wozu der Ordner da ist und was darin liegt. Für `kundenanfragen` reichen drei Sätze:
+Jeder Projektordner bekommt eine Datei `README.md`. Der Name ist eine alte Konvention aus der Softwareentwicklung und bedeutet „lies mich“. Die Datei beschreibt für Menschen in wenigen Sätzen, wozu der Ordner da ist und was darin liegt. Für jeden Neuen am Arbeitsplatz ist sie das Begrüßungsschreiben: worum es hier geht. Für `kundenanfragen` reichen drei Sätze:
 
 ```markdown
 # Kundenanfragen

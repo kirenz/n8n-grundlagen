@@ -24,6 +24,8 @@ Ein **Chat-Assistent** antwortet auf das, was im Eingabefeld steht. Für drei Ku
 
 Ein **Agent** arbeitet in einem Ordner. Er liest Dateien, legt neue an und führt Befehle aus. Ein **Befehl** ist hier ein kleines Programm, das der Agent startet, etwa um eine Datei umzuwandeln oder einen Ordner zu durchsuchen. Vor jeder Änderung und vor jedem Befehl fragt der Agent nach oder zeigt, was er vorhat. Für dieselben drei Anfragen genügt ein Satz: „Sortiere die Anfragen in `anfragen/` nach Dringlichkeit und schreibe das Ergebnis in `UEBERSICHT.md`.“
 
+Ein Bild dafür: Der Chat gleicht einem externen Berater am Telefon, dem wir jedes Mal alles vorlesen. Der Agent gleicht einem neuen Mitarbeiter am eigenen Schreibtisch, mit Zugang zur Ablage. Vor wichtigen Schritten fragt er nach.
+
 | | Chat-Assistent | Agent im Ordner |
 |---|---|---|
 | **Woher kommt das Material?** | Wir kopieren es ins Eingabefeld. | Der Agent öffnet die Dateien im Ordner selbst. |
@@ -71,14 +73,14 @@ Die Begrüßung für die Website klingt nach Arbeit an einer Datei. Sie ist aber
 
 ## Vier Bausteine für die Arbeit mit einem Agenten
 
-Damit ein Agent verlässlich arbeitet, braucht er mehr als einen Auftrag. Vier Bausteine fassen zusammen, was die folgenden Kapitel aufbauen. Zu jedem gehört ein Vergleich aus dem Alltag:
+Damit ein Agent verlässlich arbeitet, braucht er mehr als einen Auftrag. Der neue Mitarbeiter ist fachlich fit, kennt aber unseren Betrieb nicht. Anders als ein Mensch erinnert er sich nicht von selbst an gestern: Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Darum steht alles Wichtige schriftlich in seinem **Onboarding**, der Einarbeitung neuer Mitarbeitender. Vier Bausteine bilden seine Onboarding-Mappe und fassen zusammen, was die folgenden Kapitel aufbauen:
 
-![Vier Bausteine einer Arbeitsumgebung für einen Agenten](images/01-leitbild.svg){fig-alt="Vier Karten: Ordner gleich Material, AGENTS.md gleich Hausordnung, Skills gleich Rezepte, MCP gleich Steckdose." width="100%"}
+![Vier Bausteine einer Arbeitsumgebung für einen Agenten](images/01-leitbild.svg){fig-alt="Vier Karten: Ordner gleich Arbeitsplatz mit Ablage, AGENTS.md gleich Hausordnung, Skills gleich Arbeitsanweisungen, MCP gleich Zugänge." width="100%"}
 
-- **Ordner = Material.** Alles, was der Agent kennen soll, liegt als Datei im Projektordner. Darum geht es in den Kapiteln [Der Projektordner](projektordner.qmd), [Kontext bereitstellen](kontext-bereitstellen.qmd), [PDFs als Quellen](pdf-als-quelle.qmd) und [Laufend neue Dateien](laufend-neue-dateien.qmd).
-- **AGENTS.md = Hausordnung.** Kurze, prüfbare Regeln, die in jeder Sitzung gelten. Eine **Sitzung** ist eine Unterhaltung mit dem Agenten vom Start bis zum Schließen. Siehe [AGENTS.md: die Hausordnung](agents-md.qmd).
-- **Skills = Rezepte.** Abläufe mit mehreren Schritten, die der Agent bei Bedarf holt. Siehe [Skills](skills.qmd).
-- **MCP = Steckdose.** Ein genormter Anschluss, über den der Agent andere Systeme erreicht (MCP steht für Model Context Protocol). Siehe [MCP](mcp.qmd) und [Konnektoren und Plugins](konnektoren-plugins.qmd).
+- **Ordner = Arbeitsplatz mit Ablage.** Alles, was der Agent kennen soll, liegt als Datei im Projektordner. Darum geht es in den Kapiteln [Der Projektordner](projektordner.qmd), [Kontext bereitstellen](kontext-bereitstellen.qmd), [PDFs als Quellen](pdf-als-quelle.qmd), [Excel-Tabellen als Quelle](excel-als-quelle.qmd) und [Laufend neue Dateien](laufend-neue-dateien.qmd).
+- **AGENTS.md = Hausordnung.** Kurze, prüfbare Regeln, die der Agent zu Beginn jeder Sitzung zuerst liest. Eine **Sitzung** ist eine Unterhaltung mit dem Agenten vom Start bis zum Schließen. Siehe [AGENTS.md: die Hausordnung](agents-md.qmd).
+- **Skills = Arbeitsanweisungen.** Abläufe mit mehreren Schritten, die der Agent bei Bedarf hervorholt. Siehe [Skills](skills.qmd).
+- **MCP = Zugänge.** Zugänge zu anderen Systemen nach einem gemeinsamen Standard (MCP steht für Model Context Protocol). Siehe [MCP](mcp.qmd) und [Konnektoren und Plugins](konnektoren-plugins.qmd).
 
 ## Was der Agent können muss
 

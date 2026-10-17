@@ -1,6 +1,6 @@
 # Kontext bereitstellen
 
-Ein Agent weiß für einen Auftrag nur das, was er dafür liest. Ob eine Antwort stimmt, entscheidet sich deshalb oft schon vor dem Auftrag: bei der Frage, welche Dateien im Projektordner liegen, wie sie heißen und ob der Agent die richtige davon findet. Unser Ordner `kundenanfragen` enthält bisher eine `README.md`, eine `AGENTS.md` mit fünf Regeln und drei Anfragen. Jetzt kommt Material dazu, mit dem der Agent arbeiten soll, etwa eine Preisliste. Damit stellt sich die Frage, was hineingehört und wie der Agent es findet.
+Ein Agent weiß für einen Auftrag nur das, was er dafür liest. Ob eine Antwort stimmt, entscheidet sich deshalb oft schon vor dem Auftrag: bei der Frage, welche Dateien im Projektordner liegen, wie sie heißen und ob der Agent die richtige davon findet. Unser Ordner `kundenanfragen` enthält bisher eine `README.md`, eine `AGENTS.md` mit fünf Regeln und drei Anfragen. Jetzt kommen Unterlagen dazu, mit dem der Agent arbeiten soll, etwa eine Preisliste. Damit stellt sich die Frage, was hineingehört und wie der Agent es findet.
 
 ## Was zum Kontext gehört
 
@@ -26,7 +26,7 @@ Bevor eine Datei in den Projektordner kommt, stellen wir drei Fragen:
 | **Aktuell?** | Ist das der gültige Stand, oder liegt eine neuere Fassung woanders? | Preisliste mit Stand 1. Januar 2026 | Preisliste von 2025 neben der aktuellen |
 | **Auffindbar?** | Sagen Name und Ort, was in der Datei steht? | `quellen/text/preisliste-2026.md` | `Dokument1 (final).md` im Hauptordner |
 
-An vier typischen Materialien zeigt sich, wie die Fragen zusammenwirken. Die aktuelle Preisliste und die Vorlage für Antwort-E-Mails braucht der Agent für die nächsten Antworten, beide kommen in den Ordner. Die Preisliste von 2025 ist veraltet. Wird sie als Nachweis gebraucht, archivieren wir sie mit Datum außerhalb des Projektordners. Der schwierigste Fall ist ein Chatverlauf mit einer Kundin, in dem ihr voller Name und ihre Telefonnummer stehen. Das Anliegen kann relevant sein, Name und Telefonnummer sind es nicht. Das Anliegen kommt deshalb ohne Personendaten als neue Datei nach `anfragen/`. Das entspricht Regel 3 unserer `AGENTS.md`: keine Personennamen in neue Dateien.
+An vier typischen Unterlagen zeigt sich, wie die Fragen zusammenwirken. Die aktuelle Preisliste und die Vorlage für Antwort-E-Mails braucht der Agent für die nächsten Antworten, beide kommen in den Ordner. Die Preisliste von 2025 ist veraltet. Wird sie als Nachweis gebraucht, archivieren wir sie mit Datum außerhalb des Projektordners. Der schwierigste Fall ist ein Chatverlauf mit einer Kundin, in dem ihr voller Name und ihre Telefonnummer stehen. Das Anliegen kann relevant sein, Name und Telefonnummer sind es nicht. Das Anliegen kommt deshalb ohne Personendaten als neue Datei nach `anfragen/`. Das entspricht Regel 3 unserer `AGENTS.md`: keine Personennamen in neue Dateien.
 
 ## Verweis statt Kopie
 
@@ -36,7 +36,7 @@ Im Chat liegt es nahe, die Preisliste einfach in den Auftrag zu kopieren. Das fu
 Nutze die Preisliste in quellen/text/ und beantworte die Preisfrage vom 6.10.
 ```
 
-Ein **Verweis** ist eine Angabe, wo eine Information liegt, etwa ein Dateiname oder ein Ordner. Ersetzt die neue Preisliste die alte Datei, führt derselbe Verweis automatisch zum neuen Stand.
+Ein **Verweis** ist eine Angabe, wo eine Information liegt, etwa ein Dateiname oder ein Ordner. Ersetzt die neue Preisliste die alte Datei, führt derselbe Verweis automatisch zum neuen Stand. Bei einem neuen Mitarbeiter wäre das der Hinweis auf das Fach in der Ablage, in dem die Preisliste liegt.
 
 | | Kopie im Auftrag | Verweis auf die Datei |
 |---|---|---|
@@ -45,7 +45,7 @@ Ein **Verweis** ist eine Angabe, wo eine Information liegt, etwa ein Dateiname o
 | Nachprüfbar | nur im Chatverlauf | jederzeit im Ordner |
 | Für andere Aufträge nutzbar | nein, jedes Mal neu einfügen | ja, jeder Auftrag kann darauf verweisen |
 
-Zwei Alternativen wirken naheliegend und führen trotzdem zu Problemen. Ein Link auf die Preisseite der Website liegt außerhalb des Ordners. Ob der Agent die Seite abrufen kann, hängt vom Werkzeug ab, und welcher Stand dort gerade steht, ist nicht belegt. Preise als Regel in die `AGENTS.md` zu schreiben, vermischt Regeln und Material. Die Hausordnung wird lang und muss jedes Quartal geändert werden.
+Zwei Alternativen wirken naheliegend und führen trotzdem zu Problemen. Ein Link auf die Preisseite der Website liegt außerhalb des Ordners. Ob der Agent die Seite abrufen kann, hängt vom Werkzeug ab, und welcher Stand dort gerade steht, ist nicht belegt. Preise als Regel in die `AGENTS.md` zu schreiben, vermischt Regeln und Unterlagen. Die Hausordnung wird lang und muss jedes Quartal geändert werden.
 
 ## Die Übersichtsdatei
 
@@ -74,7 +74,7 @@ Eine Übersicht nützt nur, solange sie vollständig ist. Deshalb pflegt der Age
 6. Lies zu Beginn UEBERSICHT.md. Ergänze sie nach jedem Auftrag, wenn neue Dateien entstanden sind.
 ```
 
-Damit gilt die Übersicht in jeder Sitzung, ohne dass wir sie im Auftrag erwähnen. Die `README.md` bleibt daneben bestehen. Sie erklärt Menschen, worum es im Ordner geht. Die Übersicht ist das Inhaltsverzeichnis für die Arbeit, und Regel 6 hält den Agenten an, neue Dateien dort einzutragen.
+Damit gilt die Übersicht in jeder Sitzung, ohne dass wir sie im Auftrag erwähnen. Die `README.md` bleibt daneben bestehen. Sie erklärt Menschen, worum es im Ordner geht. Die Übersicht ist der Ablageplan für die Arbeit: Sie sagt, was wo liegt. Regel 6 hält den Agenten an, neue Dateien dort einzutragen.
 
 ## Im Nachbau: der Weg zur Preisliste
 
