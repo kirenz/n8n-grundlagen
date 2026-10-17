@@ -43,7 +43,8 @@ $code-block-bg:          $code-bg !default;
 
 // Kopierbare Aufträge (```text) sind einfache <pre class="text">-Blöcke ohne
 // sourceCode-Hülle; code-overflow: wrap greift dort nicht. Lange Zeilen umbrechen.
-pre.text {
+pre.text,
+pre.text code {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
