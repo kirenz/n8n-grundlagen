@@ -457,37 +457,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="19.1" class="anchored" data-anchor-id="was-hier-mit-agent-gemeint-ist"><span class="header-section-number">19.1</span> Was hier mit Agent gemeint ist</h2>
 <p>Mit Agent meinen wir in diesem Buch einen <strong>Coding-Agenten</strong>: ein KI-Werkzeug, das auf dem eigenen Rechner in einem Ordner mitarbeitet. Gebaut wurden diese Werkzeuge für Programmcode. Sie arbeiten aber mit allen Textdateien, also auch mit Kundenanfragen, Protokollen oder Konzepten. Bekannte Beispiele:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Werkzeug</th>
 <th>Anbieter</th>
-<th>Wo es läuft</th>
+<th>App</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Claude Code</td>
 <td>Anthropic</td>
-<td>Desktop-App, Erweiterung für Code-Editoren wie VS Code, Terminal</td>
+<td>Claude-Desktop-App, Bereich „Code“</td>
 </tr>
 <tr class="even">
 <td>Codex</td>
 <td>OpenAI</td>
-<td>ChatGPT-App, Erweiterung für Code-Editoren, Terminal</td>
+<td>Codex-App</td>
 </tr>
 <tr class="odd">
 <td>Antigravity</td>
 <td>Google</td>
-<td>eigene App mit Editor, Terminal</td>
+<td>Antigravity-App</td>
+</tr>
+<tr class="even">
+<td>Cursor</td>
+<td>Anysphere</td>
+<td>Cursor-App</td>
 </tr>
 </tbody>
 </table>
-<p>Weitere Werkzeuge wie Cursor arbeiten ähnlich. Das <strong>Terminal</strong> ist ein Textfenster, in dem wir Befehle eintippen statt zu klicken. Für dieses Buch reicht jede der genannten Oberflächen.</p>
+<p>Wir arbeiten in diesem Buch in der App des jeweiligen Werkzeugs. Manche Werkzeuge lassen sich auch über ein Textfenster für Befehle (Terminal) bedienen; das brauchen wir nicht.</p>
 <p>Die Bedienung unterscheidet sich von Werkzeug zu Werkzeug und ändert sich oft. Das Buch zeigt deshalb keine bestimmte Oberfläche. Die Nachbauten in den Kapiteln stellen einen typischen Agenten nach; Dateibaum, Chat und Rückfrage finden wir in ähnlicher Form in jedem der genannten Werkzeuge. Was sich je Werkzeug unterscheidet, etwa Dateinamen und Speicherorte, steht gesammelt in der <a href="#uebersicht-nach-werkzeug">Übersicht nach Werkzeug</a>.</p>
 <p>Gemeint ist ein Arbeitswerkzeug am eigenen Rechner. Agenten, die als Baustein in eine Automatisierung eingebaut sind, etwa in einen Workflow, sind etwas anderes.</p>
 </section>
@@ -495,7 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="19.2" class="anchored" data-anchor-id="zwei-arten-zu-arbeiten"><span class="header-section-number">19.2</span> Zwei Arten zu arbeiten</h2>
 <p>Ein <strong>Chat-Assistent</strong> antwortet auf das, was im Eingabefeld steht. Für drei Kundenanfragen heißt das: jede Anfrage öffnen, den Text kopieren, in den Chat einfügen, um eine Sortierung bitten und die Antwort danach von Hand in eine Datei übertragen. Beim nächsten Mal beginnt das Kopieren von vorn.</p>
 <p>Ein <strong>Agent</strong> arbeitet in einem Ordner. Er liest Dateien, legt neue an und führt Befehle aus. Ein <strong>Befehl</strong> ist hier ein kleines Programm, das der Agent startet, etwa um eine Datei umzuwandeln oder einen Ordner zu durchsuchen. Vor jeder Änderung und vor jedem Befehl fragt der Agent nach oder zeigt, was er vorhat. Für dieselben drei Anfragen genügt ein Satz: „Sortiere die Anfragen in <code>anfragen/</code> nach Dringlichkeit und schreibe das Ergebnis in <code>UEBERSICHT.md</code>.“</p>
-<p>Ein Bild dafür: Der Chat gleicht einem externen Berater am Telefon, dem wir jedes Mal alles vorlesen. Der Agent gleicht einem neuen Mitarbeiter am eigenen Schreibtisch, mit Zugang zur Ablage. Vor wichtigen Schritten fragt er nach.</p>
+<p>Zum Vergleich: Der Chat gleicht einem externen Berater am Telefon, dem wir jedes Mal alles vorlesen. Der Agent gleicht einem neuen Mitarbeiter am eigenen Schreibtisch, mit Zugang zur Ablage. Vor wichtigen Schritten fragt er nach.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -638,30 +638,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
+<td><strong>App</strong></td>
+<td>Claude-Desktop-App, Bereich „Code“</td>
+<td>Codex-App</td>
+<td>Antigravity-App</td>
+</tr>
+<tr class="even">
 <td><strong>Anweisungsdatei</strong></td>
 <td><code>CLAUDE.md</code>. Liest <code>AGENTS.md</code> nur, wenn kein <code>CLAUDE.md</code> vorliegt. Alternativ in <code>CLAUDE.md</code> die Zeile <code>@AGENTS.md</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
 <td><code>AGENTS.md</code> im Projektordner, zusätzlich global in <code>~/.codex/</code>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></td>
 <td><code>AGENTS.md</code> oder <code>GEMINI.md</code>, zusätzlich Regeln in <code>.agents/rules/</code>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Skills-Ordner</strong></td>
 <td><code>.claude/skills/</code> im Projekt, persönlich <code>~/.claude/skills/</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></td>
 <td><code>.agents/skills/</code> im Projekt, persönlich <code>~/.agents/skills/</code>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></td>
 <td><code>.agents/skills/</code> im Projekt, global <code>~/.gemini/config/skills/</code>.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>MCP-Konfiguration</strong></td>
-<td>Datei <code>.mcp.json</code> im Projekt, Befehl <code>claude mcp add</code>.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></td>
-<td>Datei <code>.codex/config.toml</code> im Projekt oder <code>~/.codex/config.toml</code>, Befehl <code>codex mcp add</code>.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></td>
+<td>Datei <code>.mcp.json</code> im Projekt.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></td>
+<td>Datei <code>.codex/config.toml</code> im Projekt oder <code>~/.codex/config.toml</code>.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></td>
 <td>MCP Store im Agent-Panel, Datei <code>mcp_config.json</code>.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></td>
 </tr>
-<tr class="even">
-<td><strong>Plugins und Konnektoren</strong></td>
-<td>Plugins aus Marketplaces, Befehl <code>/plugin</code>.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> Konnektoren (Connectors) in den Claude-Apps, je Werkzeug freigebbar.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></td>
-<td>Plugins bündeln Skills und MCP-Server, Befehl <code>/plugins</code> in der CLI; die IDE-Erweiterung unterstützt keine Plugins. Ein eigener Begriff „Konnektor“ ist nicht belegt.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></td>
-<td>Plugins mit <code>plugin.json</code>, Befehl <code>/plugin</code>, Marketplace in App und CLI.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></td>
-</tr>
 <tr class="odd">
+<td><strong>Plugins und Konnektoren</strong></td>
+<td>Plugins aus Marketplaces.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> Konnektoren (Connectors) in den Claude-Apps, je Werkzeug freigebbar.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></td>
+<td>Plugins bündeln Skills und MCP-Server. Ein eigener Begriff „Konnektor“ ist nicht belegt.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></td>
+<td>Plugins mit <code>plugin.json</code>, Marketplace in der App.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></td>
+</tr>
+<tr class="even">
 <td><strong>Installations­anleitung</strong></td>
 <td><a href="https://code.claude.com/docs">code.claude.com/docs</a></td>
 <td><a href="https://learn.chatgpt.com/docs">learn.chatgpt.com/docs</a></td>
