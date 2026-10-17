@@ -1,0 +1,11 @@
+# Den Agenten erweitern {.unnumbered}
+
+Bis hierhin arbeitet der Agent mit dem, was im Projektordner liegt: Anfragen, Antwortentwürfe, Quellen, die AGENTS.md und die Skills. Manche Aufträge brauchen aber Daten, die nie als Datei im Ordner landen, etwa freie Zeiten im Teamkalender oder Tickets im Service-System. Dafür lässt sich der Agent mit anderen Systemen verbinden. Dieser Teil erklärt, wie solche Verbindungen funktionieren, wann sie sich lohnen und welche Regeln wir vorher festlegen. Eingerichtet wird hier nichts; alles aus dem ersten Teil funktioniert ohne Erweiterung.
+
+Wir werden:
+
+- verstehen, was MCP ist und was ein MCP-Server dem Agenten gibt,
+- die verbundenen Server und Pakete des eigenen Agenten auflisten lassen, ohne etwas zu ändern,
+- für den eigenen Fall entscheiden, ob eine Anbindung nötig ist und wer sie freigibt,
+- Konnektoren und Plugins als fertige Pakete einordnen und ihre Rechte vor dem Einschalten prüfen,
+- die AGENTS.md um eine Regel gegen eingeschleuste Anweisungen in fremden Texten ergänzen.

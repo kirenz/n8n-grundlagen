@@ -1,0 +1,135 @@
+# Markdown: Text, den Mensch und Agent lesen
+
+Agenten lesen und schreiben Markdown ohne Umweg. Markdown ist reiner Text mit wenigen Zeichen für die Struktur: Ein `#` macht eine Überschrift, ein `-` einen Listenpunkt. Wir können eine solche Datei mit jedem Editor öffnen und verstehen sie auch ohne Formatierung. Fast alle Dateien, die in den folgenden Kapiteln entstehen, sind Markdown-Dateien: die Anfragen, die Antwortentwürfe, die Übersicht und die Hausordnung des Agenten.
+
+## Rohtext und Vorschau
+
+Eine Markdown-Datei endet auf `.md`. Ihr Inhalt heißt **Rohtext**: der Text genau so, wie er in der Datei steht, mit allen Zeichen. Viele **Editoren** (Programme zum Bearbeiten von Text) und die meisten Agenten zeigen zusätzlich eine **Vorschau**. Dort sind die Zeichen ausgeblendet, und wir sehen Überschriften, Listen und Tabellen formatiert. Der Agent liest immer den Rohtext.
+
+Im Nachbau fragen wir nach dem Inhalt einer Beschwerde. Der Editor in der Mitte zeigt den Rohtext mit Zeilennummern. Mit „Weiter“ verfolgen wir, welche Zeilen der Agent liest und was er daraus ablesen kann.
+
+```{=html}
+<iframe class="muster-agent" src="widgets/02-markdown-rohtext.html" title="Nachbau eines Agenten: eine Anfrage als Markdown-Rohtext lesen" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+```
+
+Die Datei `2026-10-07-beschwerde.md` sieht im Rohtext so aus:
+
+```markdown
+# Beschwerde
+
+- Datum: 2026-10-07
+- Kanal: E-Mail
+- Anliegen: Reparatur nicht rechtzeitig fertig
+
+Guten Tag, die Reparatur war für Freitag zugesagt.
+Bis heute habe ich keine Nachricht. Bitte melden Sie sich.
+```
+
+In der Vorschau verschwinden `#` und `-`. Übrig bleiben eine Überschrift, drei Listenpunkte und der Text:
+
+```{=html}
+<div style="max-width:560px;border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;color:#1f2430;margin:0 0 1rem">
+<div style="padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170;font-family:ui-monospace,SFMono-Regular,Menlo,monospace">Vorschau: 2026-10-07-beschwerde.md</div>
+<div style="padding:12px 18px 14px;line-height:1.5">
+<div style="font-size:1.5rem;font-weight:700;margin:0 0 8px">Beschwerde</div>
+<ul style="margin:0 0 10px;padding-left:22px"><li>Datum: 2026-10-07</li><li>Kanal: E-Mail</li><li>Anliegen: Reparatur nicht rechtzeitig fertig</li></ul>
+<div>Guten Tag, die Reparatur war für Freitag zugesagt. Bis heute habe ich keine Nachricht. Bitte melden Sie sich.</div>
+</div>
+</div>
+```
+
+Die Struktur hilft dem Agenten. Aus den drei Listenzeilen liest er Datum, Kanal und Anliegen direkt ab, ohne den Fließtext deuten zu müssen. Wir nutzen diesen Aufbau für alle Anfragen im Projektordner: Überschrift, drei Kopfzeilen als Liste, dann der Text.
+
+Zwei Zeilenumbrüche im Rohtext trennen Absätze. Ein einzelner Zeilenumbruch erscheint in der Vorschau meist als Leerzeichen; deshalb stehen die beiden Sätze der Beschwerde in der Vorschau in einer Zeile.
+
+## Die wichtigsten Zeichen
+
+Für die Arbeit mit einem Agenten reichen wenige Zeichen. Sie stehen am Zeilenanfang oder umschließen ein Wort.
+
+| Rohtext | Wirkung in der Vorschau | Beispiel |
+|---|---|---|
+| `# Titel` | Überschrift | `# Beschwerde` |
+| `## Abschnitt` | Unterüberschrift | `## Regeln` |
+| `- Punkt` | Listenpunkt | `- Kanal: E-Mail` |
+| `1. Schritt` | nummerierter Punkt | `1. Antworte auf Deutsch.` |
+| `**Wort**` | **fett** | `**dringend**` |
+| `[Text](Ziel)` | Link mit dem Text als Beschriftung | `[Preisliste](quellen/text/preisliste-2026.md)` |
+
+Ein Link kann auf eine Website zeigen oder auf eine andere Datei im Ordner. Der zweite Fall ist für uns der wichtigere: Eine Übersicht verlinkt auf die Anfragen, eine Antwort auf die Quelle, aus der ein Betrag stammt. Der Agent folgt solchen Verweisen und öffnet die genannte Datei.
+
+::: {.callout-important title="Vertauschte Klammern"}
+Ein Link beginnt mit dem Text in eckigen Klammern. Danach folgt ohne Leerzeichen das Ziel in runden Klammern: `[Antwort auf Rückruf](antworten/vorlage-rueckruf.md)`. Stehen die Klammern andersherum, `(Antwort auf Rückruf)[antworten/vorlage-rueckruf.md]`, zeigt die Vorschau den Rohtext und keinen Link. Diesen Fehler sehen wir nur in der Vorschau, deshalb lohnt ein kurzer Blick dorthin.
+:::
+
+## Tabellen
+
+Eine **Tabelle** besteht aus Zeilen mit senkrechten Strichen `|` zwischen den Spalten. Die erste Zeile ist der Kopf. Die zweite Zeile aus Strichen, `|---|---|`, trennt den Kopf vom Inhalt; ohne sie erkennt die Vorschau keine Tabelle. Danach folgt eine Zeile je Eintrag.
+
+```markdown
+| Datei | Anliegen |
+|---|---|
+| 2026-10-05-terminwunsch.md | Termin für eine Reparatur |
+| 2026-10-06-preisfrage.md | Preis für eine Reparatur |
+```
+
+In der Vorschau wird daraus:
+
+| Datei | Anliegen |
+|---|---|
+| 2026-10-05-terminwunsch.md | Termin für eine Reparatur |
+| 2026-10-06-preisfrage.md | Preis für eine Reparatur |
+
+Die Striche müssen nicht untereinander stehen. Wichtig ist nur, dass jede Zeile gleich viele Spalten hat. Tabellen eignen sich für Übersichten mit wenigen, kurzen Spalten: Datei und Anliegen, Datei und Stand, Regel und Prüfung. Für längere Texte je Eintrag ist eine Liste mit Unterüberschriften besser lesbar.
+
+## Warum der Agent Markdown bevorzugt
+
+Eine Word- oder Google-Datei ist ein gepacktes Paket aus Text und Formatierungsangaben. Eine `.docx`-Datei zum Beispiel ist technisch ein komprimierter Ordner mit mehreren Dateien, in denen Schriftart, Farben, Seitenränder und der eigentliche Text verteilt liegen. Ein Agent muss dieses Paket erst auspacken, um an den Text zu kommen, und manche Werkzeuge können das gar nicht. Markdown ist der Text selbst.
+
+Daraus folgen zwei Vorteile im Alltag. Der Agent liest und ändert Markdown direkt, ohne Hilfsprogramm. Und jede Änderung ist Zeile für Zeile sichtbar: Ergänzt der Agent eine Regel, sehen wir genau die eine neue Zeile. Eine Farbmarkierung in Word zeigt das nicht verlässlich.
+
+| Form | Liest der Agent sie? | Kann er sie ergänzen? | Sind Änderungen zeilengenau sichtbar? |
+|---|---|---|---|
+| Markdown-Datei im Ordner | ja, direkt | ja | ja |
+| Word-Datei | oft nur mit Hilfsprogramm | eingeschränkt | nein |
+| PDF | oft, je nach Werkzeug | nein | nein |
+| Bildschirmfoto | nur als Bild | nein | nein |
+
+Ein Beispiel macht das greifbar. Eine Teamleitung möchte, dass der Agent die Teamregeln liest und unten eine neue Regel ergänzt. Danach will sie Zeile für Zeile sehen, was sich geändert hat. Das gelingt mit einer Markdown-Datei im Projektordner. Eine Word-Datei mit farbigen Markierungen, ein Bildschirmfoto aus dem Teamchat oder ein PDF erfüllen den zweiten Teil nicht.
+
+PDFs bleiben trotzdem wichtig, weil viele Quellen nur so vorliegen. Wie wir sie in Markdown umwandeln und prüfen, zeigt das Kapitel [PDFs als Quellen](pdf-als-quelle.qmd).
+
+::: {.callout-note title="Woher die Regeln stammen"}
+Markdown ist offen beschrieben. Die Grundregeln stehen in der Spezifikation [CommonMark](https://spec.commonmark.org/) (Version 0.31.2 vom 28. Januar 2024). [GitHub Flavored Markdown](https://github.github.com/gfm/) baut darauf auf und ergänzt unter anderem Tabellen. Die meisten Editoren und Agenten folgen beiden. Kleine Abweichungen zwischen Programmen kommen vor, betreffen aber selten die Zeichen aus der Tabelle oben.
+:::
+
+## Praxis: eine Markdown-Datei anlegen lassen
+
+Wir lassen den Agenten eine Datei mit Überschrift, Liste und Tabelle schreiben und vergleichen danach Rohtext und Vorschau.
+
+**Voraussetzung:** Der Ordner `agent-test` aus dem Kapitel [Chat oder Agent?](chat-oder-agent.qmd) ist im Agenten geöffnet.
+
+1. Diesen Auftrag senden:
+
+   ```text
+   Lege die Datei anfrage-beispiel.md an. Inhalt: Überschrift „Anfrage“, darunter eine Liste mit Datum, Kanal und Anliegen, darunter eine Tabelle mit den Spalten „Frage“ und „Antwort“ und zwei Zeilen. Zeige mir danach den Rohtext der Datei.
+   ```
+
+2. Das Anlegen freigeben.
+3. Prüfen: Der Rohtext beginnt mit `# Anfrage` und enthält eine Trennzeile wie `|---|---|`.
+4. `anfrage-beispiel.md` in der Vorschau des Editors oder Agenten öffnen.
+5. Prüfen: Überschrift, Liste und Tabelle erscheinen formatiert.
+
+**Prüfkriterium:** Der Rohtext enthält die Zeichen `#`, `-` und `|`. Die Vorschau zeigt keines dieser Zeichen mehr.
+
+Findet sich keine Vorschau, hilft der Agent: „Wie öffne ich die Vorschau einer Markdown-Datei?“
+
+::: {.callout-tip title="Den Agenten fragen"}
+Welche Formate der Agent ohne Hilfsprogramm liest, ist je Werkzeug verschieden. Diese Frage senden:
+
+```text
+Welche Dateiformate kannst du in diesem Ordner direkt lesen: Markdown, Textdateien, PDF, Word, Excel? Antworte als Liste mit ja oder nein.
+```
+
+Die Antwort nennt für jedes der fünf Formate ja oder nein. Steht bei PDF ein Nein, ist das Kapitel [PDFs als Quellen](pdf-als-quelle.qmd) besonders wichtig.
+:::

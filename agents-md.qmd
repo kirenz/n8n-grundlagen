@@ -1,0 +1,145 @@
+# AGENTS.md: die Hausordnung
+
+Jede neue Sitzung beginnt ohne Erinnerung an die vorige. Was wir dem Agenten gestern im Chat gesagt haben, weiß er heute nicht mehr. Dauerhafte Regeln schreiben wir deshalb in eine Datei, die der Agent zu Beginn jeder Sitzung von selbst liest: die `AGENTS.md`. Sie ist die Hausordnung des Projektordners. Fünf kurze, prüfbare Regeln reichen, damit der Agent auf Deutsch antwortet, nichts erfindet und meldet, was er geändert hat.
+
+## Ohne und mit Hausordnung
+
+Die beiden Nachbauten zeigen denselben Ordner `kundenanfragen` mit derselben Frage: „Wie teuer ist eine Reparatur bei uns?“ Eine Preisliste liegt noch nicht im Ordner, die Frage lässt sich aus den Dateien also nicht beantworten. Im ersten Nachbau fehlt die `AGENTS.md`, im zweiten liegt sie im Ordner. Mit „Weiter“ klicken wir durch beide Sitzungen und vergleichen die Antworten.
+
+```{=html}
+<iframe class="muster-agent" src="widgets/04-agents-md-ohne.html" title="Nachbau eines Agenten: Antwort ohne AGENTS.md" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+```
+
+```{=html}
+<iframe class="muster-agent" src="widgets/04-agents-md-mit.html" title="Nachbau eines Agenten: Antwort mit AGENTS.md" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+```
+
+Ohne Regeln antwortet der Agent nach eigenem Ermessen: auf Englisch und mit einem Betrag von 80 bis 120 Euro, der in keiner Datei steht. Er klingt sicher, hat den Betrag aber erfunden. Mit der `AGENTS.md` liest der Agent zuerst die Regeln, ohne dass jemand sie erwähnt. Für diese Frage greifen Regel 1 (Deutsch) und Regel 2 (nur Fakten aus dem Ordner). Seine Antwort kennzeichnet die Lücke:
+
+```text
+Annahme: Eine Preisliste liegt noch nicht im Ordner. Sobald sie in quellen/ liegt, nenne ich den Betrag daraus.
+
+Angelegt oder geändert: keine Dateien.
+```
+
+Der letzte Satz folgt aus Regel 5. Er zeigt bei jedem Auftrag auf einen Blick, ob sich im Ordner etwas verändert hat.
+
+## Was in einer AGENTS.md steht
+
+Die **AGENTS.md** ist eine Markdown-Datei im Projektordner mit dauerhaften Regeln für den Agenten. Sie hat zwei Teile: eine Projektbeschreibung in zwei bis drei Sätzen und fünf bis zehn Regeln. Für `kundenanfragen` sieht sie so aus:
+
+```markdown
+# Kundenanfragen
+
+Dieser Ordner sammelt Kundenanfragen eines kleinen Betriebs.
+Antworten entstehen als Entwürfe in antworten/.
+
+## Regeln
+
+1. Antworte auf Deutsch.
+2. Nutze nur Fakten aus Dateien in diesem Ordner. Schreibe „Annahme:“ vor jede Angabe, die nicht daraus stammt.
+3. Schreibe keine Personennamen in neue Dateien.
+4. Lege Ergebnisse als neue Datei an. Ändere bestehende Dateien nur nach Rückfrage.
+5. Nenne am Ende jedes Auftrags, welche Dateien du angelegt oder geändert hast.
+```
+
+Die Projektbeschreibung gibt dem Agenten den Zusammenhang, ähnlich wie die `README.md` für Menschen. Die Regeln sagen, was in jeder Sitzung gilt. Jede der fünf Regeln hat einen klaren Zweck:
+
+| Regel | Wozu sie dient | Woran wir sie prüfen |
+|---|---|---|
+| 1. Antworte auf Deutsch. | Antworten und Entwürfe passen zur Kundschaft. | Jede Antwort ist deutsch. |
+| 2. Nur Fakten aus dem Ordner, sonst „Annahme:“ | Der Agent erfindet keine Preise, Termine oder Zusagen. | Jede Angabe steht in einer Datei oder trägt „Annahme:“. |
+| 3. Keine Personennamen in neue Dateien | Entwürfe und Übersichten enthalten keine personenbezogenen Daten. | In keiner neuen Datei steht ein Name. |
+| 4. Ergebnisse als neue Datei, Änderungen nur nach Rückfrage | Bestehendes Material bleibt erhalten. | Der Agent fragt, bevor er eine vorhandene Datei ändert. |
+| 5. Am Ende angelegte und geänderte Dateien nennen | Wir sehen bei jedem Auftrag, was sich im Ordner geändert hat. | Jede Antwort endet mit dieser Liste. |
+
+Die Regeln sind in Befehlsform und in der Du-Form geschrieben, so wie wir auch Aufträge an den Agenten formulieren. Sie stehen als nummerierte Liste, damit wir uns im Gespräch auf „Regel 2“ beziehen können.
+
+## Prüfbare Regeln
+
+Eine **prüfbare Regel** sagt, was genau gilt, und lässt sich am Ergebnis kontrollieren. „Beträge in EUR mit Komma“ ist prüfbar: Jeder Betrag hat die Form `45,00 EUR`, oder er hat sie nicht. „Schreibe sorgfältig“ ist es nicht, weil niemand sagen kann, woran Sorgfalt im Ergebnis zu erkennen ist.
+
+| Regel | Prüfbar? | Warum |
+|---|---|---|
+| Antworte auf Deutsch. | ja | Die Sprache der Antwort ist eindeutig erkennbar. |
+| Lege Antwortentwürfe als neue Datei in `antworten/` ab. | ja | Der Entwurf liegt dort, oder er liegt dort nicht. |
+| Nenne Termine immer mit Datum und Uhrzeit. | ja | Jeder Termin in der Antwort hat beides, oder ihm fehlt etwas. |
+| Sei immer hilfreich und gründlich. | nein | Kein Merkmal im Ergebnis zeigt, ob die Regel befolgt wurde. |
+
+Die Termin-Regel wirkt kleinlich, ist aber genau die Art Regel, die im Alltag hilft. Allgemeine Wünsche wie „hilfreich und gründlich“ kann der Agent nicht gezielt befolgen, und wir können sie nicht kontrollieren. Ein guter Test für jede neue Regel lautet: Könnte eine Kollegin nach einem Blick auf das Ergebnis sagen, ob die Regel eingehalten wurde?
+
+## Geltungsbereich
+
+Eine `AGENTS.md` gilt für ihren Ordner und alle Unterordner. Die Regeln in `kundenanfragen/AGENTS.md` gelten also auch, wenn der Agent einen Entwurf in `kundenanfragen/antworten/` schreibt. Eine Kopie in jedem Unterordner ist nicht nötig.
+
+Eine zweite `AGENTS.md` in einem Unterordner ergänzt dort Regeln, die nur für diesen Teil gelten:
+
+```text
+kundenanfragen/
+├── AGENTS.md          Regel: Schreibe keine Personennamen in neue Dateien.
+└── antworten/
+    └── AGENTS.md      Regel: Jeder Entwurf hat höchstens 120 Wörter.
+```
+
+Schreibt der Agent einen Entwurf in `antworten/`, gelten beide Regeln: keine Personennamen und höchstens 120 Wörter. Die untere Datei ersetzt die obere nicht. Nur wenn sich zwei Regeln widersprechen, hat die Datei Vorrang, die näher an der bearbeiteten Datei liegt. Eine Anweisung, die wir ausdrücklich im Chat geben, geht den Regeln der Datei vor.
+
+::: {.callout-important title="Kurz bleiben"}
+Die `AGENTS.md` wirkt in jeder Sitzung und bei jedem Auftrag. Fünf bis zehn Regeln wirken besser als ein Handbuch, weil der Agent jede Zeile bei jedem Auftrag berücksichtigt. Abläufe mit vielen Schritten, etwa „so sortieren wir neue Dateien ein“, gehören in einen Skill. Wie das geht, zeigt das Kapitel [Skills](skills.qmd).
+:::
+
+## Ein offenes Format
+
+`AGENTS.md` ist ein offenes Format ohne Pflichtfelder: eine gewöhnliche Markdown-Datei mit festem Namen. Viele Agenten lesen sie, unter anderem Werkzeuge großer Anbieter und mehrere Open-Source-Projekte. Seit Dezember 2025 betreut die Agentic AI Foundation das Format, eine Stiftung unter dem Dach der Linux Foundation. Die Beschreibung und eine Liste kompatibler Werkzeuge stehen auf [agents.md](https://agents.md/).
+
+Einige Werkzeuge erwarten einen eigenen Dateinamen oder lesen die `AGENTS.md` nur unter bestimmten Bedingungen. Welche das sind, zeigt die [Übersicht nach Werkzeug](chat-oder-agent.qmd#uebersicht-nach-werkzeug). Oft genügt dann eine zweite Datei mit dem erwarteten Namen, die auf die `AGENTS.md` verweist. So bleibt die `AGENTS.md` der einzige Ort, an dem wir Regeln pflegen, und derselbe Ordner funktioniert mit verschiedenen Agenten.
+
+## Praxis: die AGENTS.md anlegen und prüfen
+
+Wir lassen den Agenten die Hausordnung anlegen und prüfen in einer neuen Sitzung, ob er sie von selbst befolgt.
+
+**Voraussetzung:** Der Projektordner `kundenanfragen` aus dem Kapitel [Der Projektordner](projektordner.qmd) ist im Agenten geöffnet.
+
+1. Diesen Auftrag senden:
+
+   ```text
+   Lege die Datei AGENTS.md an. Teil 1: zwei Sätze, worum es in diesem Ordner geht (siehe README.md). Teil 2: die Überschrift „Regeln“ und diese fünf Regeln, wörtlich:
+   1. Antworte auf Deutsch.
+   2. Nutze nur Fakten aus Dateien in diesem Ordner. Schreibe „Annahme:“ vor jede Angabe, die nicht daraus stammt.
+   3. Schreibe keine Personennamen in neue Dateien.
+   4. Lege Ergebnisse als neue Datei an. Ändere bestehende Dateien nur nach Rückfrage.
+   5. Nenne am Ende jedes Auftrags, welche Dateien du angelegt oder geändert hast.
+   Zeige mir die Datei, bevor du sie speicherst.
+   ```
+
+2. Das Speichern freigeben.
+3. Prüfen: `AGENTS.md` liegt im Projektordner und enthält fünf Regeln.
+4. Eine neue Sitzung im selben Ordner starten.
+5. Diese Frage senden:
+
+   ```text
+   Welche Regeln gelten in diesem Ordner?
+   ```
+
+6. Prüfen: Die Antwort nennt die fünf Regeln, ohne dass sie im Chat genannt wurden.
+7. Diese Frage senden:
+
+   ```text
+   Wie teuer ist eine Reparatur bei uns?
+   ```
+
+8. Prüfen: Die Antwort ist auf Deutsch und enthält „Annahme:“.
+
+**Prüfkriterium:** Die Prüfungen in Schritt 6 und Schritt 8 bestehen in einer neuen Sitzung. Dann liest der Agent die Hausordnung von selbst.
+
+Besteht die Prüfung in Schritt 6 nicht, liest das Werkzeug die `AGENTS.md` wahrscheinlich nicht automatisch. Dann hilft die Frage im Kasten unten.
+
+::: {.callout-tip title="Den Agenten fragen"}
+Ob das Werkzeug die `AGENTS.md` liest oder einen anderen Dateinamen erwartet, verrät der Agent selbst:
+
+```text
+Liest du die Datei AGENTS.md in diesem Ordner automatisch? Wenn nein: Welchen Dateinamen erwartest du stattdessen, und kann ich von dort auf AGENTS.md verweisen?
+```
+
+Nennt der Agent einen anderen Dateinamen, legt er auf Auftrag eine Datei mit diesem Namen an, die auf `AGENTS.md` verweist. Danach die Schritte 4 bis 8 wiederholen.
+:::

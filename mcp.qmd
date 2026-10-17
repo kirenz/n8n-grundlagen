@@ -1,0 +1,102 @@
+# MCP: die Steckdose für andere Systeme
+
+Ein Agent im Projektordner kennt nur die Dateien in diesem Ordner. Der Terminwunsch vom 5. Oktober liegt als Datei in `anfragen/`, die freien Zeiten im Teamkalender liegen dort nicht. Damit der Agent sie trotzdem nachsehen kann, braucht er einen Anschluss an den Kalender. MCP ist ein solcher Anschluss, und zwar ein genormter: Ein Agent, der MCP beherrscht, kann jedes System erreichen, das ebenfalls MCP anbietet.
+
+## Was MCP ist
+
+**MCP** steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Das passende Bild ist eine genormte Steckdose. Jedes Gerät mit dem passenden Stecker funktioniert an ihr, egal von welchem Hersteller es stammt.
+
+**MCP-Server** heißt das Programm auf der anderen Seite der Steckdose. Ein Server ist hier einfach ein Programm, das auf Anfragen antwortet; es kann auf dem eigenen Rechner laufen oder bei einem Anbieter im Internet. Der MCP-Server stellt **Werkzeuge** bereit (englisch Tools), die der Agent aufrufen darf. Ein Werkzeug ist eine einzelne Fähigkeit mit einem festen Namen, etwa `termine_lesen`.
+
+![Der Agent im Ordner `kundenanfragen` erreicht über den genormten Anschluss MCP drei Server mit ihren Werkzeugen.](images/09-mcp-steckdose.svg){fig-alt="Schema: links der Agent im Ordner kundenanfragen, in der Mitte eine Steckdose mit der Aufschrift MCP, rechts drei MCP-Server. Kalender-Server mit termine_lesen (liest) und termin_anlegen (ändert), Ablage-Server mit dateien_suchen (liest), Ticket-Server mit ticket_anlegen (ändert)."}
+
+Jedes Werkzeug tut eine von zwei Arten von Dingen. Es liest nur, oder es ändert etwas im anderen System. Für die Abbildung oben sieht das so aus:
+
+| Server | Werkzeug | Was es tut | Art |
+|---|---|---|---|
+| Kalender | `termine_lesen` | zeigt freie und belegte Zeiten | liest |
+| Kalender | `termin_anlegen` | trägt einen Termin ein | ändert |
+| Ablage | `dateien_suchen` | findet Dokumente in der Cloud-Ablage | liest |
+| Ticket-System | `ticket_anlegen` | legt ein Ticket im Service-System an | ändert |
+
+Diese Unterscheidung entscheidet, wie vorsichtig wir einen Server behandeln. Ein lesendes Werkzeug kann im schlimmsten Fall etwas Falsches anzeigen. Ein änderndes Werkzeug legt echte Termine und echte Tickets an, die andere Menschen sehen.
+
+::: {.callout-note title="Hintergrund: wer hinter MCP steht"}
+MCP ist eine offene Spezifikation, die jeder Hersteller umsetzen darf. Seit Dezember 2025 gehört MCP zur Agentic AI Foundation der Linux Foundation, zusammen mit AGENTS.md. Die Anwendung, in der der Agent läuft, baut zu jedem Server eine eigene Verbindung auf. Ein Server kann neben Werkzeugen auch Daten (Resources) und vorbereitete Aufträge (Prompts) anbieten; für unsere Zwecke reichen die Werkzeuge. Spezifikation und Erklärungen: [modelcontextprotocol.io](https://modelcontextprotocol.io/), Aufbau im Detail: [Architecture Overview](https://modelcontextprotocol.io/docs/learn/architecture).
+:::
+
+## Ein Werkzeugaufruf im Ablauf
+
+Wie ein Werkzeugaufruf im Alltag aussieht, zeigt die folgende Szene. Der Ordner `kundenanfragen` hat den Stand nach dem Kapitel [Skills: Abläufe, die bleiben](skills.qmd). Neu ist eine Verbindung zu einem Kalender-Server. Mit „Weiter“ klicken wir uns Schritt für Schritt durch die Sitzung.
+
+```{=html}
+<iframe class="muster-agent" src="widgets/09-steckdose.html" title="Nachbau eines Agenten: Termin über den Kalender-Server" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+```
+
+Drei Stellen in der Szene sind wichtig.
+
+**Die Rückfrage vor dem Aufruf.** Bevor der Agent den Kalender abfragt, fragt er, wie er es auch vor dem Anlegen einer Datei tut. Die Rückfrage nennt den Server (`kalender`), das Werkzeug (`termine_lesen`) und den Hinweis, dass es nur liest. Die Zeile mit „› ruft auf“ im Chat zeigt danach den eigentlichen Aufruf.
+
+**Was wo entsteht.** Die drei freien Zeiten kommen aus dem Kalender, nicht aus einer Datei. Im Projektordner entsteht nur der Antwortentwurf in `antworten/`, dazu die neue Zeile in `UEBERSICHT.md`. Der Kalender selbst bleibt unverändert.
+
+**Was der Agent nicht tut.** `termin_anlegen` würde den Kalender ändern. Der Agent ruft es nicht auf, weil der Auftrag einen Entwurf verlangt. Ein Entwurf bietet drei Zeiten an; einen Termin trägt erst ein Mensch ein, wenn die Zusage der Kundin oder des Kunden da ist.
+
+## Brauchen wir eine Anbindung?
+
+Ein MCP-Server bringt dem Agenten Werkzeuge. Er bringt kein besseres Sprachmodell, kein Gedächtnis für frühere Unterhaltungen und keine Kopie der Daten in den Projektordner. Die Daten bleiben im Kalender oder im Ticket-System; der Agent holt sich bei jedem Aufruf nur das Ergebnis.
+
+Daraus folgt eine einfache Faustregel. Eine Anbindung lohnt sich, wenn ein Auftrag Daten aus einem anderen System braucht, die nicht als Datei im Ordner liegen. Freie Termine im Teamkalender sind so ein Fall, weil sie sich jeden Tag ändern. Für alles, was als Datei vorliegt, reicht der Projektordner.
+
+| Auftrag an den Agenten im Ordner `kundenanfragen` | Braucht MCP? | Warum |
+|---|---|---|
+| Die Anfragen in `anfragen/` nach Dringlichkeit sortieren | nein | Die Anfragen liegen als Dateien im Ordner. |
+| Freie Termine im Teamkalender für einen Rückruf finden | ja | Der Kalender liegt außerhalb des Ordners. |
+| Einen Antwortentwurf mit dem Betrag aus der Preisliste in `quellen/` schreiben | nein | Preisliste und Entwurf sind Dateien; gesendet wird der Entwurf erst durch einen Menschen. |
+| Zu einer Beschwerde ein Ticket im Service-System anlegen | ja | Das Ticket-System liegt außerhalb des Ordners. |
+
+Der Antwortentwurf wirkt auf den ersten Blick wie ein Fall für eine Anbindung, weil er am Ende nach außen geht. Er entsteht aber als Datei in `antworten/`. Erst der Mensch, der ihn liest und abschickt, bringt ihn nach außen.
+
+Dieses Buch richtet keinen Server ein. Der Weg dahin ist je Werkzeug anders: Manche Agenten erwarten eine Konfigurationsdatei (eine Datei mit Einstellungen), andere einen Bereich in den Einstellungen. Die [Übersicht nach Werkzeug](chat-oder-agent.qmd#uebersicht-nach-werkzeug) nennt den Ort für die verbreiteten Werkzeuge. Viele Anbindungen brauchen außerdem Zugangsdaten und im Unternehmen eine Freigabe der IT. Was wir hier tun können, ist die Entscheidung vorbereiten. Drei Fragen helfen dabei:
+
+1. **Welches System** muss der Agent erreichen? Kalender, Ablage, Ticket-System oder etwas anderes.
+2. **Gibt es einen offiziellen Server** des Anbieters? Viele Anbieter stellen selbst einen MCP-Server bereit. Er ist die erste Wahl vor Servern von Dritten.
+3. **Wer gibt die Anbindung frei?** Im Unternehmen ist das meist die IT, bei einem eigenen Konto die Person, der das Konto gehört.
+
+::: {.callout-warning title="Rechte eines Servers"}
+Ein verbundener MCP-Server handelt mit den Rechten, die wir ihm geben. `termin_anlegen` legt echte Termine an, `ticket_anlegen` echte Tickets.
+
+- Vor jeder Anbindung klären: Welche Werkzeuge stellt der Server bereit? Welche davon ändern etwas? Wer hat die Anbindung geprüft?
+- Nur Server aus vertrauenswürdigen Quellen anbinden, bevorzugt den offiziellen Server des Anbieters.
+- Im Unternehmen vorher die Freigabe der IT einholen.
+
+Hintergrund zu den Risiken: [Security Best Practices der MCP-Spezifikation](https://modelcontextprotocol.io/specification/latest/basic/security_best_practices).
+:::
+
+## Praxis: verbundene Server auflisten
+
+Wir lassen den eigenen Agenten auflisten, welche Server bei ihm verbunden sind. Der Auftrag ändert nichts und ruft kein Werkzeug auf. Beide möglichen Ergebnisse sind gültig: eine Liste von Servern oder die Feststellung, dass keiner verbunden ist.
+
+::: {.callout-tip title="Den Agenten fragen"}
+Wo die Server eingetragen sind, ist je Werkzeug verschieden. Der Agent kann es selbst sagen:
+
+```text
+Wo ist die Konfiguration der MCP-Server bei dir gespeichert? Nur den Pfad oder den Ort in den Einstellungen nennen, nichts öffnen.
+```
+:::
+
+**Voraussetzung:** Der Agent ist im Ordner `kundenanfragen` geöffnet.
+
+1. Eine neue Sitzung starten.
+2. Diesen Auftrag senden:
+
+   ```text
+   Nur lesen und auflisten, nichts ändern. Welche MCP-Server sind in dieser Umgebung verbunden, und welche Werkzeuge stellen sie bereit? Markiere je Werkzeug, ob es nur liest oder etwas ändert. Nichts ausführen, keine Zugangsdaten anzeigen.
+   ```
+
+3. Prüfen: Die Antwort nennt Server mit Werkzeugen, oder sie stellt fest, dass keiner verbunden ist. Beide Ergebnisse sind gültig.
+4. Die Frage aus dem Kasten „Den Agenten fragen“ senden.
+5. Den genannten Ort mit der [Übersicht nach Werkzeug](chat-oder-agent.qmd#uebersicht-nach-werkzeug) vergleichen.
+6. Für die eigenen Anfragen die drei Fragen beantworten: Welches System? Offizieller Server des Anbieters? Wer gibt frei?
+
+**Prüfkriterium:** Für jede der drei Fragen liegt eine Antwort vor.
