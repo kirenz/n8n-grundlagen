@@ -4,7 +4,7 @@ Ein Agent im Projektordner kennt nur die Dateien in diesem Ordner. Der Terminwun
 
 ## Was MCP ist
 
-**MCP** steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Das passende Bild ist eine genormte Steckdose. Jedes Gerät mit dem passenden Stecker funktioniert an ihr, egal von welchem Hersteller es stammt.
+**MCP** steht für Model Context Protocol. Ein Protokoll ist eine feste Vereinbarung, wie zwei Programme miteinander sprechen. MCP ist ein offener Standard, über den ein Agent Werkzeuge und Daten anderer Systeme nutzt: Dateien in einer Cloud-Ablage suchen, Termine lesen, Tickets anlegen. Ein passender Vergleich ist eine genormte Steckdose. Jedes Gerät mit dem passenden Stecker funktioniert an ihr, egal von welchem Hersteller es stammt.
 
 **MCP-Server** heißt das Programm auf der anderen Seite der Steckdose. Ein Server ist hier einfach ein Programm, das auf Anfragen antwortet; es kann auf dem eigenen Rechner laufen oder bei einem Anbieter im Internet. Der MCP-Server stellt **Werkzeuge** bereit (englisch Tools), die der Agent aufrufen darf. Ein Werkzeug ist eine einzelne Fähigkeit mit einem festen Namen, etwa `termine_lesen`.
 

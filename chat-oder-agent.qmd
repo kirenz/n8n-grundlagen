@@ -69,9 +69,9 @@ Der Agent lohnt sich, wenn das Material schon als Dateien vorliegt oder das Erge
 
 Die Begrüßung für die Website klingt nach Arbeit an einer Datei. Sie ist aber ein kurzer Text ohne Material, den wir an einer Stelle einfügen. Bei den 40 Anfragen dagegen liest der Agent den Ordner selbst und schreibt die Tabelle, ohne dass wir vierzigmal kopieren.
 
-## Vier Bilder für die Arbeit mit einem Agenten
+## Vier Bausteine für die Arbeit mit einem Agenten
 
-Damit ein Agent verlässlich arbeitet, braucht er mehr als einen Auftrag. Vier Bilder fassen zusammen, was die folgenden Kapitel aufbauen:
+Damit ein Agent verlässlich arbeitet, braucht er mehr als einen Auftrag. Vier Bausteine fassen zusammen, was die folgenden Kapitel aufbauen. Zu jedem gehört ein Vergleich aus dem Alltag:
 
 ![Vier Bausteine einer Arbeitsumgebung für einen Agenten](images/01-leitbild.svg){fig-alt="Vier Karten: Ordner gleich Material, AGENTS.md gleich Hausordnung, Skills gleich Rezepte, MCP gleich Steckdose." width="100%"}
 
