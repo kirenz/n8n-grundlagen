@@ -1,0 +1,356 @@
+# n8n mit dem Agenten
+
+Jeder n8n-Workflow lässt sich als Datei speichern. Für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner: Er kann sie lesen, erklären und eine geänderte Fassung schreiben. Damit lässt sich ein Workflow ändern, ohne im Canvas jeden Knoten einzeln anzufassen. Prüfen müssen wir die Änderung trotzdem selbst, und zwar in n8n. Als Beispiel dient der Workflow aus [Beispiel 1: Kontaktanfragen sortieren](../beispiele/kontaktanfragen.qmd), der eine dritte Art von Anfragen mit hoher Priorität behandeln soll.
+
+## Die Workflow-Datei
+
+**Workflow-JSON** nennen wir die Datei, in der n8n einen Workflow speichert. JSON (JavaScript Object Notation) ist ein Textformat, das Daten als Felder mit Namen und Wert in geschweiften Klammern ablegt. Jeder Workflow lässt sich über das Menü des Workflows als JSON-Datei exportieren und in eine andere Instanz wieder importieren. Die Datei enthält alle Knoten mit ihren Einstellungen und die Verbindungen zwischen ihnen. Die Knotennamen in der Datei sind dieselben wie im Canvas.
+
+Die Entscheidung im If-Knoten „Beschwerde?“ sieht in der Datei von Beispiel 1 so aus (gekürzt):
+
+```json
+"conditions": [
+  {
+    "leftValue": "={{ $json.Anliegen }}",
+    "rightValue": "Beschwerde",
+    "operator": { "type": "string", "operation": "equals" }
+  }
+],
+"combinator": "and"
+```
+
+Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfeld `Anliegen`, rechts der Vergleichswert `Beschwerde`, dazwischen der Vergleich „ist gleich“ (`equals`). Das Feld `combinator` legt fest, wie mehrere Vergleiche zusammenwirken. Mit `and` (und) müssen alle zutreffen, mit `or` (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Sobald ein zweiter dazukommt, entscheidet dieses Feld über das Ergebnis.
+
+## Zwei Wege zu n8n
+
+Wie die Datei vom Agenten zu n8n kommt, dafür gibt es zwei Wege.
+
+![Weg A: Der Agent schreibt die Datei, wir importieren sie in n8n. Weg B: Der Agent erreicht n8n direkt über einen MCP-Server.](images/11-zwei-wege.svg){fig-alt="Zwei Wege. Weg A, im Kurs: Der Agent schreibt die Datei n8n/beispiel-1-datenschutz.json, wir importieren sie mit Import from File in n8n. Weg B, gestrichelt, nur Hinweis: Der Agent erreicht n8n über eine MCP-Steckdose und liest oder legt Workflows direkt an; in n8n heißt die Anbindung Instance-level MCP."}
+
+| | Weg A: Datei und Import | Weg B: direkte Anbindung |
+|---|---|---|
+| Was der Agent tut | schreibt eine JSON-Datei in den Ordner `n8n/` | liest und legt Workflows direkt in n8n an |
+| Was wir tun | importieren die Datei mit **Import from File** | schalten die Anbindung in n8n frei |
+| Was gebraucht wird | nur den Projektordner | einen MCP-Server (siehe [MCP: die Steckdose für andere Systeme](../agent-arbeitsumgebung/mcp.qmd)) und eine Freischaltung in n8n |
+| Rolle hier | Praxisweg | freiwillige Prüfung am Ende |
+
+Für Weg B bietet n8n eine eigene Anbindung namens **Instance-level MCP**. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet ([Anleitung in der n8n-Dokumentation](https://docs.n8n.io/connect/connect-to-n8n-mcp-server)). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n ist ein natürlicher Prüfpunkt.
+
+## Workflow lesen und ändern
+
+Die folgende Szene zeigt beide Schritte: Zuerst erklärt der Agent den Workflow aus Beispiel 1, dann legt er eine geänderte Kopie an. Datenschutzanfragen sollen künftig wie Beschwerden in „Priorität hoch“ landen. Für die Anzeige ist die Datei auf Knoten, Formularfelder und Bedingung gekürzt. Mit „Weiter“ klicken wir uns durch die Sitzung.
+
+```{=html}
+<iframe class="muster-agent" src="widgets/11-workflow-lesen.html" title="Nachbau eines Agenten: Workflow-Datei lesen und als Kopie ändern" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+```
+
+In der Erklärung nennt der Agent drei Dinge: das Formular als Auslöser, den If-Knoten „Beschwerde?“ als Entscheidung und die beiden Set-Knoten als Ergebnis. Diese Erklärung lässt sich am Canvas prüfen, bevor wir irgendetwas ändern lassen.
+
+Für die Änderung liest der Agent die alte Bedingung noch einmal: ein Vergleich, verknüpft mit `and`. Dann legt er eine neue Datei an. Das Original bleibt, wie es ist (Regel 4 der AGENTS.md aus [AGENTS.md: die Hausordnung](../agent-arbeitsumgebung/agents-md.qmd)). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die Kopie unterscheidet sich an zwei Stellen:
+
+| Stelle | Original | Kopie |
+|---|---|---|
+| Formularfeld `Anliegen` | drei Optionen: Frage zur Bestellung, Beschwerde, Rückruf | vierte Option `Datenschutz` |
+| If-Knoten „Beschwerde?“ | ein Vergleich: Anliegen ist gleich `Beschwerde`, `combinator: and` | zweiter Vergleich: Anliegen ist gleich `Datenschutz`, `combinator: or` |
+
+Mit `or` führt jetzt Beschwerde oder Datenschutz zum Ausgang true. Ob der Workflow damit läuft, zeigt erst der Import und ein Testlauf in n8n. Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diesen Test nicht. Auch das Durchlesen der Datei reicht nicht: Es zeigt weder, ob n8n die Datei annimmt (schon ein fehlendes Komma verhindert den Import), noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen.
+
+## Praxis: Datei ablegen und erklären lassen
+
+Wir legen die Workflow-Datei aus Beispiel 1 in den Projektordner und lassen den Agenten den Workflow erklären, bevor er etwas ändert.
+
+**Voraussetzung:** Der Agent ist im Ordner `kundenanfragen` geöffnet.
+
+1. Diesen Auftrag senden:
+
+   ```text
+   Lege in diesem Ordner den Ordner n8n an. Frage, bevor du ihn anlegst.
+   ```
+
+2. Die Datei [beispiel-1-kontaktanfragen.json](../workflows/beispiele/beispiel-1-kontaktanfragen.json) herunterladen (im Browser: rechte Maustaste, „Link speichern unter“).
+3. Die Datei im Ordner `kundenanfragen/n8n/` speichern.
+4. Prüfen: Im Ordner `n8n/` liegt `beispiel-1-kontaktanfragen.json`.
+5. Diesen Auftrag senden:
+
+   ```text
+   Erkläre den Workflow in n8n/beispiel-1-kontaktanfragen.json in drei Sätzen: Auslöser, Entscheidung, Ergebnis. Ändere danach nichts.
+   ```
+
+6. Prüfen: Die Erklärung nennt das Formular, den If-Knoten „Beschwerde?“ und zwei Ausgänge.
+
+**Prüfkriterium:** Die Prüfungen in Schritt 4 und Schritt 6 bestehen.
+
+::: {.callout-note collapse="true" title="Alternative: Datei vom Agenten anlegen lassen"}
+Statt Schritt 1 bis 3 kann der Agent die Datei selbst anlegen. Der Auftrag enthält den vollständigen Inhalt der Datei aus Beispiel 1; auf der Lernplattform ist er der Hauptweg.
+
+```text
+Lege den Ordner n8n an und darin die Datei beispiel-1-kontaktanfragen.json. Übernimm den Text zwischen BEGINN und ENDE wörtlich, ohne etwas zu ändern. Frage, bevor du etwas anlegst.
+
+=== BEGINN ===
+{
+  "name": "Beispiel 1 · Kontaktanfragen sortieren",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Kontakt",
+        "formDescription": "Wir melden uns innerhalb eines Werktags.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "E-Mail",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Anliegen",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Frage zur Bestellung"
+                  },
+                  {
+                    "option": "Beschwerde"
+                  },
+                  {
+                    "option": "Rückruf"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Nachricht",
+              "fieldType": "textarea"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "form",
+      "name": "Kontaktformular",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "e0160819-96b1-5a28-9571-24dd6a26c008"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "if-c1",
+              "leftValue": "={{ $json.Anliegen }}",
+              "rightValue": "Beschwerde",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if",
+      "name": "Beschwerde?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "h1",
+              "name": "name",
+              "value": "={{ $json.Name }}",
+              "type": "string"
+            },
+            {
+              "id": "h2",
+              "name": "email",
+              "value": "={{ $json['E-Mail'] }}",
+              "type": "string"
+            },
+            {
+              "id": "h3",
+              "name": "anliegen",
+              "value": "={{ $json.Anliegen }}",
+              "type": "string"
+            },
+            {
+              "id": "h4",
+              "name": "prioritaet",
+              "value": "hoch",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "hoch",
+      "name": "Priorität hoch",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "n1",
+              "name": "name",
+              "value": "={{ $json.Name }}",
+              "type": "string"
+            },
+            {
+              "id": "n2",
+              "name": "email",
+              "value": "={{ $json['E-Mail'] }}",
+              "type": "string"
+            },
+            {
+              "id": "n3",
+              "name": "anliegen",
+              "value": "={{ $json.Anliegen }}",
+              "type": "string"
+            },
+            {
+              "id": "n4",
+              "name": "prioritaet",
+              "value": "normal",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "normal",
+      "name": "Priorität normal",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Kontaktformular": {
+      "main": [
+        [
+          {
+            "node": "Beschwerde?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Beschwerde?": {
+      "main": [
+        [
+          {
+            "node": "Priorität hoch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Priorität normal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
+=== ENDE ===
+```
+
+Danach weiter mit Schritt 4.
+:::
+
+## Praxis: Workflow ändern und in n8n testen
+
+**Voraussetzung:** Die Anmeldung in der eigenen n8n-Instanz ist erfolgt. Die Datei `beispiel-1-kontaktanfragen.json` liegt in `kundenanfragen/n8n/`.
+
+1. Diesen Auftrag senden:
+
+   ```text
+   Erstelle eine Kopie als n8n/beispiel-1-datenschutz.json. Änderung: Der If-Knoten „Beschwerde?“ prüft zusätzlich, ob Anliegen gleich „Datenschutz“ ist, beide Bedingungen mit OR. Das Formular bekommt die Option „Datenschutz“. Sonst nichts ändern. Nenne mir die beiden Stellen, die du geändert hast.
+   ```
+
+2. Prüfen: Der Agent nennt zwei Stellen, die neue Formularoption und die zweite Bedingung im If-Knoten.
+3. In n8n einen neuen Workflow öffnen.
+4. Oben rechts auf das Drei-Punkte-Menü klicken.
+5. **Import from File** wählen.
+6. Die Datei `kundenanfragen/n8n/beispiel-1-datenschutz.json` wählen.
+7. Prüfen: Der Canvas zeigt vier Knoten: Kontaktformular, Beschwerde?, Priorität hoch, Priorität normal.
+8. Unten auf **Execute workflow** klicken. n8n öffnet das Formular in einem neuen Tab.
+9. Name und E-Mail mit Testwerten ausfüllen.
+10. Als Anliegen **Datenschutz** wählen.
+11. Das Formular absenden.
+12. Zurück zu n8n wechseln und den Knoten **Priorität hoch** öffnen.
+13. Prüfen: Im Knoten steht die Anfrage mit `prioritaet` gleich `hoch`.
+14. Einen zweiten Lauf mit dem Anliegen **Rückruf** starten.
+15. Prüfen: Die Anfrage landet in **Priorität normal**.
+
+**Prüfkriterium:** Die Anfrage mit Datenschutz landet in **Priorität hoch**, die Anfrage mit Rückruf in **Priorität normal**.
+
+Besteht Prüfung 13 nicht, bekommt der Agent den Befund, etwa „Datenschutz landet in Priorität normal. Prüfe die Bedingung im If-Knoten.“ Danach die korrigierte Datei erneut importieren.
+
+::: {.callout-warning title="Agent mit Zugriff auf n8n"}
+- Eine n8n-Anbindung (Weg B) handelt mit den Rechten des eigenen n8n-Kontos. Sie kann Workflows anlegen und ändern, je nach Freischaltung auch ausführen.
+- Die Anbindung nur in einer Test-Instanz freischalten oder mit Freigabe der IT. Workflows, die echte Kundendaten verarbeiten, bleiben ohne Anbindung.
+- Exportierte Workflow-Dateien enthalten die Namen hinterlegter Zugangsdaten (Credentials), aber keine Passwörter. Vor dem Weitergeben einer Datei diese Namen entfernen.
+:::
+
+## Weg B: Anbindung erfragen (freiwillig)
+
+Ob der eigene Agent schon eine Verbindung zu n8n hat, lässt sich ohne Risiko herausfinden. Beide Aufträge lesen nur.
+
+::: {.callout-tip title="Den Agenten fragen"}
+```text
+Nur lesen und auflisten, nichts ändern. Hast du eine Anbindung an n8n (MCP-Server oder Werkzeug), mit der du Workflows lesen oder anlegen kannst? Nur antworten, nichts aufrufen.
+```
+:::
+
+1. Die Frage aus dem Kasten „Den Agenten fragen“ senden.
+2. Prüfen: Die Antwort sagt ja oder nein. Bei nein endet die Aufgabe hier.
+3. Bei ja: diesen Auftrag senden:
+
+   ```text
+   Nur lesen und auflisten, nichts ändern. Liste über die n8n-Anbindung den Workflow „Kontaktanfragen sortieren“ aus Beispiel 1 auf: Namen der Knoten und ihre Verbindungen. Nichts anlegen, nichts ändern, nichts ausführen.
+   ```
+
+**Prüfkriterium:** Die Antwort nennt die vier Knoten aus Beispiel 1, und der Agent hat vor dem Aufruf gefragt.

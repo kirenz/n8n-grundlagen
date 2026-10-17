@@ -10,6 +10,11 @@ project:
     - "overview/*.qmd"
     - "first-workflows/*.qmd"
     - "beispiele/*.qmd"
+    # Buchteil aus kirenz/agent-arbeitsumgebung (git subtree, Branch teil;
+    # dort ändern, hier nur per `git subtree pull` aktualisieren) plus
+    # kurseigene Kapitel in agent-n8n/.
+    - "agent-arbeitsumgebung/*.qmd"
+    - "agent-n8n/*.qmd"
   resources:
     - "bpmn/loesung/*"
     - "images/lektionen/*"
@@ -17,6 +22,11 @@ project:
     - "images/beispiele/*"
     - "images/erste-workflows/*"
     - "workflows/beispiele/*"
+    - "agent-arbeitsumgebung/widgets/*"
+    - "agent-arbeitsumgebung/downloads/*"
+    - "agent-arbeitsumgebung/images/*"
+    - "agent-n8n/widgets/*"
+    - "agent-n8n/images/*"
     - "d2/*.svg"
     - "images/*.png"
 
@@ -75,6 +85,24 @@ book:
         - beispiele/gemini-schluessel.qmd
         - beispiele/gemini.qmd
         - beispiele/rag.qmd
+
+    - part: agent-arbeitsumgebung/index.qmd
+      chapters:
+        - agent-arbeitsumgebung/chat-oder-agent.qmd
+        - agent-arbeitsumgebung/markdown.qmd
+        - agent-arbeitsumgebung/projektordner.qmd
+        - agent-arbeitsumgebung/agents-md.qmd
+        - agent-arbeitsumgebung/kontext-bereitstellen.qmd
+        - agent-arbeitsumgebung/pdf-als-quelle.qmd
+        - agent-arbeitsumgebung/laufend-neue-dateien.qmd
+        - agent-arbeitsumgebung/skills.qmd
+
+    - part: agent-arbeitsumgebung/erweitern.qmd
+      chapters:
+        - agent-arbeitsumgebung/mcp.qmd
+        - agent-arbeitsumgebung/konnektoren-plugins.qmd
+        - agent-n8n/n8n-mit-dem-agenten.qmd
+        - agent-n8n/starterpaket.qmd
 
 format:
   html:
