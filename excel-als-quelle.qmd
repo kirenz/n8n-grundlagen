@@ -1,0 +1,144 @@
+# Excel-Tabellen als Quelle
+
+Neben PDFs liegt das Zahlenmaterial eines Betriebs meist in Excel-Dateien: Auftragslisten, Stundenzettel, Lagerbestände, Exporte aus der Buchhaltung. Eine Excel-Datei sieht wie eine Tabelle aus, ist aber keine Textdatei. Wir gehen mit ihr darum genauso um wie mit einem PDF: Original ablegen, eine Textfassung erzeugen lassen, prüfen, in die Quellenliste eintragen. Zwei Dinge kommen hinzu, die es bei PDFs nicht gibt: mehrere Tabellenblätter in einer Datei und Zellen, in denen eine Formel steht statt einer Zahl.
+
+## Gepackt statt Text
+
+Eine **Excel-Datei (.xlsx)** ist ein gepacktes Dateiformat. Blätter, Zellen, Formeln und Formate liegen in mehreren Dateien, die zu einem Paket verpackt sind. Text liest ein Agent direkt, dieses Paket nur mit einem Werkzeug, das es auspackt. Ob der eigene Agent das kann, fragen wir ihn selbst (Kasten „Den Agenten fragen“ unten).
+
+Die Textfassung einer Tabelle ist eine **CSV** (Comma-separated values): eine Tabelle als reiner Text, eine Zeile je Tabellenzeile, die Spalten durch ein Trennzeichen getrennt. Eine Excel-Datei kann mehrere Tabellenblätter haben, eine CSV fasst immer nur eines. Je Blatt entsteht deshalb eine eigene CSV, und der Dateiname trägt den Blattnamen:
+
+```text
+kundenanfragen/
+└── quellen/
+    ├── QUELLEN.md
+    ├── original/
+    │   ├── preisliste-2026.pdf
+    │   └── auftragsliste-2026.xlsx
+    └── text/
+        ├── preisliste-2026.md
+        ├── auftragsliste-2026-auftraege.csv
+        └── auftragsliste-2026-monatssummen.csv
+```
+
+| Ordner | Was dort liegt | Wer die Datei ändert |
+|---|---|---|
+| `quellen/original/` | Die Excel-Datei, so wie sie von außen kam. Sie dient als Beleg. | niemand |
+| `quellen/text/` | Je Tabellenblatt eine CSV, die der Agent aus dem Original erzeugt. Mit ihr arbeitet der Agent. | der Agent, nach Rückfrage |
+
+Der Rest läuft wie im Kapitel [PDFs als Quellen](pdf-als-quelle.qmd): Stichprobe gegen das Original, Eintrag mit Prüfvermerk in `QUELLEN.md`. Jede CSV bekommt dort eine eigene Zeile, denn jede kann für sich geprüft oder ungeprüft sein.
+
+So sieht die CSV des Blatts „Aufträge“ aus, wenn alles geklappt hat:
+
+```text
+Nr.;Datum;Leistung;Menge;Einheit;Einzelpreis;Betrag
+1;2026-07-03;Kleine Reparatur;1;pauschal;45,00;45,00
+2;2026-07-08;Reparatur nach Aufwand;2,5;Stunde;68,00;170,00
+3;2026-07-15;Anfahrt;18;km;1,20;21,60
+```
+
+Das Semikolon trennt die Spalten, das Datum steht als JJJJ-MM-TT, und in der letzten Spalte stehen Zahlen. Warum jede dieser drei Eigenschaften eine Entscheidung ist, zeigen die nächsten Abschnitte.
+
+## Werte statt Formeln
+
+Eine Zelle in einem Tabellenprogramm enthält entweder einen eingetragenen **Wert** (45,00) oder eine **Formel** (=D5*F5), die das Programm beim Öffnen ausrechnet. Wir sehen in beiden Fällen eine Zahl. In einer CSV steht nur Text, dort rechnet niemand. Übernimmt das Werkzeug die Formel statt des Ergebnisses, sieht die Textfassung vollständig aus, hat aber in dieser Spalte keinen einzigen Betrag. Eine spätere Frage nach „der Summe im August“ bleibt ohne Antwort oder, schlimmer, bekommt eine erfundene.
+
+Der Auftrag an den Agenten sagt deshalb ausdrücklich: „Übernimm Werte, keine Formeln.“ Ohne diesen Satz entscheidet das Werkzeug des Agenten, was in der CSV landet.
+
+Die **Stichprobe** passen wir an Tabellen an. Wir lassen uns je Blatt die Zahl der Datenzeilen nennen und dazu drei Werte mit Blatt, Zeile und Spalte: ein Datum, einen Wert aus einer Formelzelle und einen weiteren. Zeile und Spalte beziehen sich auf das Original, damit wir die Zelle im Tabellenprogramm direkt finden.
+
+| Prüfstelle | Frage | Beispiel aus der Auftragsliste |
+|---|---|---|
+| Zeilenzahl je Blatt | Hat jede CSV so viele Datenzeilen wie das Blatt? | Aufträge 12, Monatssummen 4 |
+| Ein Datum | Steht es lesbar als JJJJ-MM-TT in der CSV? | Blatt Aufträge, Zeile 5: 03.07.2026, in der CSV 2026-07-03 |
+| Eine Formelzelle | Steht das Ergebnis in der CSV, keine Formel? | Blatt Aufträge, Zeile 11, Betrag: 35,00 |
+| Ein weiterer Wert | Ist er identisch? | Blatt Monatssummen, Zeile 5, Summe: 210,80 |
+
+## Typische Fallen
+
+Vier Stellen, an denen Excel-Dateien bei der Umwandlung am häufigsten kaputtgehen. Die Beispiel-Auftragsliste enthält die ersten drei absichtlich.
+
+| Falle | Was passiert | Was der Auftrag dagegen sagt |
+|---|---|---|
+| **Mehrere Tabellenblätter** | Manche Werkzeuge lesen nur das erste Blatt. Das zweite fehlt, und niemand merkt es. | „Lege für jedes Tabellenblatt eine CSV-Datei an.“ Die Stichprobe zählt Datenzeilen je Blatt. |
+| **Titelzeilen und verbundene Zellen** über der Tabelle | Eine Überschrift in einer Zelle, die über mehrere Spalten reicht, wird zur ersten CSV-Zeile. Die echte Spaltenüberschrift rutscht nach unten, und jedes Werkzeug, das die erste Zeile als Überschrift liest, ordnet die Spalten falsch zu. | „Die erste Zeile jeder CSV ist die Spaltenüberschrift; Titelzeilen und Leerzeilen darüber lässt du weg.“ |
+| Datum und Dezimalzahl | Ein Tabellenprogramm speichert ein Datum als Zahl (Tage seit dem Jahr 1900) und zeigt es nur als Datum an. In der CSV kann darum 46206 statt 2026-07-03 stehen. Das Dezimalkomma (1,20) kollidiert mit dem Komma als Trennzeichen. | „Datum als JJJJ-MM-TT, Trennzeichen Semikolon.“ |
+| Ausgeblendete Zeilen und Spalten | Im Tabellenprogramm unsichtbar, in der Datei vorhanden. Sie landen in der CSV, auch eine Spalte mit internen Bemerkungen, die nie jemand sehen sollte. | Nichts; bei der Stichprobe zusätzlich die Zahl der Spalten vergleichen. |
+
+In der Auftragsliste steht die Spaltenüberschrift des Blatts „Aufträge“ erst in Zeile 4: darüber liegen ein Titel in einer verbundenen Zelle, ein Untertitel und eine Leerzeile.
+
+Zeigt die Stichprobe in der Spalte Datum 46206 statt eines Datums, lassen wir den Agenten die Spalte als JJJJ-MM-TT neu schreiben und wiederholen die Stichprobe. Den Wert zu lassen und auf die Deutung des Agenten beim nächsten Lesen zu vertrauen, ist keine Quelle, die für sich stimmt. Das Original umzuformatieren verändert den Beleg, und die Formatierung geht beim nächsten Export des Betriebs wieder verloren.
+
+## Excel als Ergebnis
+
+Umgekehrt lassen wir den Agenten Auswertungen erzeugen: Summen je Leistung, Aufträge je Monat, eine Liste offener Posten. Das Ergebnis ist eine neue Datei, als CSV oder, wenn der Agent es kann, als Excel-Datei. Sie liegt in einem eigenen Ordner `auswertungen/`, nie als neues Blatt im Original. Regel 4 unserer `AGENTS.md` verlangt das ohnehin: Ergebnisse als neue Datei, bestehende Dateien nur nach Rückfrage.
+
+Fragt der Agent, ob er die Auswertung als neues Blatt in `quellen/original/auftragsliste-2026.xlsx` anlegen soll, „damit alles in einer Datei bleibt“, lautet die Antwort nein. Das Original ist der Beleg für die CSV-Fassungen und ihren Prüfvermerk. Sobald der Agent in der Datei schreibt, auch nur in einem neuen Blatt, ist nicht mehr sicher, dass der Rest unverändert ist. Die CSV ersetzt das Original nicht: Sie ist daraus abgeleitet, und jede spätere Prüfung braucht die Quelle. Auch eine datierte Kopie des Originals hilft nicht; sie füllt `original/` mit zwei fast gleichen Dateien, und beim nächsten Auftrag ist unklar, welche gilt.
+
+Die neue Datei öffnen wir im Tabellenprogramm und rechnen eine Zahl selbst nach. Ein Agent kann beim Zusammenrechnen eine Zeile vergessen oder doppelt zählen. In der Auftragsliste gibt es drei Aufträge „Kleine Reparatur“ zu 45,00 EUR; in der Auswertung müssen 135,00 stehen.
+
+::: {.callout-warning title="Regeln sind keine Garantie"}
+Regel 4 senkt das Risiko, dass der Agent das Original überschreibt. Sie schließt es nicht aus. Nach jedem Auftrag, der Dateien in `quellen/` berührt, das Änderungsdatum des Originals prüfen. Eine Summe, die wir nicht nachgerechnet haben, gilt als ungeprüft.
+:::
+
+## Im Nachbau: die Auftragsliste umwandeln
+
+Der folgende Nachbau zeigt, wie ein Agent die Auftragsliste in zwei CSV-Dateien umwandelt. Die erste CSV sieht vollständig aus, doch in der Spalte Betrag stehen Formeln statt Zahlen. Die Prüfung findet den Fehler, die Korrektur geschieht nach einer Rückfrage. Am Ende nennt der Agent drei Werte zum Vergleich und ergänzt `QUELLEN.md` und `UEBERSICHT.md`. Mit „Weiter“ klicken wir uns durch die Sitzung.
+
+```{=html}
+<iframe class="muster-agent" src="widgets/06b-excel-auftraege.html" title="Nachbau eines Agenten: Auftragsliste umwandeln" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
+<script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
+```
+
+Die Rückfrage vor dem Eintrag in `QUELLEN.md` kommt, weil die Datei schon existiert. Auch zwei neue Zeilen sind eine Änderung an einer bestehenden Datei (Regel 4).
+
+::: {.callout-tip title="Den Agenten fragen"}
+Ob der eigene Agent Excel-Dateien lesen kann und welches Werkzeug er dafür braucht, ist je nach Werkzeug verschieden. Die Antwort gibt der Agent selbst:
+
+```text
+Kannst du Excel-Dateien (.xlsx) in diesem Ordner lesen? Welches Werkzeug nutzt du oder brauchst du dafür? Nur antworten, nichts ändern.
+```
+:::
+
+## Praxis: die Auftragsliste als Quelle aufnehmen
+
+Wir lassen den Agenten die Auftragsliste in zwei CSV-Dateien umwandeln, prüfen Zeilenzahl und drei Werte gegen die Excel-Datei, tragen beide CSV-Dateien mit Prüfvermerk ein und lassen eine erste Auswertung als neue Datei erzeugen.
+
+**Voraussetzungen:**
+
+- Der Ordner `kundenanfragen` ist im Agenten geöffnet. `quellen/original/`, `quellen/text/` und `quellen/QUELLEN.md` sind vorhanden (Stand nach dem Kapitel [PDFs als Quellen](pdf-als-quelle.qmd)).
+- Die [Beispiel-Auftragsliste als Excel-Datei](downloads/auftragsliste-2026.xlsx) ist heruntergeladen (zwei Tabellenblätter, eine Formelspalte, Titelzeile über der Tabelle). Alternativ eignet sich eine eigene Excel-Datei mit mindestens einer Formelspalte und ohne vertrauliche Daten; dann in den Aufträgen den Namen `auftragsliste-2026.xlsx` durch den Namen der eigenen Datei ersetzen.
+
+1. Die Frage aus dem Kasten „Den Agenten fragen“ senden.
+2. Prüfen: Der Agent sagt ja oder nennt ein Werkzeug.
+3. Braucht der Agent ein Werkzeug: das Werkzeug nach der Anleitung des Herstellers einrichten.
+4. Die Excel-Datei in den Ordner `quellen/original/` legen.
+5. Senden:
+
+   ```text
+   Lies quellen/original/auftragsliste-2026.xlsx. Lege für jedes Tabellenblatt eine CSV-Datei unter quellen/text/ an, Name auftragsliste-2026-<blattname>.csv, Blattname klein und ohne Umlaute. Die erste Zeile jeder CSV ist die Spaltenüberschrift; Titelzeilen und Leerzeilen darüber lässt du weg. Übernimm Werte, keine Formeln. Datum als JJJJ-MM-TT, Trennzeichen Semikolon. Nenne mir danach je Blatt die Zahl der Datenzeilen und drei Werte mit Blatt, Zeile und Spalte: ein Datum, einen Wert aus einer Formelzelle und einen weiteren.
+   ```
+
+6. Die Excel-Datei im Tabellenprogramm öffnen.
+7. Die Zeilenzahl je Blatt und die drei Werte aus der Antwort mit der Excel-Datei vergleichen.
+8. Prüfen: Die Zeilenzahl stimmt (Beispieldatei: 12 und 4). Alle drei Werte stimmen überein. Das Datum steht in der CSV als JJJJ-MM-TT.
+9. Weicht etwas ab: dem Agenten Blatt, Zeile und Spalte nennen und korrigieren lassen.
+10. Senden:
+
+    ```text
+    Trage beide CSV-Dateien in quellen/QUELLEN.md ein, Herkunft: Auftragsliste des Betriebs mit Blattname, Original in original/. Prüfung: heutiges Datum, „drei Werte geprüft“. Ergänze die neuen Dateien in UEBERSICHT.md.
+    ```
+
+11. Prüfen: `QUELLEN.md` hat je CSV eine Zeile mit Datum und Prüfvermerk.
+12. Senden:
+
+    ```text
+    Lege den Ordner auswertungen an. Erstelle aus quellen/text/auftragsliste-2026-auftraege.csv die Datei auswertungen/2026-q3-leistungen.csv mit den Spalten Leistung, Aufträge, Summe: je Leistung die Zahl der Aufträge und die Summe der Beträge. Ändere keine Datei in quellen/. Nenne mir die Summe für Kleine Reparatur.
+    ```
+
+13. Die neue Datei im Tabellenprogramm öffnen.
+14. Die genannte Summe selbst nachrechnen: Zahl der Aufträge mal Einzelpreis (Beispieldatei: 3 mal 45,00).
+
+**Prüfkriterium:** Die Summe in der Datei stimmt mit der eigenen Rechnung überein (Beispieldatei: 135,00). Das Änderungsdatum von `quellen/original/auftragsliste-2026.xlsx` ist unverändert.
+
+Damit kennt der Ordner zwei Arten von Quellen: Dokumente als Markdown und Tabellen als CSV, beide mit Original und Prüfvermerk. Wie neue Dateien beider Arten ohne Handarbeit an den richtigen Ort gelangen, zeigt das Kapitel [Laufend neue Dateien](laufend-neue-dateien.qmd).

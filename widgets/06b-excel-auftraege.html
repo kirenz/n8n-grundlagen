@@ -1,0 +1,186 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><style>:root { --paper: oklch(0.985 0.004 85); --paper-deep: oklch(0.965 0.007 85); --ink: oklch(0.18 0.02 255); --ink-soft: oklch(0.42 0.018 255); --rule: oklch(0.88 0.008 85); --ochre: oklch(0.72 0.13 70); --terracotta: oklch(0.6 0.15 35); --primary: oklch(0.32 0.12 258) } body { margin: 0; background: transparent; color: var(--ink); font-family: ui-sans-serif, system-ui, sans-serif; }</style><script>(function(){var post=function(){parent.postMessage({type:'claude-widget-height',height:document.body.scrollHeight},'*')};window.addEventListener('load',post);document.addEventListener('DOMContentLoaded',function(){new ResizeObserver(post).observe(document.body);post();});})();</script></head><body><!-- szene: 06b-excel-auftraege.json -->
+<style>
+  .ma { --mono: ui-monospace, SFMono-Regular, Menlo, monospace; max-width: 920px; margin: 0 auto; font-size: 14px; line-height: 1.45; color: var(--ink); }
+  .ma * { box-sizing: border-box; }
+  .ma-win { border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; background: var(--paper); }
+  .ma-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--paper-deep); border-bottom: 1px solid var(--rule); font-size: 12px; color: var(--ink-soft); }
+  .ma-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rule); }
+  .ma-bar b { margin-left: 6px; font-weight: 600; color: var(--ink); font-family: var(--mono); }
+  .ma-grid { display: grid; grid-template-columns: 200px 1fr 280px; min-height: 340px; }
+  .ma-pane { min-width: 0; display: flex; flex-direction: column; }
+  .ma-pane + .ma-pane { border-left: 1px solid var(--rule); }
+  .ma-head { padding: 6px 12px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
+  .ma-tree { list-style: none; margin: 0; padding: 6px 0; font-family: var(--mono); font-size: 12.5px; }
+  .ma-tree li { padding: 3px 12px; overflow-wrap: anywhere; border-left: 3px solid transparent; transition: background .3s; }
+  .ma-tree li.ordner { color: var(--ink-soft); }
+  .ma-tree li.offen { background: var(--paper-deep); border-left-color: var(--primary); }
+  .ma-tree li.neu { animation: ma-neu 1.6s ease-out; }
+  @keyframes ma-neu { from { background: color-mix(in oklch, var(--ochre) 45%, transparent); } to { background: transparent; } }
+  .ma-file { padding: 6px 12px; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); border-bottom: 1px solid var(--rule); min-height: 29px; }
+  .ma-code { margin: 0; padding: 8px 0; font-family: var(--mono); font-size: 12.5px; overflow: auto; flex: 1; }
+  .ma-code div { display: grid; grid-template-columns: 34px 1fr; padding: 0 12px 0 0; white-space: pre-wrap; word-break: break-word; transition: background .3s; }
+  .ma-code span.nr { color: var(--ink-soft); opacity: .6; text-align: right; padding-right: 10px; user-select: none; }
+  .ma-code div.mark { background: color-mix(in oklch, var(--ochre) 28%, transparent); }
+  .ma-code .h { font-weight: 700; color: var(--primary); }
+  .ma-leer { padding: 24px 16px; color: var(--ink-soft); font-size: 13px; }
+  .ma-chat { flex: 1; overflow: auto; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+  .ma-msg { padding: 8px 10px; border-radius: 10px; max-width: 92%; animation: ma-rein .3s ease-out; white-space: pre-wrap; }
+  @keyframes ma-rein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .ma-msg.nutzer { align-self: flex-end; background: var(--primary); color: var(--paper); }
+  .ma-msg.agent { align-self: flex-start; background: var(--paper-deep); border: 1px solid var(--rule); }
+  .ma-msg.werkzeug { align-self: flex-start; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); padding: 2px 4px; }
+  .ma-msg.werkzeug::before { content: "› "; color: var(--ochre); font-weight: 700; }
+  .ma-frage { align-self: stretch; border: 1px solid var(--ochre); border-radius: 10px; padding: 10px; background: color-mix(in oklch, var(--ochre) 10%, var(--paper)); animation: ma-rein .3s ease-out; }
+  .ma-frage p { margin: 0 0 8px; }
+  .ma-frage .knoepfe { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ma-input { margin: 0 10px 10px; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-soft); font-size: 13px; }
+  .ma button { font: inherit; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .ma button.prim { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 600; }
+  .ma button:disabled { opacity: .4; cursor: default; }
+  .ma button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+  .ma-steuer { display: flex; align-items: flex-start; gap: 12px; margin-top: 12px; }
+  .ma-erkl { flex: 1; margin: 0; padding: 10px 14px; border-left: 3px solid var(--primary); background: var(--paper-deep); border-radius: 0 8px 8px 0; min-height: 44px; }
+  .ma-erkl small { display: block; color: var(--ink-soft); font-size: 12px; margin-bottom: 2px; }
+  .ma-knoepfe { display: flex; gap: 8px; }
+  @media (max-width: 720px) {
+    .ma-grid { grid-template-columns: 1fr; }
+    .ma-pane + .ma-pane { border-left: 0; border-top: 1px solid var(--rule); }
+    .ma-chat { max-height: 320px; }
+    .ma-code { max-height: 220px; }
+    .ma-chat { min-height: 200px; }
+    .ma-steuer { flex-direction: column; align-items: stretch; }
+    .ma-knoepfe button { flex: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ma * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="ma">
+  <div class="ma-win">
+    <div class="ma-bar"><span class="ma-dot"></span><span class="ma-dot"></span><span class="ma-dot"></span><b id="ma-titel"></b><span style="margin-left:auto">Nachbau eines Agenten</span></div>
+    <div class="ma-grid">
+      <section class="ma-pane" aria-label="Dateibaum">
+        <div class="ma-head">Ordner</div>
+        <ul class="ma-tree" id="ma-tree"></ul>
+      </section>
+      <section class="ma-pane" aria-label="Editor">
+        <div class="ma-file" id="ma-file"></div>
+        <div class="ma-code" id="ma-code"><p class="ma-leer">Keine Datei geöffnet.</p></div>
+      </section>
+      <section class="ma-pane" aria-label="Chat mit dem Agenten">
+        <div class="ma-head">Agent</div>
+        <div class="ma-chat" id="ma-chat" aria-live="polite"></div>
+        <div class="ma-input">Auftrag an den Agenten …</div>
+      </section>
+    </div>
+  </div>
+  <div class="ma-steuer">
+    <p class="ma-erkl" id="ma-erkl" aria-live="polite"></p>
+    <div class="ma-knoepfe">
+      <button type="button" id="ma-neu">Neu starten</button>
+      <button type="button" class="prim" id="ma-weiter">Weiter</button>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="szene">{"titel": "kundenanfragen", "dateien": {"README.md": "# Kundenanfragen\n\nDer Ordner sammelt Kundenanfragen eines kleinen Betriebs.\nAntworten entstehen als Entwürfe in antworten.\nAnfragen liegen als Markdown in anfragen.", "AGENTS.md": "# Kundenanfragen\n\nDieser Ordner sammelt Kundenanfragen eines kleinen Betriebs.\nAntworten entstehen als Entwürfe in antworten/.\n\n## Regeln\n\n1. Antworte auf Deutsch.\n2. Nutze nur Fakten aus Dateien in diesem Ordner. Schreibe „Annahme:“ vor jede Angabe, die nicht daraus stammt.\n3. Schreibe keine Personennamen in neue Dateien.\n4. Lege Ergebnisse als neue Datei an. Ändere bestehende Dateien nur nach Rückfrage.\n5. Nenne am Ende jedes Auftrags, welche Dateien du angelegt oder geändert hast.\n6. Lies zu Beginn UEBERSICHT.md. Ergänze sie nach jedem Auftrag, wenn neue Dateien entstanden sind.", "UEBERSICHT.md": "# Übersicht\n\n| Datei | Inhalt | Stand |\n|---|---|---|\n| README.md | Zweck des Ordners, für Menschen | 2026-10-12 |\n| AGENTS.md | Regeln für den Agenten | 2026-10-14 |\n| anfragen/2026-10-05-terminwunsch.md | Terminwunsch für eine Reparatur | 2026-10-05 |\n| anfragen/2026-10-06-preisfrage.md | Frage nach Preis und Anfahrt | 2026-10-06 |\n| anfragen/2026-10-07-beschwerde.md | Beschwerde über eine verspätete Reparatur | 2026-10-07 |\n| quellen/text/preisliste-2026.md | Preisliste 2026, Textfassung des PDF | 2026-01-01 |\n| quellen/QUELLEN.md | Liste der geprüften Quellen | 2026-10-17 |", "anfragen/2026-10-05-terminwunsch.md": "# Terminwunsch\n\n- Datum: 2026-10-05\n- Kanal: E-Mail\n- Anliegen: Termin für eine Reparatur\n\nGuten Tag, ich möchte einen Termin für eine Reparatur.\nPasst es nächste Woche am Dienstag oder Mittwoch vormittags?", "anfragen/2026-10-06-preisfrage.md": "# Preisfrage\n\n- Datum: 2026-10-06\n- Kanal: Kontaktformular\n- Anliegen: Preis für eine Reparatur\n\nGuten Tag, was kostet bei Ihnen eine Reparatur?\nUnd kommt eine Anfahrt dazu, wenn Sie zu mir kommen?", "anfragen/2026-10-07-beschwerde.md": "# Beschwerde\n\n- Datum: 2026-10-07\n- Kanal: E-Mail\n- Anliegen: Reparatur nicht rechtzeitig fertig\n\nGuten Tag, die Reparatur war für Freitag zugesagt.\nBis heute habe ich keine Nachricht. Bitte melden Sie sich.", "antworten/": "", "quellen/QUELLEN.md": "# Quellen\n\nNur Dateien mit Prüfvermerk gelten als Quelle.\n\n| Datei | Herkunft | Stand | Prüfung |\n|---|---|---|---|\n| text/preisliste-2026.md | Preisliste des Betriebs, Original in original/ | 2026-01-01 | 2026-10-17, drei Beträge geprüft |", "quellen/original/preisliste-2026.pdf": "PDF, 2 Seiten, 1 Tabelle\n\nDer Editor zeigt ein PDF nicht als Text an.", "quellen/original/auftragsliste-2026.xlsx": "(Excel-Datei, im Editor nicht lesbar)\n\n2 Tabellenblätter: Aufträge, Monatssummen", "quellen/text/preisliste-2026.md": "# Preisliste 2026\n\nStand: 1. Januar 2026. Preise in EUR inklusive Umsatzsteuer.\n\n| Nr. | Leistung | Einheit | Preis |\n|---|---|---|---|\n| 1 | Kleine Reparatur | pauschal | 45,00 |\n| 2 | Reparatur nach Aufwand | je Stunde | 68,00 |\n| 3 | Beratung vor Ort | je Termin | 89,00 |\n| 4 | Anfahrt | je km | 1,20 |\n| 5 | Eilzuschlag innerhalb von 24 Stunden | pauschal | 35,00 |\n\n## Bedingungen\n\n- Termine nach Vereinbarung, Montag bis Freitag.\n- Eine Absage bis 24 Stunden vorher ist kostenfrei.\n- Ersatzteile werden zusätzlich nach Aufwand berechnet."}, "schritte": [{"erklaerung": "Nachbau eines typischen Agenten, kein echtes Produkt. Die Auftragsliste liegt als Excel-Datei in quellen/original/. Der Editor kann sie nicht als Tabelle zeigen. Die Preisliste aus der vorigen Lektion ist schon geprüft.", "aktionen": []}, {"erklaerung": "Der Auftrag legt fest: je Tabellenblatt eine CSV-Datei, Werte statt Formeln, Datum in fester Form und eine Prüfung mit Belegstellen.", "aktionen": [{"nutzer": "Lies quellen/original/auftragsliste-2026.xlsx. Lege für jedes Tabellenblatt eine CSV-Datei unter quellen/text/ an, Name auftragsliste-2026-<blattname>.csv, Blattname klein und ohne Umlaute. Die erste Zeile jeder CSV ist die Spaltenüberschrift; Titelzeilen und Leerzeilen darüber lässt du weg. Übernimm Werte, keine Formeln. Datum als JJJJ-MM-TT, Trennzeichen Semikolon. Nenne mir danach je Blatt die Zahl der Datenzeilen und drei Werte mit Blatt, Zeile und Spalte: ein Datum, einen Wert aus einer Formelzelle und einen weiteren."}]}, {"erklaerung": "Der Agent liest die Excel-Datei mit einem Werkzeug und beschreibt, was er darin findet: zwei Blätter, Titelzeilen über der Tabelle, Formeln.", "aktionen": [{"liest": "quellen/original/auftragsliste-2026.xlsx"}, {"agent": "Die Datei hat zwei Tabellenblätter.\nAufträge: Titelzeile, Untertitel, Leerzeile, Spaltenüberschrift in Zeile 4, 12 Datenzeilen. Spalte Betrag ist eine Formel (Menge mal Einzelpreis).\nMonatssummen: Titelzeile, Leerzeile, Spaltenüberschrift in Zeile 3, 4 Datenzeilen, alle Zahlen sind Formeln."}]}, {"erklaerung": "Zwei neue Dateien in quellen/text/. Das Original bleibt unverändert.", "aktionen": [{"frage": "quellen/text/auftragsliste-2026-auftraege.csv und quellen/text/auftragsliste-2026-monatssummen.csv anlegen?", "abgelehnt": "In Ordnung, ich lege keine Textfassungen an."}]}, {"erklaerung": "Die erste CSV ist da: 13 Zeilen, Semikolon, Datum als JJJJ-MM-TT. Die markierte Spalte Betrag sieht auf den ersten Blick vollständig aus.", "aktionen": [{"schreibt": "quellen/text/auftragsliste-2026-auftraege.csv", "inhalt": "Nr.;Datum;Leistung;Menge;Einheit;Einzelpreis;Betrag\n1;2026-07-03;Kleine Reparatur;1;pauschal;45,00;=D5*F5\n2;2026-07-08;Reparatur nach Aufwand;2,5;Stunde;68,00;=D6*F6\n3;2026-07-15;Anfahrt;18;km;1,20;=D7*F7\n4;2026-07-15;Beratung vor Ort;1;Termin;89,00;=D8*F8\n5;2026-08-04;Kleine Reparatur;1;pauschal;45,00;=D9*F9\n6;2026-08-11;Reparatur nach Aufwand;1,5;Stunde;68,00;=D10*F10\n7;2026-08-11;Eilzuschlag;1;pauschal;35,00;=D11*F11\n8;2026-08-25;Anfahrt;24;km;1,20;=D12*F12\n9;2026-09-02;Beratung vor Ort;1;Termin;89,00;=D13*F13\n10;2026-09-09;Reparatur nach Aufwand;3;Stunde;68,00;=D14*F14\n11;2026-09-16;Kleine Reparatur;1;pauschal;45,00;=D15*F15\n12;2026-09-23;Anfahrt;12;km;1,20;=D16*F16"}, {"liest": "quellen/text/auftragsliste-2026-auftraege.csv", "zeilen": [2, 8]}]}, {"erklaerung": "Die Prüfung findet den Fehler: In der Spalte Betrag stehen Formeln, keine Zahlen. In einer CSV rechnet niemand sie aus. Eine spätere Frage nach einer Summe bliebe ohne Antwort.", "aktionen": [{"agent": "Prüfung: Blatt Aufträge hat 12 Datenzeilen, wie im Original.\nAbweichung: Die Spalte Betrag in auftragsliste-2026-auftraege.csv enthält Formeln (=D5*F5) statt Werte. Im Original steht in Zeile 5 das Ergebnis 45,00."}, {"frage": "Spalte Betrag in quellen/text/auftragsliste-2026-auftraege.csv durch die Werte aus dem Original ersetzen?", "abgelehnt": "In Ordnung, ich ändere nichts. Die Spalte Betrag bleibt ohne Werte."}]}, {"erklaerung": "Die korrigierte Fassung. In den markierten Zeilen stehen jetzt Zahlen, so wie das Tabellenprogramm sie anzeigt.", "aktionen": [{"schreibt": "quellen/text/auftragsliste-2026-auftraege.csv", "inhalt": "Nr.;Datum;Leistung;Menge;Einheit;Einzelpreis;Betrag\n1;2026-07-03;Kleine Reparatur;1;pauschal;45,00;45,00\n2;2026-07-08;Reparatur nach Aufwand;2,5;Stunde;68,00;170,00\n3;2026-07-15;Anfahrt;18;km;1,20;21,60\n4;2026-07-15;Beratung vor Ort;1;Termin;89,00;89,00\n5;2026-08-04;Kleine Reparatur;1;pauschal;45,00;45,00\n6;2026-08-11;Reparatur nach Aufwand;1,5;Stunde;68,00;102,00\n7;2026-08-11;Eilzuschlag;1;pauschal;35,00;35,00\n8;2026-08-25;Anfahrt;24;km;1,20;28,80\n9;2026-09-02;Beratung vor Ort;1;Termin;89,00;89,00\n10;2026-09-09;Reparatur nach Aufwand;3;Stunde;68,00;204,00\n11;2026-09-16;Kleine Reparatur;1;pauschal;45,00;45,00\n12;2026-09-23;Anfahrt;12;km;1,20;14,40"}, {"liest": "quellen/text/auftragsliste-2026-auftraege.csv", "zeilen": [2, 8]}]}, {"erklaerung": "Das zweite Blatt wird zur zweiten CSV. Die Titelzeile über der Tabelle fehlt, die erste Zeile ist die Spaltenüberschrift. Alle vier Zahlenpaare waren im Original Formeln, hier stehen die Ergebnisse.", "aktionen": [{"schreibt": "quellen/text/auftragsliste-2026-monatssummen.csv", "inhalt": "Monat;Aufträge;Summe\nJuli 2026;4;325,60\nAugust 2026;4;210,80\nSeptember 2026;4;352,40\nGesamt;12;888,80"}]}, {"erklaerung": "Diese drei Werte vergleichen Sie selbst mit der Excel-Datei im Tabellenprogramm. Zeile und Spalte beziehen sich auf das Original. Die Prüfung des Agenten ersetzt Ihre Stichprobe nicht.", "aktionen": [{"agent": "Datenzeilen: Aufträge 12, Monatssummen 4.\nZum Vergleich mit der Excel-Datei:\n- Blatt Aufträge, Zeile 5, Spalte Datum: 03.07.2026 (in der CSV 2026-07-03)\n- Blatt Aufträge, Zeile 11, Spalte Betrag (Formelzelle, Eilzuschlag): 35,00\n- Blatt Monatssummen, Zeile 5, Spalte Summe (Formelzelle, August 2026): 210,80"}]}, {"erklaerung": "Nach Ihrer Stichprobe kommen beide CSV-Dateien mit Prüfvermerk in die Quellenliste. QUELLEN.md gibt es schon, deshalb fragt der Agent vor der Änderung.", "aktionen": [{"nutzer": "Alle drei Werte stimmen. Trage beide CSV-Dateien in quellen/QUELLEN.md ein, Herkunft: Auftragsliste des Betriebs mit Blattname, Original in original/. Prüfung: heute, drei Werte geprüft. Ergänze die neuen Dateien in UEBERSICHT.md."}, {"frage": "quellen/QUELLEN.md und UEBERSICHT.md um je zwei Zeilen ergänzen?", "abgelehnt": "In Ordnung, ich ändere die beiden Dateien nicht. Die CSV-Dateien gelten damit nicht als geprüfte Quelle."}]}, {"erklaerung": "Die Quellenliste hat jetzt drei Zeilen. Jede CSV steht einzeln darin, mit dem Blatt, aus dem sie stammt.", "aktionen": [{"schreibt": "quellen/QUELLEN.md", "inhalt": "# Quellen\n\nNur Dateien mit Prüfvermerk gelten als Quelle.\n\n| Datei | Herkunft | Stand | Prüfung |\n|---|---|---|---|\n| text/preisliste-2026.md | Preisliste des Betriebs, Original in original/ | 2026-01-01 | 2026-10-17, drei Beträge geprüft |\n| text/auftragsliste-2026-auftraege.csv | Auftragsliste des Betriebs, Blatt Aufträge, Original in original/ | 2026-09-30 | 2026-10-17, drei Werte geprüft |\n| text/auftragsliste-2026-monatssummen.csv | Auftragsliste des Betriebs, Blatt Monatssummen, Original in original/ | 2026-09-30 | 2026-10-17, drei Werte geprüft |"}, {"liest": "quellen/QUELLEN.md", "zeilen": [8, 9]}]}, {"erklaerung": "Die Übersicht kennt beide neuen Dateien. Das Original in quellen/original/ hat der Agent nicht angefasst.", "aktionen": [{"schreibt": "UEBERSICHT.md", "inhalt": "# Übersicht\n\n| Datei | Inhalt | Stand |\n|---|---|---|\n| README.md | Zweck des Ordners, für Menschen | 2026-10-12 |\n| AGENTS.md | Regeln für den Agenten | 2026-10-14 |\n| anfragen/2026-10-05-terminwunsch.md | Terminwunsch für eine Reparatur | 2026-10-05 |\n| anfragen/2026-10-06-preisfrage.md | Frage nach Preis und Anfahrt | 2026-10-06 |\n| anfragen/2026-10-07-beschwerde.md | Beschwerde über eine verspätete Reparatur | 2026-10-07 |\n| quellen/text/preisliste-2026.md | Preisliste 2026, Textfassung des PDF | 2026-01-01 |\n| quellen/text/auftragsliste-2026-auftraege.csv | Aufträge Juli bis September 2026, Textfassung des Blatts Aufträge | 2026-09-30 |\n| quellen/text/auftragsliste-2026-monatssummen.csv | Monatssummen Juli bis September 2026, Textfassung des Blatts Monatssummen | 2026-09-30 |\n| quellen/QUELLEN.md | Liste der geprüften Quellen | 2026-10-17 |"}, {"agent": "Fertig.\nAngelegt: quellen/text/auftragsliste-2026-auftraege.csv, quellen/text/auftragsliste-2026-monatssummen.csv\nGeändert: quellen/QUELLEN.md (zwei neue Zeilen), UEBERSICHT.md (zwei neue Zeilen)\nUnverändert: quellen/original/auftragsliste-2026.xlsx"}]}]}</script>
+
+<script>
+(function () {
+  var S = JSON.parse(document.getElementById('szene').textContent);
+  var el = function (id) { return document.getElementById(id); };
+  var tree = el('ma-tree'), code = el('ma-code'), datei = el('ma-file'), chat = el('ma-chat');
+  var erkl = el('ma-erkl'), weiter = el('ma-weiter'), neu = el('ma-neu');
+  var dateien, offen, neuePfade, schritt, wartet;
+
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function baum() {
+    var pfade = Object.keys(dateien), ordner = {};
+    pfade.forEach(function (p) { var i = p.indexOf('/'); if (i > 0) ordner[p.slice(0, i + 1)] = true; });
+    var oben = pfade.filter(function (p) { return p.indexOf('/') < 0; }).sort();
+    var html = Object.keys(ordner).sort().map(function (o) {
+      var kinder = pfade.filter(function (p) { return p.indexOf(o) === 0 && p !== o; }).sort();
+      return '<li class="ordner">▾ ' + esc(o) + '</li>' + kinder.map(function (k) {
+        return '<li data-p="' + esc(k) + '" style="padding-left:28px">' + esc(k.slice(o.length)) + '</li>';
+      }).join('');
+    }).join('') + oben.map(function (p) { return '<li data-p="' + esc(p) + '">' + esc(p) + '</li>'; }).join('');
+    tree.innerHTML = html;
+    Array.prototype.forEach.call(tree.querySelectorAll('li[data-p]'), function (li) {
+      var p = li.getAttribute('data-p');
+      if (p === offen) li.className = 'offen';
+      if (neuePfade[p]) { li.className += ' neu'; delete neuePfade[p]; }
+    });
+  }
+
+  function zeige(pfad, zeilen) {
+    offen = pfad;
+    var marks = {}; (zeilen || []).forEach(function (z) { marks[z] = true; });
+    datei.textContent = pfad;
+    code.innerHTML = dateien[pfad].split('\n').map(function (z, i) {
+      var inhalt = /^#{1,3} /.test(z) ? '<span class="h">' + esc(z) + '</span>' : esc(z);
+      return '<div' + (marks[i + 1] ? ' class="mark"' : '') + '><span class="nr">' + (i + 1) + '</span><span>' + inhalt + '</span></div>';
+    }).join('');
+    var erste = code.querySelector('.mark'); if (erste) code.scrollTop = Math.max(0, erste.offsetTop - 40);
+    baum();
+  }
+
+  function nachricht(klasse, text) {
+    var d = document.createElement('div'); d.className = 'ma-msg ' + klasse; d.textContent = text;
+    chat.appendChild(d); chat.scrollTop = chat.scrollHeight; return d;
+  }
+
+  function aktion(a) {
+    if (a.nutzer) nachricht('nutzer', a.nutzer);
+    if (a.agent) nachricht('agent', a.agent);
+    if (a.liest) { nachricht('werkzeug', 'liest ' + a.liest); zeige(a.liest, a.zeilen); }
+    if (a.schreibt) {
+      var war = a.schreibt in dateien;
+      dateien[a.schreibt] = a.inhalt; neuePfade[a.schreibt] = true;
+      nachricht('werkzeug', (war ? 'ändert ' : 'legt an ') + a.schreibt); zeige(a.schreibt);
+    }
+    if (a.verschiebt) {
+      dateien[a.nach] = dateien[a.verschiebt]; delete dateien[a.verschiebt]; neuePfade[a.nach] = true;
+      if (offen === a.verschiebt) offen = a.nach;
+      nachricht('werkzeug', 'verschiebt ' + a.verschiebt + ' → ' + a.nach);
+      if (offen === a.nach) zeige(a.nach); else baum();
+    }
+    if (a.werkzeug) nachricht('werkzeug', 'ruft auf ' + a.werkzeug);
+    if (a.frage) {
+      wartet = true;
+      var box = document.createElement('div'); box.className = 'ma-frage';
+      box.innerHTML = '<p>' + esc(a.frage) + '</p><div class="knoepfe"><button type="button" class="prim" data-j="1">Erlauben</button><button type="button" data-j="0">Ablehnen</button></div>';
+      chat.appendChild(box); chat.scrollTop = chat.scrollHeight;
+      box.addEventListener('click', function (e) {
+        var j = e.target.getAttribute && e.target.getAttribute('data-j'); if (j === null || !wartet) return;
+        wartet = false;
+        box.querySelector('.knoepfe').outerHTML = '<p style="margin:0;color:var(--ink-soft)">' + (j === '1' ? '✓ Erlaubt' : '✕ Abgelehnt') + '</p>';
+        if (j === '1') { weiter.disabled = false; weiter.focus(); }
+        else { nachricht('agent', a.abgelehnt || 'In Ordnung, ich mache das nicht.'); schritt = S.schritte.length; erkl.innerHTML = '<small>Ende</small>Ohne Erlaubnis ändert der Agent nichts im Ordner. Mit „Neu starten“ sehen Sie den anderen Weg.'; weiter.disabled = true; }
+      });
+      weiter.disabled = true;
+      var knopf = box.querySelector('button'); if (knopf) knopf.focus();
+    }
+  }
+
+  function los(i) {
+    schritt = i;
+    var s = S.schritte[i];
+    erkl.innerHTML = '<small>Schritt ' + (i + 1) + ' von ' + S.schritte.length + '</small>' + esc(s.erklaerung);
+    s.aktionen.forEach(aktion);
+    if (!wartet) weiter.disabled = i >= S.schritte.length - 1;
+    weiter.textContent = i >= S.schritte.length - 1 ? 'Fertig' : 'Weiter';
+  }
+
+  function start() {
+    dateien = JSON.parse(JSON.stringify(S.dateien)); offen = null; neuePfade = {}; wartet = false;
+    el('ma-titel').textContent = S.titel;
+    chat.innerHTML = ''; datei.textContent = ''; code.innerHTML = '<p class="ma-leer">Keine Datei geöffnet.</p>';
+    baum(); los(0);
+  }
+
+  weiter.addEventListener('click', function () { if (!wartet && schritt < S.schritte.length - 1) los(schritt + 1); });
+  neu.addEventListener('click', start);
+  start();
+})();
+</script>
+</body></html>
