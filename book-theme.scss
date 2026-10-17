@@ -41,6 +41,13 @@ $code-block-bg:          $code-bg !default;
 
 /*-- scss:rules --*/
 
+// Kopierbare Aufträge (```text) sind einfache <pre class="text">-Blöcke ohne
+// sourceCode-Hülle; code-overflow: wrap greift dort nicht. Lange Zeilen umbrechen.
+pre.text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 // CSS Custom Properties — die eigentlichen Plattform-Tokens in OKLch.
 :root {
   --paper:        oklch(0.985 0.004 85);
