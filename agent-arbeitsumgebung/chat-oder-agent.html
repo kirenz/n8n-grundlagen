@@ -573,8 +573,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Der folgende Nachbau zeigt einen typischen Agenten mit dem Ordner <code>kundenanfragen</code>: links der Dateibaum, in der Mitte der Editor mit dem Inhalt der gerade geöffneten Datei, rechts der Chat. Mit „Weiter“ klicken wir Schritt für Schritt durch die Sitzung. An der Rückfrage entscheiden wir selbst, ob der Agent die Datei anlegen darf.</p>
 <iframe class="muster-agent" src="widgets/01-chat-oder-agent-sortieren.html" title="Nachbau eines Agenten: drei Anfragen nach Dringlichkeit sortieren" loading="lazy" style="width:100%;height:640px;border:0"></iframe>
 <script>if(!window.__maResize){window.__maResize=1;addEventListener('message',function(e){if(!e.data||e.data.type!=='claude-widget-height')return;document.querySelectorAll('iframe.muster-agent').forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.height+8)+'px';});});}</script>
-<p>Vier Dinge fallen auf. Der Auftrag nennt nur den Ordner und die Zieldatei; niemand kopiert eine Anfrage in den Chat. Der Agent öffnet jede der drei Anfragen selbst und liest die Zeile mit dem Anliegen. Bevor er etwas anlegt, fragt er. Und das Ergebnis steht danach als Datei im Ordner:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Übersicht der Anfragen</span></span>
+<p>Vier Dinge fallen auf. Der Auftrag nennt nur den Ordner und die Zieldatei; niemand kopiert eine Anfrage in den Chat. Der Agent öffnet jede der drei Anfragen selbst und liest die Zeile mit dem Anliegen. Bevor er etwas anlegt, fragt er. Und das Ergebnis steht danach als Datei im Ordner: Der Agent hat die Datei <code>UEBERSICHT.md</code> neu angelegt, so wie es der Auftrag verlangt. Sie liegt jetzt neben dem Ordner <code>anfragen/</code> und hat diesen Inhalt:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>UEBERSICHT.md</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="UEBERSICHT.md"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Übersicht der Anfragen</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Sortiert nach Dringlichkeit, dringendste zuerst.</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -583,6 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> 2026-10-07-beschwerde.md <span class="pp">|</span> Reparatur nicht fertig <span class="pp">|</span> für Freitag zugesagt, keine Nachricht <span class="pp">|</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> 2026-10-05-terminwunsch.md <span class="pp">|</span> Termin für eine Reparatur <span class="pp">|</span> Termin nächste Woche gewünscht <span class="pp">|</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> 2026-10-06-preisfrage.md <span class="pp">|</span> Preis für eine Reparatur <span class="pp">|</span> keine Frist genannt <span class="pp">|</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>Die Datei bleibt liegen. Kommt morgen eine vierte Anfrage, ergänzt der Agent dieselbe Übersicht, statt eine neue Liste im Chat zu erzeugen. Zum Schluss meldet er, was sich im Ordner geändert hat: eine Datei angelegt, keine geändert. Diese Meldung machen wir im Kapitel <a href="../agent-arbeitsumgebung/agents-md.html">AGENTS.md: die Hausordnung</a> zur festen Regel.</p>
 </section>
 <section id="wann-sich-der-agent-lohnt" class="level2" data-number="19.5">
