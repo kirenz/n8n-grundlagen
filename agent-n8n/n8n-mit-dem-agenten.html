@@ -390,17 +390,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Jeder n8n-Workflow lässt sich als Datei speichern, und für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner. In diesem Kapitel lassen wir den eigenen Agenten den Workflow aus <a href="../beispiele/kontaktanfragen.html">Beispiel 1: Kontaktanfragen sortieren</a> erklären und als Kopie ändern. Danach testen wir die Kopie in n8n. Die Kopie soll eine dritte Art von Anfragen mit hoher Priorität behandeln: Datenschutzanfragen. Die Erklärung folgt jeweils am eigenen Ergebnis.</p>
+<p>Jeder n8n-Workflow lässt sich als Datei speichern, und für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner. Der eigene Agent erklärt den Workflow aus <a href="../beispiele/kontaktanfragen.html">Beispiel 1: Kontaktanfragen sortieren</a> und ändert ihn als Kopie. Danach testen wir die Kopie in n8n. Die Kopie soll eine dritte Art von Anfragen mit hoher Priorität behandeln: Datenschutzanfragen. Die Erklärung folgt jeweils am eigenen Ergebnis.</p>
 <p>Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.</p>
 <section id="schritt-1-workflow-datei-ablegen-und-erklären-lassen" class="level2" data-number="20.1">
 <h2 data-number="20.1" class="anchored" data-anchor-id="schritt-1-workflow-datei-ablegen-und-erklären-lassen"><span class="header-section-number">20.1</span> Schritt 1: Workflow-Datei ablegen und erklären lassen</h2>
-<p><strong>Voraussetzung:</strong> Der Agent ist im Ordner <code>kundenanfragen</code> geöffnet.</p>
+<p><strong>Voraussetzung:</strong> Der Ordner <code>kundenanfragen</code> mit dem Stand nach dem Kapitel <a href="../agent-n8n/voraussetzung.html">Voraussetzung: Ihre Arbeitsumgebung</a> ist in der App des Agenten gewählt.</p>
 <ol type="1">
 <li><p>Diesen Auftrag senden:</p>
 <pre class="text"><code>Lege in diesem Ordner den Ordner n8n an. Frage, bevor du ihn anlegst.</code></pre></li>
 <li><p>Die Datei <a href="../workflows/beispiele/beispiel-1-kontaktanfragen.json">beispiel-1-kontaktanfragen.json</a> herunterladen (im Browser: rechte Maustaste, „Link speichern unter“).</p></li>
-<li><p>Die Datei im Ordner <code>kundenanfragen/n8n/</code> speichern.</p></li>
-<li><p>Prüfen: Im Ordner <code>n8n/</code> liegt <code>beispiel-1-kontaktanfragen.json</code>.</p></li>
+<li><p>Die Datei im Finder oder Explorer im Ordner <code>kundenanfragen/n8n/</code> speichern.</p></li>
+<li><p>Diese Frage senden:</p>
+<pre class="text"><code>Liste die Dateien im Ordner n8n auf.</code></pre></li>
+<li><p>Prüfen: Die Liste nennt <code>beispiel-1-kontaktanfragen.json</code>.</p></li>
 <li><p>Diesen Auftrag senden:</p>
 <pre class="text"><code>Erkläre den Workflow in n8n/beispiel-1-kontaktanfragen.json in drei Sätzen: Auslöser, Entscheidung, Ergebnis. Ändere danach nichts.</code></pre></li>
 <li><p>Prüfen: Die Erklärung nennt das Formular, den If-Knoten „Beschwerde?“ und zwei Ausgänge.</p></li>
@@ -635,82 +637,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="das-sollten-wir-jetzt-sehen" class="level3" data-number="20.1.1">
 <h3 data-number="20.1.1" class="anchored" data-anchor-id="das-sollten-wir-jetzt-sehen"><span class="header-section-number">20.1.1</span> Das sollten wir jetzt sehen</h3>
 <style>
-.bx{max-width:820px;margin:0 auto;color:#1f2430;font-size:14px;line-height:1.45}
-.bx *{box-sizing:border-box}
-.bx-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.bx-box{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;min-width:0}
-.bx-bar{padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
-.bx-bar b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.bx pre{margin:0;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:transparent;border:0;color:#1f2430}
-.bx pre i{color:#23417a;font-style:normal;font-weight:700}
-.bx pre em{color:#5b6170;font-style:normal}
-.bx pre .alt{display:block;background:color-mix(in oklch,#c8962f 22%,transparent);text-decoration:line-through;text-decoration-color:#5b6170}
-.bx pre .neu{display:block;background:color-mix(in oklch,#23417a 16%,transparent)}
-.bx pre .mark{background:color-mix(in oklch,#23417a 16%,transparent)}
-.bx pre .weg{color:#5b6170;text-decoration:line-through}
-.bx-body{padding:12px 16px 14px;font-size:14.5px}
-.bx-body p{margin:0 0 8px}
-.bx-body p:last-child{margin-bottom:0}
-.bx-h{font-size:20px;font-weight:700;margin:0 0 8px}
-.bx-h2{font-size:16px;font-weight:700;margin:10px 0 6px}
-.bx ul,.bx ol{margin:0;padding-left:22px}
-.bx li{margin:2px 0}
-.bx table{border-collapse:collapse;font-size:13px;width:100%}
-.bx th,.bx td{border:1px solid #dcd9d2;padding:5px 8px;text-align:left;vertical-align:top}
-.bx th{background:#f4f2ed}
-.bx code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
-.bx-tag{display:inline-block;margin-left:6px;padding:0 6px;border-radius:999px;background:#f4f2ed;border:1px solid #dcd9d2;font-size:11px;color:#5b6170}
-.bx-ok{color:#23417a;font-weight:700}
-.bx-flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 12px;font-size:12.5px}
-.bx-node{padding:4px 9px;border:1px solid #dcd9d2;border-radius:8px;background:#f4f2ed}
-.bx-node.an{border-color:#23417a;background:color-mix(in oklch,#23417a 12%,#fbfaf7);font-weight:600}
-.bx-arr{color:#5b6170}
-.bx-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
-@media (max-width:640px){.bx-grid{grid-template-columns:1fr}}
+.cv{max-width:720px;margin:0 0 1rem;color:#1f2430;font-size:14px;line-height:1.45}
+.cv *{box-sizing:border-box}
+.cv-win{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7}
+.cv-win + .cv-win{margin-top:12px}
+.cv-top{display:flex;align-items:center;gap:8px;padding:7px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
+.cv-top b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.cv-top span{margin-left:auto}
+.cv-chat{padding:12px;display:grid;gap:8px}
+.cv-msg{border-radius:10px;padding:8px 11px;max-width:94%}
+.cv-msg p{margin:0 0 4px}.cv-msg p:last-child{margin:0}
+.cv-me{justify-self:end;background:color-mix(in oklch,#23417a 14%,transparent)}
+.cv-ag{justify-self:start;background:#f4f2ed;border:1px solid #dcd9d2}
+.cv-who{display:block;font-size:11.5px;color:#5b6170;margin-bottom:2px}
+.cv-tool{justify-self:start;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#5b6170;padding:0 4px}
+.cv-tool::before{content:"› ";color:#c8962f;font-weight:700}
+.cv-ask{justify-self:stretch;border:1px solid #c8962f;border-radius:10px;padding:8px 11px;background:color-mix(in oklch,#c8962f 10%,#fbfaf7)}
+.cv-btn{display:inline-block;margin:6px 6px 0 0;padding:2px 10px;border:1px solid #dcd9d2;border-radius:999px;font-size:12.5px;background:#fbfaf7}
+.cv-btn.ok{border-color:#23417a;color:#23417a;font-weight:600}
+.cv-leer{color:#5b6170;font-size:13px;padding:18px 0;text-align:center}
+.cv-in{margin:4px 12px 12px;border:1px solid #dcd9d2;border-radius:999px;padding:7px 12px;color:#5b6170;font-size:13px}
+.cv code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+.cv pre{margin:6px 0 0;padding:8px 10px;border:1px solid #dcd9d2;border-radius:8px;background:#fbfaf7;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.cv pre i{color:#23417a;font-style:normal;font-weight:700}
+.cv pre em{color:#5b6170;font-style:normal}
+.cv pre .nr{color:#5b6170;opacity:.6;display:inline-block;width:22px;user-select:none}
+.cv pre .alt{display:block;background:color-mix(in oklch,#c8962f 22%,transparent);text-decoration:line-through;text-decoration-color:#5b6170}
+.cv pre .neu{display:block;background:color-mix(in oklch,#23417a 16%,transparent)}
+.cv pre .mark{background:color-mix(in oklch,#c8962f 24%,transparent)}
+.cv-h{font-size:18px;font-weight:700;margin:4px 0 6px}
+.cv-h2{font-size:15px;font-weight:700;margin:8px 0 4px}
+.cv ul,.cv ol{margin:0;padding-left:20px}
+.cv li{margin:2px 0}
+.cv table{border-collapse:collapse;font-size:13px;margin-top:4px}
+.cv th,.cv td{border:1px solid #dcd9d2;padding:4px 8px;text-align:left;vertical-align:top}
+.cv th{background:#f4f2ed}
+.cv-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
 </style>
-<div class="bx" style="margin:0 0 1rem">
-<div class="bx-grid" role="group" aria-label="Ausschnitt der Workflow-Datei und Erklärung des Agenten">
-<div class="bx-box"><div class="bx-bar">Ausschnitt: <b>n8n/beispiel-1-kontaktanfragen.json</b></div>
-<pre>"name": "<i>Kontaktformular</i>",
-"type": "n8n-nodes-base.formTrigger",
-<em>…</em>
-"name": "<i>Beschwerde?</i>",
+<div class="cv">
+<div class="cv-win" role="group" aria-label="Chat: Erklärung des Workflows in drei Sätzen und die Stelle in der Datei, aus der der Agent die Entscheidung liest">
+<div class="cv-top">Ordner: <b>kundenanfragen</b><span>Chat</span></div>
+<div class="cv-chat">
+<div class="cv-msg cv-me"><span class="cv-who">Wir</span>Erkläre den Workflow in n8n/beispiel-1-kontaktanfragen.json in drei Sätzen: Auslöser, Entscheidung, Ergebnis. Ändere danach nichts.</div>
+<div class="cv-tool">liest n8n/beispiel-1-kontaktanfragen.json</div>
+<div class="cv-msg cv-ag"><span class="cv-who">Agent</span><p><b>Auslöser:</b> Das Formular „Kontaktformular“ startet den Workflow, wenn jemand Name, E-Mail, Anliegen und Nachricht absendet.</p><p><b>Entscheidung:</b> Der If-Knoten „Beschwerde?“ prüft, ob das Anliegen gleich „Beschwerde“ ist.</p><p><b>Ergebnis:</b> Beschwerden gehen an „Priorität hoch“, alle anderen Anfragen an „Priorität normal“. Beide Knoten setzen das Feld prioritaet.</p><p>Die Entscheidung steht in der Datei so (gekürzt):</p><pre>"name": "<i>Beschwerde?</i>",
 "conditions": [
   {
     <span class="mark">"leftValue": "={{ $json.Anliegen }}",</span>
     <span class="mark">"rightValue": "Beschwerde",</span>
-    "operator": {
-      "type": "string",
-      <span class="mark">"operation": "equals"</span>
-    }
+    "operator": { "type": "string", <span class="mark">"operation": "equals"</span> }
   }
 ],
-"combinator": "and"
-<em>…</em>
-"name": "<i>Priorität hoch</i>",
-<em>…</em>
-"name": "<i>Priorität normal</i>",</pre></div>
-<div class="bx-box"><div class="bx-bar">Antwort des Agenten (Kurzform)</div>
-<div class="bx-body"><p><b>Auslöser:</b> Das Formular „Kontaktformular“ startet den Workflow, wenn jemand Name, E-Mail, Anliegen und Nachricht absendet.</p>
-<p><b>Entscheidung:</b> Der If-Knoten „Beschwerde?“ prüft, ob das Anliegen gleich „Beschwerde“ ist.</p>
-<p><b>Ergebnis:</b> Beschwerden gehen an „Priorität hoch“, alle anderen Anfragen an „Priorität normal“. Beide Knoten setzen das Feld prioritaet.</p></div></div>
+"combinator": "and"</pre></div>
 </div>
-<p class="bx-cap">Links die Stellen, aus denen der Agent liest: Knotennamen in Blau, die Bedingung hinterlegt. Rechts seine Erklärung. Der eigene Agent formuliert anders. Wichtig sind Auslöser, Entscheidung und die zwei Ausgänge.</p>
+</div>
+<p class="cv-cap">Die Erklärung Ihres Agenten lautet anders. Wichtig sind Auslöser, Entscheidung und die zwei Ausgänge. Die hinterlegten Zeilen zeigen, woher er die Entscheidung kennt: aus der Bedingung im If-Knoten.</p>
 </div>
 </section>
 <section id="was-gerade-passiert-ist" class="level3" data-number="20.1.2">
 <h3 data-number="20.1.2" class="anchored" data-anchor-id="was-gerade-passiert-ist"><span class="header-section-number">20.1.2</span> Was gerade passiert ist</h3>
 <p>Der Agent hat die Workflow-Datei gelesen wie jede Anfrage im Ordner. Die Namen in seiner Erklärung stehen wörtlich in der Datei.</p>
 <p><strong>Workflow-JSON</strong> nennen wir die Datei, in der n8n einen Workflow speichert. JSON (JavaScript Object Notation) ist ein Textformat, das Daten als Felder mit Namen und Wert in geschweiften Klammern ablegt. Die Datei enthält alle Knoten mit ihren Einstellungen und die Verbindungen zwischen ihnen. Jeder Workflow lässt sich über das Menü des Workflows als JSON-Datei exportieren und in eine andere Instanz wieder importieren. Die Knotennamen in der Datei sind dieselben wie im Canvas.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/workflow-datei-und-knoten.svg" class="img-fluid figure-img" alt="Links vier Knoten im Canvas von n8n, nummeriert: 1 Kontaktformular, 2 Beschwerde?, von dort true zu 3 Priorität hoch und false zu 4 Priorität normal. Rechts ein Ausschnitt der Datei mit denselben Nummern an den Zeilen name: Kontaktformular, Beschwerde?, Priorität hoch, Priorität normal. Hinterlegt die Bedingung des If-Knotens: leftValue Anliegen, rightValue Beschwerde, operation equals. Unten: Der Agent liest die Datei, n8n zeigt dieselben Knoten im Canvas."></p>
+<figcaption>Dieselben vier Knoten im Canvas und in der Datei. Hinterlegt ist die Bedingung des If-Knotens.</figcaption>
+</figure>
+</div>
 <p>Die <strong>Bedingung</strong> ist der Vergleich im If-Knoten „Beschwerde?“. In der Datei sieht sie so aus (gekürzt):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">"conditions"</span><span class="er">:</span> <span class="ot">[</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"leftValue"</span><span class="fu">:</span> <span class="st">"={{ $json.Anliegen }}"</span><span class="fu">,</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"rightValue"</span><span class="fu">:</span> <span class="st">"Beschwerde"</span><span class="fu">,</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"operator"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span> <span class="dt">"operation"</span><span class="fu">:</span> <span class="st">"equals"</span> <span class="fu">}</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span><span class="er">,</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">"combinator"</span><span class="er">:</span> <span class="st">"and"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">"conditions"</span><span class="er">:</span> <span class="ot">[</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"leftValue"</span><span class="fu">:</span> <span class="st">"={{ $json.Anliegen }}"</span><span class="fu">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"rightValue"</span><span class="fu">:</span> <span class="st">"Beschwerde"</span><span class="fu">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"operator"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span> <span class="dt">"operation"</span><span class="fu">:</span> <span class="st">"equals"</span> <span class="fu">}</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span><span class="er">,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">"combinator"</span><span class="er">:</span> <span class="st">"and"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfeld <code>Anliegen</code>, rechts der Vergleichswert <code>Beschwerde</code>, dazwischen der Vergleich „ist gleich“ (<code>equals</code>). Wie ein neuer Mitarbeiter liest der Agent zuerst den Ablaufplan und erklärt ihn, bevor er etwas ändert. Seine Erklärung lässt sich am Canvas in n8n prüfen.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
 <div class="callout-header d-flex align-content-center">
@@ -724,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <ul>
 <li>Der Agent kürzt die Datei oder ändert Zeilen beim Anlegen (Alternative oben): ablehnen und die Datei herunterladen.</li>
-<li>Die heruntergeladene Datei heißt <code>beispiel-1-kontaktanfragen.json.txt</code> oder liegt noch im Download-Ordner: nach <code>kundenanfragen/n8n/</code> verschieben und die Endung <code>.txt</code> entfernen.</li>
+<li>Die heruntergeladene Datei heißt <code>beispiel-1-kontaktanfragen.json.txt</code> oder liegt noch im Download-Ordner: im Finder oder Explorer nach <code>kundenanfragen/n8n/</code> verschieben und die Endung <code>.txt</code> entfernen.</li>
 <li>Die Erklärung nennt andere Namen als „Beschwerde?“ oder „Priorität hoch“: „Nenne die Knotennamen genau so, wie sie in der Datei stehen.“</li>
 <li>Der Agent schlägt von sich aus eine Änderung vor: ablehnen. Der Auftrag lautet „Ändere danach nichts“.</li>
 </ul>
@@ -741,72 +743,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="text"><code>Erstelle eine Kopie als n8n/beispiel-1-datenschutz.json. Änderung: Der If-Knoten „Beschwerde?“ prüft zusätzlich, ob Anliegen gleich „Datenschutz“ ist, beide Bedingungen mit OR. Das Formular bekommt die Option „Datenschutz“. Sonst nichts ändern. Nenne mir die beiden Stellen, die du geändert hast.</code></pre></li>
 <li><p>Das Anlegen freigeben, wenn der Agent fragt.</p></li>
 <li><p>Prüfen: Der Agent nennt zwei Stellen, die neue Formularoption und die zweite Bedingung im If-Knoten.</p></li>
-<li><p><code>n8n/beispiel-1-datenschutz.json</code> in der App öffnen.</p></li>
-<li><p>Prüfen: Die Datei enthält <code>"option": "Datenschutz"</code>, <code>"rightValue": "Datenschutz"</code> und <code>"combinator": "or"</code>.</p></li>
-<li><p>Prüfen: <code>beispiel-1-kontaktanfragen.json</code> liegt weiter im Ordner <code>n8n/</code>.</p></li>
+<li><p>Diese Frage senden:</p>
+<pre class="text"><code>Zeig mir aus n8n/beispiel-1-datenschutz.json alle Zeilen mit „Datenschutz“ und die Zeile mit „combinator“, genau so, wie sie in der Datei stehen. Liste danach die Dateien im Ordner n8n auf.</code></pre></li>
+<li><p>Prüfen: Die Zeilen enthalten <code>"option": "Datenschutz"</code>, <code>"rightValue": "Datenschutz"</code> und <code>"combinator": "or"</code>.</p></li>
+<li><p>Prüfen: Die Liste nennt <code>beispiel-1-kontaktanfragen.json</code> und <code>beispiel-1-datenschutz.json</code>.</p></li>
 </ol>
 <section id="das-sollten-wir-jetzt-sehen-1" class="level3" data-number="20.2.1">
 <h3 data-number="20.2.1" class="anchored" data-anchor-id="das-sollten-wir-jetzt-sehen-1"><span class="header-section-number">20.2.1</span> Das sollten wir jetzt sehen</h3>
 <style>
-.bx{max-width:820px;margin:0 auto;color:#1f2430;font-size:14px;line-height:1.45}
-.bx *{box-sizing:border-box}
-.bx-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.bx-box{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;min-width:0}
-.bx-bar{padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
-.bx-bar b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.bx pre{margin:0;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:transparent;border:0;color:#1f2430}
-.bx pre i{color:#23417a;font-style:normal;font-weight:700}
-.bx pre em{color:#5b6170;font-style:normal}
-.bx pre .alt{display:block;background:color-mix(in oklch,#c8962f 22%,transparent);text-decoration:line-through;text-decoration-color:#5b6170}
-.bx pre .neu{display:block;background:color-mix(in oklch,#23417a 16%,transparent)}
-.bx pre .mark{background:color-mix(in oklch,#23417a 16%,transparent)}
-.bx pre .weg{color:#5b6170;text-decoration:line-through}
-.bx-body{padding:12px 16px 14px;font-size:14.5px}
-.bx-body p{margin:0 0 8px}
-.bx-body p:last-child{margin-bottom:0}
-.bx-h{font-size:20px;font-weight:700;margin:0 0 8px}
-.bx-h2{font-size:16px;font-weight:700;margin:10px 0 6px}
-.bx ul,.bx ol{margin:0;padding-left:22px}
-.bx li{margin:2px 0}
-.bx table{border-collapse:collapse;font-size:13px;width:100%}
-.bx th,.bx td{border:1px solid #dcd9d2;padding:5px 8px;text-align:left;vertical-align:top}
-.bx th{background:#f4f2ed}
-.bx code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
-.bx-tag{display:inline-block;margin-left:6px;padding:0 6px;border-radius:999px;background:#f4f2ed;border:1px solid #dcd9d2;font-size:11px;color:#5b6170}
-.bx-ok{color:#23417a;font-weight:700}
-.bx-flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 12px;font-size:12.5px}
-.bx-node{padding:4px 9px;border:1px solid #dcd9d2;border-radius:8px;background:#f4f2ed}
-.bx-node.an{border-color:#23417a;background:color-mix(in oklch,#23417a 12%,#fbfaf7);font-weight:600}
-.bx-arr{color:#5b6170}
-.bx-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
-@media (max-width:640px){.bx-grid{grid-template-columns:1fr}}
+.cv{max-width:720px;margin:0 0 1rem;color:#1f2430;font-size:14px;line-height:1.45}
+.cv *{box-sizing:border-box}
+.cv-win{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7}
+.cv-win + .cv-win{margin-top:12px}
+.cv-top{display:flex;align-items:center;gap:8px;padding:7px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
+.cv-top b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.cv-top span{margin-left:auto}
+.cv-chat{padding:12px;display:grid;gap:8px}
+.cv-msg{border-radius:10px;padding:8px 11px;max-width:94%}
+.cv-msg p{margin:0 0 4px}.cv-msg p:last-child{margin:0}
+.cv-me{justify-self:end;background:color-mix(in oklch,#23417a 14%,transparent)}
+.cv-ag{justify-self:start;background:#f4f2ed;border:1px solid #dcd9d2}
+.cv-who{display:block;font-size:11.5px;color:#5b6170;margin-bottom:2px}
+.cv-tool{justify-self:start;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#5b6170;padding:0 4px}
+.cv-tool::before{content:"› ";color:#c8962f;font-weight:700}
+.cv-ask{justify-self:stretch;border:1px solid #c8962f;border-radius:10px;padding:8px 11px;background:color-mix(in oklch,#c8962f 10%,#fbfaf7)}
+.cv-btn{display:inline-block;margin:6px 6px 0 0;padding:2px 10px;border:1px solid #dcd9d2;border-radius:999px;font-size:12.5px;background:#fbfaf7}
+.cv-btn.ok{border-color:#23417a;color:#23417a;font-weight:600}
+.cv-leer{color:#5b6170;font-size:13px;padding:18px 0;text-align:center}
+.cv-in{margin:4px 12px 12px;border:1px solid #dcd9d2;border-radius:999px;padding:7px 12px;color:#5b6170;font-size:13px}
+.cv code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+.cv pre{margin:6px 0 0;padding:8px 10px;border:1px solid #dcd9d2;border-radius:8px;background:#fbfaf7;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.cv pre i{color:#23417a;font-style:normal;font-weight:700}
+.cv pre em{color:#5b6170;font-style:normal}
+.cv pre .nr{color:#5b6170;opacity:.6;display:inline-block;width:22px;user-select:none}
+.cv pre .alt{display:block;background:color-mix(in oklch,#c8962f 22%,transparent);text-decoration:line-through;text-decoration-color:#5b6170}
+.cv pre .neu{display:block;background:color-mix(in oklch,#23417a 16%,transparent)}
+.cv pre .mark{background:color-mix(in oklch,#c8962f 24%,transparent)}
+.cv-h{font-size:18px;font-weight:700;margin:4px 0 6px}
+.cv-h2{font-size:15px;font-weight:700;margin:8px 0 4px}
+.cv ul,.cv ol{margin:0;padding-left:20px}
+.cv li{margin:2px 0}
+.cv table{border-collapse:collapse;font-size:13px;margin-top:4px}
+.cv th,.cv td{border:1px solid #dcd9d2;padding:4px 8px;text-align:left;vertical-align:top}
+.cv th{background:#f4f2ed}
+.cv-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
 </style>
-<div class="bx" style="margin:0 0 1rem">
-<div class="bx-grid" role="group" aria-label="Die zwei Änderungen in der Kopie und die Antwort des Agenten">
-<div class="bx-box"><div class="bx-bar">Änderungen in <b>n8n/beispiel-1-datenschutz.json</b></div>
-<pre><em>Stelle 1: Kontaktformular, Feld Anliegen</em>
-  { "option": "Beschwerde" },
-  { "option": "Rückruf" },
-<span class="neu">+ { "option": "Datenschutz" }</span><em>Stelle 2: If-Knoten Beschwerde?</em>
-  "rightValue": "Beschwerde", <em>…</em>
-<span class="neu">+ {
-+   "leftValue": "={{ $json.Anliegen }}",
-+   "rightValue": "Datenschutz",
-+   "operator": { "type": "string", "operation": "equals" }
-+ }</span><span class="alt">- "combinator": "and"</span><span class="neu">+ "combinator": "or"</span></pre></div>
-<div class="bx-box"><div class="bx-bar">Antwort des Agenten (Kurzform)</div>
-<div class="bx-body"><p>Ich habe n8n/beispiel-1-datenschutz.json angelegt und zwei Stellen geändert:</p>
-<ol><li>Kontaktformular, Feld Anliegen: neue Option „Datenschutz“.</li>
-<li>If-Knoten „Beschwerde?“: zweiter Vergleich Anliegen gleich „Datenschutz“, Verknüpfung von and auf or.</li></ol>
-<p>Die Datei beispiel-1-kontaktanfragen.json ist unverändert.</p></div></div>
+<div class="cv">
+<div class="cv-win" role="group" aria-label="Chat: Rückfrage vor dem Anlegen der Kopie, die zwei geänderten Stellen und die Liste der zwei Dateien">
+<div class="cv-top">Ordner: <b>kundenanfragen</b><span>Chat</span></div>
+<div class="cv-chat">
+<div class="cv-msg cv-me"><span class="cv-who">Wir</span>Erstelle eine Kopie als n8n/beispiel-1-datenschutz.json. Änderung: Der If-Knoten „Beschwerde?“ prüft zusätzlich, ob Anliegen gleich „Datenschutz“ ist, beide Bedingungen mit OR. Das Formular bekommt die Option „Datenschutz“. Sonst nichts ändern. Nenne mir die beiden Stellen, die du geändert hast.</div>
+<div class="cv-tool">liest n8n/beispiel-1-kontaktanfragen.json</div>
+<div class="cv-ask"><span class="cv-who">Agent</span>Ich lege <code>n8n/beispiel-1-datenschutz.json</code> an: eine Kopie mit zwei Änderungen, das Original bleibt unverändert. Darf ich?<br><span class="cv-btn ok">Erlauben</span><span class="cv-btn">Ablehnen</span></div>
+<div class="cv-tool">beispiel-1-datenschutz.json angelegt</div>
+<div class="cv-msg cv-ag"><span class="cv-who">Agent</span><p>Fertig. Zwei Stellen geändert:</p><ol><li>Kontaktformular, Feld Anliegen: neue Option „Datenschutz“.</li><li>If-Knoten „Beschwerde?“: zweiter Vergleich Anliegen gleich „Datenschutz“, Verknüpfung von and auf or.</li></ol><p><code>beispiel-1-kontaktanfragen.json</code> ist unverändert.</p></div>
+<div class="cv-msg cv-me"><span class="cv-who">Wir</span>Zeig mir aus n8n/beispiel-1-datenschutz.json alle Zeilen mit „Datenschutz“ und die Zeile mit „combinator“, genau so, wie sie in der Datei stehen. Liste danach die Dateien im Ordner n8n auf.</div>
+<div class="cv-msg cv-ag"><span class="cv-who">Agent</span><pre><em>Kontaktformular, Feld Anliegen</em>
+{ "option": "<i>Datenschutz</i>" }
+<em>If-Knoten Beschwerde?</em>
+"rightValue": "<i>Datenschutz</i>",
+"combinator": "<i>or</i>"</pre><p>Im Ordner <code>n8n/</code>: <code>beispiel-1-kontaktanfragen.json</code>, <code>beispiel-1-datenschutz.json</code>.</p></div>
 </div>
-<p class="bx-cap">Gekürzt. In der echten Datei stehen die Felder auf mehreren Zeilen, und der neue Vergleich hat meist eine eigene id. Neue Zeilen sind blau hinterlegt, die alte Zeile ist durchgestrichen.</p>
+</div>
+<p class="cv-cap">Gekürzt. In der echten Datei stehen die Felder auf mehreren Zeilen, und der neue Vergleich hat meist eine eigene id. Wichtig sind die drei Werte Datenschutz, Datenschutz und or sowie die zwei Dateien.</p>
 </div>
 </section>
 <section id="was-gerade-passiert-ist-1" class="level3" data-number="20.2.2">
 <h3 data-number="20.2.2" class="anchored" data-anchor-id="was-gerade-passiert-ist-1"><span class="header-section-number">20.2.2</span> Was gerade passiert ist</h3>
 <p>Der Agent hat die alte Bedingung gelesen und eine neue Datei mit zwei Änderungen angelegt. Das Original liegt unverändert daneben.</p>
 <p>Das Feld <strong>combinator</strong> legt fest, wie mehrere Vergleiche im If-Knoten zusammenwirken. Mit <code>and</code> (und) müssen alle zutreffen, mit <code>or</code> (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Sobald ein zweiter dazukommt, entscheidet dieses Feld über das Ergebnis: Mit <code>or</code> führt jetzt Beschwerde oder Datenschutz zum Ausgang true.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/workflow-und-oder.svg" class="img-fluid figure-img" alt="Zwei Vergleiche: Anliegen ist gleich Beschwerde und Anliegen ist gleich Datenschutz. Als falsch markiert: combinator and; beide Vergleiche müssten zugleich zutreffen, ein Anliegen ist nie beides, keine Anfrage erreicht den Ausgang true. Als richtig markiert: combinator or; ein Vergleich genügt, Beschwerde und Datenschutz führen zum Ausgang true, alles andere zu false. Unten: Der Agent ändert eine Kopie mit neuem Namen, das Original bleibt daneben liegen."></p>
+<figcaption>Mit and müssten beide Vergleiche zugleich zutreffen, und keine Anfrage erreicht true. Mit or genügt einer.</figcaption>
+</figure>
+</div>
 <p>Der Agent ändert eine <strong>Kopie mit neuem Namen</strong>, das Original bleibt, wie es ist (Regel 4 der AGENTS.md aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html">AGENTS.md: die Hausordnung</a>). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die beiden Stellen im Überblick:</p>
 <table class="caption-top table">
 <colgroup>
@@ -937,6 +948,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="20.3.2" class="anchored" data-anchor-id="was-gerade-passiert-ist-2"><span class="header-section-number">20.3.2</span> Was gerade passiert ist</h3>
 <p>Aus der Datei des Agenten ist ein Workflow in der eigenen Instanz geworden, und zwei Läufe haben sein Verhalten gezeigt.</p>
 <p>Beim <strong>Import</strong> liest n8n die JSON-Datei und baut daraus Knoten und Verbindungen im Canvas. Das gelingt nur, wenn die Datei gültiges JSON ist; schon ein fehlendes Komma verhindert den Import. Damit ist der Import der erste Prüfpunkt. Der zweite Lauf ist eine <strong>Gegenprobe</strong>: ein Anliegen, für das sich nichts ändern soll. Er zeigt, ob die Änderung nur dort wirkt, wo sie wirken soll.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/workflow-pruefkette.svg" class="img-fluid figure-img" alt="Vier nummerierte Stationen von links nach rechts: 1 Datei vom Agenten, die Kopie im Ordner n8n. 2 Import in n8n, gelingt nur mit gültigem JSON. 3 Lauf 1 mit Datenschutz, erwartet Priorität hoch. 4 Lauf 2 mit Rückruf als Gegenprobe, erwartet Priorität normal. Station 2 bis 4 sind Prüfpunkte in n8n. Unten: Die Meldung Fertig des Agenten ersetzt keine dieser Stationen."></p>
+<figcaption>Vier Stationen bis zur Freigabe. Import und zwei Läufe in n8n sind die Prüfpunkte.</figcaption>
+</figure>
+</div>
 <p>Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diese Läufe nicht, und das Durchlesen der Datei auch nicht: Es zeigt weder, ob n8n die Datei annimmt, noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen. So endet auch beim neuen Mitarbeiter ein Änderungsvorschlag: Er schlägt vor, wir testen, erst dann geben wir frei.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
 <div class="callout-header d-flex align-content-center">
@@ -960,7 +977,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="zwei-wege-zu-n8n" class="level2" data-number="20.4">
 <h2 data-number="20.4" class="anchored" data-anchor-id="zwei-wege-zu-n8n"><span class="header-section-number">20.4</span> Zwei Wege zu n8n</h2>
-<p>In diesem Kapitel hat der Agent die Datei geschrieben, und wir haben sie importiert. Das ist Weg A. Es gibt einen zweiten Weg.</p>
+<p>Bisher hat der Agent die Datei geschrieben, und wir haben sie importiert. Das ist Weg A. Es gibt einen zweiten Weg.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/11-zwei-wege.svg" class="img-fluid figure-img" alt="Zwei Wege. Weg A, im Kurs: Der Agent schreibt die Datei n8n/beispiel-1-datenschutz.json, wir importieren sie mit Import from File in n8n. Weg B, gestrichelt, nur Hinweis: Der Agent erreicht n8n über einen MCP-Zugang (Zugangskarte) und liest oder legt Workflows direkt an; in n8n heißt die Anbindung Instance-level MCP."></p>
@@ -999,6 +1016,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Für Weg B bietet n8n eine eigene Anbindung namens <strong>Instance-level MCP</strong>. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet (<a href="https://docs.n8n.io/connect/connect-to-n8n-mcp-server">Anleitung in der n8n-Dokumentation</a>). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n ist ein natürlicher Prüfpunkt.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/workflow-anbindung-rechte.svg" class="img-fluid figure-img" alt="Oben der Agent, über MCP verbunden mit einem n8n-Konto, das Workflows anlegen, ändern und je nach Freischaltung ausführen darf. Als falsch markiert: Instanz mit Workflows, die echte Kundendaten verarbeiten; keine Anbindung freischalten. Als richtig markiert: Test-Instanz ohne Kundendaten; Anbindung möglich, im Unternehmen mit Freigabe der IT. Unten: Exportierte Dateien enthalten die Namen von Zugangsdaten, vor dem Weitergeben entfernen."></p>
+<figcaption>Eine Anbindung an n8n handelt mit den Rechten des Kontos. Freischalten nur für eine Test-Instanz ohne Kundendaten.</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-simple callout-warning callout-titled" title="Agent mit Zugriff auf n8n">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

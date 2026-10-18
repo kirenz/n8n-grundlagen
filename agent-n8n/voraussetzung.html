@@ -345,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Die nächsten zwei Kapitel arbeiten mit einem Coding-Agenten auf dem eigenen Rechner. Er liest einen n8n-Workflow als Datei, ändert ihn als Kopie und legt danach ein Starterpaket für neue Vorhaben an. Die Einrichtung des Agenten ist nicht Teil dieses Buchs. Sie steht im eigenen Buch <a href="https://kirenz.github.io/agent-arbeitsumgebung/">Produktiv mit einem Agenten arbeiten</a> und im kostenlosen Kurs dazu auf der Lernplattform: <a href="https://kurse.kirenz.de/courses/agent-arbeitsumgebung">kurse.kirenz.de/courses/agent-arbeitsumgebung</a>. In diesem Kapitel prüfen wir mit drei Fragen an den Agenten, ob die Arbeitsumgebung bereitsteht. Wer die Prüfung besteht, macht direkt weiter.</p>
+<p>Die nächsten zwei Kapitel arbeiten mit einem Coding-Agenten auf dem eigenen Rechner. Er liest einen n8n-Workflow als Datei, ändert ihn als Kopie und legt danach ein Starterpaket für neue Vorhaben an. Die Einrichtung des Agenten ist nicht Teil dieses Buchs. Sie steht im eigenen Buch <a href="https://kirenz.github.io/agent-arbeitsumgebung/">Produktiv mit einem Agenten arbeiten</a> und im kostenlosen Kurs dazu auf der Lernplattform: <a href="https://kurse.kirenz.de/courses/agent-arbeitsumgebung">kurse.kirenz.de/courses/agent-arbeitsumgebung</a>. Drei Fragen an den Agenten zeigen, ob die Arbeitsumgebung bereitsteht. Wer die Prüfung besteht, macht direkt weiter.</p>
 <section id="wofür-wir-den-agenten-in-diesem-buch-brauchen" class="level2" data-number="19.1">
 <h2 data-number="19.1" class="anchored" data-anchor-id="wofür-wir-den-agenten-in-diesem-buch-brauchen"><span class="header-section-number">19.1</span> Wofür wir den Agenten in diesem Buch brauchen</h2>
 <ul>
@@ -353,6 +353,12 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Starterpaket</strong>: Der Agent legt mit einem Auftrag einen neuen Projektordner mit Regeln, Ablage, zwei Skills und einer Checkliste an. Der Ordner <code>mein-projekt</code> entsteht neben <code>kundenanfragen</code>.</li>
 </ul>
 <p>Beide Kapitel setzen den Projektordner <code>kundenanfragen</code> aus dem Buch „Produktiv mit einem Agenten arbeiten“ voraus.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/voraussetzung-zwei-lektionen.svg" class="img-fluid figure-img" alt="Links der Projektordner kundenanfragen, eingerichtet im Kurs Produktiv mit einem Agenten arbeiten; diese Lektion prüft ihn. Pfeile führen zu den zwei folgenden Lektionen: n8n mit dem Agenten, Workflow-Datei lesen und als Kopie ändern, die Kopie in n8n importieren; Starterpaket, der Agent legt den neuen Ordner mein-projekt an mit Regeln, Ablage, zwei Skills und Checkliste. Unten: Wer den Selbsttest besteht, macht direkt mit n8n mit dem Agenten weiter."></p>
+<figcaption>Ein vorbereiteter Ordner trägt beide Kapitel. Dieses Kapitel prüft, ob er bereitsteht.</figcaption>
+</figure>
+</div>
 </section>
 <section id="checkliste-das-muss-fertig-sein" class="level2" data-number="19.2">
 <h2 data-number="19.2" class="anchored" data-anchor-id="checkliste-das-muss-fertig-sein"><span class="header-section-number">19.2</span> Checkliste: Das muss fertig sein</h2>
@@ -368,7 +374,7 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>App und Konto</td>
-<td>Die App des Agenten ist installiert, wir sind angemeldet (Claude-Desktop-App mit dem Bereich „Code“, Codex-App, Antigravity oder Cursor). Wir arbeiten in der App, nicht im Terminal.</td>
+<td>Die App des Agenten ist installiert, wir sind angemeldet (Claude-Desktop-App mit dem Bereich „Code“, Codex-App, Antigravity oder Cursor). Wir arbeiten im Chat der App.</td>
 <td><a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/chat-oder-agent.html">Chat oder Agent?</a></td>
 </tr>
 <tr class="even">
@@ -382,8 +388,8 @@ ul.task-list li input[type="checkbox"] {
 <td><a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html">AGENTS.md: die Hausordnung</a></td>
 </tr>
 <tr class="even">
-<td>Markdown-Vorschau</td>
-<td>Wir können eine Markdown-Datei in der App als Vorschau und als Rohtext öffnen. Das Kapitel „Starterpaket“ prüft so sieben Dateien.</td>
+<td>Rohtext und Vorschau</td>
+<td>Wir lassen uns eine Markdown-Datei vom Agenten im Chat zeigen, einmal mit allen Zeichen und einmal formatiert. Das Kapitel „Starterpaket“ prüft so die Dateien des neuen Ordners.</td>
 <td><a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/markdown.html">Markdown: Text, den Mensch und Agent lesen</a></td>
 </tr>
 <tr class="odd">
@@ -398,13 +404,19 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/voraussetzung-checkliste.svg" class="img-fluid figure-img" alt="Sechs Karten für die Punkte, die fertig sein müssen. Aus dem Agenten-Kurs: App und Konto, Rohtext und Vorschau im Chat. Aus diesem Kurs: n8n und Beispiel 1. Blau hervorgehoben und mit Selbsttest markiert: Projektordner kundenanfragen mit Anfragen und Antworten, Hausordnung AGENTS.md mit mindestens fünf Regeln, Ort für Skills mit dem Skill eingang-einsortieren. Unten: Agenten-Kurs steht für Produktiv mit einem Agenten arbeiten."></p>
+<figcaption>Sechs Punkte müssen fertig sein. Die drei blauen prüft der Selbsttest.</figcaption>
+</figure>
+</div>
 </section>
 <section id="selbsttest-drei-fragen-an-den-agenten" class="level2" data-number="19.3">
 <h2 data-number="19.3" class="anchored" data-anchor-id="selbsttest-drei-fragen-an-den-agenten"><span class="header-section-number">19.3</span> Selbsttest: Drei Fragen an den Agenten</h2>
 <p>Der Selbsttest prüft die drei Punkte, auf die die nächsten Kapitel aufbauen: Ordner, Hausordnung und Skills. Er dauert zwei Minuten.</p>
 <p><strong>Voraussetzung:</strong> Die App des Agenten ist installiert, und der Ordner <code>kundenanfragen</code> liegt auf dem Rechner.</p>
 <ol type="1">
-<li><p>Den Ordner <code>kundenanfragen</code> in der App des Agenten öffnen.</p></li>
+<li><p>Den Ordner <code>kundenanfragen</code> in der App des Agenten wählen. Die Ordnerwahl zeigt das Buch „Produktiv mit einem Agenten arbeiten“, Kapitel <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/chat-oder-agent.html">Chat oder Agent?</a>, Schritt 1.</p></li>
 <li><p>Eine neue Sitzung starten.</p></li>
 <li><p>Diese Fragen senden:</p>
 <pre class="text"><code>Nur antworten, nichts ändern. Drei Fragen:
@@ -419,39 +431,64 @@ ul.task-list li input[type="checkbox"] {
 <section id="das-sollten-wir-jetzt-sehen" class="level3" data-number="19.3.1">
 <h3 data-number="19.3.1" class="anchored" data-anchor-id="das-sollten-wir-jetzt-sehen"><span class="header-section-number">19.3.1</span> Das sollten wir jetzt sehen</h3>
 <style>
-.bx{max-width:820px;margin:0 auto;color:#1f2430;font-size:14px;line-height:1.45}
-.bx *{box-sizing:border-box}
-.bx-box{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;min-width:0}
-.bx-bar{padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
-.bx-bar b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.bx-chat{padding:10px 12px;display:grid;gap:8px}
-.bx-msg{border-radius:10px;padding:8px 11px;max-width:94%}
-.bx-msg ol{margin:2px 0 4px;padding-left:20px}
-.bx-msg li{margin:2px 0}
-.bx-me{justify-self:end;background:color-mix(in oklch,#23417a 14%,transparent)}
-.bx-ag{justify-self:start;background:#f4f2ed;border:1px solid #dcd9d2}
-.bx-who{display:block;font-size:11.5px;color:#5b6170;margin-bottom:2px}
-.bx-ok{color:#23417a;font-weight:700}
-.bx code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
-.bx-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
+.cv{max-width:720px;margin:0 0 1rem;color:#1f2430;font-size:14px;line-height:1.45}
+.cv *{box-sizing:border-box}
+.cv-win{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7}
+.cv-win + .cv-win{margin-top:12px}
+.cv-top{display:flex;align-items:center;gap:8px;padding:7px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
+.cv-top b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.cv-top span{margin-left:auto}
+.cv-chat{padding:12px;display:grid;gap:8px}
+.cv-msg{border-radius:10px;padding:8px 11px;max-width:94%}
+.cv-msg p{margin:0 0 4px}.cv-msg p:last-child{margin:0}
+.cv-me{justify-self:end;background:color-mix(in oklch,#23417a 14%,transparent)}
+.cv-ag{justify-self:start;background:#f4f2ed;border:1px solid #dcd9d2}
+.cv-who{display:block;font-size:11.5px;color:#5b6170;margin-bottom:2px}
+.cv-tool{justify-self:start;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#5b6170;padding:0 4px}
+.cv-tool::before{content:"› ";color:#c8962f;font-weight:700}
+.cv-ask{justify-self:stretch;border:1px solid #c8962f;border-radius:10px;padding:8px 11px;background:color-mix(in oklch,#c8962f 10%,#fbfaf7)}
+.cv-btn{display:inline-block;margin:6px 6px 0 0;padding:2px 10px;border:1px solid #dcd9d2;border-radius:999px;font-size:12.5px;background:#fbfaf7}
+.cv-btn.ok{border-color:#23417a;color:#23417a;font-weight:600}
+.cv-leer{color:#5b6170;font-size:13px;padding:18px 0;text-align:center}
+.cv-in{margin:4px 12px 12px;border:1px solid #dcd9d2;border-radius:999px;padding:7px 12px;color:#5b6170;font-size:13px}
+.cv code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+.cv pre{margin:6px 0 0;padding:8px 10px;border:1px solid #dcd9d2;border-radius:8px;background:#fbfaf7;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.cv pre i{color:#23417a;font-style:normal;font-weight:700}
+.cv pre em{color:#5b6170;font-style:normal}
+.cv pre .nr{color:#5b6170;opacity:.6;display:inline-block;width:22px;user-select:none}
+.cv pre .alt{display:block;background:color-mix(in oklch,#c8962f 22%,transparent);text-decoration:line-through;text-decoration-color:#5b6170}
+.cv pre .neu{display:block;background:color-mix(in oklch,#23417a 16%,transparent)}
+.cv pre .mark{background:color-mix(in oklch,#c8962f 24%,transparent)}
+.cv-h{font-size:18px;font-weight:700;margin:4px 0 6px}
+.cv-h2{font-size:15px;font-weight:700;margin:8px 0 4px}
+.cv ul,.cv ol{margin:0;padding-left:20px}
+.cv li{margin:2px 0}
+.cv table{border-collapse:collapse;font-size:13px;margin-top:4px}
+.cv th,.cv td{border:1px solid #dcd9d2;padding:4px 8px;text-align:left;vertical-align:top}
+.cv th{background:#f4f2ed}
+.cv-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
 </style>
-<div class="bx" style="margin:0 0 1rem">
-<div class="bx-box" role="group" aria-label="Beispielantwort des Agenten auf die drei Fragen des Selbsttests"><div class="bx-bar">Chat · neue Sitzung in <b>kundenanfragen</b></div>
-<div class="bx-chat">
-<div class="bx-msg bx-me"><span class="bx-who">Wir</span>Nur antworten, nichts ändern. Drei Fragen: 1. In welchem Ordner arbeitest du gerade … 2. Welche Regeln gelten … 3. In welchem Ordner erwartest du Skills …</div>
-<div class="bx-msg bx-ag"><span class="bx-who">Agent</span><ol>
-<li><span class="bx-ok">Ordner:</span> Ich arbeite in <code>kundenanfragen</code>. Darin liegen <code>README.md</code>, <code>AGENTS.md</code>, <code>UEBERSICHT.md</code> und die Ordner <code>anfragen/</code> (drei Dateien), <code>antworten/</code> und <code>eingang/</code>.</li>
-<li><span class="bx-ok">Regeln:</span> Aus <code>AGENTS.md</code>: auf Deutsch antworten; nur Fakten aus dem Ordner, sonst „Annahme:“; keine Personennamen in neuen Dateien; Ergebnisse als neue Datei; geänderte Dateien nennen; UEBERSICHT.md lesen und ergänzen.</li>
-<li><span class="bx-ok">Skills:</span> Projekt-Skills erwarte ich in <code>.agents/skills/</code>. Bekannt ist <code>eingang-einsortieren</code>.</li>
-</ol></div>
-</div></div>
-<p class="bx-cap">Beispielantwort. Wortlaut, Anzahl der Regeln und der Ordner für Skills unterscheiden sich je Werkzeug und je nachdem, welche Kapitel bearbeitet wurden. Wichtig sind der Ordnername, die Regeln aus der Datei und ein Ort für Skills.</p>
+<div class="cv">
+<div class="cv-win" role="group" aria-label="Beispielantwort des Agenten auf die drei Fragen des Selbsttests">
+<div class="cv-top">Ordner: <b>kundenanfragen</b><span>Chat</span></div>
+<div class="cv-chat">
+<div class="cv-msg cv-me"><span class="cv-who">Wir</span>Nur antworten, nichts ändern. Drei Fragen: 1. In welchem Ordner arbeitest du gerade … 2. Welche Regeln gelten … 3. In welchem Ordner erwartest du Skills …</div>
+<div class="cv-msg cv-ag"><span class="cv-who">Agent</span><ol><li><b>Ordner:</b> Ich arbeite in <code>kundenanfragen</code>. Darin liegen <code>README.md</code>, <code>AGENTS.md</code>, <code>UEBERSICHT.md</code> und die Ordner <code>anfragen/</code> (drei Dateien), <code>antworten/</code> und <code>eingang/</code>.</li><li><b>Regeln:</b> Aus <code>AGENTS.md</code>: auf Deutsch antworten; nur Fakten aus dem Ordner, sonst „Annahme:“; keine Personennamen in neuen Dateien; Ergebnisse als neue Datei; geänderte Dateien nennen; UEBERSICHT.md lesen und ergänzen.</li><li><b>Skills:</b> Projekt-Skills erwarte ich in <code>.agents/skills/</code>. Bekannt ist <code>eingang-einsortieren</code>.</li></ol></div>
+</div>
+</div>
+<p class="cv-cap">Beispielantwort in einer neuen Sitzung. Wortlaut, Anzahl der Regeln und der Ordner für Skills unterscheiden sich je Werkzeug und je nachdem, welche Lektionen Sie bearbeitet haben. Wichtig sind der Ordnername, die Regeln aus der Datei und ein Ort für Skills.</p>
 </div>
 </section>
 <section id="was-gerade-passiert-ist" class="level3" data-number="19.3.2">
 <h3 data-number="19.3.2" class="anchored" data-anchor-id="was-gerade-passiert-ist"><span class="header-section-number">19.3.2</span> Was gerade passiert ist</h3>
 <p>Drei Fragen, drei Bausteine. Jede Antwort zeigt, ob ein Kapitel des Buchs „Produktiv mit einem Agenten arbeiten“ angekommen ist.</p>
 <p>In der <strong>neuen Sitzung</strong> hat der Agent den Ordner und die Regeln nicht aus dem Chatverlauf, sondern aus den Dateien im Ordner. Genau das brauchen die nächsten Kapitel: Wir geben kurze Aufträge, der Ordner liefert den Rest. Der Zusatz <strong>„Nur antworten“</strong> hält den Agenten davon ab, beim Prüfen etwas anzulegen oder zu ändern. Ob er sich daran hält, zeigt die Antwort. Eine Garantie ist der Zusatz nicht.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/voraussetzung-neue-sitzung.svg" class="img-fluid figure-img" alt="Links eine frühere Sitzung mit durchgestrichenem Verlauf: Den kennt der Agent nicht mehr. In der Mitte der Ordner kundenanfragen mit README.md, AGENTS.md, UEBERSICHT.md und dem Skill eingang-einsortieren. Ein Pfeil führt zur neuen Sitzung rechts: Der Agent liest Ordner, Regeln und Skills aus den Dateien und beantwortet die drei Fragen ohne Hilfe aus dem Chat. Unten: Kurze Aufträge genügen, den Rest liefert der Ordner."></p>
+<figcaption>Die neue Sitzung kennt den Verlauf der früheren nicht. Ordner, Regeln und Skills liest der Agent aus den Dateien.</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -464,7 +501,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <p>Besteht ein Punkt nicht, hilft das passende Kapitel im Buch <a href="https://kirenz.github.io/agent-arbeitsumgebung/">Produktiv mit einem Agenten arbeiten</a> weiter. Danach den Selbsttest wiederholen.</p>
 <ul>
-<li>Noch keine App oder kein Ordner im Agenten geöffnet: <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/chat-oder-agent.html">Chat oder Agent?</a></li>
+<li>Noch keine App oder noch kein Ordner in der App gewählt: <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/chat-oder-agent.html">Chat oder Agent?</a></li>
 <li>Antwort 1 nennt <code>kundenanfragen</code> nicht oder findet keine Anfragen: <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/projektordner.html">Der Projektordner: Arbeitsplatz mit Ablage</a></li>
 <li>Antwort 2 nennt keine Regeln oder fragt nach einer anderen Datei: <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html">AGENTS.md: die Hausordnung</a>. Dort steht auch, wie wir von der Datei des Werkzeugs auf <code>AGENTS.md</code> verweisen.</li>
 <li>Antwort 3 nennt keinen Ort für Skills oder keinen Skill: <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/skills.html">Skills: Abläufe, die bleiben</a></li>
