@@ -424,7 +424,7 @@ Der Agent hat die alte Bedingung gelesen und eine neue Datei mit zwei Änderunge
 
 Das Feld **combinator** legt fest, wie mehrere Vergleiche im If-Knoten zusammenwirken. Mit `and` (und) müssen alle zutreffen, mit `or` (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Sobald ein zweiter dazukommt, entscheidet dieses Feld über das Ergebnis: Mit `or` führt jetzt Beschwerde oder Datenschutz zum Ausgang true.
 
-Der Agent ändert eine **Kopie mit neuem Namen**, das Original bleibt, wie es ist (Regel 4 der AGENTS.md aus [AGENTS.md: die Hausordnung](../agent-arbeitsumgebung/agents-md.qmd)). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die beiden Stellen im Überblick:
+Der Agent ändert eine **Kopie mit neuem Namen**, das Original bleibt, wie es ist (Regel 4 der AGENTS.md aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel [AGENTS.md: die Hausordnung](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html)). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die beiden Stellen im Überblick:
 
 | Stelle | Original | Kopie |
 |---|---|---|
@@ -545,7 +545,7 @@ In diesem Kapitel hat der Agent die Datei geschrieben, und wir haben sie importi
 |---|---|---|
 | Was der Agent tut | schreibt eine JSON-Datei in den Ordner `n8n/` | liest und legt Workflows direkt in n8n an |
 | Was wir tun | importieren die Datei mit **Import from File** | schalten die Anbindung in n8n frei |
-| Was gebraucht wird | nur den Projektordner | einen MCP-Server (siehe [MCP: Zugänge zu anderen Systemen](../agent-arbeitsumgebung/mcp.qmd)) und eine Freischaltung in n8n |
+| Was gebraucht wird | nur den Projektordner | einen MCP-Server (siehe im Buch „Produktiv mit einem Agenten arbeiten“ das Kapitel [MCP: Zugänge zu anderen Systemen](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/mcp.html)) und eine Freischaltung in n8n |
 | Rolle hier | Praxisweg | freiwillige Prüfung am Ende |
 
 Für Weg B bietet n8n eine eigene Anbindung namens **Instance-level MCP**. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet ([Anleitung in der n8n-Dokumentation](https://docs.n8n.io/connect/connect-to-n8n-mcp-server)). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n ist ein natürlicher Prüfpunkt.

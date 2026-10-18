@@ -1,0 +1,96 @@
+# Voraussetzung: Ihre Arbeitsumgebung
+
+Die nächsten zwei Kapitel arbeiten mit einem Coding-Agenten auf dem eigenen Rechner. Er liest einen n8n-Workflow als Datei, ändert ihn als Kopie und legt danach ein Starterpaket für neue Vorhaben an. Die Einrichtung des Agenten ist nicht Teil dieses Buchs. Sie steht im eigenen Buch [Produktiv mit einem Agenten arbeiten](https://kirenz.github.io/agent-arbeitsumgebung/) und im kostenlosen Kurs dazu auf der Lernplattform: [kurse.kirenz.de/courses/agent-arbeitsumgebung](https://kurse.kirenz.de/courses/agent-arbeitsumgebung). In diesem Kapitel prüfen wir mit drei Fragen an den Agenten, ob die Arbeitsumgebung bereitsteht. Wer die Prüfung besteht, macht direkt weiter.
+
+## Wofür wir den Agenten in diesem Buch brauchen
+
+- **n8n mit dem Agenten**: Der Agent erklärt den Workflow aus [Beispiel 1: Kontaktanfragen sortieren](../beispiele/kontaktanfragen.qmd) und schreibt eine geänderte Kopie in den Ordner `n8n/`. Wir importieren die Kopie in n8n und testen sie. Eine dritte Art von Anfragen, Datenschutz, landet dann in „Priorität hoch“.
+- **Starterpaket**: Der Agent legt mit einem Auftrag einen neuen Projektordner mit Regeln, Ablage, zwei Skills und einer Checkliste an. Der Ordner `mein-projekt` entsteht neben `kundenanfragen`.
+
+Beide Kapitel setzen den Projektordner `kundenanfragen` aus dem Buch „Produktiv mit einem Agenten arbeiten“ voraus.
+
+## Checkliste: Das muss fertig sein
+
+Jeder Punkt nennt das Kapitel im Buch „Produktiv mit einem Agenten arbeiten“, das ihn einrichtet.
+
+| Punkt | Das muss fertig sein | Kapitel |
+|---|---|---|
+| App und Konto | Die App des Agenten ist installiert, wir sind angemeldet (Claude-Desktop-App mit dem Bereich „Code“, Codex-App, Antigravity oder Cursor). Wir arbeiten in der App, nicht im Terminal. | [Chat oder Agent?](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/chat-oder-agent.html) |
+| Projektordner | Der Ordner `kundenanfragen` liegt auf dem Rechner. Er enthält `README.md`, `anfragen/` mit Beispielanfragen und `antworten/`. | [Der Projektordner: Arbeitsplatz mit Ablage](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/projektordner.html) |
+| Hausordnung | Im Ordner liegt `AGENTS.md` mit mindestens fünf Regeln. Der Agent liest sie in einer neuen Sitzung von selbst, oder eine Datei mit dem Namen, den das Werkzeug erwartet, verweist auf sie. Regel 4 (Ergebnisse als neue Datei) nutzt das Kapitel „n8n mit dem Agenten“. | [AGENTS.md: die Hausordnung](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html) |
+| Markdown-Vorschau | Wir können eine Markdown-Datei in der App als Vorschau und als Rohtext öffnen. Das Kapitel „Starterpaket“ prüft so sieben Dateien. | [Markdown: Text, den Mensch und Agent lesen](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/markdown.html) |
+| Ort für Skills | Der Agent hat genannt, in welchem Ordner er Skills für ein Projekt erwartet. Der Skill `eingang-einsortieren` liegt dort. | [Skills: Abläufe, die bleiben](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/skills.html) |
+| Aus diesem Buch | Die n8n-Instanz ist erreichbar, und Beispiel 1 „Kontaktanfragen sortieren“ ist gebaut. Den Workflow importieren wir im nächsten Kapitel als Datei. | [Beispiel 1](../beispiele/kontaktanfragen.qmd) |
+
+## Selbsttest: Drei Fragen an den Agenten
+
+Der Selbsttest prüft die drei Punkte, auf die die nächsten Kapitel aufbauen: Ordner, Hausordnung und Skills. Er dauert zwei Minuten.
+
+**Voraussetzung:** Die App des Agenten ist installiert, und der Ordner `kundenanfragen` liegt auf dem Rechner.
+
+1. Den Ordner `kundenanfragen` in der App des Agenten öffnen.
+2. Eine neue Sitzung starten.
+3. Diese Fragen senden:
+
+   ```text
+   Nur antworten, nichts ändern. Drei Fragen:
+   1. In welchem Ordner arbeitest du gerade, und welche Dateien und Unterordner liegen darin?
+   2. Welche Regeln gelten in diesem Ordner, und aus welcher Datei kennst du sie?
+   3. In welchem Ordner erwartest du Skills für dieses Projekt, und welche Skills kennst du gerade? Nur auflisten.
+   ```
+
+4. Prüfen: Antwort 1 nennt `kundenanfragen`, `README.md`, `AGENTS.md` und Dateien in `anfragen/`.
+5. Prüfen: Antwort 2 nennt die Regeln aus `AGENTS.md`, darunter „Ergebnisse als neue Datei“. Die Regeln wurden in dieser Sitzung nicht genannt.
+6. Prüfen: Antwort 3 nennt einen Ordner für Skills und den Skill `eingang-einsortieren`.
+
+Ergebnis: Bestehen alle drei Prüfungen, ist die Arbeitsumgebung bereit. Weiter geht es mit [n8n mit dem Agenten](n8n-mit-dem-agenten.qmd).
+
+### Das sollten wir jetzt sehen
+
+```{=html}
+<style>
+.bx{max-width:820px;margin:0 auto;color:#1f2430;font-size:14px;line-height:1.45}
+.bx *{box-sizing:border-box}
+.bx-box{border:1px solid #dcd9d2;border-radius:12px;overflow:hidden;background:#fbfaf7;min-width:0}
+.bx-bar{padding:6px 12px;background:#f4f2ed;border-bottom:1px solid #dcd9d2;font-size:12px;color:#5b6170}
+.bx-bar b{color:#1f2430;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.bx-chat{padding:10px 12px;display:grid;gap:8px}
+.bx-msg{border-radius:10px;padding:8px 11px;max-width:94%}
+.bx-msg ol{margin:2px 0 4px;padding-left:20px}
+.bx-msg li{margin:2px 0}
+.bx-me{justify-self:end;background:color-mix(in oklch,#23417a 14%,transparent)}
+.bx-ag{justify-self:start;background:#f4f2ed;border:1px solid #dcd9d2}
+.bx-who{display:block;font-size:11.5px;color:#5b6170;margin-bottom:2px}
+.bx-ok{color:#23417a;font-weight:700}
+.bx code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+.bx-cap{margin:10px 0 0;font-size:13px;color:#5b6170}
+</style>
+<div class="bx" style="margin:0 0 1rem">
+<div class="bx-box" role="group" aria-label="Beispielantwort des Agenten auf die drei Fragen des Selbsttests"><div class="bx-bar">Chat · neue Sitzung in <b>kundenanfragen</b></div>
+<div class="bx-chat">
+<div class="bx-msg bx-me"><span class="bx-who">Wir</span>Nur antworten, nichts ändern. Drei Fragen: 1. In welchem Ordner arbeitest du gerade … 2. Welche Regeln gelten … 3. In welchem Ordner erwartest du Skills …</div>
+<div class="bx-msg bx-ag"><span class="bx-who">Agent</span><ol>
+<li><span class="bx-ok">Ordner:</span> Ich arbeite in <code>kundenanfragen</code>. Darin liegen <code>README.md</code>, <code>AGENTS.md</code>, <code>UEBERSICHT.md</code> und die Ordner <code>anfragen/</code> (drei Dateien), <code>antworten/</code> und <code>eingang/</code>.</li>
+<li><span class="bx-ok">Regeln:</span> Aus <code>AGENTS.md</code>: auf Deutsch antworten; nur Fakten aus dem Ordner, sonst „Annahme:“; keine Personennamen in neuen Dateien; Ergebnisse als neue Datei; geänderte Dateien nennen; UEBERSICHT.md lesen und ergänzen.</li>
+<li><span class="bx-ok">Skills:</span> Projekt-Skills erwarte ich in <code>.agents/skills/</code>. Bekannt ist <code>eingang-einsortieren</code>.</li>
+</ol></div>
+</div></div>
+<p class="bx-cap">Beispielantwort. Wortlaut, Anzahl der Regeln und der Ordner für Skills unterscheiden sich je Werkzeug und je nachdem, welche Kapitel bearbeitet wurden. Wichtig sind der Ordnername, die Regeln aus der Datei und ein Ort für Skills.</p>
+</div>
+```
+
+### Was gerade passiert ist
+
+Drei Fragen, drei Bausteine. Jede Antwort zeigt, ob ein Kapitel des Buchs „Produktiv mit einem Agenten arbeiten“ angekommen ist.
+
+In der **neuen Sitzung** hat der Agent den Ordner und die Regeln nicht aus dem Chatverlauf, sondern aus den Dateien im Ordner. Genau das brauchen die nächsten Kapitel: Wir geben kurze Aufträge, der Ordner liefert den Rest. Der Zusatz **„Nur antworten“** hält den Agenten davon ab, beim Prüfen etwas anzulegen oder zu ändern. Ob er sich daran hält, zeigt die Antwort. Eine Garantie ist der Zusatz nicht.
+
+::: {.callout-note title="Wenn es anders aussieht"}
+Besteht ein Punkt nicht, hilft das passende Kapitel im Buch [Produktiv mit einem Agenten arbeiten](https://kirenz.github.io/agent-arbeitsumgebung/) weiter. Danach den Selbsttest wiederholen.
+
+- Noch keine App oder kein Ordner im Agenten geöffnet: [Chat oder Agent?](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/chat-oder-agent.html)
+- Antwort 1 nennt `kundenanfragen` nicht oder findet keine Anfragen: [Der Projektordner: Arbeitsplatz mit Ablage](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/projektordner.html)
+- Antwort 2 nennt keine Regeln oder fragt nach einer anderen Datei: [AGENTS.md: die Hausordnung](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html). Dort steht auch, wie wir von der Datei des Werkzeugs auf `AGENTS.md` verweisen.
+- Antwort 3 nennt keinen Ort für Skills oder keinen Skill: [Skills: Abläufe, die bleiben](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/skills.html)
+- Der Agent legt beim Antworten eine Datei an: ablehnen und die drei Fragen in einer neuen Sitzung erneut senden.
+:::
