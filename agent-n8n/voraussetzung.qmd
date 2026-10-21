@@ -92,7 +92,7 @@ Ergebnis: Bestehen alle drei Prüfungen, ist die Arbeitsumgebung bereit. Weiter 
 </style>
 <div class="cv">
 <div class="cv-win" role="group" aria-label="Beispielantwort des Agenten auf die drei Fragen des Selbsttests">
-<div class="cv-top">Ordner: <b>kundenanfragen</b><span>Chat</span></div>
+
 <div class="cv-chat">
 <div class="cv-msg cv-me"><span class="cv-who">Wir</span>Nur antworten, nichts ändern. Drei Fragen: 1. In welchem Ordner arbeitest du gerade … 2. Welche Regeln gelten … 3. In welchem Ordner erwartest du Skills …</div>
 <div class="cv-msg cv-ag"><span class="cv-who">Agent</span><ol><li><b>Ordner:</b> Ich arbeite in <code>kundenanfragen</code>. Darin liegen <code>README.md</code>, <code>AGENTS.md</code>, <code>UEBERSICHT.md</code> und die Ordner <code>anfragen/</code> (drei Dateien), <code>antworten/</code> und <code>eingang/</code>.</li><li><b>Regeln:</b> Aus <code>AGENTS.md</code>: auf Deutsch antworten; nur Fakten aus dem Ordner, sonst „Annahme:“; keine Personennamen in neuen Dateien; Ergebnisse als neue Datei; geänderte Dateien nennen; UEBERSICHT.md lesen und ergänzen.</li><li><b>Skills:</b> Projekt-Skills erwarte ich in <code>.agents/skills/</code>. Bekannt ist <code>eingang-einsortieren</code>.</li></ol></div>

@@ -293,7 +293,7 @@ Danach weiter mit Schritt 4.
 </style>
 <div class="cv">
 <div class="cv-win" role="group" aria-label="Chat: Erklärung des Workflows in drei Sätzen und die Stelle in der Datei, aus der der Agent die Entscheidung liest">
-<div class="cv-top">Ordner: <b>kundenanfragen</b><span>Chat</span></div>
+
 <div class="cv-chat">
 <div class="cv-msg cv-me"><span class="cv-who">Wir</span>Erkläre den Workflow in n8n/beispiel-1-kontaktanfragen.json in drei Sätzen: Auslöser, Entscheidung, Ergebnis. Ändere danach nichts.</div>
 <div class="cv-tool">liest n8n/beispiel-1-kontaktanfragen.json</div>
@@ -408,7 +408,7 @@ Aus dem Quiz in Beispiel 1 bekannt: Auch Datenschutzanfragen sollen hohe Priorit
 </style>
 <div class="cv">
 <div class="cv-win" role="group" aria-label="Chat: Rückfrage vor dem Anlegen der Kopie, die zwei geänderten Stellen und die Liste der zwei Dateien">
-<div class="cv-top">Ordner: <b>kundenanfragen</b><span>Chat</span></div>
+
 <div class="cv-chat">
 <div class="cv-msg cv-me"><span class="cv-who">Wir</span>Erstelle eine Kopie als n8n/beispiel-1-datenschutz.json. Änderung: Der If-Knoten „Beschwerde?“ prüft zusätzlich, ob Anliegen gleich „Datenschutz“ ist, beide Bedingungen mit OR. Das Formular bekommt die Option „Datenschutz“. Sonst nichts ändern. Nenne mir die beiden Stellen, die du geändert hast.</div>
 <div class="cv-tool">liest n8n/beispiel-1-kontaktanfragen.json</div>
