@@ -394,12 +394,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.</p>
 <section id="schritt-1-workflow-datei-ablegen-und-erklären-lassen" class="level2" data-number="20.1">
 <h2 data-number="20.1" class="anchored" data-anchor-id="schritt-1-workflow-datei-ablegen-und-erklären-lassen"><span class="header-section-number">20.1</span> Schritt 1: Workflow-Datei ablegen und erklären lassen</h2>
-<p><strong>Voraussetzung:</strong> Der Ordner <code>kundenanfragen</code> mit dem Stand nach dem Kapitel <a href="../agent-n8n/voraussetzung.html">Voraussetzung: Ihre Arbeitsumgebung</a> ist in der App des Agenten gewählt.</p>
+<p><strong>Voraussetzung:</strong> Der eigene Projektordner (Beispielfall: <code>kundenanfragen</code>) ist in der App des Agenten gewählt, mit dem Stand nach dem Kapitel <a href="../agent-n8n/voraussetzung.html">Voraussetzung: Ihre Arbeitsumgebung</a>.</p>
 <ol type="1">
 <li><p>Diesen Auftrag senden:</p>
 <pre class="text"><code>Lege in diesem Ordner den Ordner n8n an. Frage, bevor du ihn anlegst.</code></pre></li>
 <li><p>Die Datei <a href="../workflows/beispiele/beispiel-1-kontaktanfragen.json">beispiel-1-kontaktanfragen.json</a> herunterladen (im Browser: rechte Maustaste, „Link speichern unter“).</p></li>
-<li><p>Die Datei im Finder oder Explorer im Ordner <code>kundenanfragen/n8n/</code> speichern.</p></li>
+<li><p>Die Datei im Finder oder Explorer im Ordner <code>n8n/</code> des Projektordners speichern (Beispielfall: <code>kundenanfragen/n8n/</code>).</p></li>
 <li><p>Diese Frage senden:</p>
 <pre class="text"><code>Liste die Dateien im Ordner n8n auf.</code></pre></li>
 <li><p>Prüfen: Die Liste nennt <code>beispiel-1-kontaktanfragen.json</code>.</p></li>
@@ -726,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <ul>
 <li>Der Agent kürzt die Datei oder ändert Zeilen beim Anlegen (Alternative oben): ablehnen und die Datei herunterladen.</li>
-<li>Die heruntergeladene Datei heißt <code>beispiel-1-kontaktanfragen.json.txt</code> oder liegt noch im Download-Ordner: im Finder oder Explorer nach <code>kundenanfragen/n8n/</code> verschieben und die Endung <code>.txt</code> entfernen.</li>
+<li>Die heruntergeladene Datei heißt <code>beispiel-1-kontaktanfragen.json.txt</code> oder liegt noch im Download-Ordner: im Finder oder Explorer in den Ordner <code>n8n/</code> des Projektordners verschieben und die Endung <code>.txt</code> entfernen.</li>
 <li>Die Erklärung nennt andere Namen als „Beschwerde?“ oder „Priorität hoch“: „Nenne die Knotennamen genau so, wie sie in der Datei stehen.“</li>
 <li>Der Agent schlägt von sich aus eine Änderung vor: ablehnen. Der Auftrag lautet „Ändere danach nichts“.</li>
 </ul>
@@ -737,7 +737,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="schritt-2-eine-geänderte-kopie-anlegen-lassen" class="level2" data-number="20.2">
 <h2 data-number="20.2" class="anchored" data-anchor-id="schritt-2-eine-geänderte-kopie-anlegen-lassen"><span class="header-section-number">20.2</span> Schritt 2: Eine geänderte Kopie anlegen lassen</h2>
 <p>Aus dem Quiz in Beispiel 1 bekannt: Auch Datenschutzanfragen sollen hohe Priorität bekommen.</p>
-<p><strong>Voraussetzung:</strong> <code>n8n/beispiel-1-kontaktanfragen.json</code> aus Schritt 1 liegt im Ordner <code>kundenanfragen</code>.</p>
+<p><strong>Voraussetzung:</strong> <code>n8n/beispiel-1-kontaktanfragen.json</code> aus Schritt 1 liegt im Projektordner.</p>
 <ol type="1">
 <li><p>Diesen Auftrag senden:</p>
 <pre class="text"><code>Erstelle eine Kopie als n8n/beispiel-1-datenschutz.json. Änderung: Der If-Knoten „Beschwerde?“ prüft zusätzlich, ob Anliegen gleich „Datenschutz“ ist, beide Bedingungen mit OR. Das Formular bekommt die Option „Datenschutz“. Sonst nichts ändern. Nenne mir die beiden Stellen, die du geändert hast.</code></pre></li>
@@ -818,7 +818,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Mit and müssten beide Vergleiche zugleich zutreffen, und keine Anfrage erreicht true. Mit or genügt einer.</figcaption>
 </figure>
 </div>
-<p>Der Agent ändert eine <strong>Kopie mit neuem Namen</strong>, das Original bleibt, wie es ist (Regel 4 der AGENTS.md aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html">AGENTS.md: die Hausordnung</a>). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die beiden Stellen im Überblick:</p>
+<p>Der Agent ändert eine <strong>Kopie mit neuem Namen</strong>, das Original bleibt, wie es ist (Grundregel 4 der AGENTS.md aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html">AGENTS.md: die Hausordnung</a>). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die beiden Stellen im Überblick:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -867,10 +867,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="schritt-3-in-n8n-importieren-und-zweimal-testen" class="level2" data-number="20.3">
 <h2 data-number="20.3" class="anchored" data-anchor-id="schritt-3-in-n8n-importieren-und-zweimal-testen"><span class="header-section-number">20.3</span> Schritt 3: In n8n importieren und zweimal testen</h2>
-<p><strong>Voraussetzung:</strong> Die Anmeldung in der eigenen n8n-Instanz ist erfolgt. <code>n8n/beispiel-1-datenschutz.json</code> aus Schritt 2 liegt im Ordner <code>kundenanfragen</code>.</p>
+<p><strong>Voraussetzung:</strong> Die Anmeldung in der eigenen n8n-Instanz ist erfolgt. <code>n8n/beispiel-1-datenschutz.json</code> aus Schritt 2 liegt im Projektordner.</p>
 <ol type="1">
 <li>In n8n einen neuen Workflow öffnen.</li>
-<li>Im Drei-Punkte-Menü oben rechts <strong>Import from File</strong> wählen und dann die Datei <code>kundenanfragen/n8n/beispiel-1-datenschutz.json</code>.</li>
+<li>Im Drei-Punkte-Menü oben rechts <strong>Import from File</strong> wählen und dann die Datei <code>n8n/beispiel-1-datenschutz.json</code> im Projektordner (Beispielfall: <code>kundenanfragen/n8n/beispiel-1-datenschutz.json</code>).</li>
 <li>Prüfen: Der Canvas zeigt vier Knoten: Kontaktformular, Beschwerde?, Priorität hoch, Priorität normal.</li>
 <li>Unten auf <strong>Execute workflow</strong> klicken. n8n öffnet das Formular in einem neuen Tab.</li>
 <li>Das Formular ausfüllen: Testwerte für Name und E-Mail, Anliegen <strong>Datenschutz</strong>. Absenden.</li>
