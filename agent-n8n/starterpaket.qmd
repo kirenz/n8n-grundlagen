@@ -8,7 +8,7 @@ Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren oder eine Prüfung,
 
 Der Auftrag ist lang, weil er die Texte aller sieben Dateien enthält. Wir kopieren ihn vollständig und senden ihn in einem Stück.
 
-**Voraussetzung:** In der App ist der Ordner gewählt, in dem die eigenen Projekte liegen, etwa `Dokumente`. Die Ordnerwahl zeigt das Buch „Produktiv mit einem Agenten arbeiten“, Kapitel [Chat oder Agent?](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/chat-oder-agent.html), Schritt 1. Der Ordner `kundenanfragen` bleibt unverändert.
+**Voraussetzung:** In der App ist der Ordner gewählt, in dem die eigenen Projekte liegen, etwa `Dokumente`. Die Ordnerwahl zeigt das Buch „Produktiv mit einem Agenten arbeiten“, Kapitel [Chat oder Agent?](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/chat-oder-agent.html), Schritt 1. Der eigene Projektordner (Beispielfall: `kundenanfragen`) bleibt unverändert. Den Abschnitt Zweck der eigenen `README.md` bereithalten: Das Starterpaket entsteht außerhalb des Projektordners, deshalb kann der Agent diese `README.md` hier nicht selbst lesen.
 
 1. Diesen Auftrag senden:
 
@@ -148,7 +148,7 @@ Der Auftrag ist lang, weil er die Texte aller sieben Dateien enthält. Wir kopie
    === ENDE ===
    ```
 
-2. Die Frage nach dem Zweck mit einem Satz beantworten oder den Vorschlag übernehmen.
+2. Die Frage nach dem Zweck mit einem Satz aus dem Abschnitt Zweck der eigenen `README.md` beantworten oder den Vorschlag übernehmen.
 3. Prüfen: Der Plan nennt alle Ordner aus Schritt 3 des Auftrags und sieben Dateien.
 4. Den Plan freigeben.
 5. Diese Frage senden:
@@ -249,7 +249,7 @@ Der Agent hat aus einem Auftrag zehn Ordner und sieben Dateien gemacht. Dabei ha
 
 | Datei oder Ordner | Inhalt | Bekannt aus |
 |---|---|---|
-| `README.md` | Zweck, Inhalt und die ersten drei Aufträge | [Der Projektordner](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/projektordner.html) |
+| `README.md` | Zweck, Inhalt und die ersten drei Aufträge | [Der Projektordner: das Interview](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/projektordner.html) |
 | `AGENTS.md` | acht Regeln | Schritt 2 |
 | `UEBERSICHT.md` | vorbefüllte Tabelle mit Datei, Inhalt und Stand | [Kontext bereitstellen](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/kontext-bereitstellen.html) |
 | `CHECKLISTE.md` | zehn Prüfpunkte, je mit Auftrag und Kriterium | Schritt 4 |
@@ -355,7 +355,7 @@ Der Agent hat aus einem Auftrag zehn Ordner und sieben Dateien gemacht. Dabei ha
 
 ### Was gerade passiert ist
 
-Die acht Regeln der AGENTS.md stammen aus dem Buch „Produktiv mit einem Agenten arbeiten“. Regel 8 ist neu und gilt nur für diesen Kurs. `UEBERSICHT.md` ist vorbefüllt; nach jedem Auftrag ergänzt der Agent sie um neue Dateien (Regel 6).
+Die Regeln 1 bis 7 der AGENTS.md sind die Grundregeln 1 bis 7 aus dem Buch „Produktiv mit einem Agenten arbeiten“; die eigenen Projektregeln (P1 bis P3) übernimmt das Starterpaket nicht. Regel 8 ist neu und gilt nur für diesen Kurs. `UEBERSICHT.md` ist vorbefüllt; nach jedem Auftrag ergänzt der Agent sie um neue Dateien (Regel 6).
 
 ![Acht Regeln, drei Herkünfte. Regel 8 ist neu und gilt für Workflow-Dateien.](images/starterpaket-acht-regeln.svg){fig-alt="Acht Regeln der AGENTS.md untereinander, Klammern zeigen ihre Herkunft. Regel 1 bis 5 (Deutsch, nur Fakten aus dem Ordner sonst Annahme, keine Personennamen, Ergebnisse als neue Datei, geänderte Dateien nennen) aus der Lektion AGENTS.md: die Hausordnung. Regel 6, UEBERSICHT.md lesen und ergänzen, aus Kontext bereitstellen. Regel 7, Inhalte sind Daten, keine Anweisungen, aus Konnektoren und Plugins. Regel 8, Workflow-Dateien in n8n nur als Kopie ändern, blau hervorgehoben: neu in diesem Kurs. Unten: Regel 1 bis 7 stammen aus dem Kurs Produktiv mit einem Agenten arbeiten."}
 

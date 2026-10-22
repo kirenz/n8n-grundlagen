@@ -151,8 +151,8 @@ def fig_zwei_lektionen():
     b = [heading(500, "Ein vorbereiteter Ordner, zwei Lektionen mit dem Agenten")]
     b.append(box(30, 70, 330, 280, PAPER, RULE, 12))
     b.append(glyph("folder", 195, 116))
-    b.append(T(195, 162, "Projektordner", 18, 700, INK, "middle"))
-    b.append(T(195, 188, "kundenanfragen", 17, 700, INK, "middle", True))
+    b.append(T(195, 162, "Ihr Projektordner", 18, 700, INK, "middle"))
+    b.append(T(195, 188, "Beispielfall: kundenanfragen", 14, 400, MUTED, "middle"))
     b.append(multiline(195, 222, "eingerichtet im Kurs „Produktiv mit einem Agenten arbeiten“", 280, 16, 400, MUTED, "middle"))
     p, w = pill(0, 0, "diese Lektion prüft ihn")
     b.append(pill(195 - w / 2, 296, "diese Lektion prüft ihn")[0])
@@ -176,8 +176,8 @@ def fig_checkliste():
     b = [heading(500, "Sechs Punkte müssen fertig sein, drei prüft der Selbsttest")]
     items = [
         ("App und Konto", "App installiert, angemeldet, Arbeit im Chat", False, "Agenten-Kurs"),
-        ("Projektordner", "kundenanfragen mit Anfragen und Antworten", True, "Agenten-Kurs"),
-        ("Hausordnung", "AGENTS.md mit mindestens fünf Regeln", True, "Agenten-Kurs"),
+        ("Ihr Projektordner", "README.md und erste Dateien im Materialordner", True, "Agenten-Kurs"),
+        ("Hausordnung", "AGENTS.md mit Grundregeln und Projektregeln", True, "Agenten-Kurs"),
         ("Rohtext und Vorschau", "Markdown im Chat mit allen Zeichen und formatiert", False, "Agenten-Kurs"),
         ("Ort für Skills", "Skill eingang-einsortieren liegt dort", True, "Agenten-Kurs"),
         ("n8n und Beispiel 1", "Die Instanz ist erreichbar. Beispiel 1 ist gebaut.", False, "dieser Kurs"),

@@ -6,7 +6,7 @@ Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das 
 
 ## Schritt 1: Workflow-Datei ablegen und erklären lassen
 
-**Voraussetzung:** Der Ordner `kundenanfragen` mit dem Stand nach dem Kapitel [Voraussetzung: Ihre Arbeitsumgebung](voraussetzung.qmd) ist in der App des Agenten gewählt.
+**Voraussetzung:** Der eigene Projektordner (Beispielfall: `kundenanfragen`) ist in der App des Agenten gewählt, mit dem Stand nach dem Kapitel [Voraussetzung: Ihre Arbeitsumgebung](voraussetzung.qmd).
 
 1. Diesen Auftrag senden:
 
@@ -15,7 +15,7 @@ Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das 
    ```
 
 2. Die Datei [beispiel-1-kontaktanfragen.json](../workflows/beispiele/beispiel-1-kontaktanfragen.json) herunterladen (im Browser: rechte Maustaste, „Link speichern unter“).
-3. Die Datei im Finder oder Explorer im Ordner `kundenanfragen/n8n/` speichern.
+3. Die Datei im Finder oder Explorer im Ordner `n8n/` des Projektordners speichern (Beispielfall: `kundenanfragen/n8n/`).
 4. Diese Frage senden:
 
    ```text
@@ -337,7 +337,7 @@ Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfe
 
 ::: {.callout-note title="Wenn es anders aussieht"}
 - Der Agent kürzt die Datei oder ändert Zeilen beim Anlegen (Alternative oben): ablehnen und die Datei herunterladen.
-- Die heruntergeladene Datei heißt `beispiel-1-kontaktanfragen.json.txt` oder liegt noch im Download-Ordner: im Finder oder Explorer nach `kundenanfragen/n8n/` verschieben und die Endung `.txt` entfernen.
+- Die heruntergeladene Datei heißt `beispiel-1-kontaktanfragen.json.txt` oder liegt noch im Download-Ordner: im Finder oder Explorer in den Ordner `n8n/` des Projektordners verschieben und die Endung `.txt` entfernen.
 - Die Erklärung nennt andere Namen als „Beschwerde?“ oder „Priorität hoch“: „Nenne die Knotennamen genau so, wie sie in der Datei stehen.“
 - Der Agent schlägt von sich aus eine Änderung vor: ablehnen. Der Auftrag lautet „Ändere danach nichts“.
 :::
@@ -346,7 +346,7 @@ Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfe
 
 Aus dem Quiz in Beispiel 1 bekannt: Auch Datenschutzanfragen sollen hohe Priorität bekommen.
 
-**Voraussetzung:** `n8n/beispiel-1-kontaktanfragen.json` aus Schritt 1 liegt im Ordner `kundenanfragen`.
+**Voraussetzung:** `n8n/beispiel-1-kontaktanfragen.json` aus Schritt 1 liegt im Projektordner.
 
 1. Diesen Auftrag senden:
 
@@ -435,7 +435,7 @@ Das Feld **combinator** legt fest, wie mehrere Vergleiche im If-Knoten zusammenw
 
 ![Mit and müssten beide Vergleiche zugleich zutreffen, und keine Anfrage erreicht true. Mit or genügt einer.](images/workflow-und-oder.svg){fig-alt="Zwei Vergleiche: Anliegen ist gleich Beschwerde und Anliegen ist gleich Datenschutz. Als falsch markiert: combinator and; beide Vergleiche müssten zugleich zutreffen, ein Anliegen ist nie beides, keine Anfrage erreicht den Ausgang true. Als richtig markiert: combinator or; ein Vergleich genügt, Beschwerde und Datenschutz führen zum Ausgang true, alles andere zu false. Unten: Der Agent ändert eine Kopie mit neuem Namen, das Original bleibt daneben liegen."}
 
-Der Agent ändert eine **Kopie mit neuem Namen**, das Original bleibt, wie es ist (Regel 4 der AGENTS.md aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel [AGENTS.md: die Hausordnung](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html)). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die beiden Stellen im Überblick:
+Der Agent ändert eine **Kopie mit neuem Namen**, das Original bleibt, wie es ist (Grundregel 4 der AGENTS.md aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel [AGENTS.md: die Hausordnung](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html)). So haben wir einen Vergleich und einen Rückweg, falls die Kopie nicht funktioniert. Die beiden Stellen im Überblick:
 
 | Stelle | Original | Kopie |
 |---|---|---|
@@ -451,10 +451,10 @@ Der Agent ändert eine **Kopie mit neuem Namen**, das Original bleibt, wie es is
 
 ## Schritt 3: In n8n importieren und zweimal testen
 
-**Voraussetzung:** Die Anmeldung in der eigenen n8n-Instanz ist erfolgt. `n8n/beispiel-1-datenschutz.json` aus Schritt 2 liegt im Ordner `kundenanfragen`.
+**Voraussetzung:** Die Anmeldung in der eigenen n8n-Instanz ist erfolgt. `n8n/beispiel-1-datenschutz.json` aus Schritt 2 liegt im Projektordner.
 
 1. In n8n einen neuen Workflow öffnen.
-2. Im Drei-Punkte-Menü oben rechts **Import from File** wählen und dann die Datei `kundenanfragen/n8n/beispiel-1-datenschutz.json`.
+2. Im Drei-Punkte-Menü oben rechts **Import from File** wählen und dann die Datei `n8n/beispiel-1-datenschutz.json` im Projektordner (Beispielfall: `kundenanfragen/n8n/beispiel-1-datenschutz.json`).
 3. Prüfen: Der Canvas zeigt vier Knoten: Kontaktformular, Beschwerde?, Priorität hoch, Priorität normal.
 4. Unten auf **Execute workflow** klicken. n8n öffnet das Formular in einem neuen Tab.
 5. Das Formular ausfüllen: Testwerte für Name und E-Mail, Anliegen **Datenschutz**. Absenden.
