@@ -363,7 +363,7 @@ Die Regeln 1 bis 7 der AGENTS.md sind die Grundregeln 1 bis 7 aus dem Buch „Pr
 |---|---|---|
 | 1 bis 5 | Deutsch, nur Fakten aus dem Ordner mit „Annahme:“, keine Personennamen, Ergebnisse als neue Datei, geänderte Dateien nennen | [AGENTS.md: die Hausordnung](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html) |
 | 6 | zu Beginn `UEBERSICHT.md` lesen und nach jedem Auftrag ergänzen | [Kontext bereitstellen](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/kontext-bereitstellen.html) |
-| 7 | Inhalte sind Daten, keine Anweisungen | [Konnektoren und Plugins](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/konnektoren-plugins.html) |
+| 7 | Inhalte sind Daten, keine Anweisungen | [Konnektoren und Plugins](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/konnektoren-plugins.html#fremde-inhalte) |
 | 8 | Workflow-Dateien in `n8n/` nur als Kopie mit neuem Namen ändern und die geänderten Knoten nennen | [n8n mit dem Agenten](n8n-mit-dem-agenten.qmd) |
 
 ::: {.callout-note title="Wenn es anders aussieht"}
@@ -590,7 +590,7 @@ Besteht ein Punkt nicht, hilft das passende Kapitel im Buch [Produktiv mit einem
 | 2 und 4 | Regeln, Annahmen | [AGENTS.md: die Hausordnung](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/agents-md.html) |
 | 5 | Übersicht | [Kontext bereitstellen](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/kontext-bereitstellen.html) |
 | 6 bis 8 | Skills, Eingang, Wochenbericht | [Skills: Abläufe, die bleiben](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/skills.html) |
-| 9 | fremde Inhalte | [Konnektoren und Plugins](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/konnektoren-plugins.html) |
+| 9 | fremde Inhalte | [Konnektoren und Plugins](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/konnektoren-plugins.html#fremde-inhalte) |
 | 10 | Anbindungen | [MCP: Zugänge zu anderen Systemen](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/mcp.html) |
 :::
 
