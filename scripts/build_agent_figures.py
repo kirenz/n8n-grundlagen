@@ -152,13 +152,13 @@ def fig_zwei_lektionen():
     b.append(box(30, 70, 330, 280, PAPER, RULE, 12))
     b.append(glyph("folder", 195, 116))
     b.append(T(195, 162, "Ihr Projektordner", 18, 700, INK, "middle"))
-    b.append(T(195, 188, "Beispielfall: kundenanfragen", 14, 400, MUTED, "middle"))
+    b.append(T(195, 188, "im Kurs: mein-projekt", 14, 400, MUTED, "middle"))
     b.append(multiline(195, 222, "eingerichtet im Kurs „Produktiv mit einem Agenten arbeiten“", 280, 16, 400, MUTED, "middle"))
     p, w = pill(0, 0, "diese Lektion prüft ihn")
     b.append(pill(195 - w / 2, 296, "diese Lektion prüft ihn")[0])
     rows = [
         ("flow", "n8n mit dem Agenten", "Workflow-Datei lesen und als Kopie ändern, die Kopie in n8n importieren"),
-        ("folder", "Starterpaket", "Der Agent legt den neuen Ordner mein-projekt an: Regeln, Ablage, zwei Skills, Checkliste."),
+        ("folder", "Starterpaket", "Der Agent legt den neuen Ordner neues-projekt an: Regeln, Ablage, zwei Skills, Checkliste."),
     ]
     for i, (g, hd, sb) in enumerate(rows):
         y = 70 + i * 150
@@ -211,8 +211,8 @@ def fig_neue_sitzung():
     # Ordner
     b.append(box(350, 66, 300, 280, "#ffffff", RULE, 12))
     b.append(glyph("folder", 500, 104))
-    b.append(T(500, 146, "kundenanfragen", 17, 700, INK, "middle", True))
-    for i, f in enumerate(("README.md", "AGENTS.md", "UEBERSICHT.md", "Skill eingang-einsortieren")):
+    b.append(T(500, 146, "mein-projekt", 17, 700, INK, "middle", True))
+    for i, f in enumerate(("README.md", "AGENTS.md", "Skill eingang-einsortieren")):
         b.append(T(380, 186 + i * 34, f, 16, 500, INK, mono=(i < 3)))
     # neue Sitzung
     b.append(box(700, 66, 270, 280, LIGHT, BLUE, 12))
@@ -443,7 +443,7 @@ def fig_neues_vorhaben():
     b = [heading(500, "Neues Vorhaben: kopieren und drei Stellen anpassen")]
     b.append(box(30, 66, 226, 260, PAPER, RULE, 12))
     b.append(glyph("folder", 143, 120))
-    b.append(T(143, 166, "mein-projekt", 17, 700, INK, "middle", True))
+    b.append(T(143, 166, "neues-projekt", 17, 700, INK, "middle", True))
     b.append(T(143, 196, "geprüfte Vorlage", 16, 400, MUTED, "middle"))
     b.append(arrow(262, 196, 346, 196))
     b.append(T(304, 226, "kopieren", 16, 600, MUTED, "middle"))
