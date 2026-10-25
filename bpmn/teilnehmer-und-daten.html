@@ -345,7 +345,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ein Kulanzantrag geht durch mehrere Hände: Der Kunde reicht ihn ein, der Kundenservice erfasst ihn, die Fachabteilung entscheidet. Bisher konnten unsere Modelle nicht zeigen, wer einen Schritt ausführt und welche Informationen dabei fließen. In diesem Kapitel kommen die beiden letzten Elementgruppen dazu: Teilnehmer (Pools und Lanes) sowie Daten und Artefakte. Außerdem lernen wir die Aufgabentypen und Marker kennen, die für den späteren n8n-Workflow entscheidend sind, weil sie zeigen, ob ein Mensch oder ein System einen Schritt erledigt.</p>
+<p>Dieses Kapitel ergänzt die beiden letzten Elementgruppen: Teilnehmer (Pools und Lanes) sowie Daten und Artefakte. Damit zeigt ein Modell, wer einen Schritt ausführt und welche Informationen dabei fließen.</p>
+<p>Als Beispiel dient ein Kulanzantrag. Der Kunde reicht ihn ein, der Kundenservice erfasst ihn, und die Fachabteilung entscheidet.</p>
+<p>Außerdem lernen wir die Aufgabentypen und Marker kennen. Sie zeigen, ob ein Mensch oder ein System einen Schritt erledigt, und sind deshalb für den späteren n8n-Workflow wichtig.</p>
 <section id="pools-lanes-und-nachrichtenflüsse" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="pools-lanes-und-nachrichtenflüsse"><span class="header-section-number">7.1</span> Pools, Lanes und Nachrichtenflüsse</h2>
 <p>Ein <strong>Pool</strong> ist ein eigenständiger Teilnehmer mit eigenem Prozess, etwa unser Online-Shop oder der Kunde. Eine <strong>Lane</strong> ist eine Rolle oder Stelle innerhalb eines Pools und zeigt, wer eine Aufgabe ausführt. Zwischen Pools gibt es keinen Sequenzfluss, sondern nur <strong>Nachrichtenflüsse</strong>, gestrichelte Linien mit einem kleinen Kreis am Anfang und einer hellen Pfeilspitze am Ende.</p>
@@ -396,7 +398,12 @@ Abbildung&nbsp;7.1: Kulanzantrag bearbeiten: Der Kunde ist ein zugeklappter Pool
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Die Frage lautet: Arbeitet der Beteiligte im selben Prozess mit, oder führt er einen eigenen Prozess und kommuniziert nur über Nachrichten? Kundenservice und Fachabteilung arbeiten am selben Antrag, folgen derselben Reihenfolge und sehen dieselben Daten: Lanes. Der Kunde entscheidet selbst, wann er Belege schickt, und wir sehen seine Schritte nicht: eigener Pool. Dieselbe Regel gilt für externe Dienstleister, Behörden oder Lieferanten.</p>
+<p>Für die Wahl zählt, ob ein Beteiligter im selben Prozess mitarbeitet oder einen eigenen Prozess führt und nur über Nachrichten kommuniziert.</p>
+<ul>
+<li>Kundenservice und Fachabteilung arbeiten am selben Antrag, folgen derselben Reihenfolge und sehen dieselben Daten. Sie sind Lanes.</li>
+<li>Der Kunde entscheidet selbst, wann er Belege schickt, und wir sehen seine Schritte nicht. Er ist ein eigener Pool.</li>
+</ul>
+<p>Dieselbe Regel gilt für externe Dienstleister, Behörden oder Lieferanten.</p>
 </div>
 </div>
 </section>
@@ -547,7 +554,7 @@ Abbildung&nbsp;7.3: Aufgabentypen und Marker: Der Typ steht oben links (Benutzer
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Für die Übertragung nach n8n ist der Aufgabentyp entscheidender als jedes andere Detail. Serviceaufgaben werden zu Knoten, die von allein laufen. Benutzeraufgaben sind die Stellen, an denen der Workflow anhält und einen Menschen fragt. Wer im Modell jede Aufgabe typisiert, hat die Frage „Was automatisieren wir, und was bleibt beim Menschen?“ bereits beantwortet. Im Demo-Szenario des Kurses sind Bestätigen und Eintragen Serviceaufgaben, die Kulanzfreigabe ist eine Benutzeraufgabe.</p>
+<p>Für die Übertragung nach n8n ist der Aufgabentyp die wichtigste Angabe. Serviceaufgaben werden zu Knoten, die von allein laufen. Benutzeraufgaben sind die Stellen, an denen der Workflow anhält und einen Menschen fragt. Ein Modell mit typisierten Aufgaben zeigt also bereits, was automatisiert wird und was beim Menschen bleibt. Im Demo-Szenario des Kurses sind Bestätigen und Eintragen Serviceaufgaben, die Kulanzfreigabe ist eine Benutzeraufgabe.</p>
 </div>
 </div>
 </section>
@@ -574,7 +581,13 @@ Abbildung&nbsp;7.5: Aufgeklappt: Derselbe Teilprozess mit eigenem Start, zwei pa
 </figcaption>
 </figure>
 </div>
-<p>Teilprozesse halten das Hauptmodell lesbar. Eine Faustregel aus der Praxis: Höchstens etwa zehn Aufgaben pro Ebene. Wer mehr braucht, fasst zusammen und zeichnet die Details in einem eigenen Diagramm. Ein Teilprozess kann zusätzlich einen Mehrfach-Marker tragen: „Reklamierte Position prüfen“ mit drei senkrechten Strichen bedeutet, dass die Prüfung für jede reklamierte Position einmal läuft, parallel. Im n8n-Workflow entspricht ein Teilprozess einem Sub-Workflow (einem eigenen Workflow, den ein anderer aufruft), der über einen Execute-Sub-workflow-Knoten aufgerufen wird; der Mehrfach-Marker entspricht dem Verhalten von n8n, einen Knoten je Item (je Datensatz) auszuführen.</p>
+<p>Teilprozesse halten das Hauptmodell lesbar. Als Faustregel aus der Praxis gelten höchstens etwa zehn Aufgaben pro Ebene. Bei mehr Aufgaben fassen wir Schritte zusammen und zeichnen die Details in einem eigenen Diagramm.</p>
+<p>Ein Teilprozess kann zusätzlich einen Mehrfach-Marker tragen. „Reklamierte Position prüfen“ mit drei senkrechten Strichen bedeutet, dass die Prüfung für jede reklamierte Position einmal läuft, und zwar parallel.</p>
+<p>Entsprechungen in n8n:</p>
+<ul>
+<li>Ein Teilprozess entspricht einem Sub-Workflow (einem eigenen Workflow, den ein anderer aufruft). Aufgerufen wird er über einen Execute-Sub-workflow-Knoten.</li>
+<li>Der Mehrfach-Marker entspricht dem Verhalten von n8n, einen Knoten je Item (je Datensatz) auszuführen.</li>
+</ul>
 </section>
 <section id="sechs-typische-fehler" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="sechs-typische-fehler"><span class="header-section-number">7.5</span> Sechs typische Fehler</h2>
@@ -626,7 +639,7 @@ Abbildung&nbsp;7.5: Aufgeklappt: Derselbe Teilprozess mit eigenem Start, zwei pa
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Diese sechs Fehler sind die häufigsten in Modellen von Einsteigerinnen und Einsteigern, und sie sind alle mechanisch prüfbar. Bevor wir ein Modell weitergeben oder in n8n übertragen, gehen wir die Liste einmal durch. Im Kapitel „Vom Modell zum Workflow“ wird daraus eine vollständige Prüfliste, die auch für KI-Entwürfe gilt.</p>
+<p>Diese sechs Fehler kommen in Modellen von Einsteigerinnen und Einsteigern am häufigsten vor. Alle lassen sich anhand der Liste mechanisch prüfen. Bevor wir ein Modell weitergeben oder in n8n übertragen, gehen wir die Liste einmal durch. Im Kapitel „Vom Modell zum Workflow“ wird daraus eine vollständige Prüfliste, die auch für KI-Entwürfe gilt.</p>
 </div>
 </div>
 </section>

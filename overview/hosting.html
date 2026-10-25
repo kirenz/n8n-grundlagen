@@ -338,9 +338,9 @@ div.csl-indent {
   <li><a href="#managed-hosting" id="toc-managed-hosting" class="nav-link" data-scroll-target="#managed-hosting"><span class="header-section-number">3.4</span> Managed Hosting</a></li>
   <li><a href="#drei-fragen-die-die-entscheidung-leiten" id="toc-drei-fragen-die-die-entscheidung-leiten" class="nav-link" data-scroll-target="#drei-fragen-die-die-entscheidung-leiten"><span class="header-section-number">3.5</span> Drei Fragen, die die Entscheidung leiten</a>
   <ul class="collapse">
-  <li><a href="#volumen-wie-viele-ausführungen-pro-monat" id="toc-volumen-wie-viele-ausführungen-pro-monat" class="nav-link" data-scroll-target="#volumen-wie-viele-ausführungen-pro-monat"><span class="header-section-number">3.5.1</span> Volumen: wie viele Ausführungen pro Monat?</a></li>
-  <li><a href="#souveränität-welche-daten-verlassen-die-eigene-infrastruktur" id="toc-souveränität-welche-daten-verlassen-die-eigene-infrastruktur" class="nav-link" data-scroll-target="#souveränität-welche-daten-verlassen-die-eigene-infrastruktur"><span class="header-section-number">3.5.2</span> Souveränität: welche Daten verlassen die eigene Infrastruktur?</a></li>
-  <li><a href="#skill-bestand-wer-pflegt-die-instanz" id="toc-skill-bestand-wer-pflegt-die-instanz" class="nav-link" data-scroll-target="#skill-bestand-wer-pflegt-die-instanz"><span class="header-section-number">3.5.3</span> Skill-Bestand: wer pflegt die Instanz?</a></li>
+  <li><a href="#volumen-der-ausführungen" id="toc-volumen-der-ausführungen" class="nav-link" data-scroll-target="#volumen-der-ausführungen"><span class="header-section-number">3.5.1</span> Volumen der Ausführungen</a></li>
+  <li><a href="#datensouveränität" id="toc-datensouveränität" class="nav-link" data-scroll-target="#datensouveränität"><span class="header-section-number">3.5.2</span> Datensouveränität</a></li>
+  <li><a href="#pflege-der-instanz" id="toc-pflege-der-instanz" class="nav-link" data-scroll-target="#pflege-der-instanz"><span class="header-section-number">3.5.3</span> Pflege der Instanz</a></li>
   </ul></li>
   <li><a href="#übersicht-zur-auswahl" id="toc-übersicht-zur-auswahl" class="nav-link" data-scroll-target="#übersicht-zur-auswahl"><span class="header-section-number">3.6</span> Übersicht zur Auswahl</a></li>
   </ul>
@@ -368,7 +368,7 @@ div.csl-indent {
 </header>
 
 
-<p>Drei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von der Größe des Vorhabens ab als von drei Faktoren: dem erwarteten Volumen an Workflow-Ausführungen, der Empfindlichkeit der Daten und den verfügbaren IT-Skills im Team.</p>
+<p>Drei Pfade führen zu einer laufenden n8n-Instanz. Die Wahl hängt weniger von der Größe des Vorhabens ab als von drei Faktoren: dem erwarteten Volumen an Workflow-Ausführungen, der Empfindlichkeit der Daten und den verfügbaren IT-Kenntnissen im Team.</p>
 <section id="überblick" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="überblick"><span class="header-section-number">3.1</span> Überblick</h2>
 <div class="quarto-figure quarto-figure-center">
@@ -441,27 +441,30 @@ div.csl-indent {
 </section>
 <section id="cloud" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="cloud"><span class="header-section-number">3.2</span> Cloud</h2>
-<p>Die n8n-Cloud ist eine SaaS-Variante (Software, die im Internet gemietet statt installiert wird), die n8n selbst betreibt. Konto anlegen, Workspace einrichten und loslegen, das geht alles innerhalb weniger Minuten ohne Server-Wartung. Eine 14-tägige Testphase ist kostenlos und ohne Kreditkarte <span class="citation" data-cites="n8nCloudTrial">(<a href="#ref-n8nCloudTrial" role="doc-biblioref"><span class="nocase">n8n GmbH</span>, o.&nbsp;J.</a>)</span>; mit ihr arbeiten wir in diesem Kurs.</p>
+<p>Die n8n-Cloud ist eine SaaS-Variante (Software, die im Internet gemietet statt installiert wird), die n8n selbst betreibt. Konto und Workspace sind in wenigen Minuten eingerichtet, eine Server-Wartung entfällt. Eine 14-tägige Testphase ist kostenlos und ohne Kreditkarte möglich <span class="citation" data-cites="n8nCloudTrial">(<a href="#ref-n8nCloudTrial" role="doc-biblioref"><span class="nocase">n8n GmbH</span>, o.&nbsp;J.</a>)</span>. Mit dieser Testphase arbeiten wir in diesem Kurs.</p>
 <p><strong>Eigenschaften:</strong></p>
 <ul>
 <li>Geringer Setup-Aufwand, keine Server-Wartung, kein Update-Aufwand</li>
 <li>Ab rund 24 € im Monat für 2.500 Executions, der Pro-Tarif ab rund 50 € im Monat</li>
 <li>Geeignet für Teams ohne dedizierte IT-Ressourcen oder für erste Schritte</li>
 </ul>
-<div class="callout callout-style-simple callout-tip">
-<div class="callout-body d-flex">
+<div class="callout callout-style-simple callout-tip callout-titled" title="Cloud für die Lernphase">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p>Für eine erste Lernphase ist die Cloud-Variante eine pragmatische Option, weil Serverbetrieb mit Linux, Docker (Software-Container) oder TLS-Zertifikaten (für verschlüsselte Verbindungen) dabei kein Thema ist. Wer später Self-Hosting betreiben will, kann Workflows als JSON (ein Textformat für Daten) exportieren und in eine eigene Instanz übertragen.</p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Cloud für die Lernphase
 </div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Für eine erste Lernphase ist die Cloud-Variante eine pragmatische Option, weil Serverbetrieb mit Linux, Docker (Software-Container) oder TLS-Zertifikaten (für verschlüsselte Verbindungen) dabei kein Thema ist. Wer später Self-Hosting betreiben will, kann Workflows als JSON (ein Textformat für Daten) exportieren und in eine eigene Instanz übertragen.</p>
 </div>
 </div>
 </section>
 <section id="self-hosted" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="self-hosted"><span class="header-section-number">3.3</span> Self-Hosted</h2>
-<p>Die Community Edition von n8n nutzt eine <span class="highlight">Fair-Code</span>-Lizenz: Quellcode öffentlich, kostenlose Nutzung und Anpassung erlaubt, Wiederverkauf als konkurrierender Managed-Service ausgeschlossen. Damit unterscheidet sich Fair-Code von klassischen Open-Source-Lizenzen wie MIT oder Apache, die auch kommerzielle Konkurrenz-Angebote zulassen. n8n läuft auf jeder beliebigen Maschine, vom Raspberry Pi im Heimnetz bis zum Cloud-Server bei Hetzner, AWS oder Azure.</p>
+<p>Die Community Edition von n8n nutzt eine <span class="highlight">Fair-Code</span>-Lizenz: Quellcode öffentlich, kostenlose Nutzung und Anpassung erlaubt, Wiederverkauf als konkurrierender Managed-Service (Betrieb für zahlende Kunden) ausgeschlossen. Damit unterscheidet sich Fair-Code von klassischen Open-Source-Lizenzen wie MIT oder Apache, die auch kommerzielle Konkurrenz-Angebote zulassen. n8n läuft auf jeder beliebigen Maschine, vom Raspberry Pi im Heimnetz bis zum Cloud-Server bei Hetzner, AWS oder Azure.</p>
 <p><strong>Eigenschaften:</strong></p>
 <ul>
 <li>Unbegrenzte Workflows, Ausführungen und Nutzer</li>
@@ -469,22 +472,22 @@ div.csl-indent {
 <li>1 bis 2 Stunden initialer Setup-Aufwand, danach ca. 1 bis 3 Stunden pro Monat Wartung</li>
 <li>Volle Kontrolle über Daten, Backups und Update-Zeitpunkte</li>
 </ul>
-<div class="callout callout-style-simple callout-important callout-titled" title="Was Self-Host wirklich bedeutet">
+<div class="callout callout-style-simple callout-important callout-titled" title="Pflichten beim Self-Hosting">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Wichtig</span>Was Self-Host wirklich bedeutet
+<span class="screen-reader-only">Wichtig</span>Pflichten beim Self-Hosting
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Self-Host ist nicht nur eine Installation. Wer eine eigene Instanz betreibt, verantwortet auch:</p>
+<p>Zum Self-Hosting gehört mehr als die Installation. Wer eine eigene Instanz betreibt, verantwortet auch:</p>
 <ul>
 <li>Regelmäßige Updates der n8n-Version</li>
 <li>Backup-Strategie für Workflows und Credentials</li>
 <li>TLS-Zertifikate und sichere Erreichbarkeit</li>
-<li>Monitoring und Logging im laufenden Betrieb</li>
+<li>Monitoring und Logging (Überwachung und Protokollierung) im laufenden Betrieb</li>
 </ul>
 <p>Diese Aufgaben sind technisch beherrschbar, erfordern aber kontinuierlichen Aufwand. Vor einer Entscheidung für Self-Host sollte daher geklärt sein, wer die Pflege der Instanz im laufenden Betrieb übernimmt.</p>
 </div>
@@ -504,18 +507,19 @@ div.csl-indent {
 </section>
 <section id="drei-fragen-die-die-entscheidung-leiten" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="drei-fragen-die-die-entscheidung-leiten"><span class="header-section-number">3.5</span> Drei Fragen, die die Entscheidung leiten</h2>
-<p>Statt mit einem Tool-Vergleich zu starten, lohnen sich drei vorgelagerte Fragen.</p>
-<section id="volumen-wie-viele-ausführungen-pro-monat" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="volumen-wie-viele-ausführungen-pro-monat"><span class="header-section-number">3.5.1</span> Volumen: wie viele Ausführungen pro Monat?</h3>
+<p>Vor einem Vergleich einzelner Angebote klären wir drei Punkte: das Volumen der Ausführungen, den Umgang mit sensiblen Daten und die Pflege der Instanz.</p>
+<section id="volumen-der-ausführungen" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="volumen-der-ausführungen"><span class="header-section-number">3.5.1</span> Volumen der Ausführungen</h3>
 <p>Bei der Cloud-Variante steigen die Kosten mit der Anzahl der Executions, bei Self-Host und Managed Hosting bleiben die Server-Kosten konstant. Reine Lizenz- und Server-Kosten von Self-Host (ab rund 5 € im Monat) liegen meist unter den Cloud-Tarifen. Der praktische Aufwand fällt aber unterschiedlich aus: Cloud benötigt keine Wartung, Self-Host schon.</p>
 </section>
-<section id="souveränität-welche-daten-verlassen-die-eigene-infrastruktur" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="souveränität-welche-daten-verlassen-die-eigene-infrastruktur"><span class="header-section-number">3.5.2</span> Souveränität: welche Daten verlassen die eigene Infrastruktur?</h3>
-<p>In regulierten Branchen ist Datensouveränität nicht optional, sondern Pflicht. Patientendaten, Kundenkontakte mit besonderem Schutzbedarf oder interne Prozessdokumente werfen die Frage auf, wo sie verarbeitet werden dürfen. Für viele Anwendungsfälle scheiden Cloud-Hosts in den USA aus; EU-Cloud-Hosts oder eigenes Hosting bleiben als Optionen. Hetzner etwa betreibt Rechenzentren in Deutschland und Finnland, was die Anforderungen der DSGVO (Datenschutz-Grundverordnung der EU) vereinfacht.</p>
+<section id="datensouveränität" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="datensouveränität"><span class="header-section-number">3.5.2</span> Datensouveränität</h3>
+<p>In regulierten Branchen ist Datensouveränität (die Kontrolle darüber, wo Daten gespeichert und verarbeitet werden) Pflicht. Bei Patientendaten, Kundenkontakten mit besonderem Schutzbedarf oder internen Prozessdokumenten stellt sich die Frage, welche Daten die eigene Infrastruktur verlassen dürfen und wo sie verarbeitet werden.</p>
+<p>Für viele Anwendungsfälle scheiden Cloud-Hosts in den USA aus. EU-Cloud-Hosts oder eigenes Hosting bleiben als Optionen. Hetzner etwa betreibt Rechenzentren in Deutschland und Finnland, was die Erfüllung der DSGVO (Datenschutz-Grundverordnung der EU) erleichtert.</p>
 </section>
-<section id="skill-bestand-wer-pflegt-die-instanz" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="skill-bestand-wer-pflegt-die-instanz"><span class="header-section-number">3.5.3</span> Skill-Bestand: wer pflegt die Instanz?</h3>
-<p>Ohne IT-Kapazität sind Cloud oder Managed Hosting realistische Optionen. Eine Self-Host-Instanz, die nicht aktualisiert und überwacht wird, wird auf Dauer zum Sicherheits-Risiko. Diese Frage gehört vor jede technische Diskussion.</p>
+<section id="pflege-der-instanz" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="pflege-der-instanz"><span class="header-section-number">3.5.3</span> Pflege der Instanz</h3>
+<p>Ohne IT-Kapazität sind Cloud oder Managed Hosting realistische Optionen. Eine Self-Host-Instanz, die nicht aktualisiert und überwacht wird, wird auf Dauer zum Sicherheits-Risiko. Deshalb klären wir vor der technischen Planung, wer die Instanz pflegt.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/lektionen/hosting-leitfragen.svg" class="img-fluid figure-img"></p>
@@ -562,7 +566,7 @@ div.csl-indent {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Die Übersicht zeigt typische Zuordnungen, keine starren Regeln. Wer mit der Cloud-Variante startet und später wechselt, kann Workflows als JSON-Datei exportieren und in der neuen Instanz importieren. Der Wechsel ist reversibel; die erste Wahl muss daher nicht endgültig sein.</p>
+<p>Die Übersicht zeigt typische Zuordnungen, keine starren Regeln. Wer mit der Cloud-Variante startet und später wechselt, kann Workflows als JSON-Datei exportieren und in der neuen Instanz importieren. Die erste Wahl lässt sich also später ändern.</p>
 </div>
 </div>
 </div>

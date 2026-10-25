@@ -332,7 +332,7 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#was-google-ai-studio-ist" id="toc-was-google-ai-studio-ist" class="nav-link active" data-scroll-target="#was-google-ai-studio-ist"><span class="header-section-number">16.1</span> Was Google AI Studio ist</a></li>
+  <li><a href="#google-ai-studio" id="toc-google-ai-studio" class="nav-link active" data-scroll-target="#google-ai-studio"><span class="header-section-number">16.1</span> Google AI Studio</a></li>
   <li><a href="#schlüssel-erzeugen" id="toc-schlüssel-erzeugen" class="nav-link" data-scroll-target="#schlüssel-erzeugen"><span class="header-section-number">16.2</span> Schlüssel erzeugen</a></li>
   <li><a href="#credential-in-n8n-anlegen" id="toc-credential-in-n8n-anlegen" class="nav-link" data-scroll-target="#credential-in-n8n-anlegen"><span class="header-section-number">16.3</span> Credential in n8n anlegen</a></li>
   </ul>
@@ -360,16 +360,18 @@ div.csl-indent {
 </header>
 
 
-<p>Beispiel 4 und 5 nutzen ein KI-Modell von Google. Dafür braucht n8n einen API-Schlüssel: eine lange Zeichenfolge, mit der sich n8n bei Google ausweist, ähnlich wie ein Passwort. Wir erzeugen ihn einmal kostenlos in Google AI Studio und hinterlegen ihn als Credential in n8n. Beide Beispiele nutzen danach dasselbe Credential.</p>
+<p>Beispiel 4 und 5 nutzen ein KI-Modell von Google. Dafür braucht n8n einen API-Schlüssel. Das ist eine lange Zeichenfolge, mit der sich n8n bei Google ausweist, ähnlich wie ein Passwort.</p>
+<p>Wir erzeugen ihn einmal kostenlos in Google AI Studio und hinterlegen ihn als Credential in n8n. Beide Beispiele nutzen danach dasselbe Credential.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/erste-workflows/cred-schluessel-weg.svg" class="img-fluid figure-img"></p>
 <figcaption>Vom Gemini-Schlüssel zum Workflow in vier Schritten.</figcaption>
 </figure>
 </div>
-<section id="was-google-ai-studio-ist" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="was-google-ai-studio-ist"><span class="header-section-number">16.1</span> Was Google AI Studio ist</h2>
-<p>AI Studio ist eine Webseite von Google, auf der sich die Gemini-Modelle ausprobieren lassen und auf der Schlüssel für die Nutzung in anderen Programmen entstehen. Ein Google-Konto genügt, eine Kreditkarte ist nicht nötig. Die Nutzung ist bis zu einer bestimmten Zahl von Anfragen pro Minute und Tag kostenlos; für die Beispiele reicht das. Wird die Grenze erreicht, meldet n8n einen Fehler, und nach kurzer Wartezeit geht es weiter.</p>
+<section id="google-ai-studio" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="google-ai-studio"><span class="header-section-number">16.1</span> Google AI Studio</h2>
+<p>AI Studio ist eine Webseite von Google. Dort lassen sich die Gemini-Modelle ausprobieren und Schlüssel für die Nutzung in anderen Programmen erzeugen. Ein Google-Konto genügt, eine Kreditkarte ist nicht nötig.</p>
+<p>Die Nutzung ist bis zu einer bestimmten Zahl von Anfragen pro Minute und Tag kostenlos. Für die Beispiele reicht das. Wird die Grenze erreicht, meldet n8n einen Fehler. Nach kurzer Wartezeit lassen sich wieder Anfragen senden.</p>
 </section>
 <section id="schlüssel-erzeugen" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="schlüssel-erzeugen"><span class="header-section-number">16.2</span> Schlüssel erzeugen</h2>

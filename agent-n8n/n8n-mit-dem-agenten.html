@@ -390,7 +390,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Jeder n8n-Workflow lässt sich als Datei speichern, und für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner. Der eigene Agent erklärt den Workflow aus <a href="../beispiele/kontaktanfragen.html">Beispiel 1: Kontaktanfragen sortieren</a> und ändert ihn als Kopie. Danach testen wir die Kopie in n8n. Die Kopie soll eine dritte Art von Anfragen mit hoher Priorität behandeln: Datenschutzanfragen. Die Erklärung folgt jeweils am eigenen Ergebnis.</p>
+<p>Jeder n8n-Workflow lässt sich als Datei speichern. Für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner.</p>
+<p>In diesem Kapitel erklärt der eigene Agent den Workflow aus <a href="../beispiele/kontaktanfragen.html">Beispiel 1: Kontaktanfragen sortieren</a> und ändert ihn als Kopie. Die Kopie soll eine dritte Art von Anfragen mit hoher Priorität behandeln: Datenschutzanfragen. Danach testen wir die Kopie in n8n. Die Erklärung folgt jeweils am eigenen Ergebnis.</p>
 <p>Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.</p>
 <section id="schritt-1-workflow-datei-ablegen-und-erklären-lassen" class="level2" data-number="20.1">
 <h2 data-number="20.1" class="anchored" data-anchor-id="schritt-1-workflow-datei-ablegen-und-erklären-lassen"><span class="header-section-number">20.1</span> Schritt 1: Workflow-Datei ablegen und erklären lassen</h2>
@@ -713,7 +714,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span><span class="er">,</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">"combinator"</span><span class="er">:</span> <span class="st">"and"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfeld <code>Anliegen</code>, rechts der Vergleichswert <code>Beschwerde</code>, dazwischen der Vergleich „ist gleich“ (<code>equals</code>). Wie ein neuer Mitarbeiter liest der Agent zuerst den Ablaufplan und erklärt ihn, bevor er etwas ändert. Seine Erklärung lässt sich am Canvas in n8n prüfen.</p>
+<p>Erläuterung:</p>
+<ul>
+<li><code>leftValue</code> ist der Wert aus dem Formularfeld <code>Anliegen</code>.</li>
+<li><code>rightValue</code> ist der Vergleichswert <code>Beschwerde</code>.</li>
+<li><code>operation</code> legt den Vergleich fest, hier „ist gleich“ (<code>equals</code>).</li>
+</ul>
+<p>Der Agent liest den Ablauf zuerst und erklärt ihn, bevor er etwas ändert, ähnlich wie ein neuer Mitarbeiter, der sich einen Ablaufplan erklären lässt. Seine Erklärung lässt sich am Canvas in n8n prüfen.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -811,7 +818,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="was-gerade-passiert-ist-1" class="level3" data-number="20.2.2">
 <h3 data-number="20.2.2" class="anchored" data-anchor-id="was-gerade-passiert-ist-1"><span class="header-section-number">20.2.2</span> Was gerade passiert ist</h3>
 <p>Der Agent hat die alte Bedingung gelesen und eine neue Datei mit zwei Änderungen angelegt. Das Original liegt unverändert daneben.</p>
-<p>Das Feld <strong>combinator</strong> legt fest, wie mehrere Vergleiche im If-Knoten zusammenwirken. Mit <code>and</code> (und) müssen alle zutreffen, mit <code>or</code> (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Sobald ein zweiter dazukommt, entscheidet dieses Feld über das Ergebnis: Mit <code>or</code> führt jetzt Beschwerde oder Datenschutz zum Ausgang true.</p>
+<p>Das Feld <strong>combinator</strong> legt fest, wie mehrere Vergleiche im If-Knoten zusammenwirken. Mit <code>and</code> (und) müssen alle zutreffen, mit <code>or</code> (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Bei zwei Vergleichen bestimmt dieses Feld das Ergebnis: Mit <code>or</code> führt jetzt Beschwerde oder Datenschutz zum Ausgang true.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/workflow-und-oder.svg" class="img-fluid figure-img" alt="Zwei Vergleiche: Anliegen ist gleich Beschwerde und Anliegen ist gleich Datenschutz. Als falsch markiert: combinator and; beide Vergleiche müssten zugleich zutreffen, ein Anliegen ist nie beides, keine Anfrage erreicht den Ausgang true. Als richtig markiert: combinator or; ein Vergleich genügt, Beschwerde und Datenschutz führen zum Ausgang true, alles andere zu false. Unten: Der Agent ändert eine Kopie mit neuem Namen, das Original bleibt daneben liegen."></p>
@@ -947,14 +954,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="was-gerade-passiert-ist-2" class="level3" data-number="20.3.2">
 <h3 data-number="20.3.2" class="anchored" data-anchor-id="was-gerade-passiert-ist-2"><span class="header-section-number">20.3.2</span> Was gerade passiert ist</h3>
 <p>Aus der Datei des Agenten ist ein Workflow in der eigenen Instanz geworden, und zwei Läufe haben sein Verhalten gezeigt.</p>
-<p>Beim <strong>Import</strong> liest n8n die JSON-Datei und baut daraus Knoten und Verbindungen im Canvas. Das gelingt nur, wenn die Datei gültiges JSON ist; schon ein fehlendes Komma verhindert den Import. Damit ist der Import der erste Prüfpunkt. Der zweite Lauf ist eine <strong>Gegenprobe</strong>: ein Anliegen, für das sich nichts ändern soll. Er zeigt, ob die Änderung nur dort wirkt, wo sie wirken soll.</p>
+<p>Beim <strong>Import</strong> liest n8n die JSON-Datei und baut daraus Knoten und Verbindungen im Canvas. Das gelingt nur, wenn die Datei gültiges JSON ist. Schon ein fehlendes Komma verhindert den Import. Damit ist der Import der erste Prüfpunkt.</p>
+<p>Der zweite Lauf ist eine <strong>Gegenprobe</strong> mit einem Anliegen, für das sich nichts ändern soll. Er zeigt, ob die Änderung nur dort wirkt, wo sie wirken soll.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/workflow-pruefkette.svg" class="img-fluid figure-img" alt="Vier nummerierte Stationen von links nach rechts: 1 Datei vom Agenten, die Kopie im Ordner n8n. 2 Import in n8n, gelingt nur mit gültigem JSON. 3 Lauf 1 mit Datenschutz, erwartet Priorität hoch. 4 Lauf 2 mit Rückruf als Gegenprobe, erwartet Priorität normal. Station 2 bis 4 sind Prüfpunkte in n8n. Unten: Die Meldung Fertig des Agenten ersetzt keine dieser Stationen."></p>
 <figcaption>Vier Stationen bis zur Freigabe. Import und zwei Läufe in n8n sind die Prüfpunkte.</figcaption>
 </figure>
 </div>
-<p>Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diese Läufe nicht, und das Durchlesen der Datei auch nicht: Es zeigt weder, ob n8n die Datei annimmt, noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen. So endet auch beim neuen Mitarbeiter ein Änderungsvorschlag: Er schlägt vor, wir testen, erst dann geben wir frei.</p>
+<p>Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diese Läufe nicht. Auch das Durchlesen der Datei reicht nicht aus. Es zeigt weder, ob n8n die Datei annimmt, noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen. Wir geben eine Änderung daher erst nach den beiden Testläufen frei.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -977,7 +985,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="zwei-wege-zu-n8n" class="level2" data-number="20.4">
 <h2 data-number="20.4" class="anchored" data-anchor-id="zwei-wege-zu-n8n"><span class="header-section-number">20.4</span> Zwei Wege zu n8n</h2>
-<p>Bisher hat der Agent die Datei geschrieben, und wir haben sie importiert. Das ist Weg A. Es gibt einen zweiten Weg.</p>
+<p>Bisher hat der Agent die Datei geschrieben, und wir haben sie importiert (Weg A). Daneben gibt es eine direkte Anbindung an n8n (Weg B).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/11-zwei-wege.svg" class="img-fluid figure-img" alt="Zwei Wege. Weg A, im Kurs: Der Agent schreibt die Datei n8n/beispiel-1-datenschutz.json, wir importieren sie mit Import from File in n8n. Weg B, gestrichelt, nur Hinweis: Der Agent erreicht n8n über einen MCP-Zugang (Zugangskarte) und liest oder legt Workflows direkt an; in n8n heißt die Anbindung Instance-level MCP."></p>
@@ -1015,7 +1023,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Für Weg B bietet n8n eine eigene Anbindung namens <strong>Instance-level MCP</strong>. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet (<a href="https://docs.n8n.io/connect/connect-to-n8n-mcp-server">Anleitung in der n8n-Dokumentation</a>). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n ist ein natürlicher Prüfpunkt.</p>
+<p>Für Weg B bietet n8n eine eigene Anbindung namens <strong>Instance-level MCP</strong>. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet (<a href="https://docs.n8n.io/connect/connect-to-n8n-mcp-server">Anleitung in der n8n-Dokumentation</a>). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n bildet einen eigenen Prüfpunkt.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/workflow-anbindung-rechte.svg" class="img-fluid figure-img" alt="Oben der Agent, über MCP verbunden mit einem n8n-Konto, das Workflows anlegen, ändern und je nach Freischaltung ausführen darf. Als falsch markiert: Instanz mit Workflows, die echte Kundendaten verarbeiten; keine Anbindung freischalten. Als richtig markiert: Test-Instanz ohne Kundendaten; Anbindung möglich, im Unternehmen mit Freigabe der IT. Unten: Exportierte Dateien enthalten die Namen von Zugangsdaten, vor dem Weitergeben entfernen."></p>

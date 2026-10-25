@@ -397,7 +397,7 @@ Abbildung&nbsp;12.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge 
 </section>
 <section id="schnellstart-per-import" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="schnellstart-per-import"><span class="header-section-number">12.2</span> Schnellstart per Import</h2>
-<p>Wer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen, kann ihn direkt per URL in die eigene n8n-Instanz importieren:</p>
+<p>Wer den fertigen Workflow zuerst sehen will, kann ihn direkt per URL in die eigene n8n-Instanz importieren:</p>
 <ol type="1">
 <li><p>Im Editor einen neuen, leeren Workflow anlegen.</p></li>
 <li><p>Oben rechts auf das Drei-Punkte-Menü klicken.</p></li>
@@ -415,7 +415,8 @@ Abbildung&nbsp;12.1: Zielbild des Workflows mit fünf Knoten in der Reihenfolge 
 </section>
 <section id="schritt-für-schritt-selbst-bauen" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="schritt-für-schritt-selbst-bauen"><span class="header-section-number">12.3</span> Schritt für Schritt selbst bauen</h2>
-<p>Wir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat dabei einen Namen, der im Canvas angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen wie <em>Edit Fields</em> oder <em>Send an Email</em>. Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.</p>
+<p>Wir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat einen Namen, der im Canvas (der Arbeitsfläche des Editors) angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen (Standardnamen) wie <em>Edit Fields</em> oder <em>Send an Email</em>.</p>
+<p>Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.</p>
 <p>Im Kurs folgen wir einer einheitlichen Konvention:</p>
 <ul>
 <li>Englische Namen in Verb-Form, die beschreiben, was der Knoten tut. Beispiel: <code>Receive email</code>.</li>
@@ -766,7 +767,7 @@ Abbildung&nbsp;12.7: Set-Knoten mit den vier Cross-Node-Expressions, die Werte a
 </section>
 <section id="schritt-5-data-table-anlegen-und-eintrag-schreiben" class="level3" data-number="12.3.6">
 <h3 data-number="12.3.6" class="anchored" data-anchor-id="schritt-5-data-table-anlegen-und-eintrag-schreiben"><span class="header-section-number">12.3.6</span> Schritt 5: Data Table anlegen und Eintrag schreiben</h3>
-<p>Ein “Data Table” speichert strukturierte Daten direkt in n8n. Die Tabelle ist nicht Teil des Workflows, sondern liegt auf der Projekt-Ebene und wird aus dem Workflow heraus über einen Data-Table-Knoten beschrieben oder gelesen.</p>
+<p>Eine Data Table speichert strukturierte Daten direkt in n8n. Die Tabelle ist nicht Teil des Workflows, sondern liegt auf der Projekt-Ebene und wird aus dem Workflow heraus über einen Data-Table-Knoten beschrieben oder gelesen.</p>
 <p><strong>Tabelle anlegen:</strong></p>
 <p>Die Verwaltung der Data Tables liegt außerhalb des Workflow-Editors. Wir verlassen den Editor kurz, legen die Tabelle an und kehren danach in den Workflow zurück.</p>
 <ol type="1">
@@ -869,7 +870,8 @@ Abbildung&nbsp;12.9: Workflow nach erfolgreichem Lauf mit grünen Häkchen an al
 </section>
 <section id="fehler-diagnostizieren" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="fehler-diagnostizieren"><span class="header-section-number">12.4</span> Fehler diagnostizieren</h2>
-<p>Ein roter Knoten erfordert keinen Neuaufbau des Workflows. Wir lesen die Fehlermeldung, prüfen den Input des Knotens und vergleichen ihn mit der Knoten-Einstellung. Häufige Ursachen sind ein fehlendes Credential, ein abweichender Feldname oder ein Testdatensatz ohne Wert. Den frühesten Fehler im Workflow beheben wir zuerst, denn falsche Daten in Knoten 2 machen einen Blick auf Knoten 4 überflüssig.</p>
+<p>Ein roter Knoten erfordert keinen Neuaufbau des Workflows. Wir lesen die Fehlermeldung, prüfen den Input des Knotens und vergleichen ihn mit der Knoten-Einstellung. Häufige Ursachen sind ein fehlendes Credential, ein abweichender Feldname oder ein Testdatensatz ohne Wert.</p>
+<p>Den frühesten Fehler im Workflow beheben wir zuerst. Liefert Knoten 2 falsche Daten, zeigt Knoten 4 oft Folgefehler, die dort nicht entstanden sind.</p>
 <p>Eine erste Orientierung bei wiederkehrenden Symptomen:</p>
 <table class="caption-top table">
 <colgroup>
@@ -941,9 +943,9 @@ Abbildung&nbsp;12.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint
 <div class="callout-body-container callout-body">
 <p>Drei Stolpersteine zeigen sich erfahrungsgemäß beim ersten produktiven Lauf:</p>
 <ul>
-<li><strong>Trigger feuert nicht.</strong> Der häufigste Grund ist ein abgelaufener OAuth-Token oder ein IMAP-Server, der nach einer Stunde Inaktivität die Verbindung schließt. Unter <strong>Executions</strong> prüfen, ob überhaupt ein Lauf stattfindet; in den Trigger-Einstellungen ggf. das Polling-Intervall auf 1 Minute setzen und das Credential neu autorisieren.</li>
-<li><strong>Doppelverarbeitung nach n8n-Restart.</strong> Ohne eine Idempotency-Spalte verarbeitet n8n bei einem Neustart die letzten Mails erneut. Für produktive Workflows gehört eine <code>external_message_id</code>-Spalte in die Tabelle, die vor jedem Insert geprüft wird (dieses Pattern vertieft der Aufbaukurs <em>KI-Agenten in n8n</em>).</li>
-<li><strong>Bestätigungs-Mail landet im Spam.</strong> SMTP-Mails von neuen Absenderdomains haben anfangs keinen Reputations-Score. Vor dem Live-Schalten einen SPF- und DKIM-Eintrag setzen oder einen Mail-Versand-Dienst wie Postmark oder SendGrid nutzen.</li>
+<li><strong>Trigger feuert nicht.</strong> Der häufigste Grund ist ein abgelaufener OAuth-Token oder ein IMAP-Server, der nach einer Stunde Inaktivität die Verbindung schließt. Unter <strong>Executions</strong> prüfen, ob überhaupt ein Lauf stattfindet; in den Trigger-Einstellungen ggf. das Polling-Intervall (den Abstand, in dem n8n das Postfach abfragt) auf 1 Minute setzen und das Credential neu autorisieren.</li>
+<li><strong>Doppelverarbeitung nach n8n-Restart.</strong> Ohne eine Idempotency-Spalte (eine Spalte, an der sich erkennen lässt, ob eine Mail schon verarbeitet wurde) verarbeitet n8n bei einem Neustart die letzten Mails erneut. Für produktive Workflows gehört eine <code>external_message_id</code>-Spalte in die Tabelle, die vor jedem Insert geprüft wird (dieses Pattern vertieft der Aufbaukurs <em>KI-Agenten in n8n</em>).</li>
+<li><strong>Bestätigungs-Mail landet im Spam.</strong> SMTP-Mails von neuen Absenderdomains haben anfangs keinen Reputations-Score. Vor dem Live-Schalten einen SPF- und DKIM-Eintrag setzen (Einträge in den Domain-Einstellungen, die den Absender bestätigen) oder einen Mail-Versand-Dienst wie Postmark oder SendGrid nutzen.</li>
 </ul>
 </div>
 </div>
@@ -963,7 +965,7 @@ Abbildung&nbsp;12.10: Executions-Log in n8n: jede Workflow-Ausführung erscheint
 </section>
 <section id="wie-es-weitergeht" class="level2" data-number="12.7">
 <h2 data-number="12.7" class="anchored" data-anchor-id="wie-es-weitergeht"><span class="header-section-number">12.7</span> Wie es weitergeht</h2>
-<p>Damit steht das handwerkliche Fundament: einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs <em>KI-Agenten in n8n</em> die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.</p>
+<p>Damit steht das handwerkliche Fundament: einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs <em>KI-Agenten in n8n</em> die Fortsetzung, die dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">

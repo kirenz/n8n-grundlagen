@@ -345,7 +345,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Kaum ein Ablauf läuft gerade durch. Eine Rücksendung ist zulässig oder nicht, beim Onboarding passieren mehrere Dinge gleichzeitig, und bei einer Bestellung treffen manchmal zwei Sonderfälle zusammen. BPMN bildet solche Stellen mit <strong>Gateways</strong> ab, Rauten mit einem Symbol in der Mitte. Ein Gateway trifft keine Entscheidung und erledigt keine Arbeit. Es steuert nur, welche Pfade der Sequenzfluss nimmt. In diesem Kapitel lernen wir die drei Gateway-Typen kennen, die fast jedes fachliche Modell braucht.</p>
+<p>Gateways (Verzweigungspunkte) bilden Stellen ab, an denen sich ein Ablauf teilt oder wieder zusammenläuft. Dieses Kapitel stellt die drei Gateway-Typen vor, die fast jedes fachliche Modell braucht.</p>
+<p>Beispiele für solche Stellen:</p>
+<ul>
+<li>Eine Rücksendung ist zulässig oder nicht.</li>
+<li>Beim Onboarding laufen mehrere Aufgaben gleichzeitig.</li>
+<li>Bei einer Bestellung treffen manchmal zwei Sonderfälle zusammen.</li>
+</ul>
+<p>In BPMN ist ein Gateway eine Raute mit einem Symbol in der Mitte. Ein Gateway erledigt selbst keine Arbeit. Es steuert nur, welche Pfade der Sequenzfluss nimmt.</p>
 <section id="exklusives-gateway-xor-genau-ein-weg" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="exklusives-gateway-xor-genau-ein-weg"><span class="header-section-number">5.1</span> Exklusives Gateway (XOR): genau ein Weg</h2>
 <p>Das exklusive Gateway trägt ein X. Von den ausgehenden Pfaden wird genau einer gewählt, abhängig von Daten, die zu diesem Zeitpunkt bekannt sind.</p>
@@ -359,7 +366,12 @@ Abbildung&nbsp;5.1: Rücksendung bearbeiten: Das erste XOR-Gateway stellt die Fr
 </figcaption>
 </figure>
 </div>
-<p>Drei Dinge fallen auf. Die Frage steht am Gateway („Rücksendung zulässig?“), die Antworten stehen an den Kanten („ja“, „nein“). Die Prüfung selbst ist eine eigene Aufgabe vor dem Gateway („Rücksendung prüfen“); das Gateway wertet nur ihr Ergebnis aus. Und die Pfade treffen sich wieder in einem zweiten XOR-Gateway, bevor der gemeinsame Rest des Ablaufs folgt.</p>
+<p>Erläuterung:</p>
+<ul>
+<li>Die Frage steht am Gateway („Rücksendung zulässig?“), die Antworten stehen an den Kanten („ja“, „nein“).</li>
+<li>Die Prüfung selbst ist eine eigene Aufgabe vor dem Gateway („Rücksendung prüfen“). Das Gateway wertet nur ihr Ergebnis aus.</li>
+<li>Die Pfade treffen sich in einem zweiten XOR-Gateway wieder, bevor der gemeinsame Rest des Ablaufs folgt.</li>
+</ul>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Versteckte Entscheidungen aufdecken">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -373,7 +385,7 @@ Abbildung&nbsp;5.1: Rücksendung bearbeiten: Das erste XOR-Gateway stellt die Fr
 <p>„Rücksendung prüfen und gegebenenfalls ablehnen“ ist als eine Aufgabe falsch modelliert. Darin stecken eine Aufgabe (prüfen), eine Entscheidung (zulässig?) und eine zweite Aufgabe auf nur einem der Pfade (ablehnen). Wer das in einer Aufgabe zusammenfasst, versteckt die Entscheidung, und im späteren Workflow fehlt dann der IF-Knoten.</p>
 </div>
 </div>
-<p>Was wäre, wenn die Prüfung noch ein drittes Ergebnis haben kann, etwa „Rückfrage nötig“? Dann bekommt das Gateway eine dritte ausgehende Kante mit dieser Antwort und einen eigenen Pfad, der ebenfalls wieder zusammengeführt wird. Ein XOR-Gateway darf beliebig viele Ausgänge haben, solange genau einer gilt.</p>
+<p>Hat die Prüfung ein drittes mögliches Ergebnis, etwa „Rückfrage nötig“, bekommt das Gateway eine dritte ausgehende Kante mit dieser Antwort. Auch dieser Pfad wird anschließend wieder zusammengeführt. Ein XOR-Gateway darf beliebig viele Ausgänge haben, solange genau einer gilt.</p>
 </section>
 <section id="paralleles-gateway-and-alle-wege-zugleich" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="paralleles-gateway-and-alle-wege-zugleich"><span class="header-section-number">5.2</span> Paralleles Gateway (AND): alle Wege zugleich</h2>
@@ -388,8 +400,8 @@ Abbildung&nbsp;5.2: Neue Mitarbeitende einarbeiten: Arbeitsplatz, Zugänge und W
 </figcaption>
 </figure>
 </div>
-<p>„Gleichzeitig“, „parallel“ und „in beliebiger Reihenfolge“ sind die Signalwörter für dieses Gateway. Wichtig ist das Wort „unabhängig“: Die drei Aufgaben brauchen das Ergebnis der anderen nicht. Hinge das Willkommenspaket von den angelegten Zugängen ab, gehörte es hinter „Zugänge anlegen“ in eine Reihe.</p>
-<p>Was passiert, wenn rechts statt des AND-Gateways ein XOR-Gateway zusammenführt? Das XOR-Gateway wartet nicht. Der erste ankommende Pfad läuft sofort weiter, und der Einführungstag wird dreimal geplant, einmal pro Pfad. Dieser Fehler ist in der Praxis häufig, weil beide Rauten auf den ersten Blick ähnlich aussehen.</p>
+<p>„Gleichzeitig“, „parallel“ und „in beliebiger Reihenfolge“ sind die Signalwörter für dieses Gateway. Die drei Aufgaben sind unabhängig voneinander, keine braucht das Ergebnis einer anderen. Hinge das Willkommenspaket von den angelegten Zugängen ab, gehörte es in einer Reihe hinter „Zugänge anlegen“.</p>
+<p>Ein häufiger Fehler ist ein XOR-Gateway an der rechten Zusammenführung statt des AND-Gateways. Das XOR-Gateway wartet nicht. Jeder ankommende Pfad läuft sofort weiter, und der Einführungstag wird dreimal geplant, einmal pro Pfad. Der Fehler entsteht leicht, weil beide Rauten auf den ersten Blick ähnlich aussehen.</p>
 </section>
 <section id="inklusives-gateway-or-einer-oder-mehrere-wege" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="inklusives-gateway-or-einer-oder-mehrere-wege"><span class="header-section-number">5.3</span> Inklusives Gateway (OR): einer oder mehrere Wege</h2>
@@ -404,18 +416,18 @@ Abbildung&nbsp;5.3: Bestellung prüfen: Bei einem Neukunden wird die Bonität ge
 </figcaption>
 </figure>
 </div>
-<p>Welche Pfade laufen bei einem Neukunden mit Lieferadresse im Ausland? Beide: Bonität prüfen und Zollunterlagen vorbereiten. Das zusammenführende OR-Gateway weiß, dass zwei Pfade gestartet wurden, und wartet auf beide, bevor die Bestellung freigegeben wird. Bei einem Bestandskunden im Inland läuft nur der Standardfluss, und das Gateway wartet auf nichts.</p>
-<div class="callout callout-style-simple callout-note callout-titled" title="OR ist seltener, als es scheint">
+<p>Bei einem Neukunden mit Lieferadresse im Ausland laufen beide Pfade: Bonität prüfen und Zollunterlagen vorbereiten. Das zusammenführende OR-Gateway weiß, dass zwei Pfade gestartet wurden, und wartet auf beide, bevor die Bestellung freigegeben wird. Bei einem Bestandskunden im Inland läuft nur der Standardfluss, und das Gateway wartet auf keinen weiteren Pfad.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Inklusives Gateway sparsam einsetzen">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hinweis</span>OR ist seltener, als es scheint
+<span class="screen-reader-only">Hinweis</span>Inklusives Gateway sparsam einsetzen
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Viele Modellierende greifen zum inklusiven Gateway, wenn sie unsicher sind. Die Faustregel lautet umgekehrt: Zuerst prüfen, ob die Bedingungen sich gegenseitig ausschließen (dann XOR) oder ob ohnehin immer alle Pfade laufen (dann AND). Nur wenn wirklich „einer oder mehrere, je nach Fall“ gemeint ist, passt OR. Im späteren n8n-Workflow wird aus einem OR meist eine Kette von IF-Knoten, die unabhängig voneinander prüfen.</p>
+<p>Viele Modellierende verwenden das inklusive Gateway, wenn sie unsicher sind. Besser ist folgende Reihenfolge: Zuerst prüfen, ob die Bedingungen sich gegenseitig ausschließen (dann XOR) oder ob ohnehin immer alle Pfade laufen (dann AND). Nur wenn wirklich „einer oder mehrere, je nach Fall“ gemeint ist, passt OR. Im späteren n8n-Workflow wird aus einem OR meist eine Kette von IF-Knoten, die unabhängig voneinander prüfen.</p>
 </div>
 </div>
 </section>
@@ -479,7 +491,7 @@ Abbildung&nbsp;5.3: Bestellung prüfen: Bei einem Neukunden wird die Bonität ge
 </section>
 <section id="welches-gateway-passt" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="welches-gateway-passt"><span class="header-section-number">5.5</span> Welches Gateway passt?</h2>
-<p>Drei kurze Fälle. Für jeden überlegen wir, welches Gateway verzweigt, bevor wir die Auflösung lesen.</p>
+<p>Die folgenden drei Fälle dienen als Übung. Für jeden Fall überlegen wir, welches Gateway verzweigt, bevor wir die Auflösung lesen.</p>
 <p><strong>A.</strong> Nach der Prüfung wird eine Rechnung entweder zur Zahlung freigegeben oder an den Lieferanten zurückgewiesen.</p>
 <p><strong>B.</strong> Vor dem Austritt einer Mitarbeiterin bestätigen IT, Facility-Management und Personalabteilung die Rückgabe von Laptop, Schlüssel und Firmenwagen, in beliebiger Reihenfolge.</p>
 <p><strong>C.</strong> Für eine Messeteilnahme werden je nach Standort Reisemittel beantragt, eine Sicherheitsunterweisung organisiert oder beides.</p>

@@ -342,7 +342,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Eine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehen. Wir beginnen daher mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.</p>
+<p>Dieses Kapitel erklärt das Funktionsprinzip von n8n. Wir beginnen mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.</p>
 <section id="ein-konkreter-anwendungsfall" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="ein-konkreter-anwendungsfall"><span class="header-section-number">1.1</span> Ein konkreter Anwendungsfall</h2>
 <p>Über das Kontaktformular einer Website geht eine Nachricht ein. Drei Schritte sollen automatisch ablaufen, ohne dass eine Person den Vorgang manuell anstößt:</p>
@@ -351,7 +351,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Antworten:</strong> Eine Bestätigungs-E-Mail geht zurück: „Vielen Dank, wir melden uns innerhalb eines Werktags.”</li>
 <li><strong>Festhalten:</strong> Die Nachricht landet in einer Tabelle, damit das Team sie später bearbeiten kann.</li>
 </ol>
-<p>Genau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontaktformular, eingehende Rechnung oder wöchentliches Reporting. Drei Schritte, drei Werkzeuge, ein einziger Workflow, der danach von alleine läuft.</p>
+<p>Für solche wiederkehrenden Abläufe ist n8n gebaut, etwa für Kontaktformulare, eingehende Rechnungen oder ein wöchentliches Reporting. Im Beispiel verbindet ein Workflow drei Werkzeuge (Formular, Postfach und Tabelle) und läuft nach der Einrichtung ohne weiteres Zutun.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/lektionen/grundlagen-formularfluss.svg" class="img-fluid figure-img"></p>
@@ -362,8 +362,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="zwei-kernaufgaben" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="zwei-kernaufgaben"><span class="header-section-number">1.2</span> Zwei Kernaufgaben</h2>
 <p>n8n erfüllt im Kern zwei Aufgaben, die im selben Editor zusammenfallen:</p>
-<p><strong>Daten zwischen Werkzeugen bewegen.</strong> n8n bringt über fünfhundert fertige <strong>Integrationen</strong> mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt, eigener Code ist optional.</p>
-<p><strong>KI-Bausteine als Standard mitbringen.</strong> Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen, all diese Bausteine sind keine Zusatzkomponenten, sondern Standardausstattung im Editor. Genau diese Mischung aus Daten-Bewegung und KI-Bereitschaft unterscheidet n8n von klassischen Automation-Tools.</p>
+<p><strong>Daten zwischen Werkzeugen bewegen.</strong> n8n bringt über fünfhundert fertige <strong>Integrationen</strong> mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt. Eigener Code ist möglich, aber nicht nötig.</p>
+<p><strong>KI-Bausteine als Standard mitbringen.</strong> Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen gehören zur Standardausstattung des Editors. Diese Verbindung von Datenbewegung und KI-Bausteinen unterscheidet n8n von klassischen Automation-Tools.</p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Werkstatt-Analogie für n8n">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -383,7 +383,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Werkzeuge an der Wand</strong> sind die Knoten (Mail-Knoten, Tabellen-Knoten, KI-Knoten), die je nach Bedarf von der Werkbank gegriffen werden.</li>
 <li><strong>Strom und Druckluft</strong> sind die Auslöser im Hintergrund, die die Werkstatt überhaupt erst aktivieren, also ein Trigger pro Werkbank.</li>
 </ul>
-<p>Wer eine Werkstatt einrichtet, muss nicht jedes Werkzeug selbst bauen. Er muss aber wissen, welches Werkzeug zu welcher Aufgabe passt.</p>
+<p>Die Werkzeuge müssen wir also nicht selbst bauen. Wichtig ist, für jede Aufgabe das passende Werkzeug auszuwählen.</p>
 </div>
 </div>
 </div>
@@ -402,7 +402,8 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Was n8n ist und was nicht.</figcaption>
 </figure>
 </div>
-<p>n8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht <strong>dazwischen</strong>, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.</p>
+<p>n8n ist kein vollwertiger Code-Editor, kein Data Warehouse (eine zentrale Datenbank für Auswertungen) und kein eigenständiges KI-Modell. Wer eine mehrstufige Datenaufbereitung mit komplexer Logik programmiert, ist mit Python oder spezialisierten Werkzeugen wie dbt und Airflow oft besser aufgehoben.</p>
+<p>Das KI-Modell selbst stellt n8n nicht bereit. Es wird als Dienst von OpenAI, Anthropic oder über Ollama angebunden. n8n ist die Schicht <strong>dazwischen</strong>, also die Orchestrierung (Steuerung des Zusammenspiels), die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.</p>
 <div id="fig-n8n-orchestrierung" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-n8n-orchestrierung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -419,7 +420,7 @@ Abbildung&nbsp;1.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, To
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>n8n ersetzt nicht die spezialisierten Werkzeuge, sondern verbindet sie. Wer Salesforce, ein eigenes Sprach-Modell, eine Postgres-Datenbank und ein Slack-Setup hat, nutzt n8n als Bindeglied und nicht als Ersatz.</p>
+<p>n8n verbindet spezialisierte Werkzeuge miteinander. Wer Salesforce, ein eigenes Sprach-Modell, eine Postgres-Datenbank und Slack einsetzt, behält diese Werkzeuge und nutzt n8n als Bindeglied.</p>
 </div>
 </div>
 </div>
@@ -429,8 +430,8 @@ Abbildung&nbsp;1.1: n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, To
 <p>Drei Aufgabenklassen sind typische Einsatzgebiete für n8n:</p>
 <ol type="1">
 <li><strong>Routine-Workflows mit Trigger-Aktion-Datenfluss.</strong> Eine Mail trifft ein, eine Aktion wird ausgeführt, ein Eintrag wird geschrieben. Das ist klassisches Tagesgeschäft im Marketing, im Vertrieb und im Customer-Support.</li>
-<li><strong>Hybride Pipelines mit deterministischen und KI-Schritten.</strong> Vor- und Nachverarbeitung laufen deterministisch ab, und mittendrin steht ein KI-Schritt für Klassifikation (also das Zuordnen einer Eingabe zu einer Kategorie), Zusammenfassung oder Antwort-Formulierung.</li>
-<li><strong>Wissens-Anwendungen mit eigenen Daten.</strong> RAG-Pipelines greifen mit dem Sprach-Modell auf firmeneigene Inhalte zu, statt aus dem allgemeinen Internet-Wissen zu antworten.</li>
+<li><strong>Hybride Pipelines mit deterministischen und KI-Schritten.</strong> Vor- und Nachverarbeitung laufen deterministisch ab (nach festen Regeln, mit gleichem Ergebnis bei gleicher Eingabe), und mittendrin steht ein KI-Schritt für Klassifikation (also das Zuordnen einer Eingabe zu einer Kategorie), Zusammenfassung oder Antwort-Formulierung.</li>
+<li><strong>Wissens-Anwendungen mit eigenen Daten.</strong> RAG-Pipelines (Retrieval-Augmented Generation: Das Sprach-Modell sucht vor der Antwort passende Stellen in eigenen Dokumenten) greifen auf firmeneigene Inhalte zu, statt aus dem allgemeinen Internet-Wissen zu antworten.</li>
 </ol>
 <p>Die folgenden Module greifen diese drei Aufgabenklassen jeweils auf und setzen sie Schritt für Schritt mit n8n um.</p>
 

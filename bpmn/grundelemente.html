@@ -364,7 +364,8 @@ div.csl-indent {
 </header>
 
 
-<p>Ein n8n-Workflow beginnt nicht im Editor, sondern mit einer Frage: Was passiert eigentlich genau, wenn eine Kundenmail eingeht? Wer die Antwort nur im Kopf hat, baut später Knoten, verschiebt sie wieder und merkt beim Testen, dass ein Fall fehlt. Wer den Ablauf vorher zeichnet, sieht die Lücken, bevor sie Arbeit kosten. In diesem Kapitel lernen wir die Notation dafür kennen, lesen ein erstes Modell und üben, Elemente so zu benennen, dass andere das Modell ohne Erklärung verstehen.</p>
+<p>Dieses Kapitel stellt die Grundelemente von BPMN vor. Wir lesen ein erstes Modell und üben, Elemente so zu benennen, dass andere das Modell ohne Erklärung verstehen.</p>
+<p>Ein Workflow lässt sich leichter bauen, wenn der Ablauf vorher feststeht, etwa für den Fall, dass eine Kundenmail eingeht. Ohne Zeichnung fällt ein fehlender Fall oft erst beim Testen in n8n auf. Mit Zeichnung sehen wir die Lücke, bevor wir Knoten anlegen.</p>
 <section id="warum-bpmn" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="warum-bpmn"><span class="header-section-number">4.1</span> Warum BPMN?</h2>
 <p>BPMN steht für Business Process Model and Notation. Drei Eigenschaften machen die Notation für uns interessant:</p>
@@ -394,7 +395,7 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p>n8n liest kein BPMN. Wir übertragen das Modell am Ende dieses Teils von Hand in Knoten. Der Gewinn liegt davor: Das Modell klärt Auslöser, Entscheidungen, Zuständigkeiten und Wartesituationen, bevor wir den ersten Knoten ziehen.</p>
+<p>n8n liest kein BPMN. Wir übertragen das Modell am Ende dieses Teils von Hand in Knoten. Der Nutzen entsteht vorher: Das Modell klärt Auslöser, Entscheidungen, Zuständigkeiten und Wartesituationen, bevor wir den ersten Knoten anlegen.</p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Das Modell als Grundriss">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -516,7 +517,7 @@ Abbildung&nbsp;4.1: Kundenmail erfassen: Ein Startereignis löst den Ablauf aus,
 </section>
 <section id="gute-namen" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="gute-namen"><span class="header-section-number">4.4</span> Gute Namen</h2>
-<p>Ein Modell ist nur so verständlich wie seine Beschriftungen. Vier Regeln machen den Unterschied zwischen einem Bild, das jemand erklären muss, und einem Bild, das sich selbst erklärt:</p>
+<p>Die Verständlichkeit eines Modells hängt stark von seinen Beschriftungen ab. Vier Regeln sorgen dafür, dass andere das Modell ohne zusätzliche Erklärung lesen können:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -560,7 +561,12 @@ Abbildung&nbsp;4.1: Kundenmail erfassen: Ein Startereignis löst den Ablauf aus,
 </tbody>
 </table>
 <p>Zur Erinnerung: Der <strong>Infinitiv</strong> ist die Grundform eines Verbs („prüfen“, „bestätigen“). Das <strong>Partizip</strong> beschreibt etwas Abgeschlossenes („eingegangen“, „geprüft“).</p>
-<p>Die Regel für Aufgaben hat einen praktischen Nebeneffekt: Wer „Prüfung“ schreibt, kann die Prüfung von „Anfrage prüfen“, „Belege prüfen“ und „Bonität prüfen“ nicht mehr unterscheiden. Wer das Objekt nennt, sieht sofort, worauf der Schritt arbeitet. Sammelverben wie „bearbeiten“ oder „verarbeiten“ sagen nichts; sie verstecken meist mehrere Schritte oder eine Entscheidung. Eine Faustregel hilft: Lässt sich am Namen ablesen, wann die Aufgabe fertig ist, ist das Verb konkret genug. Nach „Rechnung prüfen“ steht fest, ob die Rechnung in Ordnung ist; nach „Rechnung bearbeiten“ bleibt offen, was passiert ist.</p>
+<p>Die Regel für Aufgaben hat praktische Folgen:</p>
+<ul>
+<li>Der Name „Prüfung“ unterscheidet nicht zwischen „Anfrage prüfen“, „Belege prüfen“ und „Bonität prüfen“. Mit dem Objekt im Namen ist sofort erkennbar, worauf der Schritt sich bezieht.</li>
+<li>Sammelverben wie „bearbeiten“ oder „verarbeiten“ sind zu ungenau. Sie verdecken meist mehrere Schritte oder eine Entscheidung.</li>
+</ul>
+<p>Als Faustregel gilt: Wenn sich am Namen ablesen lässt, wann die Aufgabe erledigt ist, ist das Verb konkret genug. Nach „Rechnung prüfen“ steht fest, ob die Rechnung in Ordnung ist. Nach „Rechnung bearbeiten“ bleibt offen, was geschehen ist.</p>
 <div class="callout callout-style-simple callout-important callout-titled" title="Keine Abkürzungen, keine Systemkürzel">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -581,7 +587,14 @@ Abbildung&nbsp;4.1: Kundenmail erfassen: Ein Startereignis löst den Ablauf aus,
 <blockquote class="blockquote">
 <p>„Der Kundenservice kontrolliert die Unterlagen und schickt sie gegebenenfalls zurück.“</p>
 </blockquote>
-<p>Der Satz enthält mehr, als er zeigt. „Kontrolliert“ ist eine Aufgabe: <em>Unterlagen prüfen</em>. „Gegebenenfalls“ versteckt eine Entscheidung mit einer Frage: <em>Unterlagen vollständig?</em> Und „schickt zurück“ ist ein zweiter Schritt, der nur auf einem der beiden Wege liegt: <em>Unterlagen zurücksenden</em>. Aus einem Satz werden also eine Aufgabe, eine Entscheidung und eine weitere Aufgabe, plus zwei mögliche Enden. Wie wir die Entscheidung zeichnen, ist Thema des nächsten Kapitels; wichtig ist hier die Lesetechnik: Jedes Verb wird zu einer Aufgabe, jedes „wenn“, „falls“ oder „gegebenenfalls“ zu einer Frage, jedes mögliche Ergebnis zu einem Ende.</p>
+<p>Der Satz enthält mehrere Modellelemente:</p>
+<ul>
+<li>„Kontrolliert“ ist eine Aufgabe: <em>Unterlagen prüfen</em>.</li>
+<li>„Gegebenenfalls“ enthält eine Entscheidung mit einer Frage: <em>Unterlagen vollständig?</em></li>
+<li>„Schickt zurück“ ist ein zweiter Schritt, der nur auf einem der beiden Wege liegt: <em>Unterlagen zurücksenden</em>.</li>
+</ul>
+<p>Aus dem Satz entstehen also eine Aufgabe, eine Entscheidung, eine weitere Aufgabe und zwei mögliche Enden. Wie wir die Entscheidung zeichnen, zeigt das nächste Kapitel.</p>
+<p>Die Lesetechnik lautet: Jedes Verb wird zu einer Aufgabe, jedes „wenn“, „falls“ oder „gegebenenfalls“ zu einer Frage und jedes mögliche Ergebnis zu einem Ende.</p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Signalwörter in Prozessbeschreibungen">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

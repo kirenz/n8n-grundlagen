@@ -342,7 +342,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Der Kundenservice beantwortet immer wieder dieselben Fragen zu Lieferung, Rücksendung und Zahlung. Ein Agent soll diese Fragen im Chat beantworten, aber nur mit dem, was in den FAQ des Shops steht. Dafür bekommt er ein Werkzeug, mit dem er in den FAQ nachschlägt. Dieses Vorgehen heißt RAG (Retrieval-Augmented Generation): Das Modell antwortet mit Hilfe von Textstellen, die vorher gefunden wurden.</p>
+<p>Der Kundenservice beantwortet immer wieder dieselben Fragen zu Lieferung, Rücksendung und Zahlung. Ein Agent soll diese Fragen im Chat beantworten und sich dabei auf die FAQ des Shops stützen.</p>
+<p>Dafür bekommt er ein Werkzeug, mit dem er in den FAQ nachschlägt. Dieses Vorgehen heißt RAG (Retrieval-Augmented Generation): Das Modell antwortet mit Hilfe von Textstellen, die vorher gefunden wurden.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/beispiele/b5-canvas.svg" class="img-fluid figure-img"></p>
@@ -380,7 +381,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="teil-1-wissen-speichern" class="level2" data-number="18.3">
 <h2 data-number="18.3" class="anchored" data-anchor-id="teil-1-wissen-speichern"><span class="header-section-number">18.3</span> Teil 1: Wissen speichern</h2>
-<p><strong>FAQ speichern</strong> legt die Abschnitte im Simple Vector Store unter dem Schlüssel <code>shop_faq</code> ab; Clear Store leert ihn vorher, damit nichts doppelt gespeichert wird. Der Data Loader nimmt den FAQ-Text, der Text Splitter teilt ihn in Abschnitte von höchstens 300 Zeichen. Kleine Abschnitte machen die Suche genauer.</p>
+<p>Der erste Teil des Workflows legt die FAQ im Speicher ab:</p>
+<ul>
+<li><strong>FAQ speichern</strong> legt die Abschnitte im Simple Vector Store unter dem Schlüssel <code>shop_faq</code> ab. Clear Store leert ihn vorher, damit nichts doppelt gespeichert wird.</li>
+<li>Der Data Loader nimmt den FAQ-Text.</li>
+<li>Der Text Splitter teilt ihn in Abschnitte von höchstens 300 Zeichen. Kleine Abschnitte machen die Suche genauer.</li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/beispiele/b5-speichern.svg" class="img-fluid figure-img"></p>
@@ -396,7 +402,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="teil-2-agent-und-werkzeug" class="level2" data-number="18.4">
 <h2 data-number="18.4" class="anchored" data-anchor-id="teil-2-agent-und-werkzeug"><span class="header-section-number">18.4</span> Teil 2: Agent und Werkzeug</h2>
-<p><strong>FAQ durchsuchen</strong> ist derselbe Speicher, diesmal als Werkzeug für den Agenten. Die Beschreibung sagt dem Agenten, wofür das Werkzeug taugt; Limit 3 liefert die drei passendsten Abschnitte. Die System Message des <strong>FAQ-Agent</strong> legt fest, dass er nur mit Informationen aus dem Werkzeug antwortet und offen sagt, wenn die FAQ nichts enthalten. So gibt er im Namen des Shops keine erfundenen Zusagen.</p>
+<p>Der zweite Teil beantwortet die Fragen im Chat:</p>
+<ul>
+<li><strong>FAQ durchsuchen</strong> ist derselbe Speicher, diesmal als Werkzeug für den Agenten. Die Beschreibung sagt dem Agenten, wofür das Werkzeug taugt. Limit 3 liefert die drei passendsten Abschnitte.</li>
+<li>Die System Message des <strong>FAQ-Agent</strong> legt fest, dass er nur mit Informationen aus dem Werkzeug antwortet und offen sagt, wenn die FAQ nichts enthalten.</li>
+</ul>
+<p>Diese Anweisung senkt das Risiko, dass der Agent im Namen des Shops erfundene Zusagen macht. Die Frage nach Ratenzahlung im Prüfschritt zeigt, ob er sich daran hält.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/beispiele/b5-tool.svg" class="img-fluid figure-img"></p>

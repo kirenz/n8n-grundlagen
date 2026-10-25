@@ -359,7 +359,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Das Starterpaket fasst die Arbeitsumgebung aus dem Buch „Produktiv mit einem Agenten arbeiten“ in einem Ordner zusammen: Regeln, Übersicht, Ordnerstruktur, zwei Skills und eine Checkliste, mit der sich prüfen lässt, ob alles zusammenspielt. Es ist die Onboarding-Mappe für das nächste Projekt: Der Agent findet darin vom ersten Tag an Hausordnung, Ablage und Arbeitsanweisungen. Einen Download gibt es nicht. Der Agent legt den Ordner mit einem einzigen Auftrag selbst an, und genau das ist schon der erste Test der Arbeitsumgebung. Wir legen das Paket mit dem eigenen Agenten an und prüfen es Schritt für Schritt. Die Erklärung folgt jeweils am eigenen Ergebnis.</p>
+<p>Das Starterpaket fasst die Arbeitsumgebung aus dem Buch „Produktiv mit einem Agenten arbeiten“ in einem Ordner zusammen. Es enthält Regeln, eine Übersicht, die Ordnerstruktur, zwei Skills und eine Checkliste, mit der sich prüfen lässt, ob alles zusammenspielt.</p>
+<p>Das Paket dient als Onboarding-Mappe (Einarbeitungsunterlage) für das nächste Projekt. Der Agent findet darin vom ersten Tag an Hausordnung, Ablage und Arbeitsanweisungen.</p>
+<p>Einen Download gibt es nicht. Der Agent legt den Ordner mit einem einzigen Auftrag selbst an, und dieser Auftrag ist bereits der erste Test der Arbeitsumgebung. Danach prüfen wir das Paket Schritt für Schritt. Die Erklärung folgt jeweils am eigenen Ergebnis.</p>
 <p>Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren oder eine Prüfung, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.</p>
 <section id="schritt-1-gesamtauftrag-senden" class="level2" data-number="21.1">
 <h2 data-number="21.1" class="anchored" data-anchor-id="schritt-1-gesamtauftrag-senden"><span class="header-section-number">21.1</span> Schritt 1: Gesamtauftrag senden</h2>
@@ -589,7 +591,7 @@ description: Verwenden, wenn ein Wochenbericht zu den Anfragen in anfragen/ erst
 </section>
 <section id="was-gerade-passiert-ist" class="level3" data-number="21.1.2">
 <h3 data-number="21.1.2" class="anchored" data-anchor-id="was-gerade-passiert-ist"><span class="header-section-number">21.1.2</span> Was gerade passiert ist</h3>
-<p>Der Agent hat aus einem Auftrag zehn Ordner und sieben Dateien gemacht. Dabei hat er die <strong>Platzhalter</strong> im Vorlagentext gefüllt: <code>[ZWECK]</code> wird zu unserem Satz, <code>JJJJ-MM-TT</code> in <code>UEBERSICHT.md</code> zum heutigen Datum. In den beiden <code>SKILL.md</code> bleibt <code>JJJJ-MM-TT</code> stehen; dort setzt der Agent beim Ausführen des Skills das passende Datum ein. Leere Ordner enthalten eine leere Datei <strong>.gitkeep</strong>. Manche Programme und Ablagen entfernen leere Ordner beim Kopieren; die Datei hält den Ordner fest.</p>
+<p>Der Agent hat aus einem Auftrag zehn Ordner und sieben Dateien gemacht. Dabei hat er die <strong>Platzhalter</strong> im Vorlagentext gefüllt: <code>[ZWECK]</code> wird zu unserem Satz, <code>JJJJ-MM-TT</code> in <code>UEBERSICHT.md</code> zum heutigen Datum. In den beiden <code>SKILL.md</code> bleibt <code>JJJJ-MM-TT</code> stehen; dort setzt der Agent beim Ausführen des Skills das passende Datum ein. Leere Ordner enthalten eine leere Datei <strong>.gitkeep</strong>. Manche Programme und Ablagen entfernen leere Ordner beim Kopieren. Die Datei sorgt dafür, dass der Ordner erhalten bleibt.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/starterpaket-platzhalter.svg" class="img-fluid figure-img" alt="Drei Platzhalter mit Pfeil zu ihrem Ergebnis. [ZWECK] in README.md und AGENTS.md wird der Satz zum Zweck des Projekts. JJJJ-MM-TT in UEBERSICHT.md wird das heutige Datum. JJJJ-MM-TT in beiden SKILL.md bleibt stehen, das Datum folgt beim Ausführen; diese Zeile ist gelb hervorgehoben. Unten: .gitkeep ist eine leere Datei, die einen leeren Ordner festhält."></p>
@@ -926,14 +928,21 @@ description: Verwenden, wenn ein Wochenbericht zu den Anfragen in anfragen/ erst
 </section>
 <section id="was-gerade-passiert-ist-2" class="level3" data-number="21.3.2">
 <h3 data-number="21.3.2" class="anchored" data-anchor-id="was-gerade-passiert-ist-2"><span class="header-section-number">21.3.2</span> Was gerade passiert ist</h3>
-<p>Der Agent hat den ersten Auftrag aus der README gelesen, seinen eigenen <strong>Ort für Skills</strong> genannt und beide Skills dorthin verschoben. Jedes Werkzeug sucht Skills an einem anderen Ort. Darum liegen sie im Paket zuerst in <code>skills/</code> in der Wurzel des Ordners, und das Paket funktioniert mit jedem Agenten. Nennt der eigene Agent einen anderen Ort als <code>.agents/skills/</code>, ist das richtig, solange er die Skills danach findet. Liest der Agent die AGENTS.md nicht automatisch, legt er im selben Schritt seine eigene Anweisungsdatei mit einem Verweis auf die AGENTS.md an.</p>
+<p>Der Agent hat den ersten Auftrag aus der README gelesen, seinen eigenen <strong>Ort für Skills</strong> genannt und beide Skills dorthin verschoben.</p>
+<p>Erläuterung:</p>
+<ul>
+<li>Jedes Werkzeug sucht Skills an einem anderen Ort. Darum liegen sie im Paket zuerst in <code>skills/</code> in der Wurzel des Ordners. So funktioniert das Paket mit jedem Agenten.</li>
+<li>Nennt der eigene Agent einen anderen Ort als <code>.agents/skills/</code>, ist das richtig, solange er die Skills danach findet.</li>
+<li>Liest der Agent die AGENTS.md nicht automatisch, legt er im selben Schritt seine eigene Anweisungsdatei mit einem Verweis auf die AGENTS.md an.</li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/starterpaket-skills-umzug.svg" class="img-fluid figure-img" alt="Links das Paket mit dem Ordner skills und den Skills eingang-einsortieren und wochenbericht, gleich für jedes Werkzeug. Ein blauer Pfeil, beschriftet erster Auftrag aus README.md, führt nach rechts zum Ort, den der Agent nennt, Beispiel .agents/skills, mit denselben zwei Skills; je Werkzeug ist es ein anderer Ort. Darunter gestrichelt: eigene Anweisungsdatei mit Verweis, nur wenn der Agent AGENTS.md nicht von selbst liest. Unten: Zu Beginn kennt der Agent nur Name und Beschreibung, die Schritte holt er bei Bedarf."></p>
 <figcaption>Im Paket liegen die Skills für jedes Werkzeug gleich. Der erste Auftrag bringt sie an den Ort, den der eigene Agent nennt.</figcaption>
 </figure>
 </div>
-<p>Der zweite Skill, <strong>wochenbericht</strong>, ist neu. Er zählt die Anfragen der letzten sieben Tage je Anliegen, sucht Anfragen ohne Antwortentwurf und legt den Bericht als Entwurf in <code>antworten/</code> ab. Er zeigt, dass ein Projektordner mehrere Skills nebeneinander tragen kann. Der Agent kennt zu Beginn nur Name und Beschreibung beider Skills und holt die Schritte erst, wenn ein Auftrag dazu passt. <code>eingang-einsortieren</code> kennen wir aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/skills.html">Skills: Abläufe, die bleiben</a>.</p>
+<p>Der zweite Skill, <strong>wochenbericht</strong>, ist neu. Er zählt die Anfragen der letzten sieben Tage je Anliegen, sucht Anfragen ohne Antwortentwurf und legt den Bericht als Entwurf in <code>antworten/</code> ab. Damit enthält der Projektordner zwei Skills nebeneinander.</p>
+<p>Der Agent kennt zu Beginn nur Name und Beschreibung beider Skills. Die Schritte liest er erst, wenn ein Auftrag dazu passt. <code>eingang-einsortieren</code> kennen wir aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel <a href="https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/skills.html">Skills: Abläufe, die bleiben</a>.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Wenn es anders aussieht">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1077,7 +1086,9 @@ description: Verwenden, wenn ein Wochenbericht zu den Anfragen in anfragen/ erst
 </section>
 <section id="was-gerade-passiert-ist-3" class="level3" data-number="21.4.2">
 <h3 data-number="21.4.2" class="anchored" data-anchor-id="was-gerade-passiert-ist-3"><span class="header-section-number">21.4.2</span> Was gerade passiert ist</h3>
-<p>Zehn Aufträge, zehn Kriterien: Die Checkliste prüft in einem Durchgang, was im Buch „Produktiv mit einem Agenten arbeiten“ eingerichtet wurde. Dazu gehören die Anweisungsdatei, die Regeln, die Rückfrage, die Übersicht, beide Skills, der Schutz vor eingeschleusten Anweisungen und die aktiven Anbindungen. Punkt 3, 7 und 9 prüfen Verhalten: Der Agent soll fragen, einen Plan zeigen oder eine fremde Anweisung melden. Eine Regel in AGENTS.md macht dieses Verhalten wahrscheinlicher. Ob es eintritt, zeigt erst der Test. Die Checkliste ist kurz genug, um sie bei jedem neuen Vorhaben und bei jedem Wechsel des Agenten zu wiederholen.</p>
+<p>Die Checkliste prüft in einem Durchgang, was im Buch „Produktiv mit einem Agenten arbeiten“ eingerichtet wurde. Dazu gehören die Anweisungsdatei, die Regeln, die Rückfrage, die Übersicht, beide Skills, der Schutz vor eingeschleusten Anweisungen und die aktiven Anbindungen.</p>
+<p>Punkt 3, 7 und 9 prüfen Verhalten: Der Agent soll fragen, einen Plan zeigen oder eine fremde Anweisung melden. Eine Regel in AGENTS.md macht dieses Verhalten wahrscheinlicher. Ob es eintritt, zeigt erst der Test.</p>
+<p>Die Checkliste ist kurz genug, um sie bei jedem neuen Vorhaben und bei jedem Wechsel des Agenten zu wiederholen.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/starterpaket-pruefarten.svg" class="img-fluid figure-img" alt="Die zehn Prüfpunkte der Checkliste in drei Spalten. Auskunft, Punkte 1, 2, 4, 5, 6 und 10: Die Antwort zeigt, ob der Agent die Dateien kennt. Datei entsteht, Punkt 8: Ein Entwurf liegt danach in antworten. Verhalten, gelb hervorgehoben, Punkte 3, 7 und 9: Eine Regel macht das Verhalten wahrscheinlicher, ob es eintritt, zeigt erst der Test. Unten: Die Checkliste lohnt sich bei jedem neuen Vorhaben und bei jedem Wechsel des Agenten."></p>
@@ -1142,7 +1153,7 @@ description: Verwenden, wenn ein Wochenbericht zu den Anfragen in anfragen/ erst
 </section>
 <section id="für-ein-neues-vorhaben-anpassen" class="level2" data-number="21.5">
 <h2 data-number="21.5" class="anchored" data-anchor-id="für-ein-neues-vorhaben-anpassen"><span class="header-section-number">21.5</span> Für ein neues Vorhaben anpassen</h2>
-<p>Der Ordner <code>neues-projekt</code> ist jetzt eine geprüfte Onboarding-Mappe. Für ein neues Vorhaben kopieren wir ihn und passen drei Dinge an:</p>
+<p>Der Ordner <code>neues-projekt</code> ist jetzt eine geprüfte Vorlage. Für ein neues Vorhaben kopieren wir ihn und passen drei Dinge an:</p>
 <ol type="1">
 <li><strong>Den Zweck</strong> in <code>README.md</code> und im ersten Teil der <code>AGENTS.md</code>.</li>
 <li><strong>Regel 2 und 3</strong>: welche Quellen gelten und welche Daten nicht in Dateien gehören. Für ein Vorhaben mit Lieferantendaten gelten andere Grenzen als für Kundenanfragen.</li>

@@ -345,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Die Abrechnungslogik unterscheidet sich zwischen n8n und den klassischen iPaaS-Anbietern grundlegend. Der Begriff iPaaS (Integration Platform as a Service) bezeichnet Cloud-Plattformen, die Anwendungen, Daten und Prozesse miteinander verbinden, ohne dass eine eigene Integrationssoftware betrieben werden muss. Zapier und Make sind die bekanntesten Vertreter dieser Kategorie.</p>
-<p>Die zentrale Achse des Vergleichs ist die Abrechnungseinheit: Klassische Anbieter rechnen pro Task ab, n8n pro Workflow-Execution. Diese Logik beeinflusst, wie Workflows zugeschnitten werden.</p>
+<p>Der wichtigste Unterschied liegt in der Abrechnungseinheit: Klassische Anbieter rechnen pro Task (einzelner Schritt) ab, n8n pro Workflow-Execution (vollständiger Durchlauf). Diese Logik beeinflusst, wie Workflows zugeschnitten werden.</p>
 <section id="überblick" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="überblick"><span class="header-section-number">2.1</span> Überblick</h2>
 <table class="caption-top table">
@@ -430,7 +430,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Die Abrechnungslogik formt das Workflow-Design. Bei Per-Task-Abrechnung lohnt es sich, Schritte zu konsolidieren. Bei Per-Execution-Abrechnung spielt die Anzahl der Schritte für die Kosten keine Rolle. Welches Modell besser passt, hängt vom Einsatzprofil ab.</p>
+<p>Die Abrechnungslogik formt das Workflow-Design. Bei Per-Task-Abrechnung lohnt es sich, Schritte zusammenzufassen. Bei Per-Execution-Abrechnung spielt die Anzahl der Schritte für die Kosten keine Rolle. Welches Modell besser passt, hängt vom Einsatzprofil ab.</p>
 </div>
 </div>
 </section>
@@ -450,7 +450,8 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>100 Durchläufe im Monat: Verbrauch im Verhältnis zum Einstiegstarif bei 5 und bei 50 Schritten.</figcaption>
 </figure>
 </div>
-<p>Die Zahlen sind volatil, denn alle genannten Anbieter passen Tarife regelmäßig an. Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab: Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben; bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.</p>
+<p>Die Zahlen ändern sich, denn alle genannten Anbieter passen ihre Tarife regelmäßig an.</p>
+<p>Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab. Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben. Bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.</p>
 </section>
 <section id="vergleich-auf-einen-blick" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="vergleich-auf-einen-blick"><span class="header-section-number">2.4</span> Vergleich auf einen Blick</h2>
@@ -508,8 +509,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="wirtschaftliche-einordnung" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="wirtschaftliche-einordnung"><span class="header-section-number">2.5</span> Wirtschaftliche Einordnung</h2>
-<p>Praxis-Berichte aus dem Mittelstand nennen pro Use-Case Einsparungen zwischen fünf und zwanzig Stunden Wochenarbeitszeit, etwa für Lead-Qualifikation, Customer-Support-Routing, Reporting oder Invoice-Automation. Die Zahlen sind keine Versprechen, sondern Größenordnungen aus aktuellen Erfahrungsberichten.</p>
-<p>Sie ordnen die Pricing-Frage in einen Gesamt-Kontext ein: Lizenzkosten sind nur ein Teil der Wirtschaftlichkeitsrechnung. Hinzu kommen Aufwand für Einarbeitung, Workflow-Pflege und die Integration in bestehende Prozesse.</p>
+<p>Praxis-Berichte aus dem Mittelstand nennen pro Use-Case Einsparungen zwischen fünf und zwanzig Stunden Wochenarbeitszeit. Beispiele sind Lead-Qualifikation (Bewertung neuer Interessenten), Customer-Support-Routing (Weiterleitung von Anfragen an die zuständige Stelle), Reporting oder Rechnungsverarbeitung. Die Zahlen stammen aus aktuellen Erfahrungsberichten und geben nur Größenordnungen an.</p>
+<p>Lizenzkosten sind nur ein Teil der Wirtschaftlichkeitsrechnung. Hinzu kommt Aufwand für Einarbeitung, Workflow-Pflege und die Integration in bestehende Prozesse.</p>
 </section>
 <section id="auswahl-kriterien" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="auswahl-kriterien"><span class="header-section-number">2.6</span> Auswahl-Kriterien</h2>
