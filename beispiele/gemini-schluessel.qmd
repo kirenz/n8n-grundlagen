@@ -1,12 +1,16 @@
 # Gemini-Schlüssel einrichten
 
-Beispiel 4 und 5 nutzen ein KI-Modell von Google. Dafür braucht n8n einen API-Schlüssel: eine lange Zeichenfolge, mit der sich n8n bei Google ausweist, ähnlich wie ein Passwort. Wir erzeugen ihn einmal kostenlos in Google AI Studio und hinterlegen ihn als Credential in n8n. Beide Beispiele nutzen danach dasselbe Credential.
+Beispiel 4 und 5 nutzen ein KI-Modell von Google. Dafür braucht n8n einen API-Schlüssel. Das ist eine lange Zeichenfolge, mit der sich n8n bei Google ausweist, ähnlich wie ein Passwort.
+
+Wir erzeugen ihn einmal kostenlos in Google AI Studio und hinterlegen ihn als Credential in n8n. Beide Beispiele nutzen danach dasselbe Credential.
 
 ![Vom Gemini-Schlüssel zum Workflow in vier Schritten.](../images/erste-workflows/cred-schluessel-weg.svg)
 
-## Was Google AI Studio ist
+## Google AI Studio
 
-AI Studio ist eine Webseite von Google, auf der sich die Gemini-Modelle ausprobieren lassen und auf der Schlüssel für die Nutzung in anderen Programmen entstehen. Ein Google-Konto genügt, eine Kreditkarte ist nicht nötig. Die Nutzung ist bis zu einer bestimmten Zahl von Anfragen pro Minute und Tag kostenlos; für die Beispiele reicht das. Wird die Grenze erreicht, meldet n8n einen Fehler, und nach kurzer Wartezeit geht es weiter.
+AI Studio ist eine Webseite von Google. Dort lassen sich die Gemini-Modelle ausprobieren und Schlüssel für die Nutzung in anderen Programmen erzeugen. Ein Google-Konto genügt, eine Kreditkarte ist nicht nötig.
+
+Die Nutzung ist bis zu einer bestimmten Zahl von Anfragen pro Minute und Tag kostenlos. Für die Beispiele reicht das. Wird die Grenze erreicht, meldet n8n einen Fehler. Nach kurzer Wartezeit lassen sich wieder Anfragen senden.
 
 ## Schlüssel erzeugen
 

@@ -1,6 +1,8 @@
 # Beispiel 5: FAQ-Agent mit RAG
 
-Der Kundenservice beantwortet immer wieder dieselben Fragen zu Lieferung, Rücksendung und Zahlung. Ein Agent soll diese Fragen im Chat beantworten, aber nur mit dem, was in den FAQ des Shops steht. Dafür bekommt er ein Werkzeug, mit dem er in den FAQ nachschlägt. Dieses Vorgehen heißt RAG (Retrieval-Augmented Generation): Das Modell antwortet mit Hilfe von Textstellen, die vorher gefunden wurden.
+Der Kundenservice beantwortet immer wieder dieselben Fragen zu Lieferung, Rücksendung und Zahlung. Ein Agent soll diese Fragen im Chat beantworten und sich dabei auf die FAQ des Shops stützen.
+
+Dafür bekommt er ein Werkzeug, mit dem er in den FAQ nachschlägt. Dieses Vorgehen heißt RAG (Retrieval-Augmented Generation): Das Modell antwortet mit Hilfe von Textstellen, die vorher gefunden wurden.
 
 ![Workflow in zwei Teilen: Wissen speichern und Frage beantworten (Darstellung).](../images/beispiele/b5-canvas.svg)
 
@@ -31,7 +33,11 @@ Der Simple Vector Store hält die FAQ nur im Arbeitsspeicher. Nach einem Neustar
 
 ## Teil 1: Wissen speichern
 
-**FAQ speichern** legt die Abschnitte im Simple Vector Store unter dem Schlüssel `shop_faq` ab; Clear Store leert ihn vorher, damit nichts doppelt gespeichert wird. Der Data Loader nimmt den FAQ-Text, der Text Splitter teilt ihn in Abschnitte von höchstens 300 Zeichen. Kleine Abschnitte machen die Suche genauer.
+Der erste Teil des Workflows legt die FAQ im Speicher ab:
+
+- **FAQ speichern** legt die Abschnitte im Simple Vector Store unter dem Schlüssel `shop_faq` ab. Clear Store leert ihn vorher, damit nichts doppelt gespeichert wird.
+- Der Data Loader nimmt den FAQ-Text.
+- Der Text Splitter teilt ihn in Abschnitte von höchstens 300 Zeichen. Kleine Abschnitte machen die Suche genauer.
 
 ![FAQ speichern (Darstellung).](../images/beispiele/b5-speichern.svg)
 
@@ -39,7 +45,12 @@ Der Simple Vector Store hält die FAQ nur im Arbeitsspeicher. Nach einem Neustar
 
 ## Teil 2: Agent und Werkzeug
 
-**FAQ durchsuchen** ist derselbe Speicher, diesmal als Werkzeug für den Agenten. Die Beschreibung sagt dem Agenten, wofür das Werkzeug taugt; Limit 3 liefert die drei passendsten Abschnitte. Die System Message des **FAQ-Agent** legt fest, dass er nur mit Informationen aus dem Werkzeug antwortet und offen sagt, wenn die FAQ nichts enthalten. So gibt er im Namen des Shops keine erfundenen Zusagen.
+Der zweite Teil beantwortet die Fragen im Chat:
+
+- **FAQ durchsuchen** ist derselbe Speicher, diesmal als Werkzeug für den Agenten. Die Beschreibung sagt dem Agenten, wofür das Werkzeug taugt. Limit 3 liefert die drei passendsten Abschnitte.
+- Die System Message des **FAQ-Agent** legt fest, dass er nur mit Informationen aus dem Werkzeug antwortet und offen sagt, wenn die FAQ nichts enthalten.
+
+Diese Anweisung senkt das Risiko, dass der Agent im Namen des Shops erfundene Zusagen macht. Die Frage nach Ratenzahlung im Prüfschritt zeigt, ob er sich daran hält.
 
 ![FAQ durchsuchen (Darstellung).](../images/beispiele/b5-tool.svg)
 

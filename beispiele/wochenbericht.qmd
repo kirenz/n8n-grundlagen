@@ -16,7 +16,13 @@ Datei: [beispiel-3-wochenbericht.json](../workflows/beispiele/beispiel-3-wochenb
 
 ## Die Knoten
 
-Der **Schedule Trigger** startet den Workflow nach Zeitplan, hier jeden Montag um 8 Uhr, sobald der Workflow aktiv ist. Der zweite Auslöser **Zum Testen starten** erlaubt einen Lauf per Klick. **Anfragen lesen** holt mit *Get row(s)* alle Zeilen, **Nach Status zählen** (Summarize) zählt sie je Wert im Feld `status`, **Berichtszeile** formuliert daraus je Status einen Satz.
+Der Workflow besteht aus fünf Knoten:
+
+- Der **Schedule Trigger** startet den Workflow nach Zeitplan, hier jeden Montag um 8 Uhr, sobald der Workflow aktiv ist.
+- Der zweite Auslöser **Zum Testen starten** erlaubt einen Lauf per Klick.
+- **Anfragen lesen** holt mit *Get row(s)* alle Zeilen.
+- **Nach Status zählen** (Summarize) zählt die Zeilen je Wert im Feld `status`.
+- **Berichtszeile** formuliert daraus je Status einen Satz.
 
 ![Schedule Trigger (Darstellung).](../images/beispiele/b3-schedule.svg)
 

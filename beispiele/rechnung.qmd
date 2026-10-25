@@ -1,6 +1,8 @@
 # Beispiel 2: Rechnung freigeben
 
-Eingangsrechnungen bis 1.000 Euro gibt das Team ohne Rückfrage frei. Darüber entscheidet eine Person. Der Workflow erfasst die Rechnung, prüft den Betrag und hält bei großen Beträgen an, bis jemand im Freigabe-Formular entscheidet. Das ist die Benutzeraufgabe aus dem BPMN-Teil, umgesetzt mit dem Wait-Knoten.
+Eingangsrechnungen bis 1.000 Euro gibt das Team ohne Rückfrage frei. Darüber entscheidet eine Person.
+
+Der Workflow erfasst die Rechnung, prüft den Betrag und hält bei großen Beträgen an, bis jemand im Freigabe-Formular entscheidet. Das ist die Benutzeraufgabe aus dem BPMN-Teil, umgesetzt mit dem Wait-Knoten.
 
 ![Workflow: Rechnung erfassen, Betrag über 1.000 €?, Freigabe einholen, Entscheidung festhalten bzw. Automatisch freigeben (Darstellung).](../images/beispiele/b2-canvas.svg)
 
