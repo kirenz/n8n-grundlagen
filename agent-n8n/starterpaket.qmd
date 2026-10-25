@@ -1,6 +1,10 @@
 # Starterpaket
 
-Das Starterpaket fasst die Arbeitsumgebung aus dem Buch „Produktiv mit einem Agenten arbeiten“ in einem Ordner zusammen: Regeln, Übersicht, Ordnerstruktur, zwei Skills und eine Checkliste, mit der sich prüfen lässt, ob alles zusammenspielt. Es ist die Onboarding-Mappe für das nächste Projekt: Der Agent findet darin vom ersten Tag an Hausordnung, Ablage und Arbeitsanweisungen. Einen Download gibt es nicht. Der Agent legt den Ordner mit einem einzigen Auftrag selbst an, und genau das ist schon der erste Test der Arbeitsumgebung. Wir legen das Paket mit dem eigenen Agenten an und prüfen es Schritt für Schritt. Die Erklärung folgt jeweils am eigenen Ergebnis.
+Das Starterpaket fasst die Arbeitsumgebung aus dem Buch „Produktiv mit einem Agenten arbeiten“ in einem Ordner zusammen. Es enthält Regeln, eine Übersicht, die Ordnerstruktur, zwei Skills und eine Checkliste, mit der sich prüfen lässt, ob alles zusammenspielt.
+
+Das Paket dient als Onboarding-Mappe (Einarbeitungsunterlage) für das nächste Projekt. Der Agent findet darin vom ersten Tag an Hausordnung, Ablage und Arbeitsanweisungen.
+
+Einen Download gibt es nicht. Der Agent legt den Ordner mit einem einzigen Auftrag selbst an, und dieser Auftrag ist bereits der erste Test der Arbeitsumgebung. Danach prüfen wir das Paket Schritt für Schritt. Die Erklärung folgt jeweils am eigenen Ergebnis.
 
 Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren oder eine Prüfung, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.
 
@@ -243,7 +247,7 @@ Der Auftrag ist lang, weil er die Texte aller sieben Dateien enthält. Wir kopie
 
 ### Was gerade passiert ist
 
-Der Agent hat aus einem Auftrag zehn Ordner und sieben Dateien gemacht. Dabei hat er die **Platzhalter** im Vorlagentext gefüllt: `[ZWECK]` wird zu unserem Satz, `JJJJ-MM-TT` in `UEBERSICHT.md` zum heutigen Datum. In den beiden `SKILL.md` bleibt `JJJJ-MM-TT` stehen; dort setzt der Agent beim Ausführen des Skills das passende Datum ein. Leere Ordner enthalten eine leere Datei **.gitkeep**. Manche Programme und Ablagen entfernen leere Ordner beim Kopieren; die Datei hält den Ordner fest.
+Der Agent hat aus einem Auftrag zehn Ordner und sieben Dateien gemacht. Dabei hat er die **Platzhalter** im Vorlagentext gefüllt: `[ZWECK]` wird zu unserem Satz, `JJJJ-MM-TT` in `UEBERSICHT.md` zum heutigen Datum. In den beiden `SKILL.md` bleibt `JJJJ-MM-TT` stehen; dort setzt der Agent beim Ausführen des Skills das passende Datum ein. Leere Ordner enthalten eine leere Datei **.gitkeep**. Manche Programme und Ablagen entfernen leere Ordner beim Kopieren. Die Datei sorgt dafür, dass der Ordner erhalten bleibt.
 
 ![Drei Platzhalter: Zweck und Datum füllt der Agent sofort, das Datum in den Skills erst beim Ausführen.](images/starterpaket-platzhalter.svg){fig-alt="Drei Platzhalter mit Pfeil zu ihrem Ergebnis. [ZWECK] in README.md und AGENTS.md wird der Satz zum Zweck des Projekts. JJJJ-MM-TT in UEBERSICHT.md wird das heutige Datum. JJJJ-MM-TT in beiden SKILL.md bleibt stehen, das Datum folgt beim Ausführen; diese Zeile ist gelb hervorgehoben. Unten: .gitkeep ist eine leere Datei, die einen leeren Ordner festhält."}
 
@@ -485,11 +489,19 @@ Die README enthält die ersten Aufträge in Du-Form, so wie wir sie sonst selbst
 
 ### Was gerade passiert ist
 
-Der Agent hat den ersten Auftrag aus der README gelesen, seinen eigenen **Ort für Skills** genannt und beide Skills dorthin verschoben. Jedes Werkzeug sucht Skills an einem anderen Ort. Darum liegen sie im Paket zuerst in `skills/` in der Wurzel des Ordners, und das Paket funktioniert mit jedem Agenten. Nennt der eigene Agent einen anderen Ort als `.agents/skills/`, ist das richtig, solange er die Skills danach findet. Liest der Agent die AGENTS.md nicht automatisch, legt er im selben Schritt seine eigene Anweisungsdatei mit einem Verweis auf die AGENTS.md an.
+Der Agent hat den ersten Auftrag aus der README gelesen, seinen eigenen **Ort für Skills** genannt und beide Skills dorthin verschoben.
+
+Erläuterung:
+
+- Jedes Werkzeug sucht Skills an einem anderen Ort. Darum liegen sie im Paket zuerst in `skills/` in der Wurzel des Ordners. So funktioniert das Paket mit jedem Agenten.
+- Nennt der eigene Agent einen anderen Ort als `.agents/skills/`, ist das richtig, solange er die Skills danach findet.
+- Liest der Agent die AGENTS.md nicht automatisch, legt er im selben Schritt seine eigene Anweisungsdatei mit einem Verweis auf die AGENTS.md an.
 
 ![Im Paket liegen die Skills für jedes Werkzeug gleich. Der erste Auftrag bringt sie an den Ort, den der eigene Agent nennt.](images/starterpaket-skills-umzug.svg){fig-alt="Links das Paket mit dem Ordner skills und den Skills eingang-einsortieren und wochenbericht, gleich für jedes Werkzeug. Ein blauer Pfeil, beschriftet erster Auftrag aus README.md, führt nach rechts zum Ort, den der Agent nennt, Beispiel .agents/skills, mit denselben zwei Skills; je Werkzeug ist es ein anderer Ort. Darunter gestrichelt: eigene Anweisungsdatei mit Verweis, nur wenn der Agent AGENTS.md nicht von selbst liest. Unten: Zu Beginn kennt der Agent nur Name und Beschreibung, die Schritte holt er bei Bedarf."}
 
-Der zweite Skill, **wochenbericht**, ist neu. Er zählt die Anfragen der letzten sieben Tage je Anliegen, sucht Anfragen ohne Antwortentwurf und legt den Bericht als Entwurf in `antworten/` ab. Er zeigt, dass ein Projektordner mehrere Skills nebeneinander tragen kann. Der Agent kennt zu Beginn nur Name und Beschreibung beider Skills und holt die Schritte erst, wenn ein Auftrag dazu passt. `eingang-einsortieren` kennen wir aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel [Skills: Abläufe, die bleiben](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/skills.html).
+Der zweite Skill, **wochenbericht**, ist neu. Er zählt die Anfragen der letzten sieben Tage je Anliegen, sucht Anfragen ohne Antwortentwurf und legt den Bericht als Entwurf in `antworten/` ab. Damit enthält der Projektordner zwei Skills nebeneinander.
+
+Der Agent kennt zu Beginn nur Name und Beschreibung beider Skills. Die Schritte liest er erst, wenn ein Auftrag dazu passt. `eingang-einsortieren` kennen wir aus dem Buch „Produktiv mit einem Agenten arbeiten“, Kapitel [Skills: Abläufe, die bleiben](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/skills.html).
 
 ::: {.callout-note title="Wenn es anders aussieht"}
 - Die Antwort in Schritt 10 nennt die Skills nicht: den Pfad mit dem Skills-Ordner des eigenen Werkzeugs vergleichen, im Buch „Produktiv mit einem Agenten arbeiten“, Kapitel [Skills: Abläufe, die bleiben](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/skills.html).
@@ -577,7 +589,11 @@ Die `CHECKLISTE.md` enthält zehn Prüfpunkte. Jeder Punkt besteht aus einem Auf
 
 ### Was gerade passiert ist
 
-Zehn Aufträge, zehn Kriterien: Die Checkliste prüft in einem Durchgang, was im Buch „Produktiv mit einem Agenten arbeiten“ eingerichtet wurde. Dazu gehören die Anweisungsdatei, die Regeln, die Rückfrage, die Übersicht, beide Skills, der Schutz vor eingeschleusten Anweisungen und die aktiven Anbindungen. Punkt 3, 7 und 9 prüfen Verhalten: Der Agent soll fragen, einen Plan zeigen oder eine fremde Anweisung melden. Eine Regel in AGENTS.md macht dieses Verhalten wahrscheinlicher. Ob es eintritt, zeigt erst der Test. Die Checkliste ist kurz genug, um sie bei jedem neuen Vorhaben und bei jedem Wechsel des Agenten zu wiederholen.
+Die Checkliste prüft in einem Durchgang, was im Buch „Produktiv mit einem Agenten arbeiten“ eingerichtet wurde. Dazu gehören die Anweisungsdatei, die Regeln, die Rückfrage, die Übersicht, beide Skills, der Schutz vor eingeschleusten Anweisungen und die aktiven Anbindungen.
+
+Punkt 3, 7 und 9 prüfen Verhalten: Der Agent soll fragen, einen Plan zeigen oder eine fremde Anweisung melden. Eine Regel in AGENTS.md macht dieses Verhalten wahrscheinlicher. Ob es eintritt, zeigt erst der Test.
+
+Die Checkliste ist kurz genug, um sie bei jedem neuen Vorhaben und bei jedem Wechsel des Agenten zu wiederholen.
 
 ![Zehn Prüfpunkte, drei Arten. Verhalten zeigt erst der Test.](images/starterpaket-pruefarten.svg){fig-alt="Die zehn Prüfpunkte der Checkliste in drei Spalten. Auskunft, Punkte 1, 2, 4, 5, 6 und 10: Die Antwort zeigt, ob der Agent die Dateien kennt. Datei entsteht, Punkt 8: Ein Entwurf liegt danach in antworten. Verhalten, gelb hervorgehoben, Punkte 3, 7 und 9: Eine Regel macht das Verhalten wahrscheinlicher, ob es eintritt, zeigt erst der Test. Unten: Die Checkliste lohnt sich bei jedem neuen Vorhaben und bei jedem Wechsel des Agenten."}
 
@@ -596,7 +612,7 @@ Besteht ein Punkt nicht, hilft das passende Kapitel im Buch [Produktiv mit einem
 
 ## Für ein neues Vorhaben anpassen
 
-Der Ordner `neues-projekt` ist jetzt eine geprüfte Onboarding-Mappe. Für ein neues Vorhaben kopieren wir ihn und passen drei Dinge an:
+Der Ordner `neues-projekt` ist jetzt eine geprüfte Vorlage. Für ein neues Vorhaben kopieren wir ihn und passen drei Dinge an:
 
 1. **Den Zweck** in `README.md` und im ersten Teil der `AGENTS.md`.
 2. **Regel 2 und 3**: welche Quellen gelten und welche Daten nicht in Dateien gehören. Für ein Vorhaben mit Lieferantendaten gelten andere Grenzen als für Kundenanfragen.

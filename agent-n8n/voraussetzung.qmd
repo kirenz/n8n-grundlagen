@@ -1,6 +1,10 @@
 # Voraussetzung: Ihre Arbeitsumgebung
 
-Die nächsten zwei Kapitel arbeiten mit einem Coding-Agenten auf dem eigenen Rechner. Er liest einen n8n-Workflow als Datei, ändert ihn als Kopie und legt danach ein Starterpaket für neue Vorhaben an. Die Einrichtung des Agenten ist nicht Teil dieses Buchs. Sie steht im eigenen Buch [Produktiv mit einem Agenten arbeiten](https://kirenz.github.io/agent-arbeitsumgebung/) und im kostenlosen Kurs dazu auf der Lernplattform: [kurse.kirenz.de/courses/agent-arbeitsumgebung](https://kurse.kirenz.de/courses/agent-arbeitsumgebung). Drei Fragen an den Agenten zeigen, ob die Arbeitsumgebung bereitsteht. Wer die Prüfung besteht, macht direkt weiter.
+Die nächsten zwei Kapitel arbeiten mit einem Coding-Agenten auf dem eigenen Rechner. Er liest einen n8n-Workflow als Datei, ändert ihn als Kopie und legt danach ein Starterpaket für neue Vorhaben an.
+
+Die Einrichtung des Agenten beschreibt das eigene Buch [Produktiv mit einem Agenten arbeiten](https://kirenz.github.io/agent-arbeitsumgebung/). Dazu gibt es einen kostenlosen Kurs auf der Lernplattform: [kurse.kirenz.de/courses/agent-arbeitsumgebung](https://kurse.kirenz.de/courses/agent-arbeitsumgebung).
+
+Dieses Kapitel prüft mit drei Fragen an den Agenten, ob die Arbeitsumgebung bereitsteht. Wer die Prüfung besteht, macht direkt weiter.
 
 ## Wofür wir den Agenten in diesem Buch brauchen
 
@@ -104,9 +108,13 @@ Ergebnis: Bestehen alle drei Prüfungen, ist die Arbeitsumgebung bereit. Weiter 
 
 ### Was gerade passiert ist
 
-Drei Fragen, drei Bausteine. Jede Antwort zeigt, ob ein Kapitel des Buchs „Produktiv mit einem Agenten arbeiten“ angekommen ist.
+Jede der drei Antworten zeigt, ob ein Kapitel des Buchs „Produktiv mit einem Agenten arbeiten“ umgesetzt ist.
 
-In der **neuen Sitzung** hat der Agent den Ordner und die Regeln nicht aus dem Chatverlauf, sondern aus den Dateien im Ordner. Grundregeln und Projektregeln kamen aus `AGENTS.md`. Genau das brauchen die nächsten Kapitel: Wir geben kurze Aufträge, der Ordner liefert den Rest. Der Zusatz **„Nur antworten“** hält den Agenten davon ab, beim Prüfen etwas anzulegen oder zu ändern. Ob er sich daran hält, zeigt die Antwort. Eine Garantie ist der Zusatz nicht.
+Erläuterung:
+
+- In der **neuen Sitzung** kennt der Agent den früheren Chatverlauf nicht. Ordner und Regeln liest er aus den Dateien im Ordner, Grundregeln und Projektregeln aus `AGENTS.md`.
+- Darauf bauen die nächsten Kapitel auf: Wir geben kurze Aufträge, und der Ordner liefert den Kontext.
+- Der Zusatz **„Nur antworten“** senkt das Risiko, dass der Agent beim Prüfen etwas anlegt oder ändert. Ob er sich daran gehalten hat, prüfen wir an der Antwort.
 
 ![Die neue Sitzung kennt den Verlauf der früheren nicht. Ordner, Regeln und Skills liest der Agent aus den Dateien.](images/voraussetzung-neue-sitzung.svg){fig-alt="Beispielfall. Links eine frühere Sitzung mit durchgestrichenem Verlauf: Den kennt der Agent nicht mehr. In der Mitte der Ordner mein-projekt mit README.md, AGENTS.md und dem Skill eingang-einsortieren. Ein Pfeil führt zur neuen Sitzung rechts: Der Agent liest Ordner, Regeln und Skills aus den Dateien und beantwortet die drei Fragen ohne Hilfe aus dem Chat. Unten: Kurze Aufträge genügen, den Rest liefert der Ordner."}
 

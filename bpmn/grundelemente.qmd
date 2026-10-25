@@ -1,6 +1,8 @@
 # Grundelemente und gute Namen
 
-Ein n8n-Workflow beginnt nicht im Editor, sondern mit einer Frage: Was passiert eigentlich genau, wenn eine Kundenmail eingeht? Wer die Antwort nur im Kopf hat, baut später Knoten, verschiebt sie wieder und merkt beim Testen, dass ein Fall fehlt. Wer den Ablauf vorher zeichnet, sieht die Lücken, bevor sie Arbeit kosten. In diesem Kapitel lernen wir die Notation dafür kennen, lesen ein erstes Modell und üben, Elemente so zu benennen, dass andere das Modell ohne Erklärung verstehen.
+Dieses Kapitel stellt die Grundelemente von BPMN vor. Wir lesen ein erstes Modell und üben, Elemente so zu benennen, dass andere das Modell ohne Erklärung verstehen.
+
+Ein Workflow lässt sich leichter bauen, wenn der Ablauf vorher feststeht, etwa für den Fall, dass eine Kundenmail eingeht. Ohne Zeichnung fällt ein fehlender Fall oft erst beim Testen in n8n auf. Mit Zeichnung sehen wir die Lücke, bevor wir Knoten anlegen.
 
 ## Warum BPMN?
 
@@ -12,7 +14,7 @@ BPMN steht für Business Process Model and Notation. Drei Eigenschaften machen d
 | **Verständlich** | Eine überschaubare Grundnotation reicht für die meisten fachlichen Modelle. Details kommen nur bei Bedarf hinzu. |
 | **Ausführbar** | Prozess-Engines wie Camunda führen BPMN-Modelle direkt aus. Das Fachmodell wird damit zur Grundlage der Automatisierung. |
 
-n8n liest kein BPMN. Wir übertragen das Modell am Ende dieses Teils von Hand in Knoten. Der Gewinn liegt davor: Das Modell klärt Auslöser, Entscheidungen, Zuständigkeiten und Wartesituationen, bevor wir den ersten Knoten ziehen.
+n8n liest kein BPMN. Wir übertragen das Modell am Ende dieses Teils von Hand in Knoten. Der Nutzen entsteht vorher: Das Modell klärt Auslöser, Entscheidungen, Zuständigkeiten und Wartesituationen, bevor wir den ersten Knoten anlegen.
 
 ::: {.callout-tip title="Das Modell als Grundriss"}
 Ein BPMN-Modell ist für einen Ablauf, was ein Grundriss für eine Wohnung ist. Niemand zeichnet darin jede Steckdose, aber jede Tür und jede Wand steht an der richtigen Stelle. Wer den Grundriss liest, weiß, wie wir von der Küche ins Bad kommen. Wer unser Modell liest, weiß, wer wann was tut und wo entschieden wird.
@@ -52,7 +54,7 @@ BPMN spricht von **Aktivitäten** als Oberbegriff. Eine **Aufgabe** (Task) ist d
 
 ## Gute Namen
 
-Ein Modell ist nur so verständlich wie seine Beschriftungen. Vier Regeln machen den Unterschied zwischen einem Bild, das jemand erklären muss, und einem Bild, das sich selbst erklärt:
+Die Verständlichkeit eines Modells hängt stark von seinen Beschriftungen ab. Vier Regeln sorgen dafür, dass andere das Modell ohne zusätzliche Erklärung lesen können:
 
 | Element | Regel | Gut | Ungünstig |
 |---|---|---|---|
@@ -63,7 +65,12 @@ Ein Modell ist nur so verständlich wie seine Beschriftungen. Vier Regeln machen
 
 Zur Erinnerung: Der **Infinitiv** ist die Grundform eines Verbs („prüfen“, „bestätigen“). Das **Partizip** beschreibt etwas Abgeschlossenes („eingegangen“, „geprüft“).
 
-Die Regel für Aufgaben hat einen praktischen Nebeneffekt: Wer „Prüfung“ schreibt, kann die Prüfung von „Anfrage prüfen“, „Belege prüfen“ und „Bonität prüfen“ nicht mehr unterscheiden. Wer das Objekt nennt, sieht sofort, worauf der Schritt arbeitet. Sammelverben wie „bearbeiten“ oder „verarbeiten“ sagen nichts; sie verstecken meist mehrere Schritte oder eine Entscheidung. Eine Faustregel hilft: Lässt sich am Namen ablesen, wann die Aufgabe fertig ist, ist das Verb konkret genug. Nach „Rechnung prüfen“ steht fest, ob die Rechnung in Ordnung ist; nach „Rechnung bearbeiten“ bleibt offen, was passiert ist.
+Die Regel für Aufgaben hat praktische Folgen:
+
+- Der Name „Prüfung“ unterscheidet nicht zwischen „Anfrage prüfen“, „Belege prüfen“ und „Bonität prüfen“. Mit dem Objekt im Namen ist sofort erkennbar, worauf der Schritt sich bezieht.
+- Sammelverben wie „bearbeiten“ oder „verarbeiten“ sind zu ungenau. Sie verdecken meist mehrere Schritte oder eine Entscheidung.
+
+Als Faustregel gilt: Wenn sich am Namen ablesen lässt, wann die Aufgabe erledigt ist, ist das Verb konkret genug. Nach „Rechnung prüfen“ steht fest, ob die Rechnung in Ordnung ist. Nach „Rechnung bearbeiten“ bleibt offen, was geschehen ist.
 
 ::: {.callout-important title="Keine Abkürzungen, keine Systemkürzel"}
 „Anfrage ins CRM“ versteht die Kollegin aus dem Vertrieb. „Lead in SFDC pushen“ versteht nur, wer das System kennt. Ein Modell, das Fachbereich und IT gemeinsam lesen sollen, verwendet die Begriffe, die beide Seiten teilen. Systemnamen gehören in die Beschreibung einer Aufgabe oder in einen Datenspeicher, nicht in den Aufgabennamen.
@@ -75,7 +82,15 @@ Mit den vier Grundelementen und den Benennungsregeln lesen wir einen Satz aus ei
 
 > „Der Kundenservice kontrolliert die Unterlagen und schickt sie gegebenenfalls zurück.“
 
-Der Satz enthält mehr, als er zeigt. „Kontrolliert“ ist eine Aufgabe: *Unterlagen prüfen*. „Gegebenenfalls“ versteckt eine Entscheidung mit einer Frage: *Unterlagen vollständig?* Und „schickt zurück“ ist ein zweiter Schritt, der nur auf einem der beiden Wege liegt: *Unterlagen zurücksenden*. Aus einem Satz werden also eine Aufgabe, eine Entscheidung und eine weitere Aufgabe, plus zwei mögliche Enden. Wie wir die Entscheidung zeichnen, ist Thema des nächsten Kapitels; wichtig ist hier die Lesetechnik: Jedes Verb wird zu einer Aufgabe, jedes „wenn“, „falls“ oder „gegebenenfalls“ zu einer Frage, jedes mögliche Ergebnis zu einem Ende.
+Der Satz enthält mehrere Modellelemente:
+
+- „Kontrolliert“ ist eine Aufgabe: *Unterlagen prüfen*.
+- „Gegebenenfalls“ enthält eine Entscheidung mit einer Frage: *Unterlagen vollständig?*
+- „Schickt zurück“ ist ein zweiter Schritt, der nur auf einem der beiden Wege liegt: *Unterlagen zurücksenden*.
+
+Aus dem Satz entstehen also eine Aufgabe, eine Entscheidung, eine weitere Aufgabe und zwei mögliche Enden. Wie wir die Entscheidung zeichnen, zeigt das nächste Kapitel.
+
+Die Lesetechnik lautet: Jedes Verb wird zu einer Aufgabe, jedes „wenn“, „falls“ oder „gegebenenfalls“ zu einer Frage und jedes mögliche Ergebnis zu einem Ende.
 
 ::: {.callout-tip title="Signalwörter in Prozessbeschreibungen"}
 Beim Lesen einer Beschreibung markieren wir drei Arten von Wörtern. **Verben** („prüft“, „versendet“, „verbucht“) werden zu Aufgaben. **Bedingungen** („wenn“, „falls“, „gegebenenfalls“, „andernfalls“) werden zu Fragen an einem Gateway. **Zeit- und Ereigniswörter** („sobald“, „nach vier Wochen“, „gleichzeitig“) werden zu Ereignissen oder bestimmen den Gateway-Typ. Diese Markierung ist der erste Schritt jeder Modellierung, auch wenn später ein Sprachmodell den Entwurf zeichnet.

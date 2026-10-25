@@ -1,6 +1,8 @@
 # Vom Modell zum n8n-Workflow
 
-Ein fertiges BPMN-Modell ist der Bauplan für den Workflow. Jedes Element hat ein Gegenstück in n8n, und wer die Zuordnung kennt, baut den Workflow in der Reihenfolge des Modells statt nach Gefühl. In diesem Kapitel legen wir die Zuordnung fest, lassen ein Sprachmodell aus einer Schrittliste einen BPMN-Entwurf schreiben und prüfen das Ergebnis mit einer festen Liste. Denn ein KI-Entwurf sieht überzeugend aus, auch wenn darin Schritte stehen, die es im Ablauf nie gab.
+Ein fertiges BPMN-Modell dient als Bauplan für den Workflow. Jedes Element hat ein Gegenstück in n8n. Mit dieser Zuordnung bauen wir den Workflow in der Reihenfolge des Modells.
+
+In diesem Kapitel legen wir die Zuordnung fest. Anschließend lassen wir ein Sprachmodell aus einer Schrittliste einen BPMN-Entwurf schreiben und prüfen das Ergebnis mit einer festen Liste. Die Prüfung ist nötig, weil ein KI-Entwurf auch dann überzeugend aussehen kann, wenn er Schritte enthält, die im Ablauf nicht vorkommen.
 
 ## Das Modell des Demo-Szenarios
 
@@ -8,7 +10,15 @@ Wir beginnen mit dem Szenario, das den Kurs begleitet: Eine Kundenmail geht ein,
 
 ![Kundenmail bearbeiten: Das Workflow-System bestätigt und trägt ein. Nur bei einem Kulanzfall hält der Ablauf an und wartet auf die Freigabe durch den Kundenservice.](../images/bpmn/zum-workflow.svg){#fig-zum-workflow width="100%"}
 
-Das Modell beantwortet schon jetzt, was der Workflow können muss: einen Trigger für eingehende Mails, zwei automatische Schritte, eine Verzweigung, eine Wartestelle für einen Menschen und einen Datenspeicher. Die Lane „Workflow-System (n8n)“ enthält alles, was von allein läuft; die Lane „Kundenservice“ enthält die einzige Stelle, an der ein Mensch gebraucht wird.
+Das Modell zeigt bereits, was der Workflow braucht:
+
+- einen Trigger für eingehende Mails
+- zwei automatische Schritte
+- eine Verzweigung
+- eine Wartestelle für einen Menschen
+- einen Datenspeicher
+
+Die Lane „Workflow-System (n8n)“ enthält alles, was von allein läuft. Die Lane „Kundenservice“ enthält die einzige Stelle, an der ein Mensch gebraucht wird.
 
 ## Die Zuordnung
 
@@ -32,7 +42,10 @@ Das Modell beantwortet schon jetzt, was der Workflow können muss: einen Trigger
 | Pool „Kunde“ | Kein Baustein | Der Kunde ist außerhalb des Workflows; seine Nachrichten sind Trigger und Wait-Eingänge. |
 
 ::: {.callout-note title="Was n8n anders macht als BPMN"}
-Zwei Unterschiede sollten wir kennen. Erstens kennt n8n keine echte Parallelität: Zweige nach einer Verzweigung laufen nacheinander. Für fachliche Modelle spielt das keine Rolle, weil das Ergebnis gleich ist. Zweitens arbeitet n8n mit **Items**: Ein Knoten läuft für jedes Element seiner Eingabe. Was BPMN mit dem Mehrfach-Marker ausdrücklich macht, ist in n8n das Normalverhalten.
+Zwei Unterschiede sind wichtig:
+
+1. n8n kennt keine echte Parallelität. Zweige nach einer Verzweigung laufen nacheinander. Für fachliche Modelle spielt das keine Rolle, weil das Ergebnis gleich ist.
+2. n8n arbeitet mit **Items**. Ein Knoten läuft für jedes Element seiner Eingabe. Was BPMN mit dem Mehrfach-Marker ausdrücklich angibt, ist in n8n das Standardverhalten.
 :::
 
 ## Die Reihenfolge beim Bauen
@@ -44,11 +57,11 @@ Aus dem Modell wird der Workflow in vier Schritten:
 3. **Gateways ergänzen.** Jedes XOR-Gateway wird zu einem IF-Knoten; die Antworten an den Kanten werden zu den Bedingungen.
 4. **Wartestellen einbauen.** Benutzeraufgaben, Zeit-Zwischenereignisse und ereignisbasierte Gateways werden zu Wait- oder Form-Knoten. Diese Stellen zuletzt, weil sie beim Testen am meisten Zeit kosten.
 
-Für das Demo-Szenario heißt das: Email Trigger, Send Email, Data Table, dann ein IF-Knoten „Kulanzfall?“, dann der Freigabeschritt. Genau in dieser Reihenfolge entsteht der Workflow im Teil „Erste Workflows“.
+Für das Demo-Szenario ergibt sich folgende Reihenfolge: Email Trigger, Send Email, Data Table, dann ein IF-Knoten „Kulanzfall?“, dann der Freigabeschritt. In dieser Reihenfolge entsteht der Workflow im Teil „Erste Workflows“.
 
 ## Mit KI vom Formular zum Modell
 
-In der Willkommenslektion ist eine Schrittliste entstanden: der Ablauf in einem Satz, Häufigkeit und Aufwand, die Schritte mit der Zuordnung zu Regel, KI-Schritt oder Mensch, und die beteiligten Systeme. Aus dieser Liste kann ein Sprachmodell einen BPMN-Entwurf schreiben. Der folgende Auftrag ist dafür gebaut. Die Stellen in spitzen Klammern ersetzen wir durch die Angaben aus der Schrittliste.
+In der Willkommenslektion ist eine Schrittliste entstanden: der Ablauf in einem Satz, Häufigkeit und Aufwand, die Schritte mit der Zuordnung zu Regel, KI-Schritt oder Mensch, und die beteiligten Systeme. Aus dieser Liste kann ein Sprachmodell einen BPMN-Entwurf schreiben. Dafür verwenden wir den folgenden Auftrag. Die Stellen in spitzen Klammern ersetzen wir durch die Angaben aus der Schrittliste.
 
 ```text
 Kontext: Ich beschreibe einen wiederkehrenden Arbeitsablauf aus meinem
@@ -87,7 +100,9 @@ schreibe in die Spalte Name „OFFEN:“ und eine Frage an mich. Gib am Ende
 alle offenen Fragen als nummerierte Liste aus.
 ```
 
-Den Entwurf zeichnen wir anschließend in demo.bpmn.io nach. Das Nachzeichnen ist Absicht: Beim Zeichnen prüfen wir jeden Schritt noch einmal. Wer eine fertige Datei möchte, ersetzt den Teil „Format“ durch die Bitte um eine vollständige BPMN-2.0-XML-Datei mit Diagrammteil (BPMNDiagram mit Koordinaten) und öffnet die gespeicherte Datei in demo.bpmn.io; meist braucht das eine zweite Runde mit der Fehlermeldung des Editors.
+Den Entwurf zeichnen wir anschließend in demo.bpmn.io nach. Beim Nachzeichnen prüfen wir jeden Schritt noch einmal.
+
+Für eine fertige Datei ersetzen wir den Teil „Format“ durch die Bitte um eine vollständige BPMN-2.0-XML-Datei mit Diagrammteil (BPMNDiagram mit Koordinaten). Die gespeicherte Datei öffnen wir in demo.bpmn.io. Meist ist eine zweite Runde nötig, in der wir dem Sprachmodell die Fehlermeldung des Editors geben.
 
 ::: {.callout-important title="Nur freigegebene Werkzeuge, nur anonymisierte Angaben"}
 Wir verwenden ein KI-Werkzeug, das im eigenen Unternehmen für solche Inhalte freigegeben ist. Die Schrittliste enthält keine Namen von Kundinnen, Kunden oder Kolleginnen und keine internen Kennzahlen, die nicht nach außen dürfen. Im Zweifel beschreiben wir allgemeiner: „eine Kundin“, „das Buchhaltungssystem“.
@@ -95,7 +110,7 @@ Wir verwenden ein KI-Werkzeug, das im eigenen Unternehmen für solche Inhalte fr
 
 ## Die Prüfliste
 
-Jeden Entwurf, ob von Hand oder mit KI, prüfen wir mit denselben Fragen. Ein KI-Modell gilt erst nach dieser fachlichen Prüfung als Modell.
+Jeden Entwurf prüfen wir mit denselben Fragen, unabhängig davon, ob er von Hand oder mit KI entstanden ist. Ein KI-Entwurf gilt erst nach dieser fachlichen Prüfung als Modell.
 
 | Nr. | Prüffrage | Erfüllt, wenn |
 |---|---|---|
@@ -110,7 +125,13 @@ Jeden Entwurf, ob von Hand oder mit KI, prüfen wir mit denselben Fragen. Ein KI
 | 9 | Sind offene Fragen festgehalten statt geglättet? | Jede Unklarheit steht als Frage im Entwurf. |
 | 10 | Enthält das Modell keine Personendaten? | Nur Rollen, keine Namen. |
 
-KI-Entwürfe fallen am häufigsten bei den Fragen 1, 4 und 9 durch: Ein Prüfschritt, der „sinnvoll wäre“, steht plötzlich im Modell, ein Gateway hat nur einen beschrifteten Ausgang, oder eine Unklarheit wurde stillschweigend zu einer Annahme. Das korrigieren wir, bevor wir den ersten Knoten in n8n anlegen.
+KI-Entwürfe fallen am häufigsten bei den Fragen 1, 4 und 9 durch. Typische Befunde:
+
+- Ein Prüfschritt, der „sinnvoll wäre“, steht im Modell, obwohl er in der Schrittliste fehlt.
+- Ein Gateway hat nur einen beschrifteten Ausgang.
+- Eine Unklarheit wurde ohne Hinweis zu einer Annahme.
+
+Diese Punkte korrigieren wir, bevor wir den ersten Knoten in n8n anlegen.
 
 ## Arbeitsauftrag: die eigene Schrittliste modellieren
 

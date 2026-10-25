@@ -1,6 +1,8 @@
 # n8n mit dem Agenten
 
-Jeder n8n-Workflow lässt sich als Datei speichern, und für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner. Der eigene Agent erklärt den Workflow aus [Beispiel 1: Kontaktanfragen sortieren](../beispiele/kontaktanfragen.qmd) und ändert ihn als Kopie. Danach testen wir die Kopie in n8n. Die Kopie soll eine dritte Art von Anfragen mit hoher Priorität behandeln: Datenschutzanfragen. Die Erklärung folgt jeweils am eigenen Ergebnis.
+Jeder n8n-Workflow lässt sich als Datei speichern. Für den Agenten ist diese Datei Text wie jede Anfrage im Projektordner.
+
+In diesem Kapitel erklärt der eigene Agent den Workflow aus [Beispiel 1: Kontaktanfragen sortieren](../beispiele/kontaktanfragen.qmd) und ändert ihn als Kopie. Die Kopie soll eine dritte Art von Anfragen mit hoher Priorität behandeln: Datenschutzanfragen. Danach testen wir die Kopie in n8n. Die Erklärung folgt jeweils am eigenen Ergebnis.
 
 Jeder Schritt hat denselben Aufbau: ein Auftrag zum Kopieren, ein Kasten „Das sollten wir jetzt sehen“, eine kurze Erklärung und ein Abschnitt „Wenn es anders aussieht“.
 
@@ -333,7 +335,13 @@ Die **Bedingung** ist der Vergleich im If-Knoten „Beschwerde?“. In der Datei
 "combinator": "and"
 ```
 
-Die Zeilen lesen sich fast wie ein Satz. Links steht der Wert aus dem Formularfeld `Anliegen`, rechts der Vergleichswert `Beschwerde`, dazwischen der Vergleich „ist gleich“ (`equals`). Wie ein neuer Mitarbeiter liest der Agent zuerst den Ablaufplan und erklärt ihn, bevor er etwas ändert. Seine Erklärung lässt sich am Canvas in n8n prüfen.
+Erläuterung:
+
+- `leftValue` ist der Wert aus dem Formularfeld `Anliegen`.
+- `rightValue` ist der Vergleichswert `Beschwerde`.
+- `operation` legt den Vergleich fest, hier „ist gleich“ (`equals`).
+
+Der Agent liest den Ablauf zuerst und erklärt ihn, bevor er etwas ändert, ähnlich wie ein neuer Mitarbeiter, der sich einen Ablaufplan erklären lässt. Seine Erklärung lässt sich am Canvas in n8n prüfen.
 
 ::: {.callout-note title="Wenn es anders aussieht"}
 - Der Agent kürzt die Datei oder ändert Zeilen beim Anlegen (Alternative oben): ablehnen und die Datei herunterladen.
@@ -431,7 +439,7 @@ Aus dem Quiz in Beispiel 1 bekannt: Auch Datenschutzanfragen sollen hohe Priorit
 
 Der Agent hat die alte Bedingung gelesen und eine neue Datei mit zwei Änderungen angelegt. Das Original liegt unverändert daneben.
 
-Das Feld **combinator** legt fest, wie mehrere Vergleiche im If-Knoten zusammenwirken. Mit `and` (und) müssen alle zutreffen, mit `or` (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Sobald ein zweiter dazukommt, entscheidet dieses Feld über das Ergebnis: Mit `or` führt jetzt Beschwerde oder Datenschutz zum Ausgang true.
+Das Feld **combinator** legt fest, wie mehrere Vergleiche im If-Knoten zusammenwirken. Mit `and` (und) müssen alle zutreffen, mit `or` (oder) genügt einer. Bei nur einem Vergleich spielt das keine Rolle. Bei zwei Vergleichen bestimmt dieses Feld das Ergebnis: Mit `or` führt jetzt Beschwerde oder Datenschutz zum Ausgang true.
 
 ![Mit and müssten beide Vergleiche zugleich zutreffen, und keine Anfrage erreicht true. Mit or genügt einer.](images/workflow-und-oder.svg){fig-alt="Zwei Vergleiche: Anliegen ist gleich Beschwerde und Anliegen ist gleich Datenschutz. Als falsch markiert: combinator and; beide Vergleiche müssten zugleich zutreffen, ein Anliegen ist nie beides, keine Anfrage erreicht den Ausgang true. Als richtig markiert: combinator or; ein Vergleich genügt, Beschwerde und Datenschutz führen zum Ausgang true, alles andere zu false. Unten: Der Agent ändert eine Kopie mit neuem Namen, das Original bleibt daneben liegen."}
 
@@ -535,11 +543,13 @@ Besteht Prüfung 7 nicht, bekommt der Agent den Befund, etwa „Datenschutz land
 
 Aus der Datei des Agenten ist ein Workflow in der eigenen Instanz geworden, und zwei Läufe haben sein Verhalten gezeigt.
 
-Beim **Import** liest n8n die JSON-Datei und baut daraus Knoten und Verbindungen im Canvas. Das gelingt nur, wenn die Datei gültiges JSON ist; schon ein fehlendes Komma verhindert den Import. Damit ist der Import der erste Prüfpunkt. Der zweite Lauf ist eine **Gegenprobe**: ein Anliegen, für das sich nichts ändern soll. Er zeigt, ob die Änderung nur dort wirkt, wo sie wirken soll.
+Beim **Import** liest n8n die JSON-Datei und baut daraus Knoten und Verbindungen im Canvas. Das gelingt nur, wenn die Datei gültiges JSON ist. Schon ein fehlendes Komma verhindert den Import. Damit ist der Import der erste Prüfpunkt.
+
+Der zweite Lauf ist eine **Gegenprobe** mit einem Anliegen, für das sich nichts ändern soll. Er zeigt, ob die Änderung nur dort wirkt, wo sie wirken soll.
 
 ![Vier Stationen bis zur Freigabe. Import und zwei Läufe in n8n sind die Prüfpunkte.](images/workflow-pruefkette.svg){fig-alt="Vier nummerierte Stationen von links nach rechts: 1 Datei vom Agenten, die Kopie im Ordner n8n. 2 Import in n8n, gelingt nur mit gültigem JSON. 3 Lauf 1 mit Datenschutz, erwartet Priorität hoch. 4 Lauf 2 mit Rückruf als Gegenprobe, erwartet Priorität normal. Station 2 bis 4 sind Prüfpunkte in n8n. Unten: Die Meldung Fertig des Agenten ersetzt keine dieser Stationen."}
 
-Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diese Läufe nicht, und das Durchlesen der Datei auch nicht: Es zeigt weder, ob n8n die Datei annimmt, noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen. So endet auch beim neuen Mitarbeiter ein Änderungsvorschlag: Er schlägt vor, wir testen, erst dann geben wir frei.
+Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diese Läufe nicht. Auch das Durchlesen der Datei reicht nicht aus. Es zeigt weder, ob n8n die Datei annimmt, noch, ob die übrigen Anliegen weiter in „Priorität normal“ landen. Wir geben eine Änderung daher erst nach den beiden Testläufen frei.
 
 ::: {.callout-note title="Wenn es anders aussieht"}
 - n8n meldet beim Import einen Fehler oder zeigt keine Knoten: Meist ist das JSON nicht gültig, etwa durch ein fehlendes Komma. Dem Agenten die Fehlermeldung senden und die korrigierte Datei importieren.
@@ -550,7 +560,7 @@ Die Meldung des Agenten „Fertig, beide Stellen sind angepasst“ ersetzt diese
 
 ## Zwei Wege zu n8n
 
-Bisher hat der Agent die Datei geschrieben, und wir haben sie importiert. Das ist Weg A. Es gibt einen zweiten Weg.
+Bisher hat der Agent die Datei geschrieben, und wir haben sie importiert (Weg A). Daneben gibt es eine direkte Anbindung an n8n (Weg B).
 
 ![Weg A: Der Agent schreibt die Datei, wir importieren sie in n8n. Weg B: Der Agent erreicht n8n direkt über einen MCP-Server.](images/11-zwei-wege.svg){fig-alt="Zwei Wege. Weg A, im Kurs: Der Agent schreibt die Datei n8n/beispiel-1-datenschutz.json, wir importieren sie mit Import from File in n8n. Weg B, gestrichelt, nur Hinweis: Der Agent erreicht n8n über einen MCP-Zugang (Zugangskarte) und liest oder legt Workflows direkt an; in n8n heißt die Anbindung Instance-level MCP."}
 
@@ -561,7 +571,7 @@ Bisher hat der Agent die Datei geschrieben, und wir haben sie importiert. Das is
 | Was gebraucht wird | nur den Projektordner | einen MCP-Server (siehe im Buch „Produktiv mit einem Agenten arbeiten“ das Kapitel [MCP: Zugänge zu anderen Systemen](https://kirenz.github.io/agent-arbeitsumgebung/agent-arbeitsumgebung/mcp.html)) und eine Freischaltung in n8n |
 | Rolle hier | Praxisweg | freiwillige Prüfung am Ende |
 
-Für Weg B bietet n8n eine eigene Anbindung namens **Instance-level MCP**. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet ([Anleitung in der n8n-Dokumentation](https://docs.n8n.io/connect/connect-to-n8n-mcp-server)). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n ist ein natürlicher Prüfpunkt.
+Für Weg B bietet n8n eine eigene Anbindung namens **Instance-level MCP**. Sie macht die ganze n8n-Instanz zu einem MCP-Server und wird je Instanz und je Workflow freigeschaltet ([Anleitung in der n8n-Dokumentation](https://docs.n8n.io/connect/connect-to-n8n-mcp-server)). Wir bleiben bei Weg A. Er funktioniert mit jedem Agenten und jeder n8n-Instanz, und der Import in n8n bildet einen eigenen Prüfpunkt.
 
 ![Eine Anbindung an n8n handelt mit den Rechten des Kontos. Freischalten nur für eine Test-Instanz ohne Kundendaten.](images/workflow-anbindung-rechte.svg){fig-alt="Oben der Agent, über MCP verbunden mit einem n8n-Konto, das Workflows anlegen, ändern und je nach Freischaltung ausführen darf. Als falsch markiert: Instanz mit Workflows, die echte Kundendaten verarbeiten; keine Anbindung freischalten. Als richtig markiert: Test-Instanz ohne Kundendaten; Anbindung möglich, im Unternehmen mit Freigabe der IT. Unten: Exportierte Dateien enthalten die Namen von Zugangsdaten, vor dem Weitergeben entfernen."}
 
