@@ -1,10 +1,14 @@
 # Einführung {.unnumbered}
 
-Bevor wir in einzelne Funktionen einsteigen, hilft ein gemeinsames Bild davon, wie ein n8n-Workflow aufgebaut ist. Wir nehmen dafür ein konkretes Beispiel und benennen daran die vier Bausteine, die im ganzen Kurs wiederkehren. Alle weiteren Begriffe führen wir später ein, jeweils dort, wo sie zum ersten Mal gebraucht werden.
+Diese Einführung zeigt, wie ein n8n-Workflow aufgebaut ist. An einem konkreten Beispiel benennen wir die vier Bausteine, die im ganzen Kurs wiederkehren.
+
+Alle weiteren Begriffe führen wir später ein, jeweils dort, wo sie zum ersten Mal gebraucht werden.
 
 ## Ein Workflow in einem Bild
 
-Stellen wir uns einen kleinen, automatischen Ablauf vor: Über das Kontaktformular einer Website trifft eine Nachricht ein. Daraufhin geht eine Bestätigung an den Absender zurück, und die Nachricht wird in einer Tabelle festgehalten. Niemand stößt diese Schritte von Hand an, sie laufen als zusammenhängende Kette.
+Als Beispiel dient ein kleiner, automatischer Ablauf: Über das Kontaktformular einer Website trifft eine Nachricht ein. Daraufhin geht eine Bestätigung an den Absender zurück, und die Nachricht wird in einer Tabelle festgehalten.
+
+Diese Schritte laufen als zusammenhängende Kette ab, ohne dass jemand sie von Hand anstößt.
 
 ![Ein Workflow im n8n-Editor: vier Knoten in Reihe, vom Auslöser links bis zum letzten Verarbeitungsschritt rechts.](images/intro-bausteine.png){#fig-intro-bausteine}
 
@@ -17,15 +21,13 @@ An diesem Bild lassen sich vier Begriffe ablesen, die den Rest des Kurses tragen
 
 Mit diesen vier Begriffen lässt sich jeder Workflow im Kurs lesen.
 
-## Was später dazukommt, wenn wir es brauchen
+## Weitere Bausteine im Kurs
 
-Die übrigen Bausteine führen wir nicht hier auf Vorrat ein, sondern dort, wo sie zum ersten Mal konkret auftauchen:
+Die übrigen Bausteine führen wir dort ein, wo sie zum ersten Mal konkret auftauchen:
 
 - **Credentials** (Zugangsdaten zu externen Systemen) bereiten wir im Kapitel [Credentials vorbereiten](first-workflows/credentials.qmd) vor.
-- **Expressions** (kurze Ausdrücke wie `{{ $json.sender }}`, die Daten aus dem vorigen Schritt referenzieren) und die **Data Table** (n8ns eingebaute Tabelle) lernen wir hands-on in [Der erste Workflow](first-workflows/first-workflow.qmd).
-- **Integrationen** zu externen Anwendungen und die **KI-Knoten** mit ihren Sprach-Modellen begegnen uns in den folgenden Modulen. Die tiefen Agenten-Konzepte behandelt der Aufbaukurs *KI-Agenten in n8n*.
-
-So bleibt der Einstieg schlank, und jeder Begriff bekommt seinen Kontext.
+- **Expressions** (kurze Ausdrücke wie `{{ $json.sender }}`, die Daten aus dem vorigen Schritt referenzieren) und die **Data Table** (n8ns eingebaute Tabelle) lernen wir praktisch kennen in [Der erste Workflow](first-workflows/first-workflow.qmd).
+- **Integrationen** zu externen Anwendungen und die **KI-Knoten** mit ihren Sprach-Modellen begegnen uns in den folgenden Modulen. Die Konzepte von KI-Agenten vertieft der Aufbaukurs *KI-Agenten in n8n*.
 
 ## Glossar zum Nachschlagen
 

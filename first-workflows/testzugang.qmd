@@ -6,7 +6,7 @@ Für die Übungen in diesem Teil brauchen wir eine eigene n8n-Umgebung. Am einfa
 
 ## Der richtige Zeitpunkt
 
-Die 14 Tage beginnen mit der Registrierung. Wir starten die Testphase deshalb erst, wenn wir tatsächlich bauen wollen, also direkt vor der Lektion zum ersten Workflow. Wer sich schon beim Kursstart registriert, verbraucht die Testtage mit Lesen.
+Die 14 Tage beginnen mit der Registrierung. Wir starten die Testphase deshalb erst, wenn wir tatsächlich bauen wollen, also direkt vor der Lektion zum ersten Workflow. Bei einer Registrierung zum Kursstart laufen die Testtage sonst schon während der Lesekapitel ab.
 
 ## Testzugang anlegen
 
@@ -28,8 +28,12 @@ Die Testphase dient zum Lernen. Wir arbeiten mit den simulierten Daten aus dem K
 
 ## Was nach 14 Tagen passiert
 
-Die Testphase endet automatisch, es entstehen keine Kosten und wir müssen nichts kündigen. Ohne Upgrade löscht n8n danach den Workspace mit allen Daten. Workflows lassen sich noch 90 Tage nach dem Ende herunterladen [@n8nCloudTrial]. Wer weiterarbeiten will, hat drei Wege: auf einen bezahlten Cloud-Tarif wechseln, die Workflows als JSON exportieren und in einer eigenen Instanz importieren, oder ein Managed Hosting nutzen (siehe [Betrieb wählen](../overview/hosting.qmd)).
+Die Testphase endet automatisch, es entstehen keine Kosten und wir müssen nichts kündigen. Ohne Upgrade löscht n8n danach den Workspace mit allen Daten. Workflows lassen sich noch 90 Tage nach dem Ende herunterladen [@n8nCloudTrial]. Für die weitere Arbeit gibt es drei Wege (siehe [Betrieb wählen](../overview/hosting.qmd)):
+
+- auf einen bezahlten Cloud-Tarif wechseln
+- die Workflows als JSON exportieren und in einer eigenen Instanz importieren
+- ein Managed Hosting nutzen
 
 ::: {.callout-tip title="Vor Ablauf sichern"}
-Am letzten Testtag die eigenen Workflows über das Drei-Punkte-Menü im Editor mit **Download** als Datei sichern. So bleibt die Arbeit erhalten, egal wie es weitergeht.
+Am letzten Testtag die eigenen Workflows über das Drei-Punkte-Menü im Editor mit **Download** als Datei sichern. So bleibt die Arbeit unabhängig vom weiteren Vorgehen erhalten.
 :::

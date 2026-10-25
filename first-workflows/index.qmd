@@ -1,14 +1,19 @@
 # Erste Workflows {.unnumbered}
 
-In diesem Teil legen wir das handwerkliche Fundament für alles Weitere. Wir öffnen den n8n-Editor, lernen die wichtigsten Bereiche kennen und bauen einen kleinen Workflow, der eine simulierte Kundenmail entgegennimmt, einen Tabelleneintrag schreibt und eine Bestätigungs-Mail versendet. Der Workflow ist deterministisch und ohne KI, damit das Editor-Verhalten, die Knoten-Mechanik und die Test- und Live-Pfade sitzen, bevor im Aufbaukurs *KI-Agenten in n8n* Sprach-Modelle, Tools und Agent-Schleifen dazukommen.
+In diesem Teil legen wir das handwerkliche Fundament für alles Weitere. Wir öffnen den n8n-Editor, lernen die wichtigsten Bereiche kennen und bauen einen kleinen Workflow. Er nimmt eine simulierte Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigungs-Mail.
 
-Zwei Themen ziehen sich durch: die saubere Trennung zwischen Simulation und Produktion (Mock-Output statt fest verdrahtetem Schritt) und die frühe Disziplin bei Credentials, denn jeder Workflow, der echte Mails liest oder externe APIs anspricht, braucht Zugangsdaten, die getrennt vom Workflow gespeichert werden.
+Der Workflow arbeitet deterministisch (nach festen Regeln) und ohne KI. So üben wir zuerst die Bedienung des Editors, das Zusammenspiel der Knoten sowie Test- und Live-Betrieb. Sprach-Modelle, Tools und Agent-Schleifen kommen erst im Aufbaukurs *KI-Agenten in n8n* dazu.
+
+Zwei Themen ziehen sich durch diesen Teil:
+
+- **Trennung von Simulation und Produktion:** Wir testen zuerst mit Mock-Daten (simulierten Beispieldaten), bevor echte Systeme angebunden werden.
+- **Sorgfältiger Umgang mit Credentials:** Jeder Workflow, der echte Mails liest oder externe APIs anspricht, braucht Zugangsdaten. n8n speichert sie getrennt vom Workflow.
 
 Wir werden:
 
 - Einen kostenlosen Testzugang bei n8n Cloud einrichten
-- Den n8n-Editor öffnen und die drei wichtigsten Bereiche (Canvas, Node-Panel, Output-Spalte) kennenlernen
-- Credentials vorbereiten, also wie man sie anlegt, zuweist und vom Workflow trennt
+- Den n8n-Editor öffnen und die drei wichtigsten Bereiche (Canvas als Arbeitsfläche, Node-Panel, Output-Spalte) kennenlernen
+- Credentials vorbereiten: anlegen, zuweisen und vom Workflow trennen
 - Den Demo-Workflow Schritt für Schritt zusammenbauen, mit Mock-Daten testen und in den Live-Modus überführen
 
 Wer den Editor schon kennt, kann diesen Teil zügig durchgehen. Wer mit n8n neu startet, baut hier die Routinen auf, die im Aufbaukurs vorausgesetzt werden: Mock-Daten verwenden, Schritt für Schritt ausführen, das Logs-Panel lesen und Knoten beim Verdacht auf Fehler isoliert testen.

@@ -2,7 +2,7 @@
 
 Die Abrechnungslogik unterscheidet sich zwischen n8n und den klassischen iPaaS-Anbietern grundlegend. Der Begriff iPaaS (Integration Platform as a Service) bezeichnet Cloud-Plattformen, die Anwendungen, Daten und Prozesse miteinander verbinden, ohne dass eine eigene Integrationssoftware betrieben werden muss. Zapier und Make sind die bekanntesten Vertreter dieser Kategorie.
 
-Die zentrale Achse des Vergleichs ist die Abrechnungseinheit: Klassische Anbieter rechnen pro Task ab, n8n pro Workflow-Execution. Diese Logik beeinflusst, wie Workflows zugeschnitten werden.
+Der wichtigste Unterschied liegt in der Abrechnungseinheit: Klassische Anbieter rechnen pro Task (einzelner Schritt) ab, n8n pro Workflow-Execution (vollständiger Durchlauf). Diese Logik beeinflusst, wie Workflows zugeschnitten werden.
 
 ## Überblick
 
@@ -27,7 +27,7 @@ Klassische Anbieter wie Zapier oder Make rechnen **pro Task** ab. Jeder einzelne
 n8n rechnet **pro Workflow-Execution** ab. Eine vollständige Workflow-Ausführung gilt als eine Einheit, unabhängig von der Anzahl der Schritte. Ein Workflow mit fünfzig Knoten wird gleich abgerechnet wie ein Workflow mit fünf, solange beide einmal laufen.
 
 ::: {.callout-important title="Was das praktisch bedeutet"}
-Die Abrechnungslogik formt das Workflow-Design. Bei Per-Task-Abrechnung lohnt es sich, Schritte zu konsolidieren. Bei Per-Execution-Abrechnung spielt die Anzahl der Schritte für die Kosten keine Rolle. Welches Modell besser passt, hängt vom Einsatzprofil ab.
+Die Abrechnungslogik formt das Workflow-Design. Bei Per-Task-Abrechnung lohnt es sich, Schritte zusammenzufassen. Bei Per-Execution-Abrechnung spielt die Anzahl der Schritte für die Kosten keine Rolle. Welches Modell besser passt, hängt vom Einsatzprofil ab.
 :::
 
 ## Konkrete Größenordnungen
@@ -42,7 +42,9 @@ Für ein typisches Marketing- oder Operations-Team mit hundert Use-Cases im Mona
 
 ![100 Durchläufe im Monat: Verbrauch im Verhältnis zum Einstiegstarif bei 5 und bei 50 Schritten.](../images/lektionen/preis-schrittzahl.svg)
 
-Die Zahlen sind volatil, denn alle genannten Anbieter passen Tarife regelmäßig an. Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab: Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben; bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.
+Die Zahlen ändern sich, denn alle genannten Anbieter passen ihre Tarife regelmäßig an.
+
+Welches Tarifmodell günstiger ausfällt, hängt vom Workflow-Profil ab. Kurze Workflows mit wenigen Schritten lassen sich auch in Per-Task-Modellen wirtschaftlich betreiben. Bei langen, mehrstufigen Workflows wirkt sich die Per-Execution-Abrechnung stärker aus.
 
 ## Vergleich auf einen Blick
 
@@ -60,9 +62,9 @@ Eine flache Lernkurve erleichtert den Einstieg, ein größerer Funktionsumfang e
 
 ## Wirtschaftliche Einordnung
 
-Praxis-Berichte aus dem Mittelstand nennen pro Use-Case Einsparungen zwischen fünf und zwanzig Stunden Wochenarbeitszeit, etwa für Lead-Qualifikation, Customer-Support-Routing, Reporting oder Invoice-Automation. Die Zahlen sind keine Versprechen, sondern Größenordnungen aus aktuellen Erfahrungsberichten.
+Praxis-Berichte aus dem Mittelstand nennen pro Use-Case Einsparungen zwischen fünf und zwanzig Stunden Wochenarbeitszeit. Beispiele sind Lead-Qualifikation (Bewertung neuer Interessenten), Customer-Support-Routing (Weiterleitung von Anfragen an die zuständige Stelle), Reporting oder Rechnungsverarbeitung. Die Zahlen stammen aus aktuellen Erfahrungsberichten und geben nur Größenordnungen an.
 
-Sie ordnen die Pricing-Frage in einen Gesamt-Kontext ein: Lizenzkosten sind nur ein Teil der Wirtschaftlichkeitsrechnung. Hinzu kommen Aufwand für Einarbeitung, Workflow-Pflege und die Integration in bestehende Prozesse.
+Lizenzkosten sind nur ein Teil der Wirtschaftlichkeitsrechnung. Hinzu kommt Aufwand für Einarbeitung, Workflow-Pflege und die Integration in bestehende Prozesse.
 
 ## Auswahl-Kriterien
 

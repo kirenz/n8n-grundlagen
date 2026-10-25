@@ -1,8 +1,15 @@
 # Willkommen {.unnumbered}
 
-Willkommen zum Grundlagenkurs für n8n, ein Werkzeug, das Programme wie Postfach, Tabelle und CRM ohne Programmieren miteinander verbindet. Dieses Buch richtet sich an Fachkräfte und Teams, die wiederkehrende Abläufe automatisieren möchten, ohne dafür ein Software-Projekt zu starten. Programmierkenntnisse sind nicht nötig, ein Browser und eine beliebige Mail-Adresse genügen zum Mitmachen.
+Willkommen zum Grundlagenkurs für n8n. n8n ist ein Werkzeug, das Programme wie Postfach, Tabelle und CRM ohne Programmieren miteinander verbindet.
 
-Am Ende steht ein erster, vollständig funktionierender Workflow (ein automatischer Ablauf): Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses eine Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin in vier Schritten: die Plattform einordnen, den Ablauf als BPMN-Modell zeichnen (BPMN ist eine genormte Zeichensprache für Abläufe), einen kostenlosen n8n-Testzugang anlegen, den ersten Workflow bauen.
+Dieses Buch richtet sich an Fachkräfte und Teams, die wiederkehrende Abläufe automatisieren möchten, ohne dafür ein Software-Projekt zu starten. Programmierkenntnisse sind nicht nötig. Zum Mitmachen genügen ein Browser und eine beliebige Mail-Adresse.
+
+Am Ende steht ein erster, vollständig funktionierender Workflow (ein automatischer Ablauf): Er nimmt eine eingehende Kundenmail entgegen, schreibt einen Tabelleneintrag und versendet eine Bestätigung. Dieses Demo-Szenario begleitet den ganzen Kurs. Der Weg dahin führt über vier Schritte:
+
+1. Die Plattform einordnen
+2. Den Ablauf als BPMN-Modell zeichnen (BPMN ist eine genormte Zeichensprache für Abläufe)
+3. Einen kostenlosen n8n-Testzugang anlegen
+4. Den ersten Workflow bauen
 
 Abläufe wie im Demo-Szenario gibt es überall:
 
@@ -13,18 +20,20 @@ Abläufe wie im Demo-Szenario gibt es überall:
 
 ## Woran wir Automatisierungs-Kandidaten erkennen
 
-Nicht jede Aufgabe eignet sich gleich gut für einen Workflow. Drei Merkmale zeichnen einen guten Kandidaten aus:
+Aufgaben eignen sich unterschiedlich gut für einen Workflow. Drei Merkmale zeichnen einen guten Kandidaten aus:
 
 - **Wiederkehrend:** Die Aufgabe fällt regelmäßig in gleicher Form an, nicht als Einzelfall.
 - **Regelbasiert:** Die Schritte lassen sich vorab beschreiben („wenn eine Nachricht eingeht, dann bestätigen und ablegen"), ohne Ermessensentscheidung in jedem Einzelfall.
-- **Digital erreichbar:** Die beteiligten Systeme (Mail, Tabelle, CRM) sind über Schnittstellen ansprechbar.
+- **Digital erreichbar:** Die beteiligten Systeme (Mail, Tabelle, CRM) sind über Schnittstellen ansprechbar, also über festgelegte Zugänge für den Datenaustausch zwischen Programmen.
 
-Eine Aufgabe, die nur einmal im Jahr anfällt oder in jedem Einzelfall eine Abwägung durch Menschen verlangt, bleibt dagegen besser Handarbeit oder bekommt im Workflow einen manuellen Freigabe-Schritt.
+Eine Aufgabe, die nur einmal im Jahr anfällt oder in jedem Einzelfall eine Abwägung durch Menschen verlangt, bleibt besser Handarbeit. Alternativ bekommt sie im Workflow einen manuellen Freigabe-Schritt.
 
 ::: {.callout-note title="Branchenübergreifend einsetzbar"}
 Die Beispiele im Kurs kommen aus Marketing, Vertrieb und Customer-Support. Dieselben Muster funktionieren in der Verwaltung (Formulareingänge), im Personalwesen (Onboarding-Abläufe) oder im Finanzbereich (Rechnungseingang).
 :::
 
 ::: {.callout-tip title="Lernempfehlung"}
-Die Kapitel bauen aufeinander auf. Am meisten nehmen wir mit, wenn wir sie der Reihe nach durchgehen und den Demo-Workflow Schritt für Schritt mitbauen. Die wichtigste Voraussetzung ist ein n8n-Zugang. Dafür reicht die kostenlose 14-tägige Testphase von n8n Cloud; die Einrichtung zeigt das Kapitel [n8n-Testzugang einrichten](first-workflows/testzugang.qmd).
+Die Kapitel bauen aufeinander auf. Wir gehen sie daher am besten der Reihe nach durch und bauen den Demo-Workflow Schritt für Schritt mit.
+
+Die wichtigste Voraussetzung ist ein n8n-Zugang. Dafür reicht die kostenlose 14-tägige Testphase von n8n Cloud. Die Einrichtung zeigt das Kapitel [n8n-Testzugang einrichten](first-workflows/testzugang.qmd).
 :::

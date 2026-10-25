@@ -1,6 +1,6 @@
 # Der erste Workflow: Mail an sich selbst
 
-In diesem Kapitel bauen wir den ersten vollständigen Workflow. Er simuliert eine eingehende Mail, verschickt eine Bestätigung und schreibt einen Eintrag in eine Tabelle. 
+In diesem Kapitel bauen wir den ersten vollständigen Workflow. Er simuliert eine eingehende Mail, verschickt eine Bestätigung und schreibt einen Eintrag in eine Tabelle.
 
 ## Zielbild
 
@@ -17,7 +17,7 @@ Der fertige Workflow hat fünf Stationen:
 
 ## Schnellstart per Import
 
-Wer den fertigen Workflow zuerst sehen will, statt jeden Knoten selbst anzulegen, kann ihn direkt per URL in die eigene n8n-Instanz importieren:
+Wer den fertigen Workflow zuerst sehen will, kann ihn direkt per URL in die eigene n8n-Instanz importieren:
 
 1. Im Editor einen neuen, leeren Workflow anlegen.
 2. Oben rechts auf das Drei-Punkte-Menü klicken.
@@ -36,7 +36,9 @@ Nach dem Import sind Manual Trigger, Set, Send Email und Set vorhanden. Der Data
 
 ## Schritt für Schritt selbst bauen
 
-Wir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat dabei einen Namen, der im Canvas angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen wie *Edit Fields* oder *Send an Email*. Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.
+Wir bauen den oben gezeigten Workflow von links nach rechts. Jeder Knoten in n8n hat einen Namen, der im Canvas (der Arbeitsfläche des Editors) angezeigt wird. Nach dem Einfügen vergibt n8n automatisch einen Default-Namen (Standardnamen) wie *Edit Fields* oder *Send an Email*.
+
+Wir benennen jeden Knoten direkt nach dem Einfügen um. Spätere Knoten können dann über den Namen auf einen früheren Knoten zugreifen.
 
 Im Kurs folgen wir einer einheitlichen Konvention:
 
@@ -204,7 +206,7 @@ Eine sogenannte Cross-Node-Expression `$('Knotenname').item.json.feld` greift ge
 
 ### Schritt 5: Data Table anlegen und Eintrag schreiben
 
-Ein "Data Table" speichert strukturierte Daten direkt in n8n. Die Tabelle ist nicht Teil des Workflows, sondern liegt auf der Projekt-Ebene und wird aus dem Workflow heraus über einen Data-Table-Knoten beschrieben oder gelesen.
+Eine Data Table speichert strukturierte Daten direkt in n8n. Die Tabelle ist nicht Teil des Workflows, sondern liegt auf der Projekt-Ebene und wird aus dem Workflow heraus über einen Data-Table-Knoten beschrieben oder gelesen.
 
 **Tabelle anlegen:**
 
@@ -262,7 +264,9 @@ Der manuelle Modus `Map Each Column Manually` wäre nötig, wenn die Feldnamen a
 
 ## Fehler diagnostizieren
 
-Ein roter Knoten erfordert keinen Neuaufbau des Workflows. Wir lesen die Fehlermeldung, prüfen den Input des Knotens und vergleichen ihn mit der Knoten-Einstellung. Häufige Ursachen sind ein fehlendes Credential, ein abweichender Feldname oder ein Testdatensatz ohne Wert. Den frühesten Fehler im Workflow beheben wir zuerst, denn falsche Daten in Knoten 2 machen einen Blick auf Knoten 4 überflüssig.
+Ein roter Knoten erfordert keinen Neuaufbau des Workflows. Wir lesen die Fehlermeldung, prüfen den Input des Knotens und vergleichen ihn mit der Knoten-Einstellung. Häufige Ursachen sind ein fehlendes Credential, ein abweichender Feldname oder ein Testdatensatz ohne Wert.
+
+Den frühesten Fehler im Workflow beheben wir zuerst. Liefert Knoten 2 falsche Daten, zeigt Knoten 4 oft Folgefehler, die dort nicht entstanden sind.
 
 Eine erste Orientierung bei wiederkehrenden Symptomen:
 
@@ -291,9 +295,9 @@ Sobald der Workflow aktiv ist, behandelt n8n jede eingehende Mail im Trigger-Pos
 ::: {.callout-important title="Fallstricke im Live-Betrieb"}
 Drei Stolpersteine zeigen sich erfahrungsgemäß beim ersten produktiven Lauf:
 
-- **Trigger feuert nicht.** Der häufigste Grund ist ein abgelaufener OAuth-Token oder ein IMAP-Server, der nach einer Stunde Inaktivität die Verbindung schließt. Unter **Executions** prüfen, ob überhaupt ein Lauf stattfindet; in den Trigger-Einstellungen ggf. das Polling-Intervall auf 1 Minute setzen und das Credential neu autorisieren.
-- **Doppelverarbeitung nach n8n-Restart.** Ohne eine Idempotency-Spalte verarbeitet n8n bei einem Neustart die letzten Mails erneut. Für produktive Workflows gehört eine `external_message_id`-Spalte in die Tabelle, die vor jedem Insert geprüft wird (dieses Pattern vertieft der Aufbaukurs *KI-Agenten in n8n*).
-- **Bestätigungs-Mail landet im Spam.** SMTP-Mails von neuen Absenderdomains haben anfangs keinen Reputations-Score. Vor dem Live-Schalten einen SPF- und DKIM-Eintrag setzen oder einen Mail-Versand-Dienst wie Postmark oder SendGrid nutzen.
+- **Trigger feuert nicht.** Der häufigste Grund ist ein abgelaufener OAuth-Token oder ein IMAP-Server, der nach einer Stunde Inaktivität die Verbindung schließt. Unter **Executions** prüfen, ob überhaupt ein Lauf stattfindet; in den Trigger-Einstellungen ggf. das Polling-Intervall (den Abstand, in dem n8n das Postfach abfragt) auf 1 Minute setzen und das Credential neu autorisieren.
+- **Doppelverarbeitung nach n8n-Restart.** Ohne eine Idempotency-Spalte (eine Spalte, an der sich erkennen lässt, ob eine Mail schon verarbeitet wurde) verarbeitet n8n bei einem Neustart die letzten Mails erneut. Für produktive Workflows gehört eine `external_message_id`-Spalte in die Tabelle, die vor jedem Insert geprüft wird (dieses Pattern vertieft der Aufbaukurs *KI-Agenten in n8n*).
+- **Bestätigungs-Mail landet im Spam.** SMTP-Mails von neuen Absenderdomains haben anfangs keinen Reputations-Score. Vor dem Live-Schalten einen SPF- und DKIM-Eintrag setzen (Einträge in den Domain-Einstellungen, die den Absender bestätigen) oder einen Mail-Versand-Dienst wie Postmark oder SendGrid nutzen.
 :::
 
 ## Kontrollpunkt für Modul 02
@@ -311,6 +315,6 @@ Am Ende dieses Moduls sollten folgende Punkte bekannt sein:
 
 ## Wie es weitergeht
 
-Damit steht das handwerkliche Fundament: einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs *KI-Agenten in n8n* die Fortsetzung, die genau dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.
+Damit steht das handwerkliche Fundament: einen Workflow anlegen, Knoten verketten, mit Feldern und Expressions arbeiten und ihn vom Test in den Live-Betrieb bringen. Wer von hier aus weitergehen möchte, findet im Aufbaukurs *KI-Agenten in n8n* die Fortsetzung, die dieses Demo-Szenario aufgreift und um KI-gestützte Schritte erweitert.
 
 

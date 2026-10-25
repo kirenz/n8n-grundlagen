@@ -1,6 +1,6 @@
 # Was n8n leistet
 
-Eine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehen. Wir beginnen daher mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.
+Dieses Kapitel erklärt das Funktionsprinzip von n8n. Wir beginnen mit einem konkreten Anwendungsfall, bevor wir uns Pricing, Hosting und Tool-Vergleichen zuwenden.
 
 ## Ein konkreter Anwendungsfall
 
@@ -10,7 +10,7 @@ Eine sinnvolle Einordnung von n8n setzt voraus, das Funktionsprinzip zu verstehe
 2. **Antworten:** Eine Bestätigungs-E-Mail geht zurück: „Vielen Dank, wir melden uns innerhalb eines Werktags."
 3. **Festhalten:** Die Nachricht landet in einer Tabelle, damit das Team sie später bearbeiten kann.
 
-Genau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontaktformular, eingehende Rechnung oder wöchentliches Reporting. Drei Schritte, drei Werkzeuge, ein einziger Workflow, der danach von alleine läuft.
+Für solche wiederkehrenden Abläufe ist n8n gebaut, etwa für Kontaktformulare, eingehende Rechnungen oder ein wöchentliches Reporting. Im Beispiel verbindet ein Workflow drei Werkzeuge (Formular, Postfach und Tabelle) und läuft nach der Einrichtung ohne weiteres Zutun.
 
 ![n8n verbindet vorhandene Werkzeuge: Ein Kontaktformular startet einen Workflow mit drei Schritten, der eine Bestätigung ins Postfach schickt und eine Zeile in die Tabelle schreibt.](../images/lektionen/grundlagen-formularfluss.svg)
 
@@ -18,9 +18,9 @@ Genau für solche immer wiederkehrenden Abläufe ist n8n gebaut, egal ob Kontakt
 
 n8n erfüllt im Kern zwei Aufgaben, die im selben Editor zusammenfallen:
 
-**Daten zwischen Werkzeugen bewegen.** n8n bringt über fünfhundert fertige **Integrationen** mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt, eigener Code ist optional.
+**Daten zwischen Werkzeugen bewegen.** n8n bringt über fünfhundert fertige **Integrationen** mit, also vorbereitete Verbindungen zu externen Anwendungen wie Salesforce, HubSpot, Slack, Microsoft Teams, Notion oder Airtable. Anwendungen mit einer offenen API, also einer dokumentierten Schnittstelle für den automatisierten Zugriff von außen, lassen sich zusätzlich anbinden. Trigger, Schritte und Verbindungen werden im Editor visuell zusammengeklickt. Eigener Code ist möglich, aber nicht nötig.
 
-**KI-Bausteine als Standard mitbringen.** Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen, all diese Bausteine sind keine Zusatzkomponenten, sondern Standardausstattung im Editor. Genau diese Mischung aus Daten-Bewegung und KI-Bereitschaft unterscheidet n8n von klassischen Automation-Tools.
+**KI-Bausteine als Standard mitbringen.** Ein eigener KI-Assistent im Workflow, eine Suche über firmeninterne Dokumente oder manuelle Freigabe-Schritte für sensible Aktionen gehören zur Standardausstattung des Editors. Diese Verbindung von Datenbewegung und KI-Bausteinen unterscheidet n8n von klassischen Automation-Tools.
 
 ::: {.callout-tip title="Werkstatt-Analogie für n8n" collapse="true"}
 n8n lässt sich gut mit einer gut sortierten Werkstatt vergleichen:
@@ -30,7 +30,7 @@ n8n lässt sich gut mit einer gut sortierten Werkstatt vergleichen:
 - **Werkzeuge an der Wand** sind die Knoten (Mail-Knoten, Tabellen-Knoten, KI-Knoten), die je nach Bedarf von der Werkbank gegriffen werden.
 - **Strom und Druckluft** sind die Auslöser im Hintergrund, die die Werkstatt überhaupt erst aktivieren, also ein Trigger pro Werkbank.
 
-Wer eine Werkstatt einrichtet, muss nicht jedes Werkzeug selbst bauen. Er muss aber wissen, welches Werkzeug zu welcher Aufgabe passt.
+Die Werkzeuge müssen wir also nicht selbst bauen. Wichtig ist, für jede Aufgabe das passende Werkzeug auszuwählen.
 :::
 
 ![Rechnung per Mail, n8n fragt einen KI-Dienst nach der Kategorie und legt die Rechnung im passenden Ordner ab.](../images/lektionen/grundlagen-daten-und-ki.svg)
@@ -39,12 +39,14 @@ Wer eine Werkstatt einrichtet, muss nicht jedes Werkzeug selbst bauen. Er muss a
 
 ![Was n8n ist und was nicht.](../images/lektionen/uebersicht-ist-nicht.svg)
 
-n8n ist kein vollwertiger Code-Editor, kein Daten-Warehouse und kein eigenständiges KI-Modell. Wer einen mehrstufigen Datentransformations-Job mit komplexer Logik schreibt, ist mit Python, dbt oder Airflow oft besser aufgehoben. Das KI-Modell selbst wird nicht in n8n bereitgestellt, sondern als externer Dienst von OpenAI, Anthropic oder Ollama angebunden. n8n ist die Schicht **dazwischen**, also die Orchestrierung, die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.
+n8n ist kein vollwertiger Code-Editor, kein Data Warehouse (eine zentrale Datenbank für Auswertungen) und kein eigenständiges KI-Modell. Wer eine mehrstufige Datenaufbereitung mit komplexer Logik programmiert, ist mit Python oder spezialisierten Werkzeugen wie dbt und Airflow oft besser aufgehoben.
+
+Das KI-Modell selbst stellt n8n nicht bereit. Es wird als Dienst von OpenAI, Anthropic oder über Ollama angebunden. n8n ist die Schicht **dazwischen**, also die Orchestrierung (Steuerung des Zusammenspiels), die alle anderen Werkzeuge zu einem laufenden Prozess verbindet.
 
 ![n8n als Orchestrierungs-Schicht: Auslöser laufen hinein, Tools, Daten und KI-Modelle werden angesprochen.](../d2/n8n-orchestrierung.svg){#fig-n8n-orchestrierung width="80%"}
 
 ::: {.callout-note}
-n8n ersetzt nicht die spezialisierten Werkzeuge, sondern verbindet sie. Wer Salesforce, ein eigenes Sprach-Modell, eine Postgres-Datenbank und ein Slack-Setup hat, nutzt n8n als Bindeglied und nicht als Ersatz.
+n8n verbindet spezialisierte Werkzeuge miteinander. Wer Salesforce, ein eigenes Sprach-Modell, eine Postgres-Datenbank und Slack einsetzt, behält diese Werkzeuge und nutzt n8n als Bindeglied.
 :::
 
 ## Typische Anwendungsfelder
@@ -52,7 +54,7 @@ n8n ersetzt nicht die spezialisierten Werkzeuge, sondern verbindet sie. Wer Sale
 Drei Aufgabenklassen sind typische Einsatzgebiete für n8n:
 
 1. **Routine-Workflows mit Trigger-Aktion-Datenfluss.** Eine Mail trifft ein, eine Aktion wird ausgeführt, ein Eintrag wird geschrieben. Das ist klassisches Tagesgeschäft im Marketing, im Vertrieb und im Customer-Support.
-2. **Hybride Pipelines mit deterministischen und KI-Schritten.** Vor- und Nachverarbeitung laufen deterministisch ab, und mittendrin steht ein KI-Schritt für Klassifikation (also das Zuordnen einer Eingabe zu einer Kategorie), Zusammenfassung oder Antwort-Formulierung.
-3. **Wissens-Anwendungen mit eigenen Daten.** RAG-Pipelines greifen mit dem Sprach-Modell auf firmeneigene Inhalte zu, statt aus dem allgemeinen Internet-Wissen zu antworten.
+2. **Hybride Pipelines mit deterministischen und KI-Schritten.** Vor- und Nachverarbeitung laufen deterministisch ab (nach festen Regeln, mit gleichem Ergebnis bei gleicher Eingabe), und mittendrin steht ein KI-Schritt für Klassifikation (also das Zuordnen einer Eingabe zu einer Kategorie), Zusammenfassung oder Antwort-Formulierung.
+3. **Wissens-Anwendungen mit eigenen Daten.** RAG-Pipelines (Retrieval-Augmented Generation: Das Sprach-Modell sucht vor der Antwort passende Stellen in eigenen Dokumenten) greifen auf firmeneigene Inhalte zu, statt aus dem allgemeinen Internet-Wissen zu antworten.
 
 Die folgenden Module greifen diese drei Aufgabenklassen jeweils auf und setzen sie Schritt für Schritt mit n8n um.
