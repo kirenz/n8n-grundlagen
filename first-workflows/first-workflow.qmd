@@ -199,7 +199,7 @@ Eine sogenannte Cross-Node-Expression `$('Knotenname').item.json.feld` greift ge
 
 7. Auf **Execute step** klicken. Im Output stehen die vier Spalten des späteren Tabelleneintrags.
 
-![Set-Knoten mit den vier Cross-Node-Expressions, die Werte aus dem Knoten Receive email beziehen.](../images/m02-set-eintrag.png){#fig-m02-set-eintrag}
+![Set-Knoten mit drei Cross-Node-Expressions, die Werte aus dem Knoten Receive email beziehen, und dem festen Wert new im Feld status.](../images/m02-set-eintrag.png){#fig-m02-set-eintrag}
 
 8. Oben rechts im Menü auf `x` klicken, um die Detailansicht zu verlassen und zum Canvas zurückzukehren.
 
